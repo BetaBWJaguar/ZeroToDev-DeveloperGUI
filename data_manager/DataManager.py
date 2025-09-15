@@ -12,7 +12,7 @@ os.environ["PATH"] += os.pathsep + str(Path(FFMPEG_PATH).parent)
 AudioSegment.converter = FFMPEG_PATH
 AudioSegment.ffprobe = FFPROBE_PATH
 
-class Convertor:
+class DataManager:
     @staticmethod
     def write_to_memory(data: bytes) -> io.BytesIO:
         buf = io.BytesIO()

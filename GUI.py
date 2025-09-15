@@ -6,6 +6,9 @@ from tkinter import ttk, messagebox
 
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector
+from data_manager.MemoryManager import MemoryManager
+from fragments.UIFragments import center_window
+from voicegui.VoiceGUI import VoiceSettings
 
 BASE_DIR = Path(__file__).resolve().parent
 UTILS_DIR = BASE_DIR / "utils"
@@ -76,6 +79,7 @@ class TTSMenuApp(tk.Tk):
 
         help_menu = tk.Menu(menubar, tearoff=0)
         help_menu.add_command(label="Developer", command=self.show_developer)
+        help_menu.add_command(label="Settings", command=self.show_settings)
         menubar.add_cascade(label="Help", menu=help_menu)
 
         self.config(menu=menubar)
@@ -116,7 +120,8 @@ class TTSMenuApp(tk.Tk):
         service_card, service_inner = section(right, "TTS Service")
         service_card.grid(row=1, column=0, sticky="nsew")
 
-        self.service_var = tk.StringVar()
+        self.service_var = tk.StringVar(value=MemoryManager.get("tts_service", ""))
+        self.service_var.trace_add("write", lambda *_: MemoryManager.set("tts_service", self.service_var.get()))
         service_row = ttk.Frame(service_inner, style="Card.TFrame"); service_row.pack(fill="x")
 
         ttk.Radiobutton(service_row, text="Microsoft Edge TTS", value="edge", variable=self.service_var,
@@ -127,7 +132,8 @@ class TTSMenuApp(tk.Tk):
 
         fmt_card, fmt_inner = section(right, "Format")
         fmt_card.grid(row=2, column=0, sticky="nsew")
-        self.format_var = tk.StringVar()
+        self.format_var = tk.StringVar(value=MemoryManager.get("tts_format", ""))
+        self.format_var.trace_add("write", lambda *_: MemoryManager.set("tts_format", self.format_var.get()))
         fmt_row = ttk.Frame(fmt_inner, style="Card.TFrame"); fmt_row.pack(fill="x")
         ttk.Radiobutton(fmt_row, text="MP3", value="mp3", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
@@ -202,12 +208,9 @@ class TTSMenuApp(tk.Tk):
                    style="Accent.TButton").pack(anchor="center", pady=(8, 0))
 
 
-        win.update_idletasks()
-        pw, ph = self.winfo_width(), self.winfo_height()
-        px, py = self.winfo_x(), self.winfo_y()
-        ww, wh = win.winfo_width(), win.winfo_height()
-        x = px + (pw // 2) - (ww // 2)
-        y = py + (ph // 2) - (wh // 2)
-        win.geometry(f"{ww}x{wh}+{x}+{y}")
+        center_window(win,self)
+
+    def show_settings(self):
+        VoiceSettings(self)
 
 

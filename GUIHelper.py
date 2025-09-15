@@ -2,7 +2,7 @@
 import tkinter as tk
 from pathlib import Path
 from tkinter import ttk
-
+from tkinter.ttk import Frame, Combobox
 
 THEME = {"COLORS": {}, "FONTS": {}}
 
@@ -117,4 +117,89 @@ def output_selector(parent, initial_dir: Path, callback) -> tuple[ttk.Labelframe
 
     inner.grid_columnconfigure(0, weight=1)
     return lf, output_label
+
+def labeled_scale(parent, text: str, var: tk.DoubleVar,
+                  from_: float, to: float, resolution: float = 0.1) -> ttk.Frame:
+    frame = ttk.Frame(parent, style="Card.TFrame")
+
+    ttk.Label(frame, text=text, style="Muted.TLabel").pack(anchor="w")
+
+    inner = ttk.Frame(frame, style="Card.TFrame")
+    inner.pack(fill="x", pady=(0, 8))
+
+    style = ttk.Style()
+    style.configure(
+        "White.Horizontal.TScale",
+        background=THEME["COLORS"]["card"],
+        troughcolor=THEME["COLORS"]["surface"],
+        sliderrelief="flat"
+    )
+    style.map(
+        "White.Horizontal.TScale",
+        background=[("active", THEME["COLORS"]["card"])],
+        troughcolor=[("active", THEME["COLORS"]["surface"])],
+        sliderrelief=[("active", "flat")]
+    )
+
+    scale = ttk.Scale(
+        inner,
+        from_=from_, to=to,
+        orient="horizontal",
+        variable=var,
+        style="White.Horizontal.TScale",
+        length=200
+    )
+    scale.pack(side="left", fill="x", expand=True)
+
+
+    value_label = ttk.Label(inner, text=f"{var.get():.1f}", style="TLabel", width=5)
+    value_label.pack(side="right", padx=(8, 0))
+
+    def update_value(*_):
+        value_label.config(text=f"{var.get():.1f}")
+
+    var.trace_add("write", update_value)
+
+    return frame
+
+def styled_combobox(parent, text: str, var: tk.StringVar, values: list[str]) -> tuple[Frame, Combobox]:
+    frame = ttk.Frame(parent, style="Card.TFrame")
+
+    ttk.Label(frame, text=text, style="Muted.TLabel").pack(anchor="w")
+
+    c = THEME["COLORS"]
+    f = THEME["FONTS"]
+
+    style = ttk.Style()
+    style.configure(
+        "Preset.TCombobox",
+        fieldbackground=c["surface"],
+        background=c["card"],
+        foreground=c["text"],
+        arrowcolor=c["primary"],
+        selectbackground=c["primary"],
+        selectforeground="white",
+        font=tuple(f["label"]),
+        padding=6,
+        relief="flat"
+    )
+    style.map(
+        "Preset.TCombobox",
+        fieldbackground=[("readonly", c["surface"]), ("disabled", c["bg"])],
+        foreground=[("readonly", c["text"]), ("disabled", c["muted"])],
+        arrowcolor=[("active", c["primary_active"])]
+    )
+
+
+    combo = ttk.Combobox(
+        frame,
+        textvariable=var,
+        values=values,
+        state="readonly",
+        style="Preset.TCombobox"
+    )
+    combo.pack(fill="x", pady=(2, 6))
+
+    return frame, combo
+
 

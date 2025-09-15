@@ -2,6 +2,9 @@
 import tkinter as tk
 from tkinter import ttk
 
+from fragments.UIFragments import center_window
+
+
 class GUIError(tk.Toplevel):
     def __init__(self, parent, title: str, message: str, icon: str):
         super().__init__(parent)
@@ -39,18 +42,4 @@ class GUIError(tk.Toplevel):
 
         self.update_idletasks()
         parent.update()
-
-        parent_x = parent.winfo_x()
-        parent_y = parent.winfo_y()
-        parent_width = parent.winfo_width()
-        parent_height = parent.winfo_height()
-
-        window_width = self.winfo_width()
-        window_height = self.winfo_height()
-
-
-        center_x = parent_x + (parent_width // 2) - (window_width // 2)
-        center_y = parent_y + (parent_height // 2) - (window_height // 2)
-
-
-        self.geometry(f"+{center_x}+{center_y}")
+        center_window(self, parent)
