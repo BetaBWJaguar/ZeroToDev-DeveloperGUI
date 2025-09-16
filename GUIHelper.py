@@ -202,4 +202,39 @@ def styled_combobox(parent, text: str, var: tk.StringVar, values: list[str]) -> 
 
     return frame, combo
 
+def progress_section(parent) -> tuple[ttk.Frame, ttk.Progressbar, tk.IntVar, ttk.Label]:
+    c = THEME["COLORS"]
+    style = ttk.Style()
+
+    style.configure(
+        "Accent.Horizontal.TProgressbar",
+        troughcolor=c["surface"],
+        background=c["primary"],
+        thickness=14
+    )
+    style.map(
+        "Accent.Horizontal.TProgressbar",
+        background=[("active", c["primary_active"])]
+    )
+
+    frame = ttk.Frame(parent, style="Card.TFrame")
+
+    progress_var = tk.IntVar(value=0)
+    progress = ttk.Progressbar(
+        frame,
+        variable=progress_var,
+        maximum=100,
+        mode="determinate",
+        style="Accent.Horizontal.TProgressbar"
+    )
+    progress.grid(row=0, column=0, sticky="ew", pady=(4, 2))
+
+    progress_label = ttk.Label(frame, text="Ready.", style="Muted.TLabel")
+    progress_label.grid(row=1, column=0, sticky="w")
+
+    frame.grid_columnconfigure(0, weight=1)
+    return frame, progress, progress_var, progress_label
+
+
+
 

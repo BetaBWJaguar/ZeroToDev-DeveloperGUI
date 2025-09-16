@@ -5,9 +5,17 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 from GUIError import GUIError
-from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector
+from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
+    progress_section
+from VoiceProcessor import VoiceProcessor
+from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
+from media_formats.MP3 import MP3
+from media_formats.WAV import WAV
+from media_formats.WEBM import WEBM
+from tts.GTTS import GTTSService
+from tts.MicrosoftEdgeTTS import MicrosoftEdgeTTS
 from voicegui.VoiceGUI import VoiceSettings
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -143,6 +151,11 @@ class TTSMenuApp(tk.Tk):
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
 
+        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right)
+        self.progress_frame.grid(row=4, column=0, sticky="ew", pady=(8, 2))
+
+
+
         bar, self.status, self.counter = footer(root)
         bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
 
@@ -160,26 +173,84 @@ class TTSMenuApp(tk.Tk):
     def _on_output_change(self, new_path: Path):
         self.output_dir = new_path
 
-    def on_convert(self):
-        text = self.text.get("1.0", "end-1c").strip()
-        if not text:
-            GUIError(self, "Error", "Please enter some text.", icon="❌")
-            return
+    def _set_progress(self, pct: int, msg: str):
+        pct = max(0, min(100, int(pct)))
+        self.after(0, lambda: (self.progress_var.set(pct), self.progress_label.config(text=msg)))
 
-            # fmt = self.format_var.get().upper() if self.format_var.get() else ""
-        # svc = self.service_var.get().upper() if self.service_var.get() else ""
-        #
-        # if not fmt:
-        #     GUIError(self, "Error", "Please select a format.")
-        #     return
-        # if not svc:
-        #     GUIError(self, "Error", "Please select a TTS service.")
-        #     return
+    def _eta_text(self, start_ts, frac: float) -> str:
+        import time
+        frac = max(1e-6, min(0.9999, float(frac)))
+        elapsed = time.time() - start_ts
+        eta = elapsed * (1 - frac) / frac
+        m = int(eta // 60); s = int(eta % 60)
+        return f"~{m:02d}:{s:02d} left"
+
+
+
+    def on_convert(self):
+        import threading
+        self.convert_btn.config(state="disabled")
+        self._set_progress(0, "Starting…")
+        threading.Thread(target=self._do_convert_thread, daemon=True).start()
+
+
+
+    def _do_convert_thread(self):
+        import time
+        FORMAT_MAP = {"MP3": MP3, "WAV": WAV, "WEBM": WEBM}
+
+        text = self.text.get("1.0", "end-1c").strip()
+        fmt_key = (self.format_var.get() or "").upper()
+        svc_key = (self.service_var.get() or "").upper()
+        t0 = time.time()
 
         try:
-            GUIError(self, "Info", "Conversion completed", icon="✅")
+            if svc_key == "GOOGLE":
+                tts = GTTSService(lang="en")
+            elif svc_key == "EDGE":
+                tts = MicrosoftEdgeTTS()
+            else:
+                GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
+                self._set_progress(0,"Ready.")
+                return
+
+
+            fmt_class = FORMAT_MAP.get(fmt_key)
+            if not fmt_class:
+                GUIError(self, "Error", f"Unknown format: {fmt_key}", icon="❌")
+                self._set_progress(0,"Ready.")
+                return
+
+
+            def tts_progress(pct, msg):
+                self._set_progress(pct, msg)
+
+            raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
+
+
+            self._set_progress(62, "Applying effects…")
+            settings = {k: MemoryManager.get(k, v) for k, v in {
+                "pitch": 0, "speed": 1.0, "volume": 1.0,
+                "echo": False, "reverb": False, "robot": False
+            }.items()}
+            processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
+            self._set_progress(85, "Effects done")
+
+
+            fmt_class = FORMAT_MAP.get(fmt_key)
+            processed_audio = DataManager.from_bytes(processed_bytes, "mp3")
+            self._set_progress(90, "Exporting…")
+            formatter = fmt_class(processed_audio)
+            out_path = formatter.export(self.output_dir)
+
+            self._set_progress(100, f"Done in {int(time.time()-t0)}s → {out_path.name}")
+            GUIError(self, "Info", f"Conversion completed!\nSaved to:\n{out_path}", icon="✅")
+
         except Exception as e:
             GUIError(self, "Error", f"Conversion failed:\n{e}", icon="❌")
+        finally:
+            self.after(0, lambda: self.convert_btn.config(state="normal"))
+
 
 
     def show_developer(self):

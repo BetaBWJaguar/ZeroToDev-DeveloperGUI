@@ -28,20 +28,21 @@ class VoiceSettings(tk.Toplevel):
 
         self.presets = load_presets()
 
-
         container = ttk.Frame(self, padding=20, style="TFrame")
         container.pack(fill="both", expand=True)
 
-
         preset_card, preset_inner = section(container, "Presets Selecting")
-        preset_card.pack(fill="x", pady=(0,2))
+        preset_card.pack(fill="x", pady=(0, 2))
 
-        self.preset_var = tk.StringVar(value="Default")
-        preset_frame, preset_combo = styled_combobox(preset_inner, "Presets", self.preset_var, list(self.presets.keys()))
+        last_preset = MemoryManager.get("preset", "Default")
+        self.preset_var = tk.StringVar(value=last_preset)
+        preset_frame, preset_combo = styled_combobox(
+            preset_inner, "Presets", self.preset_var, list(self.presets.keys())
+        )
         preset_frame.pack(fill="x", pady=(0, 0))
         preset_combo.bind("<<ComboboxSelected>>", self.apply_preset)
 
-
+        # --- Voice parameters ---
         param_card, param_inner = section(container, "Voice Parameters")
         param_card.pack(fill="x", pady=(0, 15))
 
@@ -88,16 +89,7 @@ class VoiceSettings(tk.Toplevel):
         parent.update()
         center_window(self, parent)
 
-    def _center(self, parent):
-        parent_x = parent.winfo_x()
-        parent_y = parent.winfo_y()
-        parent_width = parent.winfo_width()
-        parent_height = parent.winfo_height()
-        window_width = self.winfo_width()
-        window_height = self.winfo_height()
-        center_x = parent_x + (parent_width // 2) - (window_width // 2)
-        center_y = parent_y + (parent_height // 2) - (window_height // 2)
-        self.geometry(f"+{center_x}+{center_y}")
+        self.apply_preset()
 
     def apply_preset(self, *_):
         preset_name = self.preset_var.get()
