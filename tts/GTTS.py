@@ -5,9 +5,10 @@ from io import BytesIO
 from data_manager.DataManager import DataManager
 import time
 
-class GTTSService:
-    output_format = "mp3"
+from tts.TTSUtils import TTSUtils
 
+
+class GTTSService:
     def __init__(self, lang="en", max_chunk_chars=300):
         self.lang = lang
         self.max_chunk_chars = max_chunk_chars
@@ -47,3 +48,11 @@ class GTTSService:
         raw_all.seek(0)
         mem_buf = DataManager.write_to_memory(raw_all.read())
         return DataManager.read_from_memory(mem_buf)
+
+    def synthesize_preview(self, text: str, seconds: int = 20, play_audio: bool = True) -> bytes:
+        paragraphs = text.split("\n\n")
+        snippet = paragraphs[0] if paragraphs else text[:300]
+
+        audio_bytes = self.synthesize_to_bytes(snippet)
+
+        return TTSUtils.preview(audio_bytes, seconds=seconds, play_audio=play_audio)

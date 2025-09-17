@@ -4,10 +4,10 @@ import asyncio, time
 from io import BytesIO
 import edge_tts
 from data_manager.DataManager import DataManager
+from tts.TTSUtils import TTSUtils
+
 
 class MicrosoftEdgeTTS:
-    output_format = "mp3"
-
     def __init__(self, voice="en-US-AriaNeural", retries=1, retry_delay=0.6, max_chunk_chars=300):
         self.voice = voice
         self.retries = retries
@@ -70,3 +70,12 @@ class MicrosoftEdgeTTS:
         raw_all.seek(0)
         mem_buf = DataManager.write_to_memory(raw_all.read())
         return DataManager.read_from_memory(mem_buf)
+
+    def synthesize_preview(self, text: str, seconds: int = 20, play_audio: bool = True) -> bytes:
+        paragraphs = text.split("\n\n")
+        snippet = paragraphs[0] if paragraphs else text[:300]
+
+        audio_bytes = self.synthesize_to_bytes(snippet)
+
+        return TTSUtils.preview(audio_bytes, seconds=seconds, play_audio=play_audio)
+

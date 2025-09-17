@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 import json, sys
+import urllib
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, messagebox
-
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section
+    progress_section, set_buttons_state
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
+from media_formats.AAC import AAC
+from media_formats.FLAC import FLAC
 from media_formats.MP3 import MP3
 from media_formats.WAV import WAV
 from media_formats.WEBM import WEBM
@@ -66,12 +68,19 @@ ensure_font_values(FONTS)
 DEVINFO = load_json_strict(UTILS_DIR / "DevInfo.json")
 ensure_keys("DevInfo.json", DEVINFO, REQUIRED_DEV_KEYS)
 
+def check_internet(url="http://www.google.com", timeout=3) -> bool:
+    try:
+        urllib.request.urlopen(url, timeout=timeout)
+        return True
+    except Exception:
+        return False
+
 class TTSMenuApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Text to Speech")
-        self.geometry("1200x800")
-        self.minsize(1200, 800)
+        self.geometry("1200x850")
+        self.minsize(1200, 850)
 
         self.output_dir = BASE_DIR / "output"
         self.output_dir.mkdir(exist_ok=True)
@@ -125,6 +134,9 @@ class TTSMenuApp(tk.Tk):
         self.convert_btn = primary_button(convert_inner, "CONVERT", self.on_convert)
         self.convert_btn.pack(fill="x")
 
+        self.preview_btn = primary_button(convert_inner, "PREVIEW", self.on_preview)
+        self.preview_btn.pack(fill="x", pady=(0, 6))
+
         service_card, service_inner = section(right, "TTS Service")
         service_card.grid(row=1, column=0, sticky="nsew")
 
@@ -148,6 +160,10 @@ class TTSMenuApp(tk.Tk):
         ttk.Radiobutton(fmt_row, text="WAV (PCM)", value="wav", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
         ttk.Radiobutton(fmt_row, text="WEBM (Opus)", value="webm", variable=self.format_var,
+                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
+        ttk.Radiobutton(fmt_row, text="FLAC (Lossless)", value="flac", variable=self.format_var,
+                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
+        ttk.Radiobutton(fmt_row, text="AAC", value="aac", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
 
@@ -185,11 +201,80 @@ class TTSMenuApp(tk.Tk):
         m = int(eta // 60); s = int(eta % 60)
         return f"~{m:02d}:{s:02d} left"
 
+    def on_preview(self):
+        import threading
+        set_buttons_state("disabled", self.convert_btn, self.preview_btn)
+        self._set_progress(0, "Preview starting…")
+        threading.Thread(target=self._do_preview_thread, daemon=True).start()
+
+    def _do_preview_thread(self):
+        import time
+        from io import BytesIO
+        from pydub import AudioSegment
+        import simpleaudio as sa
+
+        text = self.text.get("1.0", "end-1c").strip()
+        if not text:
+            GUIError(self, "Error", "No text entered!", icon="❌")
+            self._set_progress(0, "Ready.")
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            return
+
+        svc_key = (self.service_var.get() or "").upper()
+        t0 = time.time()
+
+        try:
+            paragraphs = text.split("\n\n")
+            snippet = paragraphs[0] if paragraphs else text[:300]
+
+            if svc_key == "GOOGLE":
+                tts = GTTSService(lang="en")
+            elif svc_key == "EDGE":
+                tts = MicrosoftEdgeTTS()
+            else:
+                GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
+                self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+                return
+
+
+            raw_bytes = tts.synthesize_to_bytes(snippet)
+
+            self._set_progress(50, "Applying preview effects…")
+            settings = {k: MemoryManager.get(k, v) for k, v in {
+                "pitch": 0, "speed": 1.0, "volume": 1.0,
+                "echo": False, "reverb": False, "robot": False
+            }.items()}
+            processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
+
+            audio = AudioSegment.from_file(BytesIO(processed_bytes), format="mp3")
+            preview = audio[:20 * 1000]
+
+            out_buf = BytesIO()
+            preview.export(out_buf, format="mp3")
+            out_buf.seek(0)
+
+            self._set_progress(90, "Playing preview…")
+            play_obj = sa.play_buffer(
+                preview.raw_data,
+                num_channels=preview.channels,
+                bytes_per_sample=preview.sample_width,
+                sample_rate=preview.frame_rate
+            )
+            play_obj.wait_done()
+
+            self._set_progress(100, f"Preview done ✔️ in {int(time.time()-t0)}s")
+
+        except Exception as e:
+            GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
+            self._set_progress(0, "Ready.")
+        finally:
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+
 
 
     def on_convert(self):
         import threading
-        self.convert_btn.config(state="disabled")
+        set_buttons_state("disabled", self.convert_btn, self.preview_btn)
         self._set_progress(0, "Starting…")
         threading.Thread(target=self._do_convert_thread, daemon=True).start()
 
@@ -197,9 +282,20 @@ class TTSMenuApp(tk.Tk):
 
     def _do_convert_thread(self):
         import time
-        FORMAT_MAP = {"MP3": MP3, "WAV": WAV, "WEBM": WEBM}
+        FORMAT_MAP = {
+            "MP3": MP3,
+            "WAV": WAV,
+            "WEBM": WEBM,
+            "FLAC": FLAC,
+            "AAC": AAC
+        }
 
         text = self.text.get("1.0", "end-1c").strip()
+        if not text:
+            GUIError(self, "Error", "No text entered!", icon="❌")
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn, self.text))
+            self._set_progress(0, "Ready.")
+            return
         fmt_key = (self.format_var.get() or "").upper()
         svc_key = (self.service_var.get() or "").upper()
         t0 = time.time()
@@ -211,6 +307,7 @@ class TTSMenuApp(tk.Tk):
                 tts = MicrosoftEdgeTTS()
             else:
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
+                self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,"Ready.")
                 return
 
@@ -218,6 +315,7 @@ class TTSMenuApp(tk.Tk):
             fmt_class = FORMAT_MAP.get(fmt_key)
             if not fmt_class:
                 GUIError(self, "Error", f"Unknown format: {fmt_key}", icon="❌")
+                self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,"Ready.")
                 return
 
@@ -248,8 +346,9 @@ class TTSMenuApp(tk.Tk):
 
         except Exception as e:
             GUIError(self, "Error", f"Conversion failed:\n{e}", icon="❌")
+            self._set_progress(0, "Ready.")
         finally:
-            self.after(0, lambda: self.convert_btn.config(state="normal"))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
 
 
 

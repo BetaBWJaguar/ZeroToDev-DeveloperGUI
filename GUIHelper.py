@@ -235,6 +235,13 @@ def progress_section(parent) -> tuple[ttk.Frame, ttk.Progressbar, tk.IntVar, ttk
     frame.grid_columnconfigure(0, weight=1)
     return frame, progress, progress_var, progress_label
 
+def set_buttons_state(state: str, *widgets):
+    for w in widgets:
+        try:
+            w.config(state=state)
+        except Exception:
+            pass
+
 
 
 

@@ -89,8 +89,6 @@ class VoiceSettings(tk.Toplevel):
         parent.update()
         center_window(self, parent)
 
-        self.apply_preset()
-
     def apply_preset(self, *_):
         preset_name = self.preset_var.get()
         MemoryManager.set("preset", preset_name)

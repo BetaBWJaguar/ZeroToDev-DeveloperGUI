@@ -15,8 +15,9 @@ class BaseFormat(ABC):
     def export(self, out_dir: Path) -> Path:
         raise NotImplementedError()
 
-    def save(self, out_dir: Path) -> Path:
-        return DataManager.save_to_file(self.audio, self.extension, out_dir)
+    def save(self, out_dir: Path, override_format: str = None) -> Path:
+        fmt = override_format or self.extension
+        return DataManager.save_to_file(self.audio, fmt, out_dir)
 
     def get_extension(self) -> str:
         return self.extension
