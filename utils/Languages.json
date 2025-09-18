@@ -1,0 +1,20 @@
+{
+  "en": {
+    "label": "English",
+    "gtts": {
+      "lang": "en"
+    },
+    "edge": {
+      "voice": "en-US-JennyNeural"
+    }
+  },
+  "tr": {
+    "label": "Turkish",
+    "gtts": {
+      "lang": "tr"
+    },
+    "edge": {
+      "voice": "tr-TR-EmelNeural"
+    }
+  }
+}

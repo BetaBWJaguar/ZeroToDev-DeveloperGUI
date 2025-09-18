@@ -1,17 +1,15 @@
-# tts/MicrosoftEdgeTTS.py
 # -*- coding: utf-8 -*-
 import asyncio, time
 from io import BytesIO
 import edge_tts
 from data_manager.DataManager import DataManager
-from tts.TTSUtils import TTSUtils
+from tts.utility.TTSHelper import TTSHelper
 
 
-class MicrosoftEdgeTTS:
-    def __init__(self, voice="en-US-AriaNeural", retries=1, retry_delay=0.6, max_chunk_chars=300):
+class MicrosoftEdgeTTS(TTSHelper):
+    def __init__(self, voice, retries=1, retry_delay=0.6, max_chunk_chars=300):
+        super().__init__(retries, retry_delay)
         self.voice = voice
-        self.retries = retries
-        self.retry_delay = retry_delay
         self.max_chunk_chars = max_chunk_chars
 
     def _chunk_text(self, text: str):
@@ -23,8 +21,10 @@ class MicrosoftEdgeTTS:
                 parts.append(" ".join(buf))
                 buf, count = [w], len(w) + 1
             else:
-                buf.append(w); count += len(w) + 1
-        if buf: parts.append(" ".join(buf))
+                buf.append(w)
+                count += len(w) + 1
+        if buf:
+            parts.append(" ".join(buf))
         return parts
 
     async def _synthesize_async_once(self, text: str, progress_cb=None) -> bytes:
@@ -50,6 +50,10 @@ class MicrosoftEdgeTTS:
         mem_buf = DataManager.write_to_memory(raw_buf.read())
         return DataManager.read_from_memory(mem_buf)
 
+    def _synthesize_chunk(self, chunk: str, progress_cb=None) -> bytes:
+        # Tek chunk’ı üret, retry TTSHelper._with_retry üzerinden yapılacak
+        return asyncio.run(self._synthesize_async_once(chunk, progress_cb))
+
     def synthesize_to_bytes(self, text: str, progress_cb=None) -> bytes:
         chunks = self._chunk_text(text)
         total = len(chunks)
@@ -57,7 +61,7 @@ class MicrosoftEdgeTTS:
         start = time.time()
 
         for i, chunk in enumerate(chunks, 1):
-            audio_bytes = asyncio.run(self._synthesize_async_once(chunk, None))
+            audio_bytes = self._with_retry(self._synthesize_chunk, chunk, None)
             raw_all.write(audio_bytes)
 
             if progress_cb:
@@ -71,11 +75,5 @@ class MicrosoftEdgeTTS:
         mem_buf = DataManager.write_to_memory(raw_all.read())
         return DataManager.read_from_memory(mem_buf)
 
-    def synthesize_preview(self, text: str, seconds: int = 20, play_audio: bool = True) -> bytes:
-        paragraphs = text.split("\n\n")
-        snippet = paragraphs[0] if paragraphs else text[:300]
-
-        audio_bytes = self.synthesize_to_bytes(snippet)
-
-        return TTSUtils.preview(audio_bytes, seconds=seconds, play_audio=play_audio)
-
+    def synthesize_preview(self, text: str, seconds=20, play_audio=True, progress_cb=None) -> bytes:
+        return self.do_preview(self.synthesize_to_bytes, text, seconds, play_audio, progress_cb)

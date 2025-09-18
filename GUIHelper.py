@@ -179,8 +179,8 @@ def styled_combobox(parent, text: str, var: tk.StringVar, values: list[str]) -> 
         arrowcolor=c["primary"],
         selectbackground=c["primary"],
         selectforeground="white",
-        font=tuple(f["label"]),
-        padding=6,
+        font=(f["label"][0], 13),
+        padding=10,
         relief="flat"
     )
     style.map(
@@ -190,6 +190,7 @@ def styled_combobox(parent, text: str, var: tk.StringVar, values: list[str]) -> 
         arrowcolor=[("active", c["primary_active"])]
     )
 
+    frame.option_add("*TCombobox*Listbox.font", (f["label"][0], 13))
 
     combo = ttk.Combobox(
         frame,

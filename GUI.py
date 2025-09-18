@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section, set_buttons_state
+    progress_section, set_buttons_state, styled_combobox
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -68,6 +68,8 @@ ensure_font_values(FONTS)
 DEVINFO = load_json_strict(UTILS_DIR / "DevInfo.json")
 ensure_keys("DevInfo.json", DEVINFO, REQUIRED_DEV_KEYS)
 
+LANGS = load_json_strict(UTILS_DIR / "Languages.json")
+
 def check_internet(url="http://www.google.com", timeout=3) -> bool:
     try:
         urllib.request.urlopen(url, timeout=timeout)
@@ -79,8 +81,8 @@ class TTSMenuApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Text to Speech")
-        self.geometry("1200x850")
-        self.minsize(1200, 850)
+        self.geometry("1200x1000")
+        self.minsize(1200, 1000)
 
         self.output_dir = BASE_DIR / "output"
         self.output_dir.mkdir(exist_ok=True)
@@ -166,19 +168,42 @@ class TTSMenuApp(tk.Tk):
         ttk.Radiobutton(fmt_row, text="AAC", value="aac", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
+        lang_card, lang_inner = section(right, "Language")
+        lang_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
 
-        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right)
-        self.progress_frame.grid(row=4, column=0, sticky="ew", pady=(8, 2))
+        self.lang_map = {code: f"{info['label']} ({code})" for code, info in LANGS.items()}
+        self.inv_lang_map = {v: k for k, v in self.lang_map.items()}
 
+        saved_lang_code = MemoryManager.get("tts_lang", "en")
+        initial_display_text = self.lang_map.get(saved_lang_code, self.lang_map["en"])
 
+        self.lang_var = tk.StringVar(value=initial_display_text)
 
-        bar, self.status, self.counter = footer(root)
-        bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
+        def on_lang_change(*_):
+            display_text = self.lang_var.get()
+            code_to_save = self.inv_lang_map.get(display_text, "en")
+            MemoryManager.set("tts_lang", code_to_save)
+
+        self.lang_var.trace_add("write", on_lang_change)
+
+        lang_row, self.lang_combo = styled_combobox(
+            lang_inner,
+            "Select language:",
+            self.lang_var,
+            list(self.lang_map.values())
+        )
+        lang_row.pack(fill="x", pady=(4, 6))
 
         output_card, self.output_label = output_selector(
             right, self.output_dir, self._on_output_change
         )
-        output_card.grid(row=3, column=0, sticky="ew", pady=(12, 0))
+        output_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
+
+        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right)
+        self.progress_frame.grid(row=5, column=0, sticky="ew", pady=(8, 2))
+
+        bar, self.status, self.counter = footer(root)
+        bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
 
         self.text.bind("<<Modified>>", self._on_text_change)
 
@@ -208,11 +233,6 @@ class TTSMenuApp(tk.Tk):
         threading.Thread(target=self._do_preview_thread, daemon=True).start()
 
     def _do_preview_thread(self):
-        import time
-        from io import BytesIO
-        from pydub import AudioSegment
-        import simpleaudio as sa
-
         text = self.text.get("1.0", "end-1c").strip()
         if not text:
             GUIError(self, "Error", "No text entered!", icon="❌")
@@ -220,49 +240,29 @@ class TTSMenuApp(tk.Tk):
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
             return
 
-        svc_key = (self.service_var.get() or "").upper()
-        t0 = time.time()
+        svc_key = (self.service_var.get() or "").lower()
+        lang_code = MemoryManager.get("tts_lang","en")
 
         try:
-            paragraphs = text.split("\n\n")
-            snippet = paragraphs[0] if paragraphs else text[:300]
+            if svc_key == "google":
+                gtts_lang = LANGS[lang_code]["gtts"]["lang"]
+                tts = GTTSService(lang=gtts_lang)
 
-            if svc_key == "GOOGLE":
-                tts = GTTSService(lang="en")
-            elif svc_key == "EDGE":
-                tts = MicrosoftEdgeTTS()
+            elif svc_key == "edge":
+                edge_voice = LANGS[lang_code]["edge"]["voice"]
+                tts = MicrosoftEdgeTTS(voice=edge_voice)
+
             else:
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 return
 
-
-            raw_bytes = tts.synthesize_to_bytes(snippet)
-
-            self._set_progress(50, "Applying preview effects…")
-            settings = {k: MemoryManager.get(k, v) for k, v in {
-                "pitch": 0, "speed": 1.0, "volume": 1.0,
-                "echo": False, "reverb": False, "robot": False
-            }.items()}
-            processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
-
-            audio = AudioSegment.from_file(BytesIO(processed_bytes), format="mp3")
-            preview = audio[:20 * 1000]
-
-            out_buf = BytesIO()
-            preview.export(out_buf, format="mp3")
-            out_buf.seek(0)
-
-            self._set_progress(90, "Playing preview…")
-            play_obj = sa.play_buffer(
-                preview.raw_data,
-                num_channels=preview.channels,
-                bytes_per_sample=preview.sample_width,
-                sample_rate=preview.frame_rate
+            tts.synthesize_preview(
+                text,
+                seconds=20,
+                play_audio=True,
+                progress_cb=self._set_progress
             )
-            play_obj.wait_done()
-
-            self._set_progress(100, f"Preview done ✔️ in {int(time.time()-t0)}s")
 
         except Exception as e:
             GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
@@ -298,13 +298,16 @@ class TTSMenuApp(tk.Tk):
             return
         fmt_key = (self.format_var.get() or "").upper()
         svc_key = (self.service_var.get() or "").upper()
+        lang_code = MemoryManager.get("tts_lang", "en")
         t0 = time.time()
 
         try:
             if svc_key == "GOOGLE":
-                tts = GTTSService(lang="en")
+                gtts_lang = LANGS[lang_code]["gtts"]["lang"]
+                tts = GTTSService(lang=gtts_lang)
             elif svc_key == "EDGE":
-                tts = MicrosoftEdgeTTS()
+                edge_voice = LANGS[lang_code]["edge"]["voice"]
+                tts = MicrosoftEdgeTTS(voice=edge_voice)
             else:
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
