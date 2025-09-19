@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
 from io import BytesIO
+from pathlib import Path
+
 from pydub import AudioSegment
 import simpleaudio as sa
 from VoiceProcessor import VoiceProcessor
@@ -9,6 +11,8 @@ from data_manager.MemoryManager import MemoryManager
 
 class TTSHelper:
     def __init__(self, retries=1, retry_delay=0.6):
+        self._stop_preview = False
+        self._preview_play_obj = None
         self.retries = retries
         self.retry_delay = retry_delay
 
@@ -24,6 +28,15 @@ class TTSHelper:
                 else:
                     raise RuntimeError(f"TTS failed after {self.retries} attempts: {e}")
         raise last_err
+
+    def stop_preview(self):
+        self._stop_preview = True
+        if getattr(self, "_preview_play_obj", None):
+            try:
+                if self._preview_play_obj.is_playing():
+                    self._preview_play_obj.stop()
+            except Exception:
+                pass
 
     def do_preview(self, synthesize_func, text: str,
                     seconds: int = 20,
@@ -55,13 +68,28 @@ class TTSHelper:
 
         if play_audio:
             if progress_cb: progress_cb(90, "Playing preview…")
-            play_obj = sa.play_buffer(
+            self._preview_play_obj = sa.play_buffer(
                 preview.raw_data,
                 num_channels=preview.channels,
                 bytes_per_sample=preview.sample_width,
                 sample_rate=preview.frame_rate
             )
-            play_obj.wait_done()
+            self._preview_play_obj.wait_done()
+
+            while self._preview_play_obj.is_playing():
+                if self._stop_preview:
+                    break
+                time.sleep(0.05)
 
         if progress_cb: progress_cb(100, "Preview done ✔️")
+
+        try:
+            ding_path = Path(__file__).resolve().parent.parent / "utility" / "sounds" / "ding.wav"
+            if ding_path.exists():
+                ding_audio = sa.WaveObject.from_wave_file(str(ding_path))
+                ding_play = ding_audio.play()
+                ding_play.wait_done()
+        except Exception as e:
+            print(f"[WARN] Ding sound failed: {e}")
+
         return out_buf.read()

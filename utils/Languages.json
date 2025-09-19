@@ -5,7 +5,10 @@
       "lang": "en"
     },
     "edge": {
-      "voice": "en-US-JennyNeural"
+      "voices": {
+        "female": "en-US-JennyNeural",
+        "male": "en-US-GuyNeural"
+      }
     }
   },
   "tr": {
@@ -14,7 +17,10 @@
       "lang": "tr"
     },
     "edge": {
-      "voice": "tr-TR-EmelNeural"
+      "voices": {
+        "female": "tr-TR-EmelNeural",
+        "male": "tr-TR-AhmetNeural"
+      }
     }
   }
 }

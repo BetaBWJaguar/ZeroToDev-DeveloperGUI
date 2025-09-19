@@ -81,8 +81,9 @@ class TTSMenuApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Text to Speech")
-        self.geometry("1200x1000")
-        self.minsize(1200, 1000)
+        self.geometry("1200x1100")
+        self.minsize(1200, 1100)
+        self.resizable(False, False)
 
         self.output_dir = BASE_DIR / "output"
         self.output_dir.mkdir(exist_ok=True)
@@ -178,13 +179,18 @@ class TTSMenuApp(tk.Tk):
         initial_display_text = self.lang_map.get(saved_lang_code, self.lang_map["en"])
 
         self.lang_var = tk.StringVar(value=initial_display_text)
+        self.voice_var = tk.StringVar(value=MemoryManager.get("tts_voice", "female"))
 
         def on_lang_change(*_):
             display_text = self.lang_var.get()
             code_to_save = self.inv_lang_map.get(display_text, "en")
             MemoryManager.set("tts_lang", code_to_save)
 
+        def on_voice_change(*_):
+            MemoryManager.set("tts_voice", self.voice_var.get())
+
         self.lang_var.trace_add("write", on_lang_change)
+        self.voice_var.trace_add("write", on_voice_change)
 
         lang_row, self.lang_combo = styled_combobox(
             lang_inner,
@@ -193,6 +199,23 @@ class TTSMenuApp(tk.Tk):
             list(self.lang_map.values())
         )
         lang_row.pack(fill="x", pady=(4, 6))
+
+        voice_row, self.voice_combo = styled_combobox(
+            lang_inner,
+            "Select voice (gender):",
+            self.voice_var,
+            ["female", "male"]
+        )
+        voice_row.pack(fill="x", pady=(4, 6))
+
+        def update_voice_state(*_):
+            if self.service_var.get().lower() == "google":
+                self.voice_combo.config(state="disabled")
+            else:
+                self.voice_combo.config(state="readonly")
+
+        update_voice_state()
+        self.service_var.trace_add("write", lambda *_: update_voice_state())
 
         output_card, self.output_label = output_selector(
             right, self.output_dir, self._on_output_change
@@ -226,6 +249,17 @@ class TTSMenuApp(tk.Tk):
         m = int(eta // 60); s = int(eta % 60)
         return f"~{m:02d}:{s:02d} left"
 
+    def _reset_preview_button(self):
+        self.preview_btn.config(
+            text="PREVIEW",
+            command=self.on_preview
+        )
+
+    def stop_preview(self):
+        self.tts_helper.stop_preview()
+        self.after(0, self._reset_preview_button)
+
+
     def on_preview(self):
         import threading
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
@@ -237,38 +271,49 @@ class TTSMenuApp(tk.Tk):
         if not text:
             GUIError(self, "Error", "No text entered!", icon="❌")
             self._set_progress(0, "Ready.")
-            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
             return
 
         svc_key = (self.service_var.get() or "").lower()
-        lang_code = MemoryManager.get("tts_lang","en")
-
+        lang_code = MemoryManager.get("tts_lang", "en")
         try:
             if svc_key == "google":
                 gtts_lang = LANGS[lang_code]["gtts"]["lang"]
-                tts = GTTSService(lang=gtts_lang)
+                self.tts_helper = GTTSService(lang=gtts_lang)
 
             elif svc_key == "edge":
-                edge_voice = LANGS[lang_code]["edge"]["voice"]
-                tts = MicrosoftEdgeTTS(voice=edge_voice)
+                gender = MemoryManager.get("tts_voice", "female")
+                edge_voice = LANGS[lang_code]["edge"]["voices"][gender]
+                self.tts_helper = MicrosoftEdgeTTS(voice=edge_voice)
 
             else:
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
-                self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+                self.after(0, lambda: set_buttons_state("normal", self.convert_btn))
                 return
 
-            tts.synthesize_preview(
+            def preview_progress(pct, msg):
+                self._set_progress(pct, msg)
+                if "Playing preview" in msg:
+                    self.after(0, lambda: self.preview_btn.config(
+                        text="STOP PREVIEW",
+                        state="normal",
+                        command=self.stop_preview
+                    ))
+
+            self.tts_helper.synthesize_preview(
                 text,
                 seconds=20,
                 play_audio=True,
-                progress_cb=self._set_progress
+                progress_cb=preview_progress
             )
 
         except Exception as e:
             GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
             self._set_progress(0, "Ready.")
+
         finally:
-            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
+            self.after(0, self._reset_preview_button)
 
 
 
@@ -306,7 +351,8 @@ class TTSMenuApp(tk.Tk):
                 gtts_lang = LANGS[lang_code]["gtts"]["lang"]
                 tts = GTTSService(lang=gtts_lang)
             elif svc_key == "EDGE":
-                edge_voice = LANGS[lang_code]["edge"]["voice"]
+                gender = MemoryManager.get("tts_voice", "female")
+                edge_voice = LANGS[lang_code]["edge"]["voices"][gender]
                 tts = MicrosoftEdgeTTS(voice=edge_voice)
             else:
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
