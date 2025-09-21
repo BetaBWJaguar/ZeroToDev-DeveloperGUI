@@ -1,0 +1,5 @@
+2025-09-20 19:46:06 | INFO    | root | Logs initialized in DEBUG mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-20 19:46:08 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:46:08.329548", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-20 19:46:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:46:10.781261", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-20 19:46:40 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-20T19:46:40.498063", "event": "TEXT_CHANGE", "data": {"chars": 8, "sample": "SEAaaaaa"}}
+2025-09-20 19:46:54 | INFO    | Main | {"timestamp": "2025-09-20T19:46:54.678237", "event": "SESSION_END", "data": {"session_id": "20250920-194551"}}

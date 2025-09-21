@@ -29,7 +29,7 @@ class GTTSService(TTSHelper):
 
     def _synthesize_chunk(self, chunk: str) -> bytes:
         buf = BytesIO()
-        tts = gTTS(text=chunk, lang=self.lang)
+        tts = gTTS(text=chunk, lang=self.lang,slow=False)
         tts.write_to_fp(buf)
         buf.seek(0)
         return buf.read()

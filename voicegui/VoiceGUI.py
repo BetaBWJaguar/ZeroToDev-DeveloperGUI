@@ -6,6 +6,8 @@ from tkinter import ttk
 from GUIHelper import section, primary_button, labeled_scale, styled_combobox
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
+from logs_manager.LogsHelperManager import LogsHelperManager
+from logs_manager.LogsManager import LogsManager
 
 PRESET_FILE = Path(__file__).resolve().parent.parent / "utils" / "Preset-Default.json"
 
@@ -23,6 +25,7 @@ class VoiceSettings(tk.Toplevel):
         super().__init__(parent)
         self.title("Voice Settings")
         self.transient(parent)
+        self.logger = LogsManager.get_logger("VoiceSettings")
         self.grab_set()
         self.resizable(False, False)
 
@@ -48,17 +51,17 @@ class VoiceSettings(tk.Toplevel):
 
 
         self.pitch_var = tk.DoubleVar(value=MemoryManager.get("pitch", 0))
-        self.pitch_var.trace_add("write", lambda *_: MemoryManager.set("pitch", self.pitch_var.get()))
+        self.pitch_var.trace_add("write", lambda *_: self._on_param_change("pitch", self.pitch_var.get()))
         labeled_scale(param_inner, "Pitch", self.pitch_var, -10, 10).pack(fill="x")
 
 
         self.speed_var = tk.DoubleVar(value=MemoryManager.get("speed", 1.0))
-        self.speed_var.trace_add("write", lambda *_: MemoryManager.set("speed", self.speed_var.get()))
+        self.speed_var.trace_add("write", lambda *_: self._on_param_change("speed", self.speed_var.get()))
         labeled_scale(param_inner, "Speed", self.speed_var, 0.5, 2.0).pack(fill="x")
 
 
         self.volume_var = tk.DoubleVar(value=MemoryManager.get("volume", 1.0))
-        self.volume_var.trace_add("write", lambda *_: MemoryManager.set("volume", self.volume_var.get()))
+        self.volume_var.trace_add("write", lambda *_: self._on_param_change("volume", self.volume_var.get()))
         labeled_scale(param_inner, "Volume", self.volume_var, 0.5, 2.0).pack(fill="x")
 
 
@@ -67,18 +70,18 @@ class VoiceSettings(tk.Toplevel):
 
 
         self.echo_var = tk.BooleanVar(value=MemoryManager.get("echo", False))
-        self.echo_var.trace_add("write", lambda *_: MemoryManager.set("echo", self.echo_var.get()))
+        self.echo_var.trace_add("write", lambda *_: self._on_param_change("echo", self.echo_var.get()))
         ttk.Checkbutton(effect_inner, text="Echo", variable=self.echo_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
 
 
         self.reverb_var = tk.BooleanVar(value=MemoryManager.get("reverb", False))
-        self.reverb_var.trace_add("write", lambda *_: MemoryManager.set("reverb", self.reverb_var.get()))
+        self.reverb_var.trace_add("write", lambda *_: self._on_param_change("reverb", self.reverb_var.get()))
         ttk.Checkbutton(effect_inner, text="Reverb", variable=self.reverb_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
 
         self.robot_var = tk.BooleanVar(value=MemoryManager.get("robot", False))
-        self.robot_var.trace_add("write", lambda *_: MemoryManager.set("robot", self.robot_var.get()))
+        self.robot_var.trace_add("write", lambda *_: self._on_param_change("robot", self.robot_var.get()))
         ttk.Checkbutton(effect_inner, text="Robotize", variable=self.robot_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
 
@@ -103,3 +106,22 @@ class VoiceSettings(tk.Toplevel):
         self.echo_var.set(preset.get("echo", False))
         self.reverb_var.set(preset.get("reverb", False))
         self.robot_var.set(preset.get("robot", False))
+
+        LogsHelperManager.log_event(self.logger, "PRESET_APPLY", {"preset": preset_name})
+
+    def _on_param_change(self, key, value, delay=800):
+        old_value = MemoryManager.get(key, None)
+        MemoryManager.set(key, value)
+
+        if not hasattr(self, "_pending_logs"):
+            self._pending_logs = {}
+
+        if key in self._pending_logs:
+            self.after_cancel(self._pending_logs[key])
+
+        def do_log():
+            LogsHelperManager.log_config_change(self.logger, key, old_value, value)
+            if key in self._pending_logs:
+                del self._pending_logs[key]
+
+        self._pending_logs[key] = self.after(delay, do_log)

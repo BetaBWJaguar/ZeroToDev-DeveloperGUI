@@ -1,0 +1,8 @@
+2025-09-20 19:45:51 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-20 19:45:51 | INFO    | Main | {"timestamp": "2025-09-20T19:45:51.582123", "event": "SESSION_START", "data": {"session_id": "20250920-194551"}}
+2025-09-20 19:45:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:45:54.155834", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-20 19:45:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:45:54.770609", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-20 19:45:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:45:56.251585", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-20 19:45:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:45:58.752442", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-20 19:46:05 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:46:05.220795", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-09-20 19:46:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:46:06.856294", "event": "CONFIG_CHANGE", "data": {"key": "log_mode", "old": "INFO", "new": "DEBUG"}}

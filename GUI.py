@@ -11,6 +11,8 @@ from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
+from logs_manager.LogsHelperManager import LogsHelperManager
+from logs_manager.LogsManager import LogsManager
 from media_formats.AAC import AAC
 from media_formats.FLAC import FLAC
 from media_formats.MP3 import MP3
@@ -84,6 +86,7 @@ class TTSMenuApp(tk.Tk):
         self.geometry("1200x1100")
         self.minsize(1200, 1100)
         self.resizable(False, False)
+        self.logger = LogsManager.get_logger("TTSMenuApp")
 
         self.output_dir = BASE_DIR / "output"
         self.output_dir.mkdir(exist_ok=True)
@@ -99,7 +102,8 @@ class TTSMenuApp(tk.Tk):
 
         help_menu = tk.Menu(menubar, tearoff=0)
         help_menu.add_command(label="Developer", command=self.show_developer)
-        help_menu.add_command(label="Settings", command=self.show_settings)
+        help_menu.add_command(label="Voice Settings", command=self.show_settings)
+        help_menu.add_command(label="Config Settings", command=self.show_config_settings)  # 🔹 yeni satır
         menubar.add_cascade(label="Help", menu=help_menu)
 
         self.config(menu=menubar)
@@ -144,7 +148,14 @@ class TTSMenuApp(tk.Tk):
         service_card.grid(row=1, column=0, sticky="nsew")
 
         self.service_var = tk.StringVar(value=MemoryManager.get("tts_service", ""))
-        self.service_var.trace_add("write", lambda *_: MemoryManager.set("tts_service", self.service_var.get()))
+
+        def service_changed(*_):
+            old_service = MemoryManager.get("tts_service", "")
+            new_service = self.service_var.get()
+            MemoryManager.set("tts_service", new_service)
+            LogsHelperManager.log_config_change(self.logger, "tts_service", old_service, new_service)
+
+        self.service_var.trace_add("write", service_changed)
         service_row = ttk.Frame(service_inner, style="Card.TFrame"); service_row.pack(fill="x")
 
         ttk.Radiobutton(service_row, text="Microsoft Edge TTS", value="edge", variable=self.service_var,
@@ -156,7 +167,14 @@ class TTSMenuApp(tk.Tk):
         fmt_card, fmt_inner = section(right, "Format")
         fmt_card.grid(row=2, column=0, sticky="nsew")
         self.format_var = tk.StringVar(value=MemoryManager.get("tts_format", ""))
-        self.format_var.trace_add("write", lambda *_: MemoryManager.set("tts_format", self.format_var.get()))
+
+        def format_changed(*_):
+            old_fmt = MemoryManager.get("tts_format", "")
+            new_fmt = self.format_var.get()
+            MemoryManager.set("tts_format", new_fmt)
+            LogsHelperManager.log_config_change(self.logger, "tts_format", old_fmt, new_fmt)
+
+        self.format_var.trace_add("write", format_changed)
         fmt_row = ttk.Frame(fmt_inner, style="Card.TFrame"); fmt_row.pack(fill="x")
         ttk.Radiobutton(fmt_row, text="MP3", value="mp3", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
@@ -184,10 +202,15 @@ class TTSMenuApp(tk.Tk):
         def on_lang_change(*_):
             display_text = self.lang_var.get()
             code_to_save = self.inv_lang_map.get(display_text, "en")
+            old_lang = MemoryManager.get("tts_lang", "en")
             MemoryManager.set("tts_lang", code_to_save)
+            LogsHelperManager.log_config_change(self.logger, "tts_lang", old_lang, code_to_save)
 
         def on_voice_change(*_):
-            MemoryManager.set("tts_voice", self.voice_var.get())
+            old_voice = MemoryManager.get("tts_voice", "female")
+            new_voice = self.voice_var.get()
+            MemoryManager.set("tts_voice", new_voice)
+            LogsHelperManager.log_config_change(self.logger, "tts_voice", old_voice, new_voice)
 
         self.lang_var.trace_add("write", on_lang_change)
         self.voice_var.trace_add("write", on_voice_change)
@@ -231,8 +254,22 @@ class TTSMenuApp(tk.Tk):
         self.text.bind("<<Modified>>", self._on_text_change)
 
     def _on_text_change(self, *_):
+        if not self.text.edit_modified():
+            return
         self.text.edit_modified(False)
-        self.counter.config(text=f"{len(self.text.get('1.0','end-1c'))} characters")
+
+        chars = len(self.text.get('1.0','end-1c'))
+        self.counter.config(text=f"{chars} characters")
+
+        if hasattr(self, "_text_change_after"):
+            self.after_cancel(self._text_change_after)
+
+        self._text_change_after = self.after(500, lambda: (
+            LogsHelperManager.log_debug(self.logger, "TEXT_CHANGE", {
+                "chars": chars,
+                "sample": self.text.get("1.0", "end-1c")[:50]
+            })
+        ))
 
     def _on_output_change(self, new_path: Path):
         self.output_dir = new_path
@@ -262,6 +299,7 @@ class TTSMenuApp(tk.Tk):
 
     def on_preview(self):
         import threading
+        LogsHelperManager.log_button(self.logger, "PREVIEW")
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
         self._set_progress(0, "Preview starting…")
         threading.Thread(target=self._do_preview_thread, daemon=True).start()
@@ -307,9 +345,12 @@ class TTSMenuApp(tk.Tk):
                 progress_cb=preview_progress
             )
 
+            LogsHelperManager.log_success(self.logger, "PREVIEW")
+
         except Exception as e:
             GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
             self._set_progress(0, "Ready.")
+            LogsHelperManager.log_error(self.logger, "PREVIEW", str(e))
 
         finally:
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
@@ -319,6 +360,7 @@ class TTSMenuApp(tk.Tk):
 
     def on_convert(self):
         import threading
+        LogsHelperManager.log_button(self.logger, "CONVERT")
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
         self._set_progress(0, "Starting…")
         threading.Thread(target=self._do_convert_thread, daemon=True).start()
@@ -360,6 +402,12 @@ class TTSMenuApp(tk.Tk):
                 self._set_progress(0,"Ready.")
                 return
 
+            LogsHelperManager.log_debug(self.logger, "CONVERT_REQUEST", {
+                "service": svc_key,
+                "format": fmt_key,
+                "chars": len(text)
+            })
+
 
             fmt_class = FORMAT_MAP.get(fmt_key)
             if not fmt_class:
@@ -392,6 +440,10 @@ class TTSMenuApp(tk.Tk):
 
             self._set_progress(100, f"Done in {int(time.time()-t0)}s → {out_path.name}")
             GUIError(self, "Info", f"Conversion completed!\nSaved to:\n{out_path}", icon="✅")
+            LogsHelperManager.log_debug(self.logger, "CONVERT_DONE", {
+                "path": str(out_path),
+                "size": out_path.stat().st_size
+            })
 
         except Exception as e:
             GUIError(self, "Error", f"Conversion failed:\n{e}", icon="❌")
@@ -428,8 +480,59 @@ class TTSMenuApp(tk.Tk):
 
 
         center_window(win,self)
+        LogsHelperManager.log_button(self.logger, "OPEN_DEVELOPER")
 
     def show_settings(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_SETTINGS")
         VoiceSettings(self)
+
+    def show_config_settings(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_CONFIG_SETTINGS")
+
+        win = tk.Toplevel(self)
+        win.title("Config Settings")
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        container = ttk.Frame(win, padding=25)
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text="⚙️ Config Settings", style="Title.TLabel") \
+            .pack(anchor="center", pady=(0, 15))
+
+        ttk.Label(container, text="Select Log Mode:", style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 6))
+
+        current_mode = MemoryManager.get("log_mode", "INFO")
+        log_var = tk.StringVar(value=current_mode)
+
+        def on_log_mode_change(*_):
+            old_mode = MemoryManager.get("log_mode", "INFO")
+            new_mode = log_var.get()
+            if new_mode != old_mode:
+                MemoryManager.set("log_mode", new_mode)
+                LogsHelperManager.log_config_change(self.logger, "log_mode", old_mode, new_mode)
+                LogsManager.init(new_mode)
+                GUIError(self, "Log Mode Changed", f"Log mode set to {new_mode}", icon="✅")
+
+        log_combo = ttk.Combobox(
+            container,
+            textvariable=log_var,
+            values=["INFO", "DEBUG", "ERROR"],
+            state="readonly"
+        )
+        log_combo.pack(fill="x", pady=(0, 15))
+        log_combo.bind("<<ComboboxSelected>>", on_log_mode_change)
+
+        ttk.Separator(container).pack(fill="x", pady=15)
+
+        ttk.Button(container, text="Close", command=win.destroy,
+                   style="Accent.TButton").pack(anchor="center", pady=(8, 0))
+
+        center_window(win, self)
+
+
+
 
 
