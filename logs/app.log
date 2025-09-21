@@ -6,3 +6,50 @@
 2025-09-20 19:45:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:45:58.752442", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
 2025-09-20 19:46:05 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:46:05.220795", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
 2025-09-20 19:46:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:46:06.856294", "event": "CONFIG_CHANGE", "data": {"key": "log_mode", "old": "INFO", "new": "DEBUG"}}
+2025-09-21 14:33:04 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-21 14:33:04 | INFO    | Main | {"timestamp": "2025-09-21T14:33:04.366649", "event": "SESSION_START", "data": {"session_id": "20250921-143304"}}
+2025-09-21 14:33:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:06.687031", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-09-21 14:33:09 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:09.214038", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-09-21 14:33:11 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:11.145870", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-09-21 14:33:12 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:12.824168", "event": "PRESET_APPLY", "data": {"preset": "Telephone"}}
+2025-09-21 14:33:13 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:13.632524", "event": "CONFIG_CHANGE", "data": {"key": "pitch", "old": null, "new": 2.0}}
+2025-09-21 14:33:13 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:13.633525", "event": "CONFIG_CHANGE", "data": {"key": "speed", "old": null, "new": 1.0}}
+2025-09-21 14:33:13 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:13.633525", "event": "CONFIG_CHANGE", "data": {"key": "volume", "old": null, "new": 0.8}}
+2025-09-21 14:33:13 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:13.634557", "event": "CONFIG_CHANGE", "data": {"key": "echo", "old": null, "new": false}}
+2025-09-21 14:33:13 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:13.634557", "event": "CONFIG_CHANGE", "data": {"key": "reverb", "old": null, "new": false}}
+2025-09-21 14:33:13 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:13.635544", "event": "CONFIG_CHANGE", "data": {"key": "robot", "old": null, "new": true}}
+2025-09-21 14:33:16 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:16.733197", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-21 14:33:18 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:18.309567", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-21 14:33:18 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:18.310579", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-21 14:33:21 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:21.361280", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-21 14:33:21 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:21.546265", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-09-21 14:33:22 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:22.051025", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-21 14:33:22 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:22.052031", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-21 14:33:25 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:25.484347", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-21 14:33:27 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:27.237243", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-09-21 14:33:28 | INFO    | VoiceSettings | {"timestamp": "2025-09-21T14:33:28.481797", "event": "PRESET_APPLY", "data": {"preset": "Default"}}
+2025-09-21 14:33:29 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:29.597443", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-21 14:33:29 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:29.598443", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-21 14:33:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:33:32.926837", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-21 14:38:46 | INFO    | Main | {"timestamp": "2025-09-21T14:38:46.215784", "event": "SESSION_END", "data": {"session_id": "20250921-143304"}}
+2025-09-21 14:42:02 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-21 14:42:02 | INFO    | Main | {"timestamp": "2025-09-21T14:42:02.593289", "event": "SESSION_START", "data": {"session_id": "20250921-144202"}}
+2025-09-21 14:42:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:42:04.897703", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-09-21 14:42:08 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T14:42:08.876301", "event": "CONFIG_CHANGE", "data": {"key": "log_mode", "old": "INFO", "new": "DEBUG"}}
+2025-09-21 15:16:26 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-21 15:16:26 | INFO    | Main | {"timestamp": "2025-09-21T15:16:26.494434", "event": "SESSION_START", "data": {"session_id": "20250921-151626"}}
+2025-09-21 15:16:29 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:29.750288", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-09-21 15:16:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:30.917065", "event": "CONFIG_CHANGE", "data": {"key": "log_mode", "old": "INFO", "new": "DEBUG"}}
+2025-09-21 17:31:48 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-21 17:31:48 | INFO    | Main | {"timestamp": "2025-09-21T17:31:48.347015", "event": "SESSION_START", "data": {"session_id": "20250921-173148"}}
+2025-09-21 17:31:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:31:55.032655", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-09-21 17:31:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:31:56.390334", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-21 17:31:57 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:31:57.835755", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-09-21 17:31:59 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:31:59.243801", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "female"}}
+2025-09-21 17:32:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:32:00.495765", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-21 17:32:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:32:00.496745", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-21 17:32:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:32:15.357928", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-21 17:32:25 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:32:25.674730", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-09-21 17:35:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:35:01.383994", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-09-21 17:35:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:35:10.697921", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-09-21 17:42:15 | INFO    | Main | {"timestamp": "2025-09-21T17:42:15.426907", "event": "SESSION_END", "data": {"session_id": "20250921-173148"}}

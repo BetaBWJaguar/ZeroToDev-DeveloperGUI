@@ -3,3 +3,41 @@
 2025-09-20 19:46:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-20T19:46:10.781261", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
 2025-09-20 19:46:40 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-20T19:46:40.498063", "event": "TEXT_CHANGE", "data": {"chars": 8, "sample": "SEAaaaaa"}}
 2025-09-20 19:46:54 | INFO    | Main | {"timestamp": "2025-09-20T19:46:54.678237", "event": "SESSION_END", "data": {"session_id": "20250920-194551"}}
+2025-09-21 14:42:08 | INFO    | root | Logs initialized in DEBUG mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-21 14:42:12 | INFO    | Main | {"timestamp": "2025-09-21T14:42:12.772937", "event": "SESSION_END", "data": {"session_id": "20250921-144202"}}
+2025-09-21 15:16:30 | INFO    | root | Logs initialized in DEBUG mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-21 15:16:33 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:33.868389", "event": "TEXT_CHANGE", "data": {"chars": 3, "sample": "Sea"}}
+2025-09-21 15:16:34 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:34.324236", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-21 15:16:34 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:34.325227", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-21 15:16:34 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:34.328227", "event": "PREVIEW_REQUEST", "data": {"service": "", "lang": "en", "chars": 3}}
+2025-09-21 15:16:34 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:34.328227", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-09-21 15:16:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:51.064601", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-09-21 15:16:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:51.672603", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-21 15:16:53 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:53.363233", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-09-21 15:16:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:56.088007", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-21 15:16:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:16:56.089016", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-21 15:16:56 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:56.090007", "event": "PREVIEW_REQUEST", "data": {"service": "edge", "lang": "tr", "chars": 3}}
+2025-09-21 15:16:56 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:56.091008", "event": "PREVIEW_PROGRESS", "data": {"pct": 30, "msg": "Generating TTS…"}}
+2025-09-21 15:16:56 | DEBUG   | GTTSService | {"timestamp": "2025-09-21T15:16:56.092011", "event": "CHUNK_SYNTH", "data": {"chars": 3, "voice": "tr-TR-EmelNeural"}}
+2025-09-21 15:16:57 | DEBUG   | GTTSService | {"timestamp": "2025-09-21T15:16:57.212681", "event": "ASYNC_SYNTH_DONE", "data": {"chars_total": 3, "duration": 1.1176676750183105}}
+2025-09-21 15:16:57 | DEBUG   | GTTSService | {"timestamp": "2025-09-21T15:16:57.214682", "event": "SYNTH_DONE", "data": {"total_chunks": 1, "duration": 1.1226704120635986}}
+2025-09-21 15:16:57 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:57.215682", "event": "PREVIEW_PROGRESS", "data": {"pct": 50, "msg": "Applying preview effects…"}}
+2025-09-21 15:16:57 | DEBUG   | TTSHelper | {"timestamp": "2025-09-21T15:16:57.215682", "event": "EFFECTS_APPLIED_PREVIEW", "data": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}
+2025-09-21 15:16:57 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:57.785658", "event": "PREVIEW_PROGRESS", "data": {"pct": 90, "msg": "Playing preview…"}}
+2025-09-21 15:16:59 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:16:59.285766", "event": "PREVIEW_PROGRESS", "data": {"pct": 100, "msg": "Preview done ✔️"}}
+2025-09-21 15:17:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:17:00.103753", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-21 15:17:01 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:17:01.575321", "event": "TEXT_CHANGE", "data": {"chars": 3, "sample": "Mer"}}
+2025-09-21 15:17:03 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:17:03.060934", "event": "TEXT_CHANGE", "data": {"chars": 7, "sample": "Merhaba"}}
+2025-09-21 15:17:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:17:03.435034", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-21 15:17:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:17:03.436042", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-21 15:17:03 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:17:03.437038", "event": "PREVIEW_REQUEST", "data": {"service": "edge", "lang": "tr", "chars": 7}}
+2025-09-21 15:17:03 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:17:03.438037", "event": "PREVIEW_PROGRESS", "data": {"pct": 30, "msg": "Generating TTS…"}}
+2025-09-21 15:17:03 | DEBUG   | GTTSService | {"timestamp": "2025-09-21T15:17:03.439031", "event": "CHUNK_SYNTH", "data": {"chars": 7, "voice": "tr-TR-EmelNeural"}}
+2025-09-21 15:17:04 | DEBUG   | GTTSService | {"timestamp": "2025-09-21T15:17:04.073547", "event": "ASYNC_SYNTH_DONE", "data": {"chars_total": 7, "duration": 0.6325104236602783}}
+2025-09-21 15:17:04 | DEBUG   | GTTSService | {"timestamp": "2025-09-21T15:17:04.075547", "event": "SYNTH_DONE", "data": {"total_chunks": 1, "duration": 0.6365165710449219}}
+2025-09-21 15:17:04 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:17:04.076546", "event": "PREVIEW_PROGRESS", "data": {"pct": 50, "msg": "Applying preview effects…"}}
+2025-09-21 15:17:04 | DEBUG   | TTSHelper | {"timestamp": "2025-09-21T15:17:04.076546", "event": "EFFECTS_APPLIED_PREVIEW", "data": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}
+2025-09-21 15:17:04 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:17:04.595305", "event": "PREVIEW_PROGRESS", "data": {"pct": 90, "msg": "Playing preview…"}}
+2025-09-21 15:17:06 | DEBUG   | TTSMenuApp | {"timestamp": "2025-09-21T15:17:06.323052", "event": "PREVIEW_PROGRESS", "data": {"pct": 100, "msg": "Preview done ✔️"}}
+2025-09-21 15:17:07 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T15:17:07.146270", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-21 15:17:35 | INFO    | Main | {"timestamp": "2025-09-21T15:17:35.858635", "event": "SESSION_END", "data": {"session_id": "20250921-151626"}}

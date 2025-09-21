@@ -242,6 +242,25 @@ def set_buttons_state(state: str, *widgets):
             w.config(state=state)
         except Exception:
             pass
+def logmode_selector(parent, current_mode: str, values: list[str]) -> tuple[ttk.Frame, tk.StringVar, ttk.Combobox]:
+    frame = ttk.Frame(parent, style="Card.TFrame")
+
+    ttk.Label(frame, text="Select Log Mode:", style="Muted.TLabel") \
+        .pack(anchor="w", pady=(0, 6))
+
+    log_var = tk.StringVar(value=current_mode)
+
+
+    combo_frame, log_combo = styled_combobox(
+        frame,
+        "Log Mode",
+        log_var,
+        values
+    )
+    combo_frame.pack(fill="x", pady=(0, 15))
+
+    return frame, log_var, log_combo
+
 
 
 

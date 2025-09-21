@@ -3,6 +3,9 @@ from gtts import gTTS
 from io import BytesIO
 from data_manager.DataManager import DataManager
 import time
+
+from logs_manager.LogsHelperManager import LogsHelperManager
+from logs_manager.LogsManager import LogsManager
 from tts.utility.TTSHelper import TTSHelper
 
 
@@ -11,6 +14,8 @@ class GTTSService(TTSHelper):
         super().__init__(retries, retry_delay)
         self.lang = lang
         self.max_chunk_chars = max_chunk_chars
+        self.logger = LogsManager.get_logger("GTTSService")
+
 
     def _chunk_text(self, text: str):
         if len(text) <= self.max_chunk_chars:
@@ -25,9 +30,17 @@ class GTTSService(TTSHelper):
                 count += len(w) + 1
         if buf:
             parts.append(" ".join(buf))
+        LogsHelperManager.log_debug(self.logger, "CHUNK_SPLIT", {
+            "chunks": len(parts),
+            "max_chunk_chars": self.max_chunk_chars
+        })
         return parts
 
     def _synthesize_chunk(self, chunk: str) -> bytes:
+        LogsHelperManager.log_debug(self.logger, "CHUNK_SYNTH", {
+            "chars": len(chunk),
+            "lang": self.lang
+        })
         buf = BytesIO()
         tts = gTTS(text=chunk, lang=self.lang,slow=False)
         tts.write_to_fp(buf)
@@ -49,10 +62,20 @@ class GTTSService(TTSHelper):
                 pct = int(frac * 60)
                 elapsed = time.time() - start
                 eta = elapsed * (1 - frac) / frac if frac > 0 else 0
+                LogsHelperManager.log_debug(self.logger, "SYNTH_PROGRESS", {
+                    "chunk": i,
+                    "total": total,
+                    "pct": pct,
+                    "eta": eta
+                })
                 progress_cb(pct, f"TTS {int(frac * 100)}%  ~{int(eta)}s left")
 
         raw_all.seek(0)
         mem_buf = DataManager.write_to_memory(raw_all.read())
+        LogsHelperManager.log_debug(self.logger, "SYNTH_DONE", {
+            "total_chunks": total,
+            "duration": time.time() - start
+        })
         return DataManager.read_from_memory(mem_buf)
 
     def synthesize_preview(self, text: str, seconds=20, play_audio=True, progress_cb=None) -> bytes:

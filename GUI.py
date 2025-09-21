@@ -294,12 +294,14 @@ class TTSMenuApp(tk.Tk):
 
     def stop_preview(self):
         self.tts_helper.stop_preview()
+        LogsHelperManager.log_event(self.logger, "TTS_PREVIEW_STOP", {})
         self.after(0, self._reset_preview_button)
 
 
     def on_preview(self):
         import threading
         LogsHelperManager.log_button(self.logger, "PREVIEW")
+        LogsHelperManager.log_event(self.logger, "TTS_PREVIEW_START", {})
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
         self._set_progress(0, "Preview starting…")
         threading.Thread(target=self._do_preview_thread, daemon=True).start()
@@ -307,6 +309,7 @@ class TTSMenuApp(tk.Tk):
     def _do_preview_thread(self):
         text = self.text.get("1.0", "end-1c").strip()
         if not text:
+            LogsHelperManager.log_error(self.logger, "PREVIEW", "No text entered")
             GUIError(self, "Error", "No text entered!", icon="❌")
             self._set_progress(0, "Ready.")
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
@@ -315,6 +318,13 @@ class TTSMenuApp(tk.Tk):
         svc_key = (self.service_var.get() or "").lower()
         lang_code = MemoryManager.get("tts_lang", "en")
         try:
+
+            LogsHelperManager.log_debug(self.logger, "PREVIEW_REQUEST", {
+                "service": svc_key,
+                "lang": lang_code,
+                "chars": len(text)
+            })
+
             if svc_key == "google":
                 gtts_lang = LANGS[lang_code]["gtts"]["lang"]
                 self.tts_helper = GTTSService(lang=gtts_lang)
@@ -325,12 +335,14 @@ class TTSMenuApp(tk.Tk):
                 self.tts_helper = MicrosoftEdgeTTS(voice=edge_voice)
 
             else:
+                LogsHelperManager.log_error(self.logger, "PREVIEW", f"Unknown TTS service: {svc_key}")
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn))
                 return
 
             def preview_progress(pct, msg):
                 self._set_progress(pct, msg)
+                LogsHelperManager.log_debug(self.logger, "PREVIEW_PROGRESS", {"pct": pct, "msg": msg})
                 if "Playing preview" in msg:
                     self.after(0, lambda: self.preview_btn.config(
                         text="STOP PREVIEW",
@@ -350,7 +362,7 @@ class TTSMenuApp(tk.Tk):
         except Exception as e:
             GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
             self._set_progress(0, "Ready.")
-            LogsHelperManager.log_error(self.logger, "PREVIEW", str(e))
+            LogsHelperManager.log_error(self.logger, "PREVIEW_FAIL", str(e))
 
         finally:
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
@@ -379,6 +391,7 @@ class TTSMenuApp(tk.Tk):
 
         text = self.text.get("1.0", "end-1c").strip()
         if not text:
+            LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", "No text entered")
             GUIError(self, "Error", "No text entered!", icon="❌")
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn, self.text))
             self._set_progress(0, "Ready.")
@@ -397,6 +410,7 @@ class TTSMenuApp(tk.Tk):
                 edge_voice = LANGS[lang_code]["edge"]["voices"][gender]
                 tts = MicrosoftEdgeTTS(voice=edge_voice)
             else:
+                LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", f"Unknown TTS service: {svc_key}")
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,"Ready.")
@@ -411,6 +425,7 @@ class TTSMenuApp(tk.Tk):
 
             fmt_class = FORMAT_MAP.get(fmt_key)
             if not fmt_class:
+                LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", f"Unknown format: {fmt_key}")
                 GUIError(self, "Error", f"Unknown format: {fmt_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,"Ready.")
@@ -429,6 +444,7 @@ class TTSMenuApp(tk.Tk):
                 "echo": False, "reverb": False, "robot": False
             }.items()}
             processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
+            LogsHelperManager.log_debug(self.logger, "EFFECTS_APPLIED_CONVERT", settings)
             self._set_progress(85, "Effects done")
 
 
@@ -446,6 +462,7 @@ class TTSMenuApp(tk.Tk):
             })
 
         except Exception as e:
+            LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", str(e))
             GUIError(self, "Error", f"Conversion failed:\n{e}", icon="❌")
             self._set_progress(0, "Ready.")
         finally:
@@ -495,17 +512,16 @@ class TTSMenuApp(tk.Tk):
         win.grab_set()
         win.resizable(False, False)
 
-        container = ttk.Frame(win, padding=25)
+        container = ttk.Frame(win, padding=25, style="TFrame")
         container.pack(fill="both", expand=True)
 
         ttk.Label(container, text="⚙️ Config Settings", style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
 
-        ttk.Label(container, text="Select Log Mode:", style="Label.TLabel") \
-            .pack(anchor="w", pady=(0, 6))
-
+        from GUIHelper import logmode_selector
         current_mode = MemoryManager.get("log_mode", "INFO")
-        log_var = tk.StringVar(value=current_mode)
+        selector_frame, log_var, log_combo = logmode_selector(container, current_mode, ["INFO", "DEBUG", "ERROR"])
+        selector_frame.pack(fill="x", pady=(0, 15))
 
         def on_log_mode_change(*_):
             old_mode = MemoryManager.get("log_mode", "INFO")
@@ -516,13 +532,6 @@ class TTSMenuApp(tk.Tk):
                 LogsManager.init(new_mode)
                 GUIError(self, "Log Mode Changed", f"Log mode set to {new_mode}", icon="✅")
 
-        log_combo = ttk.Combobox(
-            container,
-            textvariable=log_var,
-            values=["INFO", "DEBUG", "ERROR"],
-            state="readonly"
-        )
-        log_combo.pack(fill="x", pady=(0, 15))
         log_combo.bind("<<ComboboxSelected>>", on_log_mode_change)
 
         ttk.Separator(container).pack(fill="x", pady=15)

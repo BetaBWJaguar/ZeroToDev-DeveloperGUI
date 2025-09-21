@@ -3,6 +3,8 @@ import asyncio, time
 from io import BytesIO
 import edge_tts
 from data_manager.DataManager import DataManager
+from logs_manager.LogsHelperManager import LogsHelperManager
+from logs_manager.LogsManager import LogsManager
 from tts.utility.TTSHelper import TTSHelper
 
 
@@ -11,6 +13,7 @@ class MicrosoftEdgeTTS(TTSHelper):
         super().__init__(retries, retry_delay)
         self.voice = voice
         self.max_chunk_chars = max_chunk_chars
+        self.logger = LogsManager.get_logger("GTTSService")
 
     def _chunk_text(self, text: str):
         if len(text) <= self.max_chunk_chars:
@@ -25,6 +28,11 @@ class MicrosoftEdgeTTS(TTSHelper):
                 count += len(w) + 1
         if buf:
             parts.append(" ".join(buf))
+
+        LogsHelperManager.log_debug(self.logger, "CHUNK_SPLIT", {
+            "chunks": len(parts),
+            "max_chunk_chars": self.max_chunk_chars
+        })
         return parts
 
     async def _synthesize_async_once(self, text: str, progress_cb=None) -> bytes:
@@ -46,12 +54,20 @@ class MicrosoftEdgeTTS(TTSHelper):
                     eta = elapsed * (1 - frac) / frac if frac > 0 else 0
                     progress_cb(pct, f"TTS {int(frac*100)}%  ~{int(eta)}s left")
 
+        LogsHelperManager.log_debug(self.logger, "ASYNC_SYNTH_DONE", {
+            "chars_total": total_chars,
+            "duration": time.time() - start
+        })
+
         raw_buf.seek(0)
         mem_buf = DataManager.write_to_memory(raw_buf.read())
         return DataManager.read_from_memory(mem_buf)
 
     def _synthesize_chunk(self, chunk: str, progress_cb=None) -> bytes:
-        # Tek chunk’ı üret, retry TTSHelper._with_retry üzerinden yapılacak
+        LogsHelperManager.log_debug(self.logger, "CHUNK_SYNTH", {
+            "chars": len(chunk),
+            "voice": self.voice
+        })
         return asyncio.run(self._synthesize_async_once(chunk, progress_cb))
 
     def synthesize_to_bytes(self, text: str, progress_cb=None) -> bytes:
@@ -69,7 +85,18 @@ class MicrosoftEdgeTTS(TTSHelper):
                 pct = int(frac * 60)
                 elapsed = time.time() - start
                 eta = elapsed * (1 - frac) / frac if frac > 0 else 0
+                LogsHelperManager.log_debug(self.logger, "SYNTH_PROGRESS", {
+                    "chunk": i,
+                    "total": total,
+                    "pct": pct,
+                    "eta": eta
+                })
                 progress_cb(pct, f"TTS {int(frac*100)}%  ~{int(eta)}s left")
+
+        LogsHelperManager.log_debug(self.logger, "SYNTH_DONE", {
+            "total_chunks": total,
+            "duration": time.time() - start
+        })
 
         raw_all.seek(0)
         mem_buf = DataManager.write_to_memory(raw_all.read())

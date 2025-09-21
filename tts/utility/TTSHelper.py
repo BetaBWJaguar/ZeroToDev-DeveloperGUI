@@ -7,6 +7,8 @@ from pydub import AudioSegment
 import simpleaudio as sa
 from VoiceProcessor import VoiceProcessor
 from data_manager.MemoryManager import MemoryManager
+from logs_manager.LogsHelperManager import LogsHelperManager
+from logs_manager.LogsManager import LogsManager
 
 
 class TTSHelper:
@@ -55,6 +57,8 @@ class TTSHelper:
             "pitch": 0, "speed": 1.0, "volume": 1.0,
             "echo": False, "reverb": False, "robot": False
         }.items()}
+        logger = LogsManager.get_logger("TTSHelper")
+        LogsHelperManager.log_debug(logger, "EFFECTS_APPLIED_PREVIEW", settings)
         processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
 
 
