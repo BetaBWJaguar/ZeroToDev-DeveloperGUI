@@ -261,6 +261,50 @@ def logmode_selector(parent, current_mode: str, values: list[str]) -> tuple[ttk.
 
     return frame, log_var, log_combo
 
+def toggle_button(parent, text_on: str, text_off: str,
+                  initial: bool, command=None) -> ttk.Button:
+    state = tk.BooleanVar(value=initial)
+
+    style = ttk.Style()
+    style.configure(
+        "Toggle.On.TButton",
+        background=THEME["COLORS"]["primary"],
+        foreground="white",
+        padding=12,
+        font=tuple(THEME["FONTS"]["button"])
+    )
+    style.map(
+        "Toggle.On.TButton",
+        background=[("active", THEME["COLORS"]["primary_active"])],
+        foreground=[("active", "white")]
+    )
+
+    style.configure(
+        "Toggle.Off.TButton",
+        background=THEME["COLORS"]["surface"],
+        foreground=THEME["COLORS"]["text"],
+        padding=12,
+        font=tuple(THEME["FONTS"]["button"])
+    )
+    style.map(
+        "Toggle.Off.TButton",
+        background=[("active", THEME["COLORS"]["card"])],
+        foreground=[("active", THEME["COLORS"]["text"])]
+    )
+
+    btn = ttk.Button(parent)
+
+    def update_button():
+        if state.get():
+            btn.config(text=text_on, style="Toggle.On.TButton")
+        else:
+            btn.config(text=text_off, style="Toggle.Off.TButton")
+        if command:
+            command(state.get())
+
+    btn.config(command=lambda: (state.set(not state.get()), update_button()))
+    update_button()
+    return btn
 
 
 

@@ -53,3 +53,41 @@
 2025-09-21 17:35:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:35:01.383994", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
 2025-09-21 17:35:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-21T17:35:10.697921", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
 2025-09-21 17:42:15 | INFO    | Main | {"timestamp": "2025-09-21T17:42:15.426907", "event": "SESSION_END", "data": {"session_id": "20250921-173148"}}
+2025-09-22 17:54:00 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 17:54:00 | INFO    | Main | {"timestamp": "2025-09-22T17:54:00.006062", "event": "SESSION_START", "data": {"session_id": "20250922-175400"}}
+2025-09-22 18:06:11 | INFO    | Main | {"timestamp": "2025-09-22T18:06:11.614153", "event": "SESSION_END", "data": {"session_id": "20250922-175400"}}
+2025-09-22 18:07:37 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 18:07:37 | INFO    | Main | {"timestamp": "2025-09-22T18:07:37.750180", "event": "SESSION_START", "data": {"session_id": "20250922-180737"}}
+2025-09-22 18:07:37 | INFO    | Main | {"timestamp": "2025-09-22T18:07:37.860331", "event": "SESSION_END", "data": {"session_id": "20250922-180737"}}
+2025-09-22 18:07:47 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 18:07:47 | INFO    | Main | {"timestamp": "2025-09-22T18:07:47.465911", "event": "SESSION_START", "data": {"session_id": "20250922-180747"}}
+2025-09-22 19:16:43 | INFO    | Main | {"timestamp": "2025-09-22T19:16:43.753289", "event": "SESSION_END", "data": {"session_id": "20250922-180747"}}
+2025-09-22 19:16:45 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 19:16:45 | INFO    | Main | {"timestamp": "2025-09-22T19:16:45.895702", "event": "SESSION_START", "data": {"session_id": "20250922-191645"}}
+2025-09-22 19:17:17 | INFO    | Main | {"timestamp": "2025-09-22T19:17:17.159092", "event": "SESSION_END", "data": {"session_id": "20250922-191645"}}
+2025-09-22 19:17:18 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 19:17:18 | INFO    | Main | {"timestamp": "2025-09-22T19:17:18.513007", "event": "SESSION_START", "data": {"session_id": "20250922-191718"}}
+2025-09-22 19:17:20 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:17:20.546195", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-22 19:17:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:17:23.660608", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-22 19:17:25 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:17:25.459473", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": true, "new": false}}
+2025-09-22 19:19:05 | INFO    | Main | {"timestamp": "2025-09-22T19:19:05.330659", "event": "SESSION_END", "data": {"session_id": "20250922-191718"}}
+2025-09-22 19:19:06 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 19:19:06 | INFO    | Main | {"timestamp": "2025-09-22T19:19:06.839338", "event": "SESSION_START", "data": {"session_id": "20250922-191906"}}
+2025-09-22 19:19:08 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:19:08.609937", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-22 19:19:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:19:10.743624", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-22 19:22:45 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 19:22:45 | INFO    | Main | {"timestamp": "2025-09-22T19:22:45.901651", "event": "SESSION_START", "data": {"session_id": "20250922-192245"}}
+2025-09-22 19:22:48 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:22:48.304203", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-22 19:22:57 | INFO    | Main | {"timestamp": "2025-09-22T19:22:57.615107", "event": "SESSION_END", "data": {"session_id": "20250922-192245"}}
+2025-09-22 19:22:59 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 19:22:59 | INFO    | Main | {"timestamp": "2025-09-22T19:22:59.771500", "event": "SESSION_START", "data": {"session_id": "20250922-192259"}}
+2025-09-22 19:23:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:23:01.943394", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-22 19:23:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:23:03.025961", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-22 19:23:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:23:04.686522", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": true, "new": false}}
+2025-09-22 19:23:35 | INFO    | Main | {"timestamp": "2025-09-22T19:23:35.425256", "event": "SESSION_END", "data": {"session_id": "20250922-192259"}}
+2025-09-22 19:23:38 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-22 19:23:38 | INFO    | Main | {"timestamp": "2025-09-22T19:23:38.548088", "event": "SESSION_START", "data": {"session_id": "20250922-192338"}}
+2025-09-22 19:23:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:23:40.135016", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-22 19:23:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:23:41.569916", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-22 19:23:43 | INFO    | TTSMenuApp | {"timestamp": "2025-09-22T19:23:43.072749", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": true, "new": false}}
+2025-09-22 19:24:23 | INFO    | Main | {"timestamp": "2025-09-22T19:24:23.308254", "event": "SESSION_END", "data": {"session_id": "20250922-192338"}}

@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section, set_buttons_state, styled_combobox
+    progress_section, set_buttons_state, styled_combobox, toggle_button
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -82,6 +82,7 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
 class TTSMenuApp(tk.Tk):
     def __init__(self):
         super().__init__()
+        self.zip_var = None
         self.title("Text to Speech")
         self.geometry("1200x1100")
         self.minsize(1200, 1100)
@@ -103,8 +104,12 @@ class TTSMenuApp(tk.Tk):
         help_menu = tk.Menu(menubar, tearoff=0)
         help_menu.add_command(label="Developer", command=self.show_developer)
         help_menu.add_command(label="Voice Settings", command=self.show_settings)
-        help_menu.add_command(label="Config Settings", command=self.show_config_settings)  # 🔹 yeni satır
+        help_menu.add_command(label="Config Settings", command=self.show_config_settings)
         menubar.add_cascade(label="Help", menu=help_menu)
+
+        package_menu = tk.Menu(menubar, tearoff=0)
+        package_menu.add_command(label="ZIP Settings", command=self.show_zip_settings)
+        menubar.add_cascade(label="Package (ZIP)", menu=package_menu)
 
         self.config(menu=menubar)
 
@@ -535,6 +540,60 @@ class TTSMenuApp(tk.Tk):
         log_combo.bind("<<ComboboxSelected>>", on_log_mode_change)
 
         ttk.Separator(container).pack(fill="x", pady=15)
+
+        ttk.Button(container, text="Close", command=win.destroy,
+                   style="Accent.TButton").pack(anchor="center", pady=(8, 0))
+
+        center_window(win, self)
+
+    def show_zip_settings(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_ZIP_SETTINGS")
+
+        win = tk.Toplevel(self)
+        win.title("ZIP Package Settings")
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        container = ttk.Frame(win, padding=25, style="TFrame")
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text="📦 ZIP Package Settings", style="Title.TLabel") \
+            .pack(anchor="center", pady=(0, 15))
+
+        ttk.Label(
+            container,
+            text=("Enable or disable ZIP export.\n"
+                  "If enabled, detailed project contents will be included "
+                  "inside the ZIP package (transcript, metadata, preview, segments, etc.)"),
+            style="Muted.TLabel", wraplength=400, justify="left"
+        ).pack(anchor="w", pady=(0, 12))
+
+        current_value = MemoryManager.get("zip_export_enabled", False)
+
+        def on_toggle(new_state: bool):
+            old_val = MemoryManager.get("zip_export_enabled", False)
+            if old_val != new_state:
+                MemoryManager.set("zip_export_enabled", new_state)
+                LogsHelperManager.log_config_change(
+                    self.logger, "zip_export_enabled", old_val, new_state
+                )
+
+                LogsHelperManager.log_zip_export(self.logger, new_state, old_val)
+                GUIError(
+                    self, "ZIP Export Changed",
+                    f"ZIP export is now {'enabled' if new_state else 'disabled'}",
+                    icon="✅"
+                )
+
+        toggle_btn = toggle_button(
+            container,
+            text_on="Disable ZIP Export (Currently Enabled)",
+            text_off="Enable ZIP Export (Currently Disabled)",
+            initial=current_value,
+            command=on_toggle
+        )
+        toggle_btn.pack(anchor="center", pady=(0, 15))
 
         ttk.Button(container, text="Close", command=win.destroy,
                    style="Accent.TButton").pack(anchor="center", pady=(8, 0))

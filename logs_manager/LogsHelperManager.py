@@ -95,3 +95,11 @@ class LogsHelperManager:
 
     def log_debug(logger, event: str, data: dict = None):
         LogsHelperManager._write(logger, "debug", event, data or {})
+
+    @staticmethod
+    def log_zip_export(logger, enabled: bool, old_value: bool):
+        LogsHelperManager._write(logger, "info", "ZIP_EXPORT", {
+            "old": old_value,
+            "new": enabled,
+            "status": "ENABLED" if enabled else "DISABLED"
+        })
