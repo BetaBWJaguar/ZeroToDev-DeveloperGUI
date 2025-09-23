@@ -21,6 +21,7 @@ from media_formats.WEBM import WEBM
 from tts.GTTS import GTTSService
 from tts.MicrosoftEdgeTTS import MicrosoftEdgeTTS
 from voicegui.VoiceGUI import VoiceSettings
+from zip.ZIPConvertor import ZIPConvertor
 
 BASE_DIR = Path(__file__).resolve().parent
 UTILS_DIR = BASE_DIR / "utils"
@@ -94,6 +95,7 @@ class TTSMenuApp(tk.Tk):
         init_style(self, COLORS, FONTS)
         self._build_menubar()
         self._build()
+        self.zip_convertor = ZIPConvertor(self.output_dir)
 
 
     def _build_menubar(self):
@@ -458,6 +460,15 @@ class TTSMenuApp(tk.Tk):
             self._set_progress(90, "Exporting…")
             formatter = fmt_class(processed_audio)
             out_path = formatter.export(self.output_dir)
+
+            if MemoryManager.get("zip_export_enabled", False):
+                try:
+                    zip_path = self.zip_convertor.export(text, fmt_key.lower())
+                    LogsHelperManager.log_success(self.logger, "ZIP_EXPORT", {"path": str(zip_path)})
+                    GUIError(self, "ZIP Export", f"ZIP package created:\n{zip_path}", icon="✅")
+                except Exception as e:
+                    LogsHelperManager.log_error(self.logger, "ZIP_EXPORT_FAIL", str(e))
+                    GUIError(self, "Error", f"ZIP export failed:\n{e}", icon="❌")
 
             self._set_progress(100, f"Done in {int(time.time()-t0)}s → {out_path.name}")
             GUIError(self, "Info", f"Conversion completed!\nSaved to:\n{out_path}", icon="✅")

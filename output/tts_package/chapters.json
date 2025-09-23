@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "file": "segment_1.webm",
+    "title": "Chapter 1"
+  },
+  {
+    "id": 2,
+    "file": "segment_2.webm",
+    "title": "Chapter 2"
+  },
+  {
+    "id": 3,
+    "file": "segment_3.webm",
+    "title": "Chapter 3"
+  },
+  {
+    "id": 4,
+    "file": "segment_4.webm",
+    "title": "Chapter 4"
+  },
+  {
+    "id": 5,
+    "file": "segment_5.webm",
+    "title": "Chapter 5"
+  },
+  {
+    "id": 6,
+    "file": "segment_6.webm",
+    "title": "Chapter 6"
+  },
+  {
+    "id": 7,
+    "file": "segment_7.webm",
+    "title": "Chapter 7"
+  },
+  {
+    "id": 8,
+    "file": "segment_8.webm",
+    "title": "Chapter 8"
+  }
+]

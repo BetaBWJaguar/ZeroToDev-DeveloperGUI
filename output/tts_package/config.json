@@ -1,0 +1,15 @@
+{
+  "format": "webm",
+  "createdAt": "2025-09-23T16:30:40.159773",
+  "service": "google",
+  "lang": "en",
+  "voice": "female",
+  "effects": {
+    "speed": 1.0,
+    "pitch": 0,
+    "volume": 1.0,
+    "echo": false,
+    "reverb": false,
+    "robot": false
+  }
+}
