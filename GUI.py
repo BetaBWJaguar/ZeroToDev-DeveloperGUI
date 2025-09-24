@@ -580,22 +580,18 @@ class TTSMenuApp(tk.Tk):
             style="Muted.TLabel", wraplength=400, justify="left"
         ).pack(anchor="w", pady=(0, 12))
 
+
         current_value = MemoryManager.get("zip_export_enabled", False)
 
         def on_toggle(new_state: bool):
             old_val = MemoryManager.get("zip_export_enabled", False)
             if old_val != new_state:
                 MemoryManager.set("zip_export_enabled", new_state)
-                LogsHelperManager.log_config_change(
-                    self.logger, "zip_export_enabled", old_val, new_state
-                )
-
+                LogsHelperManager.log_config_change(self.logger, "zip_export_enabled", old_val, new_state)
                 LogsHelperManager.log_zip_export(self.logger, new_state, old_val)
-                GUIError(
-                    self, "ZIP Export Changed",
-                    f"ZIP export is now {'enabled' if new_state else 'disabled'}",
-                    icon="✅"
-                )
+                GUIError(self, "ZIP Export Changed",
+                         f"ZIP export is now {'enabled' if new_state else 'disabled'}",
+                         icon="✅")
 
         toggle_btn = toggle_button(
             container,
@@ -605,6 +601,121 @@ class TTSMenuApp(tk.Tk):
             command=on_toggle
         )
         toggle_btn.pack(anchor="center", pady=(0, 15))
+
+        ttk.Separator(container).pack(fill="x", pady=12)
+
+        transcript_var = tk.StringVar(value=MemoryManager.get("zip_transcript_format", "txt"))
+        row, combo = styled_combobox(
+            container,
+            "Transcript Format:",
+            transcript_var,
+            ["txt", "md", "docx", "pdf", "json"]
+        )
+        row.pack(fill="x", pady=(6, 8))
+
+        def on_transcript_change(*_):
+            old_val = MemoryManager.get("zip_transcript_format", "txt")
+            new_val = transcript_var.get()
+            MemoryManager.set("zip_transcript_format", new_val)
+            LogsHelperManager.log_config_change(self.logger, "zip_transcript_format", old_val, new_val)
+
+        transcript_var.trace_add("write", on_transcript_change)
+
+
+        ttk.Label(container, text="Max Characters per Segment:", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        seg_var = tk.StringVar(value=str(MemoryManager.get("zip_max_chars", 500)))
+        seg_entry = ttk.Entry(container, textvariable=seg_var)
+        seg_entry.pack(fill="x", pady=(0, 6))
+
+        def on_seg_change(*_):
+            val_str = seg_var.get().strip()
+            if not val_str:
+                seg_var.set("500")
+                return
+            try:
+                new_val = int(val_str)
+                old_val = MemoryManager.get("zip_max_chars", 500)
+                if new_val != old_val:
+                    MemoryManager.set("zip_max_chars", new_val)
+                    LogsHelperManager.log_config_change(self.logger, "zip_max_chars", old_val, new_val)
+            except ValueError:
+                seg_var.set(str(MemoryManager.get("zip_max_chars", 500)))
+
+        seg_var.trace_add("write", on_seg_change)
+
+
+        ttk.Label(container, text="Preview Length (chars):", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        preview_var = tk.StringVar(value=str(MemoryManager.get("zip_preview_length", 200)))
+        preview_entry = ttk.Entry(container, textvariable=preview_var)
+        preview_entry.pack(fill="x", pady=(0, 6))
+
+        def on_preview_change(*_):
+            val_str = preview_var.get().strip()
+            if not val_str:
+                preview_var.set("200")
+                return
+            try:
+                new_val = int(val_str)
+                old_val = MemoryManager.get("zip_preview_length", 200)
+                if new_val != old_val:
+                    MemoryManager.set("zip_preview_length", new_val)
+                    LogsHelperManager.log_config_change(self.logger, "zip_preview_length", old_val, new_val)
+            except ValueError:
+                preview_var.set(str(MemoryManager.get("zip_preview_length", 200)))
+
+        preview_var.trace_add("write", on_preview_change)
+
+
+        ttk.Label(container, text="ZIP Password Protection:", style="Label.TLabel") \
+            .pack(anchor="w", pady=(6, 2))
+
+        password_enabled = tk.BooleanVar(value=MemoryManager.get("zip_password_enabled", False))
+        password_var = tk.StringVar(value=MemoryManager.get("zip_password", ""))
+
+
+        password_entry = ttk.Entry(container, textvariable=password_var, show="*")
+        if not password_enabled.get():
+            password_entry.config(state="disabled")
+        password_entry.pack(fill="x", pady=(0, 6))
+
+
+        def on_toggle(state: bool):
+            MemoryManager.set("zip_password_enabled", state)
+            LogsHelperManager.log_config_change(
+                self.logger,
+                "zip_password_enabled",
+                not state,
+                state
+            )
+            if state:
+                password_entry.config(state="normal")
+            else:
+                password_entry.config(state="disabled")
+
+        toggle_btn = toggle_button(
+            container,
+            text_on="🔒 Disable Password Protection",
+            text_off="🔓 Enable Password Protection",
+            initial=password_enabled.get(),
+            command=on_toggle
+        )
+        toggle_btn.pack(fill="x", pady=(0, 8))
+
+        # Password değişimini dinle
+        def on_password_change(*_):
+            old_val = MemoryManager.get("zip_password", "")
+            new_val = password_var.get()
+            MemoryManager.set("zip_password", new_val)
+            LogsHelperManager.log_config_change(
+                self.logger,
+                "zip_password",
+                old_val,
+                "******" if new_val else ""
+            )
+
+        password_var.trace_add("write", on_password_change)
+
+        ttk.Separator(container).pack(fill="x", pady=12)
 
         ttk.Button(container, text="Close", command=win.destroy,
                    style="Accent.TButton").pack(anchor="center", pady=(8, 0))

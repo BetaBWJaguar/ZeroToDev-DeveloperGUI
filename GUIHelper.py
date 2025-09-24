@@ -306,6 +306,88 @@ def toggle_button(parent, text_on: str, text_off: str,
     update_button()
     return btn
 
+def password_section(parent, title: str,
+                     password_var: tk.StringVar,
+                     enabled_var: tk.BooleanVar,
+                     on_toggle=None, on_change=None) -> ttk.Frame:
+
+    c = THEME["COLORS"]
+    f = THEME["FONTS"]
+
+    frame = ttk.Frame(parent, style="Card.TFrame")
+
+
+    ttk.Label(frame, text=title, style="Muted.TLabel") \
+        .pack(anchor="w", pady=(0, 6))
+
+
+    toggle_btn = ttk.Button(frame)
+
+    def update_toggle():
+        if enabled_var.get():
+            toggle_btn.config(
+                text="🔒 Disable Password Protection",
+                style="Toggle.On.TButton"
+            )
+            entry.config(state="normal")
+        else:
+            toggle_btn.config(
+                text="🔓 Enable Password Protection",
+                style="Toggle.Off.TButton"
+            )
+            entry.config(state="disabled")
+        if on_toggle:
+            on_toggle(enabled_var.get())
+
+    toggle_btn.config(
+        command=lambda: (enabled_var.set(not enabled_var.get()), update_toggle())
+    )
+    toggle_btn.pack(fill="x", pady=(0, 8))
+
+
+    entry = ttk.Entry(frame, textvariable=password_var, show="*", width=30)
+    entry.pack(fill="x", pady=(0, 6))
+
+
+    def on_pw_change(*_):
+        if on_change:
+            on_change(password_var.get())
+
+    password_var.trace_add("write", on_pw_change)
+
+
+    style = ttk.Style()
+    style.configure(
+        "Toggle.On.TButton",
+        background=c["primary"],
+        foreground="white",
+        padding=12,
+        font=tuple(f["button"])
+    )
+    style.map(
+        "Toggle.On.TButton",
+        background=[("active", c["primary_active"])],
+        foreground=[("active", "white")]
+    )
+
+    style.configure(
+        "Toggle.Off.TButton",
+        background=c["surface"],
+        foreground=c["text"],
+        padding=12,
+        font=tuple(f["button"])
+    )
+    style.map(
+        "Toggle.Off.TButton",
+        background=[("active", c["card"])],
+        foreground=[("active", c["text"])]
+    )
+
+
+    update_toggle()
+
+    return frame
+
 
 
 

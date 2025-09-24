@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import io, json, time
 from datetime import datetime
 from pathlib import Path
 
+from logs_manager.LogsHelperManager import LogsHelperManager
+from logs_manager.LogsManager import LogsManager
 from zip.ZIPUtility import ZIPUtility
 from zip.ZIPHelper import ZIPHelper
 from data_manager.MemoryManager import MemoryManager
@@ -9,13 +12,18 @@ from tts.GTTS import GTTSService
 from tts.MicrosoftEdgeTTS import MicrosoftEdgeTTS
 from data_manager.DataManager import DataManager
 from VoiceProcessor import VoiceProcessor
+from docx import Document
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4
+
 
 class ZIPConvertor:
     def __init__(self, output_dir: Path):
         self.base_dir = Path(output_dir)
         self.output_dir = Path(output_dir)
         ZIPUtility.ensure_dir(self.output_dir)
-        (self.base_dir / "segments").mkdir(exist_ok=True)
+        self.logger = LogsManager.get_logger("ZIPConvertor")
+        self.logger.info("ZIPConvertor initialized at %s", self.base_dir)
 
     def split_text(self, text: str, max_chars: int = 500) -> list[str]:
         words, segs, cur = text.split(), [], ""
@@ -24,7 +32,8 @@ class ZIPConvertor:
                 segs.append(cur.strip()); cur = w
             else:
                 cur += " " + w
-        if cur: segs.append(cur.strip())
+        if cur:
+            segs.append(cur.strip())
         return segs
 
     def _get_tts_service(self):
@@ -40,95 +49,139 @@ class ZIPConvertor:
         else:
             raise RuntimeError(f"Unknown TTS service: {svc}")
 
-    def _synthesize(self, tts, text: str, out_file: Path, fmt="mp3"):
-
-        raw = tts.synthesize_to_bytes(text)
-        settings = {k: MemoryManager.get(k, v) for k, v in {
-            "pitch": 0, "speed": 1.0, "volume": 1.0,
-            "echo": False, "reverb": False, "robot": False
-        }.items()}
-        processed = VoiceProcessor.process_from_memory(raw, "mp3", settings)
-        audio = DataManager.from_bytes(processed, "mp3")
-        out_file.write_bytes(audio.export(fmt))
-
     def export(self, text: str, fmt: str, zip_name: str = "tts_package.zip") -> Path:
-        import io, json
+        start_time = time.time()
+        try:
+            seg_texts = self.split_text(text, MemoryManager.get("zip_max_chars", 500))
+            tts = self._get_tts_service()
 
-        seg_texts = self.split_text(text, 500)
-        tts = self._get_tts_service()
+            seg_files = []
+            for i, seg in enumerate(seg_texts, start=1):
+                seg_bytes = tts.synthesize_to_bytes(seg)
+                LogsHelperManager.log_tts_request(
+                    self.logger,
+                    MemoryManager.get("tts_service", "unknown"),
+                    MemoryManager.get("tts_lang", "en"),
+                    fmt,
+                    len(seg)
+                )
 
-        seg_files = []
-        for i, seg in enumerate(seg_texts, start=1):
-            seg_bytes = tts.synthesize_to_bytes(seg)
+                settings = {k: MemoryManager.get(k, v) for k, v in {
+                    "pitch": 0, "speed": 1.0, "volume": 1.0,
+                    "echo": False, "reverb": False, "robot": False
+                }.items()}
+                processed = VoiceProcessor.process_from_memory(seg_bytes, "mp3", settings)
+                audio = DataManager.from_bytes(processed, "mp3")
 
+                buf = io.BytesIO()
+                audio.export(buf, format=fmt)
+                seg_files.append((f"segments/segment_{i}.{fmt}", buf.getvalue()))
 
-            settings = {k: MemoryManager.get(k, v) for k, v in {
-                "pitch": 0, "speed": 1.0, "volume": 1.0,
-                "echo": False, "reverb": False, "robot": False
-            }.items()}
-            processed = VoiceProcessor.process_from_memory(seg_bytes, "mp3", settings)
-            audio = DataManager.from_bytes(processed, "mp3")
-
-            buf = io.BytesIO()
-            audio.export(buf, format=fmt)
-            seg_files.append((f"segments/segment_{i}.{fmt}", buf.getvalue()))
-
-
-        preview_bytes = None
-        if seg_texts:
-            preview_bytes = tts.synthesize_to_bytes(seg_texts[0][:200])
-
-
-        files = {
-            "transcript.txt": text.encode("utf-8"),
-            "chapters.json": json.dumps([
-                {"id": i+1, "file": f"segment_{i+1}.{fmt}", "title": f"Chapter {i+1}"}
-                for i in range(len(seg_texts))
-            ], indent=2).encode("utf-8"),
-            "config.json": json.dumps({
-                "format": fmt,
-                "createdAt": datetime.now().isoformat(),
-                "service": MemoryManager.get("tts_service", "unknown"),
-                "lang": MemoryManager.get("tts_lang", "en"),
-                "voice": MemoryManager.get("tts_voice", "female"),
-                "effects": {
-                    "speed": MemoryManager.get("speed", 1.0),
-                    "pitch": MemoryManager.get("pitch", 0),
-                    "volume": MemoryManager.get("volume", 1.0),
-                    "echo": MemoryManager.get("echo", False),
-                    "reverb": MemoryManager.get("reverb", False),
-                    "robot": MemoryManager.get("robot", False),
-                }
-            }, indent=2).encode("utf-8"),
-            "project.json": json.dumps({
-                "name": "Zero to Dev - Developer GUI",
-                "author": "Tuna Rasim OCAK",
-                "version": "1.0",
-                "createdAt": datetime.now().isoformat()
-            }, indent=2).encode("utf-8"),
-            "metadata.json": json.dumps({
-                "segments": len(seg_texts),
-                "format": fmt,
-                "transcriptLength": len(text),
-                "zip_enabled": MemoryManager.get("zip_export_enabled", False),
-                "log_mode": MemoryManager.get("log_mode", "INFO")
-            }, indent=2).encode("utf-8"),
-            "events.json": json.dumps([{
-                "event": "convert",
-                "time": datetime.now().isoformat(),
-                "service": MemoryManager.get("tts_service", "unknown"),
-                "format": fmt,
-                "lang": MemoryManager.get("tts_lang", "en")
-            }], indent=2).encode("utf-8"),
-            "readme.txt": (
-                "Generated by TTS Exporter\n"
-                "Includes transcript, config, chapters, metadata, preview, and segments."
-            ).encode("utf-8"),
-        }
-        if preview_bytes:
-            files[f"preview.{fmt}"] = preview_bytes
-
-        output_path = self.output_dir / ZIPUtility.normalize_name(zip_name)
-        return ZIPHelper.create_zip(output_path, files, seg_files)
+                LogsHelperManager.log_debug(self.logger, "SEGMENT_SYNTH",
+                                            {"id": i, "bytes": len(buf.getvalue())})
 
 
+            preview_len = MemoryManager.get("zip_preview_chars", 200)
+            preview_bytes = None
+            if seg_texts:
+                preview_bytes = tts.synthesize_to_bytes(seg_texts[0][:preview_len])
+                LogsHelperManager.log_debug(self.logger, "PREVIEW_CREATED",
+                                            {"bytes": len(preview_bytes)})
+
+
+            transcript_fmt = MemoryManager.get("zip_transcript_format", "txt").lower()
+            transcript_file = None
+
+            if transcript_fmt == "txt":
+                transcript_file = ("transcript.txt", text.encode("utf-8"))
+
+            elif transcript_fmt == "md":
+                transcript_file = ("transcript.md", f"# Transcript\n\n{text}".encode("utf-8"))
+
+            elif transcript_fmt == "docx":
+                doc_buf = io.BytesIO()
+                doc = Document()
+                doc.add_heading("Transcript", 0)
+                doc.add_paragraph(text)
+                doc.save(doc_buf)
+                transcript_file = ("transcript.docx", doc_buf.getvalue())
+
+            elif transcript_fmt == "pdf":
+                pdf_buf = io.BytesIO()
+                c = canvas.Canvas(pdf_buf, pagesize=A4)
+                c.setFont("Helvetica", 12)
+                c.drawString(50, 800, "Transcript")
+                y = 780
+                for line in text.splitlines():
+                    c.drawString(50, y, line)
+                    y -= 15
+                c.save()
+                transcript_file = ("transcript.pdf", pdf_buf.getvalue())
+
+            elif transcript_fmt == "json":
+                transcript_file = (
+                    "transcript.json",
+                    json.dumps({"transcript": text}, indent=2).encode("utf-8")
+                )
+
+            files = {
+                "chapters.json": json.dumps([
+                    {"id": i + 1, "file": f"segment_{i + 1}.{fmt}", "title": f"Chapter {i + 1}"}
+                    for i in range(len(seg_texts))
+                ], indent=2).encode("utf-8"),
+                "config.json": json.dumps({
+                    "format": fmt,
+                    "createdAt": datetime.now().isoformat(),
+                    "service": MemoryManager.get("tts_service", "unknown"),
+                    "lang": MemoryManager.get("tts_lang", "en"),
+                    "voice": MemoryManager.get("tts_voice", "female"),
+                    "effects": {
+                        "speed": MemoryManager.get("speed", 1.0),
+                        "pitch": MemoryManager.get("pitch", 0),
+                        "volume": MemoryManager.get("volume", 1.0),
+                        "echo": MemoryManager.get("echo", False),
+                        "reverb": MemoryManager.get("reverb", False),
+                        "robot": MemoryManager.get("robot", False),
+                    }
+                }, indent=2).encode("utf-8"),
+                "project.json": json.dumps({
+                    "name": "Zero to Dev - Developer GUI",
+                    "author": "Tuna Rasim OCAK",
+                    "version": "1.0",
+                    "createdAt": datetime.now().isoformat()
+                }, indent=2).encode("utf-8"),
+                "metadata.json": json.dumps({
+                    "segments": len(seg_texts),
+                    "format": fmt,
+                    "transcriptLength": len(text),
+                    "zip_enabled": MemoryManager.get("zip_export_enabled", False),
+                    "log_mode": MemoryManager.get("log_mode", "INFO")
+                }, indent=2).encode("utf-8"),
+                "events.json": json.dumps([{
+                    "event": "convert",
+                    "time": datetime.now().isoformat(),
+                    "service": MemoryManager.get("tts_service", "unknown"),
+                    "format": fmt,
+                    "lang": MemoryManager.get("tts_lang", "en")
+                }], indent=2).encode("utf-8"),
+                "readme.txt": (
+                    "Generated by TTS Exporter\n"
+                    "Includes transcript, config, chapters, metadata, preview, and segments."
+                ).encode("utf-8"),
+            }
+            if transcript_file:
+                files[transcript_file[0]] = transcript_file[1]
+            if preview_bytes:
+                files[f"preview.{fmt}"] = preview_bytes
+
+            output_path = self.output_dir / ZIPUtility.normalize_name(zip_name)
+            result = ZIPHelper.create_zip(output_path, files, seg_files)
+
+            duration = time.time() - start_time
+            LogsHelperManager.log_file_export(self.logger, str(result), result.stat().st_size)
+            LogsHelperManager.log_success(self.logger, "ZIP_EXPORT", duration)
+            return result
+
+        except Exception as e:
+            LogsHelperManager.log_error(self.logger, "ZIP_EXPORT", str(e))
+            raise
