@@ -1,7 +1,9 @@
-# -*- coding: utf-8 -*-
 import io, json, time
 from datetime import datetime
 from pathlib import Path
+
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
@@ -13,7 +15,6 @@ from tts.MicrosoftEdgeTTS import MicrosoftEdgeTTS
 from data_manager.DataManager import DataManager
 from VoiceProcessor import VoiceProcessor
 from docx import Document
-from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 
 
@@ -56,119 +57,137 @@ class ZIPConvertor:
             tts = self._get_tts_service()
 
             seg_files = []
-            for i, seg in enumerate(seg_texts, start=1):
-                seg_bytes = tts.synthesize_to_bytes(seg)
-                LogsHelperManager.log_tts_request(
-                    self.logger,
-                    MemoryManager.get("tts_service", "unknown"),
-                    MemoryManager.get("tts_lang", "en"),
-                    fmt,
-                    len(seg)
-                )
+            if MemoryManager.get("zip_include_segments", True):
+                for i, seg in enumerate(seg_texts, start=1):
+                    seg_bytes = tts.synthesize_to_bytes(seg)
+                    LogsHelperManager.log_tts_request(
+                        self.logger,
+                        MemoryManager.get("tts_service", "unknown"),
+                        MemoryManager.get("tts_lang", "en"),
+                        fmt,
+                        len(seg)
+                    )
 
-                settings = {k: MemoryManager.get(k, v) for k, v in {
-                    "pitch": 0, "speed": 1.0, "volume": 1.0,
-                    "echo": False, "reverb": False, "robot": False
-                }.items()}
-                processed = VoiceProcessor.process_from_memory(seg_bytes, "mp3", settings)
-                audio = DataManager.from_bytes(processed, "mp3")
+                    settings = {k: MemoryManager.get(k, v) for k, v in {
+                        "pitch": 0, "speed": 1.0, "volume": 1.0,
+                        "echo": False, "reverb": False, "robot": False
+                    }.items()}
+                    processed = VoiceProcessor.process_from_memory(seg_bytes, "mp3", settings)
+                    audio = DataManager.from_bytes(processed, "mp3")
 
-                buf = io.BytesIO()
-                audio.export(buf, format=fmt)
-                seg_files.append((f"segments/segment_{i}.{fmt}", buf.getvalue()))
+                    buf = io.BytesIO()
+                    audio.export(buf, format=fmt)
+                    seg_files.append((f"segments/segment_{i}.{fmt}", buf.getvalue()))
 
-                LogsHelperManager.log_debug(self.logger, "SEGMENT_SYNTH",
-                                            {"id": i, "bytes": len(buf.getvalue())})
+                    LogsHelperManager.log_debug(self.logger, "SEGMENT_SYNTH",
+                                                {"id": i, "bytes": len(buf.getvalue())})
 
 
             preview_len = MemoryManager.get("zip_preview_chars", 200)
             preview_bytes = None
-            if seg_texts:
-                preview_bytes = tts.synthesize_to_bytes(seg_texts[0][:preview_len])
-                LogsHelperManager.log_debug(self.logger, "PREVIEW_CREATED",
-                                            {"bytes": len(preview_bytes)})
+            if text.strip():
+                preview_text = text[:preview_len]
+                preview_bytes = tts.synthesize_to_bytes(preview_text)
+                LogsHelperManager.log_debug(
+                    self.logger,
+                    "PREVIEW_CREATED",
+                    {"chars": len(preview_text), "bytes": len(preview_bytes)}
+    )
 
 
-            transcript_fmt = MemoryManager.get("zip_transcript_format", "txt").lower()
             transcript_file = None
+            if MemoryManager.get("zip_include_transcript", True):
+                transcript_fmt = MemoryManager.get("zip_transcript_format", "txt").lower()
+                if transcript_fmt == "txt":
+                    transcript_file = ("transcript.txt", text.encode("utf-8"))
+                elif transcript_fmt == "md":
+                    transcript_file = ("transcript.md", f"# Transcript\n\n{text}".encode("utf-8"))
+                elif transcript_fmt == "docx":
+                    doc_buf = io.BytesIO()
+                    doc = Document()
+                    doc.add_heading("Transcript", 0)
+                    doc.add_paragraph(text)
+                    doc.save(doc_buf)
+                    transcript_file = ("transcript.docx", doc_buf.getvalue())
+                elif transcript_fmt == "pdf":
+                    pdf_buf = io.BytesIO()
+                    doc = SimpleDocTemplate(pdf_buf, pagesize=A4)
+                    styles = getSampleStyleSheet()
 
-            if transcript_fmt == "txt":
-                transcript_file = ("transcript.txt", text.encode("utf-8"))
+                    story = []
+                    story.append(Paragraph("<b>Transcript</b>", styles["Title"]))
+                    story.append(Spacer(1, 12))
 
-            elif transcript_fmt == "md":
-                transcript_file = ("transcript.md", f"# Transcript\n\n{text}".encode("utf-8"))
+                    for line in text.split("\n"):
+                        if line.strip():
+                            story.append(Paragraph(line, styles["Normal"]))
+                        else:
+                            story.append(Spacer(1, 12))
 
-            elif transcript_fmt == "docx":
-                doc_buf = io.BytesIO()
-                doc = Document()
-                doc.add_heading("Transcript", 0)
-                doc.add_paragraph(text)
-                doc.save(doc_buf)
-                transcript_file = ("transcript.docx", doc_buf.getvalue())
+                    doc.build(story)
+                    transcript_file = ("transcript.pdf", pdf_buf.getvalue())
+                elif transcript_fmt == "json":
+                    transcript_file = (
+                        "transcript.json",
+                        json.dumps({"transcript": text}, indent=2).encode("utf-8")
+                    )
 
-            elif transcript_fmt == "pdf":
-                pdf_buf = io.BytesIO()
-                c = canvas.Canvas(pdf_buf, pagesize=A4)
-                c.setFont("Helvetica", 12)
-                c.drawString(50, 800, "Transcript")
-                y = 780
-                for line in text.splitlines():
-                    c.drawString(50, y, line)
-                    y -= 15
-                c.save()
-                transcript_file = ("transcript.pdf", pdf_buf.getvalue())
+            files = {}
 
-            elif transcript_fmt == "json":
-                transcript_file = (
-                    "transcript.json",
-                    json.dumps({"transcript": text}, indent=2).encode("utf-8")
-                )
-
-            files = {
-                "chapters.json": json.dumps([
+            if seg_files and MemoryManager.get("zip_include_segments", True):
+                files["chapters.json"] = json.dumps([
                     {"id": i + 1, "file": f"segment_{i + 1}.{fmt}", "title": f"Chapter {i + 1}"}
-                    for i in range(len(seg_texts))
-                ], indent=2).encode("utf-8"),
-                "config.json": json.dumps({
-                    "format": fmt,
-                    "createdAt": datetime.now().isoformat(),
-                    "service": MemoryManager.get("tts_service", "unknown"),
-                    "lang": MemoryManager.get("tts_lang", "en"),
-                    "voice": MemoryManager.get("tts_voice", "female"),
-                    "effects": {
-                        "speed": MemoryManager.get("speed", 1.0),
-                        "pitch": MemoryManager.get("pitch", 0),
-                        "volume": MemoryManager.get("volume", 1.0),
-                        "echo": MemoryManager.get("echo", False),
-                        "reverb": MemoryManager.get("reverb", False),
-                        "robot": MemoryManager.get("robot", False),
-                    }
-                }, indent=2).encode("utf-8"),
-                "project.json": json.dumps({
-                    "name": "Zero to Dev - Developer GUI",
-                    "author": "Tuna Rasim OCAK",
-                    "version": "1.0",
-                    "createdAt": datetime.now().isoformat()
-                }, indent=2).encode("utf-8"),
-                "metadata.json": json.dumps({
+                    for i in range(len(seg_files))
+                ], indent=2).encode("utf-8")
+
+
+            files["config.json"] = json.dumps({
+                "format": fmt,
+                "createdAt": datetime.now().isoformat(),
+                "service": MemoryManager.get("tts_service", "unknown"),
+                "lang": MemoryManager.get("tts_lang", "en"),
+                "voice": MemoryManager.get("tts_voice", "female"),
+                "effects": {
+                    "speed": MemoryManager.get("speed", 1.0),
+                    "pitch": MemoryManager.get("pitch", 0),
+                    "volume": MemoryManager.get("volume", 1.0),
+                    "echo": MemoryManager.get("echo", False),
+                    "reverb": MemoryManager.get("reverb", False),
+                    "robot": MemoryManager.get("robot", False),
+                }
+            }, indent=2).encode("utf-8")
+
+
+            files["project.json"] = json.dumps({
+                "name": "Zero to Dev - Developer GUI",
+                "author": "Tuna Rasim OCAK",
+                "version": "1.0",
+                "createdAt": datetime.now().isoformat()
+            }, indent=2).encode("utf-8")
+
+            if MemoryManager.get("zip_include_metadata", True):
+                files["metadata.json"] = json.dumps({
                     "segments": len(seg_texts),
                     "format": fmt,
                     "transcriptLength": len(text),
                     "zip_enabled": MemoryManager.get("zip_export_enabled", False),
                     "log_mode": MemoryManager.get("log_mode", "INFO")
-                }, indent=2).encode("utf-8"),
-                "events.json": json.dumps([{
-                    "event": "convert",
-                    "time": datetime.now().isoformat(),
-                    "service": MemoryManager.get("tts_service", "unknown"),
-                    "format": fmt,
-                    "lang": MemoryManager.get("tts_lang", "en")
-                }], indent=2).encode("utf-8"),
-                "readme.txt": (
-                    "Generated by TTS Exporter\n"
-                    "Includes transcript, config, chapters, metadata, preview, and segments."
-                ).encode("utf-8"),
-            }
+                }, indent=2).encode("utf-8")
+
+
+            files["events.json"] = json.dumps([{
+                "event": "convert",
+                "time": datetime.now().isoformat(),
+                "service": MemoryManager.get("tts_service", "unknown"),
+                "format": fmt,
+                "lang": MemoryManager.get("tts_lang", "en")
+            }], indent=2).encode("utf-8")
+
+            files["readme.txt"] = (
+                "Generated by TTS Exporter\n"
+                "Includes transcript, config, chapters, metadata, preview, and segments."
+            ).encode("utf-8")
+
             if transcript_file:
                 files[transcript_file[0]] = transcript_file[1]
             if preview_bytes:

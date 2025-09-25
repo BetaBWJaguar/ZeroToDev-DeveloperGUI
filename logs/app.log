@@ -6,3 +6,316 @@
 2025-09-24 21:42:43 | INFO    | TTSMenuApp | {"timestamp": "2025-09-24T21:42:43.771383", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": false, "new": true}}
 2025-09-24 21:42:44 | INFO    | TTSMenuApp | {"timestamp": "2025-09-24T21:42:44.452257", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
 2025-09-24 21:56:32 | INFO    | Main | {"timestamp": "2025-09-24T21:56:32.786585", "event": "SESSION_END", "data": {"session_id": "20250924-213559"}}
+2025-09-25 15:38:59 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:38:59 | INFO    | Main | {"timestamp": "2025-09-25T15:38:59.787994", "event": "SESSION_START", "data": {"session_id": "20250925-153859"}}
+2025-09-25 15:39:00 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:39:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:01.834665", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:39:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:01.862740", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:39:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:03.524766", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:39:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:04.040852", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:39:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:06.777693", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:39:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:06.783439", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:39:34 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:34.391258", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-25 15:39:34 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:34.392265", "event": "ZIP_EXPORT", "data": {"old": false, "new": true, "status": "ENABLED"}}
+2025-09-25 15:39:36 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:36.094324", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": true, "new": false}}
+2025-09-25 15:39:36 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:39:36.095324", "event": "ZIP_EXPORT", "data": {"old": true, "new": false, "status": "DISABLED"}}
+2025-09-25 15:40:14 | INFO    | Main | {"timestamp": "2025-09-25T15:40:14.020672", "event": "SESSION_END", "data": {"session_id": "20250925-153859"}}
+2025-09-25 15:40:15 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:40:15 | INFO    | Main | {"timestamp": "2025-09-25T15:40:15.415275", "event": "SESSION_START", "data": {"session_id": "20250925-154015"}}
+2025-09-25 15:40:15 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:40:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:17.163669", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:40:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:17.186807", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:40:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:17.187812", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:40:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:17.188900", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:40:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:17.199424", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:40:19 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:19.126256", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "txt", "new": "0"}}
+2025-09-25 15:40:19 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:19.126256", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:40:19 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:19.855192", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "0", "new": "1"}}
+2025-09-25 15:40:19 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:19.855676", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:40:21 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:21.355392", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "1", "new": "0"}}
+2025-09-25 15:40:21 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:21.355392", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:40:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:23.681993", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "0", "new": "1"}}
+2025-09-25 15:40:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:23.683350", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:40:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:26.115942", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "1", "new": "docx"}}
+2025-09-25 15:40:27 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:27.329437", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "docx", "new": "txt"}}
+2025-09-25 15:40:28 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:28.626748", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "txt", "new": "0"}}
+2025-09-25 15:40:28 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:40:28.627906", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:41:09 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:41:09 | INFO    | Main | {"timestamp": "2025-09-25T15:41:09.244540", "event": "SESSION_START", "data": {"session_id": "20250925-154109"}}
+2025-09-25 15:41:09 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:41:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:41:10.857438", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:41:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:41:10.878766", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:42:14 | INFO    | Main | {"timestamp": "2025-09-25T15:42:14.037587", "event": "SESSION_END", "data": {"session_id": "20250925-154109"}}
+2025-09-25 15:42:16 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:42:16 | INFO    | Main | {"timestamp": "2025-09-25T15:42:16.859749", "event": "SESSION_START", "data": {"session_id": "20250925-154216"}}
+2025-09-25 15:42:17 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:42:18 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:42:18.381017", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:42:18 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:42:18.401520", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:42:54 | INFO    | Main | {"timestamp": "2025-09-25T15:42:54.770046", "event": "SESSION_END", "data": {"session_id": "20250925-154216"}}
+2025-09-25 15:42:57 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:42:57 | INFO    | Main | {"timestamp": "2025-09-25T15:42:57.062595", "event": "SESSION_START", "data": {"session_id": "20250925-154257"}}
+2025-09-25 15:42:57 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:42:58.476120", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:42:58.498026", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:42:58.499097", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:42:58.499964", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:42:58.508675", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:43:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:43:03.757971", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:43:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:43:04.728014", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:43:49 | INFO    | Main | {"timestamp": "2025-09-25T15:43:49.630494", "event": "SESSION_END", "data": {"session_id": "20250925-154257"}}
+2025-09-25 15:43:51 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:43:51 | INFO    | Main | {"timestamp": "2025-09-25T15:43:51.588475", "event": "SESSION_START", "data": {"session_id": "20250925-154351"}}
+2025-09-25 15:43:52 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:43:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:43:56.916721", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:43:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:43:56.941699", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:43:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:43:56.942434", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:43:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:43:56.943829", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:43:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:43:56.952297", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:44:09 | INFO    | Main | {"timestamp": "2025-09-25T15:44:09.674342", "event": "SESSION_END", "data": {"session_id": "20250925-154351"}}
+2025-09-25 15:44:11 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:44:11 | INFO    | Main | {"timestamp": "2025-09-25T15:44:11.578377", "event": "SESSION_START", "data": {"session_id": "20250925-154411"}}
+2025-09-25 15:44:12 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:44:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:15.884772", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:44:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:15.906173", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:44:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:15.906714", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:44:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:15.907711", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:44:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:15.918411", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:44:20 | INFO    | Main | {"timestamp": "2025-09-25T15:44:20.005404", "event": "SESSION_END", "data": {"session_id": "20250925-154411"}}
+2025-09-25 15:44:22 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:44:22 | INFO    | Main | {"timestamp": "2025-09-25T15:44:22.195372", "event": "SESSION_START", "data": {"session_id": "20250925-154422"}}
+2025-09-25 15:44:22 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:44:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:23.449554", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:44:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:23.471919", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:44:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:23.473009", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:44:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:23.474095", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:44:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:23.482183", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:44:32 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:44:32 | INFO    | Main | {"timestamp": "2025-09-25T15:44:32.216175", "event": "SESSION_START", "data": {"session_id": "20250925-154432"}}
+2025-09-25 15:44:32 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:44:35 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:35.560496", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:44:35 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:35.581607", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:44:35 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:35.582262", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:44:35 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:35.583303", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:44:35 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:44:35.591948", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:45:23 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:45:23 | INFO    | Main | {"timestamp": "2025-09-25T15:45:23.136169", "event": "SESSION_START", "data": {"session_id": "20250925-154523"}}
+2025-09-25 15:45:23 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:45:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:45:30.265684", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:45:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:45:30.286800", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:45:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:45:30.287818", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:45:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:45:30.288840", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:45:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:45:30.298323", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:46:21 | INFO    | Main | {"timestamp": "2025-09-25T15:46:21.660229", "event": "SESSION_END", "data": {"session_id": "20250925-154523"}}
+2025-09-25 15:46:22 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:46:22 | INFO    | Main | {"timestamp": "2025-09-25T15:46:22.932805", "event": "SESSION_START", "data": {"session_id": "20250925-154622"}}
+2025-09-25 15:46:23 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:46:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:26.404481", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:46:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:26.425382", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:46:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:26.426390", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:46:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:26.427339", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:46:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:26.435707", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:46:29 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:29.512538", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": false}}
+2025-09-25 15:46:29 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:29.937714", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": false}}
+2025-09-25 15:46:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:30.361725", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:46:31 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:31.449939", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:46:31 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:31.744073", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": false, "new": true}}
+2025-09-25 15:46:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:32.023382", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": false, "new": true}}
+2025-09-25 15:46:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:45.854751", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:46:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:45.858490", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:46:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:45.859571", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:46:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:45.860765", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:46:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:45.862829", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:46:47 | INFO    | Main | {"timestamp": "2025-09-25T15:46:47.310746", "event": "SESSION_END", "data": {"session_id": "20250925-154622"}}
+2025-09-25 15:46:49 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:46:49 | INFO    | Main | {"timestamp": "2025-09-25T15:46:49.537728", "event": "SESSION_START", "data": {"session_id": "20250925-154649"}}
+2025-09-25 15:46:49 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:46:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:51.265228", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:46:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:51.286733", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:46:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:51.287751", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:46:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:51.288785", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:46:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:51.297134", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:46:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:52.211544", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:46:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:52.525796", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": false}}
+2025-09-25 15:46:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:46:52.832371", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": false}}
+2025-09-25 15:48:30 | INFO    | Main | {"timestamp": "2025-09-25T15:48:30.948115", "event": "SESSION_END", "data": {"session_id": "20250925-154649"}}
+2025-09-25 15:48:52 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:48:52 | INFO    | Main | {"timestamp": "2025-09-25T15:48:52.295427", "event": "SESSION_START", "data": {"session_id": "20250925-154852"}}
+2025-09-25 15:48:52 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:48:53 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:48:53.582926", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:48:53 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:48:53.603272", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:49:10 | INFO    | Main | {"timestamp": "2025-09-25T15:49:10.908451", "event": "SESSION_END", "data": {"session_id": "20250925-154852"}}
+2025-09-25 15:49:12 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:49:12 | INFO    | Main | {"timestamp": "2025-09-25T15:49:12.324131", "event": "SESSION_START", "data": {"session_id": "20250925-154912"}}
+2025-09-25 15:49:12 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:49:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:13.683966", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:49:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:13.705703", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:49:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:13.706972", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:49:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:13.708615", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:49:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:13.716966", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:49:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:23.177429", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": false, "new": true}}
+2025-09-25 15:49:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:23.780554", "event": "CONFIG_CHANGE", "data": {"key": "zip_password", "old": "", "new": "******"}}
+2025-09-25 15:49:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:23.933604", "event": "CONFIG_CHANGE", "data": {"key": "zip_password", "old": "S", "new": "******"}}
+2025-09-25 15:49:24 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:24.024135", "event": "CONFIG_CHANGE", "data": {"key": "zip_password", "old": "SE", "new": "******"}}
+2025-09-25 15:49:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:45.783036", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:49:46 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:46.026999", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": false}}
+2025-09-25 15:49:46 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:46.342124", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": false}}
+2025-09-25 15:49:47 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:47.609170", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:49:48 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:48.012048", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": false, "new": true}}
+2025-09-25 15:49:48 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:49:48.354210", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": false, "new": true}}
+2025-09-25 15:50:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:50:26.383037", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:52:13 | INFO    | Main | {"timestamp": "2025-09-25T15:52:13.348344", "event": "SESSION_END", "data": {"session_id": "20250925-154912"}}
+2025-09-25 15:52:20 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:52:20 | INFO    | Main | {"timestamp": "2025-09-25T15:52:20.167178", "event": "SESSION_START", "data": {"session_id": "20250925-155220"}}
+2025-09-25 15:52:20 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:52:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:52:23.448501", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:52:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:52:23.470490", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:52:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:52:23.473127", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:53:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:53:55.519273", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:53:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:53:55.528653", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:54:51 | INFO    | Main | {"timestamp": "2025-09-25T15:54:51.786516", "event": "SESSION_END", "data": {"session_id": "20250925-155220"}}
+2025-09-25 15:54:54 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:54:54 | INFO    | Main | {"timestamp": "2025-09-25T15:54:54.680785", "event": "SESSION_START", "data": {"session_id": "20250925-155454"}}
+2025-09-25 15:54:54 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:54:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:54:56.274777", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:54:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:54:56.298463", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:54:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:54:56.299481", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:55:19 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:55:19.246607", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:55:19 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:55:19.255746", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:56:39 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:56:39.951088", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:56:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:56:40.983373", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:57:13 | INFO    | Main | {"timestamp": "2025-09-25T15:57:13.768921", "event": "SESSION_END", "data": {"session_id": "20250925-155454"}}
+2025-09-25 15:57:16 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:57:16 | INFO    | Main | {"timestamp": "2025-09-25T15:57:16.219595", "event": "SESSION_START", "data": {"session_id": "20250925-155716"}}
+2025-09-25 15:57:16 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:57:49 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:57:49 | INFO    | Main | {"timestamp": "2025-09-25T15:57:49.464718", "event": "SESSION_START", "data": {"session_id": "20250925-155749"}}
+2025-09-25 15:57:49 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:57:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:51.014626", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:57:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:51.039673", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:57:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:51.040680", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:57:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:51.041544", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:57:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:51.051095", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:57:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:52.720197", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-25 15:57:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:52.721215", "event": "ZIP_EXPORT", "data": {"old": false, "new": true, "status": "ENABLED"}}
+2025-09-25 15:57:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:55.464434", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": true, "new": false}}
+2025-09-25 15:57:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:57:55.465438", "event": "ZIP_EXPORT", "data": {"old": true, "new": false, "status": "DISABLED"}}
+2025-09-25 15:58:05 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:58:05.228433", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-25 15:58:05 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:58:05.228433", "event": "ZIP_EXPORT", "data": {"old": false, "new": true, "status": "ENABLED"}}
+2025-09-25 15:58:22 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:58:22.735716", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": true, "new": false}}
+2025-09-25 15:58:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:58:23.526883", "event": "ZIP_EXPORT", "data": {"old": true, "new": false, "status": "DISABLED"}}
+2025-09-25 15:58:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:58:32.517059", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-25 15:58:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:58:32.518060", "event": "ZIP_EXPORT", "data": {"old": false, "new": true, "status": "ENABLED"}}
+2025-09-25 15:59:34 | INFO    | Main | {"timestamp": "2025-09-25T15:59:34.569313", "event": "SESSION_END", "data": {"session_id": "20250925-155749"}}
+2025-09-25 15:59:36 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 15:59:36 | INFO    | Main | {"timestamp": "2025-09-25T15:59:36.797630", "event": "SESSION_START", "data": {"session_id": "20250925-155936"}}
+2025-09-25 15:59:37 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 15:59:39 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:39.572396", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 15:59:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:41.376343", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 15:59:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:41.378724", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 15:59:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:41.379741", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 15:59:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:41.388703", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 15:59:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:45.182914", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:59:46 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:46.274583", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 15:59:46 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:46.906996", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 15:59:47 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:47.757746", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": false}}
+2025-09-25 15:59:48 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T15:59:48.104698", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": false}}
+2025-09-25 16:28:48 | INFO    | Main | {"timestamp": "2025-09-25T16:28:48.269200", "event": "SESSION_END", "data": {"session_id": "20250925-155936"}}
+2025-09-25 16:34:02 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 16:34:02 | INFO    | Main | {"timestamp": "2025-09-25T16:34:02.016305", "event": "SESSION_START", "data": {"session_id": "20250925-163402"}}
+2025-09-25 16:34:02 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 16:34:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:03.885482", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 16:34:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:03.907852", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 16:34:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:03.909131", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 16:34:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:03.910022", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 16:34:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:03.918201", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 16:34:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:06.731651", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": false}}
+2025-09-25 16:34:09 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:09.000116", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": false, "new": true}}
+2025-09-25 16:34:59 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:34:59.028643", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-09-25 16:35:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:35:00.297244", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "wav"}}
+2025-09-25 16:35:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:35:01.804909", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "en"}}
+2025-09-25 16:42:16 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:16.598232", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-25 16:42:16 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:16.599233", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-25 16:42:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:32.453034", "event": "TTS_PREVIEW_STOP", "data": {}}
+2025-09-25 16:42:33 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:33.396244", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-25 16:42:33 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:33.436791", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-25 16:42:33 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:33.436929", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-25 16:42:36 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:36.031011", "event": "TTS_PREVIEW_STOP", "data": {}}
+2025-09-25 16:42:36 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:36.909736", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-25 16:42:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:40.601766", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 16:42:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:40.606849", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 16:42:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:40.607142", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 16:42:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:40.608184", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 16:42:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:40.610861", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 16:42:42 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:42.359213", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-25 16:42:42 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:42.359325", "event": "ZIP_EXPORT", "data": {"old": false, "new": true, "status": "ENABLED"}}
+2025-09-25 16:42:50 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:50.835880", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": false}}
+2025-09-25 16:42:51 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:51.121479", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": false}}
+2025-09-25 16:42:53 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:53.428242", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": false, "new": true}}
+2025-09-25 16:42:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:54.557296", "event": "CONFIG_CHANGE", "data": {"key": "zip_password", "old": "", "new": "******"}}
+2025-09-25 16:42:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:54.688607", "event": "CONFIG_CHANGE", "data": {"key": "zip_password", "old": "t", "new": "******"}}
+2025-09-25 16:42:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:54.847297", "event": "CONFIG_CHANGE", "data": {"key": "zip_password", "old": "tu", "new": "******"}}
+2025-09-25 16:42:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:55.045036", "event": "CONFIG_CHANGE", "data": {"key": "zip_password", "old": "tun", "new": "******"}}
+2025-09-25 16:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:58.358539", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 16:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:58.363615", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 16:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:58.363938", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": false, "new": false}}
+2025-09-25 16:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:58.364971", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": false, "new": false}}
+2025-09-25 16:42:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:42:58.367503", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": false, "new": true}}
+2025-09-25 16:43:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:43:03.712772", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "txt", "new": "pdf"}}
+2025-09-25 16:43:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:43:06.447466", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-09-25 16:43:15 | INFO    | ZIPConvertor | {"timestamp": "2025-09-25T16:43:15.772323", "event": "FILE_EXPORT", "data": {"path": "T:\\TunaRP\\Zero to Dev - Developer GUI\\output\\tts_package.zip", "size": 73104}}
+2025-09-25 16:43:15 | INFO    | ZIPConvertor | {"timestamp": "2025-09-25T16:43:15.773311", "event": "SUCCESS", "data": {"action": "ZIP_EXPORT", "duration": 0.7767362594604492}}
+2025-09-25 16:43:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:43:15.774309", "event": "SUCCESS", "data": {"action": "ZIP_EXPORT", "duration": {"path": "T:\\TunaRP\\Zero to Dev - Developer GUI\\output\\tts_package.zip"}}}
+2025-09-25 16:44:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:44:52.402358", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 16:44:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:44:52.406772", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 16:44:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:44:52.407790", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": false, "new": false}}
+2025-09-25 16:44:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:44:52.408789", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": false, "new": false}}
+2025-09-25 16:44:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:44:52.411125", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": false, "new": true}}
+2025-09-25 16:46:23 | INFO    | Main | {"timestamp": "2025-09-25T16:46:23.939800", "event": "SESSION_END", "data": {"session_id": "20250925-163402"}}
+2025-09-25 16:46:25 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-25 16:46:25 | INFO    | Main | {"timestamp": "2025-09-25T16:46:25.421185", "event": "SESSION_START", "data": {"session_id": "20250925-164625"}}
+2025-09-25 16:46:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-25 16:46:35 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:35.875421", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-25 16:46:36 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:36.694548", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-25 16:46:37 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:37.337622", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-25 16:46:37 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:37.338298", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-25 16:46:57 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:57.869852", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-25 16:46:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:58.203447", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 16:46:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:58.230417", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 16:46:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:58.231503", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": true}}
+2025-09-25 16:46:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:58.232493", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": true}}
+2025-09-25 16:46:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:46:58.241326", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 16:47:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:01.681808", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 200, "new": 1200}}
+2025-09-25 16:47:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:01.788501", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 1200, "new": 10200}}
+2025-09-25 16:47:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:01.984739", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 10200, "new": 100200}}
+2025-09-25 16:47:02 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:02.337577", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 100200, "new": 10200}}
+2025-09-25 16:47:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:03.007802", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 10200, "new": 1200}}
+2025-09-25 16:47:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:03.710513", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 1200, "new": 100}}
+2025-09-25 16:47:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:03.973472", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 100, "new": 0}}
+2025-09-25 16:47:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:04.345635", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 0, "new": 100}}
+2025-09-25 16:47:08 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:08.395871", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": true, "new": false}}
+2025-09-25 16:47:08 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:08.687844", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": true, "new": false}}
+2025-09-25 16:47:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:09.999507", "event": "CONFIG_CHANGE", "data": {"key": "zip_transcript_format", "old": "txt", "new": "pdf"}}
+2025-09-25 16:47:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:10.868267", "event": "CONFIG_CHANGE", "data": {"key": "zip_export_enabled", "old": false, "new": true}}
+2025-09-25 16:47:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:10.868404", "event": "ZIP_EXPORT", "data": {"old": false, "new": true, "status": "ENABLED"}}
+2025-09-25 16:47:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:15.335607", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": false, "new": true}}
+2025-09-25 16:47:15 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:15.744284", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 16:47:18 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:18.347640", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-09-25 16:47:31 | INFO    | ZIPConvertor | {"timestamp": "2025-09-25T16:47:31.458141", "event": "FILE_EXPORT", "data": {"path": "T:\\TunaRP\\Zero to Dev - Developer GUI\\output\\tts_package.zip", "size": 124233}}
+2025-09-25 16:47:31 | INFO    | ZIPConvertor | {"timestamp": "2025-09-25T16:47:31.459141", "event": "SUCCESS", "data": {"action": "ZIP_EXPORT", "duration": 2.1828553676605225}}
+2025-09-25 16:47:31 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:47:31.459686", "event": "SUCCESS", "data": {"action": "ZIP_EXPORT", "duration": {"path": "T:\\TunaRP\\Zero to Dev - Developer GUI\\output\\tts_package.zip"}}}
+2025-09-25 16:48:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:04.363197", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-25 16:48:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:04.367590", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_transcript", "old": true, "new": true}}
+2025-09-25 16:48:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:04.368609", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_segments", "old": false, "new": false}}
+2025-09-25 16:48:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:04.368609", "event": "CONFIG_CHANGE", "data": {"key": "zip_include_metadata", "old": false, "new": false}}
+2025-09-25 16:48:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:04.371341", "event": "CONFIG_CHANGE", "data": {"key": "zip_password_enabled", "old": true, "new": false}}
+2025-09-25 16:48:07 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:07.784476", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 100, "new": 5200}}
+2025-09-25 16:48:09 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:09.854313", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 5200, "new": 520}}
+2025-09-25 16:48:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:10.027710", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 520, "new": 52}}
+2025-09-25 16:48:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:10.180712", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 52, "new": 5}}
+2025-09-25 16:48:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:10.763685", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 5, "new": 50}}
+2025-09-25 16:48:11 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:11.969426", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 50, "new": 5}}
+2025-09-25 16:48:12 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:12.336776", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 5, "new": 3200}}
+2025-09-25 16:48:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:13.173296", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 3200, "new": 300}}
+2025-09-25 16:48:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:13.646727", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 300, "new": 3500}}
+2025-09-25 16:48:14 | INFO    | TTSMenuApp | {"timestamp": "2025-09-25T16:48:14.289930", "event": "CONFIG_CHANGE", "data": {"key": "zip_preview_length", "old": 3500, "new": 350}}
+2025-09-25 17:18:09 | INFO    | Main | {"timestamp": "2025-09-25T17:18:09.130484", "event": "SESSION_END", "data": {"session_id": "20250925-164625"}}

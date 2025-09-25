@@ -66,8 +66,8 @@ def make_textarea(parent) -> tuple[ttk.Frame, tk.Text]:
 def primary_button(parent, text: str, command) -> ttk.Button:
     return ttk.Button(parent, text=text, style="Accent.TButton", command=command)
 
-def section(parent, title: str) -> tuple[ttk.Labelframe, ttk.Frame]:
-    lf = ttk.Labelframe(parent, text=title, style="Section.TLabelframe", padding=12)
+def section(parent, title: str, padding: int | tuple[int, ...] = 12) -> tuple[ttk.Labelframe, ttk.Frame]:
+    lf = ttk.Labelframe(parent, text=title, style="Section.TLabelframe", padding=padding)
     inner = ttk.Frame(lf, style="Card.TFrame")
     inner.pack(fill="both", expand=True)
     return lf, inner
