@@ -571,7 +571,6 @@ class TTSMenuApp(tk.Tk):
 
         ttk.Label(container, text="📦 ZIP Package Settings", style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
-
         ttk.Label(
             container,
             text=("Enable or disable ZIP export.\n"
@@ -581,189 +580,118 @@ class TTSMenuApp(tk.Tk):
         ).pack(anchor="w", pady=(0, 12))
 
 
-        current_value = MemoryManager.get("zip_export_enabled", False)
+        zip_enabled_var = tk.BooleanVar(value=MemoryManager.get("zip_export_enabled", False))
+        transcript_var = tk.BooleanVar(value=MemoryManager.get("zip_include_transcript", True))
+        transcript_fmt_var = tk.StringVar(value=MemoryManager.get("zip_transcript_format", "txt"))
+        segments_var = tk.BooleanVar(value=MemoryManager.get("zip_include_segments", True))
+        metadata_var = tk.BooleanVar(value=MemoryManager.get("zip_include_metadata", True))
+        seg_var = tk.StringVar(value=str(MemoryManager.get("zip_max_chars", 500)))
+        preview_var = tk.StringVar(value=str(MemoryManager.get("zip_preview_length", 200)))
+        password_enabled_var = tk.BooleanVar(value=MemoryManager.get("zip_password_enabled", False))
+        password_var = tk.StringVar(value=MemoryManager.get("zip_password", ""))
 
-        def on_toggle(new_state: bool):
-            old_val = MemoryManager.get("zip_export_enabled", False)
-            if old_val != new_state:
-                MemoryManager.set("zip_export_enabled", new_state)
-                LogsHelperManager.log_config_change(self.logger, "zip_export_enabled", old_val, new_state)
-                LogsHelperManager.log_zip_export(self.logger, new_state, old_val)
-                GUIError(self, "ZIP Export Changed",
-                         f"ZIP export is now {'enabled' if new_state else 'disabled'}",
-                         icon="✅")
 
-        toggle_button(
-            container,
-            text_on="Disable ZIP Export (Currently Enabled)",
-            text_off="Enable ZIP Export (Currently Disabled)",
-            initial=current_value,
-            command=on_toggle
-        ).pack(anchor="center", pady=(0, 15))
+        def toggle_all_child_controls(is_enabled, controls, combo, entry):
+            new_state_str = "normal" if is_enabled else "disabled"
 
-        ttk.Separator(container).pack(fill="x", pady=12)
+            for control in controls:
+                if isinstance(control, ttk.Combobox):
+                    control.config(state="readonly" if is_enabled else "disabled")
+                else:
+                    control.config(state=new_state_str)
+
+            if is_enabled:
+                combo.config(state="readonly" if transcript_var.get() else "disabled")
+                entry.config(state="normal" if password_enabled_var.get() else "disabled")
+            else:
+                combo.config(state="disabled")
+                entry.config(state="disabled")
+
+        def on_main_toggle(new_state: bool, all_controls, combo, entry):
+            MemoryManager.set("zip_export_enabled", new_state)
+            zip_enabled_var.set(new_state)
+            toggle_all_child_controls(new_state, all_controls, combo, entry)
+
+        def on_transcript_toggle(state: bool, combo_widget):
+            MemoryManager.set("zip_include_transcript", state)
+            transcript_var.set(state)
+            if zip_enabled_var.get():
+                combo_widget.config(state="readonly" if state else "disabled")
+
+        def on_pw_toggle(state: bool, entry_widget):
+            MemoryManager.set("zip_password_enabled", state)
+            password_enabled_var.set(state)
+            if zip_enabled_var.get():
+                entry_widget.config(state="normal" if state else "disabled")
 
 
         include_card, include_inner = section(container, "Include in ZIP", padding=0)
-        include_card.pack(fill="x", pady=(0, 4))
 
+        row, transcript_combo = styled_combobox(include_inner, "Transcript Format:", transcript_fmt_var,
+                                                ["txt", "md", "docx", "pdf", "json"])
 
-        transcript_var = tk.BooleanVar(value=MemoryManager.get("zip_include_transcript", True))
-        transcript_fmt_var = tk.StringVar(value=MemoryManager.get("zip_transcript_format", "txt"))
+        transcript_toggle_btn = toggle_button(include_inner, "❌ Exclude Transcript", "✅ Include Transcript",
+                                              initial=transcript_var.get(),
+                                              command=lambda state: on_transcript_toggle(state, transcript_combo))
 
-        row, transcript_combo = styled_combobox(
-            include_inner,
-            "Transcript Format:",
-            transcript_fmt_var,
-            ["txt", "md", "docx", "pdf", "json"]
-        )
-        row.pack(fill="x", pady=(4, 6))
+        segments_toggle_btn = toggle_button(include_inner, "❌ Exclude Segments...", "✅ Include Segments...",
+                                            initial=segments_var.get(),
+                                            command=lambda state: MemoryManager.set("zip_include_segments", state))
 
-        def on_transcript_toggle(state: bool):
-            old_val = MemoryManager.get("zip_include_transcript", True)
-            MemoryManager.set("zip_include_transcript", state)
-            LogsHelperManager.log_config_change(self.logger, "zip_include_transcript", old_val, state)
-            transcript_combo.config(state="readonly" if state else "disabled")
+        metadata_toggle_btn = toggle_button(include_inner, "❌ Exclude Metadata", "✅ Include Metadata",
+                                            initial=metadata_var.get(),
+                                            command=lambda state: MemoryManager.set("zip_include_metadata", state))
 
-        toggle_button(
-            include_inner,
-            text_on="❌ Exclude Transcript",
-            text_off="✅ Include Transcript",
-            initial=transcript_var.get(),
-            command=lambda state: (transcript_var.set(state), on_transcript_toggle(state))
-        ).pack(fill="x", pady=(2, 6))
-
-
-        if not transcript_var.get():
-            transcript_combo.config(state="disabled")
-
-        def on_transcript_format_change(*_):
-            old_val = MemoryManager.get("zip_transcript_format", "txt")
-            new_val = transcript_fmt_var.get()
-            MemoryManager.set("zip_transcript_format", new_val)
-            LogsHelperManager.log_config_change(self.logger, "zip_transcript_format", old_val, new_val)
-
-        transcript_fmt_var.trace_add("write", on_transcript_format_change)
-
-
-        segments_var = tk.BooleanVar(value=MemoryManager.get("zip_include_segments", True))
-        def on_segments_toggle(state: bool):
-            old_val = MemoryManager.get("zip_include_segments", True)
-            MemoryManager.set("zip_include_segments", state)
-            LogsHelperManager.log_config_change(self.logger, "zip_include_segments", old_val, state)
-
-        toggle_button(
-            include_inner,
-            text_on="❌ Exclude Segments (with chapters.json)",
-            text_off="✅ Include Segments (with chapters.json)",
-            initial=segments_var.get(),
-            command=lambda state: (segments_var.set(state), on_segments_toggle(state))
-        ).pack(fill="x", pady=(2, 6))
-
-
-        metadata_var = tk.BooleanVar(value=MemoryManager.get("zip_include_metadata", True))
-        def on_metadata_toggle(state: bool):
-            old_val = MemoryManager.get("zip_include_metadata", True)
-            MemoryManager.set("zip_include_metadata", state)
-            LogsHelperManager.log_config_change(self.logger, "zip_include_metadata", old_val, state)
-
-        toggle_button(
-            include_inner,
-            text_on="❌ Exclude Metadata",
-            text_off="✅ Include Metadata",
-            initial=metadata_var.get(),
-            command=lambda state: (metadata_var.set(state), on_metadata_toggle(state))
-        ).pack(fill="x", pady=(2, 6))
-
-
-        ttk.Label(container, text="Max Characters per Segment:", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
-        seg_var = tk.StringVar(value=str(MemoryManager.get("zip_max_chars", 500)))
         seg_entry = ttk.Entry(container, textvariable=seg_var)
-        seg_entry.pack(fill="x", pady=(0, 6))
-
-        def on_seg_change(*_):
-            val_str = seg_var.get().strip()
-            if not val_str:
-                seg_var.set("500")
-                return
-            try:
-                new_val = int(val_str)
-                old_val = MemoryManager.get("zip_max_chars", 500)
-                if new_val != old_val:
-                    MemoryManager.set("zip_max_chars", new_val)
-                    LogsHelperManager.log_config_change(self.logger, "zip_max_chars", old_val, new_val)
-            except ValueError:
-                seg_var.set(str(MemoryManager.get("zip_max_chars", 500)))
-
-        seg_var.trace_add("write", on_seg_change)
-
-        # --- Preview Length ---
-        ttk.Label(container, text="Preview Length (chars):", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
-        preview_var = tk.StringVar(value=str(MemoryManager.get("zip_preview_length", 200)))
         preview_entry = ttk.Entry(container, textvariable=preview_var)
-        preview_entry.pack(fill="x", pady=(0, 6))
-
-        def on_preview_change(*_):
-            val_str = preview_var.get().strip()
-            if not val_str:
-                preview_var.set("200")
-                return
-            try:
-                new_val = int(val_str)
-                old_val = MemoryManager.get("zip_preview_length", 200)
-                if new_val != old_val:
-                    MemoryManager.set("zip_preview_length", new_val)
-                    LogsHelperManager.log_config_change(self.logger, "zip_preview_length", old_val, new_val)
-            except ValueError:
-                preview_var.set(str(MemoryManager.get("zip_preview_length", 200)))
-
-        preview_var.trace_add("write", on_preview_change)
-
-        # --- Password Protection ---
-        ttk.Label(container, text="ZIP Password Protection:", style="Label.TLabel") \
-            .pack(anchor="w", pady=(6, 2))
-
-        password_enabled = tk.BooleanVar(value=MemoryManager.get("zip_password_enabled", False))
-        password_var = tk.StringVar(value=MemoryManager.get("zip_password", ""))
-
         password_entry = ttk.Entry(container, textvariable=password_var, show="*")
-        if not password_enabled.get():
-            password_entry.config(state="disabled")
-        password_entry.pack(fill="x", pady=(0, 6))
 
-        def on_pw_toggle(state: bool):
-            MemoryManager.set("zip_password_enabled", state)
-            LogsHelperManager.log_config_change(self.logger, "zip_password_enabled", not state, state)
-            password_entry.config(state="normal" if state else "disabled")
+        password_toggle_btn = toggle_button(container, "🔒 Disable Password", "🔓 Enable Password",
+                                            initial=password_enabled_var.get(),
+                                            command=lambda state: on_pw_toggle(state, password_entry))
 
-        toggle_button(
-            container,
-            text_on="🔒 Disable Password Protection",
-            text_off="🔓 Enable Password Protection",
-            initial=password_enabled.get(),
-            command=on_pw_toggle
-        ).pack(fill="x", pady=(0, 8))
+        child_controls_to_disable = [
+            transcript_combo, transcript_toggle_btn, segments_toggle_btn,
+            metadata_toggle_btn, seg_entry, preview_entry, password_entry,
+            password_toggle_btn
+        ]
 
-        def on_password_change(*_):
-            old_val = MemoryManager.get("zip_password", "")
-            new_val = password_var.get()
-            MemoryManager.set("zip_password", new_val)
-            LogsHelperManager.log_config_change(
-                self.logger,
-                "zip_password",
-                old_val,
-                "******" if new_val else ""
-            )
+        main_toggle = toggle_button(
+            container, "Disable ZIP Export (Currently Enabled)", "Enable ZIP Export (Currently Disabled)",
+            initial=zip_enabled_var.get(),
+            command=lambda state: on_main_toggle(state, child_controls_to_disable, transcript_combo, password_entry)
+        )
 
-        password_var.trace_add("write", on_password_change)
+        seg_var.trace_add("write", lambda *_: MemoryManager.set("zip_max_chars", int(seg_var.get() or 500)))
+        preview_var.trace_add("write", lambda *_: MemoryManager.set("zip_preview_length", int(preview_var.get() or 200)))
+        password_var.trace_add("write", lambda *_: MemoryManager.set("zip_password", password_var.get()))
+        transcript_fmt_var.trace_add("write", lambda *_: MemoryManager.set("zip_transcript_format", transcript_fmt_var.get()))
 
+        main_toggle.pack(anchor="center", pady=(0, 15))
         ttk.Separator(container).pack(fill="x", pady=12)
 
-        ttk.Button(container, text="Close", command=win.destroy,
-                   style="Accent.TButton").pack(anchor="center", pady=(8, 0))
+        include_card.pack(fill="x", pady=(0, 4))
+        transcript_toggle_btn.pack(fill="x", pady=(2, 6), in_=include_inner)
+        row.pack(fill="x", pady=(4, 6), in_=include_inner)
+        segments_toggle_btn.pack(fill="x", pady=(2, 6), in_=include_inner)
+        metadata_toggle_btn.pack(fill="x", pady=(2, 6), in_=include_inner)
+
+        ttk.Label(container, text="Max Characters per Segment:", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        seg_entry.pack(fill="x", pady=(0, 6))
+
+        ttk.Label(container, text="Preview Length (chars):", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        preview_entry.pack(fill="x", pady=(0, 6))
+
+        ttk.Label(container, text="ZIP Password Protection:", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        password_entry.pack(fill="x", pady=(0, 6))
+        password_toggle_btn.pack(fill="x", pady=(0, 8))
+
+        ttk.Separator(container).pack(fill="x", pady=12)
+        ttk.Button(container, text="Close", command=win.destroy, style="Accent.TButton").pack(anchor="center", pady=(8, 0))
+
+        toggle_all_child_controls(zip_enabled_var.get(), child_controls_to_disable, transcript_combo, password_entry)
 
         center_window(win, self)
-
 
 
 

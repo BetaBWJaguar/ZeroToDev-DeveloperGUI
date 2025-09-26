@@ -83,7 +83,7 @@ class ZIPConvertor:
                                                 {"id": i, "bytes": len(buf.getvalue())})
 
 
-            preview_len = MemoryManager.get("zip_preview_chars", 200)
+            preview_len = MemoryManager.get("zip_preview_length", 200)
             preview_bytes = None
             if text.strip():
                 preview_text = text[:preview_len]
