@@ -22,6 +22,7 @@ from tts.GTTS import GTTSService
 from tts.MicrosoftEdgeTTS import MicrosoftEdgeTTS
 from voicegui.VoiceGUI import VoiceSettings
 from zip.ZIPConvertor import ZIPConvertor
+from gui_listener.GUIListener import GUIListener
 
 BASE_DIR = Path(__file__).resolve().parent
 UTILS_DIR = BASE_DIR / "utils"
@@ -87,6 +88,7 @@ class TTSMenuApp(tk.Tk):
         self.title("Text to Speech")
         self.geometry("1200x1100")
         self.minsize(1200, 1100)
+        self.listener = GUIListener(self)
         self.resizable(False, False)
         self.logger = LogsManager.get_logger("TTSMenuApp")
 
@@ -571,14 +573,11 @@ class TTSMenuApp(tk.Tk):
 
         ttk.Label(container, text="📦 ZIP Package Settings", style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
-        ttk.Label(
-            container,
-            text=("Enable or disable ZIP export.\n"
-                  "If enabled, detailed project contents will be included "
-                  "inside the ZIP package (transcript, metadata, preview, segments, etc.)"),
-            style="Muted.TLabel", wraplength=400, justify="left"
-        ).pack(anchor="w", pady=(0, 12))
-
+        ttk.Label(container,
+                  text=("Enable or disable ZIP export.\n"
+                        "If enabled, detailed project contents will be included "
+                        "inside the ZIP package (transcript, metadata, preview, segments, etc.)"),
+                  style="Muted.TLabel", wraplength=400, justify="left").pack(anchor="w", pady=(0, 12))
 
         zip_enabled_var = tk.BooleanVar(value=MemoryManager.get("zip_export_enabled", False))
         transcript_var = tk.BooleanVar(value=MemoryManager.get("zip_include_transcript", True))
@@ -590,65 +589,40 @@ class TTSMenuApp(tk.Tk):
         password_enabled_var = tk.BooleanVar(value=MemoryManager.get("zip_password_enabled", False))
         password_var = tk.StringVar(value=MemoryManager.get("zip_password", ""))
 
-
-        def toggle_all_child_controls(is_enabled, controls, combo, entry):
-            new_state_str = "normal" if is_enabled else "disabled"
-
-            for control in controls:
-                if isinstance(control, ttk.Combobox):
-                    control.config(state="readonly" if is_enabled else "disabled")
-                else:
-                    control.config(state=new_state_str)
-
-            if is_enabled:
-                combo.config(state="readonly" if transcript_var.get() else "disabled")
-                entry.config(state="normal" if password_enabled_var.get() else "disabled")
-            else:
-                combo.config(state="disabled")
-                entry.config(state="disabled")
-
-        def on_main_toggle(new_state: bool, all_controls, combo, entry):
-            MemoryManager.set("zip_export_enabled", new_state)
-            zip_enabled_var.set(new_state)
-            toggle_all_child_controls(new_state, all_controls, combo, entry)
-
-        def on_transcript_toggle(state: bool, combo_widget):
-            MemoryManager.set("zip_include_transcript", state)
-            transcript_var.set(state)
-            if zip_enabled_var.get():
-                combo_widget.config(state="readonly" if state else "disabled")
-
-        def on_pw_toggle(state: bool, entry_widget):
-            MemoryManager.set("zip_password_enabled", state)
-            password_enabled_var.set(state)
-            if zip_enabled_var.get():
-                entry_widget.config(state="normal" if state else "disabled")
-
-
         include_card, include_inner = section(container, "Include in ZIP", padding=0)
 
         row, transcript_combo = styled_combobox(include_inner, "Transcript Format:", transcript_fmt_var,
                                                 ["txt", "md", "docx", "pdf", "json"])
 
-        transcript_toggle_btn = toggle_button(include_inner, "❌ Exclude Transcript", "✅ Include Transcript",
-                                              initial=transcript_var.get(),
-                                              command=lambda state: on_transcript_toggle(state, transcript_combo))
+        transcript_toggle_btn = toggle_button(
+            include_inner, "❌ Exclude Transcript", "✅ Include Transcript",
+            initial=transcript_var.get(),
+            command=lambda state: self.listener.on_transcript_toggle(state, transcript_combo,
+                                                                     transcript_var, zip_enabled_var)
+        )
 
-        segments_toggle_btn = toggle_button(include_inner, "❌ Exclude Segments...", "✅ Include Segments...",
-                                            initial=segments_var.get(),
-                                            command=lambda state: MemoryManager.set("zip_include_segments", state))
+        segments_toggle_btn = toggle_button(
+            include_inner, "❌ Exclude Segments...", "✅ Include Segments...",
+            initial=segments_var.get(),
+            command=lambda state: MemoryManager.set("zip_include_segments", state)
+        )
 
-        metadata_toggle_btn = toggle_button(include_inner, "❌ Exclude Metadata", "✅ Include Metadata",
-                                            initial=metadata_var.get(),
-                                            command=lambda state: MemoryManager.set("zip_include_metadata", state))
+        metadata_toggle_btn = toggle_button(
+            include_inner, "❌ Exclude Metadata", "✅ Include Metadata",
+            initial=metadata_var.get(),
+            command=lambda state: MemoryManager.set("zip_include_metadata", state)
+        )
 
         seg_entry = ttk.Entry(container, textvariable=seg_var)
         preview_entry = ttk.Entry(container, textvariable=preview_var)
         password_entry = ttk.Entry(container, textvariable=password_var, show="*")
 
-        password_toggle_btn = toggle_button(container, "🔒 Disable Password", "🔓 Enable Password",
-                                            initial=password_enabled_var.get(),
-                                            command=lambda state: on_pw_toggle(state, password_entry))
+        password_toggle_btn = toggle_button(
+            container, "🔒 Disable Password", "🔓 Enable Password",
+            initial=password_enabled_var.get(),
+            command=lambda state: self.listener.on_pw_toggle(state, password_entry,
+                                                             password_enabled_var, zip_enabled_var)
+        )
 
         child_controls_to_disable = [
             transcript_combo, transcript_toggle_btn, segments_toggle_btn,
@@ -659,7 +633,10 @@ class TTSMenuApp(tk.Tk):
         main_toggle = toggle_button(
             container, "Disable ZIP Export (Currently Enabled)", "Enable ZIP Export (Currently Disabled)",
             initial=zip_enabled_var.get(),
-            command=lambda state: on_main_toggle(state, child_controls_to_disable, transcript_combo, password_entry)
+            command=lambda state: self.listener.on_main_toggle(state, child_controls_to_disable,
+                                                               transcript_combo, password_entry,
+                                                               zip_enabled_var, transcript_var,
+                                                               password_enabled_var)
         )
 
         seg_var.trace_add("write", lambda *_: MemoryManager.set("zip_max_chars", int(seg_var.get() or 500)))
@@ -687,9 +664,13 @@ class TTSMenuApp(tk.Tk):
         password_toggle_btn.pack(fill="x", pady=(0, 8))
 
         ttk.Separator(container).pack(fill="x", pady=12)
-        ttk.Button(container, text="Close", command=win.destroy, style="Accent.TButton").pack(anchor="center", pady=(8, 0))
+        ttk.Button(container, text="Close", command=win.destroy, style="Accent.TButton") \
+            .pack(anchor="center", pady=(8, 0))
 
-        toggle_all_child_controls(zip_enabled_var.get(), child_controls_to_disable, transcript_combo, password_entry)
+        self.listener.toggle_all_child_controls(zip_enabled_var.get(),
+                                                child_controls_to_disable,
+                                                transcript_combo, password_entry,
+                                                transcript_var, password_enabled_var)
 
         center_window(win, self)
 

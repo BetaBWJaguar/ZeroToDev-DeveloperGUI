@@ -1,0 +1,3 @@
+2025-09-27 22:02:52 | INFO    | root | Logs initialized in DEBUG mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-27 22:02:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-27T22:02:55.475377", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-09-27 22:02:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-27T22:02:56.478870", "event": "CONFIG_CHANGE", "data": {"key": "log_mode", "old": "DEBUG", "new": "INFO"}}
