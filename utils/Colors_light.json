@@ -1,0 +1,11 @@
+{
+  "bg": "#FFFFFF",
+  "surface": "#F7F7F7",
+  "card": "#EFEFEF",
+  "text": "#1C1C1C",
+  "muted": "#6E6E6E",
+  "title": "#111111",
+  "primary": "#4B5563",
+  "primary_active": "#374151",
+  "textarea_bg": "#FFFFFF"
+}

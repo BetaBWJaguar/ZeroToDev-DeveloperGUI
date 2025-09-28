@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section, set_buttons_state, styled_combobox, toggle_button
+    progress_section, set_buttons_state, styled_combobox, toggle_button, refresh_theme
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -62,8 +62,15 @@ def ensure_font_values(fonts: dict) -> None:
             fatal(f"Invalid font value for '{key}' in Fonts.json.\n"
                   f"Expected e.g. [\"Segoe UI\", 11] or [\"Segoe UI\", 12, \"bold\"].")
 
-COLORS = load_json_strict(UTILS_DIR / "Colors.json")
-ensure_keys("Colors.json", COLORS, REQUIRED_COLOR_KEYS)
+def load_theme(name: str) -> dict:
+    theme_file = UTILS_DIR / f"Colors_{name}.json"
+    if not theme_file.exists():
+        fatal(f"Theme file not found: {theme_file}")
+    return load_json_strict(theme_file)
+
+
+selected_theme = MemoryManager.get("theme", "default")
+COLORS = load_theme(selected_theme)
 
 FONTS = load_json_strict(UTILS_DIR / "Fonts.json")
 ensure_keys("Fonts.json", FONTS, REQUIRED_FONT_KEYS)
@@ -115,7 +122,22 @@ class TTSMenuApp(tk.Tk):
         package_menu.add_command(label="ZIP Settings", command=self.show_zip_settings)
         menubar.add_cascade(label="Package (ZIP)", menu=package_menu)
 
+        theme_menu = tk.Menu(menubar, tearoff=0)
+        theme_menu.add_command(label="🌞 Light Theme", command=lambda: self.change_theme("light"))
+        theme_menu.add_command(label="🌙 Dark Theme", command=lambda: self.change_theme("dark"))
+        theme_menu.add_command(label="🎨 Default Theme", command=lambda: self.change_theme("default"))
+        menubar.add_cascade(label="Theme", menu=theme_menu)
+
+
         self.config(menu=menubar)
+
+    def change_theme(self, name: str):
+        MemoryManager.set("theme", name)
+        new_colors = load_theme(name)
+        init_style(self, new_colors, FONTS)
+        refresh_theme(self, new_colors,FONTS)
+
+
 
     def _build(self):
         root = ttk.Frame(self, padding=20); root.pack(fill="both", expand=True)
@@ -286,14 +308,6 @@ class TTSMenuApp(tk.Tk):
     def _set_progress(self, pct: int, msg: str):
         pct = max(0, min(100, int(pct)))
         self.after(0, lambda: (self.progress_var.set(pct), self.progress_label.config(text=msg)))
-
-    def _eta_text(self, start_ts, frac: float) -> str:
-        import time
-        frac = max(1e-6, min(0.9999, float(frac)))
-        elapsed = time.time() - start_ts
-        eta = elapsed * (1 - frac) / frac
-        m = int(eta // 60); s = int(eta % 60)
-        return f"~{m:02d}:{s:02d} left"
 
     def _reset_preview_button(self):
         self.preview_btn.config(
@@ -541,16 +555,9 @@ class TTSMenuApp(tk.Tk):
         selector_frame, log_var, log_combo = logmode_selector(container, current_mode, ["INFO", "DEBUG", "ERROR"])
         selector_frame.pack(fill="x", pady=(0, 15))
 
-        def on_log_mode_change(*_):
-            old_mode = MemoryManager.get("log_mode", "INFO")
-            new_mode = log_var.get()
-            if new_mode != old_mode:
-                MemoryManager.set("log_mode", new_mode)
-                LogsHelperManager.log_config_change(self.logger, "log_mode", old_mode, new_mode)
-                LogsManager.init(new_mode)
-                GUIError(self, "Log Mode Changed", f"Log mode set to {new_mode}", icon="✅")
 
-        log_combo.bind("<<ComboboxSelected>>", on_log_mode_change)
+        log_combo.bind("<<ComboboxSelected>>",
+                       lambda event: self.listener.on_log_mode_change(log_var))
 
         ttk.Separator(container).pack(fill="x", pady=15)
 

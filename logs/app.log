@@ -682,3 +682,349 @@
 2025-09-27 22:04:49 | INFO    | TTSMenuApp | {"timestamp": "2025-09-27T22:04:49.487899", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
 2025-09-27 22:04:49 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-27T22:04:49.489900", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "No text entered"}}
 2025-09-27 22:07:21 | INFO    | Main | {"timestamp": "2025-09-27T22:07:21.797293", "event": "SESSION_END", "data": {"session_id": "20250927-220428"}}
+2025-09-28 17:09:59 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:09:59 | INFO    | Main | {"timestamp": "2025-09-28T17:09:59.416682", "event": "SESSION_START", "data": {"session_id": "20250928-170959"}}
+2025-09-28 17:09:59 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:10:12 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:10:12.176355", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-09-28 17:10:14 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:10:14.930022", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-09-28 17:10:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:10:17.172942", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-09-28 17:11:34 | INFO    | Main | {"timestamp": "2025-09-28T17:11:34.841579", "event": "SESSION_END", "data": {"session_id": "20250928-170959"}}
+2025-09-28 17:11:36 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:11:36 | INFO    | Main | {"timestamp": "2025-09-28T17:11:36.736959", "event": "SESSION_START", "data": {"session_id": "20250928-171136"}}
+2025-09-28 17:11:37 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:12:43 | INFO    | Main | {"timestamp": "2025-09-28T17:12:43.232822", "event": "SESSION_END", "data": {"session_id": "20250928-171136"}}
+2025-09-28 17:12:44 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:12:44 | INFO    | Main | {"timestamp": "2025-09-28T17:12:44.589950", "event": "SESSION_START", "data": {"session_id": "20250928-171244"}}
+2025-09-28 17:12:44 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:12:50 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:12:50.580146", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:12:50 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:12:50.581134", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:12:50 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:12:50.582147", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-09-28 17:12:53 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:12:53.784971", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2025-09-28 17:14:55 | INFO    | Main | {"timestamp": "2025-09-28T17:14:55.684923", "event": "SESSION_END", "data": {"session_id": "20250928-171244"}}
+2025-09-28 17:14:57 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:14:57 | INFO    | Main | {"timestamp": "2025-09-28T17:14:57.744284", "event": "SESSION_START", "data": {"session_id": "20250928-171457"}}
+2025-09-28 17:14:57 | INFO    | Main | {"timestamp": "2025-09-28T17:14:57.841956", "event": "SESSION_END", "data": {"session_id": "20250928-171457"}}
+2025-09-28 17:15:30 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:15:30 | INFO    | Main | {"timestamp": "2025-09-28T17:15:30.787144", "event": "SESSION_START", "data": {"session_id": "20250928-171530"}}
+2025-09-28 17:15:30 | INFO    | Main | {"timestamp": "2025-09-28T17:15:30.873144", "event": "SESSION_END", "data": {"session_id": "20250928-171530"}}
+2025-09-28 17:15:54 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:15:54 | INFO    | Main | {"timestamp": "2025-09-28T17:15:54.018453", "event": "SESSION_START", "data": {"session_id": "20250928-171554"}}
+2025-09-28 17:15:54 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:16:14 | INFO    | Main | {"timestamp": "2025-09-28T17:16:14.700218", "event": "SESSION_END", "data": {"session_id": "20250928-171554"}}
+2025-09-28 17:16:16 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:16:16 | INFO    | Main | {"timestamp": "2025-09-28T17:16:16.694513", "event": "SESSION_START", "data": {"session_id": "20250928-171616"}}
+2025-09-28 17:16:16 | INFO    | Main | {"timestamp": "2025-09-28T17:16:16.791760", "event": "SESSION_END", "data": {"session_id": "20250928-171616"}}
+2025-09-28 17:16:25 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:16:25 | INFO    | Main | {"timestamp": "2025-09-28T17:16:25.266840", "event": "SESSION_START", "data": {"session_id": "20250928-171625"}}
+2025-09-28 17:16:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:16:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:16:54.426219", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-09-28 17:17:25 | INFO    | Main | {"timestamp": "2025-09-28T17:17:25.089890", "event": "SESSION_END", "data": {"session_id": "20250928-171625"}}
+2025-09-28 17:17:26 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:17:26 | INFO    | Main | {"timestamp": "2025-09-28T17:17:26.435484", "event": "SESSION_START", "data": {"session_id": "20250928-171726"}}
+2025-09-28 17:17:26 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:18:18 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:18:18 | INFO    | Main | {"timestamp": "2025-09-28T17:18:18.165183", "event": "SESSION_START", "data": {"session_id": "20250928-171818"}}
+2025-09-28 17:18:18 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:18:28 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:18:28.573906", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:18:28 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:18:28.575899", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:18:28 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:18:28.576910", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-09-28 17:20:11 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:20:11 | INFO    | Main | {"timestamp": "2025-09-28T17:20:11.122715", "event": "SESSION_START", "data": {"session_id": "20250928-172011"}}
+2025-09-28 17:20:11 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:21:18 | INFO    | Main | {"timestamp": "2025-09-28T17:21:18.936388", "event": "SESSION_END", "data": {"session_id": "20250928-172011"}}
+2025-09-28 17:21:20 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:21:20 | INFO    | Main | {"timestamp": "2025-09-28T17:21:20.828323", "event": "SESSION_START", "data": {"session_id": "20250928-172120"}}
+2025-09-28 17:21:21 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:22:13 | INFO    | Main | {"timestamp": "2025-09-28T17:22:13.654341", "event": "SESSION_END", "data": {"session_id": "20250928-172120"}}
+2025-09-28 17:22:15 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:22:15 | INFO    | Main | {"timestamp": "2025-09-28T17:22:15.439317", "event": "SESSION_START", "data": {"session_id": "20250928-172215"}}
+2025-09-28 17:22:15 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:23:29 | INFO    | Main | {"timestamp": "2025-09-28T17:23:29.841878", "event": "SESSION_END", "data": {"session_id": "20250928-172215"}}
+2025-09-28 17:23:31 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:23:31 | INFO    | Main | {"timestamp": "2025-09-28T17:23:31.258238", "event": "SESSION_START", "data": {"session_id": "20250928-172331"}}
+2025-09-28 17:23:31 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:24:09 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:24:09.972648", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 17:24:35 | INFO    | Main | {"timestamp": "2025-09-28T17:24:35.120678", "event": "SESSION_END", "data": {"session_id": "20250928-172331"}}
+2025-09-28 17:24:37 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:24:37 | INFO    | Main | {"timestamp": "2025-09-28T17:24:37.085778", "event": "SESSION_START", "data": {"session_id": "20250928-172437"}}
+2025-09-28 17:24:37 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:26:24 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:26:24.020760", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:26:24 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:26:24.021762", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:26:24 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:26:24.023765", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-09-28 17:26:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:26:26.664793", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 17:27:11 | INFO    | Main | {"timestamp": "2025-09-28T17:27:11.057302", "event": "SESSION_END", "data": {"session_id": "20250928-172437"}}
+2025-09-28 17:27:12 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:27:12 | INFO    | Main | {"timestamp": "2025-09-28T17:27:12.884077", "event": "SESSION_START", "data": {"session_id": "20250928-172712"}}
+2025-09-28 17:27:13 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:29:38 | INFO    | Main | {"timestamp": "2025-09-28T17:29:38.916875", "event": "SESSION_END", "data": {"session_id": "20250928-172712"}}
+2025-09-28 17:29:40 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:29:40 | INFO    | Main | {"timestamp": "2025-09-28T17:29:40.930700", "event": "SESSION_START", "data": {"session_id": "20250928-172940"}}
+2025-09-28 17:29:41 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:30:00 | INFO    | Main | {"timestamp": "2025-09-28T17:30:00.838343", "event": "SESSION_END", "data": {"session_id": "20250928-172940"}}
+2025-09-28 17:30:02 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:30:02 | INFO    | Main | {"timestamp": "2025-09-28T17:30:02.217717", "event": "SESSION_START", "data": {"session_id": "20250928-173002"}}
+2025-09-28 17:30:02 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:31:22 | INFO    | Main | {"timestamp": "2025-09-28T17:31:22.543387", "event": "SESSION_END", "data": {"session_id": "20250928-173002"}}
+2025-09-28 17:31:24 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:31:24 | INFO    | Main | {"timestamp": "2025-09-28T17:31:24.762099", "event": "SESSION_START", "data": {"session_id": "20250928-173124"}}
+2025-09-28 17:31:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:31:57 | INFO    | Main | {"timestamp": "2025-09-28T17:31:57.216846", "event": "SESSION_END", "data": {"session_id": "20250928-173124"}}
+2025-09-28 17:31:59 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:31:59 | INFO    | Main | {"timestamp": "2025-09-28T17:31:59.278821", "event": "SESSION_START", "data": {"session_id": "20250928-173159"}}
+2025-09-28 17:31:59 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:34:05 | INFO    | Main | {"timestamp": "2025-09-28T17:34:05.760101", "event": "SESSION_END", "data": {"session_id": "20250928-173159"}}
+2025-09-28 17:34:08 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:34:08 | INFO    | Main | {"timestamp": "2025-09-28T17:34:08.051048", "event": "SESSION_START", "data": {"session_id": "20250928-173408"}}
+2025-09-28 17:34:08 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:34:37 | INFO    | Main | {"timestamp": "2025-09-28T17:34:37.589254", "event": "SESSION_END", "data": {"session_id": "20250928-173408"}}
+2025-09-28 17:34:39 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:34:39 | INFO    | Main | {"timestamp": "2025-09-28T17:34:39.744355", "event": "SESSION_START", "data": {"session_id": "20250928-173439"}}
+2025-09-28 17:34:40 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:35:29 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:35:29.672531", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 17:37:24 | INFO    | Main | {"timestamp": "2025-09-28T17:37:24.545686", "event": "SESSION_END", "data": {"session_id": "20250928-173439"}}
+2025-09-28 17:37:27 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:37:27 | INFO    | Main | {"timestamp": "2025-09-28T17:37:27.004151", "event": "SESSION_START", "data": {"session_id": "20250928-173727"}}
+2025-09-28 17:37:27 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:37:43 | INFO    | Main | {"timestamp": "2025-09-28T17:37:43.666862", "event": "SESSION_END", "data": {"session_id": "20250928-173727"}}
+2025-09-28 17:37:46 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:37:46 | INFO    | Main | {"timestamp": "2025-09-28T17:37:46.092611", "event": "SESSION_START", "data": {"session_id": "20250928-173746"}}
+2025-09-28 17:37:46 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:38:14 | INFO    | Main | {"timestamp": "2025-09-28T17:38:14.530318", "event": "SESSION_END", "data": {"session_id": "20250928-173746"}}
+2025-09-28 17:38:16 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:38:17 | INFO    | Main | {"timestamp": "2025-09-28T17:38:17.000140", "event": "SESSION_START", "data": {"session_id": "20250928-173816"}}
+2025-09-28 17:38:17 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:39:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:39:17.893784", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 17:39:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:39:41.014972", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 17:39:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:39:54.323613", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-09-28 17:39:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:39:55.246273", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:39:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:39:58.162652", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:39:58 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:39:58.162652", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:39:58 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:39:58.831140", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:42:16 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:42:16 | INFO    | Main | {"timestamp": "2025-09-28T17:42:16.956158", "event": "SESSION_START", "data": {"session_id": "20250928-174216"}}
+2025-09-28 17:42:17 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:42:23 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:42:23.444008", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:42:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:42:26.367076", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:42:27 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:42:27.053216", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:42:27 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:42:27.054260", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:42:27 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:42:27.325549", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:43:05 | INFO    | Main | {"timestamp": "2025-09-28T17:43:05.416215", "event": "SESSION_END", "data": {"session_id": "20250928-174216"}}
+2025-09-28 17:43:07 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:43:07 | INFO    | Main | {"timestamp": "2025-09-28T17:43:07.790492", "event": "SESSION_START", "data": {"session_id": "20250928-174307"}}
+2025-09-28 17:43:08 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:43:12 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:12.192509", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:43:12 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:12.743597", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:43:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:13.307228", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:43:13 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:13.308229", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:43:13 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:43:13.609150", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:43:48 | INFO    | Main | {"timestamp": "2025-09-28T17:43:48.853658", "event": "SESSION_END", "data": {"session_id": "20250928-174307"}}
+2025-09-28 17:43:51 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:43:51 | INFO    | Main | {"timestamp": "2025-09-28T17:43:51.144807", "event": "SESSION_START", "data": {"session_id": "20250928-174351"}}
+2025-09-28 17:43:51 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:43:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:56.608692", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:43:57 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:57.107896", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:43:57 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:57.566131", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:43:57 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:43:57.567130", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:43:57 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:43:57.834871", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:44:10 | INFO    | Main | {"timestamp": "2025-09-28T17:44:10.326854", "event": "SESSION_END", "data": {"session_id": "20250928-174351"}}
+2025-09-28 17:44:12 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:44:12 | INFO    | Main | {"timestamp": "2025-09-28T17:44:12.550351", "event": "SESSION_START", "data": {"session_id": "20250928-174412"}}
+2025-09-28 17:44:12 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:44:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:44:17.195208", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:44:17 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:44:17.858745", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:44:18 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:44:18.418058", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:44:18 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:44:18.419058", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:44:18 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:44:18.670240", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:44:52 | INFO    | Main | {"timestamp": "2025-09-28T17:44:52.732973", "event": "SESSION_END", "data": {"session_id": "20250928-174412"}}
+2025-09-28 17:46:21 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:46:21 | INFO    | Main | {"timestamp": "2025-09-28T17:46:21.251822", "event": "SESSION_START", "data": {"session_id": "20250928-174621"}}
+2025-09-28 17:46:21 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:46:25 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:46:25.229427", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-09-28 17:46:25 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:46:25.725677", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:46:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:46:26.315776", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:46:26 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:46:26.316775", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:46:26 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:46:26.972847", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:47:01 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:47:01 | INFO    | Main | {"timestamp": "2025-09-28T17:47:01.822268", "event": "SESSION_START", "data": {"session_id": "20250928-174701"}}
+2025-09-28 17:47:02 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:47:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:47:06.060596", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-09-28 17:47:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:47:06.589621", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:47:07 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:47:07.246479", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:47:07 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:47:07.248483", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:47:08 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:47:08.159986", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:53:22 | INFO    | Main | {"timestamp": "2025-09-28T17:53:22.481045", "event": "SESSION_END", "data": {"session_id": "20250928-174701"}}
+2025-09-28 17:53:23 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:53:23 | INFO    | Main | {"timestamp": "2025-09-28T17:53:23.996526", "event": "SESSION_START", "data": {"session_id": "20250928-175323"}}
+2025-09-28 17:53:24 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:53:28 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:53:28.496859", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:53:29 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:53:29.267187", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:53:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:53:30.022987", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:53:30 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:53:30.023994", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:53:30 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:53:30.295197", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:54:25 | INFO    | Main | {"timestamp": "2025-09-28T17:54:25.856099", "event": "SESSION_END", "data": {"session_id": "20250928-175323"}}
+2025-09-28 17:54:27 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:54:27 | INFO    | Main | {"timestamp": "2025-09-28T17:54:27.497030", "event": "SESSION_START", "data": {"session_id": "20250928-175427"}}
+2025-09-28 17:54:27 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:54:31 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:54:31.405488", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:54:31 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:54:31.957948", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:54:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:54:32.468856", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:54:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:54:32.469856", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:54:32 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:54:32.991089", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:54:47 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:54:47.491461", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:54:47 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:54:47.492461", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:54:47 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:54:47.741754", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "type object 'datetime.time' has no attribute 'time'"}}
+2025-09-28 17:55:33 | INFO    | Main | {"timestamp": "2025-09-28T17:55:33.793625", "event": "SESSION_END", "data": {"session_id": "20250928-175427"}}
+2025-09-28 17:55:35 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:55:35 | INFO    | Main | {"timestamp": "2025-09-28T17:55:35.213745", "event": "SESSION_START", "data": {"session_id": "20250928-175535"}}
+2025-09-28 17:55:35 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:55:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:55:40.505252", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:55:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:55:41.014267", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:55:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:55:41.493997", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:55:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:55:41.494997", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:55:41 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:55:41.725557", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "unbound method datetime.time() needs an argument"}}
+2025-09-28 17:56:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:56:00.524622", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:56:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:56:00.525629", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:56:00 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T17:56:00.734380", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "unbound method datetime.time() needs an argument"}}
+2025-09-28 17:56:49 | INFO    | Main | {"timestamp": "2025-09-28T17:56:49.419818", "event": "SESSION_END", "data": {"session_id": "20250928-175535"}}
+2025-09-28 17:56:50 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:56:50 | INFO    | Main | {"timestamp": "2025-09-28T17:56:50.764692", "event": "SESSION_START", "data": {"session_id": "20250928-175650"}}
+2025-09-28 17:56:51 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:56:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:56:54.669751", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:56:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:56:55.305293", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:56:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:56:55.718654", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:56:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:56:55.719647", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:56:55 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:56:55.948277", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 6912, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-09-28 17:56:56 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:56:56.736910", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.7886331081390381, "input_bytes": 6912, "output_bytes": 3884}}
+2025-09-28 17:56:59 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:56:59.459854", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-28 17:57:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:03.213371", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:57:03 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:03.214380", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:57:03 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:57:03.379093", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 6912, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-09-28 17:57:03 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:57:03.607855", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.22876286506652832, "input_bytes": 6912, "output_bytes": 3884}}
+2025-09-28 17:57:05 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:05.586916", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-28 17:57:07 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:07.222768", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:57:07 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:07.222768", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:57:07 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:57:07.466464", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 6912, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-09-28 17:57:07 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:57:07.695974", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.22950983047485352, "input_bytes": 6912, "output_bytes": 3884}}
+2025-09-28 17:57:09 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:09.735970", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-28 17:57:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:40.420628", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 17:57:43 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:57:43.209603", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-09-28 17:57:43 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:57:43.406385", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 6912, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-09-28 17:57:43 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:57:43.632388", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.22600269317626953, "input_bytes": 6912, "output_bytes": 3884}}
+2025-09-28 17:58:32 | INFO    | Main | {"timestamp": "2025-09-28T17:58:32.387923", "event": "SESSION_END", "data": {"session_id": "20250928-175650"}}
+2025-09-28 17:58:34 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 17:58:34 | INFO    | Main | {"timestamp": "2025-09-28T17:58:34.594011", "event": "SESSION_START", "data": {"session_id": "20250928-175834"}}
+2025-09-28 17:58:34 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 17:58:39 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:39.217367", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-09-28 17:58:39 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:39.784358", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-09-28 17:58:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:40.325837", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:58:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:40.326839", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:58:40 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:58:40.513451", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 6912, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-09-28 17:58:40 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:58:40.803450", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28999900817871094, "input_bytes": 6912, "output_bytes": 3884}}
+2025-09-28 17:58:43 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:43.529095", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-28 17:58:43 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:43.560038", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-09-28 17:58:45 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:45.067397", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-09-28 17:58:46 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:46.374014", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-09-28 17:58:47 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:47.292113", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-09-28 17:58:48 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:48.509126", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "en"}}
+2025-09-28 17:58:50 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:50.414197", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-09-28 17:58:53 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:53.201280", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-09-28 17:58:54 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:54.378830", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "en"}}
+2025-09-28 17:58:55 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:55.220398", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2025-09-28 17:58:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:56.354545", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:58:56 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:58:56.355534", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:58:57 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:58:57.049829", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-09-28 17:58:57 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:58:57.283917", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.23408794403076172, "input_bytes": 9072, "output_bytes": 6476}}
+2025-09-28 17:59:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:59:00.652208", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-28 17:59:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:59:01.926682", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 17:59:01 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:59:01.927708", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 17:59:02 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:59:02.676749", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-09-28 17:59:02 | INFO    | VoiceProcessor | {"timestamp": "2025-09-28T17:59:02.953898", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2771487236022949, "input_bytes": 9072, "output_bytes": 6476}}
+2025-09-28 17:59:05 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T17:59:05.622082", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-09-28 18:00:19 | INFO    | Main | {"timestamp": "2025-09-28T18:00:19.604155", "event": "SESSION_END", "data": {"session_id": "20250928-175834"}}
+2025-09-28 18:00:21 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:00:21 | INFO    | Main | {"timestamp": "2025-09-28T18:00:21.013566", "event": "SESSION_START", "data": {"session_id": "20250928-180021"}}
+2025-09-28 18:00:21 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:00:28 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:00:28.412772", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 18:00:55 | INFO    | Main | {"timestamp": "2025-09-28T18:00:55.713243", "event": "SESSION_END", "data": {"session_id": "20250928-180021"}}
+2025-09-28 18:00:57 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:00:57 | INFO    | Main | {"timestamp": "2025-09-28T18:00:57.722354", "event": "SESSION_START", "data": {"session_id": "20250928-180057"}}
+2025-09-28 18:00:58 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:01:07 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:01:07.482775", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-09-28 18:01:22 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:01:22.365757", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 18:01:22 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:01:22.366777", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 18:01:22 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T18:01:22.367769", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-09-28 18:01:27 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:01:27.179593", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-09-28 18:01:27 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T18:01:27.181594", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "No text entered"}}
+2025-09-28 18:01:32 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:01:32.184558", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 18:08:19 | INFO    | Main | {"timestamp": "2025-09-28T18:08:19.495788", "event": "SESSION_END", "data": {"session_id": "20250928-180057"}}
+2025-09-28 18:08:20 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:08:20 | INFO    | Main | {"timestamp": "2025-09-28T18:08:20.908377", "event": "SESSION_START", "data": {"session_id": "20250928-180820"}}
+2025-09-28 18:08:21 | INFO    | Main | {"timestamp": "2025-09-28T18:08:21.015593", "event": "SESSION_END", "data": {"session_id": "20250928-180820"}}
+2025-09-28 18:09:25 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:09:25 | INFO    | Main | {"timestamp": "2025-09-28T18:09:25.530012", "event": "SESSION_START", "data": {"session_id": "20250928-180925"}}
+2025-09-28 18:09:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:10:14 | INFO    | Main | {"timestamp": "2025-09-28T18:10:14.607744", "event": "SESSION_END", "data": {"session_id": "20250928-180925"}}
+2025-09-28 18:10:17 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:10:17 | INFO    | Main | {"timestamp": "2025-09-28T18:10:17.125634", "event": "SESSION_START", "data": {"session_id": "20250928-181017"}}
+2025-09-28 18:10:17 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:10:57 | INFO    | Main | {"timestamp": "2025-09-28T18:10:57.732293", "event": "SESSION_END", "data": {"session_id": "20250928-181017"}}
+2025-09-28 18:10:59 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:10:59 | INFO    | Main | {"timestamp": "2025-09-28T18:10:59.186455", "event": "SESSION_START", "data": {"session_id": "20250928-181059"}}
+2025-09-28 18:10:59 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:11:28 | INFO    | Main | {"timestamp": "2025-09-28T18:11:28.120292", "event": "SESSION_END", "data": {"session_id": "20250928-181059"}}
+2025-09-28 18:38:57 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:38:57 | INFO    | Main | {"timestamp": "2025-09-28T18:38:57.089348", "event": "SESSION_START", "data": {"session_id": "20250928-183857"}}
+2025-09-28 18:38:57 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:39:46 | INFO    | Main | {"timestamp": "2025-09-28T18:39:46.699565", "event": "SESSION_END", "data": {"session_id": "20250928-183857"}}
+2025-09-28 18:39:48 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:39:48 | INFO    | Main | {"timestamp": "2025-09-28T18:39:48.905633", "event": "SESSION_START", "data": {"session_id": "20250928-183948"}}
+2025-09-28 18:39:49 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:39:57 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:39:57.139766", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 18:40:06 | INFO    | Main | {"timestamp": "2025-09-28T18:40:06.255193", "event": "SESSION_END", "data": {"session_id": "20250928-183948"}}
+2025-09-28 18:40:09 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:40:09 | INFO    | Main | {"timestamp": "2025-09-28T18:40:09.060409", "event": "SESSION_START", "data": {"session_id": "20250928-184009"}}
+2025-09-28 18:40:09 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:40:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:40:41.502506", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 18:42:08 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:42:08 | INFO    | Main | {"timestamp": "2025-09-28T18:42:08.534778", "event": "SESSION_START", "data": {"session_id": "20250928-184208"}}
+2025-09-28 18:42:08 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:43:03 | INFO    | Main | {"timestamp": "2025-09-28T18:43:03.450760", "event": "SESSION_END", "data": {"session_id": "20250928-184208"}}
+2025-09-28 18:43:04 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:43:05 | INFO    | Main | {"timestamp": "2025-09-28T18:43:05.000437", "event": "SESSION_START", "data": {"session_id": "20250928-184305"}}
+2025-09-28 18:43:05 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:43:38 | INFO    | Main | {"timestamp": "2025-09-28T18:43:38.951003", "event": "SESSION_END", "data": {"session_id": "20250928-184305"}}
+2025-09-28 18:43:41 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:43:41 | INFO    | Main | {"timestamp": "2025-09-28T18:43:41.208506", "event": "SESSION_START", "data": {"session_id": "20250928-184341"}}
+2025-09-28 18:43:41 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:44:02 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:44:02.798550", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 18:44:45 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-28 18:44:45 | INFO    | Main | {"timestamp": "2025-09-28T18:44:45.117328", "event": "SESSION_START", "data": {"session_id": "20250928-184445"}}
+2025-09-28 18:44:45 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-28 18:44:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:44:52.921955", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 18:45:06 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:45:06.308984", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 18:50:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:50:04.134784", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 18:50:04 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:50:04.135821", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 18:50:04 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T18:50:04.137791", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-09-28 18:50:08 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:50:08.454659", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 18:50:08 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:50:08.455659", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 18:50:08 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T18:50:08.456659", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-09-28 18:50:11 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:50:11.033414", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-09-28 18:50:11 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T18:50:11.034414", "event": "TTS_PREVIEW_START", "data": {}}
+2025-09-28 18:50:11 | ERROR   | TTSMenuApp | {"timestamp": "2025-09-28T18:50:11.035414", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-09-28 20:04:05 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T20:04:05.505707", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 20:04:10 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T20:04:10.642111", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 20:04:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T20:04:40.143957", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-28 20:04:42 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T20:04:42.618624", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-09-28 20:04:46 | INFO    | TTSMenuApp | {"timestamp": "2025-09-28T20:04:46.572803", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-09-28 20:04:49 | INFO    | VoiceSettings | {"timestamp": "2025-09-28T20:04:49.524140", "event": "CONFIG_CHANGE", "data": {"key": "volume", "old": 1.1970588235294117, "new": 1.2058823529411764}}
+2025-09-28 20:04:51 | INFO    | Main | {"timestamp": "2025-09-28T20:04:51.435575", "event": "SESSION_END", "data": {"session_id": "20250928-184445"}}
+2025-09-29 01:34:26 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-09-29 01:34:26 | INFO    | Main | {"timestamp": "2025-09-29T01:34:26.239403", "event": "SESSION_START", "data": {"session_id": "20250929-013426"}}
+2025-09-29 01:34:26 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-09-29 01:34:40 | INFO    | TTSMenuApp | {"timestamp": "2025-09-29T01:34:40.128248", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-09-29 01:34:41 | INFO    | TTSMenuApp | {"timestamp": "2025-09-29T01:34:41.236869", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "en"}}
+2025-09-29 01:36:47 | INFO    | TTSMenuApp | {"timestamp": "2025-09-29T01:36:47.580704", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2025-09-29 01:36:52 | INFO    | TTSMenuApp | {"timestamp": "2025-09-29T01:36:52.915088", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-09-29 01:37:00 | INFO    | TTSMenuApp | {"timestamp": "2025-09-29T01:37:00.288348", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-09-29 01:37:02 | INFO    | TTSMenuApp | {"timestamp": "2025-09-29T01:37:02.228338", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-09-29 01:37:03 | INFO    | Main | {"timestamp": "2025-09-29T01:37:03.858288", "event": "SESSION_END", "data": {"session_id": "20250929-013426"}}
