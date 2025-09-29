@@ -230,21 +230,9 @@ class TTSMenuApp(tk.Tk):
         self.lang_var = tk.StringVar(value=initial_display_text)
         self.voice_var = tk.StringVar(value=MemoryManager.get("tts_voice", "female"))
 
-        def on_lang_change(*_):
-            display_text = self.lang_var.get()
-            code_to_save = self.inv_lang_map.get(display_text, "en")
-            old_lang = MemoryManager.get("tts_lang", "en")
-            MemoryManager.set("tts_lang", code_to_save)
-            LogsHelperManager.log_config_change(self.logger, "tts_lang", old_lang, code_to_save)
 
-        def on_voice_change(*_):
-            old_voice = MemoryManager.get("tts_voice", "female")
-            new_voice = self.voice_var.get()
-            MemoryManager.set("tts_voice", new_voice)
-            LogsHelperManager.log_config_change(self.logger, "tts_voice", old_voice, new_voice)
-
-        self.lang_var.trace_add("write", on_lang_change)
-        self.voice_var.trace_add("write", on_voice_change)
+        self.lang_var.trace_add("write", self.listener.on_lang_change)
+        self.voice_var.trace_add("write", self.listener.on_voice_change)
 
         lang_row, self.lang_combo = styled_combobox(
             lang_inner,
@@ -272,7 +260,7 @@ class TTSMenuApp(tk.Tk):
         self.service_var.trace_add("write", lambda *_: update_voice_state())
 
         output_card, self.output_label = output_selector(
-            right, self.output_dir, self._on_output_change
+            right, self.output_dir, self.listener.on_output_change
         )
         output_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
 
@@ -282,28 +270,7 @@ class TTSMenuApp(tk.Tk):
         bar, self.status, self.counter = footer(root)
         bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
 
-        self.text.bind("<<Modified>>", self._on_text_change)
-
-    def _on_text_change(self, *_):
-        if not self.text.edit_modified():
-            return
-        self.text.edit_modified(False)
-
-        chars = len(self.text.get('1.0','end-1c'))
-        self.counter.config(text=f"{chars} characters")
-
-        if hasattr(self, "_text_change_after"):
-            self.after_cancel(self._text_change_after)
-
-        self._text_change_after = self.after(500, lambda: (
-            LogsHelperManager.log_debug(self.logger, "TEXT_CHANGE", {
-                "chars": chars,
-                "sample": self.text.get("1.0", "end-1c")[:50]
-            })
-        ))
-
-    def _on_output_change(self, new_path: Path):
-        self.output_dir = new_path
+        self.text.bind("<<Modified>>", self.listener.on_text_change)
 
     def _set_progress(self, pct: int, msg: str):
         pct = max(0, min(100, int(pct)))
@@ -361,6 +328,7 @@ class TTSMenuApp(tk.Tk):
                 LogsHelperManager.log_error(self.logger, "PREVIEW", f"Unknown TTS service: {svc_key}")
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn))
+                self._set_progress(0, "Ready.")
                 return
 
             def preview_progress(pct, msg):

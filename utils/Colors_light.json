@@ -5,7 +5,10 @@
   "text": "#1C1C1C",
   "muted": "#6E6E6E",
   "title": "#111111",
-  "primary": "#4B5563",
-  "primary_active": "#374151",
-  "textarea_bg": "#FFFFFF"
+  "primary": "#000000",
+  "primary_active": "#333333",
+  "textarea_bg": "#FFFFFF",
+  "progress_trough": "#dbd7d7",
+  "progress_border": "#737070",
+  "progress_height": 14
 }

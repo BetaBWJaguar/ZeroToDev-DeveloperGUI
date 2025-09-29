@@ -37,7 +37,22 @@ def refresh_theme(root, colors: dict, fonts: dict):
     style.configure("Section.TLabelframe.Label", background=c["card"], foreground=c["muted"], font=("Segoe UI", 10, "bold"))
 
 
-    style.configure("Status.TLabel", background=c["bg"], foreground=c["muted"], font=("Segoe UI", 10))
+    trough_bg = c.get("progress_trough", c["card"])
+
+    style.configure(
+        "Status.TLabel",
+        background=trough_bg,
+        foreground=c["muted"],
+        font=("Segoe UI", 10)
+    )
+
+
+    style.configure(
+        "Footer.TLabel",
+        background=trough_bg,
+        foreground=c["muted"],
+        font=("Segoe UI", 10)
+    )
 
 
     style.configure("Option.TRadiobutton", background=c["card"], foreground=c["text"], font=tuple(f["label"]))
@@ -67,16 +82,42 @@ def refresh_theme(root, colors: dict, fonts: dict):
         arrowcolor=[("active", c["primary_active"])]
     )
 
+
+    trough = c.get("progress_trough")
+    border = c.get("progress_border")
+    thickness = int(c.get("progress_height"))
+
+    style.layout(
+        "Clean.Horizontal.TProgressbar",
+        [("Horizontal.Progressbar.trough", {
+            "sticky": "nswe",
+            "children": [("Horizontal.Progressbar.pbar", {"side": "left", "sticky": "ns"})]
+        })]
+    )
+
+    style.configure(
+        "Clean.Horizontal.TProgressbar",
+        troughcolor=trough,
+        background=c["primary"],
+        bordercolor=border,
+        lightcolor=border,
+        darkcolor=border,
+        thickness=thickness
+    )
+    style.map("Clean.Horizontal.TProgressbar",
+              background=[("active", c["primary_active"])])
+
     style.configure(
         "Accent.Horizontal.TProgressbar",
-        troughcolor=c["surface"],
+        troughcolor=trough,
         background=c["primary"],
-        thickness=14
+        bordercolor=border,
+        lightcolor=border,
+        darkcolor=border,
+        thickness=thickness
     )
-    style.map(
-        "Accent.Horizontal.TProgressbar",
-        background=[("active", c["primary_active"])]
-    )
+    style.map("Accent.Horizontal.TProgressbar",
+              background=[("active", c["primary_active"])])
 
     def apply_recursive(w):
         if isinstance(w, tk.Text):
@@ -319,33 +360,49 @@ def progress_section(parent) -> tuple[ttk.Frame, ttk.Progressbar, tk.IntVar, ttk
     c = THEME["COLORS"]
     style = ttk.Style()
 
+
+    try:
+        style.theme_use("clam")
+    except tk.TclError:
+        pass
+
+    trough = c.get("progress_trough")
+    border_color = c.get("progress_border")
+    height = int(c.get("progress_height"))
+
     style.configure(
-        "Accent.Horizontal.TProgressbar",
-        troughcolor=c["surface"],
+        "Clean.Horizontal.TProgressbar",
+        troughcolor=trough,
         background=c["primary"],
-        thickness=14
-    )
-    style.map(
-        "Accent.Horizontal.TProgressbar",
-        background=[("active", c["primary_active"])]
+        bordercolor=trough,
+        lightcolor=trough,
+        darkcolor=trough,
+        thickness=height
     )
 
     frame = ttk.Frame(parent, style="Card.TFrame")
 
+    border_box = tk.Frame(frame, bg=border_color, highlightthickness=0, bd=0)
+    border_box.grid(row=0, column=0, sticky="ew", pady=(4, 2))
+    frame.grid_columnconfigure(0, weight=1)
+
+    inner = tk.Frame(border_box, bg=trough, highlightthickness=0, bd=0)
+    inner.pack(fill="x", expand=True, padx=1, pady=1)
+
     progress_var = tk.IntVar(value=0)
     progress = ttk.Progressbar(
-        frame,
+        inner,
         variable=progress_var,
         maximum=100,
         mode="determinate",
-        style="Accent.Horizontal.TProgressbar"
+        style="Clean.Horizontal.TProgressbar"
     )
-    progress.grid(row=0, column=0, sticky="ew", pady=(4, 2))
+    progress.pack(fill="x")
 
-    progress_label = ttk.Label(frame, text="Ready.", style="Muted.TLabel")
+    style.configure("Footer.TLabel", background=c["bg"], foreground=c["muted"], font=("Segoe UI", 10))
+    progress_label = ttk.Label(frame, text="Ready.", style="Footer.TLabel")
     progress_label.grid(row=1, column=0, sticky="w")
 
-    frame.grid_columnconfigure(0, weight=1)
     return frame, progress, progress_var, progress_label
 
 def set_buttons_state(state: str, *widgets):
