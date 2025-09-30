@@ -13,16 +13,19 @@ def refresh_theme(root, colors: dict, fonts: dict):
     f = fonts
 
     style = ttk.Style(root)
+    try:
+        style.theme_use("clam")
+    except tk.TclError:
+        pass
 
+    root.configure(bg=c["bg"])
 
     style.configure("TFrame", background=c["bg"])
     style.configure("Card.TFrame", background=c["card"])
 
-
     style.configure("TLabel", background=c["bg"], foreground=c["text"], font=tuple(f["label"]))
     style.configure("Title.TLabel", background=c["bg"], foreground=c["title"], font=tuple(f["title"]))
     style.configure("Muted.TLabel", background=c["bg"], foreground=c["muted"], font=tuple(f["label"]))
-
 
     style.configure("TButton", padding=10, font=tuple(f["button"]))
     style.configure("Accent.TButton", padding=12, font=tuple(f["button"]))
@@ -32,28 +35,8 @@ def refresh_theme(root, colors: dict, fonts: dict):
         foreground=[("!disabled", "white")]
     )
 
-
     style.configure("Section.TLabelframe", background=c["card"], foreground=c["text"], borderwidth=0)
     style.configure("Section.TLabelframe.Label", background=c["card"], foreground=c["muted"], font=("Segoe UI", 10, "bold"))
-
-
-    trough_bg = c.get("progress_trough", c["card"])
-
-    style.configure(
-        "Status.TLabel",
-        background=trough_bg,
-        foreground=c["muted"],
-        font=("Segoe UI", 10)
-    )
-
-
-    style.configure(
-        "Footer.TLabel",
-        background=trough_bg,
-        foreground=c["muted"],
-        font=("Segoe UI", 10)
-    )
-
 
     style.configure("Option.TRadiobutton", background=c["card"], foreground=c["text"], font=tuple(f["label"]))
     style.map(
@@ -62,6 +45,10 @@ def refresh_theme(root, colors: dict, fonts: dict):
         background=[("active", c["card"]), ("focus", c["card"]), ("selected", c["card"])]
     )
 
+    trough_bg = c.get("progress_trough", c["card"])
+
+    style.configure("Status.TLabel", background=trough_bg, foreground=c["muted"], font=("Segoe UI", 10))
+    style.configure("Footer.TLabel", background=trough_bg, foreground=c["muted"], font=("Segoe UI", 10))
 
     style.configure(
         "Preset.TCombobox",
@@ -82,7 +69,6 @@ def refresh_theme(root, colors: dict, fonts: dict):
         arrowcolor=[("active", c["primary_active"])]
     )
 
-
     trough = c.get("progress_trough")
     border = c.get("progress_border")
     thickness = int(c.get("progress_height"))
@@ -94,7 +80,6 @@ def refresh_theme(root, colors: dict, fonts: dict):
             "children": [("Horizontal.Progressbar.pbar", {"side": "left", "sticky": "ns"})]
         })]
     )
-
     style.configure(
         "Clean.Horizontal.TProgressbar",
         troughcolor=trough,
@@ -104,8 +89,7 @@ def refresh_theme(root, colors: dict, fonts: dict):
         darkcolor=border,
         thickness=thickness
     )
-    style.map("Clean.Horizontal.TProgressbar",
-              background=[("active", c["primary_active"])])
+    style.map("Clean.Horizontal.TProgressbar", background=[("active", c["primary_active"])])
 
     style.configure(
         "Accent.Horizontal.TProgressbar",
@@ -116,8 +100,7 @@ def refresh_theme(root, colors: dict, fonts: dict):
         darkcolor=border,
         thickness=thickness
     )
-    style.map("Accent.Horizontal.TProgressbar",
-              background=[("active", c["primary_active"])])
+    style.map("Accent.Horizontal.TProgressbar", background=[("active", c["primary_active"])])
 
     def apply_recursive(w):
         if isinstance(w, tk.Text):
@@ -144,47 +127,8 @@ def refresh_theme(root, colors: dict, fonts: dict):
     root.update_idletasks()
 
 
-
 def init_style(root: tk.Tk, colors: dict, fonts: dict) -> None:
-    THEME["COLORS"], THEME["FONTS"] = colors, fonts
-
-    c = THEME["COLORS"]
-    f = THEME["FONTS"]
-
-    style = ttk.Style(root)
-    try:
-        style.theme_use("clam")
-    except tk.TclError:
-        pass
-
-    root.configure(bg=c["bg"])
-
-    style.configure("TFrame", background=c["bg"])
-    style.configure("Card.TFrame", background=c["card"])
-
-    style.configure("TLabel", background=c["bg"], foreground=c["text"], font=tuple(f["label"]))
-    style.configure("Title.TLabel", background=c["bg"], foreground=c["title"], font=tuple(f["title"]))
-    style.configure("Muted.TLabel", background=c["bg"], foreground=c["muted"], font=tuple(f["label"]))
-
-    style.configure("TButton", padding=10, font=tuple(f["button"]))
-    style.configure("Accent.TButton", padding=12, font=tuple(f["button"]))
-    style.map(
-        "Accent.TButton",
-        background=[("!disabled", c["primary"]), ("pressed", c["primary_active"])],
-        foreground=[("!disabled", "white")]
-    )
-
-    style.configure("Section.TLabelframe", background=c["card"], foreground=c["text"], borderwidth=0)
-    style.configure("Section.TLabelframe.Label", background=c["card"], foreground=c["muted"], font=("Segoe UI", 10, "bold"))
-
-    style.configure("Status.TLabel", background=c["bg"], foreground=c["muted"], font=("Segoe UI", 10))
-
-    style.configure("Option.TRadiobutton", background=c["card"], foreground=c["text"], font=tuple(f["label"]))
-    style.map(
-        "Option.TRadiobutton",
-        foreground=[("disabled", c["muted"]), ("!disabled", c["text"]), ("selected", c["text"]), ("active", c["text"])],
-        background=[("active", c["card"]), ("focus", c["card"]), ("selected", c["card"])]
-    )
+    refresh_theme(root, colors, fonts)
 
 def make_textarea(parent) -> tuple[ttk.Frame, tk.Text]:
     c = THEME["COLORS"]
@@ -399,7 +343,6 @@ def progress_section(parent) -> tuple[ttk.Frame, ttk.Progressbar, tk.IntVar, ttk
     )
     progress.pack(fill="x")
 
-    style.configure("Footer.TLabel", background=c["bg"], foreground=c["muted"], font=("Segoe UI", 10))
     progress_label = ttk.Label(frame, text="Ready.", style="Footer.TLabel")
     progress_label.grid(row=1, column=0, sticky="w")
 

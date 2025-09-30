@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section, set_buttons_state, styled_combobox, toggle_button, refresh_theme
+    progress_section, set_buttons_state, styled_combobox, toggle_button
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -135,7 +135,6 @@ class TTSMenuApp(tk.Tk):
         MemoryManager.set("theme", name)
         new_colors = load_theme(name)
         init_style(self, new_colors, FONTS)
-        refresh_theme(self, new_colors,FONTS)
 
 
 
