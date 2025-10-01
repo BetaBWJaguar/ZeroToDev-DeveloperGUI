@@ -10,5 +10,8 @@
   "textarea_bg": "#0b1220",
   "progress_trough": "#1d3054",
   "progress_border": "#bfc9d6",
-  "progress_height": 14
+  "progress_height": 14,
+  "guidelabel_bg": "#0f172a",
+  "guidelabel_text": "#94a3b8",
+  "guidelabel_border": "#63728a"
 }

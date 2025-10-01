@@ -219,6 +219,52 @@ class ZIPConvertor:
             except Exception as e:
                 LogsHelperManager.log_error(self.logger, "README_FAIL", str(e))
 
+            try:
+                files["credits.json"] = json.dumps({
+                    "project": "Zero to Dev - Developer GUI",
+                    "author": "Tuna Rasim OCAK",
+                    "version": "1.0",
+                    "createdAt": datetime.now().isoformat(),
+                    "credits": {
+                        "tts_services": [
+                            "Google Text-to-Speech (gTTS)",
+                            "Microsoft Edge TTS"
+                        ],
+                        "libraries": [
+                            "reportlab",
+                            "python-docx",
+                            "pyzipper",
+                            "pydub",
+                        ],
+                        "helpers": [
+                            "LogsManager",
+                            "LogsHelperManager",
+                            "MemoryManager",
+                            "VoiceProcessor",
+                            "ZIPUtility",
+                            "ZIPHelper"
+                        ]
+                    }
+                }, indent=2).encode("utf-8")
+            except Exception as e:
+                LogsHelperManager.log_error(self.logger, "CREDITS_JSON_FAIL", str(e))
+
+            try:
+                files["summary.json"] = json.dumps({
+                    "summary": {
+                        "total_segments": len(seg_texts),
+                        "total_characters": len(text),
+                        "transcript_length": len(text),
+                        "audio_format": fmt,
+                        "total_duration_seconds": round(time.time() - start_time, 2),
+                        "average_segment_length": (len(text) // len(seg_texts)) if seg_texts else 0,
+                        "preview_length": MemoryManager.get("zip_preview_length", 200),
+                        "files_included": list(files.keys()) + [s[0] for s in seg_files]
+                    }
+                }, indent=2).encode("utf-8")
+            except Exception as e:
+                LogsHelperManager.log_error(self.logger, "SUMMARY_JSON_FAIL", str(e))
+
             if transcript_file:
                 files[transcript_file[0]] = transcript_file[1]
             if preview_bytes:
