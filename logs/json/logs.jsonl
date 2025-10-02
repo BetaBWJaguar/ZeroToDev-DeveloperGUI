@@ -1446,3 +1446,10 @@
 {"timestamp": "2025-10-02T00:50:28.726587", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-02T00:50:28.726586\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_CONFIG_SETTINGS\"}}"}
 {"timestamp": "2025-10-02T00:50:31.063068", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-02T00:50:31.063068\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_SETTINGS\"}}"}
 {"timestamp": "2025-10-02T00:53:18.011630", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-02T00:53:18.011629\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251002-004909\"}}"}
+{"timestamp": "2025-10-02T21:53:55.898411", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → T:\\TunaRP\\Zero to Dev - Developer GUI\\logs"}
+{"timestamp": "2025-10-02T21:53:55.901757", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-02T21:53:55.901756\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251002-215355\"}}"}
+{"timestamp": "2025-10-02T21:53:56.399073", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-02T21:54:03.656670", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-02T21:54:03.656670\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_ZIP_SETTINGS\"}}"}
+{"timestamp": "2025-10-02T22:15:23.188607", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-02T22:15:23.188606\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_CONFIG_SETTINGS\"}}"}
+{"timestamp": "2025-10-02T22:15:28.130357", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-02T22:15:28.130357\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_DEVELOPER\"}}"}
+{"timestamp": "2025-10-02T22:48:50.496611", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-02T22:48:50.496610\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251002-215355\"}}"}

@@ -1444,3 +1444,10 @@
 2025-10-02 00:50:28 | INFO    | TTSMenuApp | {"timestamp": "2025-10-02T00:50:28.726586", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
 2025-10-02 00:50:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-02T00:50:31.063068", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
 2025-10-02 00:53:18 | INFO    | Main | {"timestamp": "2025-10-02T00:53:18.011629", "event": "SESSION_END", "data": {"session_id": "20251002-004909"}}
+2025-10-02 21:53:55 | INFO    | root | Logs initialized in INFO mode → T:\TunaRP\Zero to Dev - Developer GUI\logs
+2025-10-02 21:53:55 | INFO    | Main | {"timestamp": "2025-10-02T21:53:55.901756", "event": "SESSION_START", "data": {"session_id": "20251002-215355"}}
+2025-10-02 21:53:56 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-02 21:54:03 | INFO    | TTSMenuApp | {"timestamp": "2025-10-02T21:54:03.656670", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-10-02 22:15:23 | INFO    | TTSMenuApp | {"timestamp": "2025-10-02T22:15:23.188606", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-02 22:15:28 | INFO    | TTSMenuApp | {"timestamp": "2025-10-02T22:15:28.130357", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-10-02 22:48:50 | INFO    | Main | {"timestamp": "2025-10-02T22:48:50.496610", "event": "SESSION_END", "data": {"session_id": "20251002-215355"}}

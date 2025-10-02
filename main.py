@@ -3,8 +3,7 @@ import sys
 import tkinter as tk
 from datetime import datetime
 from tkinter import messagebox
-from GUI import TTSMenuApp
-from GUI import check_internet
+from GUI import TTSMenuApp, check_internet
 from data_manager.MemoryManager import MemoryManager
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
@@ -21,9 +20,16 @@ if __name__ == "__main__":
         sys.exit(1)
 
     log_mode = MemoryManager.get("log_mode", "INFO")
-    LogsManager.init(log_mode)
+
+    log_handler = MemoryManager.get("log_handler", "both")
+
+    db_path = MemoryManager.get("log_db_path", "logs.sqlite")
+
+    LogsManager.init(log_mode, handler_type=log_handler, db_path=db_path)
+
     logger = LogsManager.get_logger("Main")
 
+    # Session log
     session_id = datetime.now().strftime("%Y%m%d-%H%M%S")
     LogsHelperManager.log_session_start(logger, session_id)
 
