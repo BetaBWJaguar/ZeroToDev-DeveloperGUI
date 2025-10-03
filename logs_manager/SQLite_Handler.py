@@ -19,24 +19,27 @@ class SQLiteLogHandler(logging.Handler):
     def emit(self, record):
         try:
             msg = record.getMessage()
+
             try:
                 payload = json.loads(msg)
+                event = payload.get("event", "UNKNOWN")
+                data = payload.get("data", {})
+                timestamp = payload.get("timestamp", datetime.fromtimestamp(record.created).isoformat())
             except Exception:
-                payload = {
-                    "timestamp": datetime.fromtimestamp(record.created).isoformat(),
-                    "event": "RAW",
-                    "data": {"message": msg}
-                }
+                event = "RAW"
+                data = {"message": msg}
+                timestamp = datetime.fromtimestamp(record.created).isoformat()
 
             self.conn.execute(
                 "INSERT INTO logs (timestamp, level, event, data) VALUES (?, ?, ?, ?)",
                 (
-                    payload.get("timestamp"),
+                    timestamp,
                     record.levelname,
-                    payload.get("event", "UNKNOWN"),
-                    json.dumps(payload.get("data", {}), ensure_ascii=False)
+                    event,
+                    json.dumps(data, ensure_ascii=False)
                 )
             )
             self.conn.commit()
+
         except Exception as e:
             print("SQLite logging error:", e)

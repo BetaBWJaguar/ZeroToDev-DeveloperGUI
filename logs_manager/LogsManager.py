@@ -39,39 +39,76 @@ class LogsManager:
         handlers = []
 
         if handler_type in ("file", "both"):
+            jh = RotatingFileHandler(LogsManager.LOG_JSON_DIR / "logs.jsonl",
+                                     maxBytes=max_bytes, backupCount=backup_count, encoding="utf-8")
+            jh.setFormatter(JSONFormatter())
+            handlers.append(jh)
+
             fh = RotatingFileHandler(LogsManager.LOG_DIR / "app.log",
                                      maxBytes=max_bytes, backupCount=backup_count, encoding="utf-8")
             fh.setFormatter(formatter)
+            handlers.append(fh)
 
             dh = RotatingFileHandler(LogsManager.LOG_DIR / "debug.log",
                                      maxBytes=max_bytes, backupCount=backup_count, encoding="utf-8")
             dh.setFormatter(formatter)
+            handlers.append(dh)
+
+            wh = RotatingFileHandler(LogsManager.LOG_DIR / "warnings.log",
+                                     maxBytes=max_bytes, backupCount=backup_count, encoding="utf-8")
+            wh.setFormatter(formatter)
+            handlers.append(wh)
 
             eh = RotatingFileHandler(LogsManager.LOG_DIR / "errors.log",
                                      maxBytes=max_bytes, backupCount=backup_count, encoding="utf-8")
             eh.setFormatter(formatter)
+            handlers.append(eh)
 
-            jh = RotatingFileHandler(LogsManager.LOG_JSON_DIR / "logs.jsonl",
-                                     maxBytes=max_bytes, backupCount=backup_count, encoding="utf-8")
-            jh.setFormatter(JSONFormatter())
-
-            handlers.extend([fh, dh, eh, jh])
-
-        if handler_type in ("sqlite", "both"):
-            sh = SQLiteLogHandler(db_path=db_path)
-            handlers.append(sh)
-
+        root = logging.getLogger()
+        root.setLevel(logging.DEBUG)
 
         if mode == "DEBUG":
-            log_level = logging.DEBUG
+            level_map = {
+                "logs.jsonl": logging.DEBUG,
+                "app.log": logging.DEBUG,
+                "debug.log": logging.DEBUG,
+                "errors.log": logging.ERROR,
+                "warnings.log": logging.WARNING,
+                "sqlite": logging.DEBUG
+            }
         elif mode == "INFO":
-            log_level = logging.INFO
+            level_map = {
+                "logs.jsonl": logging.DEBUG,
+                "app.log": logging.INFO,
+                "debug.log": logging.NOTSET,
+                "warnings.log": logging.WARNING,
+                "errors.log": logging.ERROR,
+                "sqlite": logging.DEBUG
+            }
         elif mode == "ERROR":
-            log_level = logging.ERROR
+            level_map = {
+                "logs.jsonl": logging.DEBUG,
+                "app.log": logging.NOTSET,
+                "debug.log": logging.NOTSET,
+                "warnings.log": logging.NOTSET,
+                "errors.log": logging.ERROR,
+                "sqlite": logging.DEBUG
+            }
         else:
             raise ValueError(f"Unknown log mode: {mode}")
 
-        logging.basicConfig(level=log_level, handlers=handlers)
+        if handler_type in ("sqlite", "both"):
+            sh = SQLiteLogHandler(db_path=db_path)
+            sh.setLevel(level_map.get("sqlite", logging.DEBUG))
+            handlers.append(sh)
+
+        for h in handlers:
+            if isinstance(h, RotatingFileHandler):
+                filename = Path(h.baseFilename).name
+                h.setLevel(level_map.get(filename, logging.INFO))
+            else:
+                h.setLevel(level_map.get("sqlite", logging.INFO))
+            root.addHandler(h)
 
         noisy_libs = [
             "pydub", "urllib3", "gtts", "ffmpeg", "asyncio",

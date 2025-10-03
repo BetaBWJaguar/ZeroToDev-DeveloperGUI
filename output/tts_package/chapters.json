@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "file": "segment_1.mp3",
+    "title": "Chapter 1"
+  },
+  {
+    "id": 2,
+    "file": "segment_2.mp3",
+    "title": "Chapter 2"
+  },
+  {
+    "id": 3,
+    "file": "segment_3.mp3",
+    "title": "Chapter 3"
+  },
+  {
+    "id": 4,
+    "file": "segment_4.mp3",
+    "title": "Chapter 4"
+  }
+]

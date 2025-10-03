@@ -500,6 +500,26 @@ def password_section(parent, title: str,
 
     return frame
 
+def loghandler_selector(parent, current_handler: str, handlers: list[str]) -> tuple[ttk.Frame, tk.StringVar, ttk.Combobox]:
+    frame = ttk.Frame(parent, style="Card.TFrame")
+
+    ttk.Label(frame, text="Log Handler:", style="Muted.TLabel") \
+        .pack(anchor="w", pady=(0, 6))
+
+    var = tk.StringVar(value=current_handler)
+
+    combo_frame, combo = styled_combobox(
+        frame,
+        "Select Handler",
+        var,
+        handlers
+    )
+    combo_frame.pack(fill="x", pady=(0, 6))
+
+    return frame, var, combo
+
+
+
 
 
 

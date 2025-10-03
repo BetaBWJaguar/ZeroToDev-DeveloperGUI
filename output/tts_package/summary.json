@@ -1,0 +1,24 @@
+{
+  "summary": {
+    "total_segments": 4,
+    "total_characters": 568,
+    "transcript_length": 568,
+    "audio_format": "mp3",
+    "total_duration_seconds": 8.52,
+    "average_segment_length": 142,
+    "preview_length": 75,
+    "files_included": [
+      "chapters.json",
+      "config.json",
+      "project.json",
+      "metadata.json",
+      "events.json",
+      "readme.txt",
+      "credits.json",
+      "segments/segment_1.mp3",
+      "segments/segment_2.mp3",
+      "segments/segment_3.mp3",
+      "segments/segment_4.mp3"
+    ]
+  }
+}

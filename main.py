@@ -23,13 +23,12 @@ if __name__ == "__main__":
 
     log_handler = MemoryManager.get("log_handler", "both")
 
-    db_path = MemoryManager.get("log_db_path", "logs.sqlite")
+    db_path = MemoryManager.get("log_db_path", str(LogsManager.LOG_DIR / "logs.sqlite"))
 
     LogsManager.init(log_mode, handler_type=log_handler, db_path=db_path)
 
     logger = LogsManager.get_logger("Main")
 
-    # Session log
     session_id = datetime.now().strftime("%Y%m%d-%H%M%S")
     LogsHelperManager.log_session_start(logger, session_id)
 

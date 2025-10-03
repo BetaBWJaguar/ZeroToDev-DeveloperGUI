@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section, set_buttons_state, styled_combobox, toggle_button
+    progress_section, set_buttons_state, styled_combobox, toggle_button,logmode_selector, loghandler_selector
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -517,21 +517,60 @@ class TTSMenuApp(tk.Tk):
         ttk.Label(container, text="⚙️ Config Settings", style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
 
-        from GUIHelper import logmode_selector
         current_mode = MemoryManager.get("log_mode", "INFO")
-        selector_frame, log_var, log_combo = logmode_selector(container, current_mode, ["INFO", "DEBUG", "ERROR"])
-        selector_frame.pack(fill="x", pady=(0, 15))
+        current_handler = MemoryManager.get("log_handler", "both")
+        current_db = MemoryManager.get("log_db_path", "logs.sqlite")
 
+        initialized = {"value": False}
 
+        def update_logs(show_message=True):
+            try:
+                mode = log_var.get()
+                handler_type = handler_var.get()
+                db_path = db_path_var.get()
+                MemoryManager.set("log_mode", mode)
+                MemoryManager.set("log_handler", handler_type)
+                if handler_type != "file":
+                    MemoryManager.set("log_db_path", db_path)
+
+                LogsManager.init(mode, handler_type=handler_type, db_path=db_path)
+
+                if show_message and initialized["value"]:
+                    GUIError(self, "Success", f"Logs updated!\nMode: {mode}, Handler: {handler_type}", icon="✅")
+
+            except Exception as e:
+                if show_message:
+                    GUIError(self, "Error", f"Failed to update logs:\n{e}", icon="❌")
+
+        mode_frame, log_var, log_combo = logmode_selector(container, current_mode, ["INFO", "DEBUG", "ERROR"])
+        mode_frame.pack(fill="x", pady=(0, 15))
         log_combo.bind("<<ComboboxSelected>>",
-                       lambda event: self.listener.on_log_mode_change(log_var))
+                       lambda e: (initialized.__setitem__("value", True), update_logs()))
+
+
+        handler_frame, handler_var, handler_combo = loghandler_selector(container, current_handler, ["file", "sqlite", "both"])
+        handler_frame.pack(fill="x", pady=(0, 15))
+        handler_combo.bind("<<ComboboxSelected>>", lambda e: (update_logs(), initialized.__setitem__("value", True)))
+
+        db_frame = ttk.Frame(container, style="Card.TFrame")
+        db_frame.pack(fill="x", pady=(0, 15))
+
+        ttk.Label(db_frame, text="SQLite DB Path:", style="Muted.TLabel") \
+            .grid(row=0, column=0, sticky="w", padx=(0, 8))
+
+        db_path_var = tk.StringVar(value=current_db)
+        db_path_entry = ttk.Entry(db_frame, textvariable=db_path_var, width=40)
+        db_path_entry.grid(row=0, column=1, sticky="ew")
+        db_frame.grid_columnconfigure(1, weight=1)
+
+        db_path_var.trace_add("write", lambda *_: (update_logs(), initialized.__setitem__("value", True)))
 
         ttk.Separator(container).pack(fill="x", pady=15)
-
         ttk.Button(container, text="Close", command=win.destroy,
                    style="Accent.TButton").pack(anchor="center", pady=(8, 0))
 
         center_window(win, self)
+
 
     def show_zip_settings(self):
         LogsHelperManager.log_button(self.logger, "OPEN_ZIP_SETTINGS")

@@ -1,9 +1,9 @@
 {
   "format": "mp3",
-  "createdAt": "2025-10-03T20:38:25.575187",
-  "service": "edge",
-  "lang": "tr",
-  "voice": "male",
+  "createdAt": "2025-09-26T21:25:53.796844",
+  "service": "google",
+  "lang": "en",
+  "voice": "female",
   "effects": {
     "speed": 1.0,
     "pitch": 0,

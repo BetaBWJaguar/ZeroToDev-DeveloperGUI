@@ -1,0 +1,26 @@
+{
+  "project": "Zero to Dev - Developer GUI",
+  "author": "Tuna Rasim OCAK",
+  "version": "1.0",
+  "createdAt": "2025-10-03T20:38:25.575187",
+  "credits": {
+    "tts_services": [
+      "Google Text-to-Speech (gTTS)",
+      "Microsoft Edge TTS"
+    ],
+    "libraries": [
+      "reportlab",
+      "python-docx",
+      "pyzipper",
+      "pydub"
+    ],
+    "helpers": [
+      "LogsManager",
+      "LogsHelperManager",
+      "MemoryManager",
+      "VoiceProcessor",
+      "ZIPUtility",
+      "ZIPHelper"
+    ]
+  }
+}
