@@ -441,3 +441,46 @@
 {"timestamp": "2025-10-04T01:24:09.586966", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-04T01:24:09.586442\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_CONFIG_SETTINGS\"}}"}
 {"timestamp": "2025-10-04T01:24:11.370519", "level": "INFO", "name": "root", "message": "Logs initialized in DEBUG mode → handler=both"}
 {"timestamp": "2025-10-04T01:24:15.410650", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-04T01:24:15.410650\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251004-012240\"}}"}
+{"timestamp": "2025-10-08T23:38:40.825727", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-08T23:38:40.839467", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:38:40.839467\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251008-233840\"}}"}
+{"timestamp": "2025-10-08T23:38:41.568763", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-08T23:38:44.346463", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:38:44.346463\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:39:34.265954", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:39:34.264474\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:40:42.059259", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:40:42.059259\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251008-233840\"}}"}
+{"timestamp": "2025-10-08T23:41:34.107430", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-08T23:41:34.119940", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:41:34.119940\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251008-234134\"}}"}
+{"timestamp": "2025-10-08T23:41:34.510256", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-08T23:41:37.060356", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:41:37.060355\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251008-234134\"}}"}
+{"timestamp": "2025-10-08T23:41:48.638414", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-08T23:41:48.652532", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:41:48.652532\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251008-234148\"}}"}
+{"timestamp": "2025-10-08T23:41:49.029507", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-08T23:41:51.007448", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:41:51.007448\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:43:10.147216", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-08T23:43:10.160430", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:43:10.160430\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251008-234310\"}}"}
+{"timestamp": "2025-10-08T23:43:10.536493", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-08T23:43:12.112329", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:43:12.112329\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:43:27.586327", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:43:27.586327\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251008-234310\"}}"}
+{"timestamp": "2025-10-08T23:43:42.134100", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-08T23:43:42.146752", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:43:42.146752\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251008-234342\"}}"}
+{"timestamp": "2025-10-08T23:43:42.519225", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-08T23:43:43.940331", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:43:43.940331\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:44:29.393496", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-08T23:44:29.406706", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:44:29.406706\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251008-234429\"}}"}
+{"timestamp": "2025-10-08T23:44:29.782541", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-08T23:44:31.010430", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:44:31.010430\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:45:31.465308", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:45:31.465307\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:45:46.349697", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:45:46.349697\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:45:54.975101", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-08T23:45:54.975100\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-08T23:46:41.194664", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-08T23:46:41.194663\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251008-234429\"}}"}
+{"timestamp": "2025-10-09T01:51:45.227989", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-09T01:51:45.242008", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-09T01:51:45.242007\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251009-015145\"}}"}
+{"timestamp": "2025-10-09T01:51:45.665780", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-09T01:51:47.908573", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-09T01:51:47.908573\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-09T01:52:47.448534", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-09T01:52:47.448534\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251009-015145\"}}"}
+{"timestamp": "2025-10-09T01:52:49.125672", "level": "INFO", "name": "root", "message": "Logs initialized in INFO mode → handler=both"}
+{"timestamp": "2025-10-09T01:52:49.138709", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-09T01:52:49.138708\", \"event\": \"SESSION_START\", \"data\": {\"session_id\": \"20251009-015249\"}}"}
+{"timestamp": "2025-10-09T01:52:49.520100", "level": "INFO", "name": "ZIPConvertor", "message": "ZIPConvertor initialized at T:\\TunaRP\\Zero to Dev - Developer GUI\\output"}
+{"timestamp": "2025-10-09T01:52:51.277195", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-09T01:52:51.276635\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-09T01:53:18.063139", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-09T01:53:18.062139\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-09T01:53:33.648364", "level": "INFO", "name": "TTSMenuApp", "message": "{\"timestamp\": \"2025-10-09T01:53:33.647736\", \"event\": \"BUTTON_CLICK\", \"data\": {\"action\": \"OPEN_MARKUP_GUIDE\"}}"}
+{"timestamp": "2025-10-09T01:53:41.337595", "level": "INFO", "name": "Main", "message": "{\"timestamp\": \"2025-10-09T01:53:41.337595\", \"event\": \"SESSION_END\", \"data\": {\"session_id\": \"20251009-015249\"}}"}

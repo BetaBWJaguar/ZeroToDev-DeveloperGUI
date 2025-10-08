@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 from dataclasses import dataclass, field
+from markup.MarkupManagerTags import MarkupManagerTags
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 
@@ -13,15 +14,15 @@ class TTSToken:
 
 
 class MarkupManagerUtility:
-    TAG_PATTERN = re.compile(
-        r"<(emphasis)(.*?)>(.*?)</\1>|<(break)(.*?)\/>", re.DOTALL | re.IGNORECASE
-    )
-
     def __init__(self):
         self.logger = LogsManager.get_logger("MarkupManagerUtility")
+        supported_tags = "|".join(MarkupManagerTags.list_supported_tags())
+        self.TAG_PATTERN = re.compile(
+            rf"<({supported_tags})(.*?)>(.*?)</\1>|<({supported_tags})(.*?)\/>",
+            re.DOTALL | re.IGNORECASE
+        )
 
     def parse(self, text: str) -> list[TTSToken]:
-        """Parse markup text into token list"""
         tokens = []
         last_end = 0
 
@@ -55,7 +56,6 @@ class MarkupManagerUtility:
         return attrs
 
     def debug_tokens(self, tokens: list[TTSToken]):
-        """Log parsed token structure for debugging"""
         for t in tokens:
             LogsHelperManager.log_debug(self.logger, "TOKEN", {
                 "type": t.type,

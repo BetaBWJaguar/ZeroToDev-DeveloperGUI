@@ -6,7 +6,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section, set_buttons_state, styled_combobox, toggle_button,logmode_selector, loghandler_selector
+    progress_section, set_buttons_state, styled_combobox, toggle_button, logmode_selector, loghandler_selector, THEME
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -116,6 +116,7 @@ class TTSMenuApp(tk.Tk):
         help_menu.add_command(label="Developer", command=self.show_developer)
         help_menu.add_command(label="Voice Settings", command=self.show_settings)
         help_menu.add_command(label="Config Settings", command=self.show_config_settings)
+        help_menu.add_command(label="Markup Guide", command=self.show_markup_guide)
         menubar.add_cascade(label="Help", menu=help_menu)
 
         package_menu = tk.Menu(menubar, tearoff=0)
@@ -686,6 +687,123 @@ class TTSMenuApp(tk.Tk):
                                                 transcript_var, password_enabled_var)
 
         center_window(win, self)
+
+
+    def show_markup_guide(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_MARKUP_GUIDE")
+
+        c = THEME["COLORS"]
+        f = THEME["FONTS"]
+
+        win = tk.Toplevel(self)
+        win.title("Markup Guide")
+        win.transient(self)
+        win.grab_set()
+        win.geometry("900x700")
+        win.resizable(False, False)
+        win.configure(bg=c["bg"])
+
+
+        container = ttk.Frame(win, padding=(30, 25), style="TFrame")
+        container.pack(fill="both", expand=True)
+
+
+        canvas = tk.Canvas(container, bg=c["bg"], highlightthickness=0, bd=0)
+        scroll_y = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
+        scroll_frame = ttk.Frame(canvas, style="Card.TFrame")
+
+        scroll_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        canvas.create_window((0, 0), window=scroll_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scroll_y.set)
+
+        canvas.pack(side="left", fill="both", expand=True)
+        scroll_y.pack(side="right", fill="y")
+
+
+        ttk.Label(scroll_frame, text="Markup Usage Guide", style="Title.TLabel") \
+            .pack(anchor="w", pady=(0, 12))
+
+
+        about_card, about_inner = section(scroll_frame, "About Markup")
+        about_card.pack(fill="x", pady=(0, 12))
+        ttk.Label(
+            about_inner,
+            text=("Markup allows you to control how text is spoken by adding expressive "
+                  "SSML-like tags directly in the text box. These tags let you change emphasis, "
+                  "insert pauses, control emotions, and modifying more"),
+            style="Muted.TLabel",
+            wraplength=560,
+            justify="left"
+        ).pack(anchor="w", pady=(4, 4))
+
+        tags_card, tags_inner = section(scroll_frame, "Supported Tags")
+        tags_card.pack(fill="x", pady=(0, 12))
+
+        tags = [
+            ("<emphasis level=\"strong\">text</emphasis>", "Adds emphasis to specific words."),
+            ("<break time=\"500ms\"/>", "Inserts a short pause (silence)."),
+            ("<emotion type=\"happy\">text</emotion>", "Applies emotional tone such as happy, sad, calm, angry."),
+            ("<prosody rate=\"1.2\" pitch=\"3\">text</prosody>", "Adjusts speed and pitch dynamically."),
+            ("<say-as interpret-as=\"digits\">1234</say-as>", "Controls how the text is read (digits, date, etc.).")
+        ]
+
+        for code, desc in tags:
+            card = ttk.Frame(tags_inner, style="Card.TFrame")
+            card.pack(fill="x", pady=(4, 4))
+            ttk.Label(card, text=code, style="TLabel", foreground=c["primary"]).pack(anchor="w")
+            ttk.Label(card, text=f"→ {desc}", style="Muted.TLabel").pack(anchor="w", padx=(20, 0))
+
+
+        example_card, example_inner = section(scroll_frame, "Example Usage")
+        example_card.pack(fill="x", pady=(0, 12))
+
+        example = (
+            "Hello <emphasis level=\"strong\">world</emphasis>!\n"
+            "<break time=\"700ms\"/>\n"
+            "I feel <emotion type=\"happy\">great</emotion> today!"
+        )
+
+        example_box = tk.Text(
+            example_inner,
+            height=5,
+            wrap="word",
+            font=tuple(f["label"]),
+            bg=c["textarea_bg"],
+            fg=c["text"],
+            insertbackground=c["text"],
+            relief="flat",
+            padx=10, pady=10
+        )
+        example_box.insert("1.0", example)
+        example_box.config(state="disabled")
+        example_box.pack(fill="x")
+
+        tips_card, tips_inner = section(scroll_frame, "Tips")
+        tips_card.pack(fill="x", pady=(0, 12))
+        tips = (
+            "• You can mix multiple tags in one sentence.\n"
+            "• Tags are case-insensitive.\n"
+            "• Invalid tags are ignored safely.\n"
+            "• The <break> tag must be self-closing (<break .../>)."
+        )
+        ttk.Label(tips_inner, text=tips, style="Muted.TLabel", justify="left") \
+            .pack(anchor="w", pady=(2, 4))
+
+        adv_card, adv_inner = section(scroll_frame, "Advanced Examples")
+        adv_card.pack(fill="x", pady=(0, 12))
+        adv = (
+            "<prosody rate=\"0.8\" pitch=\"-2\">Slow and deep voice</prosody>\n"
+            "<say-as interpret-as=\"date\">2025-10-08</say-as>"
+        )
+        ttk.Label(adv_inner, text=adv, style="TLabel", foreground=c["primary"]) \
+            .pack(anchor="w", pady=(4, 4))
+
+        ttk.Separator(scroll_frame).pack(fill="x", pady=(10, 8))
+        primary_button(scroll_frame, "Close", win.destroy).pack(anchor="center", pady=(5, 10))
+
+        center_window(win, self)
+
+
 
 
 
