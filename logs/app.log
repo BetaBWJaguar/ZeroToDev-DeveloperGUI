@@ -317,3 +317,42 @@
 2025-10-09 01:53:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-09T01:53:18.062139", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
 2025-10-09 01:53:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-09T01:53:33.647736", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
 2025-10-09 01:53:41 | INFO    | Main | {"timestamp": "2025-10-09T01:53:41.337595", "event": "SESSION_END", "data": {"session_id": "20251009-015249"}}
+2025-10-09 16:25:12 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-09 16:25:12 | INFO    | Main | {"timestamp": "2025-10-09T16:25:12.017726", "event": "SESSION_START", "data": {"session_id": "20251009-162512"}}
+2025-10-09 16:25:12 | ERROR   | LangManager | {"timestamp": "2025-10-09T16:25:12.028725", "event": "ERROR", "data": {"action": "LANG_LOAD_FAIL", "error": "[WinError 3] The system cannot find the path specified: 'T:\\\\TunaRP\\\\Zero to Dev - Developer GUI\\\\language_manager\\\\langs'"}}
+2025-10-09 16:25:12 | INFO    | LangManager | {"timestamp": "2025-10-09T16:25:12.039807", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": []}}
+2025-10-09 16:25:12 | ERROR   | Main | {"timestamp": "2025-10-09T16:25:12.050807", "event": "ERROR", "data": {"action": "APP_CRASH", "error": "name 'lang_manager' is not defined"}}
+2025-10-09 16:25:14 | INFO    | Main | {"timestamp": "2025-10-09T16:25:14.055274", "event": "SESSION_END", "data": {"session_id": "20251009-162512"}}
+2025-10-09 16:25:33 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-09 16:25:33 | INFO    | Main | {"timestamp": "2025-10-09T16:25:33.188254", "event": "SESSION_START", "data": {"session_id": "20251009-162533"}}
+2025-10-09 16:25:33 | ERROR   | LangManager | {"timestamp": "2025-10-09T16:25:33.199285", "event": "ERROR", "data": {"action": "LANG_LOAD_FAIL", "error": "[WinError 3] The system cannot find the path specified: 'T:\\\\TunaRP\\\\Zero to Dev - Developer GUI\\\\language_manager\\\\langs'"}}
+2025-10-09 16:25:33 | INFO    | LangManager | {"timestamp": "2025-10-09T16:25:33.211285", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": []}}
+2025-10-09 16:25:33 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-09 16:26:24 | INFO    | Main | {"timestamp": "2025-10-09T16:26:24.272891", "event": "SESSION_END", "data": {"session_id": "20251009-162533"}}
+2025-10-09 16:29:00 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-09 16:29:00 | INFO    | Main | {"timestamp": "2025-10-09T16:29:00.873272", "event": "SESSION_START", "data": {"session_id": "20251009-162900"}}
+2025-10-09 16:29:00 | WARNING | LangManager | {"timestamp": "2025-10-09T16:29:00.884077", "event": "WARNING", "data": {"action": "LANG_DIR_MISSING", "message": "Language directory not found: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2025-10-09 16:29:00 | WARNING | LangManager | {"timestamp": "2025-10-09T16:29:00.895077", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2025-10-09 16:29:00 | INFO    | LangManager | {"timestamp": "2025-10-09T16:29:00.906081", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": []}}
+2025-10-09 16:29:01 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-09 16:30:28 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-09 16:30:28 | INFO    | Main | {"timestamp": "2025-10-09T16:30:28.437962", "event": "SESSION_START", "data": {"session_id": "20251009-163028"}}
+2025-10-09 16:30:28 | INFO    | LangManager | {"timestamp": "2025-10-09T16:30:28.482325", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-09 16:30:28 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-09 16:30:35 | INFO    | Main | {"timestamp": "2025-10-09T16:30:35.300105", "event": "SESSION_END", "data": {"session_id": "20251009-163028"}}
+2025-10-09 16:32:37 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-09 16:32:37 | INFO    | Main | {"timestamp": "2025-10-09T16:32:37.808169", "event": "SESSION_START", "data": {"session_id": "20251009-163237"}}
+2025-10-09 16:32:37 | INFO    | LangManager | {"timestamp": "2025-10-09T16:32:37.852917", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-09 16:32:38 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-09 16:32:43 | INFO    | TTSMenuApp | {"timestamp": "2025-10-09T16:32:43.579809", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-09 16:34:12 | INFO    | Main | {"timestamp": "2025-10-09T16:34:12.721053", "event": "SESSION_END", "data": {"session_id": "20251009-163237"}}
+2025-10-09 16:34:14 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-09 16:34:14 | INFO    | Main | {"timestamp": "2025-10-09T16:34:14.379222", "event": "SESSION_START", "data": {"session_id": "20251009-163414"}}
+2025-10-09 16:34:14 | INFO    | LangManager | {"timestamp": "2025-10-09T16:34:14.422376", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-09 16:34:14 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-09 16:34:23 | INFO    | Main | {"timestamp": "2025-10-09T16:34:23.542719", "event": "SESSION_END", "data": {"session_id": "20251009-163414"}}
+2025-10-09 16:34:28 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-09 16:34:28 | INFO    | Main | {"timestamp": "2025-10-09T16:34:28.846103", "event": "SESSION_START", "data": {"session_id": "20251009-163428"}}
+2025-10-09 16:34:28 | INFO    | LangManager | {"timestamp": "2025-10-09T16:34:28.888539", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-09 16:34:29 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-09 16:39:45 | INFO    | Main | {"timestamp": "2025-10-09T16:39:45.537270", "event": "SESSION_END", "data": {"session_id": "20251009-163428"}}

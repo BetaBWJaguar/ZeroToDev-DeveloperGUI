@@ -80,7 +80,7 @@ class LogsManager:
             level_map = {
                 "logs.jsonl": logging.DEBUG,
                 "app.log": logging.INFO,
-                "debug.log": logging.NOTSET,
+                "debug.log": logging.CRITICAL + 1,
                 "warnings.log": logging.WARNING,
                 "errors.log": logging.ERROR,
                 "sqlite": logging.DEBUG
@@ -88,9 +88,9 @@ class LogsManager:
         elif mode == "ERROR":
             level_map = {
                 "logs.jsonl": logging.DEBUG,
-                "app.log": logging.NOTSET,
-                "debug.log": logging.NOTSET,
-                "warnings.log": logging.NOTSET,
+                "app.log": logging.CRITICAL + 1,
+                "debug.log": logging.CRITICAL + 1,
+                "warnings.log": logging.CRITICAL + 1,
                 "errors.log": logging.ERROR,
                 "sqlite": logging.DEBUG
             }

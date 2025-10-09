@@ -89,10 +89,11 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
         return False
 
 class TTSMenuApp(tk.Tk):
-    def __init__(self):
+    def __init__(self,lang_manager):
         super().__init__()
         self.zip_var = None
-        self.title("Text to Speech")
+        self.lang = lang_manager
+        self.title(lang_manager.get("app_title"))
         self.geometry("1200x1100")
         self.minsize(1200, 1100)
         self.listener = GUIListener(self)

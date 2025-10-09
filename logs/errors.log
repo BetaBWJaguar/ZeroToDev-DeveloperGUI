@@ -1,0 +1,3 @@
+2025-10-09 16:25:12 | ERROR   | LangManager | {"timestamp": "2025-10-09T16:25:12.028725", "event": "ERROR", "data": {"action": "LANG_LOAD_FAIL", "error": "[WinError 3] The system cannot find the path specified: 'T:\\\\TunaRP\\\\Zero to Dev - Developer GUI\\\\language_manager\\\\langs'"}}
+2025-10-09 16:25:12 | ERROR   | Main | {"timestamp": "2025-10-09T16:25:12.050807", "event": "ERROR", "data": {"action": "APP_CRASH", "error": "name 'lang_manager' is not defined"}}
+2025-10-09 16:25:33 | ERROR   | LangManager | {"timestamp": "2025-10-09T16:25:33.199285", "event": "ERROR", "data": {"action": "LANG_LOAD_FAIL", "error": "[WinError 3] The system cannot find the path specified: 'T:\\\\TunaRP\\\\Zero to Dev - Developer GUI\\\\language_manager\\\\langs'"}}
