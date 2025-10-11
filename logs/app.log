@@ -356,3 +356,148 @@
 2025-10-09 16:34:28 | INFO    | LangManager | {"timestamp": "2025-10-09T16:34:28.888539", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
 2025-10-09 16:34:29 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
 2025-10-09 16:39:45 | INFO    | Main | {"timestamp": "2025-10-09T16:39:45.537270", "event": "SESSION_END", "data": {"session_id": "20251009-163428"}}
+2025-10-11 01:58:52 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 01:58:52 | INFO    | Main | {"timestamp": "2025-10-11T01:58:52.525320", "event": "SESSION_START", "data": {"session_id": "20251011-015852"}}
+2025-10-11 01:58:52 | ERROR   | LangManager | {"timestamp": "2025-10-11T01:58:52.540132", "event": "ERROR", "data": {"action": "LANG_FILE_INVALID", "error": "english.json: Expecting property name enclosed in double quotes: line 31 column 1 (char 1084)"}}
+2025-10-11 01:58:52 | ERROR   | LangManager | {"timestamp": "2025-10-11T01:58:52.554632", "event": "ERROR", "data": {"action": "LANG_FILE_INVALID", "error": "german.json: Expecting property name enclosed in double quotes: line 31 column 1 (char 1187)"}}
+2025-10-11 01:58:52 | ERROR   | LangManager | {"timestamp": "2025-10-11T01:58:52.568138", "event": "ERROR", "data": {"action": "LANG_FILE_INVALID", "error": "turkish.json: Expecting property name enclosed in double quotes: line 31 column 1 (char 1129)"}}
+2025-10-11 01:58:52 | WARNING | LangManager | {"timestamp": "2025-10-11T01:58:52.579510", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\langs"}}
+2025-10-11 01:58:52 | INFO    | LangManager | {"timestamp": "2025-10-11T01:58:52.590633", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": []}}
+2025-10-11 01:58:53 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 01:58:54 | INFO    | Main | {"timestamp": "2025-10-11T01:58:54.676270", "event": "SESSION_END", "data": {"session_id": "20251011-015852"}}
+2025-10-11 01:59:00 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 01:59:00 | INFO    | Main | {"timestamp": "2025-10-11T01:59:00.471369", "event": "SESSION_START", "data": {"session_id": "20251011-015900"}}
+2025-10-11 01:59:00 | INFO    | LangManager | {"timestamp": "2025-10-11T01:59:00.516695", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 01:59:00 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 01:59:08 | INFO    | Main | {"timestamp": "2025-10-11T01:59:08.494883", "event": "SESSION_END", "data": {"session_id": "20251011-015900"}}
+2025-10-11 01:59:10 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 01:59:10 | INFO    | Main | {"timestamp": "2025-10-11T01:59:10.947813", "event": "SESSION_START", "data": {"session_id": "20251011-015910"}}
+2025-10-11 01:59:10 | INFO    | LangManager | {"timestamp": "2025-10-11T01:59:10.990242", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 01:59:11 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 01:59:17 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T01:59:17.650224", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-11 01:59:24 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T01:59:24.630346", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-10-11 01:59:24 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T01:59:24.675332", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-10-11 01:59:27 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T01:59:27.746374", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-10-11 01:59:38 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T01:59:38.094750", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 01:59:40 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 01:59:42 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 01:59:46 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 01:59:51 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 01:59:55 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 01:59:58 | INFO    | Main | {"timestamp": "2025-10-11T01:59:58.272038", "event": "SESSION_END", "data": {"session_id": "20251011-015910"}}
+2025-10-11 02:00:29 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:00:29 | INFO    | Main | {"timestamp": "2025-10-11T02:00:29.836846", "event": "SESSION_START", "data": {"session_id": "20251011-020029"}}
+2025-10-11 02:00:29 | INFO    | LangManager | {"timestamp": "2025-10-11T02:00:29.879920", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:00:30 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:01:24 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:01:24 | INFO    | Main | {"timestamp": "2025-10-11T02:01:24.519285", "event": "SESSION_START", "data": {"session_id": "20251011-020124"}}
+2025-10-11 02:01:24 | INFO    | LangManager | {"timestamp": "2025-10-11T02:01:24.563588", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:01:24 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:01:26 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:01:26.993098", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:01:28 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 02:01:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:01:36.554929", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:01:38 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 02:01:41 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 02:03:09 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:03:09 | INFO    | Main | {"timestamp": "2025-10-11T02:03:09.386317", "event": "SESSION_START", "data": {"session_id": "20251011-020309"}}
+2025-10-11 02:03:09 | INFO    | LangManager | {"timestamp": "2025-10-11T02:03:09.429070", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:03:09 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:03:11 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:03:11.507018", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:03:13 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 02:03:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:03:13.148243", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "file", "db_path": "logs.sqlite"}}}
+2025-10-11 02:03:16 | INFO    | root | Logs initialized in DEBUG mode → handler=file
+2025-10-11 02:03:16 | DEBUG   | LangManager | {"timestamp": "2025-10-11T02:03:16.221106", "event": "LANG_KEY_MISSING", "data": {"lang": "english", "key": "logs_updated_message"}}
+2025-10-11 02:03:16 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:03:16.241096", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "DEBUG", "handler": "file", "db_path": "logs.sqlite"}}}
+2025-10-11 02:05:50 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:05:50 | INFO    | Main | {"timestamp": "2025-10-11T02:05:50.659908", "event": "SESSION_START", "data": {"session_id": "20251011-020550"}}
+2025-10-11 02:05:50 | INFO    | LangManager | {"timestamp": "2025-10-11T02:05:50.703877", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:05:51 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:05:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:05:52.241530", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-11 02:05:54 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:05:54.778917", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:05:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:05:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:05:56.212104", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": ""}}}
+2025-10-11 02:05:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:05:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:05:56.277113", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "S"}}}
+2025-10-11 02:05:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:05:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:05:56.399304", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "SE"}}}
+2025-10-11 02:05:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:05:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:05:56.553690", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "SEA"}}}
+2025-10-11 02:06:10 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 02:06:10 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:06:10.413995", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "file", "db_path": "SEA"}}}
+2025-10-11 02:06:13 | INFO    | root | Logs initialized in DEBUG mode → handler=file
+2025-10-11 02:06:13 | DEBUG   | LangManager | {"timestamp": "2025-10-11T02:06:13.835477", "event": "LANG_KEY_MISSING", "data": {"lang": "english", "key": "logs_updated_message"}}
+2025-10-11 02:06:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:06:13.849589", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "DEBUG", "handler": "file", "db_path": "SEA"}}}
+2025-10-11 02:06:55 | INFO    | Main | {"timestamp": "2025-10-11T02:06:55.147269", "event": "SESSION_END", "data": {"session_id": "20251011-020550"}}
+2025-10-11 02:06:57 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:06:57 | INFO    | Main | {"timestamp": "2025-10-11T02:06:57.622977", "event": "SESSION_START", "data": {"session_id": "20251011-020657"}}
+2025-10-11 02:06:57 | INFO    | LangManager | {"timestamp": "2025-10-11T02:06:57.670684", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:06:58 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:07:00 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:07:00.107340", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:07:06 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:07:06 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:07:06.446840", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "sea.sqlite"}}}
+2025-10-11 02:07:11 | INFO    | root | Logs initialized in INFO mode → handler=file
+2025-10-11 02:07:11 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:07:11.331556", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "file", "db_path": "sea.sqlite"}}}
+2025-10-11 02:09:16 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:09:16 | INFO    | Main | {"timestamp": "2025-10-11T02:09:16.557507", "event": "SESSION_START", "data": {"session_id": "20251011-020916"}}
+2025-10-11 02:09:16 | INFO    | LangManager | {"timestamp": "2025-10-11T02:09:16.600174", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:09:16 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:09:19 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:09:19.045827", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:09:21 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:09:21 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:09:21.648750", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "sea.sqlite"}}}
+2025-10-11 02:12:49 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:12:49 | INFO    | Main | {"timestamp": "2025-10-11T02:12:49.573773", "event": "SESSION_START", "data": {"session_id": "20251011-021249"}}
+2025-10-11 02:12:49 | INFO    | LangManager | {"timestamp": "2025-10-11T02:12:49.619773", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:12:50 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:13:21 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:13:21 | INFO    | Main | {"timestamp": "2025-10-11T02:13:21.814851", "event": "SESSION_START", "data": {"session_id": "20251011-021321"}}
+2025-10-11 02:13:21 | INFO    | LangManager | {"timestamp": "2025-10-11T02:13:21.859381", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:13:22 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:13:23 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:13:23.838851", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:13:26 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:13:26 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:13:26.926869", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "beta.sqlite"}}}
+2025-10-11 02:14:00 | INFO    | Main | {"timestamp": "2025-10-11T02:14:00.145215", "event": "SESSION_END", "data": {"session_id": "20251011-021321"}}
+2025-10-11 02:14:29 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:14:29 | INFO    | Main | {"timestamp": "2025-10-11T02:14:29.742858", "event": "SESSION_START", "data": {"session_id": "20251011-021429"}}
+2025-10-11 02:14:29 | INFO    | LangManager | {"timestamp": "2025-10-11T02:14:29.786845", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:14:30 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:14:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:14:31.315989", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-11 02:14:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:14:33.640979", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:14:36 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:14:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:14:36.523259", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "sea.sqlite"}}}
+2025-10-11 02:15:24 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:15:24 | INFO    | Main | {"timestamp": "2025-10-11T02:15:24.640844", "event": "SESSION_START", "data": {"session_id": "20251011-021524"}}
+2025-10-11 02:15:24 | INFO    | LangManager | {"timestamp": "2025-10-11T02:15:24.684847", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:15:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:15:26 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:15:26.693641", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:15:29 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:15:29 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:15:29.322908", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "beta.sqlite"}}}
+2025-10-11 02:16:22 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:16:22.324303", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:16:34 | INFO    | Main | {"timestamp": "2025-10-11T02:16:34.023270", "event": "SESSION_END", "data": {"session_id": "20251011-021524"}}
+2025-10-11 02:19:48 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:19:48 | INFO    | Main | {"timestamp": "2025-10-11T02:19:48.453224", "event": "SESSION_START", "data": {"session_id": "20251011-021948"}}
+2025-10-11 02:19:48 | INFO    | LangManager | {"timestamp": "2025-10-11T02:19:48.497674", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:19:48 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:19:50 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:19:50.705669", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:19:53 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:19:53 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:19:53.712647", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "beta.sqlite"}}}
+2025-10-11 02:22:37 | INFO    | Main | {"timestamp": "2025-10-11T02:22:37.458014", "event": "SESSION_END", "data": {"session_id": "20251011-021948"}}
+2025-10-11 02:22:43 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:22:43 | INFO    | Main | {"timestamp": "2025-10-11T02:22:43.115530", "event": "SESSION_START", "data": {"session_id": "20251011-022243"}}
+2025-10-11 02:22:43 | INFO    | LangManager | {"timestamp": "2025-10-11T02:22:43.162527", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:22:43 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:22:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:22:55.005659", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:24:34 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:24:34 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:24:34.736732", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "beta.sqlite"}}}
+2025-10-11 02:25:55 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:25:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:25:55.501041", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "tuna.sqlite"}}}
+2025-10-11 02:25:58 | INFO    | Main | {"timestamp": "2025-10-11T02:25:58.411836", "event": "SESSION_END", "data": {"session_id": "20251011-022243"}}
+2025-10-11 02:26:52 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:26:52 | INFO    | Main | {"timestamp": "2025-10-11T02:26:52.102119", "event": "SESSION_START", "data": {"session_id": "20251011-022652"}}
+2025-10-11 02:26:52 | INFO    | LangManager | {"timestamp": "2025-10-11T02:26:52.146125", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-11 02:26:52 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-11 02:26:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:26:55.530521", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-11 02:26:58 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-11 02:26:58 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:26:58.877631", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "beta.sqlite"}}}
+2025-10-11 02:27:04 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:27:04.764758", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-10-11 02:27:04 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:27:04.807074", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-10-11 02:27:30 | INFO    | Main | {"timestamp": "2025-10-11T02:27:30.663495", "event": "SESSION_END", "data": {"session_id": "20251011-022652"}}

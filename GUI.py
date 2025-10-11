@@ -114,21 +114,21 @@ class TTSMenuApp(tk.Tk):
         menubar.add_cascade(label=SPACER, state="disabled")
 
         help_menu = tk.Menu(menubar, tearoff=0)
-        help_menu.add_command(label="Developer", command=self.show_developer)
-        help_menu.add_command(label="Voice Settings", command=self.show_settings)
-        help_menu.add_command(label="Config Settings", command=self.show_config_settings)
-        help_menu.add_command(label="Markup Guide", command=self.show_markup_guide)
+        help_menu.add_command(label=self.lang.get("help_developer"), command=self.show_developer)
+        help_menu.add_command(label=self.lang.get("help_voice_settings"), command=self.show_settings)
+        help_menu.add_command(label=self.lang.get("help_config_settings"), command=self.show_config_settings)
+        help_menu.add_command(label=self.lang.get("help_markup_guide"), command=self.show_markup_guide)
         menubar.add_cascade(label="Help", menu=help_menu)
 
         package_menu = tk.Menu(menubar, tearoff=0)
-        package_menu.add_command(label="ZIP Settings", command=self.show_zip_settings)
-        menubar.add_cascade(label="Package (ZIP)", menu=package_menu)
+        package_menu.add_command(label=self.lang.get("package_zip_settings"), command=self.show_zip_settings)
+        menubar.add_cascade(label=self.lang.get("menu_package"), menu=package_menu)
 
         theme_menu = tk.Menu(menubar, tearoff=0)
-        theme_menu.add_command(label="🌞 Light Theme", command=lambda: self.change_theme("light"))
-        theme_menu.add_command(label="🌙 Dark Theme", command=lambda: self.change_theme("dark"))
-        theme_menu.add_command(label="🎨 Default Theme", command=lambda: self.change_theme("default"))
-        menubar.add_cascade(label="Theme", menu=theme_menu)
+        theme_menu.add_command(label=self.lang.get("menu_light"), command=lambda: self.change_theme("light"))
+        theme_menu.add_command(label=self.lang.get("menu_dark"), command=lambda: self.change_theme("dark"))
+        theme_menu.add_command(label=self.lang.get("menu_default"), command=lambda: self.change_theme("default"))
+        menubar.add_cascade(label=self.lang.get("menu_theme"), menu=theme_menu)
 
 
         self.config(menu=menubar)
@@ -151,7 +151,7 @@ class TTSMenuApp(tk.Tk):
 
         ttk.Label(root, text="Text to Speech", style="Title.TLabel") \
             .grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 10))
-        ttk.Label(root, text="Enter your text:", style="Muted.TLabel") \
+        ttk.Label(root, text=self.lang.get("enter_text"), style="Muted.TLabel") \
             .grid(row=1, column=0, sticky="w")
 
 
@@ -168,15 +168,15 @@ class TTSMenuApp(tk.Tk):
         right.grid_columnconfigure(0, weight=1)
 
 
-        convert_card, convert_inner = section(right, "Convert")
+        convert_card, convert_inner = section(right, self.lang.get("convert_section"))
         convert_card.grid(row=0, column=0, sticky="ew", pady=(0, 12))
-        self.convert_btn = primary_button(convert_inner, "CONVERT", self.on_convert)
+        self.convert_btn = primary_button(convert_inner, self.lang.get("convert_button"), self.on_convert)
         self.convert_btn.pack(fill="x")
 
-        self.preview_btn = primary_button(convert_inner, "PREVIEW", self.on_preview)
+        self.preview_btn = primary_button(convert_inner, self.lang.get("preview_button"), self.on_preview)
         self.preview_btn.pack(fill="x", pady=(0, 6))
 
-        service_card, service_inner = section(right, "TTS Service")
+        service_card, service_inner = section(right, self.lang.get("tts_service_section"))
         service_card.grid(row=1, column=0, sticky="nsew")
 
         self.service_var = tk.StringVar(value=MemoryManager.get("tts_service", ""))
@@ -196,7 +196,7 @@ class TTSMenuApp(tk.Tk):
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
 
-        fmt_card, fmt_inner = section(right, "Format")
+        fmt_card, fmt_inner = section(right, self.lang.get("format_section"))
         fmt_card.grid(row=2, column=0, sticky="nsew")
         self.format_var = tk.StringVar(value=MemoryManager.get("tts_format", ""))
 
@@ -219,7 +219,7 @@ class TTSMenuApp(tk.Tk):
         ttk.Radiobutton(fmt_row, text="AAC", value="aac", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
-        lang_card, lang_inner = section(right, "Language")
+        lang_card, lang_inner = section(right, self.lang.get("language_section"))
         lang_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
 
         self.lang_map = {code: f"{info['label']} ({code})" for code, info in LANGS.items()}
@@ -302,7 +302,7 @@ class TTSMenuApp(tk.Tk):
         if not text:
             LogsHelperManager.log_error(self.logger, "PREVIEW", "No text entered")
             GUIError(self, "Error", "No text entered!", icon="❌")
-            self._set_progress(0, "Ready.")
+            self._set_progress(0,self.lang.get("progress_ready"))
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
             return
 
@@ -473,7 +473,7 @@ class TTSMenuApp(tk.Tk):
 
     def show_developer(self):
         win = tk.Toplevel(self)
-        win.title("Developer")
+        win.title(self.lang.get("developer_title"))
         win.transient(self)
         win.grab_set()
         win.resizable(False, False)
@@ -482,7 +482,7 @@ class TTSMenuApp(tk.Tk):
         container.pack(fill="both", expand=True)
 
 
-        ttk.Label(container, text="👨‍💻 Developer Info", style="Title.TLabel") \
+        ttk.Label(container, text=self.lang.get("developer_title"), style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
 
 
@@ -493,7 +493,7 @@ class TTSMenuApp(tk.Tk):
         ttk.Separator(container).pack(fill="x", pady=15)
 
 
-        ttk.Button(container, text="Close", command=win.destroy,
+        ttk.Button(container, text=self.lang.get("close_button"), command=win.destroy,
                    style="Accent.TButton").pack(anchor="center", pady=(8, 0))
 
 
@@ -508,7 +508,7 @@ class TTSMenuApp(tk.Tk):
         LogsHelperManager.log_button(self.logger, "OPEN_CONFIG_SETTINGS")
 
         win = tk.Toplevel(self)
-        win.title("Config Settings")
+        win.title(self.lang.get("config_settings_title"))
         win.transient(self)
         win.grab_set()
         win.resizable(False, False)
@@ -516,7 +516,7 @@ class TTSMenuApp(tk.Tk):
         container = ttk.Frame(win, padding=25, style="TFrame")
         container.pack(fill="both", expand=True)
 
-        ttk.Label(container, text="⚙️ Config Settings", style="Title.TLabel") \
+        ttk.Label(container, text=self.lang.get("config_settings_title"), style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
 
         current_mode = MemoryManager.get("log_mode", "INFO")
@@ -527,22 +527,51 @@ class TTSMenuApp(tk.Tk):
 
         def update_logs(show_message=True):
             try:
-                mode = log_var.get()
-                handler_type = handler_var.get()
-                db_path = db_path_var.get()
+                mode = log_var.get().strip()
+                handler_type = handler_var.get().strip()
+                db_path = db_path_var.get().strip()
+
+                prev_mode = MemoryManager.get("log_mode", "")
+                prev_handler = MemoryManager.get("log_handler", "")
+                prev_db_path = MemoryManager.get("log_db_path", "")
+
+                if (mode == prev_mode) and (handler_type == prev_handler) and (db_path == prev_db_path):
+                    LogsHelperManager.log_debug(self.logger, "CONFIG_NO_CHANGE", {
+                        "mode": mode, "handler": handler_type, "db": db_path
+                    })
+                    return
+
                 MemoryManager.set("log_mode", mode)
                 MemoryManager.set("log_handler", handler_type)
-                if handler_type != "file":
+
+                if handler_type == "file":
+                    db_path_entry.config(state="disabled")
+                    LogsHelperManager.log_debug(self.logger, "CONFIG_SQLITE_DISABLED", {"handler": handler_type})
+                else:
+                    db_path_entry.config(state="normal")
                     MemoryManager.set("log_db_path", db_path)
 
-                LogsManager.init(mode, handler_type=handler_type, db_path=db_path)
+                LogsManager.init(mode, handler_type=handler_type, db_path=str(LogsManager.LOG_DIR/ db_path))
 
                 if show_message and initialized["value"]:
-                    GUIError(self, "Success", f"Logs updated!\nMode: {mode}, Handler: {handler_type}", icon="✅")
+                    GUIError(self, "Success",
+                             self.lang.get("logs_updated_message",
+                                           f"Logs updated!\nMode: {mode}, Handler: {handler_type}"),
+                             icon="✅")
+
+                LogsHelperManager.log_success(self.logger, "CONFIG_LOGS_UPDATED", {
+                    "mode": mode, "handler": handler_type, "db_path": db_path
+                })
 
             except Exception as e:
+                LogsHelperManager.log_error(self.logger, "CONFIG_LOGS_UPDATE_FAIL", str(e))
                 if show_message:
-                    GUIError(self, "Error", f"Failed to update logs:\n{e}", icon="❌")
+                    GUIError(self, "Error",
+                             self.lang.get("logs_update_failed_message",
+                                           f"Failed to update logs:\n{e}"),
+                             icon="❌")
+
+
 
         mode_frame, log_var, log_combo = logmode_selector(container, current_mode, ["INFO", "DEBUG", "ERROR"])
         mode_frame.pack(fill="x", pady=(0, 15))
@@ -565,7 +594,16 @@ class TTSMenuApp(tk.Tk):
         db_path_entry.grid(row=0, column=1, sticky="ew")
         db_frame.grid_columnconfigure(1, weight=1)
 
-        db_path_var.trace_add("write", lambda *_: (update_logs(), initialized.__setitem__("value", True)))
+        def on_enter_pressed(event=None):
+            initialized["value"] = True
+            update_logs(show_message=True)
+            return "break"
+
+
+        db_path_entry.bind("<FocusOut>", lambda e: (update_logs(), initialized.__setitem__("value", True)))
+        db_path_entry.bind("<Return>", on_enter_pressed)
+        db_path_entry.bind("<KP_Enter>", on_enter_pressed)
+
 
         ttk.Separator(container).pack(fill="x", pady=15)
         ttk.Button(container, text="Close", command=win.destroy,
@@ -578,7 +616,7 @@ class TTSMenuApp(tk.Tk):
         LogsHelperManager.log_button(self.logger, "OPEN_ZIP_SETTINGS")
 
         win = tk.Toplevel(self)
-        win.title("ZIP Package Settings")
+        win.title(self.lang.get("zip_settings_title"))
         win.transient(self)
         win.grab_set()
         win.resizable(False, False)
@@ -586,7 +624,7 @@ class TTSMenuApp(tk.Tk):
         container = ttk.Frame(win, padding=25, style="TFrame")
         container.pack(fill="both", expand=True)
 
-        ttk.Label(container, text="📦 ZIP Package Settings", style="Title.TLabel") \
+        ttk.Label(container, text=self.lang.get("zip_settings_title"), style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
         ttk.Label(container,
                   text=("Enable or disable ZIP export.\n"

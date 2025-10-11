@@ -521,3 +521,10 @@
 2025-10-09 16:32:38 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
 2025-10-09 16:32:43 | INFO    | TTSMenuApp | {"timestamp": "2025-10-09T16:32:43.579809", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
 2025-10-09 16:34:12 | INFO    | Main | {"timestamp": "2025-10-09T16:34:12.721053", "event": "SESSION_END", "data": {"session_id": "20251009-163237"}}
+2025-10-11 02:03:16 | INFO    | root | Logs initialized in DEBUG mode → handler=file
+2025-10-11 02:03:16 | DEBUG   | LangManager | {"timestamp": "2025-10-11T02:03:16.221106", "event": "LANG_KEY_MISSING", "data": {"lang": "english", "key": "logs_updated_message"}}
+2025-10-11 02:03:16 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:03:16.241096", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "DEBUG", "handler": "file", "db_path": "logs.sqlite"}}}
+2025-10-11 02:06:13 | INFO    | root | Logs initialized in DEBUG mode → handler=file
+2025-10-11 02:06:13 | DEBUG   | LangManager | {"timestamp": "2025-10-11T02:06:13.835477", "event": "LANG_KEY_MISSING", "data": {"lang": "english", "key": "logs_updated_message"}}
+2025-10-11 02:06:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-11T02:06:13.849589", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "DEBUG", "handler": "file", "db_path": "SEA"}}}
+2025-10-11 02:06:55 | INFO    | Main | {"timestamp": "2025-10-11T02:06:55.147269", "event": "SESSION_END", "data": {"session_id": "20251011-020550"}}
