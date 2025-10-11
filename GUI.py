@@ -427,8 +427,14 @@ class TTSMenuApp(tk.Tk):
             def tts_progress(pct, msg):
                 self._set_progress(pct, msg)
 
-            raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
+            use_markup = "<" in text and ">" in text
 
+            if use_markup:
+                from markup.MarkupManager import MarkupManager
+                markup_manager = MarkupManager(tts)
+                raw_bytes = markup_manager.synthesize_with_markup(text, progress_cb=tts_progress)
+            else:
+                raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
 
             self._set_progress(62, "Applying effects…")
             settings = {k: MemoryManager.get(k, v) for k, v in {
@@ -438,7 +444,6 @@ class TTSMenuApp(tk.Tk):
             processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
             LogsHelperManager.log_debug(self.logger, "EFFECTS_APPLIED_CONVERT", settings)
             self._set_progress(85, "Effects done")
-
 
             fmt_class = FORMAT_MAP.get(fmt_key)
             processed_audio = DataManager.from_bytes(processed_bytes, "mp3")

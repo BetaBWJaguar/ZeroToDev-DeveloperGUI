@@ -27,5 +27,6 @@
   "preview_playing": "Playing preview…",
   "developer_title": "👨‍💻 Developer Info",
   "config_settings_title": "⚙️ Config Settings",
-  "zip_settings_title": "📦 ZIP Package Settings"
+  "zip_settings_title": "📦 ZIP Package Settings",
+  "enter_text": "Textarea"
 }

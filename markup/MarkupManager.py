@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-import time
+import re
 from io import BytesIO
 from pydub import AudioSegment
-from data_manager.DataManager import DataManager
-from logs_manager.LogsHelperManager import LogsHelperManager
-from logs_manager.LogsManager import LogsManager
 from markup.MarkupManagerUtility import MarkupManagerUtility
+from logs_manager.LogsManager import LogsManager
 
 
 class MarkupManager:
@@ -20,64 +18,78 @@ class MarkupManager:
         self.parser.debug_tokens(tokens)
 
         combined = AudioSegment.silent(duration=0)
-        start = time.time()
-        total = len(tokens)
+        pos = 0
 
-        for i, token in enumerate(tokens, 1):
-            seg = None
+        pattern = re.compile(
+            r'(<(emphasis|emotion|prosody).*?>.*?</\2>|<break.*?>)',
+            re.DOTALL | re.IGNORECASE
+        )
 
-            if token.type == "text":
-                seg = self._tts_segment(token.value)
+        for match in pattern.finditer(text):
+            start, end = match.span()
 
-            elif token.type == "break":
-                ms = self._parse_duration(token.attrs.get("time", "1s"))
-                seg = AudioSegment.silent(duration=ms)
+            plain = text[pos:start].strip()
+            if plain:
+                raw = self.tts_service.synthesize_to_bytes(plain, progress_cb=progress_cb)
+                combined += AudioSegment.from_file(BytesIO(raw), format=self.format)
 
-            elif token.type == "emphasis":
-                seg = self._tts_segment(token.value)
-                level = token.attrs.get("level", "moderate")
-                seg = self._apply_emphasis(seg, level)
+            seg = match.group(0)
 
-            elif token.type == "emotion":
-                seg = self._tts_segment(token.value)
-                seg = self._apply_emotion(seg, token.attrs.get("type", "neutral"))
+            if "<break" in seg:
+                dur = re.search(r'time="(.*?)"', seg)
+                ms = 1000
+                if dur:
+                    val = dur.group(1)
+                    if val.endswith("ms"):
+                        ms = int(float(val[:-2]))
+                    elif val.endswith("s"):
+                        ms = int(float(val[:-1]) * 1000)
+                combined += AudioSegment.silent(duration=ms)
 
-            elif token.type == "prosody":
-                seg = self._tts_segment(token.value)
-                seg = self._apply_prosody(seg, token.attrs)
+            elif "<emphasis" in seg:
+                inner = re.sub(r"<.*?>", "", seg).strip()
+                if inner:
+                    raw = self.tts_service.synthesize_to_bytes(inner, progress_cb=progress_cb)
+                    audio = AudioSegment.from_file(BytesIO(raw), format=self.format)
+                    level = self._get_attr(seg, "level", "moderate")
+                    audio = self._apply_emphasis(audio, level)
+                    combined += audio
 
-            elif token.type == "voice":
-                seg = self._tts_segment(token.value)
+            elif "<emotion" in seg:
+                inner = re.sub(r"<.*?>", "", seg).strip()
+                if inner:
+                    raw = self.tts_service.synthesize_to_bytes(inner, progress_cb=progress_cb)
+                    audio = AudioSegment.from_file(BytesIO(raw), format=self.format)
+                    emotion = self._get_attr(seg, "type", "neutral")
+                    audio = self._apply_emotion(audio, emotion)
+                    combined += audio
 
-            elif token.type == "say-as":
-                seg = self._tts_segment(token.value)
+            elif "<prosody" in seg:
+                inner = re.sub(r"<.*?>", "", seg).strip()
+                if inner:
+                    raw = self.tts_service.synthesize_to_bytes(inner, progress_cb=progress_cb)
+                    audio = AudioSegment.from_file(BytesIO(raw), format=self.format)
+                    rate = self._get_attr(seg, "rate", "1.0")
+                    pitch = self._get_attr(seg, "pitch", "0")
+                    audio = self._apply_prosody(audio, {"rate": rate, "pitch": pitch})
+                    combined += audio
 
-            if seg:
-                combined += seg
+            pos = end
 
-            if progress_cb:
-                pct = int((i / total) * 100)
-                progress_cb(pct, f"Markup synthesis {pct}%")
-                LogsHelperManager.log_debug(self.logger, "MARKUP_PROGRESS", {
-                    "pct": pct,
-                    "token_type": token.type
-                })
+        if pos < len(text):
+            plain = text[pos:].strip()
+            if plain:
+                raw = self.tts_service.synthesize_to_bytes(plain, progress_cb=progress_cb)
+                combined += AudioSegment.from_file(BytesIO(raw), format=self.format)
 
         buf = BytesIO()
         combined.export(buf, format=self.format)
         buf.seek(0)
+        return buf.read()
 
-        LogsHelperManager.log_debug(self.logger, "MARKUP_DONE", {
-            "duration": time.time() - start,
-            "tokens": total
-        })
-
-        mem_buf = DataManager.write_to_memory(buf.read())
-        return DataManager.read_from_memory(mem_buf)
-
-    def _tts_segment(self, text: str) -> AudioSegment:
-        raw_bytes = self.tts_service.synthesize_to_bytes(text)
-        return AudioSegment.from_file(BytesIO(raw_bytes), format=self.format)
+    def _get_attr(self, text: str, attr: str, default: str) -> str:
+        match = re.search(rf'{attr}="(.*?)"', text)
+        return match.group(1) if match else default
 
     def _apply_emphasis(self, audio: AudioSegment, level: str) -> AudioSegment:
         if level == "strong":
@@ -109,11 +121,3 @@ class MarkupManager:
         elif pitch < 0:
             modified -= abs(pitch) * 1.5
         return modified
-
-    def _parse_duration(self, val: str) -> int:
-        val = val.strip().lower()
-        if val.endswith("ms"):
-            return int(float(val[:-2]))
-        if val.endswith("s"):
-            return int(float(val[:-1]) * 1000)
-        return int(float(val) * 1000)
