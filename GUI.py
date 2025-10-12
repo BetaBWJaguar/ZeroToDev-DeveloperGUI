@@ -786,7 +786,7 @@ class TTSMenuApp(tk.Tk):
         tags = [
             ("<emphasis level=\"strong\">text</emphasis>", "Adds emphasis to specific words."),
             ("<break time=\"500ms\"/>", "Inserts a short pause (silence)."),
-            ("<emotion type=\"happy\">text</emotion>", "Applies emotional tone such as happy, sad, calm, angry."),
+            ("<style type=\"radio\">text</style>", "Applies a specific voice character style — e.g., radio, storyteller, robotic, deep, or soft — to give personality to the speech."),
             ("<prosody rate=\"1.2\" pitch=\"3\">text</prosody>", "Adjusts speed and pitch dynamically."),
             ("<say-as interpret-as=\"digits\">1234</say-as>", "Controls how the text is read (digits, date, etc.).")
         ]
@@ -804,7 +804,7 @@ class TTSMenuApp(tk.Tk):
         example = (
             "Hello <emphasis level=\"strong\">world</emphasis>!\n"
             "<break time=\"700ms\"/>\n"
-            "I feel <emotion type=\"happy\">great</emotion> today!"
+            "I sound like a <style type=\"radio\">professional radio host</style> today!"
         )
 
         example_box = tk.Text(

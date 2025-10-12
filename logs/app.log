@@ -658,3 +658,182 @@
 2025-10-12 01:14:44 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T01:14:44.718512", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 13292, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
 2025-10-12 01:14:44 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T01:14:44.974582", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2560701370239258, "input_bytes": 13292, "output_bytes": 13292}}
 2025-10-12 01:33:49 | INFO    | Main | {"timestamp": "2025-10-12T01:33:49.721883", "event": "SESSION_END", "data": {"session_id": "20251012-011041"}}
+2025-10-12 17:38:03 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 17:38:03 | INFO    | Main | {"timestamp": "2025-10-12T17:38:03.619380", "event": "SESSION_START", "data": {"session_id": "20251012-173803"}}
+2025-10-12 17:38:03 | INFO    | LangManager | {"timestamp": "2025-10-12T17:38:03.680369", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 17:38:04 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 17:40:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:40:12.676801", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-10-12 17:40:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:40:13.426299", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 17:40:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:40:14.015936", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:40:16 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T17:40:16.832798", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-10-12 17:40:46 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:40:46.564429", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:40:47 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:40:47.194203", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 17:40:47 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:40:47.450031", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2558279037475586, "input_bytes": 9072, "output_bytes": 6476}}
+2025-10-12 17:41:20 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 17:41:20 | INFO    | Main | {"timestamp": "2025-10-12T17:41:20.712749", "event": "SESSION_START", "data": {"session_id": "20251012-174120"}}
+2025-10-12 17:41:20 | INFO    | LangManager | {"timestamp": "2025-10-12T17:41:20.756260", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 17:41:21 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 17:41:26 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:41:26.951482", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 17:41:27 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:41:27.606060", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-10-12 17:41:27 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:41:27.999166", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "google"}}
+2025-10-12 17:41:28 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:41:28.336276", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "google"}}
+2025-10-12 17:41:29 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:41:29.011900", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:41:29 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T17:41:29.906829", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No text to send to TTS API"}}
+2025-10-12 17:42:28 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 17:42:28 | INFO    | Main | {"timestamp": "2025-10-12T17:42:28.396470", "event": "SESSION_START", "data": {"session_id": "20251012-174228"}}
+2025-10-12 17:42:28 | INFO    | LangManager | {"timestamp": "2025-10-12T17:42:28.442036", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 17:42:28 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 17:42:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:42:33.238361", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-10-12 17:42:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:42:33.963684", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 17:42:34 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:42:34.566400", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:42:35 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T17:42:35.474181", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No text to send to TTS API"}}
+2025-10-12 17:42:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:42:56.414268", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:42:57 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:42:57.888739", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15404, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 17:42:58 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:42:58.216495", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.3277561664581299, "input_bytes": 15404, "output_bytes": 15404}}
+2025-10-12 17:43:17 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:43:17.210966", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:43:18 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T17:43:18.046268", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No text to send to TTS API"}}
+2025-10-12 17:43:39 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:43:39.003884", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:43:40 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:43:40.343272", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 11660, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 17:43:40 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:43:40.599717", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.25644445419311523, "input_bytes": 11660, "output_bytes": 11660}}
+2025-10-12 17:43:59 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:43:59.437338", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:44:00 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:44:00.789727", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 11852, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 17:44:01 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:44:01.049760", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.26003313064575195, "input_bytes": 11852, "output_bytes": 11852}}
+2025-10-12 17:44:38 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:44:38.147413", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:44:39 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:44:39.409680", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 11852, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 17:44:39 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:44:39.669583", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2599029541015625, "input_bytes": 11852, "output_bytes": 11852}}
+2025-10-12 17:45:02 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:45:02.403101", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-12 17:45:06 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:45:06.273706", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-12 17:45:11 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:45:11.107725", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-10-12 17:45:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:45:25.232260", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:45:27 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:45:27.124085", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 26252, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": true}}}
+2025-10-12 17:45:27 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:45:27.575395", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.451310396194458, "input_bytes": 26252, "output_bytes": 29036}}
+2025-10-12 17:45:54 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:45:54.044417", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:45:56 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:45:56.992076", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 42476, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": true}}}
+2025-10-12 17:45:57 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:45:57.573773", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.5816969871520996, "input_bytes": 42476, "output_bytes": 47180}}
+2025-10-12 17:48:15 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:48:15.538388", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "en"}}
+2025-10-12 17:48:16 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:48:16.348669", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:48:17 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:48:17.388527", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 43244, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": true}}}
+2025-10-12 17:48:17 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:48:17.955032", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.566504955291748, "input_bytes": 43244, "output_bytes": 47948}}
+2025-10-12 17:48:48 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T17:48:48.107181", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 17:48:49 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:48:49.094130", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 35948, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": true}}}
+2025-10-12 17:48:49 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T17:48:49.606353", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.5122230052947998, "input_bytes": 35948, "output_bytes": 39884}}
+2025-10-12 20:15:04 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:15:04.720364", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-12 20:15:10 | INFO    | Main | {"timestamp": "2025-10-12T20:15:10.338967", "event": "SESSION_END", "data": {"session_id": "20251012-174228"}}
+2025-10-12 20:30:03 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:30:03 | INFO    | Main | {"timestamp": "2025-10-12T20:30:03.449083", "event": "SESSION_START", "data": {"session_id": "20251012-203003"}}
+2025-10-12 20:30:03 | INFO    | LangManager | {"timestamp": "2025-10-12T20:30:03.491925", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:30:03 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:30:17 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:30:17.945888", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:30:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:30:18.686403", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-10-12 20:30:19 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:30:19.367230", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:30:21 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:30:21.503878", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-10-12 20:30:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:30:25.029074", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-10-12 20:30:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:30:25.709661", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:30:26 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:30:26.686430", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No text to send to TTS API"}}
+2025-10-12 20:30:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:30:40.095686", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:30:41 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:30:41.173160", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 14854, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:30:41 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:30:41.435646", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2624857425689697, "input_bytes": 14854, "output_bytes": 14854}}
+2025-10-12 20:31:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:31:14.476483", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:31:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:31:15.447238", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 16735, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:31:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:31:15.716136", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.26889801025390625, "input_bytes": 16735, "output_bytes": 16735}}
+2025-10-12 20:33:30 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:33:31 | INFO    | Main | {"timestamp": "2025-10-12T20:33:31.002468", "event": "SESSION_START", "data": {"session_id": "20251012-203331"}}
+2025-10-12 20:33:31 | INFO    | LangManager | {"timestamp": "2025-10-12T20:33:31.049328", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:33:31 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:33:43 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:33:43.577506", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:33:43 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:33:43.593506", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "Unknown TTS service: "}}
+2025-10-12 20:33:45 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:33:45.066576", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:33:45 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:33:45.671660", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-10-12 20:33:46 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:33:46.672438", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-10-12 20:33:47 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:33:47.191645", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:33:48 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:33:48.768581", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 22586, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:33:49 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:33:49.035351", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2667694091796875, "input_bytes": 22586, "output_bytes": 22586}}
+2025-10-12 20:34:54 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:34:54 | INFO    | Main | {"timestamp": "2025-10-12T20:34:54.199991", "event": "SESSION_START", "data": {"session_id": "20251012-203454"}}
+2025-10-12 20:34:54 | INFO    | LangManager | {"timestamp": "2025-10-12T20:34:54.244935", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:34:54 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:35:05 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:35:05.998374", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:35:06 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:35:06.012590", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "Unknown TTS service: "}}
+2025-10-12 20:35:07 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:35:07.559440", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-10-12 20:35:08 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:35:08.840012", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:35:09 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:35:09.356203", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:35:12 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:35:12.306576", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 47873, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:35:12 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:35:12.589174", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28259754180908203, "input_bytes": 47873, "output_bytes": 47873}}
+2025-10-12 20:35:30 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:35:30.032468", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:35:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:35:32.689863", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 45783, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:35:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:35:32.982189", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2923257350921631, "input_bytes": 45783, "output_bytes": 45783}}
+2025-10-12 20:37:40 | INFO    | Main | {"timestamp": "2025-10-12T20:37:40.101506", "event": "SESSION_END", "data": {"session_id": "20251012-203454"}}
+2025-10-12 20:38:22 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:38:22 | INFO    | Main | {"timestamp": "2025-10-12T20:38:22.272211", "event": "SESSION_START", "data": {"session_id": "20251012-203822"}}
+2025-10-12 20:38:22 | INFO    | LangManager | {"timestamp": "2025-10-12T20:38:22.400210", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:38:24 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:39:29 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:39:29.954340", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:39:30 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:39:30.813511", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-10-12 20:39:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:39:31.288490", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:39:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:39:32.035774", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 46828, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:39:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:39:32.317254", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2814793586730957, "input_bytes": 46828, "output_bytes": 46828}}
+2025-10-12 20:40:40 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:40:40 | INFO    | Main | {"timestamp": "2025-10-12T20:40:40.508438", "event": "SESSION_START", "data": {"session_id": "20251012-204040"}}
+2025-10-12 20:40:40 | INFO    | LangManager | {"timestamp": "2025-10-12T20:40:40.551017", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:40:40 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:40:50 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:40:50.195259", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-10-12 20:40:51 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:40:51.621984", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:40:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:40:52.197223", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:40:53 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:40:53.111458", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 49754, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:40:53 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:40:53.395020", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28356170654296875, "input_bytes": 49754, "output_bytes": 49754}}
+2025-10-12 20:41:43 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:41:43.758208", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:41:44 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:41:44.569984", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 40977, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:41:44 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:41:44.855379", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28539466857910156, "input_bytes": 40977, "output_bytes": 40977}}
+2025-10-12 20:45:24 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:45:24 | INFO    | Main | {"timestamp": "2025-10-12T20:45:24.748946", "event": "SESSION_START", "data": {"session_id": "20251012-204524"}}
+2025-10-12 20:45:24 | INFO    | LangManager | {"timestamp": "2025-10-12T20:45:24.792468", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:45:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:45:51 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:45:51.613248", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-10-12 20:45:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:45:52.158241", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:45:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:45:52.712444", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:45:53 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:45:53.820107", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 42648, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:45:54 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:45:54.110278", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.29017162322998047, "input_bytes": 42648, "output_bytes": 42648}}
+2025-10-12 20:46:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:46:12.779276", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:46:14 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:46:14.055919", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 35334, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:46:14 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:46:14.336706", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28078651428222656, "input_bytes": 35334, "output_bytes": 35334}}
+2025-10-12 20:47:03 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:47:03 | INFO    | Main | {"timestamp": "2025-10-12T20:47:03.352234", "event": "SESSION_START", "data": {"session_id": "20251012-204703"}}
+2025-10-12 20:47:03 | INFO    | LangManager | {"timestamp": "2025-10-12T20:47:03.397972", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:47:03 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:47:10 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:47:10.158685", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:47:10 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:47:10.586420", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-10-12 20:47:11 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:47:11.312624", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:47:11 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:47:11.935413", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 48082, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:47:12 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:47:12.227710", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2922966480255127, "input_bytes": 48082, "output_bytes": 48082}}
+2025-10-12 20:47:26 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:47:26.132328", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:47:26 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:47:26.859370", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 39932, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:47:27 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:47:27.143144", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28377437591552734, "input_bytes": 39932, "output_bytes": 39932}}
+2025-10-12 20:48:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:48:14.512913", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:48:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:48:15.386132", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 37006, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:48:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:48:15.672132", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28600049018859863, "input_bytes": 37006, "output_bytes": 37006}}
+2025-10-12 20:53:09 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-12 20:53:09 | INFO    | Main | {"timestamp": "2025-10-12T20:53:09.297326", "event": "SESSION_START", "data": {"session_id": "20251012-205309"}}
+2025-10-12 20:53:09 | INFO    | LangManager | {"timestamp": "2025-10-12T20:53:09.340838", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-12 20:53:09 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-12 20:53:19 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:53:19.499809", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-12 20:53:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:53:20.181273", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-10-12 20:53:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:53:20.811937", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:53:23 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:53:23.107351", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-10-12 20:53:35 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:53:35.483392", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:53:37 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:53:37.683224", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-10-12 20:53:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:53:40.982837", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:53:46 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:53:46.570427", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 93639, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:53:46 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:53:46.872283", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.30185604095458984, "input_bytes": 93639, "output_bytes": 93639}}
+2025-10-12 20:54:08 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:54:08.340719", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:54:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:54:15.356632", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 85489, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:54:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:54:15.656466", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2998337745666504, "input_bytes": 85489, "output_bytes": 85489}}
+2025-10-12 20:54:39 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:54:39.955665", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:54:40 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:54:40.627693", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15552, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:54:40 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:54:40.886675", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.25898194313049316, "input_bytes": 15552, "output_bytes": 10796}}
+2025-10-12 20:56:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T20:56:18.147068", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-12 20:57:08 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:57:08.617725", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 683756, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-12 20:57:09 | INFO    | VoiceProcessor | {"timestamp": "2025-10-12T20:57:09.331190", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.7134652137756348, "input_bytes": 683756, "output_bytes": 683756}}
+2025-10-12 21:00:46 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T21:00:46.030295", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-12 21:00:48 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T21:00:48.816592", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-10-12 21:00:48 | INFO    | TTSMenuApp | {"timestamp": "2025-10-12T21:00:48.859599", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-10-12 21:00:54 | INFO    | Main | {"timestamp": "2025-10-12T21:00:54.703634", "event": "SESSION_END", "data": {"session_id": "20251012-205309"}}
