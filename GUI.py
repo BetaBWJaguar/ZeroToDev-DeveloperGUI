@@ -11,6 +11,7 @@ from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
+from language_manager.LangManager import LangManager
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 from media_formats.AAC import AAC
@@ -130,6 +131,10 @@ class TTSMenuApp(tk.Tk):
         theme_menu.add_command(label=self.lang.get("menu_default"), command=lambda: self.change_theme("default"))
         menubar.add_cascade(label=self.lang.get("menu_theme"), menu=theme_menu)
 
+
+        language_menu = tk.Menu(menubar, tearoff=0)
+        language_menu.add_command(label=self.lang.get("menu_language_settings"), command=self.show_language_settings)
+        menubar.add_cascade(label=self.lang.get("menu_language"), menu=language_menu)
 
         self.config(menu=menubar)
 
@@ -846,6 +851,107 @@ class TTSMenuApp(tk.Tk):
         primary_button(scroll_frame, "Close", win.destroy).pack(anchor="center", pady=(5, 10))
 
         center_window(win, self)
+
+    def show_language_settings(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_LANGUAGE_SETTINGS")
+
+        win = tk.Toplevel(self)
+        win.title("Select a Language")
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        container = ttk.Frame(win, padding=25, style="TFrame")
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text="Select a Language", style="Title.TLabel") \
+            .pack(anchor="center", pady=(0, 15))
+        ttk.Label(container, text="Select the language for the user interface.",
+                  style="Muted.TLabel", wraplength=380, justify="center") \
+            .pack(anchor="center", pady=(0, 12))
+
+        available_langs = {
+            "english": "English",
+            "turkish": "Türkçe",
+            "german": "Deutsch"
+        }
+
+        current_lang = MemoryManager.get("ui_language", "english")
+        current_display = available_langs.get(current_lang, "English")
+
+        lang_var = tk.StringVar(value=current_display)
+
+        inv_map = {v: k for k, v in available_langs.items()}
+
+        row, combo = styled_combobox(
+            container,
+            self.lang.get("select_language_label", "Select language:"),
+            lang_var,
+            list(available_langs.values())
+        )
+        row.pack(fill="x", pady=(8, 20))
+
+        def apply_language():
+            selected_display = lang_var.get()
+            new_lang_code = inv_map.get(selected_display, "english")
+            old_lang = MemoryManager.get("ui_language", "english")
+
+            if new_lang_code != old_lang:
+                MemoryManager.set("ui_language", new_lang_code)
+                LogsHelperManager.log_success(self.logger, "LANGUAGE_CHANGED", {
+                    "old": old_lang,
+                    "new": new_lang_code
+                })
+                self.reload_language(new_lang_code)
+                GUIError(
+                    self,
+                    "✅",
+                    "Language changed successfully!",
+                    icon="✅"
+                )
+            win.destroy()
+
+        primary_button(
+            container,
+            self.lang.get("apply_button"),
+            apply_language
+        ).pack(anchor="center", pady=(10, 5))
+
+        ttk.Button(
+            container,
+            text=self.lang.get("close_button"),
+            command=win.destroy,
+            style="Accent.TButton"
+        ).pack(anchor="center", pady=(5, 0))
+
+        center_window(win, self)
+
+
+    def reload_language(self, new_lang_code: str):
+        from language_manager.LangManager import LangManager
+        try:
+            langs_dir = Path(__file__).resolve().parent / "langs"
+            self.lang = LangManager(langs_dir=langs_dir, default_lang=new_lang_code)
+            MemoryManager.set("ui_language", new_lang_code)
+
+            self.title(self.lang.get("app_title"))
+
+            for widget in self.winfo_children():
+                widget.destroy()
+
+            init_style(self, COLORS, FONTS)
+            self._build_menubar()
+            self._build()
+
+            LogsHelperManager.log_success(self.logger, "LANGUAGE_RELOAD_SUCCESS", {
+                "language": new_lang_code
+            })
+
+        except Exception as e:
+            LogsHelperManager.log_error(self.logger, "LANGUAGE_RELOAD_FAIL", str(e))
+            GUIError(self, "Error", f"Failed to reload language:\n{e}", icon="❌")
+
+
 
 
 

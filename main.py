@@ -30,8 +30,9 @@ if __name__ == "__main__":
     session_id = datetime.now().strftime("%Y%m%d-%H%M%S")
     LogsHelperManager.log_session_start(logger, session_id)
     langs_dir = Path(__file__).resolve().parent / "langs"
+    ui_lang = MemoryManager.get("ui_language", "english")
 
-    LANG_MANAGER = LangManager(langs_dir=langs_dir, default_lang="english")
+    LANG_MANAGER = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
     LogsHelperManager.log_event(
         LogsManager.get_logger("LangManager"),
         "LANG_INITIALIZED",

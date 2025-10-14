@@ -28,5 +28,9 @@
   "developer_title": "👨‍💻 Entwicklerinformationen",
   "config_settings_title": "⚙️ Konfigurationseinstellungen",
   "zip_settings_title": "📦 ZIP-Paketeinstellungen",
-  "enter_text": "Textbereich"
+  "enter_text": "Textbereich",
+  "menu_language_settings": "Sprachmenü",
+  "menu_language": "Spracheinstellungen",
+  "close_button": "Schließen",
+  "apply_button": "Übernehmen"
 }

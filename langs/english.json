@@ -28,5 +28,9 @@
   "developer_title": "👨‍💻 Developer Info",
   "config_settings_title": "⚙️ Config Settings",
   "zip_settings_title": "📦 ZIP Package Settings",
-  "enter_text": "Textarea"
+  "enter_text": "Textarea",
+  "menu_language_settings": "Language Menu",
+  "menu_language": "Language Settings",
+  "close_button": "Close",
+  "apply_button": "Apply"
 }

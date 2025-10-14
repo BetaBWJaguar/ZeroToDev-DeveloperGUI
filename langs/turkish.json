@@ -28,5 +28,9 @@
   "developer_title": "👨‍💻 Geliştirici Bilgisi",
   "config_settings_title": "⚙️ Yapılandırma Ayarları",
   "zip_settings_title": "📦 ZIP Paket Ayarları",
-  "enter_text": "Metin Alanı"
+  "enter_text": "Metin Alanı",
+  "menu_language_settings": "Dil Menüsü",
+  "menu_language": "Dil Ayarları",
+  "close_button": "Kapat",
+  "apply_button": "Uygula"
 }
