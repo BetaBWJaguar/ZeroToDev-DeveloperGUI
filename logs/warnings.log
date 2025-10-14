@@ -32,3 +32,5 @@
 2025-10-14 00:20:21 | WARNING | LangManager | {"timestamp": "2025-10-14T00:20:21.380743", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
 2025-10-14 00:20:30 | WARNING | LangManager | {"timestamp": "2025-10-14T00:20:30.898998", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
 2025-10-14 00:21:28 | WARNING | LangManager | {"timestamp": "2025-10-14T00:21:28.644252", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2025-10-14 17:15:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-14T17:15:03.265770", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-14 17:19:13 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-14T17:19:13.732538", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

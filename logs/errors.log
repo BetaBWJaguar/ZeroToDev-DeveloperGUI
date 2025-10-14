@@ -25,3 +25,5 @@
 2025-10-12 20:35:06 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:35:06.012590", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "Unknown TTS service: "}}
 2025-10-12 20:53:23 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:53:23.107351", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
 2025-10-12 20:53:37 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:53:37.683224", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-10-14 17:15:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-14T17:15:03.265770", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-14 17:19:13 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-14T17:19:13.732538", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

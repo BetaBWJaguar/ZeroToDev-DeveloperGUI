@@ -2,6 +2,7 @@
 import json, sys
 import urllib
 from pathlib import Path
+import simpleaudio as sa
 import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
@@ -347,15 +348,45 @@ class TTSMenuApp(tk.Tk):
                         command=self.stop_preview
                     ))
 
-            self.tts_helper.synthesize_preview(
-                text,
-                seconds=20,
-                play_audio=True,
-                progress_cb=preview_progress
-            )
+            use_markup = "<" in text and ">" in text
 
-            LogsHelperManager.log_success(self.logger, "PREVIEW")
+            if use_markup:
+                from markup.MarkupManager import MarkupManager
+                markup_manager = MarkupManager(self.tts_helper)
 
+                def markup_progress(pct, msg):
+                    self._set_progress(pct, msg)
+                    LogsHelperManager.log_debug(self.logger, "PREVIEW_MARKUP_PROGRESS", {"pct": pct, "msg": msg})
+
+                raw_bytes = markup_manager.synthesize_with_markup(text, progress_cb=markup_progress)
+
+                settings = {k: MemoryManager.get(k, v) for k, v in {
+                    "pitch": 0, "speed": 1.0, "volume": 1.0,
+                    "echo": False, "reverb": False, "robot": False
+                }.items()}
+
+                processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
+
+                from pydub.playback import play
+                from io import BytesIO
+                from pydub import AudioSegment
+
+                audio = AudioSegment.from_file(BytesIO(processed_bytes), format="mp3")
+                self._set_progress(95, "Playing preview (markup)…")
+
+                self.tts_helper.audio = audio
+                play(audio)
+
+                self.finish_preview_playback()
+            else:
+                self.tts_helper.synthesize_preview(
+                    text,
+                    seconds=20,
+                    play_audio=True,
+                    progress_cb=preview_progress
+                )
+
+                LogsHelperManager.log_success(self.logger, "PREVIEW")
         except Exception as e:
             GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
             self._set_progress(0, "Ready.")
@@ -365,6 +396,21 @@ class TTSMenuApp(tk.Tk):
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
             self.after(0, self._reset_preview_button)
 
+
+    def finish_preview_playback(self):
+        try:
+            ding_path = Path(__file__).resolve().parent / "tts" / "utility" / "sounds" / "ding.wav"
+            if ding_path.exists():
+                ding_audio = sa.WaveObject.from_wave_file(str(ding_path))
+                ding_play = ding_audio.play()
+                ding_play.wait_done()
+            else:
+                print("[INFO] No ding sound found, skipping.")
+        except Exception as e:
+            print(f"[WARN] Ding sound failed: {e}")
+        finally:
+            self._set_progress(100, "Preview done ✔️")
+            LogsHelperManager.log_success(self.logger, "PREVIEW_DONE", {})
 
 
     def on_convert(self):
