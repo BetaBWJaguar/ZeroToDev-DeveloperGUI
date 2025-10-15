@@ -348,7 +348,10 @@ class TTSMenuApp(tk.Tk):
                         command=self.stop_preview
                     ))
 
-            use_markup = "<" in text and ">" in text
+            use_markup = (
+                    MemoryManager.get("markup_enabled", False)
+                    and "<" in text and ">" in text
+            )
 
             if use_markup:
                 from markup.MarkupManager import MarkupManager
@@ -356,16 +359,22 @@ class TTSMenuApp(tk.Tk):
 
                 def markup_progress(pct, msg):
                     self._set_progress(pct, msg)
-                    LogsHelperManager.log_debug(self.logger, "PREVIEW_MARKUP_PROGRESS", {"pct": pct, "msg": msg})
+                    LogsHelperManager.log_debug(
+                        self.logger, "PREVIEW_MARKUP_PROGRESS", {"pct": pct, "msg": msg}
+                    )
 
-                raw_bytes = markup_manager.synthesize_with_markup(text, progress_cb=markup_progress)
+                raw_bytes = markup_manager.synthesize_with_markup(
+                    text, progress_cb=markup_progress
+                )
 
                 settings = {k: MemoryManager.get(k, v) for k, v in {
                     "pitch": 0, "speed": 1.0, "volume": 1.0,
                     "echo": False, "reverb": False, "robot": False
                 }.items()}
 
-                processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
+                processed_bytes = VoiceProcessor.process_from_memory(
+                    raw_bytes, "mp3", settings
+                )
 
                 from pydub.playback import play
                 from io import BytesIO
@@ -378,7 +387,15 @@ class TTSMenuApp(tk.Tk):
                 play(audio)
 
                 self.finish_preview_playback()
+
             else:
+                if not MemoryManager.get("markup_enabled", True):
+                    LogsHelperManager.log_debug(
+                        self.logger,
+                        "MARKUP_DISABLED_INFO",
+                        {"info": "Markup tags ignored — markup support disabled in Config Settings"}
+                    )
+
                 self.tts_helper.synthesize_preview(
                     text,
                     seconds=20,
@@ -478,13 +495,22 @@ class TTSMenuApp(tk.Tk):
             def tts_progress(pct, msg):
                 self._set_progress(pct, msg)
 
-            use_markup = "<" in text and ">" in text
+            use_markup = (
+                    MemoryManager.get("markup_enabled", False)
+                    and "<" in text and ">" in text
+            )
 
             if use_markup:
                 from markup.MarkupManager import MarkupManager
                 markup_manager = MarkupManager(tts)
                 raw_bytes = markup_manager.synthesize_with_markup(text, progress_cb=tts_progress)
             else:
+                if not MemoryManager.get("markup_enabled", True):
+                    LogsHelperManager.log_debug(
+                        self.logger,
+                        "MARKUP_DISABLED_INFO",
+                        {"info": "Markup tags ignored — markup support disabled in Config Settings"}
+                    )
                 raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
 
             self._set_progress(62, "Applying effects…")
@@ -578,6 +604,7 @@ class TTSMenuApp(tk.Tk):
         current_mode = MemoryManager.get("log_mode", "INFO")
         current_handler = MemoryManager.get("log_handler", "both")
         current_db = MemoryManager.get("log_db_path", "logs.sqlite")
+        current_markup_enabled = MemoryManager.get("markup_enabled", False)
 
         initialized = {"value": False}
 
@@ -659,6 +686,53 @@ class TTSMenuApp(tk.Tk):
         db_path_entry.bind("<FocusOut>", lambda e: (update_logs(), initialized.__setitem__("value", True)))
         db_path_entry.bind("<Return>", on_enter_pressed)
         db_path_entry.bind("<KP_Enter>", on_enter_pressed)
+
+        ttk.Separator(container).pack(fill="x", pady=15)
+
+        markup_enabled_var = tk.BooleanVar(value=current_markup_enabled)
+
+        def on_markup_toggle():
+            state = markup_enabled_var.get()
+            MemoryManager.set("markup_enabled", state)
+            LogsHelperManager.log_success(self.logger, "MARKUP_SUPPORT_TOGGLED", {"enabled": state})
+            GUIError(
+                self,
+                "Config Updated",
+                f"Markup support {'enabled' if state else 'disabled'}!",
+                icon="✅"
+            )
+
+        markup_frame = ttk.Frame(container, style="Card.TFrame")
+        markup_frame.pack(fill="x", pady=(8, 10))
+
+        ttk.Label(
+            markup_frame,
+            text="Markup Support:",
+            style="Muted.TLabel"
+        ).grid(row=0, column=0, sticky="w", padx=(0, 10))
+
+        style = ttk.Style()
+        style.configure(
+            "Markup.TCheckbutton",
+            background=THEME["COLORS"]["card"],
+            foreground=THEME["COLORS"]["text"],
+            font=tuple(THEME["FONTS"]["label"]),
+            padding=(6, 2)
+        )
+        style.map(
+            "Markup.TCheckbutton",
+            background=[("active", THEME["COLORS"]["surface"])],
+            foreground=[("active", THEME["COLORS"]["primary_active"])],
+        )
+
+        markup_checkbox = ttk.Checkbutton(
+            markup_frame,
+            text="Enable Markup Tags (e.g., <emphasis>, <break>, <style>)",
+            variable=markup_enabled_var,
+            command=on_markup_toggle,
+            style="Markup.TCheckbutton"
+        )
+        markup_checkbox.grid(row=0, column=1, sticky="w")
 
 
         ttk.Separator(container).pack(fill="x", pady=15)

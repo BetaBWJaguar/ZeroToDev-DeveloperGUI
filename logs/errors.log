@@ -27,3 +27,8 @@
 2025-10-12 20:53:37 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-12T20:53:37.683224", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
 2025-10-14 17:15:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-14T17:15:03.265770", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-10-14 17:19:13 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-14T17:19:13.732538", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-16 00:19:23 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:19:23.120038", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-10-16 00:20:47 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:20:47.305162", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "'NoneType' object has no attribute 'interpret'"}}
+2025-10-16 00:20:52 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:20:52.994366", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "'NoneType' object has no attribute 'interpret'"}}
+2025-10-16 00:21:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:21:03.630547", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "'NoneType' object has no attribute 'interpret'"}}
+2025-10-16 00:27:45 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:27:45.474375", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}

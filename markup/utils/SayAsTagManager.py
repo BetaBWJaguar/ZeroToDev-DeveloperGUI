@@ -4,11 +4,11 @@ from markup.utils.sayaslangmanager.SayAsTR import SayAsTR
 
 
 class SayAsTagManager:
-    def __init__(self, locale: str = "en"):
+    def __init__(self, locale: str):
         self.locale = locale.split("-")[0].lower()
         self.strategies = {
-            "english": SayAsEN(),
-            "turkish": SayAsTR(),
+            "en": SayAsEN(),
+            "tr": SayAsTR(),
         }
 
     def interpret(self, text: str, interpret_as: str) -> str:

@@ -518,8 +518,50 @@ def loghandler_selector(parent, current_handler: str, handlers: list[str]) -> tu
 
     return frame, var, combo
 
+def markup_support_section(parent, enabled_var: tk.BooleanVar, on_toggle=None) -> ttk.Frame:
+    c = THEME["COLORS"]
+    f = THEME["FONTS"]
+
+    frame = ttk.Frame(parent, style="Card.TFrame")
 
 
+    label = ttk.Label(
+        frame,
+        text="Markup Support:",
+        style="Muted.TLabel"
+    )
+    label.grid(row=0, column=0, sticky="w", padx=(0, 10))
+
+    style = ttk.Style()
+    style.configure(
+        "Markup.TCheckbutton",
+        background=c["card"],
+        foreground=c["text"],
+        font=tuple(f["label"]),
+        focuscolor=c["primary"],
+        padding=(6, 2)
+    )
+    style.map(
+        "Markup.TCheckbutton",
+        background=[("active", c["surface"])],
+        foreground=[("active", c["primary_active"])],
+    )
+
+    check = ttk.Checkbutton(
+        frame,
+        text="Enable Markup Tags (e.g., <emphasis>, <break>, <style>)",
+        variable=enabled_var,
+        style="Markup.TCheckbutton",
+        command=lambda: on_toggle(enabled_var.get()) if on_toggle else None
+    )
+    check.grid(row=0, column=1, sticky="w")
+
+
+    sep = ttk.Separator(frame, orient="horizontal")
+    sep.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(6, 2))
+
+    frame.grid_columnconfigure(1, weight=1)
+    return frame
 
 
 
