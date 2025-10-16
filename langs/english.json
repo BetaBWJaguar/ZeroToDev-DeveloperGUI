@@ -1,5 +1,6 @@
 {
   "app_title": "Zero to Dev - Developer GUI",
+  "app_title2": "Text to Speech",
   "menu_help": "Help",
   "menu_package": "Package (ZIP)",
   "menu_theme": "Theme",
@@ -32,5 +33,6 @@
   "menu_language_settings": "Language Menu",
   "menu_language": "Language Settings",
   "close_button": "Close",
-  "apply_button": "Apply"
+  "apply_button": "Apply",
+  "lang_changed": "Language changed sucessfully"
 }

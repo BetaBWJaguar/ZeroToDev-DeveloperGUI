@@ -1,5 +1,6 @@
 {
   "app_title": "Zero to Dev - Geliştirici Arayüzü",
+  "app_title2": "Metni Sese Çevir",
   "menu_help": "Yardım",
   "menu_package": "Paket (ZIP)",
   "menu_theme": "Tema",
@@ -32,5 +33,6 @@
   "menu_language_settings": "Dil Menüsü",
   "menu_language": "Dil Ayarları",
   "close_button": "Kapat",
-  "apply_button": "Uygula"
+  "apply_button": "Uygula",
+  "lang_changed": "Dil başarılıyla değiştirildi"
 }

@@ -39,3 +39,13 @@
 2025-10-16 00:20:52 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:20:52.994366", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "'NoneType' object has no attribute 'interpret'"}}
 2025-10-16 00:21:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:21:03.630547", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "'NoneType' object has no attribute 'interpret'"}}
 2025-10-16 00:27:45 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T00:27:45.474375", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-10-16 14:19:56 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T14:19:56.630096", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-16 14:58:20 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T14:58:20.972664", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-16 15:46:36 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:46:36.420803", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:49:34 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:49:34.817143", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:49:36 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:49:36.624085", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "No text entered"}}
+2025-10-16 15:49:38 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:49:38.161183", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:55:01 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:55:01.870097", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:55:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:55:03.398621", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:55:05 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:55:05.108738", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "No text entered"}}
+2025-10-16 16:04:27 | WARNING | TTSMenuApp | {"timestamp": "2025-10-16T16:04:27.313245", "event": "WARNING", "data": {"action": "ZIP_PASSWORD", "message": "Password protection enabled but no password was set."}}

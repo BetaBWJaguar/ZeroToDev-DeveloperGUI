@@ -1,5 +1,6 @@
 {
   "app_title": "Zero to Dev - Entwickler-GUI",
+  "app_title2": "Sprachsynthese",
   "menu_help": "Hilfe",
   "menu_package": "Paket (ZIP)",
   "menu_theme": "Thema",
@@ -15,7 +16,7 @@
   "preview_button": "VORSCHAU",
   "convert_button": "KONVERTIEREN",
   "tts_service_section": "TTS-Dienst",
-  "format_section": "Format",
+  "format_section": "Dateiformat",
   "language_section": "Sprache",
   "output_section": "Ausgabe",
   "progress_ready": "Bereit.",
@@ -32,5 +33,6 @@
   "menu_language_settings": "Sprachmenü",
   "menu_language": "Spracheinstellungen",
   "close_button": "Schließen",
-  "apply_button": "Übernehmen"
+  "apply_button": "Übernehmen",
+  "lang_changed": "Die Sprache wurde erfolgreich geändert"
 }

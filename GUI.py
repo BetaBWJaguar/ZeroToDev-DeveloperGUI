@@ -120,7 +120,7 @@ class TTSMenuApp(tk.Tk):
         help_menu.add_command(label=self.lang.get("help_voice_settings"), command=self.show_settings)
         help_menu.add_command(label=self.lang.get("help_config_settings"), command=self.show_config_settings)
         help_menu.add_command(label=self.lang.get("help_markup_guide"), command=self.show_markup_guide)
-        menubar.add_cascade(label="Help", menu=help_menu)
+        menubar.add_cascade(label=self.lang.get("menu_help"), menu=help_menu)
 
         package_menu = tk.Menu(menubar, tearoff=0)
         package_menu.add_command(label=self.lang.get("package_zip_settings"), command=self.show_zip_settings)
@@ -155,7 +155,7 @@ class TTSMenuApp(tk.Tk):
         root.grid_columnconfigure(0, weight=3)
         root.grid_columnconfigure(1, weight=2)
 
-        ttk.Label(root, text="Text to Speech", style="Title.TLabel") \
+        ttk.Label(root, text=self.lang.get("app_title2"), style="Title.TLabel") \
             .grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 10))
         ttk.Label(root, text=self.lang.get("enter_text"), style="Muted.TLabel") \
             .grid(row=1, column=0, sticky="w")
@@ -267,14 +267,14 @@ class TTSMenuApp(tk.Tk):
         self.service_var.trace_add("write", lambda *_: update_voice_state())
 
         output_card, self.output_label = output_selector(
-            right, self.output_dir, self.listener.on_output_change
+            right, self.output_dir, self.listener.on_output_change, self.lang
         )
         output_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
 
-        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right)
+        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right,self.lang)
         self.progress_frame.grid(row=5, column=0, sticky="ew", pady=(8, 2))
 
-        bar, self.status, self.counter = footer(root)
+        bar, self.status, self.counter = footer(root,self.lang)
         bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
 
         self.text.bind("<<Modified>>", self.listener.on_text_change)
@@ -300,14 +300,14 @@ class TTSMenuApp(tk.Tk):
         LogsHelperManager.log_button(self.logger, "PREVIEW")
         LogsHelperManager.log_event(self.logger, "TTS_PREVIEW_START", {})
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
-        self._set_progress(0, "Preview starting…")
+        self._set_progress(0, self.lang.get("preview_starting"))
         threading.Thread(target=self._do_preview_thread, daemon=True).start()
 
     def _do_preview_thread(self):
         text = self.text.get("1.0", "end-1c").strip()
         if not text:
             LogsHelperManager.log_error(self.logger, "PREVIEW", "No text entered")
-            GUIError(self, "Error", "No text entered!", icon="❌")
+            GUIError(self, "Error", self.lang.get("error_no_text"), icon="❌")
             self._set_progress(0,self.lang.get("progress_ready"))
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
             return
@@ -335,13 +335,13 @@ class TTSMenuApp(tk.Tk):
                 LogsHelperManager.log_error(self.logger, "PREVIEW", f"Unknown TTS service: {svc_key}")
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn))
-                self._set_progress(0, "Ready.")
+                self._set_progress(0, self.lang.get("progress_ready"))
                 return
 
             def preview_progress(pct, msg):
                 self._set_progress(pct, msg)
                 LogsHelperManager.log_debug(self.logger, "PREVIEW_PROGRESS", {"pct": pct, "msg": msg})
-                if "Playing preview" in msg:
+                if self.lang.get("preview_playing") in msg:
                     self.after(0, lambda: self.preview_btn.config(
                         text="STOP PREVIEW",
                         state="normal",
@@ -381,7 +381,8 @@ class TTSMenuApp(tk.Tk):
                 from pydub import AudioSegment
 
                 audio = AudioSegment.from_file(BytesIO(processed_bytes), format="mp3")
-                self._set_progress(95, "Playing preview (markup)…")
+                self._set_progress(95, self.lang.get("preview_playing"))
+
 
                 self.tts_helper.audio = audio
                 play(audio)
@@ -406,7 +407,7 @@ class TTSMenuApp(tk.Tk):
                 LogsHelperManager.log_success(self.logger, "PREVIEW")
         except Exception as e:
             GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
-            self._set_progress(0, "Ready.")
+            self._set_progress(0, self.lang.get("progress_ready"))
             LogsHelperManager.log_error(self.logger, "PREVIEW_FAIL", str(e))
 
         finally:
@@ -452,9 +453,9 @@ class TTSMenuApp(tk.Tk):
         text = self.text.get("1.0", "end-1c").strip()
         if not text:
             LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", "No text entered")
-            GUIError(self, "Error", "No text entered!", icon="❌")
+            GUIError(self, "Error", self.lang.get("error_no_text"), icon="❌")
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn, self.text))
-            self._set_progress(0, "Ready.")
+            self._set_progress(0, self.lang.get("progress_ready"))
             return
         fmt_key = (self.format_var.get() or "").upper()
         svc_key = (self.service_var.get() or "").upper()
@@ -473,7 +474,7 @@ class TTSMenuApp(tk.Tk):
                 LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", f"Unknown TTS service: {svc_key}")
                 GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
-                self._set_progress(0,"Ready.")
+                self._set_progress(0,self.lang.get("progress_ready"))
                 return
 
             LogsHelperManager.log_debug(self.logger, "CONVERT_REQUEST", {
@@ -488,7 +489,7 @@ class TTSMenuApp(tk.Tk):
                 LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", f"Unknown format: {fmt_key}")
                 GUIError(self, "Error", f"Unknown format: {fmt_key}", icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
-                self._set_progress(0,"Ready.")
+                self._set_progress(0,self.lang.get("progress_ready"))
                 return
 
 
@@ -538,7 +539,7 @@ class TTSMenuApp(tk.Tk):
                     GUIError(self, "Error", f"ZIP export failed:\n{e}", icon="❌")
 
             self._set_progress(100, f"Done in {int(time.time()-t0)}s → {out_path.name}")
-            GUIError(self, "Info", f"Conversion completed!\nSaved to:\n{out_path}", icon="✅")
+            GUIError(self, "Info", self.lang.get("convert_success"), icon="✅")
             LogsHelperManager.log_debug(self.logger, "CONVERT_DONE", {
                 "path": str(out_path),
                 "size": out_path.stat().st_size
@@ -546,8 +547,8 @@ class TTSMenuApp(tk.Tk):
 
         except Exception as e:
             LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", str(e))
-            GUIError(self, "Error", f"Conversion failed:\n{e}", icon="❌")
-            self._set_progress(0, "Ready.")
+            GUIError(self, "Error", f"{self.lang.get('convert_failed')}\n{e}", icon="❌")
+            self._set_progress(0, self.lang.get("progress_ready"))
         finally:
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
 
@@ -1026,7 +1027,7 @@ class TTSMenuApp(tk.Tk):
                 GUIError(
                     self,
                     "✅",
-                    "Language changed successfully!",
+                    self.lang.get("lang_changed"),
                     icon="✅"
                 )
             win.destroy()

@@ -1402,3 +1402,327 @@
 2025-10-16 00:49:39 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T00:49:39.527457", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.5384173393249512, "input_bytes": 36908, "output_bytes": 41036}}
 2025-10-16 00:49:50 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T00:49:50.711870", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
 2025-10-16 00:49:52 | INFO    | Main | {"timestamp": "2025-10-16T00:49:52.878687", "event": "SESSION_END", "data": {"session_id": "20251016-004648"}}
+2025-10-16 14:19:27 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 14:19:27 | INFO    | Main | {"timestamp": "2025-10-16T14:19:27.916629", "event": "SESSION_START", "data": {"session_id": "20251016-141927"}}
+2025-10-16 14:19:27 | INFO    | LangManager | {"timestamp": "2025-10-16T14:19:27.963629", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 14:19:28 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 14:19:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:19:55.672489", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-10-16 14:19:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:19:56.593717", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:19:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:19:56.606784", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:19:56 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T14:19:56.630096", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-16 14:19:57 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:19:57.799772", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-10-16 14:19:58 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:19:58.368338", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-10-16 14:19:59 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:19:59.666555", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:19:59 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:19:59.679151", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:20:00 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:00.020699", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 8832, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:20:00 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:00.428955", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.40825653076171875, "input_bytes": 8832, "output_bytes": 4844}}
+2025-10-16 14:20:02 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:02.763159", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-10-16 14:20:05 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:05.968152", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-16 14:20:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:18.169822", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-16 14:20:27 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:27.106623", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-16 14:20:29 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:29.237860", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 14:20:30 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:30.074149", "event": "SUCCESS", "data": {"action": "MARKUP_SUPPORT_TOGGLED", "duration": {"enabled": true}}}
+2025-10-16 14:20:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:31.892571", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:20:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:31.904803", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:20:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:32.464599", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 12908, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:20:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:32.723559", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2589592933654785, "input_bytes": 12908, "output_bytes": 12908}}
+2025-10-16 14:20:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:36.890295", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:20:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:40.677249", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:20:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:40.690248", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:20:41 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:41.742424", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 18764, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:20:42 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:42.010431", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2680065631866455, "input_bytes": 18764, "output_bytes": 18764}}
+2025-10-16 14:20:47 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:47.612014", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:20:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:52.308549", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:20:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:20:52.320556", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:20:53 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:53.250644", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 32492, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:20:53 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:20:53.517288", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2666444778442383, "input_bytes": 32492, "output_bytes": 32492}}
+2025-10-16 14:21:02 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:21:02.585075", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:21:15 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:21:15.581332", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "tr"}}
+2025-10-16 14:22:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:22:12.212886", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:22:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:22:12.226128", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:22:13 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:22:13.116434", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 32492, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:22:13 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:22:13.384555", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.26812124252319336, "input_bytes": 32492, "output_bytes": 32492}}
+2025-10-16 14:22:22 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:22:22.442719", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:22:22 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:22:22.852007", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-10-16 14:22:22 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:22:22.897542", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-10-16 14:23:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:23:12.883311", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-10-16 14:23:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:23:14.563949", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "tr"}}
+2025-10-16 14:23:15 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:23:15.355351", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2025-10-16 14:23:16 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:23:16.213335", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:23:16 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:23:16.227609", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:23:18 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:23:18.131473", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 37580, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:23:18 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:23:18.398122", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2666494846343994, "input_bytes": 37580, "output_bytes": 37580}}
+2025-10-16 14:23:28 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:23:28.761831", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:24:39 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:39.495200", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 14:24:41 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:41.354534", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "german"}}}
+2025-10-16 14:24:41 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:41.446823", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "german"}}}
+2025-10-16 14:24:47 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:47.033059", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 14:24:49 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:49.815768", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "german", "new": "turkish"}}}
+2025-10-16 14:24:49 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:49.904925", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 14:24:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:52.515215", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 14:24:55 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 14:24:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:24:55.911811", "event": "SUCCESS", "data": {"action": "CONFIG_LOGS_UPDATED", "duration": {"mode": "INFO", "handler": "both", "db_path": "logs.sqlite"}}}
+2025-10-16 14:25:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:14.344846", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 14:25:16 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:16.486203", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "turkish", "new": "english"}}}
+2025-10-16 14:25:16 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:16.572284", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2025-10-16 14:25:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:18.521010", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 14:25:21 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:21.259190", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-10-16 14:25:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:40.753802", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "en"}}
+2025-10-16 14:25:41 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:41.480234", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:25:41 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:41.493241", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:25:43 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:25:43.505879", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 16556, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": true}}}
+2025-10-16 14:25:43 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:25:43.885897", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.3800187110900879, "input_bytes": 16556, "output_bytes": 18284}}
+2025-10-16 14:25:49 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:49.416919", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:25:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:52.738339", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 14:25:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:25:55.896787", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-10-16 14:25:57 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:25:57.918671", "event": "CONFIG_CHANGE", "data": {"key": "robot", "old": true, "new": false}}
+2025-10-16 14:26:02 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:02.058208", "event": "PRESET_APPLY", "data": {"preset": "Default"}}
+2025-10-16 14:26:02 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:02.857684", "event": "CONFIG_CHANGE", "data": {"key": "pitch", "old": null, "new": 0.0}}
+2025-10-16 14:26:02 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:02.870691", "event": "CONFIG_CHANGE", "data": {"key": "speed", "old": null, "new": 1.0}}
+2025-10-16 14:26:02 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:02.882683", "event": "CONFIG_CHANGE", "data": {"key": "volume", "old": null, "new": 1.0}}
+2025-10-16 14:26:02 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:02.893721", "event": "CONFIG_CHANGE", "data": {"key": "echo", "old": null, "new": false}}
+2025-10-16 14:26:02 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:02.904732", "event": "CONFIG_CHANGE", "data": {"key": "reverb", "old": null, "new": false}}
+2025-10-16 14:26:02 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:02.914740", "event": "CONFIG_CHANGE", "data": {"key": "robot", "old": false, "new": false}}
+2025-10-16 14:26:04 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:04.841295", "event": "PRESET_APPLY", "data": {"preset": "Telephone"}}
+2025-10-16 14:26:05 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:05.640712", "event": "CONFIG_CHANGE", "data": {"key": "pitch", "old": 0.0, "new": 2.0}}
+2025-10-16 14:26:05 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:05.654008", "event": "CONFIG_CHANGE", "data": {"key": "speed", "old": 1.0, "new": 1.0}}
+2025-10-16 14:26:05 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:05.665011", "event": "CONFIG_CHANGE", "data": {"key": "volume", "old": 1.0, "new": 0.8}}
+2025-10-16 14:26:05 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:05.675656", "event": "CONFIG_CHANGE", "data": {"key": "echo", "old": false, "new": false}}
+2025-10-16 14:26:05 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:05.685657", "event": "CONFIG_CHANGE", "data": {"key": "reverb", "old": false, "new": false}}
+2025-10-16 14:26:05 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:05.696915", "event": "CONFIG_CHANGE", "data": {"key": "robot", "old": false, "new": true}}
+2025-10-16 14:26:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:12.893561", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:26:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:12.906608", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:26:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:26:15.088497", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 16556, "format": "mp3", "settings": {"pitch": 2.0, "speed": 1.0, "volume": 0.8, "echo": false, "reverb": false, "robot": true}}}
+2025-10-16 14:26:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:26:15.483202", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.39470529556274414, "input_bytes": 16556, "output_bytes": 16364}}
+2025-10-16 14:26:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:20.498392", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:26:21 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:21.755518", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 14:26:24 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:24.288103", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-10-16 14:26:25 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:25.856201", "event": "PRESET_APPLY", "data": {"preset": "Default"}}
+2025-10-16 14:26:26 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:26.656080", "event": "CONFIG_CHANGE", "data": {"key": "pitch", "old": 2.0, "new": 0.0}}
+2025-10-16 14:26:26 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:26.669073", "event": "CONFIG_CHANGE", "data": {"key": "speed", "old": 1.0, "new": 1.0}}
+2025-10-16 14:26:26 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:26.681074", "event": "CONFIG_CHANGE", "data": {"key": "volume", "old": 0.8, "new": 1.0}}
+2025-10-16 14:26:26 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:26.692075", "event": "CONFIG_CHANGE", "data": {"key": "echo", "old": false, "new": false}}
+2025-10-16 14:26:26 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:26.702078", "event": "CONFIG_CHANGE", "data": {"key": "reverb", "old": false, "new": false}}
+2025-10-16 14:26:26 | INFO    | VoiceSettings | {"timestamp": "2025-10-16T14:26:26.712775", "event": "CONFIG_CHANGE", "data": {"key": "robot", "old": true, "new": false}}
+2025-10-16 14:26:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:33.081894", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:26:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:33.094899", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:26:34 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:26:34.784893", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 16556, "format": "mp3", "settings": {"pitch": 0.0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:26:35 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:26:35.047700", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.26280641555786133, "input_bytes": 16556, "output_bytes": 16556}}
+2025-10-16 14:26:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:26:40.073477", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:27:01 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:27:01.284286", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-10-16 14:27:01 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:27:01.304019", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-10-16 14:27:05 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:27:05.787992", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 14:28:01 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:01.876640", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-10-16 14:28:03 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:03.114589", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:28:03 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:03.126595", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:28:04 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:28:04.277943", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 12140, "format": "mp3", "settings": {"pitch": 0.0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:28:04 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:28:04.543903", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2659604549407959, "input_bytes": 12140, "output_bytes": 12140}}
+2025-10-16 14:28:08 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:08.502172", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:28:10 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:10.671337", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-10-16 14:28:11 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:11.372851", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:28:11 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:11.384522", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:28:13 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:28:13.299068", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 16556, "format": "mp3", "settings": {"pitch": 0.0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:28:13 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:28:13.564726", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2656581401824951, "input_bytes": 16556, "output_bytes": 16556}}
+2025-10-16 14:28:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:18.586841", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:28:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:18.987136", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-10-16 14:28:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:20.366440", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "en"}}
+2025-10-16 14:28:21 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:21.803095", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-10-16 14:28:24 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:24.801838", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-10-16 14:28:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:31.094400", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:28:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:31.107396", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:28:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:28:32.039961", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 11372, "format": "mp3", "settings": {"pitch": 0.0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:28:32 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:28:32.299472", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2595102787017822, "input_bytes": 11372, "output_bytes": 11372}}
+2025-10-16 14:28:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:28:36.057358", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:29:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:29:12.873024", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-10-16 14:29:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:29:13.860656", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-10-16 14:29:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:29:14.992860", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-10-16 14:29:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:29:25.412872", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-10-16 14:29:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:29:25.779705", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-10-16 14:29:30 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:29:30.807641", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-10-16 14:29:44 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:29:44.663232", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-16 14:37:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:14.716900", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:37:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:14.730888", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:37:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:37:15.707202", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 11372, "format": "mp3", "settings": {"pitch": 0.0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:37:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:37:15.970020", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2628180980682373, "input_bytes": 11372, "output_bytes": 11372}}
+2025-10-16 14:37:19 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:19.775986", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:37:21 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:21.043631", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-10-16 14:37:23 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:23.476319", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:37:23 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:23.489685", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:37:25 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:37:25.480352", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 16460, "format": "mp3", "settings": {"pitch": 0.0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:37:25 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:37:25.752078", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2717263698577881, "input_bytes": 16460, "output_bytes": 16460}}
+2025-10-16 14:37:30 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:30.718308", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "male", "new": "female"}}
+2025-10-16 14:37:30 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:30.779239", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:37:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:31.728113", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:37:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:31.742121", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:37:34 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:37:34.239614", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15788, "format": "mp3", "settings": {"pitch": 0.0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 14:37:34 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T14:37:34.507617", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2680027484893799, "input_bytes": 15788, "output_bytes": 15788}}
+2025-10-16 14:37:39 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:37:39.385964", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 14:37:45 | INFO    | Main | {"timestamp": "2025-10-16T14:37:45.503538", "event": "SESSION_END", "data": {"session_id": "20251016-141927"}}
+2025-10-16 14:45:05 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 14:45:05 | INFO    | Main | {"timestamp": "2025-10-16T14:45:05.661725", "event": "SESSION_START", "data": {"session_id": "20251016-144505"}}
+2025-10-16 14:45:05 | INFO    | LangManager | {"timestamp": "2025-10-16T14:45:05.706224", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 14:45:06 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 14:45:08 | INFO    | Main | {"timestamp": "2025-10-16T14:45:08.189314", "event": "SESSION_END", "data": {"session_id": "20251016-144505"}}
+2025-10-16 14:58:00 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 14:58:00 | INFO    | Main | {"timestamp": "2025-10-16T14:58:00.079822", "event": "SESSION_START", "data": {"session_id": "20251016-145800"}}
+2025-10-16 14:58:00 | INFO    | LangManager | {"timestamp": "2025-10-16T14:58:00.126876", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 14:58:00 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 14:58:04 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:04.239927", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 14:58:05 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:05.963678", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2025-10-16 14:58:06 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:06.056453", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 14:58:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:20.936124", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 14:58:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:20.949130", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 14:58:20 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T14:58:20.972664", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-16 14:58:31 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:31.349024", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 14:58:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:33.041600", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "turkish", "new": "english"}}}
+2025-10-16 14:58:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:33.125223", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2025-10-16 14:58:35 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:35.169404", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 14:58:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:36.661268", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2025-10-16 14:58:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T14:58:36.748483", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 15:02:44 | INFO    | Main | {"timestamp": "2025-10-16T15:02:44.699362", "event": "SESSION_END", "data": {"session_id": "20251016-145800"}}
+2025-10-16 15:02:46 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 15:02:46 | INFO    | Main | {"timestamp": "2025-10-16T15:02:46.582678", "event": "SESSION_START", "data": {"session_id": "20251016-150246"}}
+2025-10-16 15:02:46 | INFO    | LangManager | {"timestamp": "2025-10-16T15:02:46.628691", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 15:02:46 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 15:02:48 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:48.927176", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:02:51 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:51.746710", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2025-10-16 15:02:51 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:51.838386", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 15:02:53 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:53.832405", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:02:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:55.562992", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "turkish", "new": "german"}}}
+2025-10-16 15:02:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:55.649253", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "german"}}}
+2025-10-16 15:02:57 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:57.422938", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:02:59 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:59.104866", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "german", "new": "english"}}}
+2025-10-16 15:02:59 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:02:59.189895", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2025-10-16 15:46:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:13.395273", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-10-16 15:46:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:13.623983", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "edge"}}
+2025-10-16 15:46:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:14.776201", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:14.790201", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:46:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:15.651340", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:46:15 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:15.907000", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2556602954864502, "input_bytes": 9072, "output_bytes": 6476}}
+2025-10-16 15:46:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:18.654440", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:20.627693", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:20 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:20.640321", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:46:21 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:21.748427", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:46:22 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:22.003684", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.25525712966918945, "input_bytes": 9072, "output_bytes": 6476}}
+2025-10-16 15:46:24 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:24.708684", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:25.269419", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:25.282426", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:46:25 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:25.862119", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:46:26 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:26.112977", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.25085878372192383, "input_bytes": 9072, "output_bytes": 6476}}
+2025-10-16 15:46:28 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:28.766667", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:33 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:33.488496", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:46:35 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:35.026866", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2025-10-16 15:46:35 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:35.108005", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 15:46:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:36.396149", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:36.408810", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:46:36 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:46:36.420803", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:46:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:40.373816", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:40 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:40.387815", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:46:41 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:41.124702", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:46:41 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:41.378093", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2533915042877197, "input_bytes": 9072, "output_bytes": 6476}}
+2025-10-16 15:46:44 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:44.033100", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:51 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:51.509962", "event": "BUTTON_CLICK", "data": {"action": "OPEN_MARKUP_GUIDE"}}
+2025-10-16 15:46:53 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:53.947920", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 15:46:54 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:54.979115", "event": "SUCCESS", "data": {"action": "MARKUP_SUPPORT_TOGGLED", "duration": {"enabled": true}}}
+2025-10-16 15:46:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:56.494327", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:46:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:46:56.506491", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:46:57 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:57.092220", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:46:57 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:46:57.347537", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.25531744956970215, "input_bytes": 9072, "output_bytes": 6476}}
+2025-10-16 15:47:00 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:47:00.004460", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-10-16 15:47:22 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:47:22.249370", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:47:22 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:47:22.262181", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:47:22 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:47:22.811597", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:47:23 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:47:23.064201", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.25260472297668457, "input_bytes": 9072, "output_bytes": 6476}}
+2025-10-16 15:47:25 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:47:25.725526", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-10-16 15:47:35 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:47:35.165995", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:47:35 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:47:35.178996", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:47:36 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:47:36.755650", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15212, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:47:37 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:47:37.014301", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2586512565612793, "input_bytes": 15212, "output_bytes": 15212}}
+2025-10-16 15:47:41 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:47:41.729571", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 15:48:06 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:48:06.412107", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:48:06 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:48:06.425157", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:48:08 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:48:08.251426", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15212, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:48:08 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:48:08.509850", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2584240436553955, "input_bytes": 15212, "output_bytes": 15212}}
+2025-10-16 15:48:13 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:48:13.180936", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 15:48:46 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:48:46.587215", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:48:46 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:48:46.600214", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:48:48 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:48:48.428645", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15212, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-10-16 15:48:48 | INFO    | VoiceProcessor | {"timestamp": "2025-10-16T15:48:48.687391", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2587461471557617, "input_bytes": 15212, "output_bytes": 15212}}
+2025-10-16 15:48:53 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:48:53.403873", "event": "SUCCESS", "data": {"action": "PREVIEW_DONE", "duration": {}}}
+2025-10-16 15:48:56 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:48:56.439785", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:49:00 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:00.982699", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "turkish", "new": "german"}}}
+2025-10-16 15:49:01 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:01.062352", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "german"}}}
+2025-10-16 15:49:15 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:15.451594", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2025-10-16 15:49:18 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:18.294755", "event": "SUCCESS", "data": {"action": "MARKUP_SUPPORT_TOGGLED", "duration": {"enabled": false}}}
+2025-10-16 15:49:22 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:22.863866", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:49:24 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:24.853770", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "german", "new": "turkish"}}}
+2025-10-16 15:49:24 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:24.934334", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 15:49:26 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:26.688920", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:49:34 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:34.793764", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:49:34 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:34.806144", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:49:34 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:49:34.817143", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:49:36 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:36.611087", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-16 15:49:36 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:49:36.624085", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "No text entered"}}
+2025-10-16 15:49:38 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:38.137281", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:49:38 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:49:38.150285", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:49:38 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:49:38.161183", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:50:11 | INFO    | Main | {"timestamp": "2025-10-16T15:50:11.602570", "event": "SESSION_END", "data": {"session_id": "20251016-150246"}}
+2025-10-16 15:50:13 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 15:50:13 | INFO    | Main | {"timestamp": "2025-10-16T15:50:13.109412", "event": "SESSION_START", "data": {"session_id": "20251016-155013"}}
+2025-10-16 15:50:13 | INFO    | LangManager | {"timestamp": "2025-10-16T15:50:13.155953", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 15:50:13 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 15:51:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 15:51:56 | INFO    | Main | {"timestamp": "2025-10-16T15:51:56.336419", "event": "SESSION_START", "data": {"session_id": "20251016-155156"}}
+2025-10-16 15:51:56 | INFO    | LangManager | {"timestamp": "2025-10-16T15:51:56.379212", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 15:51:56 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 15:53:32 | INFO    | Main | {"timestamp": "2025-10-16T15:53:32.283920", "event": "SESSION_END", "data": {"session_id": "20251016-155156"}}
+2025-10-16 15:53:38 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 15:53:38 | INFO    | Main | {"timestamp": "2025-10-16T15:53:38.274239", "event": "SESSION_START", "data": {"session_id": "20251016-155338"}}
+2025-10-16 15:53:38 | INFO    | LangManager | {"timestamp": "2025-10-16T15:53:38.317189", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 15:53:38 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 15:53:39 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:39.807111", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:53:41 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:41.757387", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "german"}}}
+2025-10-16 15:53:41 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:41.843744", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "german"}}}
+2025-10-16 15:53:43 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:43.906870", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:53:45 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:45.504045", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "german", "new": "turkish"}}}
+2025-10-16 15:53:45 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:45.592238", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 15:53:47 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:47.793007", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:53:50 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:50.150724", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "turkish", "new": "english"}}}
+2025-10-16 15:53:50 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:50.233148", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2025-10-16 15:53:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:52.934151", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:53:54 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:54.375934", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2025-10-16 15:53:54 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:53:54.468380", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-10-16 15:54:06 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:54:06.683780", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:54:43 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:54:43.971808", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-10-16 15:54:46 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:54:46.820416", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-10-16 15:54:52 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:54:52.694286", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:55:01 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:01.843995", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:55:01 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:01.857006", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:55:01 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:55:01.870097", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:55:03 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:03.372819", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-10-16 15:55:03 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:03.386824", "event": "TTS_PREVIEW_START", "data": {}}
+2025-10-16 15:55:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:55:03.398621", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-16 15:55:05 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:05.095282", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-10-16 15:55:05 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-16T15:55:05.108738", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "No text entered"}}
+2025-10-16 15:55:09 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:09.375368", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:55:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:12.134433", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "turkish", "new": "german"}}}
+2025-10-16 15:55:12 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:12.217208", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "german"}}}
+2025-10-16 15:55:14 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:14.751560", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:55:17 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:17.590292", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "german", "new": "english"}}}
+2025-10-16 15:55:17 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:55:17.678565", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2025-10-16 15:57:40 | INFO    | Main | {"timestamp": "2025-10-16T15:57:40.898434", "event": "SESSION_END", "data": {"session_id": "20251016-155338"}}
+2025-10-16 15:57:42 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-10-16 15:57:42 | INFO    | Main | {"timestamp": "2025-10-16T15:57:42.396007", "event": "SESSION_START", "data": {"session_id": "20251016-155742"}}
+2025-10-16 15:57:42 | INFO    | LangManager | {"timestamp": "2025-10-16T15:57:42.439207", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-10-16 15:57:42 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-10-16 15:57:43 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:57:43.911679", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:57:45 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:57:45.851562", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "german"}}}
+2025-10-16 15:57:45 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:57:45.941031", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "german"}}}
+2025-10-16 15:58:51 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:58:51.641008", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-10-16 15:58:54 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:58:54.020019", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "german", "new": "english"}}}
+2025-10-16 15:58:54 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T15:58:54.113576", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2025-10-16 16:03:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T16:03:55.154860", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-10-16 16:03:55 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T16:03:55.195659", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-10-16 16:04:27 | WARNING | TTSMenuApp | {"timestamp": "2025-10-16T16:04:27.313245", "event": "WARNING", "data": {"action": "ZIP_PASSWORD", "message": "Password protection enabled but no password was set."}}
+2025-10-16 16:04:28 | INFO    | TTSMenuApp | {"timestamp": "2025-10-16T16:04:28.571828", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-10-16 16:04:38 | INFO    | Main | {"timestamp": "2025-10-16T16:04:38.144696", "event": "SESSION_END", "data": {"session_id": "20251016-155742"}}

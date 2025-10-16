@@ -169,9 +169,9 @@ def section(parent, title: str, padding: int | tuple[int, ...] = 12) -> tuple[tt
     inner.pack(fill="both", expand=True)
     return lf, inner
 
-def footer(parent) -> tuple[ttk.Frame, ttk.Label, ttk.Label]:
+def footer(parent,lang) -> tuple[ttk.Frame, ttk.Label, ttk.Label]:
     bar = ttk.Frame(parent)
-    status = ttk.Label(bar, text="Ready.", style="Status.TLabel")
+    status = ttk.Label(bar, text=lang.get("progress_ready"), style="Status.TLabel")
     counter = ttk.Label(bar, text="0 characters", style="Status.TLabel")
     status.pack(side="left")
     counter.pack(side="right")
@@ -192,10 +192,10 @@ def kv_row(parent, key: str, value: str) -> ttk.Frame:
     row.grid_columnconfigure(1, weight=1)
     return row
 
-def output_selector(parent, initial_dir: Path, callback) -> tuple[ttk.Labelframe, ttk.Label]:
+def output_selector(parent, initial_dir: Path, callback,lang) -> tuple[ttk.Labelframe, ttk.Label]:
     import tkinter.filedialog as fd
 
-    lf = ttk.Labelframe(parent, text="Output", style="Section.TLabelframe", padding=12)
+    lf = ttk.Labelframe(parent, text=lang.get("output_section"), style="Section.TLabelframe", padding=12)
     inner = ttk.Frame(lf, style="Card.TFrame")
     inner.pack(fill="x", expand=True)
 
@@ -300,7 +300,7 @@ def styled_combobox(parent, text: str, var: tk.StringVar, values: list[str]) -> 
 
     return frame, combo
 
-def progress_section(parent) -> tuple[ttk.Frame, ttk.Progressbar, tk.IntVar, ttk.Label]:
+def progress_section(parent,lang) -> tuple[ttk.Frame, ttk.Progressbar, tk.IntVar, ttk.Label]:
     c = THEME["COLORS"]
     style = ttk.Style()
 
@@ -343,7 +343,7 @@ def progress_section(parent) -> tuple[ttk.Frame, ttk.Progressbar, tk.IntVar, ttk
     )
     progress.pack(fill="x")
 
-    progress_label = ttk.Label(frame, text="Ready.", style="Footer.TLabel")
+    progress_label = ttk.Label(frame, text=lang.get("progress_ready"), style="Footer.TLabel")
     progress_label.grid(row=1, column=0, sticky="w")
 
     return frame, progress, progress_var, progress_label
