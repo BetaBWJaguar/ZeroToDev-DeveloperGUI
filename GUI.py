@@ -363,6 +363,13 @@ class TTSMenuApp(tk.Tk):
                         self.logger, "PREVIEW_MARKUP_PROGRESS", {"pct": pct, "msg": msg}
                     )
 
+                    if self.lang.get("preview_playing") in msg:
+                        self.after(0, lambda: self.preview_btn.config(
+                            text="STOP PREVIEW",
+                            state="normal",
+                            command=self.stop_preview
+                        ))
+
                 raw_bytes = markup_manager.synthesize_with_markup(
                     text, progress_cb=markup_progress
                 )
@@ -376,18 +383,15 @@ class TTSMenuApp(tk.Tk):
                     raw_bytes, "mp3", settings
                 )
 
-                from pydub.playback import play
-                from io import BytesIO
-                from pydub import AudioSegment
+                self.tts_helper.do_preview(
+                    lambda txt: processed_bytes,
+                    text,
+                    seconds=20,
+                    play_audio=True,
+                    progress_cb=markup_progress
+                )
 
-                audio = AudioSegment.from_file(BytesIO(processed_bytes), format="mp3")
-                self._set_progress(95, self.lang.get("preview_playing"))
-
-
-                self.tts_helper.audio = audio
-                play(audio)
-
-                self.finish_preview_playback()
+                LogsHelperManager.log_success(self.logger, "MARKUP_PREVIEW")
 
             else:
                 if not MemoryManager.get("markup_enabled", True):

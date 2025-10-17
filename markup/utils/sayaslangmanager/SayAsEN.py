@@ -23,14 +23,25 @@ class SayAsEN:
                 return text
 
         elif interpret_as == "time":
+            parts = text.strip().split("|", 1)
+            time_str = parts[0].strip()
+            custom_context = parts[1].strip().lower() if len(parts) > 1 else None
+
             try:
-                t = datetime.strptime(text.strip(), "%H:%M")
-                return t.strftime("%I %M %p").lstrip("0")
+                t = datetime.strptime(time_str, "%H:%M")
+                context = t.strftime("%p").lower()
+
+                if custom_context:
+                    context = custom_context
+                hour = t.strftime("%I").lstrip("0") or "12"
+                minute = t.strftime("%M")
+                return f"{hour} {minute} {context}"
             except Exception:
                 return text
 
+
         elif interpret_as == "telephone":
-            return format_phone_number(text, "en")
+            return format_phone_number(text)
 
         elif interpret_as == "currency":
             try:
