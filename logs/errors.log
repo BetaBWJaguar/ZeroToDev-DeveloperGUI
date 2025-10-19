@@ -74,3 +74,10 @@
 2025-10-17 22:44:53 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-17T22:44:53.095141", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-10-18 21:58:31 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-18T21:58:31.167797", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-10-18 21:58:35 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-18T21:58:35.651581", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-20 01:45:25 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-20T01:45:25.698885", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "No text entered"}}
+2025-10-20 01:45:29 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-20T01:45:29.246901", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "Unknown TTS service: "}}
+2025-10-20 01:45:35 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-20T01:45:35.453919", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "Unknown TTS service: "}}
+2025-10-20 01:47:42 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-20T01:47:42.760768", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-20 01:48:18 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-20T01:48:18.760160", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-20 01:48:21 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-20T01:48:21.212746", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-10-20 01:48:23 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-20T01:48:23.259232", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

@@ -196,11 +196,10 @@ class TTSMenuApp(tk.Tk):
         self.service_var.trace_add("write", service_changed)
         service_row = ttk.Frame(service_inner, style="Card.TFrame"); service_row.pack(fill="x")
 
-        ttk.Radiobutton(service_row, text="Microsoft Edge TTS", value="edge", variable=self.service_var,
+        ttk.Radiobutton(service_row, text=self.lang.get("tts_service_edge"), value="edge", variable=self.service_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(service_row, text="Google TTS", value="google", variable=self.service_var,
+        ttk.Radiobutton(service_row, text=self.lang.get("tts_service_google"), value="google", variable=self.service_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-
 
         fmt_card, fmt_inner = section(right, self.lang.get("format_section"))
         fmt_card.grid(row=2, column=0, sticky="nsew")
@@ -214,15 +213,15 @@ class TTSMenuApp(tk.Tk):
 
         self.format_var.trace_add("write", format_changed)
         fmt_row = ttk.Frame(fmt_inner, style="Card.TFrame"); fmt_row.pack(fill="x")
-        ttk.Radiobutton(fmt_row, text="MP3", value="mp3", variable=self.format_var,
+        ttk.Radiobutton(fmt_row, text=self.lang.get("format_mp3"), value="mp3", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text="WAV (PCM)", value="wav", variable=self.format_var,
+        ttk.Radiobutton(fmt_row, text=self.lang.get("format_wav"), value="wav", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text="WEBM (Opus)", value="webm", variable=self.format_var,
+        ttk.Radiobutton(fmt_row, text=self.lang.get("format_webm"), value="webm", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text="FLAC (Lossless)", value="flac", variable=self.format_var,
+        ttk.Radiobutton(fmt_row, text=self.lang.get("format_flac"), value="flac", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text="AAC", value="aac", variable=self.format_var,
+        ttk.Radiobutton(fmt_row, text=self.lang.get("format_aac"), value="aac", variable=self.format_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
         lang_card, lang_inner = section(right, self.lang.get("language_section"))
@@ -243,7 +242,7 @@ class TTSMenuApp(tk.Tk):
 
         lang_row, self.lang_combo = styled_combobox(
             lang_inner,
-            "Select language:",
+            self.lang.get("select_language_tts_label"),
             self.lang_var,
             list(self.lang_map.values())
         )
@@ -251,7 +250,7 @@ class TTSMenuApp(tk.Tk):
 
         voice_row, self.voice_combo = styled_combobox(
             lang_inner,
-            "Select voice (gender):",
+            self.lang.get("select_voice_label"),
             self.voice_var,
             ["female", "male"]
         )
@@ -285,7 +284,7 @@ class TTSMenuApp(tk.Tk):
 
     def _reset_preview_button(self):
         self.preview_btn.config(
-            text="PREVIEW",
+            text=self.lang.get("preview_button"),
             command=self.on_preview
         )
 
@@ -307,7 +306,7 @@ class TTSMenuApp(tk.Tk):
         text = self.text.get("1.0", "end-1c").strip()
         if not text:
             LogsHelperManager.log_error(self.logger, "PREVIEW", "No text entered")
-            GUIError(self, "Error", self.lang.get("error_no_text"), icon="❌")
+            GUIError(self, self.lang.get("error_title"), self.lang.get("error_no_text"), icon="❌")
             self._set_progress(0,self.lang.get("progress_ready"))
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
             return
@@ -333,7 +332,7 @@ class TTSMenuApp(tk.Tk):
 
             else:
                 LogsHelperManager.log_error(self.logger, "PREVIEW", f"Unknown TTS service: {svc_key}")
-                GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
+                GUIError(self, self.lang.get("error_title"), self.lang.get("error_unknown_service"), icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn))
                 self._set_progress(0, self.lang.get("progress_ready"))
                 return
@@ -343,7 +342,7 @@ class TTSMenuApp(tk.Tk):
                 LogsHelperManager.log_debug(self.logger, "PREVIEW_PROGRESS", {"pct": pct, "msg": msg})
                 if self.lang.get("preview_playing") in msg:
                     self.after(0, lambda: self.preview_btn.config(
-                        text="STOP PREVIEW",
+                        text=self.lang.get("stop_preview_button"),
                         state="normal",
                         command=self.stop_preview
                     ))
@@ -365,7 +364,7 @@ class TTSMenuApp(tk.Tk):
 
                     if self.lang.get("preview_playing") in msg:
                         self.after(0, lambda: self.preview_btn.config(
-                            text="STOP PREVIEW",
+                            text=self.lang.get("stop_preview_button"),
                             state="normal",
                             command=self.stop_preview
                         ))
@@ -410,7 +409,7 @@ class TTSMenuApp(tk.Tk):
 
                 LogsHelperManager.log_success(self.logger, "PREVIEW")
         except Exception as e:
-            GUIError(self, "Error", f"Preview failed:\n{e}", icon="❌")
+            GUIError(self, self.lang.get("error_title"), self.lang.get("preview_failed_message").format(error=e), icon="❌")
             self._set_progress(0, self.lang.get("progress_ready"))
             LogsHelperManager.log_error(self.logger, "PREVIEW_FAIL", str(e))
 
@@ -431,7 +430,7 @@ class TTSMenuApp(tk.Tk):
         except Exception as e:
             print(f"[WARN] Ding sound failed: {e}")
         finally:
-            self._set_progress(100, "Preview done ✔️")
+            self._set_progress(100, self.lang.get("preview_done"))
             LogsHelperManager.log_success(self.logger, "PREVIEW_DONE", {})
 
 
@@ -439,7 +438,7 @@ class TTSMenuApp(tk.Tk):
         import threading
         LogsHelperManager.log_button(self.logger, "CONVERT")
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
-        self._set_progress(0, "Starting…")
+        self._set_progress(0, self.lang.get("convert_starting"))
         threading.Thread(target=self._do_convert_thread, daemon=True).start()
 
 
@@ -457,7 +456,7 @@ class TTSMenuApp(tk.Tk):
         text = self.text.get("1.0", "end-1c").strip()
         if not text:
             LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", "No text entered")
-            GUIError(self, "Error", self.lang.get("error_no_text"), icon="❌")
+            GUIError(self, self.lang.get("error_title"), self.lang.get("error_no_text"), icon="❌")
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn, self.text))
             self._set_progress(0, self.lang.get("progress_ready"))
             return
@@ -476,7 +475,7 @@ class TTSMenuApp(tk.Tk):
                 tts = MicrosoftEdgeTTS(voice=edge_voice)
             else:
                 LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", f"Unknown TTS service: {svc_key}")
-                GUIError(self, "Error", f"Unknown TTS service: {svc_key}", icon="❌")
+                GUIError(self, self.lang.get("error_title"), self.lang.get("error_unknown_service"), icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,self.lang.get("progress_ready"))
                 return
@@ -491,7 +490,7 @@ class TTSMenuApp(tk.Tk):
             fmt_class = FORMAT_MAP.get(fmt_key)
             if not fmt_class:
                 LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", f"Unknown format: {fmt_key}")
-                GUIError(self, "Error", f"Unknown format: {fmt_key}", icon="❌")
+                GUIError(self, self.lang.get("error_title"), self.lang.get("error_unknown_format"), icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,self.lang.get("progress_ready"))
                 return
@@ -518,18 +517,18 @@ class TTSMenuApp(tk.Tk):
                     )
                 raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
 
-            self._set_progress(62, "Applying effects…")
+            self._set_progress(62, self.lang.get("progress_applying_effects"))
             settings = {k: MemoryManager.get(k, v) for k, v in {
                 "pitch": 0, "speed": 1.0, "volume": 1.0,
                 "echo": False, "reverb": False, "robot": False
             }.items()}
             processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
             LogsHelperManager.log_debug(self.logger, "EFFECTS_APPLIED_CONVERT", settings)
-            self._set_progress(85, "Effects done")
+            self._set_progress(85, self.lang.get("progress_effects_done"))
 
             fmt_class = FORMAT_MAP.get(fmt_key)
             processed_audio = DataManager.from_bytes(processed_bytes, "mp3")
-            self._set_progress(90, "Exporting…")
+            self._set_progress(90, self.lang.get("progress_exporting"))
             formatter = fmt_class(processed_audio)
             out_path = formatter.export(self.output_dir)
 
@@ -537,13 +536,13 @@ class TTSMenuApp(tk.Tk):
                 try:
                     zip_path = self.zip_convertor.export(text, fmt_key.lower())
                     LogsHelperManager.log_success(self.logger, "ZIP_EXPORT", {"path": str(zip_path)})
-                    GUIError(self, "ZIP Export", f"ZIP package created:\n{zip_path}", icon="✅")
+                    GUIError(self, self.lang.get("zip_export_title"), self.lang.get("zip_export_success").format(path=zip_path), icon="✅")
                 except Exception as e:
                     LogsHelperManager.log_error(self.logger, "ZIP_EXPORT_FAIL", str(e))
-                    GUIError(self, "Error", f"ZIP export failed:\n{e}", icon="❌")
+                    GUIError(self, self.lang.get("error_title"), self.lang.get("zip_export_failed").format(error=e), icon="❌")
 
-            self._set_progress(100, f"Done in {int(time.time()-t0)}s → {out_path.name}")
-            GUIError(self, "Info", self.lang.get("convert_success"), icon="✅")
+            self._set_progress(100, self.lang.get("convert_done_timed").format(seconds=int(time.time()-t0), filename=out_path.name))
+            GUIError(self, self.lang.get("info_title"), self.lang.get("convert_success"), icon="✅")
             LogsHelperManager.log_debug(self.logger, "CONVERT_DONE", {
                 "path": str(out_path),
                 "size": out_path.stat().st_size
@@ -551,7 +550,7 @@ class TTSMenuApp(tk.Tk):
 
         except Exception as e:
             LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", str(e))
-            GUIError(self, "Error", f"{self.lang.get('convert_failed')}\n{e}", icon="❌")
+            GUIError(self, self.lang.get("error_title"), f"{self.lang.get('convert_failed')}\n{e}", icon="❌")
             self._set_progress(0, self.lang.get("progress_ready"))
         finally:
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
@@ -642,9 +641,8 @@ class TTSMenuApp(tk.Tk):
                 LogsManager.init(mode, handler_type=handler_type, db_path=str(LogsManager.LOG_DIR/ db_path))
 
                 if show_message and initialized["value"]:
-                    GUIError(self, "Success",
-                             self.lang.get("logs_updated_message",
-                                           f"Logs updated!\nMode: {mode}, Handler: {handler_type}"),
+                    GUIError(self, self.lang.get("success_title"),
+                             self.lang.get("logs_updated_message").format(mode=mode, handler=handler_type),
                              icon="✅")
 
                 LogsHelperManager.log_success(self.logger, "CONFIG_LOGS_UPDATED", {
@@ -654,9 +652,8 @@ class TTSMenuApp(tk.Tk):
             except Exception as e:
                 LogsHelperManager.log_error(self.logger, "CONFIG_LOGS_UPDATE_FAIL", str(e))
                 if show_message:
-                    GUIError(self, "Error",
-                             self.lang.get("logs_update_failed_message",
-                                           f"Failed to update logs:\n{e}"),
+                    GUIError(self, self.lang.get("error_title"),
+                             self.lang.get("logs_update_failed_message").format(error=e),
                              icon="❌")
 
 
@@ -674,7 +671,7 @@ class TTSMenuApp(tk.Tk):
         db_frame = ttk.Frame(container, style="Card.TFrame")
         db_frame.pack(fill="x", pady=(0, 15))
 
-        ttk.Label(db_frame, text="SQLite DB Path:", style="Muted.TLabel") \
+        ttk.Label(db_frame, text=self.lang.get("config_sqlite_path_label"), style="Muted.TLabel") \
             .grid(row=0, column=0, sticky="w", padx=(0, 8))
 
         db_path_var = tk.StringVar(value=current_db)
@@ -700,10 +697,11 @@ class TTSMenuApp(tk.Tk):
             state = markup_enabled_var.get()
             MemoryManager.set("markup_enabled", state)
             LogsHelperManager.log_success(self.logger, "MARKUP_SUPPORT_TOGGLED", {"enabled": state})
+            msg = self.lang.get("config_markup_enabled") if state else self.lang.get("config_markup_disabled")
             GUIError(
                 self,
-                "Config Updated",
-                f"Markup support {'enabled' if state else 'disabled'}!",
+                self.lang.get("config_updated_title"),
+                msg,
                 icon="✅"
             )
 
@@ -712,7 +710,7 @@ class TTSMenuApp(tk.Tk):
 
         ttk.Label(
             markup_frame,
-            text="Markup Support:",
+            text=self.lang.get("config_markup_support_label"),
             style="Muted.TLabel"
         ).grid(row=0, column=0, sticky="w", padx=(0, 10))
 
@@ -732,7 +730,7 @@ class TTSMenuApp(tk.Tk):
 
         markup_checkbox = ttk.Checkbutton(
             markup_frame,
-            text="Enable Markup Tags (e.g., <emphasis>, <break>, <style>)",
+            text=self.lang.get("config_markup_checkbox_text"),
             variable=markup_enabled_var,
             command=on_markup_toggle,
             style="Markup.TCheckbutton"
@@ -741,7 +739,7 @@ class TTSMenuApp(tk.Tk):
 
 
         ttk.Separator(container).pack(fill="x", pady=15)
-        ttk.Button(container, text="Close", command=win.destroy,
+        ttk.Button(container, text=self.lang.get("close_button"), command=win.destroy,
                    style="Accent.TButton").pack(anchor="center", pady=(8, 0))
 
         center_window(win, self)

@@ -172,7 +172,7 @@ def section(parent, title: str, padding: int | tuple[int, ...] = 12) -> tuple[tt
 def footer(parent,lang) -> tuple[ttk.Frame, ttk.Label, ttk.Label]:
     bar = ttk.Frame(parent)
     status = ttk.Label(bar, text=lang.get("progress_ready"), style="Status.TLabel")
-    counter = ttk.Label(bar, text="0 characters", style="Status.TLabel")
+    counter = ttk.Label(bar, text=lang.get("footer_char_counter").format(count=0), style="Status.TLabel")
     status.pack(side="left")
     counter.pack(side="right")
     return bar, status, counter
@@ -209,7 +209,7 @@ def output_selector(parent, initial_dir: Path, callback,lang) -> tuple[ttk.Label
             output_label.config(text=str(p))
             callback(p)
 
-    browse_btn = ttk.Button(inner, text="📂 Browse...", command=choose_output, style="Accent.TButton")
+    browse_btn = ttk.Button(inner, text=lang.get("browse_button_text"), command=choose_output, style="Accent.TButton")
     browse_btn.grid(row=0, column=1, sticky="e", padx=(8, 0))
 
     inner.grid_columnconfigure(0, weight=1)

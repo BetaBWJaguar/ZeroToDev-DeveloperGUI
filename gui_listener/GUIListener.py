@@ -103,7 +103,8 @@ class GUIListener:
         self.app.text.edit_modified(False)
 
         chars = len(self.app.text.get('1.0', 'end-1c'))
-        self.app.counter.config(text=f"{chars} characters")
+        self.app.counter.config(text=self.app.lang.get("footer_char_counter").format(count=chars))
+
 
         if hasattr(self.app, "_text_change_after"):
             self.app.after_cancel(self.app._text_change_after)
