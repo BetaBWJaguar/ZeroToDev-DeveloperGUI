@@ -68,12 +68,54 @@ class SayAsTR:
                 "/": "bölü",
                 "=": "eşittir"
             }
+
             result = text
             for sym, word in math_map.items():
-                result = result.replace(sym, f" {word} ")
+                result = re.sub(rf"\s*{re.escape(sym)}\s*", f" {word} ", result)
 
-            result = re.sub(r"(\d)", r" \1 ", result)
-            return re.sub(r"\s+", " ", result.strip())
+            result = re.sub(r"^\s*-\s*(\d+)", r"eksi \1", result)
+
+            result = re.sub(r"\s+", " ", result).strip()
+            return result
+
+        elif interpret_as == "ordinal":
+            try:
+                n = int(text)
+                suffix_map = {
+                    1: "birinci", 2: "ikinci", 3: "üçüncü", 4: "dördüncü",
+                    5: "beşinci", 6: "altıncı", 7: "yedinci", 8: "sekizinci",
+                    9: "dokuzuncu", 10: "onuncu", 20: "yirminci", 30: "otuzuncu"
+                }
+                if n in suffix_map:
+                    return suffix_map[n]
+                return f"{text}. inci"
+            except Exception:
+                return text
+
+        elif interpret_as == "fraction":
+            if "/" in text:
+                num, denom = text.split("/", 1)
+                num, denom = num.strip(), denom.strip()
+                fraction_map = {
+                    "2": "yarım", "3": "üçte bir", "4": "dörtte bir",
+                    "5": "beşte bir", "6": "altıda bir", "10": "onda bir"
+                }
+                if num == "1" and denom in fraction_map:
+                    return fraction_map[denom]
+                return f"{num} bölü {denom}"
+            return text
+
+        elif interpret_as == "measurement":
+            unit_patterns = {
+                "km": "kilometre", "m": "metre", "cm": "santimetre",
+                "mm": "milimetre", "kg": "kilogram", "g": "gram",
+                "l": "litre", "ml": "mililitre"
+            }
+            for unit, word in unit_patterns.items():
+                if text.lower().endswith(unit):
+                    num = re.sub(r"[^0-9.,]", "", text)
+                    return f"{num} {word}"
+            return text
 
         else:
             return text

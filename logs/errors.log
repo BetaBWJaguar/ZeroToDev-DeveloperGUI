@@ -72,3 +72,5 @@
 2025-10-17 22:43:54 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-17T22:43:54.686453", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-10-17 22:44:03 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-17T22:44:03.578465", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "name 'msg' is not defined"}}
 2025-10-17 22:44:53 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-17T22:44:53.095141", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-18 21:58:31 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-18T21:58:31.167797", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-10-18 21:58:35 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-18T21:58:35.651581", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

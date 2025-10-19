@@ -62,5 +62,44 @@ class SayAsEN:
             else:
                 return f"{temp} degrees"
 
+        elif interpret_as == "ordinal":
+            try:
+                n = int(text)
+                suffix = "th"
+                if n % 10 == 1 and n % 100 != 11:
+                    suffix = "st"
+                elif n % 10 == 2 and n % 100 != 12:
+                    suffix = "nd"
+                elif n % 10 == 3 and n % 100 != 13:
+                    suffix = "rd"
+                return f"{n}{suffix}"
+            except Exception:
+                return text
+
+        elif interpret_as == "fraction":
+            if "/" in text:
+                num, denom = text.split("/", 1)
+                num, denom = num.strip(), denom.strip()
+                fraction_map = {
+                    "2": "half", "3": "third", "4": "quarter",
+                    "5": "fifth", "6": "sixth", "7": "seventh",
+                    "8": "eighth", "9": "ninth", "10": "tenth"
+                }
+                word = fraction_map.get(denom, f"over {denom}")
+                return f"{num} {word}" if num != "1" else word
+            return text
+
+        elif interpret_as == "measurement":
+            unit_patterns = {
+                "km": "kilometers", "m": "meters", "cm": "centimeters",
+                "mm": "millimeters", "kg": "kilograms", "g": "grams",
+                "l": "liters", "ml": "milliliters"
+            }
+            for unit, word in unit_patterns.items():
+                if text.lower().endswith(unit):
+                    num = re.sub(r"[^0-9.,]", "", text)
+                    return f"{num} {word}"
+            return text
+
         else:
             return text
