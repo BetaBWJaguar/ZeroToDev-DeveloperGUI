@@ -83,7 +83,8 @@ class SayAsEN:
                 fraction_map = {
                     "2": "half", "3": "third", "4": "quarter",
                     "5": "fifth", "6": "sixth", "7": "seventh",
-                    "8": "eighth", "9": "ninth", "10": "tenth"
+                    "8": "eighth", "9": "ninth", "10": "tenth",
+                    "20": "twentieth","30": "thirtieth"
                 }
                 word = fraction_map.get(denom, f"over {denom}")
                 return f"{num} {word}" if num != "1" else word

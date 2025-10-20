@@ -567,23 +567,25 @@ class TTSMenuApp(tk.Tk):
         container = ttk.Frame(win, padding=25)
         container.pack(fill="both", expand=True)
 
-
         ttk.Label(container, text=self.lang.get("developer_title"), style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
 
+        for dev_info_key in sorted(REQUIRED_DEV_KEYS):
+            lang_key = f"dev_info_{dev_info_key.lower()}"
 
-        for k in ["Name", "Role", "Project", "Version", "Contact"]:
-            row = kv_row(container, k, str(DEVINFO[k]))
+            display_key = self.lang.get(lang_key)
+
+            value = str(DEVINFO[dev_info_key])
+
+            row = kv_row(container, display_key, value)
             row.pack(fill="x", pady=6)
 
         ttk.Separator(container).pack(fill="x", pady=15)
 
-
         ttk.Button(container, text=self.lang.get("close_button"), command=win.destroy,
                    style="Accent.TButton").pack(anchor="center", pady=(8, 0))
 
-
-        center_window(win,self)
+        center_window(win, self)
         LogsHelperManager.log_button(self.logger, "OPEN_DEVELOPER")
 
     def show_settings(self):
@@ -760,9 +762,7 @@ class TTSMenuApp(tk.Tk):
         ttk.Label(container, text=self.lang.get("zip_settings_title"), style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
         ttk.Label(container,
-                  text=("Enable or disable ZIP export.\n"
-                        "If enabled, detailed project contents will be included "
-                        "inside the ZIP package (transcript, metadata, preview, segments, etc.)"),
+                  text=self.lang.get("zip_description"),
                   style="Muted.TLabel", wraplength=400, justify="left").pack(anchor="w", pady=(0, 12))
 
         zip_enabled_var = tk.BooleanVar(value=MemoryManager.get("zip_export_enabled", False))
@@ -775,26 +775,26 @@ class TTSMenuApp(tk.Tk):
         password_enabled_var = tk.BooleanVar(value=MemoryManager.get("zip_password_enabled", False))
         password_var = tk.StringVar(value=MemoryManager.get("zip_password", ""))
 
-        include_card, include_inner = section(container, "Include in ZIP", padding=0)
+        include_card, include_inner = section(container, self.lang.get("zip_include_section_title"), padding=0)
 
-        row, transcript_combo = styled_combobox(include_inner, "Transcript Format:", transcript_fmt_var,
+        row, transcript_combo = styled_combobox(include_inner, self.lang.get("zip_transcript_format_label"), transcript_fmt_var,
                                                 ["txt", "md", "docx", "pdf", "json"])
 
         transcript_toggle_btn = toggle_button(
-            include_inner, "❌ Exclude Transcript", "✅ Include Transcript",
+            include_inner, self.lang.get("zip_toggle_transcript_off"), self.lang.get("zip_toggle_transcript_on"),
             initial=transcript_var.get(),
             command=lambda state: self.listener.on_transcript_toggle(state, transcript_combo,
                                                                      transcript_var, zip_enabled_var)
         )
 
         segments_toggle_btn = toggle_button(
-            include_inner, "❌ Exclude Segments...", "✅ Include Segments...",
+            include_inner, self.lang.get("zip_toggle_segments_off"), self.lang.get("zip_toggle_segments_on"),
             initial=segments_var.get(),
             command=lambda state: MemoryManager.set("zip_include_segments", state)
         )
 
         metadata_toggle_btn = toggle_button(
-            include_inner, "❌ Exclude Metadata", "✅ Include Metadata",
+            include_inner, self.lang.get("zip_toggle_metadata_off"), self.lang.get("zip_toggle_metadata_on"),
             initial=metadata_var.get(),
             command=lambda state: MemoryManager.set("zip_include_metadata", state)
         )
@@ -804,7 +804,7 @@ class TTSMenuApp(tk.Tk):
         password_entry = ttk.Entry(container, textvariable=password_var, show="*")
 
         password_toggle_btn = toggle_button(
-            container, "🔒 Disable Password", "🔓 Enable Password",
+            container, self.lang.get("zip_toggle_password_off"), self.lang.get("zip_toggle_password_on"),
             initial=password_enabled_var.get(),
             command=lambda state: self.listener.on_pw_toggle(state, password_entry,
                                                              password_enabled_var, zip_enabled_var)
@@ -817,7 +817,7 @@ class TTSMenuApp(tk.Tk):
         ]
 
         main_toggle = toggle_button(
-            container, "Disable ZIP Export (Currently Enabled)", "Enable ZIP Export (Currently Disabled)",
+            container, self.lang.get("zip_main_toggle_off"), self.lang.get("zip_main_toggle_on"),
             initial=zip_enabled_var.get(),
             command=lambda state: self.listener.on_main_toggle(state, child_controls_to_disable,
                                                                transcript_combo, password_entry,
@@ -839,18 +839,18 @@ class TTSMenuApp(tk.Tk):
         segments_toggle_btn.pack(fill="x", pady=(2, 6), in_=include_inner)
         metadata_toggle_btn.pack(fill="x", pady=(2, 6), in_=include_inner)
 
-        ttk.Label(container, text="Max Characters per Segment:", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        ttk.Label(container, text=self.lang.get("zip_max_chars_label"), style="Label.TLabel").pack(anchor="w", pady=(6, 2))
         seg_entry.pack(fill="x", pady=(0, 6))
 
-        ttk.Label(container, text="Preview Length (chars):", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        ttk.Label(container, text=self.lang.get("zip_preview_length_label"), style="Label.TLabel").pack(anchor="w", pady=(6, 2))
         preview_entry.pack(fill="x", pady=(0, 6))
 
-        ttk.Label(container, text="ZIP Password Protection:", style="Label.TLabel").pack(anchor="w", pady=(6, 2))
+        ttk.Label(container, text=self.lang.get("zip_password_protection_label"), style="Label.TLabel").pack(anchor="w", pady=(6, 2))
         password_entry.pack(fill="x", pady=(0, 6))
         password_toggle_btn.pack(fill="x", pady=(0, 8))
 
         ttk.Separator(container).pack(fill="x", pady=12)
-        ttk.Button(container, text="Close", command=win.destroy, style="Accent.TButton") \
+        ttk.Button(container, text=self.lang.get("close_button"), command=win.destroy, style="Accent.TButton") \
             .pack(anchor="center", pady=(8, 0))
 
         self.listener.toggle_all_child_controls(zip_enabled_var.get(),
@@ -868,17 +868,15 @@ class TTSMenuApp(tk.Tk):
         f = THEME["FONTS"]
 
         win = tk.Toplevel(self)
-        win.title("Markup Guide")
+        win.title(self.lang.get("markup_guide_title"))
         win.transient(self)
         win.grab_set()
         win.geometry("900x700")
         win.resizable(False, False)
         win.configure(bg=c["bg"])
 
-
         container = ttk.Frame(win, padding=(30, 25), style="TFrame")
         container.pack(fill="both", expand=True)
-
 
         canvas = tk.Canvas(container, bg=c["bg"], highlightthickness=0, bd=0)
         scroll_y = ttk.Scrollbar(container, orient="vertical", command=canvas.yview)
@@ -891,32 +889,28 @@ class TTSMenuApp(tk.Tk):
         canvas.pack(side="left", fill="both", expand=True)
         scroll_y.pack(side="right", fill="y")
 
-
-        ttk.Label(scroll_frame, text="Markup Usage Guide", style="Title.TLabel") \
+        ttk.Label(scroll_frame, text=self.lang.get("markup_guide_header"), style="Title.TLabel") \
             .pack(anchor="w", pady=(0, 12))
 
-
-        about_card, about_inner = section(scroll_frame, "About Markup")
+        about_card, about_inner = section(scroll_frame, self.lang.get("markup_about_section"))
         about_card.pack(fill="x", pady=(0, 12))
         ttk.Label(
             about_inner,
-            text=("Markup allows you to control how text is spoken by adding expressive "
-                  "SSML-like tags directly in the text box. These tags let you change emphasis, "
-                  "insert pauses, control emotions, and modifying more"),
+            text=self.lang.get("markup_about_text"),
             style="Muted.TLabel",
             wraplength=560,
             justify="left"
         ).pack(anchor="w", pady=(4, 4))
 
-        tags_card, tags_inner = section(scroll_frame, "Supported Tags")
+        tags_card, tags_inner = section(scroll_frame, self.lang.get("markup_supported_tags_section"))
         tags_card.pack(fill="x", pady=(0, 12))
 
         tags = [
-            ("<emphasis level=\"strong\">text</emphasis>", "Adds emphasis to specific words."),
-            ("<break time=\"500ms\"/>", "Inserts a short pause (silence)."),
-            ("<style type=\"radio\">text</style>", "Applies a specific voice character style — e.g., radio, storyteller, robotic, deep, or soft — to give personality to the speech."),
-            ("<prosody rate=\"1.2\" pitch=\"3\">text</prosody>", "Adjusts speed and pitch dynamically."),
-            ("<say-as interpret-as=\"digits\">1234</say-as>", "Controls how the text is read (digits, date, etc.).")
+            ("<emphasis level=\"strong\">text</emphasis>", self.lang.get("markup_tag_desc_emphasis")),
+            ("<break time=\"500ms\"/>", self.lang.get("markup_tag_desc_break")),
+            ("<style type=\"radio\">text</style>", self.lang.get("markup_tag_desc_style")),
+            ("<prosody rate=\"1.2\" pitch=\"3\">text</prosody>", self.lang.get("markup_tag_desc_prosody")),
+            ("<say-as interpret-as=\"digits\">1234</say-as>", self.lang.get("markup_tag_desc_sayas"))
         ]
 
         for code, desc in tags:
@@ -925,8 +919,7 @@ class TTSMenuApp(tk.Tk):
             ttk.Label(card, text=code, style="TLabel", foreground=c["primary"]).pack(anchor="w")
             ttk.Label(card, text=f"→ {desc}", style="Muted.TLabel").pack(anchor="w", padx=(20, 0))
 
-
-        example_card, example_inner = section(scroll_frame, "Example Usage")
+        example_card, example_inner = section(scroll_frame, self.lang.get("markup_example_section"))
         example_card.pack(fill="x", pady=(0, 12))
 
         example = (
@@ -936,32 +929,21 @@ class TTSMenuApp(tk.Tk):
         )
 
         example_box = tk.Text(
-            example_inner,
-            height=5,
-            wrap="word",
-            font=tuple(f["label"]),
-            bg=c["textarea_bg"],
-            fg=c["text"],
-            insertbackground=c["text"],
-            relief="flat",
-            padx=10, pady=10
+            example_inner, height=5, wrap="word", font=tuple(f["label"]),
+            bg=c["textarea_bg"], fg=c["text"], insertbackground=c["text"],
+            relief="flat", padx=10, pady=10
         )
         example_box.insert("1.0", example)
         example_box.config(state="disabled")
         example_box.pack(fill="x")
 
-        tips_card, tips_inner = section(scroll_frame, "Tips")
+        tips_card, tips_inner = section(scroll_frame, self.lang.get("markup_tips_section"))
         tips_card.pack(fill="x", pady=(0, 12))
-        tips = (
-            "• You can mix multiple tags in one sentence.\n"
-            "• Tags are case-insensitive.\n"
-            "• Invalid tags are ignored safely.\n"
-            "• The <break> tag must be self-closing (<break .../>)."
-        )
-        ttk.Label(tips_inner, text=tips, style="Muted.TLabel", justify="left") \
+
+        ttk.Label(tips_inner, text=self.lang.get("markup_tips_text"), style="Muted.TLabel", justify="left") \
             .pack(anchor="w", pady=(2, 4))
 
-        adv_card, adv_inner = section(scroll_frame, "Advanced Examples")
+        adv_card, adv_inner = section(scroll_frame, self.lang.get("markup_advanced_section"))
         adv_card.pack(fill="x", pady=(0, 12))
         adv = (
             "<prosody rate=\"0.8\" pitch=\"-2\">Slow and deep voice</prosody>\n"
@@ -971,7 +953,7 @@ class TTSMenuApp(tk.Tk):
             .pack(anchor="w", pady=(4, 4))
 
         ttk.Separator(scroll_frame).pack(fill="x", pady=(10, 8))
-        primary_button(scroll_frame, "Close", win.destroy).pack(anchor="center", pady=(5, 10))
+        primary_button(scroll_frame, self.lang.get("close_button"), win.destroy).pack(anchor="center", pady=(5, 10))
 
         center_window(win, self)
 
@@ -979,7 +961,7 @@ class TTSMenuApp(tk.Tk):
         LogsHelperManager.log_button(self.logger, "OPEN_LANGUAGE_SETTINGS")
 
         win = tk.Toplevel(self)
-        win.title("Select a Language")
+        win.title(self.lang.get("language_settings_title"))
         win.transient(self)
         win.grab_set()
         win.resizable(False, False)
@@ -987,9 +969,9 @@ class TTSMenuApp(tk.Tk):
         container = ttk.Frame(win, padding=25, style="TFrame")
         container.pack(fill="both", expand=True)
 
-        ttk.Label(container, text="Select a Language", style="Title.TLabel") \
+        ttk.Label(container, text=self.lang.get("language_settings_header"), style="Title.TLabel") \
             .pack(anchor="center", pady=(0, 15))
-        ttk.Label(container, text="Select the language for the user interface.",
+        ttk.Label(container, text=self.lang.get("language_settings_description"),
                   style="Muted.TLabel", wraplength=380, justify="center") \
             .pack(anchor="center", pady=(0, 12))
 
@@ -1008,7 +990,7 @@ class TTSMenuApp(tk.Tk):
 
         row, combo = styled_combobox(
             container,
-            self.lang.get("select_language_label", "Select language:"),
+            self.lang.get("select_language_label"),
             lang_var,
             list(available_langs.values())
         )
@@ -1022,16 +1004,10 @@ class TTSMenuApp(tk.Tk):
             if new_lang_code != old_lang:
                 MemoryManager.set("ui_language", new_lang_code)
                 LogsHelperManager.log_success(self.logger, "LANGUAGE_CHANGED", {
-                    "old": old_lang,
-                    "new": new_lang_code
+                    "old": old_lang, "new": new_lang_code
                 })
                 self.reload_language(new_lang_code)
-                GUIError(
-                    self,
-                    "✅",
-                    self.lang.get("lang_changed"),
-                    icon="✅"
-                )
+                GUIError(self, "✅", self.lang.get("lang_changed"), icon="✅")
             win.destroy()
 
         primary_button(
