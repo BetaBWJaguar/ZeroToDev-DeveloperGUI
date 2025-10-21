@@ -108,5 +108,9 @@
   "dev_info_role": "Rol",
   "dev_info_project": "Proje",
   "dev_info_version": "Sürüm",
-  "dev_info_contact": "İletişim"
+  "dev_info_contact": "İletişim",
+  "config_log_handler_label": "Log Yöneticisi:",
+  "config_log_handler_placeholder": "Yöneticiyi Seç",
+  "config_log_mode_label": "Log Modunu Seçin:",
+  "config_log_mode_placeholder": "Log Modu"
 }

@@ -108,5 +108,9 @@
   "dev_info_role": "Role",
   "dev_info_project": "Project",
   "dev_info_version": "Version",
-  "dev_info_contact": "Contact"
+  "dev_info_contact": "Contact",
+  "config_log_handler_label": "Log Handler:",
+  "config_log_handler_placeholder": "Select Handler",
+  "config_log_mode_label": "Select Log Mode:",
+  "config_log_mode_placeholder": "Log Mode"
 }

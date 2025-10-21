@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
-    progress_section, set_buttons_state, styled_combobox, toggle_button, logmode_selector, loghandler_selector, THEME
+    progress_section, set_buttons_state, styled_combobox, toggle_button, logmode_selector, loghandler_selector, THEME, markup_support_section
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -660,13 +660,23 @@ class TTSMenuApp(tk.Tk):
 
 
 
-        mode_frame, log_var, log_combo = logmode_selector(container, current_mode, ["INFO", "DEBUG", "ERROR"])
+        mode_frame, log_var, log_combo = logmode_selector(
+            container,
+            self.lang,
+            current_mode,
+            ["INFO", "DEBUG", "ERROR"]
+        )
         mode_frame.pack(fill="x", pady=(0, 15))
         log_combo.bind("<<ComboboxSelected>>",
                        lambda e: (initialized.__setitem__("value", True), update_logs()))
 
 
-        handler_frame, handler_var, handler_combo = loghandler_selector(container, current_handler, ["file", "sqlite", "both"])
+        handler_frame, handler_var, handler_combo = loghandler_selector(
+            container,
+            self.lang,
+            current_handler,
+            ["file", "sqlite", "both"]
+        )
         handler_frame.pack(fill="x", pady=(0, 15))
         handler_combo.bind("<<ComboboxSelected>>", lambda e: (update_logs(), initialized.__setitem__("value", True)))
 
@@ -695,54 +705,14 @@ class TTSMenuApp(tk.Tk):
 
         markup_enabled_var = tk.BooleanVar(value=current_markup_enabled)
 
-        def on_markup_toggle():
-            state = markup_enabled_var.get()
+        def on_markup_toggle(state: bool):
             MemoryManager.set("markup_enabled", state)
             LogsHelperManager.log_success(self.logger, "MARKUP_SUPPORT_TOGGLED", {"enabled": state})
             msg = self.lang.get("config_markup_enabled") if state else self.lang.get("config_markup_disabled")
-            GUIError(
-                self,
-                self.lang.get("config_updated_title"),
-                msg,
-                icon="✅"
-            )
+            GUIError(self, self.lang.get("config_updated_title"), msg, icon="✅")
 
-        markup_frame = ttk.Frame(container, style="Card.TFrame")
+        markup_frame = markup_support_section(container, self.lang, markup_enabled_var, on_toggle=on_markup_toggle)
         markup_frame.pack(fill="x", pady=(8, 10))
-
-        ttk.Label(
-            markup_frame,
-            text=self.lang.get("config_markup_support_label"),
-            style="Muted.TLabel"
-        ).grid(row=0, column=0, sticky="w", padx=(0, 10))
-
-        style = ttk.Style()
-        style.configure(
-            "Markup.TCheckbutton",
-            background=THEME["COLORS"]["card"],
-            foreground=THEME["COLORS"]["text"],
-            font=tuple(THEME["FONTS"]["label"]),
-            padding=(6, 2)
-        )
-        style.map(
-            "Markup.TCheckbutton",
-            background=[("active", THEME["COLORS"]["surface"])],
-            foreground=[("active", THEME["COLORS"]["primary_active"])],
-        )
-
-        markup_checkbox = ttk.Checkbutton(
-            markup_frame,
-            text=self.lang.get("config_markup_checkbox_text"),
-            variable=markup_enabled_var,
-            command=on_markup_toggle,
-            style="Markup.TCheckbutton"
-        )
-        markup_checkbox.grid(row=0, column=1, sticky="w")
-
-
-        ttk.Separator(container).pack(fill="x", pady=15)
-        ttk.Button(container, text=self.lang.get("close_button"), command=win.destroy,
-                   style="Accent.TButton").pack(anchor="center", pady=(8, 0))
 
         center_window(win, self)
 

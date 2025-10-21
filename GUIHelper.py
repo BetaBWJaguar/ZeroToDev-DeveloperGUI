@@ -354,18 +354,20 @@ def set_buttons_state(state: str, *widgets):
             w.config(state=state)
         except Exception:
             pass
-def logmode_selector(parent, current_mode: str, values: list[str]) -> tuple[ttk.Frame, tk.StringVar, ttk.Combobox]:
+def logmode_selector(parent, lang, current_mode: str, values: list[str]) -> tuple[ttk.Frame, tk.StringVar, ttk.Combobox]:
     frame = ttk.Frame(parent, style="Card.TFrame")
 
-    ttk.Label(frame, text="Select Log Mode:", style="Muted.TLabel") \
-        .pack(anchor="w", pady=(0, 6))
+    ttk.Label(
+        frame,
+        text=lang.get("config_log_mode_label"),
+        style="Muted.TLabel"
+    ).pack(anchor="w", pady=(0, 6))
 
     log_var = tk.StringVar(value=current_mode)
 
-
     combo_frame, log_combo = styled_combobox(
         frame,
-        "Log Mode",
+        lang.get("config_log_mode_placeholder"),
         log_var,
         values
     )
@@ -418,99 +420,20 @@ def toggle_button(parent, text_on: str, text_off: str,
     update_button()
     return btn
 
-def password_section(parent, title: str,
-                     password_var: tk.StringVar,
-                     enabled_var: tk.BooleanVar,
-                     on_toggle=None, on_change=None) -> ttk.Frame:
-
-    c = THEME["COLORS"]
-    f = THEME["FONTS"]
-
+def loghandler_selector(parent, lang, current_handler: str, handlers: list[str]) -> tuple[ttk.Frame, tk.StringVar, ttk.Combobox]:
     frame = ttk.Frame(parent, style="Card.TFrame")
 
-
-    ttk.Label(frame, text=title, style="Muted.TLabel") \
-        .pack(anchor="w", pady=(0, 6))
-
-
-    toggle_btn = ttk.Button(frame)
-
-    def update_toggle():
-        if enabled_var.get():
-            toggle_btn.config(
-                text="🔒 Disable Password Protection",
-                style="Toggle.On.TButton"
-            )
-            entry.config(state="normal")
-        else:
-            toggle_btn.config(
-                text="🔓 Enable Password Protection",
-                style="Toggle.Off.TButton"
-            )
-            entry.config(state="disabled")
-        if on_toggle:
-            on_toggle(enabled_var.get())
-
-    toggle_btn.config(
-        command=lambda: (enabled_var.set(not enabled_var.get()), update_toggle())
-    )
-    toggle_btn.pack(fill="x", pady=(0, 8))
-
-
-    entry = ttk.Entry(frame, textvariable=password_var, show="*", width=30)
-    entry.pack(fill="x", pady=(0, 6))
-
-
-    def on_pw_change(*_):
-        if on_change:
-            on_change(password_var.get())
-
-    password_var.trace_add("write", on_pw_change)
-
-
-    style = ttk.Style()
-    style.configure(
-        "Toggle.On.TButton",
-        background=c["primary"],
-        foreground="white",
-        padding=12,
-        font=tuple(f["button"])
-    )
-    style.map(
-        "Toggle.On.TButton",
-        background=[("active", c["primary_active"])],
-        foreground=[("active", "white")]
-    )
-
-    style.configure(
-        "Toggle.Off.TButton",
-        background=c["surface"],
-        foreground=c["text"],
-        padding=12,
-        font=tuple(f["button"])
-    )
-    style.map(
-        "Toggle.Off.TButton",
-        background=[("active", c["card"])],
-        foreground=[("active", c["text"])]
-    )
-
-
-    update_toggle()
-
-    return frame
-
-def loghandler_selector(parent, current_handler: str, handlers: list[str]) -> tuple[ttk.Frame, tk.StringVar, ttk.Combobox]:
-    frame = ttk.Frame(parent, style="Card.TFrame")
-
-    ttk.Label(frame, text="Log Handler:", style="Muted.TLabel") \
-        .pack(anchor="w", pady=(0, 6))
+    ttk.Label(
+        frame,
+        text=lang.get("config_log_handler_label"),
+        style="Muted.TLabel"
+    ).pack(anchor="w", pady=(0, 6))
 
     var = tk.StringVar(value=current_handler)
 
     combo_frame, combo = styled_combobox(
         frame,
-        "Select Handler",
+        lang.get("config_log_handler_placeholder"),
         var,
         handlers
     )
@@ -518,50 +441,37 @@ def loghandler_selector(parent, current_handler: str, handlers: list[str]) -> tu
 
     return frame, var, combo
 
-def markup_support_section(parent, enabled_var: tk.BooleanVar, on_toggle=None) -> ttk.Frame:
-    c = THEME["COLORS"]
-    f = THEME["FONTS"]
-
+def markup_support_section(parent, lang, enabled_var, on_toggle=None):
     frame = ttk.Frame(parent, style="Card.TFrame")
 
-
-    label = ttk.Label(
+    ttk.Label(
         frame,
-        text="Markup Support:",
+        text=lang.get("config_markup_support_label"),
         style="Muted.TLabel"
-    )
-    label.grid(row=0, column=0, sticky="w", padx=(0, 10))
+    ).grid(row=0, column=0, sticky="w", padx=(0, 10))
 
     style = ttk.Style()
     style.configure(
         "Markup.TCheckbutton",
-        background=c["card"],
-        foreground=c["text"],
-        font=tuple(f["label"]),
-        focuscolor=c["primary"],
+        background=THEME["COLORS"]["card"],
+        foreground=THEME["COLORS"]["text"],
+        font=tuple(THEME["FONTS"]["label"]),
         padding=(6, 2)
     )
     style.map(
         "Markup.TCheckbutton",
-        background=[("active", c["surface"])],
-        foreground=[("active", c["primary_active"])],
+        background=[("active", THEME["COLORS"]["surface"])],
+        foreground=[("active", THEME["COLORS"]["primary_active"])],
     )
 
     check = ttk.Checkbutton(
         frame,
-        text="Enable Markup Tags (e.g., <emphasis>, <break>, <style>)",
+        text=lang.get("config_markup_checkbox_text"),
         variable=enabled_var,
         style="Markup.TCheckbutton",
         command=lambda: on_toggle(enabled_var.get()) if on_toggle else None
     )
     check.grid(row=0, column=1, sticky="w")
 
-
-    sep = ttk.Separator(frame, orient="horizontal")
-    sep.grid(row=1, column=0, columnspan=2, sticky="ew", pady=(6, 2))
-
-    frame.grid_columnconfigure(1, weight=1)
     return frame
-
-
 
