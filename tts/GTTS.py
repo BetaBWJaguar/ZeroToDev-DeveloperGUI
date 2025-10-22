@@ -10,9 +10,10 @@ from tts.utility.TTSHelper import TTSHelper
 
 
 class GTTSService(TTSHelper):
-    def __init__(self, lang, max_chunk_chars=300, retries=1, retry_delay=0.6):
-        super().__init__(retries, retry_delay)
-        self.lang = lang
+    def __init__(self, gtts_lang: str, ui_lang, max_chunk_chars=300, retries=1, retry_delay=0.6):
+        super().__init__(lang=ui_lang, retries=retries, retry_delay=retry_delay)
+        self.gtts_lang_code = gtts_lang
+
         self.max_chunk_chars = max_chunk_chars
         self.logger = LogsManager.get_logger("GTTSService")
 
@@ -39,10 +40,10 @@ class GTTSService(TTSHelper):
     def _synthesize_chunk(self, chunk: str) -> bytes:
         LogsHelperManager.log_debug(self.logger, "CHUNK_SYNTH", {
             "chars": len(chunk),
-            "lang": self.lang
+            "lang": self.gtts_lang_code
         })
         buf = BytesIO()
-        tts = gTTS(text=chunk, lang=self.lang,slow=False)
+        tts = gTTS(text=chunk, lang=self.gtts_lang_code,slow=False)
         tts.write_to_fp(buf)
         buf.seek(0)
         return buf.read()

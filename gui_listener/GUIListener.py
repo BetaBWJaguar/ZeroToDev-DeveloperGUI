@@ -22,8 +22,10 @@ class GUIListener:
             db_path = MemoryManager.get("log_db_path", "logs.sqlite")
 
             LogsManager.init(new_mode, handler_type=handler_type, db_path=db_path)
-            GUIError(self.app, "Log Mode Changed", f"Log mode set to {new_mode}", icon="✅")
 
+            title = self.app.lang.get("log_mode_changed_title")
+            message = self.app.lang.get("log_mode_changed_message").format(mode=new_mode)
+            GUIError(self.app, title, message, icon="✅")
 
     # ==========================
     #  ZIP SETTINGS
@@ -92,10 +94,14 @@ class GUIListener:
         LogsHelperManager.log_config_change(self.app.logger, "tts_lang", old_lang, code_to_save)
 
     def on_voice_change(self, *_):
-        old_voice = MemoryManager.get("tts_voice", "female")
-        new_voice = self.app.voice_var.get()
-        MemoryManager.set("tts_voice", new_voice)
-        LogsHelperManager.log_config_change(self.app.logger, "tts_voice", old_voice, new_voice)
+        old_internal_voice = MemoryManager.get("tts_voice", "female")
+        display_voice = self.app.voice_var.get()
+
+        new_internal_voice = self.app.voice_internal_map.get(display_voice, "female")
+
+        if old_internal_voice != new_internal_voice:
+            MemoryManager.set("tts_voice", new_internal_voice)
+            LogsHelperManager.log_config_change(self.app.logger, "tts_voice", old_internal_voice, new_internal_voice)
 
     def on_text_change(self, *_):
         if not self.app.text.edit_modified():
@@ -104,7 +110,6 @@ class GUIListener:
 
         chars = len(self.app.text.get('1.0', 'end-1c'))
         self.app.counter.config(text=self.app.lang.get("footer_char_counter").format(count=chars))
-
 
         if hasattr(self.app, "_text_change_after"):
             self.app.after_cancel(self.app._text_change_after)

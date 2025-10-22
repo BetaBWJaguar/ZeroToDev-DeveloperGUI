@@ -12,7 +12,8 @@ from logs_manager.LogsManager import LogsManager
 
 
 class TTSHelper:
-    def __init__(self, retries=1, retry_delay=0.6):
+    def __init__(self, lang, retries=1, retry_delay=0.6):
+        self.lang = lang
         self._stop_preview = False
         self._preview_play_obj = None
         self.retries = retries
@@ -41,18 +42,16 @@ class TTSHelper:
                 pass
 
     def do_preview(self, synthesize_func, text: str,
-                    seconds: int = 20,
-                    play_audio: bool = True,
-                    progress_cb=None) -> bytes:
+                   seconds: int = 20,
+                   play_audio: bool = True,
+                   progress_cb=None) -> bytes:
         paragraphs = text.split("\n\n")
         snippet = paragraphs[0] if paragraphs else text[:300]
 
-
-        if progress_cb: progress_cb(30, "Generating TTS…")
+        if progress_cb: progress_cb(30, self.lang.get("progress_generating_tts"))
         raw_bytes = synthesize_func(snippet)
 
-
-        if progress_cb: progress_cb(50, "Applying preview effects…")
+        if progress_cb: progress_cb(50, self.lang.get("progress_applying_preview_effects"))
         settings = {k: MemoryManager.get(k, v) for k, v in {
             "pitch": 0, "speed": 1.0, "volume": 1.0,
             "echo": False, "reverb": False, "robot": False
@@ -61,7 +60,6 @@ class TTSHelper:
         LogsHelperManager.log_debug(logger, "EFFECTS_APPLIED_PREVIEW", settings)
         processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
 
-
         audio = AudioSegment.from_file(BytesIO(processed_bytes), format="mp3")
         preview = audio[:seconds * 1000]
 
@@ -69,9 +67,8 @@ class TTSHelper:
         preview.export(out_buf, format="mp3")
         out_buf.seek(0)
 
-
         if play_audio:
-            if progress_cb: progress_cb(90, "Playing preview…")
+            if progress_cb: progress_cb(90, self.lang.get("preview_playing"))
             self._preview_play_obj = sa.play_buffer(
                 preview.raw_data,
                 num_channels=preview.channels,
@@ -85,7 +82,7 @@ class TTSHelper:
                     break
                 time.sleep(0.05)
 
-        if progress_cb: progress_cb(100, "Preview done ✔️")
+        if progress_cb: progress_cb(100, self.lang.get("preview_done"))
 
         try:
             ding_path = Path(__file__).resolve().parent.parent / "utility" / "sounds" / "ding.wav"

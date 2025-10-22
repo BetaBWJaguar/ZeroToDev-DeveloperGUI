@@ -10,20 +10,16 @@ class GUIError(tk.Toplevel):
         super().__init__(parent)
         self.title(title)
 
-
         self.transient(parent)
         self.grab_set()
 
         self.resizable(False, False)
 
-
         self.configure(bg="#000000")
         self.attributes("-alpha", 0.95)
 
-
         container = ttk.Frame(self, padding=25, style="Card.TFrame")
         container.pack(fill="both", expand=True, padx=15, pady=15)
-
 
         header = ttk.Frame(container, style="Card.TFrame")
         header.pack(pady=(0, 15))
@@ -36,8 +32,7 @@ class GUIError(tk.Toplevel):
             header, text=message, style="Title.TLabel", wraplength=300, justify="left"
         ).pack(side="left", anchor="w")
 
-
-        ttk.Button(container, text="OK", command=self.destroy, style="Accent.TButton") \
+        ttk.Button(container, text=parent.lang.get("ok_button"), command=self.destroy, style="Accent.TButton") \
             .pack(anchor="center", pady=(5, 0))
 
         self.update_idletasks()

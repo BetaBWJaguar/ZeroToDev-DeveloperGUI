@@ -248,11 +248,25 @@ class TTSMenuApp(tk.Tk):
         )
         lang_row.pack(fill="x", pady=(4, 6))
 
+
+        self.voice_display_map = {
+            "female": self.lang.get("voice_female"),
+            "male": self.lang.get("voice_male")
+        }
+        self.voice_internal_map = {v: k for k, v in self.voice_display_map.items()}
+
+        saved_internal_voice = MemoryManager.get("tts_voice", "female")
+
+        initial_display_voice = self.voice_display_map.get(saved_internal_voice, self.lang.get("voice_female"))
+
+        self.voice_var = tk.StringVar(value=initial_display_voice)
+        self.voice_var.trace_add("write", self.listener.on_voice_change)
+
         voice_row, self.voice_combo = styled_combobox(
             lang_inner,
             self.lang.get("select_voice_label"),
             self.voice_var,
-            ["female", "male"]
+            list(self.voice_display_map.values())
         )
         voice_row.pack(fill="x", pady=(4, 6))
 
@@ -323,12 +337,12 @@ class TTSMenuApp(tk.Tk):
 
             if svc_key == "google":
                 gtts_lang = LANGS[lang_code]["gtts"]["lang"]
-                self.tts_helper = GTTSService(lang=gtts_lang)
+                self.tts_helper = GTTSService(gtts_lang=gtts_lang,ui_lang=self.lang)
 
             elif svc_key == "edge":
                 gender = MemoryManager.get("tts_voice", "female")
                 edge_voice = LANGS[lang_code]["edge"]["voices"][gender]
-                self.tts_helper = MicrosoftEdgeTTS(voice=edge_voice)
+                self.tts_helper = MicrosoftEdgeTTS(voice=edge_voice, ui_lang=self.lang)
 
             else:
                 LogsHelperManager.log_error(self.logger, "PREVIEW", f"Unknown TTS service: {svc_key}")
@@ -383,6 +397,7 @@ class TTSMenuApp(tk.Tk):
                 )
 
                 self.tts_helper.do_preview(
+                    self.lang,
                     lambda txt: processed_bytes,
                     text,
                     seconds=20,

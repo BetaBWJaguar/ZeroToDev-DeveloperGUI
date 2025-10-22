@@ -9,11 +9,11 @@ from tts.utility.TTSHelper import TTSHelper
 
 
 class MicrosoftEdgeTTS(TTSHelper):
-    def __init__(self, voice, retries=1, retry_delay=0.6, max_chunk_chars=300):
-        super().__init__(retries, retry_delay)
+    def __init__(self, voice: str, ui_lang, retries=1, retry_delay=0.6, max_chunk_chars=300):
+        super().__init__(lang=ui_lang, retries=retries, retry_delay=retry_delay)
         self.voice = voice
         self.max_chunk_chars = max_chunk_chars
-        self.logger = LogsManager.get_logger("GTTSService")
+        self.logger = LogsManager.get_logger("MicrosoftEdgeTTSService")
 
     def _chunk_text(self, text: str):
         if len(text) <= self.max_chunk_chars:

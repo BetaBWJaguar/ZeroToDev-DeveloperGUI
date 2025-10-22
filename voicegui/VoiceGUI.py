@@ -24,7 +24,10 @@ def load_presets():
 class VoiceSettings(tk.Toplevel):
     def __init__(self, parent):
         super().__init__(parent)
-        self.title("Voice Settings")
+
+        self.lang = parent.lang
+        self.title(self.lang.get("voice_settings_title"))
+
         self.transient(parent)
         self.logger = LogsManager.get_logger("VoiceSettings")
         self.grab_set()
@@ -36,62 +39,61 @@ class VoiceSettings(tk.Toplevel):
         container.pack(fill="both", expand=True)
 
         # --- Preset selection ---
-        preset_card, preset_inner = section(container, "Preset Selection")
+        preset_card, preset_inner = section(container, self.lang.get("voice_settings_preset_section"))
         preset_card.pack(fill="x", pady=(0, 2))
 
         last_preset = MemoryManager.get("preset", "Default")
         self.preset_var = tk.StringVar(value=last_preset)
         preset_frame, preset_combo = styled_combobox(
-            preset_inner, "Presets", self.preset_var, list(self.presets.keys())
+            preset_inner, self.lang.get("voice_settings_preset_label"), self.preset_var, list(self.presets.keys())
         )
         preset_frame.pack(fill="x", pady=(0, 0))
 
-        GuideLabel(preset_inner, "Choose from your saved presets to quickly apply voice settings.")
+        GuideLabel(preset_inner, self.lang.get("voice_settings_preset_guide"))
 
         preset_combo.bind("<<ComboboxSelected>>", self.apply_preset)
 
-        param_card, param_inner = section(container, "Voice Parameters")
+        param_card, param_inner = section(container, self.lang.get("voice_settings_params_section"))
         param_card.pack(fill="x", pady=(0, 15))
 
         self.pitch_var = tk.DoubleVar(value=MemoryManager.get("pitch", 0))
         self.pitch_var.trace_add("write", lambda *_: self._on_param_change("pitch", self.pitch_var.get()))
-        labeled_scale(param_inner, "Pitch", self.pitch_var, -10, 10).pack(fill="x")
-        GuideLabel(param_inner, "Pitch: Lower values = deeper voice, higher values = higher tone.")
+        labeled_scale(param_inner, self.lang.get("voice_settings_pitch_label"), self.pitch_var, -10, 10).pack(fill="x")
+        GuideLabel(param_inner, self.lang.get("voice_settings_pitch_guide"))
 
         self.speed_var = tk.DoubleVar(value=MemoryManager.get("speed", 1.0))
         self.speed_var.trace_add("write", lambda *_: self._on_param_change("speed", self.speed_var.get()))
-        labeled_scale(param_inner, "Speed", self.speed_var, 0.5, 2.0).pack(fill="x")
-        GuideLabel(param_inner, "Speed: 1.0 = normal, 2.0 = twice as fast, 0.5 = slower.")
+        labeled_scale(param_inner, self.lang.get("voice_settings_speed_label"), self.speed_var, 0.5, 2.0).pack(fill="x")
+        GuideLabel(param_inner, self.lang.get("voice_settings_speed_guide"))
 
         self.volume_var = tk.DoubleVar(value=MemoryManager.get("volume", 1.0))
         self.volume_var.trace_add("write", lambda *_: self._on_param_change("volume", self.volume_var.get()))
-        labeled_scale(param_inner, "Volume", self.volume_var, 0.5, 2.0).pack(fill="x")
-        GuideLabel(param_inner, "Volume: Controls loudness. 1.0 = normal, 2.0 = louder.")
+        labeled_scale(param_inner, self.lang.get("voice_settings_volume_label"), self.volume_var, 0.5, 2.0).pack(fill="x")
+        GuideLabel(param_inner, self.lang.get("voice_settings_volume_guide"))
 
-        effect_card, effect_inner = section(container, "Voice Effects")
+        effect_card, effect_inner = section(container, self.lang.get("voice_settings_effects_section"))
         effect_card.pack(fill="x", pady=(0, 15))
-
 
         self.echo_var = tk.BooleanVar(value=MemoryManager.get("echo", False))
         self.echo_var.trace_add("write", lambda *_: self._on_param_change("echo", self.echo_var.get()))
-        ttk.Checkbutton(effect_inner, text="Echo", variable=self.echo_var,
+        ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_echo_label"), variable=self.echo_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
-        GuideLabel(effect_inner, "Echo: Adds a repeating echo effect.")
+        GuideLabel(effect_inner, self.lang.get("voice_settings_echo_guide"))
 
         self.reverb_var = tk.BooleanVar(value=MemoryManager.get("reverb", False))
         self.reverb_var.trace_add("write", lambda *_: self._on_param_change("reverb", self.reverb_var.get()))
-        ttk.Checkbutton(effect_inner, text="Reverb", variable=self.reverb_var,
+        ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_reverb_label"), variable=self.reverb_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
-        GuideLabel(effect_inner, "Reverb: Adds reverberation like a hall or large room.")
+        GuideLabel(effect_inner, self.lang.get("voice_settings_reverb_guide"))
 
         self.robot_var = tk.BooleanVar(value=MemoryManager.get("robot", False))
         self.robot_var.trace_add("write", lambda *_: self._on_param_change("robot", self.robot_var.get()))
-        ttk.Checkbutton(effect_inner, text="Robotize", variable=self.robot_var,
+        ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_robot_label"), variable=self.robot_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
-        GuideLabel(effect_inner, "Robotize: Makes the voice sound robotic and synthetic.")
+        GuideLabel(effect_inner, self.lang.get("voice_settings_robot_guide"))
 
         # --- Close button ---
-        primary_button(container, "Close", self.destroy).pack(pady=(10, 0))
+        primary_button(container, self.lang.get("close_button"), self.destroy).pack(pady=(10, 0))
 
         self.update_idletasks()
         parent.update()
