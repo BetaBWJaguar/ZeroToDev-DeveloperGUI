@@ -44,8 +44,21 @@ class VoiceSettings(tk.Toplevel):
 
         last_preset = MemoryManager.get("preset", "Default")
         self.preset_var = tk.StringVar(value=last_preset)
+        translated_list = [self.translate_preset(name) for name in self.presets.keys()]
+
+        original_to_display = {
+            key: self.translate_preset(key) for key in self.presets.keys()
+        }
+
+        self.preset_var = tk.StringVar(
+            value=original_to_display.get(MemoryManager.get("preset", "Default"))
+        )
+
         preset_frame, preset_combo = styled_combobox(
-            preset_inner, self.lang.get("voice_settings_preset_label"), self.preset_var, list(self.presets.keys())
+            preset_inner,
+            self.lang.get("voice_settings_preset_label"),
+            self.preset_var,
+            translated_list
         )
         preset_frame.pack(fill="x", pady=(0, 0))
 
@@ -100,8 +113,11 @@ class VoiceSettings(tk.Toplevel):
         center_window(self, parent)
 
     def apply_preset(self, *_):
-        preset_name = self.preset_var.get()
+        display_name = self.preset_var.get()
+        preset_name = self.reverse_translate_preset(display_name)
+
         MemoryManager.set("preset", preset_name)
+
         preset = self.presets.get(preset_name, {})
         if not preset:
             return
@@ -109,7 +125,6 @@ class VoiceSettings(tk.Toplevel):
         self.pitch_var.set(preset.get("pitch", 0))
         self.speed_var.set(preset.get("speed", 1.0))
         self.volume_var.set(preset.get("volume", 1.0))
-
         self.echo_var.set(preset.get("echo", False))
         self.reverb_var.set(preset.get("reverb", False))
         self.robot_var.set(preset.get("robot", False))
@@ -132,3 +147,13 @@ class VoiceSettings(tk.Toplevel):
                 del self._pending_logs[key]
 
         self._pending_logs[key] = self.after(delay, do_log)
+
+    def translate_preset(self, key: str) -> str:
+        lang_key = "preset_" + key.lower().replace(" ", "_")
+        return self.lang.get(lang_key)
+
+    def reverse_translate_preset(self, display_value: str) -> str:
+        for key in self.presets.keys():
+            if self.translate_preset(key) == display_value:
+                return key
+        return display_value

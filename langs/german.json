@@ -137,5 +137,9 @@
   "voice_female": "Weiblich",
   "voice_male": "Männlich",
   "progress_generating_tts": "TTS wird generiert...",
-  "progress_applying_preview_effects": "Vorschaueffekte werden angewendet..."
+  "progress_applying_preview_effects": "Vorschaueffekte werden angewendet...",
+  "preset_default": "Standard",
+  "preset_telephone": "Telefonstimme",
+  "preset_deep_narrator": "Tiefer Erzähler",
+  "preset_cartoon_voice": "Comic-Stimme"
 }

@@ -137,5 +137,9 @@
   "voice_female": "Kadın",
   "voice_male": "Erkek",
   "progress_generating_tts": "TTS oluşturuluyor...",
-  "progress_applying_preview_effects": "Önizleme efektleri uygulanıyor..."
+  "progress_applying_preview_effects": "Önizleme efektleri uygulanıyor...",
+  "preset_default": "Varsayılan",
+  "preset_telephone": "Telefon Sesi",
+  "preset_deep_narrator": "Derin Anlatıcı",
+  "preset_cartoon_voice": "Çizgi Film Sesi"
 }

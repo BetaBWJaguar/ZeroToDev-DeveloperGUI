@@ -137,5 +137,9 @@
   "voice_female": "Female",
   "voice_male": "Male",
   "progress_generating_tts": "Generating TTS...",
-  "progress_applying_preview_effects": "Applying preview effects..."
+  "progress_applying_preview_effects": "Applying preview effects...",
+  "preset_default": "Default",
+  "preset_telephone": "Telephone",
+  "preset_deep_narrator": "Deep Narrator",
+  "preset_cartoon_voice": "Cartoon Voice"
 }

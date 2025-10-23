@@ -483,11 +483,11 @@ class TTSMenuApp(tk.Tk):
         try:
             if svc_key == "GOOGLE":
                 gtts_lang = LANGS[lang_code]["gtts"]["lang"]
-                tts = GTTSService(lang=gtts_lang)
+                tts = GTTSService(gtts_lang=gtts_lang, ui_lang=self.lang)
             elif svc_key == "EDGE":
                 gender = MemoryManager.get("tts_voice", "female")
                 edge_voice = LANGS[lang_code]["edge"]["voices"][gender]
-                tts = MicrosoftEdgeTTS(voice=edge_voice)
+                tts = MicrosoftEdgeTTS(voice=edge_voice, ui_lang=self.lang)
             else:
                 LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", f"Unknown TTS service: {svc_key}")
                 GUIError(self, self.lang.get("error_title"), self.lang.get("error_unknown_service"), icon="❌")
