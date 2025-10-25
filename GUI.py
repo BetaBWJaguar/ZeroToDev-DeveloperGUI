@@ -25,9 +25,10 @@ from tts.MicrosoftEdgeTTS import MicrosoftEdgeTTS
 from voicegui.VoiceGUI import VoiceSettings
 from zip.ZIPConvertor import ZIPConvertor
 from gui_listener.GUIListener import GUIListener
+from PathHelper import PathHelper
 
-BASE_DIR = Path(__file__).resolve().parent
-UTILS_DIR = BASE_DIR / "utils"
+BASE_DIR = PathHelper.base_dir()
+UTILS_DIR = PathHelper.resource_path("utils")
 
 
 REQUIRED_COLOR_KEYS = {
@@ -280,7 +281,7 @@ class TTSMenuApp(tk.Tk):
         self.service_var.trace_add("write", lambda *_: update_voice_state())
 
         output_card, self.output_label = output_selector(
-            right, self.output_dir, self.listener.on_output_change, self.lang
+            right, Path.home() / "Documents", self.listener.on_output_change, self.lang
         )
         output_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
 

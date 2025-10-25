@@ -4,6 +4,7 @@ from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from datetime import datetime
 
+from PathHelper import PathHelper
 from logs_manager.SQLite_Handler import SQLiteLogHandler
 
 
@@ -18,7 +19,7 @@ class JSONFormatter(logging.Formatter):
         return json.dumps(log_entry, ensure_ascii=False)
 
 class LogsManager:
-    LOG_DIR = Path(r"T:\TunaRP\Zero to Dev - Developer GUI\logs")
+    LOG_DIR = PathHelper.base_dir() / "logs"
     LOG_JSON_DIR = LOG_DIR / "json"
     LOG_DIR.mkdir(parents=True, exist_ok=True)
     LOG_JSON_DIR.mkdir(parents=True, exist_ok=True)
