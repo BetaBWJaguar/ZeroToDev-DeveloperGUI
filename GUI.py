@@ -281,7 +281,7 @@ class TTSMenuApp(tk.Tk):
         self.service_var.trace_add("write", lambda *_: update_voice_state())
 
         output_card, self.output_label = output_selector(
-            right, Path.home() / "Documents", self.listener.on_output_change, self.lang
+            right, self.output_dir, self.listener.on_output_change, self.lang
         )
         output_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
 
@@ -433,21 +433,6 @@ class TTSMenuApp(tk.Tk):
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
             self.after(0, self._reset_preview_button)
 
-
-    def finish_preview_playback(self):
-        try:
-            ding_path = Path(__file__).resolve().parent / "tts" / "utility" / "sounds" / "ding.wav"
-            if ding_path.exists():
-                ding_audio = sa.WaveObject.from_wave_file(str(ding_path))
-                ding_play = ding_audio.play()
-                ding_play.wait_done()
-            else:
-                print("[INFO] No ding sound found, skipping.")
-        except Exception as e:
-            print(f"[WARN] Ding sound failed: {e}")
-        finally:
-            self._set_progress(100, self.lang.get("preview_done"))
-            LogsHelperManager.log_success(self.logger, "PREVIEW_DONE", {})
 
 
     def on_convert(self):

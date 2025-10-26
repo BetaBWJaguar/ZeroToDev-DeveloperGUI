@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import time
 from io import BytesIO
-from pathlib import Path
-
 from pydub import AudioSegment
 import simpleaudio as sa
+from PathHelper import PathHelper
 from VoiceProcessor import VoiceProcessor
 from data_manager.MemoryManager import MemoryManager
 from logs_manager.LogsHelperManager import LogsHelperManager
@@ -84,13 +83,15 @@ class TTSHelper:
 
         if progress_cb: progress_cb(100, self.lang.get("preview_done"))
 
+        ding_path = PathHelper.resource_path("tts/utility/sounds/ding.wav")
+        if not ding_path.exists():
+            raise FileNotFoundError(f"ding.wav not found at {ding_path}")
+
         try:
-            ding_path = Path(__file__).resolve().parent.parent / "utility" / "sounds" / "ding.wav"
-            if ding_path.exists():
-                ding_audio = sa.WaveObject.from_wave_file(str(ding_path))
-                ding_play = ding_audio.play()
-                ding_play.wait_done()
+            ding_audio = sa.WaveObject.from_wave_file(str(ding_path))
+            ding_play = ding_audio.play()
+            ding_play.wait_done()
         except Exception as e:
-            print(f"[WARN] Ding sound failed: {e}")
+            raise RuntimeError(f"Ding sound failed: {e}")
 
         return out_buf.read()

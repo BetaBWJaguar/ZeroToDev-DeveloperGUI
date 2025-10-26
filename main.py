@@ -2,15 +2,40 @@
 import sys
 import tkinter as tk
 from datetime import datetime
-from pathlib import Path
 from tkinter import messagebox
+from PathHelper import PathHelper
 from GUI import TTSMenuApp, check_internet
+from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
 from language_manager.LangManager import LangManager
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 
 if __name__ == "__main__":
+
+    try:
+        DataManager.initialize()
+    except FileNotFoundError as e:
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showerror(
+            "Initialization Error",
+            f"A critical component (ffmpeg) is missing or could not be found.\n\n"
+            f"Details: {e}\n\n"
+            "Please reinstall the application."
+        )
+        root.destroy()
+        sys.exit(1)
+    except Exception as e:
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showerror(
+            "Initialization Error",
+            f"An unexpected error occurred during initialization:\n\n{e}"
+        )
+        root.destroy()
+        sys.exit(1)
+
     if not check_internet():
         root = tk.Tk()
         root.withdraw()
@@ -29,7 +54,19 @@ if __name__ == "__main__":
     logger = LogsManager.get_logger("Main")
     session_id = datetime.now().strftime("%Y%m%d-%H%M%S")
     LogsHelperManager.log_session_start(logger, session_id)
-    langs_dir = Path(__file__).resolve().parent / "langs"
+
+    try:
+        langs_dir = PathHelper.resource_path("langs")
+        if not langs_dir.exists():
+            raise FileNotFoundError("'langs' directory not found.")
+    except Exception as e:
+        LogsHelperManager.log_error(logger, "LANGS_DIR_NOT_FOUND", str(e))
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showerror("Configuration Error", f"Language directory could not be found:\n\n{e}")
+        root.destroy()
+        sys.exit(1)
+
     ui_lang = MemoryManager.get("ui_language", "english")
 
     LANG_MANAGER = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
