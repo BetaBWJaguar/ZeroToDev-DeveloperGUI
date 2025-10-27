@@ -1,4 +1,5 @@
 /.idea/
 /ffmpeg/
-/dist/
 /build/
+/builder/build/build_win/
+/builder/dist/

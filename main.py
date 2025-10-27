@@ -11,6 +11,8 @@ from data_manager.MemoryManager import MemoryManager
 from language_manager.LangManager import LangManager
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
+from SingleInstance import create_lock_file, remove_lock_file, is_already_running
+
 
 def _show_startup_error_and_exit(title: str, message: str):
     root = tk.Tk()
@@ -54,36 +56,48 @@ def _perform_startup_checks() -> Path:
         return None
 
 def main():
-    langs_dir = _perform_startup_checks()
-    log_mode = MemoryManager.get("log_mode", "INFO")
-    log_handler = MemoryManager.get("log_handler", "both")
-    db_path = MemoryManager.get("log_db_path", str(LogsManager.LOG_DIR / "logs.sqlite"))
-    LogsManager.init(log_mode, handler_type=log_handler, db_path=db_path)
+    if is_already_running():
+        _show_startup_error_and_exit(
+            "Already Running",
+            "The application is already running.\n\nOnly one instance can be opened."
+        )
+        return
 
-    logger = LogsManager.get_logger("Main")
-    session_id = datetime.now().strftime("%Y%m%d-%H%M%S")
-    LogsHelperManager.log_session_start(logger, session_id)
-
-    ui_lang = MemoryManager.get("ui_language", "english")
-
-    LANG_MANAGER = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
-    LogsHelperManager.log_event(
-        LogsManager.get_logger("LangManager"),
-        "LANG_INITIALIZED",
-        {
-            "current_lang": LANG_MANAGER.get_current_language(),
-            "available_langs": LANG_MANAGER.available_languages()
-        }
-    )
+    create_lock_file()
 
     try:
+        langs_dir = _perform_startup_checks()
+        log_mode = MemoryManager.get("log_mode", "INFO")
+        log_handler = MemoryManager.get("log_handler", "both")
+        db_path = MemoryManager.get("log_db_path", str(LogsManager.LOG_DIR / "logs.sqlite"))
+        LogsManager.init(log_mode, handler_type=log_handler, db_path=db_path)
+
+        logger = LogsManager.get_logger("Main")
+        session_id = datetime.now().strftime("%Y%m%d-%H%M%S")
+        LogsHelperManager.log_session_start(logger, session_id)
+
+        ui_lang = MemoryManager.get("ui_language", "english")
+
+        LANG_MANAGER = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
+
+        LogsHelperManager.log_event(
+            LogsManager.get_logger("LangManager"),
+            "LANG_INITIALIZED",
+            {
+                "current_lang": LANG_MANAGER.get_current_language(),
+                "available_langs": LANG_MANAGER.available_languages()
+            }
+        )
+
         app = TTSMenuApp(lang_manager=LANG_MANAGER)
         app.mainloop()
+
     except Exception as e:
         LogsHelperManager.log_error(logger, "APP_CRASH", str(e), exc_info=True)
-        messagebox.showerror("Critical Error", f"The application has encountered a critical error and needs to close.\n\nDetails: {e}")
+        messagebox.showerror("Critical Error", f"The application encountered a critical error and needs to close.\n\nDetails: {e}")
     finally:
         LogsHelperManager.log_session_end(logger, session_id)
+        remove_lock_file()
 
 
 if __name__ == "__main__":
