@@ -1000,7 +1000,7 @@ class TTSMenuApp(tk.Tk):
     def reload_language(self, new_lang_code: str):
         from language_manager.LangManager import LangManager
         try:
-            langs_dir = Path(__file__).resolve().parent / "langs"
+            langs_dir = PathHelper.resource_path("langs")
             self.lang = LangManager(langs_dir=langs_dir, default_lang=new_lang_code)
             MemoryManager.set("ui_language", new_lang_code)
 
