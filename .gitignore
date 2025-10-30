@@ -3,3 +3,5 @@
 /build/
 /builder/build/build_win/
 /builder/dist/
+/main.enc
+/secret.key

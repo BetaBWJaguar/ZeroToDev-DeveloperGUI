@@ -1,17 +1,16 @@
 # -*- mode: python -*-
 import sys
+import pkgutil
 from pathlib import Path
 from PyInstaller.utils.win32.versioninfo import (
     VSVersionInfo, VarFileInfo, StringFileInfo,
     StringTable, StringStruct, VarStruct, FixedFileInfo
 )
 
-
 CURRENT_FILE = Path(sys.argv[0]).resolve()
 BUILDER_DIR = CURRENT_FILE.parent
 PROJECT_ROOT = BUILDER_DIR.parent
 MAIN_SCRIPT = PROJECT_ROOT / "main.py"
-
 
 with open(BUILDER_DIR / "version.txt", "r", encoding="utf-8") as f:
     version_info_code = f.read()
@@ -19,26 +18,35 @@ version_info = eval(version_info_code)
 
 block_cipher = None
 
+datas = []
+excluded_dirs = {"builder", "logs", "__pycache__"}
 
-datas = [
-    (str(PROJECT_ROOT / "langs"), "langs"),
-    (str(PROJECT_ROOT / "language_manager"), "language_manager"),
-    (str(PROJECT_ROOT / "utils"), "utils"),
-    (str(PROJECT_ROOT / "ffmpeg"), "ffmpeg"),
-    (str(PROJECT_ROOT / "fragments"), "fragments"),
-    (str(PROJECT_ROOT / "markup"), "markup"),
-    (str(PROJECT_ROOT / "media_formats"), "media_formats"),
-    (str(PROJECT_ROOT / "voicegui"), "voicegui"),
-    (str(PROJECT_ROOT / "tts"), "tts"),
+for item in PROJECT_ROOT.iterdir():
+    if item.is_dir() and item.name not in excluded_dirs:
+        datas.append((str(item), item.name))
+
+# include encrypted files
+datas += [
+    (str(PROJECT_ROOT / "main.enc"), "."),
+    (str(PROJECT_ROOT / "secret.key"), ".")
 ]
 
+hiddenimports = []
+try:
+    import tkinter
+    hiddenimports += [mod.name for mod in pkgutil.walk_packages(tkinter.__path__, "tkinter.")]
+except Exception:
+    hiddenimports.append("tkinter")
+
+for _, modname, _ in pkgutil.walk_packages([str(PROJECT_ROOT)]):
+    hiddenimports.append(modname)
 
 a = Analysis(
     [str(MAIN_SCRIPT)],
     pathex=[str(PROJECT_ROOT)],
     binaries=[],
     datas=datas,
-    hiddenimports=[],
+    hiddenimports=hiddenimports,
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
