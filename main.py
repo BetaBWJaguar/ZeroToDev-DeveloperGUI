@@ -12,7 +12,7 @@ from language_manager.LangManager import LangManager
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 from SingleInstance import create_lock_file, remove_lock_file, is_already_running
-
+from StartupOptimizer import StartupOptimizer
 
 def _show_startup_error_and_exit(title: str, message: str):
     root = tk.Tk()
@@ -55,7 +55,11 @@ def _perform_startup_checks() -> Path:
         )
         return None
 
+
 def main():
+    optimizer = StartupOptimizer.instance()
+    optimizer.log_startup_time()
+
     if is_already_running():
         _show_startup_error_and_exit(
             "Already Running",
@@ -66,6 +70,7 @@ def main():
     create_lock_file()
 
     try:
+        optimizer.run_in_background(DataManager.initialize)
         langs_dir = _perform_startup_checks()
         log_mode = MemoryManager.get("log_mode", "INFO")
         log_handler = MemoryManager.get("log_handler", "both")
@@ -89,13 +94,16 @@ def main():
             }
         )
 
+        optimizer.print_memory_usage()
         app = TTSMenuApp(lang_manager=LANG_MANAGER)
         app.mainloop()
 
     except Exception as e:
         LogsHelperManager.log_error(logger, "APP_CRASH", str(e), exc_info=True)
         messagebox.showerror("Critical Error", f"The application encountered a critical error and needs to close.\n\nDetails: {e}")
+
     finally:
+        optimizer.cleanup_memory()
         LogsHelperManager.log_session_end(logger, session_id)
         remove_lock_file()
 

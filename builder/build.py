@@ -103,11 +103,16 @@ def run_pyinstaller():
     if not SPEC_PATH.exists():
         print(f"Spec not found: {SPEC_PATH}")
         sys.exit(1)
+
     command = [sys.executable, "-m", "PyInstaller", str(SPEC_PATH), "--noconfirm"]
-    print("Building...")
+
     process = subprocess.Popen(
-        command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        text=True, encoding="utf-8", errors="replace"
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+        errors="replace"
     )
     for line in process.stdout:
         sys.stdout.write(line)
@@ -134,9 +139,9 @@ def restore_spec():
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--clean", action="store_true")
-    parser.add_argument("--cython", action="store_true")
-    parser.add_argument("--zip", action="store_true")
+    parser.add_argument("--clean", action="store_true", help="Clean build and dist folders")
+    parser.add_argument("--cython", action="store_true", help="Run Cython build step")
+    parser.add_argument("--zip", action="store_true", help="Zip the dist output folder")
     args = parser.parse_args()
 
     os.chdir(SCRIPT_DIR)

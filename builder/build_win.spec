@@ -19,13 +19,12 @@ version_info = eval(version_info_code)
 block_cipher = None
 
 datas = []
-excluded_dirs = {"builder", "logs", "__pycache__"}
+excluded_dirs = {"builder", "logs", "__pycache__","output"}
 
 for item in PROJECT_ROOT.iterdir():
     if item.is_dir() and item.name not in excluded_dirs:
         datas.append((str(item), item.name))
 
-# include encrypted files
 datas += [
     (str(PROJECT_ROOT / "main.enc"), "."),
     (str(PROJECT_ROOT / "secret.key"), ".")
@@ -56,6 +55,8 @@ a = Analysis(
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
+icon_path = PROJECT_ROOT / "ZeroToDev_TTS_GUI_Icon.ico"
+
 exe = EXE(
     pyz,
     a.scripts,
@@ -64,8 +65,9 @@ exe = EXE(
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=False,
+    windowed=True,
     version=version_info,
+    icon=str(icon_path)
 )
 
 coll = COLLECT(

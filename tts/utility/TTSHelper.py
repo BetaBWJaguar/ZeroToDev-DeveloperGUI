@@ -5,6 +5,7 @@ from pydub import AudioSegment
 import simpleaudio as sa
 from PathHelper import PathHelper
 from VoiceProcessor import VoiceProcessor
+from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
@@ -17,6 +18,12 @@ class TTSHelper:
         self._preview_play_obj = None
         self.retries = retries
         self.retry_delay = retry_delay
+
+        try:
+            DataManager.initialize()
+        except Exception as e:
+            logger = LogsManager.get_logger("TTSHelper")
+            LogsHelperManager.log_error(logger, "FFMPEG_INIT_FAILED", str(e))
 
     def _with_retry(self, func, *args, **kwargs):
         last_err = None

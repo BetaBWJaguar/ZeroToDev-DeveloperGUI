@@ -4,7 +4,11 @@ import os
 import uuid
 from datetime import datetime
 from pathlib import Path
+from sys import platform
+import platform
 from pydub import AudioSegment
+from pydub.utils import which
+
 from PathHelper import PathHelper
 
 class DataManager:
@@ -12,23 +16,32 @@ class DataManager:
     def initialize(cls):
         ffmpeg_dir = PathHelper.resource_path("ffmpeg")
         bin_dir = ffmpeg_dir / "bin"
+        is_windows = platform.system().lower().startswith("win")
 
-        ffmpeg_exe_path = bin_dir / "ffmpeg.exe"
-        ffprobe_exe_path = bin_dir / "ffprobe.exe"
+        ffmpeg_exe = "ffmpeg.exe" if is_windows else "ffmpeg"
+        ffprobe_exe = "ffprobe.exe" if is_windows else "ffprobe"
 
-        if not ffmpeg_exe_path.exists():
-            if (ffmpeg_dir / "ffmpeg.exe").exists():
+        ffmpeg_path = bin_dir / ffmpeg_exe
+        ffprobe_path = bin_dir / ffprobe_exe
+
+        if not ffmpeg_path.exists():
+            if (ffmpeg_dir / ffmpeg_exe).exists():
                 bin_dir = ffmpeg_dir
-                ffmpeg_exe_path = bin_dir / "ffmpeg.exe"
-                ffprobe_exe_path = bin_dir / "ffprobe.exe"
+                ffmpeg_path = ffmpeg_dir / ffmpeg_exe
+                ffprobe_path = ffmpeg_dir / ffprobe_exe
             else:
-                raise FileNotFoundError(f"CRITICAL: ffmpeg.exe not found at: {ffmpeg_exe_path}")
-
-        AudioSegment.converter = str(ffmpeg_exe_path)
-        AudioSegment.ffprobe = str(ffprobe_exe_path)
+                raise FileNotFoundError(f"FFmpeg binary not found at {ffmpeg_path}")
 
         os.environ["PATH"] += os.pathsep + str(bin_dir)
-        print(f"DataManager initialized. FFmpeg path: {ffmpeg_exe_path}")
+
+        AudioSegment.converter = str(ffmpeg_path)
+        AudioSegment.ffmpeg = str(ffmpeg_path)
+        AudioSegment.ffprobe = str(ffprobe_path)
+
+        if not which("ffmpeg"):
+            os.environ["FFMPEG_BINARY"] = str(ffmpeg_path)
+
+        print(f"✅ DataManager initialized. Using FFmpeg: {ffmpeg_path}")
 
     @staticmethod
     def write_to_memory(data: bytes) -> io.BytesIO:
