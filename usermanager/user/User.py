@@ -20,6 +20,8 @@ class User:
             role: UserRole = UserRole.USER,
             status: UserStatus = UserStatus.PENDING,
             last_login: Optional[str] = None,
+            email_verified: bool = False,
+            email_verification_token: Optional[str] = None,
             _id: Optional[str] = None
     ):
         self.id = id or str(uuid.uuid4())
@@ -31,7 +33,9 @@ class User:
         self.last_name = last_name
         self.role = role
         self.status = status
-        self.last_login = last_login
+        self.last_login = last_login,
+        self.email_verified = email_verified
+        self.email_verification_token = email_verification_token or str(uuid.uuid4())
         self._id = _id
 
     @classmethod
@@ -49,7 +53,9 @@ class User:
             "last_name": self.last_name,
             "role": self.role.value if isinstance(self.role, UserRole) else self.role,
             "status": self.status.value if isinstance(self.status, UserStatus) else self.status,
-            "last_login": self.last_login
+            "last_login": self.last_login,
+            "email_verified": self.email_verified,
+            "email_verification_token": self.email_verification_token,
         }
 
     @classmethod

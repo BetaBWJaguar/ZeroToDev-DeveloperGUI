@@ -6,6 +6,7 @@ from typing import Optional
 
 from usermanager.UserManagerUtils import UserManagerUtils
 from usermanager.user.User import User
+from usermanager.user.UserStatus import UserStatus
 
 
 class UserManager:
@@ -24,6 +25,7 @@ class UserManager:
 
     def register_user(self, username: str, email: str, password: str,
                       first_name: str, last_name: str):
+
         if not UserManagerUtils.validate_username(username):
             return "Invalid username format."
 
@@ -42,11 +44,17 @@ class UserManager:
             email=email,
             password=hashed_pw,
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
+            status=UserStatus.PENDING
         )
 
         self.collection.insert_one(user.to_dict())
-        return f"✅ User '{username}' registered successfully."
+
+        return {
+            "message": f"✅ User '{username}' registered successfully. Email verification required.",
+            "verify_token": user.email_verification_token
+    }
+
 
 
     def login_user(self, username: str, password: str):
