@@ -3,6 +3,8 @@ import json
 import smtplib
 from pathlib import Path
 from email.mime.text import MIMEText
+from typing import re
+
 from pymongo import MongoClient
 from usermanager.user.UserStatus import UserStatus
 
@@ -39,12 +41,18 @@ class VerifyUtils:
         self.SMTP_USE_SSL = smtp_cfg.get("use_ssl", True)
 
     def send_verification_email(self, to_email: str, token: str, app_url: str) -> bool:
-        verify_link = f"{app_url.rstrip('/')}/verify/email?token={token}"
+        verify_link = f"{app_url.rstrip('/')}/verify/email?token={token}&email={to_email}&app_url={app_url}"
 
-        body = f"""
-        """
+        body = self.render_template(
+            template_path=str(Path(__file__).resolve().parents[1] / "templates" / "verify_email.html"),
+            context={
+                "verify_link": verify_link,
+                "email": to_email,
+                "app_url": app_url
+            }
+        )
 
-        msg = MIMEText(body, "plain", "utf-8")
+        msg = MIMEText(body, "html", "utf-8")
         msg["Subject"] = "Email Verification"
         msg["From"] = self.SMTP_EMAIL
         msg["To"] = to_email
@@ -60,8 +68,20 @@ class VerifyUtils:
                     server.login(self.SMTP_EMAIL, self.SMTP_PASS)
                     server.send_message(msg)
             return True
-        except Exception as e:
+        except Exception:
             return False
+
+    def render_template(self, template_path: str, context: dict) -> str:
+        template_file = Path(template_path)
+        if not template_file.exists():
+            raise FileNotFoundError(f"Email template not found at {template_path}")
+
+        html = template_file.read_text(encoding="utf-8")
+
+        for key, value in context.items():
+            html = re.sub(rf"\{{\{{\s*{key}\s*\}}\}}", str(value), html)
+
+        return html
 
     def verify_email_token(self, token: str):
         user_doc = self.collection.find_one({"email_verification_token": token})
