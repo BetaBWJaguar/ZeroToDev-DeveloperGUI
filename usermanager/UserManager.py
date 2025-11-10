@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
 import uuid
+from datetime import datetime, timedelta
 from pathlib import Path
 from pymongo import MongoClient
 from typing import Optional
 
+from usermanager.ActivityManager import ActivityManager
 from usermanager.UserManagerUtils import UserManagerUtils
 from usermanager.user.User import User
 from usermanager.user.UserStatus import UserStatus
@@ -12,6 +14,8 @@ from usermanager.user.UserStatus import UserStatus
 
 class UserManager:
     def __init__(self, config_file: str = "database_config.json"):
+        self.MAX_FAILED_ATTEMPTS = 4
+        self.LOCK_TIME_MINUTES = 10
         config_path = Path(config_file)
         if not config_path.exists():
             raise FileNotFoundError(f"Database config not found at {config_path.resolve()}")
@@ -23,6 +27,7 @@ class UserManager:
         self.client = MongoClient(uri)
         self.db = self.client[cfg["name"]]
         self.collection = self.db["users"]
+        self.activity = ActivityManager(config_file)
 
     def register_user(self, username: str, email: str, password: str,
                       first_name: str, last_name: str):
@@ -59,17 +64,51 @@ class UserManager:
     def login_user(self, username: str, password: str):
         user_doc = self.collection.find_one({"username": username})
         if not user_doc:
+            self.activity.log("unknown", "LOGIN_FAILED", f"Username not found: {username}")
             return "User not found."
 
+        lock_until = user_doc.get("lock_until")
+        if lock_until and datetime.utcnow() < lock_until:
+            remaining = (lock_until - datetime.utcnow()).seconds // 60
+            self.activity.log(user_doc["id"], "LOGIN_BLOCKED", f"Locked for {remaining} minutes")
+            return f"⛔ Account locked. Try again in {remaining} minutes."
+
         if not UserManagerUtils.verify_password(password, user_doc["password"]):
-            return "Incorrect password."
+            failed = user_doc.get("failed_attempts", 0) + 1
+
+            self.activity.log(user_doc["id"], "LOGIN_FAILED", f"Failed attempt {failed}")
+
+            if failed >= self.MAX_FAILED_ATTEMPTS:
+                lock_until = datetime.utcnow() + timedelta(minutes=self.LOCK_TIME_MINUTES)
+
+                self.collection.update_one(
+                    {"id": user_doc["id"]},
+                    {"$set": {"failed_attempts": failed, "lock_until": lock_until}}
+                )
+
+                self.activity.log(user_doc["id"], "ACCOUNT_LOCKED", f"Locked for {self.LOCK_TIME_MINUTES} minutes")
+                return f"⛔ Too many failed attempts. Account locked for {self.LOCK_TIME_MINUTES} minutes."
+
+            self.collection.update_one(
+                {"id": user_doc["id"]},
+                {"$set": {"failed_attempts": failed}}
+            )
+
+            attempts_left = self.MAX_FAILED_ATTEMPTS - failed
+            return f"❗ Incorrect password. Attempts remaining: {attempts_left}"
 
         self.collection.update_one(
             {"id": user_doc["id"]},
-            {"$set": {"last_login": UserManagerUtils.timestamp()}}
+            {"$set": {
+                "failed_attempts": 0,
+                "lock_until": None,
+                "last_login": UserManagerUtils.timestamp()
+            }}
         )
 
+        self.activity.log(user_doc["id"], "LOGIN_SUCCESS")
         return User.from_dict(user_doc)
+
 
     def request_password_reset(self, email: str):
         user_doc = self.collection.find_one({"email": email})
