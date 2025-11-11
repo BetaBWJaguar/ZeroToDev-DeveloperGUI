@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 import json
 import smtplib
+import re
 from pathlib import Path
 from email.mime.text import MIMEText
-from typing import re
 
 from pymongo import MongoClient
 from usermanager.user.UserStatus import UserStatus
+from PathHelper import PathHelper
 
 
 class VerifyUtils:
     def __init__(self,
                  config_filename: str = "database_config.json",
                  smtp_filename: str = "smtp_config.json"):
-        base_dir = Path(__file__).resolve().parents[1]
 
-        config_path = base_dir / config_filename
+        config_path = PathHelper.resource_path(config_filename)
         if not config_path.exists():
             raise FileNotFoundError(f"DB config not found at {config_path}")
 
@@ -27,7 +27,7 @@ class VerifyUtils:
         self.db = self.client[cfg["name"]]
         self.collection = self.db["users"]
 
-        smtp_path = base_dir / smtp_filename
+        smtp_path = PathHelper.resource_path(smtp_filename)
         if not smtp_path.exists():
             raise FileNotFoundError(f"SMTP config not found at {smtp_path}")
 
@@ -43,8 +43,10 @@ class VerifyUtils:
     def send_verification_email(self, to_email: str, token: str, app_url: str) -> bool:
         verify_link = f"{app_url.rstrip('/')}/verify/email?token={token}&email={to_email}&app_url={app_url}"
 
+        template_path = PathHelper.resource_path("templates/verify_email.html")
+
         body = self.render_template(
-            template_path=str(Path(__file__).resolve().parents[1] / "templates" / "verify_email.html"),
+            template_path=str(template_path),
             context={
                 "verify_link": verify_link,
                 "email": to_email,

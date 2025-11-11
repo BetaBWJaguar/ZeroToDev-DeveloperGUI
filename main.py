@@ -6,6 +6,7 @@ from tkinter import messagebox
 from pathlib import Path
 from PathHelper import PathHelper
 from GUI import TTSMenuApp, check_internet
+from auth_gui.MainAuthGUI import MainAuthGUI
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
 from language_manager.LangManager import LangManager
@@ -95,7 +96,7 @@ def main():
         )
 
         optimizer.print_memory_usage()
-        app = TTSMenuApp(lang_manager=LANG_MANAGER)
+        app = MainAuthGUI(lang_manager=LANG_MANAGER, logger=logger)
         app.mainloop()
 
     except Exception as e:

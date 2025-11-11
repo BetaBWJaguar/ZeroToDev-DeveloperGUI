@@ -6,6 +6,7 @@ from pathlib import Path
 from pymongo import MongoClient
 from typing import Optional
 
+from PathHelper import PathHelper
 from usermanager.ActivityManager import ActivityManager
 from usermanager.UserManagerUtils import UserManagerUtils
 from usermanager.user.User import User
@@ -16,7 +17,7 @@ class UserManager:
     def __init__(self, config_file: str = "database_config.json"):
         self.MAX_FAILED_ATTEMPTS = 4
         self.LOCK_TIME_MINUTES = 10
-        config_path = Path(config_file)
+        config_path = PathHelper.resource_path(config_file)
         if not config_path.exists():
             raise FileNotFoundError(f"Database config not found at {config_path.resolve()}")
 
