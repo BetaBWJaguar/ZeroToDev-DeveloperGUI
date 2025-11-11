@@ -16,8 +16,11 @@ class VerifyUtils:
                  smtp_filename: str = "smtp_config.json"):
 
         config_path = PathHelper.resource_path(config_filename)
+
         if not config_path.exists():
-            raise FileNotFoundError(f"DB config not found at {config_path}")
+            config_path = PathHelper.resource_path(f"usermanager/{config_filename}")
+        if not config_path.exists():
+            raise FileNotFoundError(f"[VerifyUtils] DB config not found: {config_filename}")
 
         with open(config_path, "r", encoding="utf-8") as f:
             cfg = json.load(f)

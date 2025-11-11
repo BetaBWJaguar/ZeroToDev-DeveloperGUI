@@ -16,6 +16,7 @@ class MainAuthGUI(tk.Tk):
         self.current_user = None
 
         self.title("Welcome")
+        self.geometry("360x420")
         self.resizable(False, False)
 
         card = ttk.Frame(self, padding=30, style="AuthCard.TFrame")
