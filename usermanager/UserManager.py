@@ -153,3 +153,17 @@ class UserManager:
         if result.deleted_count > 0:
             return f"User with ID '{user_id}' deleted successfully."
         return "User not found."
+
+    def logout_user(self, user_id: str):
+        user_doc = self.collection.find_one({"id": user_id})
+        if not user_doc:
+            return "User not found."
+
+        self.collection.update_one(
+            {"id": user_id},
+            {"$set": {"last_logout": UserManagerUtils.timestamp()}}
+        )
+
+        self.activity.log(user_id, "LOGOUT_SUCCESS", "User logged out successfully.")
+        return "User logged out successfully."
+

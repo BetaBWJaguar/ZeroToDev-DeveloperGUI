@@ -14,6 +14,7 @@ class MainAuthGUI(tk.Tk):
         self.logger = logger
 
         self.current_user = None
+
         self.title(self.lang.get("auth_welcome_title"))
         self.geometry("400x420")
         self.resizable(False, False)
@@ -33,18 +34,34 @@ class MainAuthGUI(tk.Tk):
             card,
             text=self.lang.get("auth_login_button"),
             style="AuthAccent.TButton",
-            command=lambda: LoginGUI(self)
+            command=self.open_login
         ).pack(fill="x", pady=(0, 10))
 
         ttk.Button(
             card,
             text=self.lang.get("auth_register_button"),
             style="Auth.TButton",
-            command=lambda: RegisterGUI(self)
+            command=self.open_register
         ).pack(fill="x")
 
         self.update_idletasks()
         center_window(self)
+
+
+    def hide(self):
+        self.withdraw()
+
+    def show(self):
+        self.deiconify()
+        self.lift()
+
+    def open_login(self):
+        self.hide()
+        LoginGUI(self)
+
+    def open_register(self):
+        self.hide()
+        RegisterGUI(self)
 
     def open_main_app(self, app_class):
         self.destroy()
