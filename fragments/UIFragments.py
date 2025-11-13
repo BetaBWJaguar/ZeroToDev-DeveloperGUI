@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+import json
 import tkinter as tk
 from tkinter import ttk
+from PathHelper import PathHelper
+from data_manager.MemoryManager import MemoryManager
 
 
 def center_window(win: tk.Toplevel, parent: tk.Tk | tk.Toplevel | None = None) -> None:
@@ -26,25 +29,65 @@ def center_window(win: tk.Toplevel, parent: tk.Tk | tk.Toplevel | None = None) -
 
 def apply_auth_style(root):
     style = ttk.Style(root)
-    style.theme_use("clam")
+    try:
+        style.theme_use("clam")
+    except tk.TclError:
+        pass
 
-    root.configure(bg="#111827")
+    selected_theme = MemoryManager.get("theme", "default")
 
-    style.configure("AuthCard.TFrame", background="#1F2937")
-    style.configure("Auth.TFrame", background="#111827")
+    utils_dir = PathHelper.resource_path("utils")
+    theme_file = utils_dir / f"Colors_{selected_theme}.json"
+    if not theme_file.exists():
+        theme_file = utils_dir / "Colors_default.json"
 
-    style.configure("AuthTitle.TLabel", background="#1F2937", foreground="white", font=("Segoe UI", 16, "bold"))
-    style.configure("AuthLabel.TLabel", background="#1F2937", foreground="#D1D5DB", font=("Segoe UI", 10))
+    with open(theme_file, "r", encoding="utf-8") as f:
+        COLORS = json.load(f)
 
-    style.configure("Auth.TEntry", fieldbackground="#374151", foreground="white", borderwidth=0)
-    style.map("Auth.TEntry", fieldbackground=[("focus", "#4B5563")])
+    fonts_file = utils_dir / "Fonts.json"
+    with open(fonts_file, "r", encoding="utf-8") as f:
+        FONTS = json.load(f)
 
-    style.configure("AuthAccent.TButton", background="#3B82F6", foreground="white", padding=8,
-                    borderwidth=0, focusthickness=0, font=("Segoe UI", 10, "bold"))
+    c = COLORS
+    f = FONTS
+
+    root.configure(bg=c["bg"])
+
+    style.configure("Auth.TFrame", background=c["bg"])
+    style.configure("AuthCard.TFrame", background=c["card"])
+
+    style.configure("AuthTitle.TLabel",
+                    background=c["card"],
+                    foreground=c["title"],
+                    font=tuple(f["title"]))
+
+    style.configure("AuthLabel.TLabel",
+                    background=c["card"],
+                    foreground=c["muted"],
+                    font=tuple(f["label"]))
+
+    style.configure("Auth.TEntry",
+                    fieldbackground=c["surface"],
+                    foreground=c["text"],
+                    borderwidth=0,
+                    insertcolor=c["text"])
+    style.map("Auth.TEntry",
+              fieldbackground=[("focus", c["primary_active"])])
+
+    style.configure("AuthAccent.TButton",
+                    background=c["primary"],
+                    foreground="white",
+                    padding=8,
+                    borderwidth=0,
+                    font=tuple(f["button"]))
     style.map("AuthAccent.TButton",
-              background=[("active", "#2563EB")])
+              background=[("active", c["primary_active"])])
 
-    style.configure("Auth.TButton", background="#374151", foreground="white", padding=8,
-                    borderwidth=0, font=("Segoe UI", 10))
+    style.configure("Auth.TButton",
+                    background=c["surface"],
+                    foreground=c["text"],
+                    padding=8,
+                    borderwidth=0,
+                    font=tuple(f["button"]))
     style.map("Auth.TButton",
-              background=[("active", "#4B5563")])
+              background=[("active", c["card"])])

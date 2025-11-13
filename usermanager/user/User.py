@@ -41,8 +41,34 @@ class User:
         self._id = _id
 
     @classmethod
-    def create(cls, username: str, email: str, password: str, **kwargs):
-        return cls(username=username, email=email, password=password, **kwargs)
+    def create(
+            cls,
+            username: str,
+            email: str,
+            password: str,
+            first_name: Optional[str] = None,
+            last_name: Optional[str] = None,
+            role: UserRole = UserRole.USER,
+            status: UserStatus = UserStatus.PENDING,
+            email_verified: bool = False,
+    ) -> "User":
+        now = datetime.utcnow().isoformat()
+
+        return cls(
+            id=str(uuid.uuid4()),
+            username=username,
+            email=email,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+            created_at=now,
+            role=role,
+            status=status,
+            last_login=None,
+            email_verified=email_verified,
+            email_verification_token=str(uuid.uuid4()),
+            password_reset_token=None,
+        )
 
     def to_dict(self) -> Dict[str, Any]:
         return {

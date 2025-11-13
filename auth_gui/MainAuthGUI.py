@@ -14,24 +14,34 @@ class MainAuthGUI(tk.Tk):
         self.logger = logger
 
         self.current_user = None
-
-        self.title("Welcome")
-        self.geometry("360x420")
+        self.title(self.lang.get("auth_welcome_title"))
+        self.geometry("400x420")
         self.resizable(False, False)
 
         card = ttk.Frame(self, padding=30, style="AuthCard.TFrame")
         card.pack(expand=True, padx=35, pady=35)
 
-        ttk.Label(card, text="Welcome", style="AuthTitle.TLabel") \
-            .pack(anchor="center", pady=(0, 18))
+        ttk.Label(
+            card,
+            text=self.lang.get("auth_welcome_label"),
+            style="AuthTitle.TLabel",
+            wraplength=320,
+            justify="center"
+        ).pack(anchor="center", pady=(0, 18))
 
-        ttk.Button(card, text="Login", style="AuthAccent.TButton",
-                   command=lambda: LoginGUI(self)) \
-            .pack(fill="x", pady=(0, 10))
+        ttk.Button(
+            card,
+            text=self.lang.get("auth_login_button"),
+            style="AuthAccent.TButton",
+            command=lambda: LoginGUI(self)
+        ).pack(fill="x", pady=(0, 10))
 
-        ttk.Button(card, text="Register", style="Auth.TButton",
-                   command=lambda: RegisterGUI(self)) \
-            .pack(fill="x")
+        ttk.Button(
+            card,
+            text=self.lang.get("auth_register_button"),
+            style="Auth.TButton",
+            command=lambda: RegisterGUI(self)
+        ).pack(fill="x")
 
         self.update_idletasks()
         center_window(self)

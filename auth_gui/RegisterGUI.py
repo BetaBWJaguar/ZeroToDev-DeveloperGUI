@@ -11,42 +11,56 @@ class RegisterGUI(tk.Toplevel):
 
         apply_auth_style(self)
         self.parent = parent
+        self.lang = parent.lang
         self.logger = parent.logger
         self.user_manager = UserManager()
 
-        self.title("Create Account")
+        self.title(self.lang.get("auth_register_title"))
         self.resizable(False, False)
 
         card = ttk.Frame(self, padding=25, style="AuthCard.TFrame")
         card.pack(padx=40, pady=40)
 
-        ttk.Label(card, text="Create Account", style="AuthTitle.TLabel").pack(pady=(0, 15))
+        ttk.Label(card, text=self.lang.get("auth_register_header"), style="AuthTitle.TLabel").pack(pady=(0, 15))
 
-        fields = ["Username", "Email", "First Name", "Last Name", "Password", "Confirm Password"]
-        self.values = {k: tk.StringVar() for k in fields}
 
-        for k in fields:
-            ttk.Label(card, text=k, style="AuthLabel.TLabel").pack(anchor="w")
-            ttk.Entry(card, textvariable=self.values[k],
-                      show="*" if "Password" in k else "",
+        fields = [
+            ("username", self.lang.get("auth_field_username")),
+            ("email", self.lang.get("auth_field_email")),
+            ("first_name", self.lang.get("auth_field_firstname")),
+            ("last_name", self.lang.get("auth_field_lastname")),
+            ("password", self.lang.get("auth_field_password")),
+            ("confirm_password", self.lang.get("auth_field_confirmpassword")),
+        ]
+
+        self.values = {key: tk.StringVar() for key, _ in fields}
+
+        for key, label_text in fields:
+            ttk.Label(card, text=label_text, style="AuthLabel.TLabel").pack(anchor="w")
+            ttk.Entry(card, textvariable=self.values[key],
+                      show="*" if "password" in key else "",
                       style="Auth.TEntry").pack(fill="x", pady=(0, 10))
 
-        ttk.Button(card, text="Register", style="AuthAccent.TButton", command=self.register).pack(fill="x", pady=12)
-        ttk.Button(card, text="Close", style="Auth.TButton", command=self.destroy).pack(fill="x")
+        ttk.Button(card, text=self.lang.get("auth_register_button"),
+                   style="AuthAccent.TButton", command=self.register).pack(fill="x", pady=12)
+        ttk.Button(card, text=self.lang.get("auth_close_button"),
+                   style="Auth.TButton", command=self.destroy).pack(fill="x")
 
         center_window(self, parent)
 
     def register(self):
         v = {k: x.get().strip() for k, x in self.values.items()}
-        if v["Password"] != v["Confirm Password"]:
-            GUIError(self, "Error", "Passwords do not match.", "❌")
+        if v["password"] != v["confirm_password"]:
+            GUIError(self, self.lang.get("error_title"), self.lang.get("auth_error_password_mismatch"), "❌")
             return
 
-        result = self.user_manager.register_user(v["Username"], v["Email"], v["Password"], v["First Name"], v["Last Name"])
+        result = self.user_manager.register_user(
+            v["username"], v["email"], v["password"], v["first_name"], v["last_name"]
+        )
 
         if isinstance(result, str):
-            GUIError(self, "Register Failed", result, "❌")
+            GUIError(self, self.lang.get("auth_register_failed"), result, "❌")
             return
 
-        GUIError(self, "Success", result.get("message"), "✅")
+        GUIError(self, self.lang.get("success_title"), result.get("message"), "✅")
         self.destroy()

@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-
 from GUI import TTSMenuApp
 from GUIError import GUIError
 from fragments.UIFragments import center_window, apply_auth_style
@@ -20,7 +19,7 @@ class LoginGUI(tk.Toplevel):
         self.logger = parent.logger
         self.user_manager = UserManager()
 
-        self.title("Login")
+        self.title(self.lang.get("auth_login_title"))
         self.transient(parent)
         self.grab_set()
         self.resizable(False, False)
@@ -28,22 +27,24 @@ class LoginGUI(tk.Toplevel):
         container = ttk.Frame(self, padding=25, style="AuthCard.TFrame")
         container.pack(fill="both", expand=True)
 
-        ttk.Label(container, text="Login", style="AuthTitle.TLabel") \
+        ttk.Label(container, text=self.lang.get("auth_login_header"), style="AuthTitle.TLabel") \
             .pack(anchor="center", pady=(0, 15))
 
-        ttk.Label(container, text="Username", style="AuthLabel.TLabel").pack(anchor="w")
+        ttk.Label(container, text=self.lang.get("auth_field_username"), style="AuthLabel.TLabel").pack(anchor="w")
         self.username_var = tk.StringVar(value=MemoryManager.get("cached_username", ""))
         ttk.Entry(container, textvariable=self.username_var, style="Auth.TEntry").pack(fill="x", pady=(0, 10))
 
-        ttk.Label(container, text="Password", style="AuthLabel.TLabel").pack(anchor="w")
+        ttk.Label(container, text=self.lang.get("auth_field_password"), style="AuthLabel.TLabel").pack(anchor="w")
         self.pass_var = tk.StringVar()
         ttk.Entry(container, textvariable=self.pass_var, show="*", style="Auth.TEntry").pack(fill="x")
 
         self.error_label = ttk.Label(container, text="", foreground="#d9534f", style="AuthLabel.TLabel")
         self.error_label.pack(anchor="w", pady=(10, 10))
 
-        ttk.Button(container, text="Login", style="AuthAccent.TButton", command=self.login).pack(fill="x", pady=(0, 8))
-        ttk.Button(container, text="Close", style="Auth.TButton", command=self.destroy).pack(fill="x")
+        ttk.Button(container, text=self.lang.get("auth_login_button"),
+                   style="AuthAccent.TButton", command=self.login).pack(fill="x", pady=(0, 8))
+        ttk.Button(container, text=self.lang.get("auth_close_button"),
+                   style="Auth.TButton", command=self.destroy).pack(fill="x")
 
         center_window(self, parent)
 
@@ -54,9 +55,9 @@ class LoginGUI(tk.Toplevel):
         password = self.pass_var.get().strip()
 
         if not username or not password:
-            msg = "Please fill all fields."
+            msg = self.lang.get("auth_error_empty_fields")
             self.error_label.config(text=msg, foreground="#d9534f")
-            GUIError(self, "Error", msg, icon="❌")
+            GUIError(self, self.lang.get("error_title"), msg, icon="❌")
             return
 
         result = self.user_manager.login_user(username, password)
@@ -67,12 +68,12 @@ class LoginGUI(tk.Toplevel):
             if "locked" in result_lower or "⛔" in result:
                 self.error_label.config(text=result, foreground="#d9534f")
                 LogsHelperManager.log_error(self.logger, "LOGIN_BLOCKED", result)
-                GUIError(self, "Account Locked", result, icon="❌")
+                GUIError(self, self.lang.get("auth_account_locked"), result, icon="❌")
                 return
 
             self.error_label.config(text=result, foreground="#e67e22")
             LogsHelperManager.log_error(self.logger, "LOGIN_FAIL", result)
-            GUIError(self, "Login Failed", result, icon="❌")
+            GUIError(self, self.lang.get("auth_login_failed"), result, icon="❌")
             return
 
         if isinstance(result, User):
