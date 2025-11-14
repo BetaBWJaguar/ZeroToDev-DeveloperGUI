@@ -21,13 +21,13 @@ class RegisterGUI(tk.Toplevel):
 
         self.transient(parent)
         self.grab_set()
-        self.protocol("WM_DELETE_WINDOW", self.on_close)
+        self.protocol("WM_DELETE_WINDOW", self.go_back)
 
         card = ttk.Frame(self, padding=25, style="AuthCard.TFrame")
         card.pack(padx=40, pady=40)
 
-        ttk.Label(card, text=self.lang.get("auth_register_header"), style="AuthTitle.TLabel") \
-            .pack(pady=(0, 15))
+        ttk.Label(card, text=self.lang.get("auth_register_header"),
+                  style="AuthTitle.TLabel").pack(pady=(0, 15))
 
         fields = [
             ("username", self.lang.get("auth_field_username")),
@@ -38,32 +38,30 @@ class RegisterGUI(tk.Toplevel):
             ("confirm_password", self.lang.get("auth_field_confirmpassword")),
         ]
 
-        self.values = {key: tk.StringVar() for key, _ in fields}
+        self.values = {k: tk.StringVar() for k, _ in fields}
 
-        for key, label_text in fields:
-            ttk.Label(card, text=label_text, style="AuthLabel.TLabel") \
-                .pack(anchor="w")
+        for key, label in fields:
+            ttk.Label(card, text=label, style="AuthLabel.TLabel").pack(anchor="w")
             ttk.Entry(card, textvariable=self.values[key],
                       show="*" if "password" in key else "",
-                      style="Auth.TEntry") \
-                .pack(fill="x", pady=(0, 10))
+                      style="Auth.TEntry").pack(fill="x", pady=(0, 10))
 
         ttk.Button(card, text=self.lang.get("auth_register_button"),
-                   style="AuthAccent.TButton", command=self.register) \
-            .pack(fill="x", pady=12)
+                   style="AuthAccent.TButton",
+                   command=self.register).pack(fill="x", pady=12)
 
-        ttk.Button(card, text=self.lang.get("auth_close_button"),
-                   style="Auth.TButton", command=self.on_close) \
-            .pack(fill="x")
+        ttk.Button(card, text=self.lang.get("auth_back_button"),
+                   style="Auth.TButton",
+                   command=self.go_back).pack(fill="x", pady=(0, 8))
 
         center_window(self, parent)
 
-    def on_close(self):
+    def go_back(self):
         self.destroy()
         self.parent.show()
 
     def register(self):
-        v = {k: x.get().strip() for k, x in self.values.items()}
+        v = {k: v.get().strip() for k, v in self.values.items()}
 
         if v["password"] != v["confirm_password"]:
             GUIError(self, self.lang.get("error_title"),
@@ -80,4 +78,4 @@ class RegisterGUI(tk.Toplevel):
             return
 
         GUIError(self, self.lang.get("success_title"), result.get("message"), "✅")
-        self.on_close()
+        self.go_back()

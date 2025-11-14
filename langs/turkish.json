@@ -161,5 +161,6 @@
   "auth_error_password_mismatch": "Şifreler eşleşmiyor.",
   "auth_login_failed": "Giriş Başarısız",
   "auth_account_locked": "Hesap Kilitlendi",
-  "auth_register_failed": "Kayıt Başarısız"
+  "auth_register_failed": "Kayıt Başarısız",
+  "auth_back_button": "Geri"
 }

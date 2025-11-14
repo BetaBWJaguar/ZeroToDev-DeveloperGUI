@@ -25,41 +25,41 @@ class LoginGUI(tk.Toplevel):
 
         self.transient(parent)
         self.grab_set()
-        self.protocol("WM_DELETE_WINDOW", self.on_close)
+        self.protocol("WM_DELETE_WINDOW", self.go_back)
 
         container = ttk.Frame(self, padding=25, style="AuthCard.TFrame")
         container.pack(fill="both", expand=True)
 
-        ttk.Label(container, text=self.lang.get("auth_login_header"), style="AuthTitle.TLabel") \
-            .pack(anchor="center", pady=(0, 15))
+        ttk.Label(container, text=self.lang.get("auth_login_header"),
+                  style="AuthTitle.TLabel").pack(anchor="center", pady=(0, 15))
 
-        ttk.Label(container, text=self.lang.get("auth_field_username"), style="AuthLabel.TLabel") \
-            .pack(anchor="w")
+        ttk.Label(container, text=self.lang.get("auth_field_username"),
+                  style="AuthLabel.TLabel").pack(anchor="w")
         self.username_var = tk.StringVar(value=MemoryManager.get("cached_username", ""))
-        ttk.Entry(container, textvariable=self.username_var, style="Auth.TEntry") \
-            .pack(fill="x", pady=(0, 10))
+        ttk.Entry(container, textvariable=self.username_var,
+                  style="Auth.TEntry").pack(fill="x", pady=(0, 10))
 
-        ttk.Label(container, text=self.lang.get("auth_field_password"), style="AuthLabel.TLabel") \
-            .pack(anchor="w")
+        ttk.Label(container, text=self.lang.get("auth_field_password"),
+                  style="AuthLabel.TLabel").pack(anchor="w")
         self.pass_var = tk.StringVar()
-        ttk.Entry(container, textvariable=self.pass_var, show="*", style="Auth.TEntry") \
-            .pack(fill="x")
+        ttk.Entry(container, textvariable=self.pass_var,
+                  show="*", style="Auth.TEntry").pack(fill="x")
 
         self.error_label = ttk.Label(container, text="", foreground="#d9534f",
                                      style="AuthLabel.TLabel")
         self.error_label.pack(anchor="w", pady=(10, 10))
 
         ttk.Button(container, text=self.lang.get("auth_login_button"),
-                   style="AuthAccent.TButton", command=self.login) \
-            .pack(fill="x", pady=(0, 8))
+                   style="AuthAccent.TButton",
+                   command=self.login).pack(fill="x", pady=(0, 8))
 
-        ttk.Button(container, text=self.lang.get("auth_close_button"),
-                   style="Auth.TButton", command=self.on_close) \
-            .pack(fill="x")
+        ttk.Button(container, text=self.lang.get("auth_back_button"),
+                   style="Auth.TButton",
+                   command=self.go_back).pack(fill="x")
 
         center_window(self, parent)
 
-    def on_close(self):
+    def go_back(self):
         self.destroy()
         self.parent.show()
 
@@ -72,14 +72,14 @@ class LoginGUI(tk.Toplevel):
         if not username or not password:
             msg = self.lang.get("auth_error_empty_fields")
             self.error_label.config(text=msg)
-            GUIError(self, self.lang.get("error_title"), msg, icon="❌")
+            GUIError(self, self.lang.get("error_title"), msg, "❌")
             return
 
         result = self.user_manager.login_user(username, password)
 
         if isinstance(result, str):
             self.error_label.config(text=result)
-            GUIError(self, self.lang.get("auth_login_failed"), result, icon="❌")
+            GUIError(self, self.lang.get("auth_login_failed"), result, "❌")
             return
 
         if isinstance(result, User):

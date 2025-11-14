@@ -47,7 +47,6 @@ class MainAuthGUI(tk.Tk):
         self.update_idletasks()
         center_window(self)
 
-
     def hide(self):
         self.withdraw()
 
