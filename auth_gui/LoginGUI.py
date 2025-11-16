@@ -79,7 +79,7 @@ class LoginGUI(tk.Toplevel):
 
         if isinstance(result, str):
             self.error_label.config(text=result)
-            GUIError(self, self.lang.get("auth_login_failed"), result, "❌")
+            GUIError(self, self.lang.get("auth_login_failed"), result.get("message"), "❌")
             return
 
         if isinstance(result, User):

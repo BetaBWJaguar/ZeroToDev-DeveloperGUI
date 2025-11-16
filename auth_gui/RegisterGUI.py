@@ -74,7 +74,7 @@ class RegisterGUI(tk.Toplevel):
         )
 
         if isinstance(result, str):
-            GUIError(self, self.lang.get("auth_register_failed"), result, "❌")
+            GUIError(self, self.lang.get("auth_register_failed"), result.get("message"), "❌")
             return
 
         GUIError(self, self.lang.get("success_title"), result.get("message"), "✅")

@@ -162,5 +162,19 @@
   "auth_login_failed": "Login Failed",
   "auth_account_locked": "Account Locked",
   "auth_register_failed": "Registration Failed",
-  "auth_back_button": "Back"
+  "auth_back_button": "Back",
+  "user_register_invalid_username": "Invalid username format.",
+  "user_register_invalid_password": "Password must include an uppercase letter and a number (min 8 chars).",
+  "user_register_username_exists": "Username already exists.",
+  "user_register_email_exists": "Email is already registered.",
+  "user_register_success": "User registered successfully. Email verification required.",
+  "user_login_not_found": "User not found.",
+  "user_login_locked": "Your account is locked. Try again in {0} minutes.",
+  "user_login_incorrect_password": "Incorrect password. Attempts remaining: {0}",
+  "user_login_success": "Login successful.",
+  "user_reset_token_created": "Password reset token created.",
+  "user_reset_invalid_token": "Invalid or expired password reset token.",
+  "user_reset_success": "Password changed successfully.",
+  "user_delete_success": "User deleted successfully.",
+  "user_delete_not_found": "User not found."
 }

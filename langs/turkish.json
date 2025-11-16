@@ -162,5 +162,19 @@
   "auth_login_failed": "Giriş Başarısız",
   "auth_account_locked": "Hesap Kilitlendi",
   "auth_register_failed": "Kayıt Başarısız",
-  "auth_back_button": "Geri"
+  "auth_back_button": "Geri",
+  "user_register_invalid_username": "Kullanıcı adı formatı geçersiz.",
+  "user_register_invalid_password": "Şifre büyük harf ve sayı içermeli (en az 8 karakter).",
+  "user_register_username_exists": "Bu kullanıcı adı zaten kullanılıyor.",
+  "user_register_email_exists": "Bu e-posta zaten kayıtlı.",
+  "user_register_success": "Kullanıcı başarıyla kaydedildi. E-posta doğrulaması gerekli.",
+  "user_login_not_found": "Kullanıcı bulunamadı.",
+  "user_login_locked": "Hesap kilitli. {0} dakika sonra tekrar deneyin.",
+  "user_login_incorrect_password": "Şifre hatalı. Kalan deneme sayısı: {0}",
+  "user_login_success": "Giriş başarılı.",
+  "user_reset_token_created": "Şifre sıfırlama kodu oluşturuldu.",
+  "user_reset_invalid_token": "Kod geçersiz veya süresi dolmuş.",
+  "user_reset_success": "Şifre başarıyla değiştirildi.",
+  "user_delete_success": "Kullanıcı başarıyla silindi.",
+  "user_delete_not_found": "Kullanıcı bulunamadı."
 }

@@ -162,5 +162,19 @@
   "auth_login_failed": "Anmeldung fehlgeschlagen",
   "auth_account_locked": "Konto gesperrt",
   "auth_register_failed": "Registrierung fehlgeschlagen",
-  "auth_back_button": "Zurück"
+  "auth_back_button": "Zurück",
+  "user_register_invalid_username": "Ungültiges Benutzernamenformat.",
+  "user_register_invalid_password": "Das Passwort muss einen Großbuchstaben und eine Zahl enthalten (mind. 8 Zeichen).",
+  "user_register_username_exists": "Der Benutzername wird bereits verwendet.",
+  "user_register_email_exists": "Diese E-Mail ist bereits registriert.",
+  "user_register_success": "Benutzer erfolgreich registriert. E-Mail-Verifizierung erforderlich.",
+  "user_login_not_found": "Benutzer wurde nicht gefunden.",
+  "user_login_locked": "Konto gesperrt. Bitte versuchen Sie es in {0} Minuten erneut.",
+  "user_login_incorrect_password": "Falsches Passwort. Verbleibende Versuche: {0}",
+  "user_login_success": "Login erfolgreich.",
+  "user_reset_token_created": "Passwort-Reset-Token wurde erstellt.",
+  "user_reset_invalid_token": "Ungültiges oder abgelaufenes Token.",
+  "user_reset_success": "Passwort erfolgreich geändert.",
+  "user_delete_success": "Benutzer erfolgreich gelöscht.",
+  "user_delete_not_found": "Benutzer nicht gefunden."
 }
