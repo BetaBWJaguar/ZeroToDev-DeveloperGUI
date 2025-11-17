@@ -26,8 +26,12 @@ for item in PROJECT_ROOT.iterdir():
         datas.append((str(item), item.name))
 
 datas += [
+    (str(PROJECT_ROOT / "usermanager" / "database_config.json"), "usermanager"),
+]
+
+datas += [
     (str(PROJECT_ROOT / "main.enc"), "."),
-    (str(PROJECT_ROOT / "secret.key"), ".")
+    (str(PROJECT_ROOT / "secret.key"), "."),
 ]
 
 hiddenimports = []

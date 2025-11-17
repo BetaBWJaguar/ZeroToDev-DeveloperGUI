@@ -1,7 +1,7 @@
 {
-  "name": "",
-  "username": "",
-  "password": "",
+  "name": "zerotodev",
+  "username": "z2dadmin",
+  "password": "z2dpassword",
   "host": "localhost",
   "port": 27019,
   "authSource": "admin"

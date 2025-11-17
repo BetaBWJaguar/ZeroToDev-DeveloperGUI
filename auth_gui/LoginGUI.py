@@ -72,14 +72,14 @@ class LoginGUI(tk.Toplevel):
         if not username or not password:
             msg = self.lang.get("auth_error_empty_fields")
             self.error_label.config(text=msg)
-            GUIError(self, self.lang.get("error_title"), msg, "❌")
+            GUIError(self, self.lang.get("error_title"), msg, "❌",mode='auth')
             return
 
         result = self.user_manager.login_user(username, password)
 
         if isinstance(result, str):
             self.error_label.config(text=result)
-            GUIError(self, self.lang.get("auth_login_failed"), result.get("message"), "❌")
+            GUIError(self, self.lang.get("auth_login_failed"), result, "❌",mode='auth')
             return
 
         if isinstance(result, User):

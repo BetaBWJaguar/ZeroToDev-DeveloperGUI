@@ -65,7 +65,7 @@ class RegisterGUI(tk.Toplevel):
 
         if v["password"] != v["confirm_password"]:
             GUIError(self, self.lang.get("error_title"),
-                     self.lang.get("auth_error_password_mismatch"), "❌")
+                     self.lang.get("auth_error_password_mismatch"), "❌",mode='auth')
             return
 
         result = self.user_manager.register_user(
@@ -74,8 +74,8 @@ class RegisterGUI(tk.Toplevel):
         )
 
         if isinstance(result, str):
-            GUIError(self, self.lang.get("auth_register_failed"), result.get("message"), "❌")
+            GUIError(self, self.lang.get("auth_register_failed"), result, "❌",mode='auth')
             return
 
-        GUIError(self, self.lang.get("success_title"), result.get("message"), "✅")
+        GUIError(self, self.lang.get("success_title"), result, "✅",mode='auth')
         self.go_back()

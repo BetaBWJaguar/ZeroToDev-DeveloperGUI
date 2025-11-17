@@ -1,5 +1,6 @@
 import tkinter as tk
-from tkinter import ttk
+import traceback
+from tkinter import ttk, messagebox
 from fragments.UIFragments import center_window, apply_auth_style
 from auth_gui.LoginGUI import LoginGUI
 from auth_gui.RegisterGUI import RegisterGUI
@@ -14,6 +15,8 @@ class MainAuthGUI(tk.Tk):
         self.logger = logger
 
         self.current_user = None
+        self.login_window = None
+        self.register_window = None
 
         self.title(self.lang.get("auth_welcome_title"))
         self.geometry("400x420")
@@ -55,14 +58,31 @@ class MainAuthGUI(tk.Tk):
         self.lift()
 
     def open_login(self):
-        self.hide()
-        LoginGUI(self)
+        try:
+            self.login_window = LoginGUI(self)
+        except Exception as e:
+            error_details = traceback.format_exc()
+            print("ERROR opening Login Window:\n", error_details)
+            messagebox.showerror(
+                "Application Error",
+                f"Failed to open the Login window.\n\n"
+                f"Error Details:\n{error_details}"
+            )
 
     def open_register(self):
-        self.hide()
-        RegisterGUI(self)
+        try:
+            self.register_window = RegisterGUI(self)
+        except Exception as e:
+            self.show()
+            error_details = traceback.format_exc()
+            print("ERROR opening Register Window:\n", error_details)
+            messagebox.showerror(
+                "Application Error",
+                f"Failed to open the Register window.\n\n"
+                f"Error Details:\n{error_details}"
+            )
 
     def open_main_app(self, app_class):
         self.destroy()
-        app = app_class(lang_manager=self.lang)
+        app = app_class(lang_manager=self.lang, current_user=self.current_user)
         app.mainloop()

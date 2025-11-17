@@ -5,12 +5,13 @@ from typing import Optional, Dict, Any
 from pymongo import MongoClient
 from pymongo.collection import Collection
 
+from PathHelper import PathHelper
 from usermanager.UserManagerUtils import UserManagerUtils
 
 
 class ActivityManager:
     def __init__(self, config_file: str = "database_config.json"):
-        config_path = Path(config_file)
+        config_path = PathHelper.resource_path(f"usermanager/{config_file}")
         if not config_path.exists():
             raise FileNotFoundError(f"Database config not found at {config_path.resolve()}")
 
