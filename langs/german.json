@@ -163,6 +163,7 @@
   "auth_account_locked": "Konto gesperrt",
   "auth_register_failed": "Registrierung fehlgeschlagen",
   "auth_back_button": "Zurück",
+  "auth_error_email_not_verified": "Anmeldung fehlgeschlagen. Bitte bestätigen Sie Ihre E-Mail-Adresse, bevor Sie fortfahren. Sie finden die Bestätigungs-E-Mail in Ihrem Posteingang.",
   "user_register_invalid_username": "Ungültiges Benutzernamenformat.",
   "user_register_invalid_password": "Das Passwort muss einen Großbuchstaben und eine Zahl enthalten (mind. 8 Zeichen).",
   "user_register_username_exists": "Der Benutzername wird bereits verwendet.",

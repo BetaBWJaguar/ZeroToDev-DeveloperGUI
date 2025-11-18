@@ -77,5 +77,8 @@ class RegisterGUI(tk.Toplevel):
             GUIError(self, self.lang.get("auth_register_failed"), result, "❌",mode='auth')
             return
 
-        GUIError(self, self.lang.get("success_title"), result, "✅",mode='auth')
+        success_popup = GUIError(self, self.lang.get("success_title"), result.get("message"), "✅", mode='auth')
+
+        self.wait_window(success_popup)
+
         self.go_back()

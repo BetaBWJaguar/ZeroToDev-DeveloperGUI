@@ -92,10 +92,11 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
         return False
 
 class TTSMenuApp(tk.Tk):
-    def __init__(self,lang_manager):
+    def __init__(self,lang_manager,current_user):
         super().__init__()
         self.zip_var = None
         self.lang = lang_manager
+        self.current_user = current_user
         self.title(lang_manager.get("app_title"))
         self.geometry("1200x1100")
         self.minsize(1200, 1100)

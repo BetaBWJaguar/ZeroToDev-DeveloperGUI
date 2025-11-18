@@ -163,6 +163,7 @@
   "auth_account_locked": "Account Locked",
   "auth_register_failed": "Registration Failed",
   "auth_back_button": "Back",
+  "auth_error_email_not_verified": "Login failed. Please verify your email address before proceeding. You can find the verification email in your inbox.",
   "user_register_invalid_username": "Invalid username format.",
   "user_register_invalid_password": "Password must include an uppercase letter and a number (min 8 chars).",
   "user_register_username_exists": "Username already exists.",

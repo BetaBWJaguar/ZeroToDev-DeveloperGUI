@@ -108,7 +108,9 @@ class UserManager:
                 "last_login": UserManagerUtils.timestamp()
             }}
         )
-        return self.lang.get("user_login_success")
+        user = User(user_doc)
+
+        return user
 
     def request_password_reset(self, email: str):
         user_doc = self.collection.find_one({"email": email})

@@ -78,14 +78,18 @@ class LoginGUI(tk.Toplevel):
         result = self.user_manager.login_user(username, password)
 
         if isinstance(result, str):
-            self.error_label.config(text=result)
-            GUIError(self, self.lang.get("auth_login_failed"), result, "❌",mode='auth')
+            GUIError(self, self.lang.get("auth_login_failed"), result, "❌", mode='auth')
             return
 
-        if isinstance(result, User):
-            MemoryManager.set("cached_username", username)
-            LogsHelperManager.log_success(self.logger, "LOGIN_SUCCESS", {"user": result.username})
+        if result is None or not result.email_verified:
+            error_message = self.lang.get("auth_error_email_not_verified")
+            GUIError(self, self.lang.get("auth_login_failed"), error_message, "📧", mode='auth')
+            return
 
-            self.parent.current_user = result
-            self.destroy()
-            self.parent.open_main_app(TTSMenuApp)
+
+        MemoryManager.set("cached_username", username)
+        LogsHelperManager.log_success(self.logger, "LOGIN_SUCCESS", {"user": result.username})
+
+        self.parent.current_user = result
+        self.destroy()
+        self.parent.open_main_app(TTSMenuApp)
