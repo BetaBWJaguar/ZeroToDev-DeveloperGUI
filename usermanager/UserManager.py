@@ -34,22 +34,28 @@ class UserManager:
 
         langs_dir = PathHelper.resource_path("langs")
         ui_lang = MemoryManager.get("ui_language", "english")
-
         self.lang = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
 
     def register_user(self, username: str, email: str, password: str,
                       first_name: str, last_name: str):
 
         if not UserManagerUtils.validate_username(username):
+            self.activity.log(username, "REGISTER_FAILED", "Invalid username format")
             return self.lang.get("user_register_invalid_username")
 
+
         if not UserManagerUtils.validate_password(password):
+            self.activity.log(username, "REGISTER_FAILED", "Weak/invalid password")
             return self.lang.get("user_register_invalid_password")
 
+
         if self.collection.find_one({"username": username}):
+            self.activity.log(username, "REGISTER_FAILED", "Username already exists")
             return self.lang.get("user_register_username_exists")
 
+
         if self.collection.find_one({"email": email}):
+            self.activity.log(username, "REGISTER_FAILED", "Email already exists")
             return self.lang.get("user_register_email_exists")
 
         hashed_pw = UserManagerUtils.hash_password(password)
@@ -64,6 +70,7 @@ class UserManager:
         )
 
         self.collection.insert_one(user.to_dict())
+        self.activity.log(username, "REGISTER_SUCCESS", "User registered successfully")
 
         return {
             "message": self.lang.get("user_register_success"),
@@ -72,33 +79,53 @@ class UserManager:
 
     def login_user(self, username: str, password: str):
         user_doc = self.collection.find_one({"username": username})
+
         if not user_doc:
-            self.activity.log("unknown", "LOGIN_FAILED", f"Username not found: {username}")
+            self.activity.log("unknown", "LOGIN_FAILED", f"User not found: {username}")
             return self.lang.get("user_login_not_found")
+
 
         lock_until = user_doc.get("lock_until")
         if lock_until and datetime.utcnow() < lock_until:
             remaining = (lock_until - datetime.utcnow()).seconds // 60
+            self.activity.log(username, "LOGIN_LOCKED",
+                              f"Account locked for {remaining} minutes")
             return self.lang.get("user_login_locked").format(remaining)
 
-        if not UserManagerUtils.verify_password(password, user_doc["password"]):
-            failed = user_doc.get("failed_attempts", 0) + 1
 
-            if failed >= self.MAX_FAILED_ATTEMPTS:
+        if not UserManagerUtils.verify_password(password, user_doc["password"]):
+            failed_attempts = user_doc.get("failed_attempts", 0) + 1
+
+            if failed_attempts >= self.MAX_FAILED_ATTEMPTS:
                 lock_until = datetime.utcnow() + timedelta(minutes=self.LOCK_TIME_MINUTES)
+
                 self.collection.update_one(
                     {"id": user_doc["id"]},
-                    {"$set": {"failed_attempts": failed, "lock_until": lock_until}}
+                    {"$set": {"failed_attempts": failed_attempts, "lock_until": lock_until}}
                 )
+
+                self.activity.log(username, "LOGIN_FAILED_LOCKED",
+                                  f"Too many attempts ({failed_attempts})")
+
                 return self.lang.get("user_login_locked").format(self.LOCK_TIME_MINUTES)
 
             self.collection.update_one(
                 {"id": user_doc["id"]},
-                {"$set": {"failed_attempts": failed}}
+                {"$set": {"failed_attempts": failed_attempts}}
             )
 
-            attempts_left = self.MAX_FAILED_ATTEMPTS - failed
+            attempts_left = self.MAX_FAILED_ATTEMPTS - failed_attempts
+            self.activity.log(username, "LOGIN_FAILED",
+                              f"Wrong password. Attempts left: {attempts_left}")
+
             return self.lang.get("user_login_incorrect_password").format(attempts_left)
+
+
+        email_verified = bool(user_doc.get("email_verified", False))
+        if not email_verified:
+            self.activity.log(username, "LOGIN_FAILED_EMAIL_NOT_VERIFIED", "Email not verified")
+            return self.lang.get("auth_error_email_not_verified")
+
 
         self.collection.update_one(
             {"id": user_doc["id"]},
@@ -108,13 +135,31 @@ class UserManager:
                 "last_login": UserManagerUtils.timestamp()
             }}
         )
-        user = User(user_doc)
 
-        return user
+        self.activity.log(username, "LOGIN_SUCCESS", "User logged in successfully")
+
+
+        clean_user_doc = {
+            "id": user_doc.get("id"),
+            "username": user_doc.get("username"),
+            "email": user_doc.get("email"),
+            "password": user_doc.get("password"),
+            "first_name": user_doc.get("first_name"),
+            "last_name": user_doc.get("last_name"),
+            "role": user_doc.get("role", "USER"),
+            "status": user_doc.get("status", "ACTIVE"),
+            "email_verified": email_verified,
+            "last_login": user_doc.get("last_login"),
+            "created_at": user_doc.get("created_at"),
+        }
+
+        return User(clean_user_doc)
+
 
     def request_password_reset(self, email: str):
         user_doc = self.collection.find_one({"email": email})
         if not user_doc:
+            self.activity.log("unknown", "RESET_FAILED", f"Email not found: {email}")
             return self.lang.get("user_login_not_found")
 
         token = str(uuid.uuid4())
@@ -122,6 +167,9 @@ class UserManager:
             {"email": email},
             {"$set": {"password_reset_token": token}}
         )
+
+        self.activity.log(user_doc["username"], "RESET_TOKEN_CREATED",
+                          "Password reset token generated")
 
         return {
             "message": self.lang.get("user_reset_token_created"),
@@ -134,18 +182,29 @@ class UserManager:
 
         user_doc = self.collection.find_one({"password_reset_token": token})
         if not user_doc:
+            self.activity.log("unknown", "RESET_FAILED", "Invalid reset token")
             return self.lang.get("user_reset_invalid_token")
 
         hashed_pw = UserManagerUtils.hash_password(new_password)
+
         self.collection.update_one(
             {"id": user_doc["id"]},
             {"$set": {"password": hashed_pw, "password_reset_token": None}}
         )
 
+        self.activity.log(user_doc["username"], "RESET_SUCCESS", "Password successfully updated")
         return self.lang.get("user_reset_success")
 
     def delete_user(self, user_id: str):
+        doc = self.collection.find_one({"id": user_id})
+        if not doc:
+            self.activity.log("unknown", "DELETE_FAILED", f"User not found: {user_id}")
+            return self.lang.get("user_delete_not_found")
+
         result = self.collection.delete_one({"id": user_id})
         if result.deleted_count > 0:
+            self.activity.log(doc["username"], "DELETE_SUCCESS", "User deleted successfully")
             return self.lang.get("user_delete_success")
+
+        self.activity.log(doc["username"], "DELETE_FAILED", "Unknown error occurred")
         return self.lang.get("user_delete_not_found")

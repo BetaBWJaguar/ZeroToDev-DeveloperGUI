@@ -5,7 +5,7 @@ from fragments.UIFragments import center_window
 
 class GUIError(tk.Toplevel):
 
-    def __init__(self, parent, title: str, message: str, icon: str, mode = 'app'):
+    def __init__(self, parent, title: str, message: str, icon: str, mode="app"):
         super().__init__(parent)
         self.title(title)
 
@@ -16,31 +16,33 @@ class GUIError(tk.Toplevel):
         self.mode = mode
 
         if mode == "auth":
-            self._init_auth_styles()
-            self._build_auth_ui(icon, message)
+            self._init_auth_ui(parent, message, icon)
         else:
-            self._build_app_ui(icon, message,parent)
+            self._init_app_ui(parent, message, icon)
 
         self.update_idletasks()
         center_window(self, parent)
 
-
-    def _init_auth_styles(self):
+    # ----------------------------------
+    # 1) AUTH UI (Login/Register/Reset)
+    # ----------------------------------
+    def _init_auth_ui(self, parent, message, icon):
         style = ttk.Style(self)
         style.configure("AuthErrCard.TFrame", background="#0D111A")
         style.configure("AuthErrIcon.TLabel",
                         background="#0D111A",
                         foreground="white",
                         font=("Segoe UI Emoji", 36))
-        style.configure("AuthErrTitle.TLabel",
+        style.configure("AuthErrMsg.TLabel",
                         background="#0D111A",
                         foreground="white",
-                        font=("Segoe UI", 11, "bold"))
+                        font=("Segoe UI", 11),
+                        wraplength=320,
+                        justify="left")
         style.configure("AuthErrButton.TButton",
                         font=("Segoe UI", 10, "bold"),
                         padding=6)
 
-    def _build_auth_ui(self, icon, message):
         container = ttk.Frame(self, padding=30, style="AuthErrCard.TFrame")
         container.pack(fill="both", expand=True)
 
@@ -50,23 +52,21 @@ class GUIError(tk.Toplevel):
         ttk.Label(header, text=icon, style="AuthErrIcon.TLabel") \
             .pack(side="left", padx=(0, 12))
 
-        ttk.Label(
-            header,
-            text=message,
-            style="AuthErrTitle.TLabel",
-            wraplength=300,
-            justify="left"
-        ).pack(side="left", fill="x")
+        ttk.Label(header, text=message, style="AuthErrMsg.TLabel") \
+            .pack(side="left", fill="x")
 
-        ttk.Button(
-            container,
-            text="OK",
-            style="AuthErrButton.TButton",
-            command=self.destroy
-        ).pack(anchor="center", pady=(5, 0))
+        ttk.Button(container, text="OK",
+                   style="AuthErrButton.TButton",
+                   command=self.destroy).pack(pady=(10, 0))
 
+    # ----------------------------------
+    #  2) APP UI (TTSMenuApp)
+    # ----------------------------------
+    def _init_app_ui(self, parent, message, icon):
 
-    def _build_app_ui(self, icon, message,parent):
+        self.configure(bg="#000000")
+        self.attributes("-alpha", 0.95)
+
         container = ttk.Frame(self, padding=25, style="Card.TFrame")
         container.pack(fill="both", expand=True, padx=15, pady=15)
 
@@ -78,8 +78,15 @@ class GUIError(tk.Toplevel):
         ).pack(side="left", padx=(0, 12))
 
         ttk.Label(
-            header, text=message, style="Title.TLabel", wraplength=300, justify="left"
+            header, text=message,
+            style="Title.TLabel",
+            wraplength=300,
+            justify="left"
         ).pack(side="left", anchor="w")
 
-        ttk.Button(container, text=parent.lang.get("ok_button"), command=self.destroy, style="Accent.TButton") \
-            .pack(anchor="center", pady=(5, 0))
+        ttk.Button(
+            container,
+            text=parent.lang.get("ok_button"),
+            command=self.destroy,
+            style="Accent.TButton"
+        ).pack(anchor="center", pady=(5, 0))

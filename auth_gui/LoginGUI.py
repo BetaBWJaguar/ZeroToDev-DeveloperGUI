@@ -6,25 +6,24 @@ from fragments.UIFragments import center_window, apply_auth_style
 from logs_manager.LogsHelperManager import LogsHelperManager
 from data_manager.MemoryManager import MemoryManager
 from usermanager.UserManager import UserManager
-from usermanager.user.User import User
+from auth_gui.auth_factory import MainAuthFactory
+from auth_gui.ResetPasswordGUI import ResetPasswordGUI
+from auth_gui.RegisterGUI import RegisterGUI
 
 
-class LoginGUI(tk.Toplevel):
-    def __init__(self, parent):
-        super().__init__(parent)
+class LoginGUI(tk.Tk):
+    def __init__(self, lang_manager, logger):
+        super().__init__()
 
         apply_auth_style(self)
 
-        self.parent = parent
-        self.lang = parent.lang
-        self.logger = parent.logger
+        self.lang = lang_manager
+        self.logger = logger
         self.user_manager = UserManager()
 
         self.title(self.lang.get("auth_login_title"))
         self.resizable(False, False)
 
-        self.transient(parent)
-        self.grab_set()
         self.protocol("WM_DELETE_WINDOW", self.go_back)
 
         container = ttk.Frame(self, padding=25, style="AuthCard.TFrame")
@@ -53,15 +52,32 @@ class LoginGUI(tk.Toplevel):
                    style="AuthAccent.TButton",
                    command=self.login).pack(fill="x", pady=(0, 8))
 
+        ttk.Button(container, text=self.lang.get("auth_forgot_password"),
+                   style="Auth.TButton",
+                   command=self.open_reset_password).pack(fill="x", pady=(0, 8))
+
+        ttk.Button(container, text=self.lang.get("auth_register_button"),
+                   style="Auth.TButton",
+                   command=self.open_register).pack(fill="x")
+
         ttk.Button(container, text=self.lang.get("auth_back_button"),
                    style="Auth.TButton",
-                   command=self.go_back).pack(fill="x")
+                   command=self.go_back).pack(fill="x", pady=(10, 0))
 
-        center_window(self, parent)
+        center_window(self)
+
+
+    def open_reset_password(self):
+        self.destroy()
+        ResetPasswordGUI(self.lang, self.logger)
+
+    def open_register(self):
+        self.destroy()
+        RegisterGUI(self.lang, self.logger)
 
     def go_back(self):
         self.destroy()
-        self.parent.show()
+        MainAuthFactory(self.lang, self.logger)
 
     def login(self):
         LogsHelperManager.log_button(self.logger, "LOGIN_ATTEMPT")
@@ -72,7 +88,7 @@ class LoginGUI(tk.Toplevel):
         if not username or not password:
             msg = self.lang.get("auth_error_empty_fields")
             self.error_label.config(text=msg)
-            GUIError(self, self.lang.get("error_title"), msg, "❌",mode='auth')
+            GUIError(self, self.lang.get("error_title"), msg, "❌", mode='auth')
             return
 
         result = self.user_manager.login_user(username, password)
@@ -80,16 +96,9 @@ class LoginGUI(tk.Toplevel):
         if isinstance(result, str):
             GUIError(self, self.lang.get("auth_login_failed"), result, "❌", mode='auth')
             return
-
-        if result is None or not result.email_verified:
-            error_message = self.lang.get("auth_error_email_not_verified")
-            GUIError(self, self.lang.get("auth_login_failed"), error_message, "📧", mode='auth')
-            return
-
-
         MemoryManager.set("cached_username", username)
         LogsHelperManager.log_success(self.logger, "LOGIN_SUCCESS", {"user": result.username})
 
-        self.parent.current_user = result
         self.destroy()
-        self.parent.open_main_app(TTSMenuApp)
+        app = TTSMenuApp(lang_manager=self.lang, current_user=result)
+        app.mainloop()

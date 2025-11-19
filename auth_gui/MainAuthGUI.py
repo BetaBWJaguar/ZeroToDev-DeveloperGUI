@@ -50,37 +50,19 @@ class MainAuthGUI(tk.Tk):
         self.update_idletasks()
         center_window(self)
 
-    def hide(self):
-        self.withdraw()
-
-    def show(self):
-        self.deiconify()
-        self.lift()
-
     def open_login(self):
         try:
-            self.login_window = LoginGUI(self)
+            self.destroy()
+            LoginGUI(self.lang,self.logger)
         except Exception as e:
-            error_details = traceback.format_exc()
-            print("ERROR opening Login Window:\n", error_details)
-            messagebox.showerror(
-                "Application Error",
-                f"Failed to open the Login window.\n\n"
-                f"Error Details:\n{error_details}"
-            )
+            messagebox.showerror("Application Error", traceback.format_exc())
 
     def open_register(self):
         try:
-            self.register_window = RegisterGUI(self)
+            self.destroy()
+            RegisterGUI(self.lang,self.logger)
         except Exception as e:
-            self.show()
-            error_details = traceback.format_exc()
-            print("ERROR opening Register Window:\n", error_details)
-            messagebox.showerror(
-                "Application Error",
-                f"Failed to open the Register window.\n\n"
-                f"Error Details:\n{error_details}"
-            )
+            messagebox.showerror("Application Error", traceback.format_exc())
 
     def open_main_app(self, app_class):
         self.destroy()

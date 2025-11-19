@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import hashlib
+import bcrypt
 import re
 from datetime import datetime
 
@@ -7,11 +7,20 @@ from datetime import datetime
 class UserManagerUtils:
     @staticmethod
     def hash_password(password: str) -> str:
-        return hashlib.sha256(password.encode("utf-8")).hexdigest()
+        password_bytes = password.encode("utf-8")
+        hashed = bcrypt.hashpw(password_bytes,bcrypt.gensalt())
+        return hashed.decode("utf-8")
 
     @staticmethod
-    def verify_password(password: str, hashed: str) -> bool:
-        return UserManagerUtils.hash_password(password) == hashed
+    def verify_password(input_password: str, hashed_password: str) -> bool:
+        try:
+            return bcrypt.checkpw(
+                input_password.encode("utf-8"),
+                hashed_password.encode("utf-8")
+            )
+        except Exception:
+            return False
+
 
     @staticmethod
     def validate_username(username: str) -> bool:
