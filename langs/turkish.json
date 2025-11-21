@@ -181,5 +181,9 @@
   "user_reset_invalid_token": "Kod geçersiz veya süresi dolmuş.",
   "user_reset_success": "Şifre başarıyla değiştirildi.",
   "user_delete_success": "Kullanıcı başarıyla silindi.",
-  "user_delete_not_found": "Kullanıcı bulunamadı."
+  "user_delete_not_found": "Kullanıcı bulunamadı.",
+  "menu_account": "Hesap",
+  "menu_profile": "Profilim",
+  "menu_account_settings": "Hesap Ayarları",
+  "menu_logout": "Çıkış Yap"
 }

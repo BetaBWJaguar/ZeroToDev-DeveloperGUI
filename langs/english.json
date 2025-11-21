@@ -181,5 +181,9 @@
   "user_reset_invalid_token": "Invalid or expired password reset token.",
   "user_reset_success": "Password changed successfully.",
   "user_delete_success": "User deleted successfully.",
-  "user_delete_not_found": "User not found."
+  "user_delete_not_found": "User not found.",
+  "menu_account": "Account",
+  "menu_profile": "My Profile",
+  "menu_account_settings": "Account Settings",
+  "menu_logout": "Logout"
 }

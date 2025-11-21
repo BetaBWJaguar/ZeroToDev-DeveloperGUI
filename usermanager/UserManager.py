@@ -208,3 +208,31 @@ class UserManager:
 
         self.activity.log(doc["username"], "DELETE_FAILED", "Unknown error occurred")
         return self.lang.get("user_delete_not_found")
+
+    def validate_password(self, username: str, password: str) -> bool:
+        user_doc = self.collection.find_one({"username": username})
+        if not user_doc:
+            return False
+
+        hashed = user_doc.get("password", "")
+
+        return UserManagerUtils.verify_password(password, hashed)
+
+    def update_password(self, user_id: str, new_password: str) -> bool:
+        if not UserManagerUtils.validate_password(new_password):
+            return False
+
+        hashed_pw = UserManagerUtils.hash_password(new_password)
+
+        result = self.collection.update_one(
+            {"id": user_id},
+            {"$set": {"password": hashed_pw}}
+        )
+
+        if result.modified_count > 0:
+            self.activity.log(user_id, "PASSWORD_CHANGED", "User changed password")
+            return True
+
+        return False
+
+

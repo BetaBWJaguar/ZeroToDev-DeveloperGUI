@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
 import qrcode
+import uuid
 from usermanager.verfiy_manager.twofa_manager.TwoFAUtils import TwoFAUtils
 
 
@@ -11,9 +12,10 @@ class TwoFA:
         totp = TwoFAUtils.get_totp(secret)
         otp_uri = totp.provisioning_uri(name=email, issuer_name=issuer_name)
 
-        qr_path = Path("2fa_qrcode.png")
-        qrcode.make(otp_uri).save(qr_path)
+        filename = f"2fa_qr_{uuid.uuid4().hex}.png"
+        qr_path = Path(filename)
 
+        qrcode.make(otp_uri).save(qr_path)
         return qr_path
 
     @staticmethod

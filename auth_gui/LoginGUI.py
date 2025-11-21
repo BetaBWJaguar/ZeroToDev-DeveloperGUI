@@ -101,4 +101,5 @@ class LoginGUI(tk.Tk):
 
         self.destroy()
         app = TTSMenuApp(lang_manager=self.lang, current_user=result)
+        print("DEBUG USER:", result.id if isinstance(result.id, dict) else {})
         app.mainloop()

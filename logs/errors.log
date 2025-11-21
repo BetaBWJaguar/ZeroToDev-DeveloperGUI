@@ -135,3 +135,6 @@
 2025-10-23 02:43:29 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-23T02:43:29.143843", "event": "ERROR", "data": {"action": "LANGUAGE_RELOAD_FAIL", "error": "'footer_char_counter'"}}
 2025-10-23 16:46:01 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-23T16:46:01.589114", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "MicrosoftEdgeTTS.__init__() missing 1 required positional argument: 'ui_lang'"}}
 2025-10-23 16:46:04 | ERROR   | TTSMenuApp | {"timestamp": "2025-10-23T16:46:04.295378", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "MicrosoftEdgeTTS.__init__() missing 1 required positional argument: 'ui_lang'"}}
+2025-11-20 21:17:26 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-20T21:17:26.381318", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-11-20 21:18:13 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-20T21:18:13.626036", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-11-20 21:20:46 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-20T21:20:46.795522", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}

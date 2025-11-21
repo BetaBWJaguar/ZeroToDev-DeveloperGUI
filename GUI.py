@@ -134,6 +134,13 @@ class TTSMenuApp(tk.Tk):
         theme_menu.add_command(label=self.lang.get("menu_default"), command=lambda: self.change_theme("default"))
         menubar.add_cascade(label=self.lang.get("menu_theme"), menu=theme_menu)
 
+        account_menu = tk.Menu(menubar, tearoff=0)
+        account_menu.add_command(label=self.lang.get("menu_profile"), command=self.show_profile)
+        account_menu.add_command(label=self.lang.get("menu_account_settings"), command=self.show_account_settings)
+        account_menu.add_separator()
+        account_menu.add_command(label=self.lang.get("menu_logout"), command=self.logout_user)
+        menubar.add_cascade(label=self.lang.get("menu_account"), menu=account_menu)
+
 
         language_menu = tk.Menu(menubar, tearoff=0)
         language_menu.add_command(label=self.lang.get("menu_language_settings"), command=self.show_language_settings)
@@ -831,6 +838,254 @@ class TTSMenuApp(tk.Tk):
                                                 transcript_var, password_enabled_var)
 
         center_window(win, self)
+
+    def show_profile(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_PROFILE")
+
+        win = tk.Toplevel(self)
+        win.title(self.lang.get("menu_profile"))
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        user = self.current_user
+        user_data = user.id if isinstance(user.id, dict) else {}
+
+        container = ttk.Frame(win, padding=25)
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(
+            container,
+            text=self.lang.get("menu_profile"),
+            style="Title.TLabel"
+        ).pack(anchor="center", pady=(0, 15))
+
+        if user_data:
+
+            ttk.Label(
+                container,
+                text=f"Username: {user_data.get('username', 'N/A')}",
+                style="Label.TLabel"
+            ).pack(anchor="w", pady=(5, 2))
+
+            ttk.Label(
+                container,
+                text=f"Email: {user_data.get('email', 'N/A')}",
+                style="Label.TLabel"
+            ).pack(anchor="w", pady=(5, 2))
+
+            ttk.Label(
+                container,
+                text=f"Role: {user_data.get('role', 'N/A')}",
+                style="Label.TLabel"
+            ).pack(anchor="w", pady=(5, 2))
+
+            if user_data.get("first_name") or user_data.get("last_name"):
+                full_name = f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip()
+                ttk.Label(
+                    container,
+                    text=f"Name: {full_name}",
+                    style="Label.TLabel"
+                ).pack(anchor="w", pady=(5, 2))
+
+            ttk.Label(
+                container,
+                text=f"Status: {user_data.get('status', 'N/A')}",
+                style="Label.TLabel"
+            ).pack(anchor="w", pady=(5, 2))
+
+        else:
+            ttk.Label(
+                container,
+                text="No user data loaded.",
+                style="Muted.TLabel"
+            ).pack(anchor="center")
+
+        ttk.Separator(container).pack(fill="x", pady=(15, 10))
+
+        ttk.Button(
+            container,
+            text=self.lang.get("close_button"),
+            command=win.destroy,
+            style="Accent.TButton"
+        ).pack(anchor="center", pady=5)
+
+        center_window(win, self)
+
+
+
+    def show_account_settings(self):
+        from usermanager.UserManager import UserManager
+
+        LogsHelperManager.log_button(self.logger, "OPEN_ACCOUNT_SETTINGS")
+
+        user = self.current_user
+        user_data = user.id if isinstance(user.id, dict) else {}
+
+
+        win = tk.Toplevel(self)
+        win.title("Account Settings")
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        container = ttk.Frame(win, padding=25, style="Card.TFrame")
+        container.pack(fill="both", expand=True)
+
+
+        ttk.Label(
+            container,
+            text="Account Settings",
+            style="Title.TLabel"
+        ).pack(anchor="center", pady=(0, 15))
+
+
+        section_frame = ttk.Frame(container, style="Card.TFrame")
+        section_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(section_frame, text="Current Username", style="Label.TLabel").pack(anchor="w")
+        ttk.Label(section_frame, text=user_data.get("username", "N/A"), style="Muted.TLabel").pack(anchor="w")
+
+        ttk.Label(section_frame, text="New Username", style="Label.TLabel").pack(anchor="w", pady=(8, 0))
+
+        new_username_var = tk.StringVar()
+        new_username_entry = ttk.Entry(section_frame, textvariable=new_username_var)
+        new_username_entry.pack(fill="x", pady=(0, 8))
+
+        def save_username():
+            new_username = new_username_var.get().strip()
+            if not new_username:
+                GUIError(self, "Error", "Username cannot be empty!", icon="❌")
+                return
+
+            um = UserManager()
+            um.update_username(user_data.get("id"), new_username)
+
+            user_data["username"] = new_username
+            GUIError(self, "Success", "Username updated!", icon="✅")
+
+        ttk.Button(
+            section_frame,
+            text="Save Username",
+            style="Accent.TButton",
+            command=save_username
+        ).pack(anchor="center", pady=(0, 10))
+
+        ttk.Separator(container).pack(fill="x", pady=15)
+
+
+        pw_frame = ttk.Frame(container, style="Card.TFrame")
+        pw_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(pw_frame, text="Change Password", style="Label.TLabel").pack(anchor="w", pady=(0, 8))
+
+        current_pw = tk.StringVar()
+        new_pw = tk.StringVar()
+        confirm_pw = tk.StringVar()
+
+        ttk.Label(pw_frame, text="Current Password", style="Muted.TLabel").pack(anchor="w")
+        ttk.Entry(pw_frame, textvariable=current_pw, show="*").pack(fill="x")
+
+        ttk.Label(pw_frame, text="New Password", style="Muted.TLabel").pack(anchor="w", pady=(8, 0))
+        ttk.Entry(pw_frame, textvariable=new_pw, show="*").pack(fill="x")
+
+        ttk.Label(pw_frame, text="Confirm New Password", style="Muted.TLabel").pack(anchor="w", pady=(8, 0))
+        ttk.Entry(pw_frame, textvariable=confirm_pw, show="*").pack(fill="x")
+
+        def change_password():
+            um = UserManager()
+
+            if new_pw.get() != confirm_pw.get():
+                GUIError(self, "Error", "Passwords do not match!", icon="❌")
+                return
+
+            if not UserManagerUtils.validate_password(new_pw.get()):
+                GUIError(self, "Error",
+                         "Password must be at least 8 characters,\ninclude upper/lowercase letters, numbers and symbols!",
+                         icon="❌")
+                return
+
+            if not um.validate_password(user_data.get("username"), current_pw.get()):
+                GUIError(self, "Error", "Current password is incorrect!", icon="❌")
+                return
+
+            um.update_password(user_data.get("id"), new_pw.get())
+            GUIError(self, "Success", "Password updated!", icon="✅")
+
+        ttk.Button(
+            pw_frame,
+            text="Change Password",
+            style="Accent.TButton",
+            command=change_password
+        ).pack(anchor="center", pady=(12, 10))
+
+        ttk.Separator(container).pack(fill="x", pady=15)
+
+
+        twofa_frame = ttk.Frame(container, style="Card.TFrame")
+        twofa_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(twofa_frame, text="Two-Factor Authentication (2FA)", style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 8))
+
+        twofa_enabled = user_data.get("twofa_enabled", False)
+
+        ttk.Label(twofa_frame,
+                  text=f"Status: {'ENABLED' if twofa_enabled else 'DISABLED'}",
+                  style="Muted.TLabel").pack(anchor="w")
+
+        if not twofa_enabled:
+            ttk.Button(
+                twofa_frame,
+                text="Enable 2FA",
+                style="Accent.TButton",
+                command=lambda: self.enable_twofa(win)
+            ).pack(anchor="center", pady=10)
+        else:
+            ttk.Button(
+                twofa_frame,
+                text="Disable 2FA",
+                style="Accent.TButton",
+                command=self.disable_twofa
+            ).pack(anchor="center", pady=10)
+
+        ttk.Separator(container).pack(fill="x", pady=15)
+
+        ttk.Button(
+            container,
+            text="Close",
+            style="Accent.TButton",
+            command=win.destroy
+        ).pack(anchor="center")
+
+        center_window(win, self)
+
+
+
+    def logout_user(self):
+        LogsHelperManager.log_button(self.logger, "LOGOUT")
+
+        if not messagebox.askyesno("Logout", "Are you sure you want to logout?"):
+            return
+
+        try:
+            from auth_gui.MainAuthGUI import MainAuthGUI
+
+            self.destroy()
+
+            root = MainAuthGUI(self.lang, self.logger)
+            root.mainloop()
+
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to logout:\n{e}")
+
+
+
+    def enable_twofa(self, parent_window):
+        user = self.current_user
+        user_data = user.id if isinstance(user.id, dict) else {}
+        from TwoFAGUI import TwoFAGUI
+        TwoFAGUI(parent_window, user_data)
 
 
     def show_markup_guide(self):

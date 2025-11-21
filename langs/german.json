@@ -181,5 +181,9 @@
   "user_reset_invalid_token": "Ungültiges oder abgelaufenes Token.",
   "user_reset_success": "Passwort erfolgreich geändert.",
   "user_delete_success": "Benutzer erfolgreich gelöscht.",
-  "user_delete_not_found": "Benutzer nicht gefunden."
+  "user_delete_not_found": "Benutzer nicht gefunden.",
+  "menu_account": "Konto",
+  "menu_profile": "Mein Profil",
+  "menu_account_settings": "Kontoeinstellungen",
+  "menu_logout": "Abmelden"
 }
