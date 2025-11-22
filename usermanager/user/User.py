@@ -23,6 +23,9 @@ class User:
             email_verified: bool = False,
             email_verification_token: Optional[str] = None,
             password_reset_token: Optional[str] = None,
+            twofa_enabled: bool = False,
+            twofa_secret: Optional[str] = None,
+            twofa_verified: bool = False,
             _id: Optional[str] = None
     ):
         self.id = id or str(uuid.uuid4())
@@ -38,6 +41,9 @@ class User:
         self.email_verified = email_verified
         self.email_verification_token = email_verification_token or str(uuid.uuid4())
         self.password_reset_token = password_reset_token
+        self.twofa_enabled = twofa_enabled
+        self.twofa_secret = twofa_secret
+        self.twofa_verified = twofa_verified
         self._id = _id
 
     @classmethod
@@ -52,6 +58,7 @@ class User:
             status: UserStatus = UserStatus.PENDING,
             email_verified: bool = False,
     ) -> "User":
+
         now = datetime.utcnow().isoformat()
 
         return cls(
@@ -68,6 +75,9 @@ class User:
             email_verified=email_verified,
             email_verification_token=str(uuid.uuid4()),
             password_reset_token=None,
+            twofa_enabled=False,
+            twofa_secret=None,
+            twofa_verified=False
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -85,6 +95,9 @@ class User:
             "email_verified": self.email_verified,
             "email_verification_token": self.email_verification_token,
             "password_reset_token": self.password_reset_token,
+            "twofa_enabled": self.twofa_enabled,
+            "twofa_secret": self.twofa_secret,
+            "twofa_verified": self.twofa_verified,
         }
 
     @classmethod
@@ -103,5 +116,8 @@ class User:
             email_verified=data.get("email_verified", False),
             email_verification_token=data.get("email_verification_token"),
             password_reset_token=data.get("password_reset_token"),
+            twofa_enabled=data.get("twofa_enabled", False),
+            twofa_secret=data.get("twofa_secret"),
+            twofa_verified=data.get("twofa_verified", False),
             _id=str(data.get("_id")) if data.get("_id") else None
         )

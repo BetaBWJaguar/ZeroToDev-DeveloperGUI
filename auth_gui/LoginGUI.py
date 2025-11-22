@@ -71,6 +71,11 @@ class LoginGUI(tk.Tk):
         self.destroy()
         ResetPasswordGUI(self.lang, self.logger)
 
+    def open_twofa_window(self,user_obj):
+        from usermanager.verfiy_manager.twofa_manager.TwoFAVerifyGUI import TwoFAVerifyGUI
+        TwoFAVerifyGUI(self,user_obj)
+
+
     def open_register(self):
         self.destroy()
         RegisterGUI(self.lang, self.logger)
@@ -96,10 +101,17 @@ class LoginGUI(tk.Tk):
         if isinstance(result, str):
             GUIError(self, self.lang.get("auth_login_failed"), result, "❌", mode='auth')
             return
+
+        user_obj = result
+
+        if user_obj.id.get("twofa_enabled"):
+            self.open_twofa_window(user_obj)
+            return
+
         MemoryManager.set("cached_username", username)
         LogsHelperManager.log_success(self.logger, "LOGIN_SUCCESS", {"user": result.username})
 
         self.destroy()
-        app = TTSMenuApp(lang_manager=self.lang, current_user=result)
+        app = TTSMenuApp(lang_manager=self.lang, current_user=result,user_manager=self.user_manager)
         print("DEBUG USER:", result.id if isinstance(result.id, dict) else {})
         app.mainloop()

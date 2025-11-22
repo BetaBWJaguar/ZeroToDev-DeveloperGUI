@@ -138,3 +138,4 @@
 2025-11-20 21:17:26 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-20T21:17:26.381318", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-11-20 21:18:13 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-20T21:18:13.626036", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-11-20 21:20:46 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-20T21:20:46.795522", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2025-11-22 01:46:24 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-22T01:46:24.470198", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

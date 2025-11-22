@@ -126,6 +126,9 @@ class UserManager:
             self.activity.log(username, "LOGIN_FAILED_EMAIL_NOT_VERIFIED", "Email not verified")
             return self.lang.get("auth_error_email_not_verified")
 
+        twofa_enabled = user_doc.get("twofa_enabled", False)
+        twofa_verified = user_doc.get("twofa_verified", False)
+
 
         self.collection.update_one(
             {"id": user_doc["id"]},
@@ -151,6 +154,9 @@ class UserManager:
             "email_verified": email_verified,
             "last_login": user_doc.get("last_login"),
             "created_at": user_doc.get("created_at"),
+            "twofa_enabled": twofa_enabled,
+            "twofa_secret": user_doc.get("twofa_secret"),
+            "twofa_verified": twofa_verified
         }
 
         return User(clean_user_doc)

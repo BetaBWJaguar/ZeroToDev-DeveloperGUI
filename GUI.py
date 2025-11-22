@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import json, sys
+import threading
+import time
 import urllib
 from pathlib import Path
 import simpleaudio as sa
@@ -92,10 +94,12 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
         return False
 
 class TTSMenuApp(tk.Tk):
-    def __init__(self,lang_manager,current_user):
+    def __init__(self,lang_manager,current_user,user_manager):
         super().__init__()
         self.zip_var = None
         self.lang = lang_manager
+        self.user_manager = user_manager
+        self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
         self.geometry("1200x1100")
@@ -111,6 +115,26 @@ class TTSMenuApp(tk.Tk):
         self._build()
         self.zip_convertor = ZIPConvertor(self.output_dir)
 
+    def start_user_auto_refresh(self):
+        def auto_refresh_loop():
+            while True:
+                time.sleep(1)
+
+                try:
+                    self.reload_current_user()
+                except Exception as e:
+                    print("User auto-refresh error:", e)
+                    break
+
+        thread = threading.Thread(target=auto_refresh_loop, daemon=True)
+        thread.start()
+
+
+    def reload_current_user(self):
+        user_id = self.current_user.id.get("id")
+        fresh_doc = self.user_manager.collection.find_one({"id": user_id})
+        if fresh_doc:
+            self.current_user.id.update(fresh_doc)
 
     def _build_menubar(self):
         menubar = tk.Menu(self)
@@ -1046,7 +1070,7 @@ class TTSMenuApp(tk.Tk):
                 twofa_frame,
                 text="Disable 2FA",
                 style="Accent.TButton",
-                command=self.disable_twofa
+                command=lambda: self.disable_twofa_action()
             ).pack(anchor="center", pady=10)
 
         ttk.Separator(container).pack(fill="x", pady=15)
@@ -1085,7 +1109,28 @@ class TTSMenuApp(tk.Tk):
         user = self.current_user
         user_data = user.id if isinstance(user.id, dict) else {}
         from TwoFAGUI import TwoFAGUI
-        TwoFAGUI(parent_window, user_data)
+        TwoFAGUI(
+            parent=self,
+            user_data=user_data,
+            user_manager=self.user_manager,
+            lang=self.lang
+        )
+
+    def disable_twofa_action(self):
+        try:
+            self.user_manager.collection.update_one(
+                {"id": self.current_user.id.get("id")},
+                {"$set": {
+                    "twofa_enabled": False,
+                    "twofa_secret": None,
+                    "twofa_verified": False
+                }}
+            )
+            GUIError(self, "Success", "2FA disabled successfully!", icon="✅")
+
+        except Exception as e:
+            GUIError(self, "Error", f"Database error: {e}", icon="❌")
+
 
 
     def show_markup_guide(self):

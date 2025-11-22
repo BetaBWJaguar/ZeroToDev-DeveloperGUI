@@ -10,11 +10,13 @@ from usermanager.verfiy_manager.twofa_manager.TwoFAUtils import TwoFAUtils
 
 
 class TwoFAGUI(tk.Toplevel):
-    def __init__(self, parent, user_data: dict):
+    def __init__(self, parent, user_data: dict,user_manager,lang):
         super().__init__(parent)
 
         self.parent = parent
         self.user = user_data
+        self.user_manager = user_manager
+        self.lang = lang
         self.title("Two-Factor Authentication (2FA)")
         self.geometry("650x950")
         self.resizable(False, False)
@@ -52,6 +54,10 @@ class TwoFAGUI(tk.Toplevel):
 
         center_window(self, parent)
 
+        self.transient(parent)
+        self.grab_set()
+        self.focus_force()
+
         self.protocol("WM_DELETE_WINDOW", self.close_window)
 
     def activate_twofa(self):
@@ -62,6 +68,20 @@ class TwoFAGUI(tk.Toplevel):
             return
 
         if TwoFA.verify(self.secret, code):
+
+            try:
+                self.user_manager.collection.update_one(
+                    {"id": self.user.get("id")},
+                    {"$set": {
+                        "twofa_enabled": True,
+                        "twofa_secret": self.secret,
+                        "twofa_verified": True
+                    }}
+                )
+            except Exception as e:
+                GUIError(self, "Error", f"Database error: {e}", icon="❌")
+                return
+
             GUIError(self, "Success", "2FA enabled successfully!", icon="✅")
 
             self._delete_qr()
