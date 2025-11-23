@@ -114,8 +114,17 @@ class LogsManager:
         noisy_libs = [
             "pydub", "urllib3", "gtts", "ffmpeg", "asyncio",
             "httpx", "requests", "websockets", "h11", "httpcore",
-            "aiohttp", "fsspec", "chardet", "charset_normalizer"
+            "aiohttp", "fsspec", "chardet", "charset_normalizer",
+            "pymongo",
+            "pymongo.connection",
+            "pymongo.serverSelection",
+            "pymongo.topology",
+            "pymongo.command",
+            "pymongo.pool",
+            "pymongo.heartbeat",
+            "pymongo.monitor",
         ]
+
         for noisy_logger in noisy_libs:
             logging.getLogger(noisy_logger).setLevel(logging.CRITICAL + 1)
 

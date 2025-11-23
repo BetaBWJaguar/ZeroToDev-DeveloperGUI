@@ -241,4 +241,32 @@ class UserManager:
 
         return False
 
+    def update_username(self, user_id: str, new_username: str):
+
+        if not UserManagerUtils.validate_username(new_username):
+            return self.lang.get("user_register_invalid_username")
+
+        user_doc = self.collection.find_one({"id": user_id})
+        if not user_doc:
+            self.activity.log("unknown", "USERNAME_UPDATE_FAILED", f"User not found: {user_id}")
+            return self.lang.get("user_update_not_found")
+
+        existing = self.collection.find_one({"username": new_username})
+        if existing and existing["id"] != user_id:
+            self.activity.log(user_doc["username"], "USERNAME_UPDATE_FAILED",
+                              f"Username '{new_username}' already taken")
+            return self.lang.get("user_register_username_exists")
+
+        result = self.collection.update_one(
+            {"id": user_id},
+            {"$set": {"username": new_username}}
+        )
+
+        if result.modified_count > 0:
+            self.activity.log(user_doc["username"], "USERNAME_UPDATED",
+                              f"Username changed to {new_username}")
+            return self.lang.get("user_update_success")
+
+        return self.lang.get("user_update_no_change")
+
 
