@@ -4343,3 +4343,10 @@
 2025-11-22 01:46:43 | INFO    | TTSMenuApp | {"timestamp": "2025-11-22T01:46:43.011096", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
 2025-11-22 01:46:49 | INFO    | TTSMenuApp | {"timestamp": "2025-11-22T01:46:49.336436", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2025-11-22 01:47:00 | INFO    | Main | {"timestamp": "2025-11-22T01:47:00.810745", "event": "SESSION_END", "data": {"session_id": "20251122-014406"}}
+2025-11-23 02:02:59 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-23 02:02:59 | INFO    | Main | {"timestamp": "2025-11-23T02:02:59.573704", "event": "SESSION_START", "data": {"session_id": "20251123-020259"}}
+2025-11-23 02:02:59 | INFO    | LangManager | {"timestamp": "2025-11-23T02:02:59.620602", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-23 02:04:00 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-23 02:04:00 | INFO    | Main | {"timestamp": "2025-11-23T02:04:00.071059", "event": "SESSION_START", "data": {"session_id": "20251123-020400"}}
+2025-11-23 02:04:00 | INFO    | LangManager | {"timestamp": "2025-11-23T02:04:00.118044", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-23 02:06:16 | INFO    | Main | {"timestamp": "2025-11-23T02:06:16.922234", "event": "SESSION_END", "data": {"session_id": "20251123-020400"}}
