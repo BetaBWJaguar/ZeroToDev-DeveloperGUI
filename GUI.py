@@ -137,6 +137,7 @@ class TTSMenuApp(tk.Tk):
             self.current_user.id.update(fresh_doc)
 
     def _build_menubar(self):
+        from system.SystemUsageGUI import SystemUsageGUI
         menubar = tk.Menu(self)
         SPACER = "\u2002"
         menubar.add_cascade(label=SPACER, state="disabled")
@@ -169,6 +170,13 @@ class TTSMenuApp(tk.Tk):
         language_menu = tk.Menu(menubar, tearoff=0)
         language_menu.add_command(label=self.lang.get("menu_language_settings"), command=self.show_language_settings)
         menubar.add_cascade(label=self.lang.get("menu_language"), menu=language_menu)
+
+        resources_menu = tk.Menu(menubar, tearoff=0)
+        resources_menu.add_command(
+            label="System Usage",
+            command=lambda: SystemUsageGUI(self, self.lang)
+        )
+        menubar.add_cascade(label="Resources", menu=resources_menu)
 
         self.config(menu=menubar)
 

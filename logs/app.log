@@ -4426,3 +4426,153 @@
 2025-11-26 02:34:40 | INFO    | Main | {"timestamp": "2025-11-26T02:34:40.700013", "event": "SESSION_START", "data": {"session_id": "20251126-023440"}}
 2025-11-26 02:34:40 | INFO    | LangManager | {"timestamp": "2025-11-26T02:34:40.746298", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
 2025-11-26 02:34:55 | INFO    | Main | {"timestamp": "2025-11-26T02:34:55.902694", "event": "SESSION_END", "data": {"session_id": "20251126-023440"}}
+2025-11-26 22:33:13 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:33:13 | INFO    | Main | {"timestamp": "2025-11-26T22:33:13.276832", "event": "SESSION_START", "data": {"session_id": "20251126-223313"}}
+2025-11-26 22:33:13 | INFO    | LangManager | {"timestamp": "2025-11-26T22:33:13.323144", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:33:29 | INFO    | Main | {"timestamp": "2025-11-26T22:33:29.463549", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:33:34 | INFO    | Main | {"timestamp": "2025-11-26T22:33:34.970966", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:33:42 | INFO    | Main | {"timestamp": "2025-11-26T22:33:42.870159", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:34:00 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:35:17 | INFO    | Main | {"timestamp": "2025-11-26T22:35:17.799443", "event": "SESSION_END", "data": {"session_id": "20251126-223313"}}
+2025-11-26 22:40:02 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:40:02 | INFO    | Main | {"timestamp": "2025-11-26T22:40:02.401802", "event": "SESSION_START", "data": {"session_id": "20251126-224002"}}
+2025-11-26 22:40:02 | INFO    | LangManager | {"timestamp": "2025-11-26T22:40:02.448329", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:40:11 | INFO    | Main | {"timestamp": "2025-11-26T22:40:11.639383", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:40:19 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:44:21 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:44:21 | INFO    | Main | {"timestamp": "2025-11-26T22:44:21.175286", "event": "SESSION_START", "data": {"session_id": "20251126-224421"}}
+2025-11-26 22:44:21 | INFO    | LangManager | {"timestamp": "2025-11-26T22:44:21.221683", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:44:40 | INFO    | Main | {"timestamp": "2025-11-26T22:44:40.724359", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:44:44 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:44:57 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:44:57 | INFO    | Main | {"timestamp": "2025-11-26T22:44:57.846951", "event": "SESSION_START", "data": {"session_id": "20251126-224457"}}
+2025-11-26 22:44:57 | INFO    | LangManager | {"timestamp": "2025-11-26T22:44:57.894309", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:45:05 | INFO    | Main | {"timestamp": "2025-11-26T22:45:05.406515", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:45:09 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:45:28 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T22:45:28.414865", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-11-26 22:45:28 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T22:45:28.428662", "event": "TTS_PREVIEW_START", "data": {}}
+2025-11-26 22:45:28 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-26T22:45:28.452237", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-11-26 22:45:30 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T22:45:30.052247", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-11-26 22:45:31 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T22:45:31.471914", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-11-26 22:45:31 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T22:45:31.484955", "event": "TTS_PREVIEW_START", "data": {}}
+2025-11-26 22:45:32 | INFO    | VoiceProcessor | {"timestamp": "2025-11-26T22:45:32.236129", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 6912, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-11-26 22:45:33 | INFO    | VoiceProcessor | {"timestamp": "2025-11-26T22:45:33.000041", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.7639122009277344, "input_bytes": 6912, "output_bytes": 3884}}
+2025-11-26 22:45:35 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T22:45:35.096874", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-11-26 22:49:05 | INFO    | Main | {"timestamp": "2025-11-26T22:49:05.896530", "event": "SESSION_END", "data": {"session_id": "20251126-224457"}}
+2025-11-26 22:49:12 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:49:12 | INFO    | Main | {"timestamp": "2025-11-26T22:49:12.221481", "event": "SESSION_START", "data": {"session_id": "20251126-224912"}}
+2025-11-26 22:49:12 | INFO    | LangManager | {"timestamp": "2025-11-26T22:49:12.268575", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:49:20 | INFO    | Main | {"timestamp": "2025-11-26T22:49:20.751075", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:49:27 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:49:43 | INFO    | Main | {"timestamp": "2025-11-26T22:49:43.202503", "event": "SESSION_END", "data": {"session_id": "20251126-224912"}}
+2025-11-26 22:49:50 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:49:50 | INFO    | Main | {"timestamp": "2025-11-26T22:49:50.826399", "event": "SESSION_START", "data": {"session_id": "20251126-224950"}}
+2025-11-26 22:49:50 | INFO    | LangManager | {"timestamp": "2025-11-26T22:49:50.871581", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:49:57 | INFO    | Main | {"timestamp": "2025-11-26T22:49:57.441742", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:50:05 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:50:45 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:50:45 | INFO    | Main | {"timestamp": "2025-11-26T22:50:45.621352", "event": "SESSION_START", "data": {"session_id": "20251126-225045"}}
+2025-11-26 22:50:45 | INFO    | LangManager | {"timestamp": "2025-11-26T22:50:45.669621", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:50:55 | INFO    | Main | {"timestamp": "2025-11-26T22:50:55.749464", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:50:59 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:51:16 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:51:16 | INFO    | Main | {"timestamp": "2025-11-26T22:51:16.679548", "event": "SESSION_START", "data": {"session_id": "20251126-225116"}}
+2025-11-26 22:51:16 | INFO    | LangManager | {"timestamp": "2025-11-26T22:51:16.725853", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 22:51:23 | INFO    | Main | {"timestamp": "2025-11-26T22:51:23.982351", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 22:51:27 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 22:58:13 | INFO    | Main | {"timestamp": "2025-11-26T22:58:13.503076", "event": "SESSION_END", "data": {"session_id": "20251126-225116"}}
+2025-11-26 22:59:40 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 22:59:40 | INFO    | Main | {"timestamp": "2025-11-26T22:59:40.251502", "event": "SESSION_START", "data": {"session_id": "20251126-225940"}}
+2025-11-26 22:59:40 | INFO    | LangManager | {"timestamp": "2025-11-26T22:59:40.300120", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:00:02 | INFO    | Main | {"timestamp": "2025-11-26T23:00:02.203967", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:00:06 | INFO    | Main | {"timestamp": "2025-11-26T23:00:06.943658", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:00:15 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:07:10 | INFO    | Main | {"timestamp": "2025-11-26T23:07:10.264575", "event": "SESSION_END", "data": {"session_id": "20251126-225940"}}
+2025-11-26 23:07:17 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:07:18 | INFO    | Main | {"timestamp": "2025-11-26T23:07:18.003330", "event": "SESSION_START", "data": {"session_id": "20251126-230718"}}
+2025-11-26 23:07:18 | INFO    | LangManager | {"timestamp": "2025-11-26T23:07:18.051505", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:07:56 | INFO    | Main | {"timestamp": "2025-11-26T23:07:56.848436", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:08:07 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:08:27 | INFO    | Main | {"timestamp": "2025-11-26T23:08:27.891723", "event": "SESSION_END", "data": {"session_id": "20251126-230718"}}
+2025-11-26 23:12:34 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:12:34 | INFO    | Main | {"timestamp": "2025-11-26T23:12:34.463471", "event": "SESSION_START", "data": {"session_id": "20251126-231234"}}
+2025-11-26 23:12:34 | INFO    | LangManager | {"timestamp": "2025-11-26T23:12:34.508834", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:12:42 | INFO    | Main | {"timestamp": "2025-11-26T23:12:42.376881", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:14:32 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:14:32 | INFO    | Main | {"timestamp": "2025-11-26T23:14:32.729523", "event": "SESSION_START", "data": {"session_id": "20251126-231432"}}
+2025-11-26 23:14:32 | INFO    | LangManager | {"timestamp": "2025-11-26T23:14:32.776328", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:14:40 | INFO    | Main | {"timestamp": "2025-11-26T23:14:40.932225", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:14:44 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:17:12 | INFO    | Main | {"timestamp": "2025-11-26T23:17:12.902499", "event": "SESSION_END", "data": {"session_id": "20251126-231432"}}
+2025-11-26 23:17:18 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:17:18 | INFO    | Main | {"timestamp": "2025-11-26T23:17:18.696573", "event": "SESSION_START", "data": {"session_id": "20251126-231718"}}
+2025-11-26 23:17:18 | INFO    | LangManager | {"timestamp": "2025-11-26T23:17:18.744066", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:17:27 | INFO    | Main | {"timestamp": "2025-11-26T23:17:27.106850", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:17:50 | INFO    | Main | {"timestamp": "2025-11-26T23:17:50.401714", "event": "SESSION_END", "data": {"session_id": "20251126-231718"}}
+2025-11-26 23:18:03 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:18:03 | INFO    | Main | {"timestamp": "2025-11-26T23:18:03.814849", "event": "SESSION_START", "data": {"session_id": "20251126-231803"}}
+2025-11-26 23:18:03 | INFO    | LangManager | {"timestamp": "2025-11-26T23:18:03.862255", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:18:13 | INFO    | Main | {"timestamp": "2025-11-26T23:18:13.748171", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:18:21 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:19:31 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:19:31 | INFO    | Main | {"timestamp": "2025-11-26T23:19:31.649827", "event": "SESSION_START", "data": {"session_id": "20251126-231931"}}
+2025-11-26 23:19:31 | INFO    | LangManager | {"timestamp": "2025-11-26T23:19:31.696272", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:19:39 | INFO    | Main | {"timestamp": "2025-11-26T23:19:39.138425", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:19:42 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:20:58 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T23:20:58.979316", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-26 23:22:53 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:22:53 | INFO    | Main | {"timestamp": "2025-11-26T23:22:53.863416", "event": "SESSION_START", "data": {"session_id": "20251126-232253"}}
+2025-11-26 23:22:53 | INFO    | LangManager | {"timestamp": "2025-11-26T23:22:53.910198", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:23:17 | INFO    | Main | {"timestamp": "2025-11-26T23:23:17.645537", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:23:17 | INFO    | Main | {"timestamp": "2025-11-26T23:23:17.909242", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:23:18 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:23:28 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T23:23:28.418360", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-26 23:34:06 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:34:06 | INFO    | Main | {"timestamp": "2025-11-26T23:34:06.112614", "event": "SESSION_START", "data": {"session_id": "20251126-233406"}}
+2025-11-26 23:34:06 | INFO    | LangManager | {"timestamp": "2025-11-26T23:34:06.158647", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:34:21 | INFO    | Main | {"timestamp": "2025-11-26T23:34:21.995569", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:34:22 | INFO    | Main | {"timestamp": "2025-11-26T23:34:22.257213", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:34:22 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:36:46 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:36:46 | INFO    | Main | {"timestamp": "2025-11-26T23:36:46.968944", "event": "SESSION_START", "data": {"session_id": "20251126-233646"}}
+2025-11-26 23:36:47 | INFO    | LangManager | {"timestamp": "2025-11-26T23:36:47.018564", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:36:55 | INFO    | Main | {"timestamp": "2025-11-26T23:36:55.144422", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:36:55 | INFO    | Main | {"timestamp": "2025-11-26T23:36:55.406049", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:36:55 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:38:18 | INFO    | Main | {"timestamp": "2025-11-26T23:38:18.714671", "event": "SESSION_END", "data": {"session_id": "20251126-233646"}}
+2025-11-26 23:38:33 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:38:33 | INFO    | Main | {"timestamp": "2025-11-26T23:38:33.045977", "event": "SESSION_START", "data": {"session_id": "20251126-233833"}}
+2025-11-26 23:38:33 | INFO    | LangManager | {"timestamp": "2025-11-26T23:38:33.090990", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:38:38 | INFO    | Main | {"timestamp": "2025-11-26T23:38:38.271342", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:38:38 | INFO    | Main | {"timestamp": "2025-11-26T23:38:38.534992", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:38:38 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:41:09 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:41:09 | INFO    | Main | {"timestamp": "2025-11-26T23:41:09.693899", "event": "SESSION_START", "data": {"session_id": "20251126-234109"}}
+2025-11-26 23:41:09 | INFO    | LangManager | {"timestamp": "2025-11-26T23:41:09.742519", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:42:29 | INFO    | Main | {"timestamp": "2025-11-26T23:42:29.977828", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:42:36 | INFO    | Main | {"timestamp": "2025-11-26T23:42:36.409856", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:42:36 | INFO    | Main | {"timestamp": "2025-11-26T23:42:36.638165", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:42:37 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:44:52 | INFO    | Main | {"timestamp": "2025-11-26T23:44:52.857801", "event": "SESSION_END", "data": {"session_id": "20251126-234109"}}
+2025-11-26 23:45:11 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:45:11 | INFO    | Main | {"timestamp": "2025-11-26T23:45:11.602182", "event": "SESSION_START", "data": {"session_id": "20251126-234511"}}
+2025-11-26 23:45:11 | INFO    | LangManager | {"timestamp": "2025-11-26T23:45:11.646476", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:45:25 | INFO    | Main | {"timestamp": "2025-11-26T23:45:25.890161", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:45:26 | INFO    | Main | {"timestamp": "2025-11-26T23:45:26.143655", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:45:26 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:46:00 | INFO    | TTSMenuApp | {"timestamp": "2025-11-26T23:46:00.443277", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-11-26 23:47:05 | INFO    | Main | {"timestamp": "2025-11-26T23:47:05.462786", "event": "SESSION_END", "data": {"session_id": "20251126-234511"}}
+2025-11-26 23:47:10 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:47:10 | INFO    | Main | {"timestamp": "2025-11-26T23:47:10.982233", "event": "SESSION_START", "data": {"session_id": "20251126-234710"}}
+2025-11-26 23:47:11 | INFO    | LangManager | {"timestamp": "2025-11-26T23:47:11.030588", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:47:19 | INFO    | Main | {"timestamp": "2025-11-26T23:47:19.978270", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:47:20 | INFO    | Main | {"timestamp": "2025-11-26T23:47:20.232425", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:47:20 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:47:46 | INFO    | Main | {"timestamp": "2025-11-26T23:47:46.762173", "event": "SESSION_END", "data": {"session_id": "20251126-234710"}}
+2025-11-26 23:50:20 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-26 23:50:20 | INFO    | Main | {"timestamp": "2025-11-26T23:50:20.952162", "event": "SESSION_START", "data": {"session_id": "20251126-235020"}}
+2025-11-26 23:50:20 | INFO    | LangManager | {"timestamp": "2025-11-26T23:50:20.998904", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-26 23:50:26 | INFO    | Main | {"timestamp": "2025-11-26T23:50:26.358672", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-26 23:50:26 | INFO    | Main | {"timestamp": "2025-11-26T23:50:26.612903", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-26 23:50:26 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-26 23:54:07 | INFO    | Main | {"timestamp": "2025-11-26T23:54:07.822978", "event": "SESSION_END", "data": {"session_id": "20251126-235020"}}
