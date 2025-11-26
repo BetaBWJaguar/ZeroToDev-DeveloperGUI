@@ -20,8 +20,22 @@ class GUIError(tk.Toplevel):
         else:
             self._init_app_ui(parent, message, icon)
 
+        parent.update_idletasks()
         self.update_idletasks()
-        center_window(self, parent)
+
+        p_x = parent.winfo_rootx()
+        p_y = parent.winfo_rooty()
+        p_width = parent.winfo_width()
+        p_height = parent.winfo_height()
+
+        my_width = self.winfo_width()
+        my_height = self.winfo_height()
+
+        x = p_x + (p_width // 2) - (my_width // 2)
+        y = p_y + (p_height // 2) - (my_height // 2)
+
+        self.geometry(f"+{x}+{y}")
+        self.deiconify()
 
     # ----------------------------------
     # 1) AUTH UI (Login/Register/Reset)

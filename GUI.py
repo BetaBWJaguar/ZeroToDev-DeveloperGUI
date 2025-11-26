@@ -940,6 +940,7 @@ class TTSMenuApp(tk.Tk):
 
     def show_account_settings(self):
         from usermanager.UserManager import UserManager
+        from usermanager.UserManagerUtils import  UserManagerUtils
 
         LogsHelperManager.log_button(self.logger, "OPEN_ACCOUNT_SETTINGS")
 
@@ -949,6 +950,7 @@ class TTSMenuApp(tk.Tk):
 
         win = tk.Toplevel(self)
         win.title("Account Settings")
+        win.lang = self.lang
         win.transient(self)
         win.grab_set()
         win.resizable(False, False)
@@ -979,14 +981,14 @@ class TTSMenuApp(tk.Tk):
         def save_username():
             new_username = new_username_var.get().strip()
             if not new_username:
-                GUIError(self, "Error", "Username cannot be empty!", icon="❌")
+                GUIError(win, "Error", "Username cannot be empty!", icon="❌")
                 return
 
             um = UserManager()
             um.update_username(user_data.get("id"), new_username)
 
             user_data["username"] = new_username
-            GUIError(self, "Success", "Username updated!", icon="✅")
+            GUIError(win, "Success", "Username updated!", icon="✅")
 
         ttk.Button(
             section_frame,
@@ -1020,21 +1022,21 @@ class TTSMenuApp(tk.Tk):
             um = UserManager()
 
             if new_pw.get() != confirm_pw.get():
-                GUIError(self, "Error", "Passwords do not match!", icon="❌")
+                GUIError(win, "Error", "Passwords do not match!", icon="❌")
                 return
 
             if not UserManagerUtils.validate_password(new_pw.get()):
-                GUIError(self, "Error",
+                GUIError(win, "Error",
                          "Password must be at least 8 characters,\ninclude upper/lowercase letters, numbers and symbols!",
                          icon="❌")
                 return
 
             if not um.validate_password(user_data.get("username"), current_pw.get()):
-                GUIError(self, "Error", "Current password is incorrect!", icon="❌")
+                GUIError(win, "Error", "Current password is incorrect!", icon="❌")
                 return
 
             um.update_password(user_data.get("id"), new_pw.get())
-            GUIError(self, "Success", "Password updated!", icon="✅")
+            GUIError(win, "Success", "Password updated!", icon="✅")
 
         ttk.Button(
             pw_frame,
@@ -1126,7 +1128,7 @@ class TTSMenuApp(tk.Tk):
                     "twofa_verified": False
                 }}
             )
-            GUIError(self, "Success", "2FA disabled successfully!", icon="✅")
+            GUIError(win, "Success", "2FA disabled successfully!", icon="✅")
 
         except Exception as e:
             GUIError(self, "Error", f"Database error: {e}", icon="❌")
