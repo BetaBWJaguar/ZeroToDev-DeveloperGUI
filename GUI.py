@@ -1080,7 +1080,7 @@ class TTSMenuApp(tk.Tk):
                 twofa_frame,
                 text="Disable 2FA",
                 style="Accent.TButton",
-                command=lambda: self.disable_twofa_action()
+                command=lambda: self.disable_twofa_action(win)
             ).pack(anchor="center", pady=10)
 
         ttk.Separator(container).pack(fill="x", pady=15)
@@ -1126,7 +1126,7 @@ class TTSMenuApp(tk.Tk):
             lang=self.lang
         )
 
-    def disable_twofa_action(self):
+    def disable_twofa_action(self,win):
         try:
             self.user_manager.collection.update_one(
                 {"id": self.current_user.id.get("id")},
@@ -1139,7 +1139,7 @@ class TTSMenuApp(tk.Tk):
             GUIError(win, "Success", "2FA disabled successfully!", icon="✅")
 
         except Exception as e:
-            GUIError(self, "Error", f"Database error: {e}", icon="❌")
+            GUIError(win, "Error", f"Database error: {e}", icon="❌")
 
 
 

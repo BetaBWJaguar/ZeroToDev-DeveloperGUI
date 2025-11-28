@@ -4576,3 +4576,70 @@
 2025-11-26 23:50:26 | INFO    | Main | {"timestamp": "2025-11-26T23:50:26.612903", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
 2025-11-26 23:50:26 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
 2025-11-26 23:54:07 | INFO    | Main | {"timestamp": "2025-11-26T23:54:07.822978", "event": "SESSION_END", "data": {"session_id": "20251126-235020"}}
+2025-11-28 02:10:15 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-28 02:10:15 | INFO    | Main | {"timestamp": "2025-11-28T02:10:15.577666", "event": "SESSION_START", "data": {"session_id": "20251128-021015"}}
+2025-11-28 02:10:15 | INFO    | LangManager | {"timestamp": "2025-11-28T02:10:15.637120", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-28 02:10:25 | INFO    | Main | {"timestamp": "2025-11-28T02:10:25.349664", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-28 02:10:25 | INFO    | Main | {"timestamp": "2025-11-28T02:10:25.637914", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-28 02:10:28 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-28 02:12:07 | INFO    | Main | {"timestamp": "2025-11-28T02:12:07.686721", "event": "SESSION_END", "data": {"session_id": "20251128-021015"}}
+2025-11-28 02:12:13 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-28 02:12:13 | INFO    | Main | {"timestamp": "2025-11-28T02:12:13.995060", "event": "SESSION_START", "data": {"session_id": "20251128-021213"}}
+2025-11-28 02:12:14 | INFO    | LangManager | {"timestamp": "2025-11-28T02:12:14.044025", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-28 02:12:22 | INFO    | Main | {"timestamp": "2025-11-28T02:12:22.056475", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-28 02:12:22 | INFO    | Main | {"timestamp": "2025-11-28T02:12:22.309466", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-28 02:12:23 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-28 02:13:32 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:13:32.602347", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:13:35 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:13:35.023933", "event": "BUTTON_CLICK", "data": {"action": "OPEN_PROFILE"}}
+2025-11-28 02:15:57 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-28 02:15:57 | INFO    | Main | {"timestamp": "2025-11-28T02:15:57.679629", "event": "SESSION_START", "data": {"session_id": "20251128-021557"}}
+2025-11-28 02:15:57 | INFO    | LangManager | {"timestamp": "2025-11-28T02:15:57.722975", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-28 02:16:05 | INFO    | Main | {"timestamp": "2025-11-28T02:16:05.020437", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-28 02:16:05 | INFO    | Main | {"timestamp": "2025-11-28T02:16:05.276118", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-28 02:16:05 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-28 02:18:16 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:18:16.181320", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-11-28 02:18:16 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:18:16.726390", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-11-28 02:18:16 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:18:16.739495", "event": "TTS_PREVIEW_START", "data": {}}
+2025-11-28 02:18:17 | INFO    | VoiceProcessor | {"timestamp": "2025-11-28T02:18:17.755729", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-11-28 02:18:18 | INFO    | VoiceProcessor | {"timestamp": "2025-11-28T02:18:18.586545", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.8306965827941895, "input_bytes": 9072, "output_bytes": 6476}}
+2025-11-28 02:18:21 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:18:21.307065", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-11-28 02:25:08 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:08.108254", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-11-28 02:25:10 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:10.484102", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "german"}}}
+2025-11-28 02:25:10 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:10.591169", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "german"}}}
+2025-11-28 02:25:18 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:18.426356", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-11-28 02:25:24 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:24.657942", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-11-28 02:25:27 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:27.394559", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "german", "new": "english"}}}
+2025-11-28 02:25:27 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:27.493623", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2025-11-28 02:25:32 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:32.319560", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-11-28 02:25:33 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:33.666033", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2025-11-28 02:25:33 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:33.770620", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-11-28 02:25:41 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:41.752302", "event": "BUTTON_CLICK", "data": {"action": "OPEN_PROFILE"}}
+2025-11-28 02:25:47 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:25:47.948437", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:26:25 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:26:25.564461", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:28:00 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-28 02:28:00 | INFO    | Main | {"timestamp": "2025-11-28T02:28:00.986483", "event": "SESSION_START", "data": {"session_id": "20251128-022800"}}
+2025-11-28 02:28:01 | INFO    | LangManager | {"timestamp": "2025-11-28T02:28:01.031215", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-28 02:28:09 | INFO    | Main | {"timestamp": "2025-11-28T02:28:09.442192", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-28 02:28:09 | INFO    | Main | {"timestamp": "2025-11-28T02:28:09.696868", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-28 02:28:10 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-28 02:28:12 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:28:12.793184", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:28:50 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-28 02:28:50 | INFO    | Main | {"timestamp": "2025-11-28T02:28:50.510244", "event": "SESSION_START", "data": {"session_id": "20251128-022850"}}
+2025-11-28 02:28:50 | INFO    | LangManager | {"timestamp": "2025-11-28T02:28:50.553848", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-28 02:29:08 | INFO    | Main | {"timestamp": "2025-11-28T02:29:08.740071", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-28 02:29:09 | INFO    | Main | {"timestamp": "2025-11-28T02:29:09.029631", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-28 02:29:09 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-28 02:29:26 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:29:26.261019", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:30:10 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:30:10.512087", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:30:17 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:30:17.265682", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:31:00 | INFO    | Main | {"timestamp": "2025-11-28T02:31:00.945962", "event": "SESSION_END", "data": {"session_id": "20251128-022850"}}
+2025-11-28 02:31:06 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-28 02:31:06 | INFO    | Main | {"timestamp": "2025-11-28T02:31:06.147075", "event": "SESSION_START", "data": {"session_id": "20251128-023106"}}
+2025-11-28 02:31:06 | INFO    | LangManager | {"timestamp": "2025-11-28T02:31:06.191573", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-28 02:31:14 | INFO    | Main | {"timestamp": "2025-11-28T02:31:14.356988", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-28 02:31:14 | INFO    | Main | {"timestamp": "2025-11-28T02:31:14.608901", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-28 02:31:14 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-28 02:31:21 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:31:21.991384", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:31:39 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:31:39.273674", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:31:44 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:31:44.221291", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
+2025-11-28 02:31:54 | INFO    | Main | {"timestamp": "2025-11-28T02:31:54.486811", "event": "SESSION_END", "data": {"session_id": "20251128-023106"}}

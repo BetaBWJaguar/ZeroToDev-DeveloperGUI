@@ -82,10 +82,11 @@ class TwoFAGUI(tk.Toplevel):
                 GUIError(self, "Error", f"Database error: {e}", icon="❌")
                 return
 
-            GUIError(self, "Success", "2FA enabled successfully!", icon="✅")
+            popup = GUIError(self, "Success", "2FA enabled successfully!", icon="✅")
+
+            self.wait_window(popup)
 
             self._delete_qr()
-
             self.destroy()
         else:
             GUIError(self, "Error", "Invalid code!", icon="❌")
