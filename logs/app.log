@@ -4643,3 +4643,24 @@
 2025-11-28 02:31:39 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:31:39.273674", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
 2025-11-28 02:31:44 | INFO    | TTSMenuApp | {"timestamp": "2025-11-28T02:31:44.221291", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ACCOUNT_SETTINGS"}}
 2025-11-28 02:31:54 | INFO    | Main | {"timestamp": "2025-11-28T02:31:54.486811", "event": "SESSION_END", "data": {"session_id": "20251128-023106"}}
+2025-11-29 01:44:16 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-29 01:44:16 | INFO    | Main | {"timestamp": "2025-11-29T01:44:16.253900", "event": "SESSION_START", "data": {"session_id": "20251129-014416"}}
+2025-11-29 01:44:16 | INFO    | LangManager | {"timestamp": "2025-11-29T01:44:16.300354", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-11-29 01:44:23 | INFO    | Main | {"timestamp": "2025-11-29T01:44:23.387124", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-11-29 01:44:23 | INFO    | Main | {"timestamp": "2025-11-29T01:44:23.710225", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-11-29 01:44:24 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-11-29 01:44:43 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:43.296054", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-11-29 01:44:43 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:43.316387", "event": "TTS_PREVIEW_START", "data": {}}
+2025-11-29 01:44:43 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-29T01:44:43.339545", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-11-29 01:44:45 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:45.902757", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-11-29 01:44:46 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:46.503220", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-11-29 01:44:46 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:46.515941", "event": "TTS_PREVIEW_START", "data": {}}
+2025-11-29 01:44:46 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-29T01:44:46.538864", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-11-29 01:44:49 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:49.566489", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-11-29 01:44:51 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:51.156809", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-11-29 01:44:51 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:51.169286", "event": "TTS_PREVIEW_START", "data": {}}
+2025-11-29 01:44:52 | INFO    | VoiceProcessor | {"timestamp": "2025-11-29T01:44:52.106781", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9072, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-11-29 01:44:52 | INFO    | VoiceProcessor | {"timestamp": "2025-11-29T01:44:52.923639", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.8168578147888184, "input_bytes": 9072, "output_bytes": 6476}}
+2025-11-29 01:44:55 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:44:55.646749", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-11-29 01:45:28 | INFO    | TTSMenuApp | {"timestamp": "2025-11-29T01:45:28.327543", "event": "BUTTON_CLICK", "data": {"action": "OPEN_PROFILE"}}
+2025-11-29 01:45:32 | INFO    | Main | {"timestamp": "2025-11-29T01:45:32.984653", "event": "SESSION_END", "data": {"session_id": "20251129-014416"}}
