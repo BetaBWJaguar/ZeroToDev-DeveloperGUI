@@ -172,11 +172,16 @@ class TTSMenuApp(tk.Tk):
         menubar.add_cascade(label=self.lang.get("menu_language"), menu=language_menu)
 
         resources_menu = tk.Menu(menubar, tearoff=0)
+
         resources_menu.add_command(
-            label="System Usage",
+            label=self.lang.get("menu_sys_usage"),
             command=lambda: SystemUsageGUI(self, self.lang)
         )
-        menubar.add_cascade(label="Resources", menu=resources_menu)
+
+        menubar.add_cascade(
+            label=self.lang.get("menu_resources"),
+            menu=resources_menu
+        )
 
         self.config(menu=menubar)
 

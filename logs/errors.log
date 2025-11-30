@@ -145,3 +145,33 @@
 2025-11-26 22:45:28 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-26T22:45:28.452237", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-11-29 01:44:43 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-29T01:44:43.339545", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2025-11-29 01:44:46 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-29T01:44:46.538864", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-11-30 02:09:02 | ERROR   | concurrent.futures | exception calling callback for <Future at 0x21ce0ad5d50 state=finished raised LookupError>
+Traceback (most recent call last):
+  File "T:\TunaRP\Zero to Dev - Developer GUI\venv\Lib\site-packages\aiohttp\helpers.py", line 305, in get_env_proxy_for_url
+    proxy_info = proxies_in_env[url.scheme]
+                 ~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'wss'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tuna\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "T:\TunaRP\Zero to Dev - Developer GUI\venv\Lib\site-packages\aiohttp\helpers.py", line 307, in get_env_proxy_for_url
+    raise LookupError(f"No proxies found for `{url!s}` in the env")
+LookupError: No proxies found for `wss://api.msedgeservices.com/tts/cognitiveservices/websocket/v1?Ocp-Apim-Subscription-Key=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=0127afbfaef64fd8a53d931f3427d775&Sec-MS-GEC=E1AA83BEEDABE9ECDE0A26EC0829FCE21A9F2DA3F46F9C963FAB82F91CDDCED2&Sec-MS-GEC-Version=1-140.0.3485.14` in the env
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\tuna\AppData\Local\Programs\Python\Python311\Lib\concurrent\futures\_base.py", line 340, in _invoke_callbacks
+    callback(self)
+  File "C:\Users\tuna\AppData\Local\Programs\Python\Python311\Lib\asyncio\futures.py", line 401, in _call_set_state
+    dest_loop.call_soon_threadsafe(_set_state, destination, source)
+  File "C:\Users\tuna\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 809, in call_soon_threadsafe
+    self._write_to_self()
+  File "C:\Users\tuna\AppData\Local\Programs\Python\Python311\Lib\asyncio\proactor_events.py", line 824, in _write_to_self
+    csock.send(b'\0')
+TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: 'data'
+2025-11-30 02:13:25 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-30T02:13:25.845582", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

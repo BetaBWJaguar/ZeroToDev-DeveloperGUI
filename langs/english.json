@@ -188,5 +188,21 @@
   "menu_account": "Account",
   "menu_profile": "My Profile",
   "menu_account_settings": "Account Settings",
-  "menu_logout": "Logout"
+  "menu_logout": "Logout",
+  "menu_resources": "Resources",
+  "menu_sys_usage": "System Monitor",
+  "cpu_title": "CPU Usage",
+  "ram_title": "Memory Usage (RAM)",
+  "advanced_stats": "Advanced Statistics",
+  "threads": "Threads",
+  "handles": "Handles",
+  "uptime": "Uptime",
+  "disk_read": "Disk Read",
+  "disk_write": "Disk Write",
+  "net_title": "Application Network Usage",
+  "net_upload": "App Upload",
+  "net_download": "App Download",
+  "graph_title": "Live History",
+  "system_mode": "System",
+  "force_gc": "Force GC"
 }

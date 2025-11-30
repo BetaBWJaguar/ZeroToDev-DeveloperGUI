@@ -188,5 +188,21 @@
   "menu_account": "Hesap",
   "menu_profile": "Profilim",
   "menu_account_settings": "Hesap Ayarları",
-  "menu_logout": "Çıkış Yap"
+  "menu_logout": "Çıkış Yap",
+  "menu_resources": "Kaynaklar",
+  "menu_sys_usage": "Sistem İzleyicisi",
+  "cpu_title": "CPU Kullanımı",
+  "ram_title": "Bellek Kullanımı (RAM)",
+  "advanced_stats": "Gelişmiş İstatistikler",
+  "threads": "İş Parçacığı",
+  "handles": "İşleyiciler",
+  "uptime": "Çalışma Süresi",
+  "disk_read": "Disk Okuma",
+  "disk_write": "Disk Yazma",
+  "net_title": "Uygulama Ağ Kullanımı",
+  "net_upload": "Yükleme (Up)",
+  "net_download": "İndirme (Down)",
+  "graph_title": "Canlı Geçmiş",
+  "system_mode": "Sistem",
+  "force_gc": "GC Temizle"
 }

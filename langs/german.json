@@ -188,5 +188,21 @@
   "menu_account": "Konto",
   "menu_profile": "Mein Profil",
   "menu_account_settings": "Kontoeinstellungen",
-  "menu_logout": "Abmelden"
+  "menu_logout": "Abmelden",
+  "menu_resources": "Ressourcen",
+  "menu_sys_usage": "Systemmonitor",
+  "cpu_title": "CPU-Auslastung",
+  "ram_title": "Speichernutzung (RAM)",
+  "advanced_stats": "Erweiterte Statistiken",
+  "threads": "Threads",
+  "handles": "Handles",
+  "uptime": "Betriebszeit",
+  "disk_read": "Disk Lesen",
+  "disk_write": "Disk Schreiben",
+  "net_title": "Netzwerknutzung",
+  "net_upload": "Upload",
+  "net_download": "Download",
+  "graph_title": "Live-Verlauf",
+  "system_mode": "System",
+  "force_gc": "GC Erzwingen"
 }
