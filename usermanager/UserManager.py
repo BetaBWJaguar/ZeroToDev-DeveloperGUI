@@ -72,6 +72,23 @@ class UserManager:
         self.collection.insert_one(user.to_dict())
         self.activity.log(username, "REGISTER_SUCCESS", "User registered successfully")
 
+        try:
+            from usermanager.verfiy_manager.VerifyUtils import VerifyUtils
+            verify_utils = VerifyUtils()
+
+            verify_utils.send_verification_email(
+                to_email=email,
+                token=user.email_verification_token,
+                app_url="http://localhost:8000"
+            )
+
+            self.activity.log(username, "REGISTER_EMAIL_SENT", "Verification email sent")
+
+        except Exception as e:
+            self.activity.log(username, "REGISTER_EMAIL_FAILED", str(e))
+
+        self.activity.log(username, "REGISTER_EMAIL_SENT", "Verification email sent")
+
         return {
             "message": self.lang.get("user_register_success"),
             "verify_token": user.email_verification_token

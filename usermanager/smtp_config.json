@@ -1,7 +1,6 @@
 {
-  "email": "",
-  "password": "",
-  "host": "",
+  "email": "zerotodev@yandex.com",
+  "host": "smtp.yandex.com",
   "port": 465,
   "use_ssl": true
 }

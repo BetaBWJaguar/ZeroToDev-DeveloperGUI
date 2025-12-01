@@ -4855,3 +4855,7 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2025-11-30 03:12:13 | INFO    | Main | {"timestamp": "2025-11-30T03:12:13.105495", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
 2025-11-30 03:12:13 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
 2025-11-30 03:12:17 | INFO    | Main | {"timestamp": "2025-11-30T03:12:17.518093", "event": "SESSION_END", "data": {"session_id": "20251130-031206"}}
+2025-11-30 22:38:34 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-11-30 22:38:34 | INFO    | Main | {"timestamp": "2025-11-30T22:38:34.703908", "event": "SESSION_START", "data": {"session_id": "20251130-223834"}}
+2025-11-30 22:38:34 | INFO    | LangManager | {"timestamp": "2025-11-30T22:38:34.750445", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-01 00:14:28 | INFO    | Main | {"timestamp": "2025-12-01T00:14:28.379466", "event": "SESSION_END", "data": {"session_id": "20251130-223834"}}

@@ -5,3 +5,4 @@
 /builder/dist/
 /main.enc
 /secret.key
+/.env

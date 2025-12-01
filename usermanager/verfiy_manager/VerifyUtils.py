@@ -9,6 +9,11 @@ from pymongo import MongoClient
 from usermanager.user.UserStatus import UserStatus
 from PathHelper import PathHelper
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 class VerifyUtils:
     def __init__(self,
@@ -38,7 +43,7 @@ class VerifyUtils:
             smtp_cfg = json.load(f)
 
         self.SMTP_EMAIL = smtp_cfg["email"]
-        self.SMTP_PASS = smtp_cfg["password"]
+        self.SMTP_PASS = os.getenv("SMTP_PASSWORD")
         self.SMTP_HOST = smtp_cfg["host"]
         self.SMTP_PORT = smtp_cfg["port"]
         self.SMTP_USE_SSL = smtp_cfg.get("use_ssl", True)
