@@ -73,7 +73,7 @@ class LoginGUI(tk.Tk):
 
     def open_twofa_window(self,user_obj):
         from usermanager.verfiy_manager.twofa_manager.TwoFAVerifyGUI import TwoFAVerifyGUI
-        TwoFAVerifyGUI(self,user_obj)
+        TwoFAVerifyGUI(self,user_obj,self.lang)
 
 
     def open_register(self):

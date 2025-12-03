@@ -960,9 +960,8 @@ class TTSMenuApp(tk.Tk):
         user = self.current_user
         user_data = user.id if isinstance(user.id, dict) else {}
 
-
         win = tk.Toplevel(self)
-        win.title("Account Settings")
+        win.title(self.lang.get("settings_title"))
         win.lang = self.lang
         win.transient(self)
         win.grab_set()
@@ -971,21 +970,19 @@ class TTSMenuApp(tk.Tk):
         container = ttk.Frame(win, padding=25, style="Card.TFrame")
         container.pack(fill="both", expand=True)
 
-
         ttk.Label(
             container,
-            text="Account Settings",
+            text=self.lang.get("settings_title"),
             style="Title.TLabel"
         ).pack(anchor="center", pady=(0, 15))
-
 
         section_frame = ttk.Frame(container, style="Card.TFrame")
         section_frame.pack(fill="x", pady=(0, 18))
 
-        ttk.Label(section_frame, text="Current Username", style="Label.TLabel").pack(anchor="w")
-        ttk.Label(section_frame, text=user_data.get("username", "N/A"), style="Muted.TLabel").pack(anchor="w")
+        ttk.Label(section_frame, text=self.lang.get("settings_current_username"), style="Label.TLabel").pack(anchor="w")
+        ttk.Label(section_frame, text=user_data.get("username", self.lang.get("settings_na")), style="Muted.TLabel").pack(anchor="w")
 
-        ttk.Label(section_frame, text="New Username", style="Label.TLabel").pack(anchor="w", pady=(8, 0))
+        ttk.Label(section_frame, text=self.lang.get("settings_new_username"), style="Label.TLabel").pack(anchor="w", pady=(8, 0))
 
         new_username_var = tk.StringVar()
         new_username_entry = ttk.Entry(section_frame, textvariable=new_username_var)
@@ -994,66 +991,65 @@ class TTSMenuApp(tk.Tk):
         def save_username():
             new_username = new_username_var.get().strip()
             if not new_username:
-                GUIError(win, "Error", "Username cannot be empty!", icon="❌")
+                GUIError(win, self.lang.get("error_title"), self.lang.get("settings_username_empty"), icon="❌")
                 return
 
             um = UserManager()
             um.update_username(user_data.get("id"), new_username)
 
             user_data["username"] = new_username
-            GUIError(win, "Success", "Username updated!", icon="✅")
+            GUIError(win, self.lang.get("success_title"), self.lang.get("settings_username_updated"), icon="✅")
 
         ttk.Button(
             section_frame,
-            text="Save Username",
+            text=self.lang.get("settings_save_username_btn"),
             style="Accent.TButton",
             command=save_username
         ).pack(anchor="center", pady=(0, 10))
 
         ttk.Separator(container).pack(fill="x", pady=15)
 
-
         pw_frame = ttk.Frame(container, style="Card.TFrame")
         pw_frame.pack(fill="x", pady=(0, 18))
 
-        ttk.Label(pw_frame, text="Change Password", style="Label.TLabel").pack(anchor="w", pady=(0, 8))
+        ttk.Label(pw_frame, text=self.lang.get("settings_change_password"), style="Label.TLabel").pack(anchor="w", pady=(0, 8))
 
         current_pw = tk.StringVar()
         new_pw = tk.StringVar()
         confirm_pw = tk.StringVar()
 
-        ttk.Label(pw_frame, text="Current Password", style="Muted.TLabel").pack(anchor="w")
+        ttk.Label(pw_frame, text=self.lang.get("settings_current_password"), style="Muted.TLabel").pack(anchor="w")
         ttk.Entry(pw_frame, textvariable=current_pw, show="*").pack(fill="x")
 
-        ttk.Label(pw_frame, text="New Password", style="Muted.TLabel").pack(anchor="w", pady=(8, 0))
+        ttk.Label(pw_frame, text=self.lang.get("settings_new_password"), style="Muted.TLabel").pack(anchor="w", pady=(8, 0))
         ttk.Entry(pw_frame, textvariable=new_pw, show="*").pack(fill="x")
 
-        ttk.Label(pw_frame, text="Confirm New Password", style="Muted.TLabel").pack(anchor="w", pady=(8, 0))
+        ttk.Label(pw_frame, text=self.lang.get("settings_confirm_password"), style="Muted.TLabel").pack(anchor="w", pady=(8, 0))
         ttk.Entry(pw_frame, textvariable=confirm_pw, show="*").pack(fill="x")
 
         def change_password():
             um = UserManager()
 
             if new_pw.get() != confirm_pw.get():
-                GUIError(win, "Error", "Passwords do not match!", icon="❌")
+                GUIError(win, self.lang.get("error_title"), self.lang.get("settings_pw_mismatch"), icon="❌")
                 return
 
             if not UserManagerUtils.validate_password(new_pw.get()):
-                GUIError(win, "Error",
-                         "Password must be at least 8 characters,\ninclude upper/lowercase letters, numbers and symbols!",
+                GUIError(win, self.lang.get("error_title"),
+                         self.lang.get("settings_pw_requirements"),
                          icon="❌")
                 return
 
             if not um.validate_password(user_data.get("username"), current_pw.get()):
-                GUIError(win, "Error", "Current password is incorrect!", icon="❌")
+                GUIError(win, self.lang.get("error_title"), self.lang.get("settings_current_pw_wrong"), icon="❌")
                 return
 
             um.update_password(user_data.get("id"), new_pw.get())
-            GUIError(win, "Success", "Password updated!", icon="✅")
+            GUIError(win, self.lang.get("success_title"), self.lang.get("settings_pw_updated"), icon="✅")
 
         ttk.Button(
             pw_frame,
-            text="Change Password",
+            text=self.lang.get("settings_change_pw_btn"),
             style="Accent.TButton",
             command=change_password
         ).pack(anchor="center", pady=(12, 10))
@@ -1064,26 +1060,27 @@ class TTSMenuApp(tk.Tk):
         twofa_frame = ttk.Frame(container, style="Card.TFrame")
         twofa_frame.pack(fill="x", pady=(0, 18))
 
-        ttk.Label(twofa_frame, text="Two-Factor Authentication (2FA)", style="Label.TLabel") \
+        ttk.Label(twofa_frame, text=self.lang.get("settings_2fa_title"), style="Label.TLabel") \
             .pack(anchor="w", pady=(0, 8))
 
         twofa_enabled = user_data.get("twofa_enabled", False)
 
+        status_text = self.lang.get("settings_status_enabled") if twofa_enabled else self.lang.get("settings_status_disabled")
         ttk.Label(twofa_frame,
-                  text=f"Status: {'ENABLED' if twofa_enabled else 'DISABLED'}",
+                  text=f"{self.lang.get('settings_status_label')}: {status_text}",
                   style="Muted.TLabel").pack(anchor="w")
 
         if not twofa_enabled:
             ttk.Button(
                 twofa_frame,
-                text="Enable 2FA",
+                text=self.lang.get("settings_enable_2fa_btn"),
                 style="Accent.TButton",
                 command=lambda: self.enable_twofa(win)
             ).pack(anchor="center", pady=10)
         else:
             ttk.Button(
                 twofa_frame,
-                text="Disable 2FA",
+                text=self.lang.get("settings_disable_2fa_btn"),
                 style="Accent.TButton",
                 command=lambda: self.disable_twofa_action(win)
             ).pack(anchor="center", pady=10)
@@ -1092,19 +1089,17 @@ class TTSMenuApp(tk.Tk):
 
         ttk.Button(
             container,
-            text="Close",
+            text=self.lang.get("close_button"),
             style="Accent.TButton",
             command=win.destroy
         ).pack(anchor="center")
 
         center_window(win, self)
 
-
-
     def logout_user(self):
         LogsHelperManager.log_button(self.logger, "LOGOUT")
 
-        if not messagebox.askyesno("Logout", "Are you sure you want to logout?"):
+        if not messagebox.askyesno(self.lang.get("logout_title"), self.lang.get("logout_confirm_msg")):
             return
 
         try:
@@ -1116,9 +1111,7 @@ class TTSMenuApp(tk.Tk):
             root.mainloop()
 
         except Exception as e:
-            messagebox.showerror("Error", f"Failed to logout:\n{e}")
-
-
+            messagebox.showerror(self.lang.get("error_title"), f"{self.lang.get('logout_failed_msg')}:\n{e}")
 
     def enable_twofa(self, parent_window):
         user = self.current_user
@@ -1141,10 +1134,10 @@ class TTSMenuApp(tk.Tk):
                     "twofa_verified": False
                 }}
             )
-            GUIError(win, "Success", "2FA disabled successfully!", icon="✅")
+            GUIError(win, self.lang.get("success_title"), self.lang.get("settings_2fa_disabled_msg"), icon="✅")
 
         except Exception as e:
-            GUIError(win, "Error", f"Database error: {e}", icon="❌")
+            GUIError(win, self.lang.get("error_title"), f"{self.lang.get('database_error_msg')}: {e}", icon="❌")
 
 
 
