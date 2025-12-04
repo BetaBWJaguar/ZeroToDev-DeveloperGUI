@@ -17,7 +17,7 @@ class TwoFAGUI(tk.Toplevel):
         self.user = user_data
         self.user_manager = user_manager
         self.lang = lang
-        self.title("Two-Factor Authentication (2FA)")
+        self.title(self.lang.get("twofa_window_title"))
         self.geometry("650x950")
         self.resizable(False, False)
 
@@ -28,29 +28,30 @@ class TwoFAGUI(tk.Toplevel):
         container = ttk.Frame(self, padding=25)
         container.pack(fill="both", expand=True)
 
-        ttk.Label(container, text="Enable Two-Factor Authentication",
+        ttk.Label(container, text=self.lang.get("twofa_enable_title"),
                   style="Title.TLabel").pack(anchor="center", pady=(0, 15))
 
-        ttk.Label(container, text="Scan this QR code with Google Authenticator:",
+        ttk.Label(container, text=self.lang.get("twofa_scan_instruction"),
                   style="Label.TLabel").pack(anchor="w")
 
 
         self.qr_img = tk.PhotoImage(file=self.qr_path)
         ttk.Label(container, image=self.qr_img).pack(anchor="center", pady=10)
 
-        ttk.Label(container, text=f"Secret Key: {self.secret}",
+        secret_lbl_text = f"{self.lang.get('twofa_secret_key')}: {self.secret}"
+        ttk.Label(container, text=secret_lbl_text,
                   style="Muted.TLabel", wraplength=380).pack(anchor="w", pady=(5, 10))
 
-        ttk.Label(container, text="Enter the 6-digit code:",
+        ttk.Label(container, text=self.lang.get("twofa_enter_code_label"),
                   style="Label.TLabel").pack(anchor="w")
 
         self.code_var = tk.StringVar()
         ttk.Entry(container, textvariable=self.code_var).pack(fill="x", pady=10)
 
-        ttk.Button(container, text="Activate 2FA", style="Accent.TButton",
+        ttk.Button(container, text=self.lang.get("twofa_activate_btn"), style="Accent.TButton",
                    command=self.activate_twofa).pack(anchor="center", pady=10)
 
-        ttk.Button(container, text="Close", command=self.close_window).pack(anchor="center")
+        ttk.Button(container, text=self.lang.get("close_btn", "Close"), command=self.close_window).pack(anchor="center")
 
         center_window(self, parent)
 
@@ -64,7 +65,10 @@ class TwoFAGUI(tk.Toplevel):
         code = self.code_var.get().strip()
 
         if not code:
-            GUIError(self, "Error", "Enter a code.", icon="❌")
+            GUIError(self,
+                     self.lang.get("error_title"),
+                     self.lang.get("twofa_error_empty_code"),
+                     icon="❌")
             return
 
         if TwoFA.verify(self.secret, code):
@@ -79,17 +83,24 @@ class TwoFAGUI(tk.Toplevel):
                     }}
                 )
             except Exception as e:
-                GUIError(self, "Error", f"Database error: {e}", icon="❌")
+                db_err_msg = f"{self.lang.get('error_database')}: {e}"
+                GUIError(self, self.lang.get("error_title"), db_err_msg, icon="❌")
                 return
 
-            popup = GUIError(self, "Success", "2FA enabled successfully!", icon="✅")
+            popup = GUIError(self,
+                             self.lang.get("success_title"),
+                             self.lang.get("twofa_success_enabled"),
+                             icon="✅")
 
             self.wait_window(popup)
 
             self._delete_qr()
             self.destroy()
         else:
-            GUIError(self, "Error", "Invalid code!", icon="❌")
+            GUIError(self,
+                     self.lang.get("error_title"),
+                     self.lang.get("twofa_error_invalid_code"),
+                     icon="❌")
 
     def close_window(self):
         self._delete_qr()

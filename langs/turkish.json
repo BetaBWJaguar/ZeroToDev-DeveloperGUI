@@ -238,5 +238,16 @@
   "verify_error_empty": "Lütfen bir kod girin.",
   "verify_error_secret_missing": "2FA anahtarı eksik!",
   "verify_success_login": "Giriş başarılı!",
-  "verify_error_invalid": "Geçersiz kod!"
+  "verify_error_invalid": "Geçersiz kod!",
+  "twofa_window_title": "İki Faktörlü Doğrulama (2FA)",
+  "twofa_enable_title": "İki Faktörlü Doğrulamayı Etkinleştir",
+  "twofa_scan_instruction": "Bu QR kodunu Google Authenticator ile tarayın:",
+  "twofa_secret_key": "Gizli Anahtar",
+  "twofa_enter_code_label": "6 haneli kodu girin:",
+  "twofa_activate_btn": "2FA'yı Aktifleştir",
+  "close_btn": "Kapat",
+  "twofa_error_empty_code": "Lütfen bir kod girin.",
+  "twofa_error_invalid_code": "Geçersiz kod!",
+  "error_database": "Veritabanı hatası",
+  "twofa_success_enabled": "2FA başarıyla etkinleştirildi!"
 }

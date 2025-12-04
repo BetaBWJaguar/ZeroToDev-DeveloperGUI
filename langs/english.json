@@ -238,5 +238,16 @@
   "verify_error_empty": "Enter a code.",
   "verify_error_secret_missing": "2FA secret missing!",
   "verify_success_login": "Login successful!",
-  "verify_error_invalid": "Invalid code!"
+  "verify_error_invalid": "Invalid code!",
+  "twofa_window_title": "Two-Factor Authentication (2FA)",
+  "twofa_enable_title": "Enable Two-Factor Authentication",
+  "twofa_scan_instruction": "Scan this QR code with Google Authenticator:",
+  "twofa_secret_key": "Secret Key",
+  "twofa_enter_code_label": "Enter the 6-digit code:",
+  "twofa_activate_btn": "Activate 2FA",
+  "close_btn": "Close",
+  "twofa_error_empty_code": "Enter a code.",
+  "twofa_error_invalid_code": "Invalid code!",
+  "error_database": "Database error",
+  "twofa_success_enabled": "2FA enabled successfully!"
 }
