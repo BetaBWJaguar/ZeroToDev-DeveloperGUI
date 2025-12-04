@@ -1,37 +1,44 @@
 # -*- coding: utf-8 -*-
-import json
 import requests
+from updater.UpdaterGUI import UpdaterGUI
 from updater.Updater_Utils import download_update_zip, extract_update_zip, get_current_version
 import subprocess
 import sys
-import os
 from pathlib import Path
 
 UPDATE_INFO_URL = ""
 
 
-def check_for_update():
+def check_for_update_gui(parent, lang, logger):
     try:
-        print("[Updater] Checking for updates...")
-
         response = requests.get(UPDATE_INFO_URL, timeout=5)
         data = response.json()
 
         remote_version = data["version"]
         zip_url = data["zip_url"]
+        changelog = data.get("changelog", "")
 
         local_version = get_current_version()
 
         if remote_version != local_version:
-            print(f"[Updater] New version found → {remote_version}")
-            zip_path = download_update_zip(zip_url)
-            extract_update_zip(zip_path)
 
-            run_updater()
-        else:
-            print("[Updater] Application is up-to-date.")
+            def confirmed():
+                zip_path = download_update_zip(zip_url)
+                extract_update_zip(zip_path)
+                run_updater()
+
+            UpdaterGUI(
+                parent=parent,
+                lang=lang,
+                logger=logger,
+                local_version=local_version,
+                remote_version=remote_version,
+                changelog=changelog,
+                on_confirm=confirmed
+            )
+
     except Exception as e:
-        print("[Updater] Update check failed:", e)
+        print("[Updater] GUI Update check failed:", e)
 
 
 def run_updater():

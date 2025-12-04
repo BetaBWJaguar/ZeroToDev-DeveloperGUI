@@ -249,5 +249,19 @@
   "twofa_error_empty_code": "Lütfen bir kod girin.",
   "twofa_error_invalid_code": "Geçersiz kod!",
   "error_database": "Veritabanı hatası",
-  "twofa_success_enabled": "2FA başarıyla etkinleştirildi!"
+  "twofa_success_enabled": "2FA başarıyla etkinleştirildi!",
+  "updater_title": "Uygulama Güncellemesi",
+  "updater_header": "Yeni Güncelleme Mevcut",
+  "updater_info_section": "Sürüm Bilgisi",
+  "updater_current_version": "Mevcut Sürüm",
+  "updater_new_version": "Yeni Sürüm",
+  "updater_changelog_section": "Yenilikler",
+  "updater_no_changelog": "Bu sürüm için not bulunmuyor.",
+  "updater_waiting": "Kullanıcı onayı bekleniyor...",
+  "updater_downloading": "Güncelleme indiriliyor...",
+  "updater_installing": "Güncelleme kuruluyor...",
+  "updater_completed": "Güncelleme başarıyla tamamlandı.",
+  "updater_update_now": "Şimdi Güncelle",
+  "updater_later": "Daha Sonra",
+  "updater_failed": "Güncelleme başarısız oldu: {0}"
 }

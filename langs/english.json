@@ -249,5 +249,19 @@
   "twofa_error_empty_code": "Enter a code.",
   "twofa_error_invalid_code": "Invalid code!",
   "error_database": "Database error",
-  "twofa_success_enabled": "2FA enabled successfully!"
+  "twofa_success_enabled": "2FA enabled successfully!",
+  "updater_title": "Application Update",
+  "updater_header": "New Update Available",
+  "updater_info_section": "Version Information",
+  "updater_current_version": "Current Version",
+  "updater_new_version": "New Version",
+  "updater_changelog_section": "What's New",
+  "updater_no_changelog": "No changelog available.",
+  "updater_waiting": "Waiting for user confirmation...",
+  "updater_downloading": "Downloading update...",
+  "updater_installing": "Installing update...",
+  "updater_completed": "Update completed successfully.",
+  "updater_update_now": "Update Now",
+  "updater_later": "Later",
+  "updater_failed": "Update failed: {0}"
 }

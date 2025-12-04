@@ -249,5 +249,19 @@
   "twofa_error_empty_code": "Bitte geben Sie einen Code ein.",
   "twofa_error_invalid_code": "Ungültiger Code!",
   "error_database": "Datenbankfehler",
-  "twofa_success_enabled": "2FA erfolgreich aktiviert!"
+  "twofa_success_enabled": "2FA erfolgreich aktiviert!",
+  "updater_title": "Anwendungsaktualisierung",
+  "updater_header": "Neue Aktualisierung verfügbar",
+  "updater_info_section": "Versionsinformationen",
+  "updater_current_version": "Aktuelle Version",
+  "updater_new_version": "Neue Version",
+  "updater_changelog_section": "Neuerungen",
+  "updater_no_changelog": "Kein Änderungsprotokoll verfügbar.",
+  "updater_waiting": "Warten auf Benutzerbestätigung...",
+  "updater_downloading": "Aktualisierung wird heruntergeladen...",
+  "updater_installing": "Aktualisierung wird installiert...",
+  "updater_completed": "Aktualisierung erfolgreich abgeschlossen.",
+  "updater_update_now": "Jetzt aktualisieren",
+  "updater_later": "Später",
+  "updater_failed": "Aktualisierung fehlgeschlagen: {0}"
 }

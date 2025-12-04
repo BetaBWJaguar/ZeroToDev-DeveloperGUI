@@ -28,6 +28,8 @@ from voicegui.VoiceGUI import VoiceSettings
 from zip.ZIPConvertor import ZIPConvertor
 from gui_listener.GUIListener import GUIListener
 from PathHelper import PathHelper
+from updater.Update_Checker import check_for_update_gui
+
 
 BASE_DIR = PathHelper.base_dir()
 UTILS_DIR = PathHelper.resource_path("utils")
@@ -114,6 +116,12 @@ class TTSMenuApp(tk.Tk):
         self._build_menubar()
         self._build()
         self.zip_convertor = ZIPConvertor(self.output_dir)
+
+        self.after(3000, lambda: check_for_update_gui(
+            parent=self,
+            lang=self.lang,
+            logger=self.logger
+        ))
 
     def start_user_auto_refresh(self):
         def auto_refresh_loop():
