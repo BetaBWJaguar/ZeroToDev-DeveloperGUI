@@ -6,3 +6,4 @@
 /main.enc
 /secret.key
 /.env
+/venv/

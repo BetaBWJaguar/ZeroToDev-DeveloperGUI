@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import time
 import tkinter as tk
 from tkinter import ttk
 from GUIHelper import init_style, primary_button, section
@@ -95,25 +96,39 @@ class UpdaterGUI(tk.Toplevel):
         try:
             for i in range(0, 40, 4):
                 self.after(0, lambda v=i: self.progress_var.set(v))
-                self.after(0, lambda: self.status_lbl.config(text=self.lang.get("updater_downloading")))
-                self.after(100)
+                self.after(0, lambda: self.status_lbl.config(
+                    text=self.lang.get("updater_downloading")
+                ))
+                time.sleep(0.05)
 
-            self.after(0, lambda: self.status_lbl.config(text=self.lang.get("updater_installing")))
-
-            self.on_confirm()
-
-            self.after(0, lambda: self.progress_var.set(100))
             self.after(0, lambda: self.status_lbl.config(
-                text=self.lang.get("updater_completed")
+                text=self.lang.get("updater_installing")
             ))
 
-            LogsHelperManager.log_success(self.logger, "UPDATE_STARTED")
+            def do_install():
+                try:
+                    self.on_confirm()
+                    self.after(0, lambda: self.progress_var.set(100))
+                    self.after(0, lambda: self.status_lbl.config(
+                        text=self.lang.get("updater_completed")
+                    ))
+                    LogsHelperManager.log_success(self.logger, "UPDATE_COMPLETED")
+                    self.after(1200, self.destroy)
+                except Exception as e:
+                    self.after(0, lambda: self.show_error(e))
 
-            self.after(1200, self.destroy)
+            threading.Thread(target=do_install, daemon=True).start()
 
         except Exception as e:
-            LogsHelperManager.log_error(self.logger, "UPDATER_GUI_FAIL", str(e))
-            GUIError(self, self.lang.get("error_title"),
-                     self.lang.get("updater_failed").format(error=e),
-                     icon="❌")
-            self.destroy()
+            self.show_error(e)
+
+    def show_error(self, e):
+        LogsHelperManager.log_error(self.logger, "UPDATER_GUI_FAIL", str(e))
+        GUIError(
+            self,
+            self.lang.get("error_title"),
+            self.lang.get("updater_failed").format(error=e),
+            icon="❌"
+        )
+        self.destroy()
+
