@@ -34,6 +34,10 @@ datas += [
     (str(PROJECT_ROOT / "secret.key"), "."),
 ]
 
+datas += [
+    (str(PROJECT_ROOT / "version.txt"), "."),
+]
+
 hiddenimports = []
 try:
     import tkinter

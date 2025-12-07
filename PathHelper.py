@@ -13,3 +13,9 @@ class PathHelper:
         if getattr(sys, 'frozen', False):
             return Path(sys.executable).parent
         return Path(__file__).resolve().parent
+
+    @staticmethod
+    def base_dir_exe() -> Path:
+        if getattr(sys, 'frozen', False):
+            return Path(sys.executable).resolve().parents[2]
+        return Path(__file__).resolve().parents[2]

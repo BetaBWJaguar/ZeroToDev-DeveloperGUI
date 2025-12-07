@@ -2,11 +2,8 @@
 import requests
 from updater.UpdaterGUI import UpdaterGUI
 from updater.Updater_Utils import download_update_zip, extract_update_zip, get_current_version
-import subprocess
-import sys
-from pathlib import Path
 
-UPDATE_INFO_URL = ""
+UPDATE_INFO_URL = "https://raw.githubusercontent.com/BetaBWJaguar/ZeroToDev-DeveloperGUI/master/updater/update_info.json"
 
 
 def check_for_update_gui(parent, lang, logger):
@@ -42,6 +39,5 @@ def check_for_update_gui(parent, lang, logger):
 
 
 def run_updater():
-    updater_script = Path(__file__).parent / "Updater.py"
-    subprocess.Popen([sys.executable, str(updater_script)])
-    sys.exit(0)
+    from updater.Updater import main
+    main()
