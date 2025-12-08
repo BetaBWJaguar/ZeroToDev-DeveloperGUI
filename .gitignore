@@ -7,3 +7,5 @@
 /secret.key
 /.env
 /venv/
+/updater/build/
+/updater/dist/

@@ -19,3 +19,10 @@ class PathHelper:
         if getattr(sys, 'frozen', False):
             return Path(sys.executable).resolve().parents[2]
         return Path(__file__).resolve().parents[2]
+
+    @staticmethod
+    def internal_dir() -> Path:
+        if getattr(sys, 'frozen', False):
+            return Path(sys.executable).parent / "_internal"
+        return Path(__file__).resolve().parent
+

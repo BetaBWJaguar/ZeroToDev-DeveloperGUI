@@ -4,8 +4,10 @@ import zipfile
 import tempfile
 import os
 from pathlib import Path
+from PathHelper import PathHelper
 
-LOCAL_VERSION_FILE = Path("version.txt")
+LOCAL_VERSION_FILE = PathHelper.internal_dir() / "client-version.txt"
+
 
 
 def get_current_version():

@@ -39,5 +39,19 @@ def check_for_update_gui(parent, lang, logger):
 
 
 def run_updater():
-    from updater.Updater import main
-    main()
+    import subprocess
+    from PathHelper import PathHelper
+
+    base_dir = PathHelper.base_dir()
+    updater_exe = base_dir / "Updater.exe"
+
+    if not updater_exe.exists():
+        print("[Updater] ERROR: Updater.exe not found:", updater_exe)
+        return
+
+    subprocess.Popen(
+        [str(updater_exe)],
+        cwd=str(base_dir),
+        close_fds=True,
+        creationflags=subprocess.DETACHED_PROCESS
+    )

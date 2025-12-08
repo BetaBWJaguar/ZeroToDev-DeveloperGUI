@@ -19,7 +19,19 @@ version_info = eval(version_info_code)
 block_cipher = None
 
 datas = []
-excluded_dirs = {"builder", "logs", "__pycache__","output"}
+excluded_dirs = {
+    "builder",
+    "logs",
+    "__pycache__",
+    "output",
+    ".git",
+    ".github",
+    ".idea",
+    ".vscode",
+    "venv",
+    "env"
+}
+
 
 for item in PROJECT_ROOT.iterdir():
     if item.is_dir() and item.name not in excluded_dirs:
@@ -35,7 +47,7 @@ datas += [
 ]
 
 datas += [
-    (str(PROJECT_ROOT / "version.txt"), "."),
+    (str(PROJECT_ROOT / "client-version.txt"), "."),
 ]
 
 hiddenimports = []
