@@ -4914,3 +4914,49 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2025-12-05 22:23:13 | INFO    | Main | {"timestamp": "2025-12-05T22:23:13.048854", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
 2025-12-05 22:23:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
 2025-12-05 22:23:28 | INFO    | TTSMenuApp | {"timestamp": "2025-12-05T22:23:28.934609", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.1", "remote": "1.2"}}
+2025-12-08 21:20:41 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:20:41 | INFO    | Main | {"timestamp": "2025-12-08T21:20:41.254046", "event": "SESSION_START", "data": {"session_id": "20251208-212041"}}
+2025-12-08 21:20:41 | INFO    | LangManager | {"timestamp": "2025-12-08T21:20:41.304281", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:25:26 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:25:26 | INFO    | Main | {"timestamp": "2025-12-08T21:25:26.708957", "event": "SESSION_START", "data": {"session_id": "20251208-212526"}}
+2025-12-08 21:25:26 | INFO    | LangManager | {"timestamp": "2025-12-08T21:25:26.753367", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:26:37 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:26:37 | INFO    | Main | {"timestamp": "2025-12-08T21:26:37.985224", "event": "SESSION_START", "data": {"session_id": "20251208-212637"}}
+2025-12-08 21:26:38 | INFO    | LangManager | {"timestamp": "2025-12-08T21:26:38.030343", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:29:28 | INFO    | Main | {"timestamp": "2025-12-08T21:29:28.136347", "event": "SESSION_END", "data": {"session_id": "20251208-212637"}}
+2025-12-08 21:30:33 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:30:33 | INFO    | Main | {"timestamp": "2025-12-08T21:30:33.151836", "event": "SESSION_START", "data": {"session_id": "20251208-213033"}}
+2025-12-08 21:30:33 | INFO    | LangManager | {"timestamp": "2025-12-08T21:30:33.198796", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:33:18 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:33:18 | INFO    | Main | {"timestamp": "2025-12-08T21:33:18.799855", "event": "SESSION_START", "data": {"session_id": "20251208-213318"}}
+2025-12-08 21:33:18 | INFO    | LangManager | {"timestamp": "2025-12-08T21:33:18.844342", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:38:59 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:38:59 | INFO    | Main | {"timestamp": "2025-12-08T21:38:59.305294", "event": "SESSION_START", "data": {"session_id": "20251208-213859"}}
+2025-12-08 21:38:59 | INFO    | LangManager | {"timestamp": "2025-12-08T21:38:59.352354", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:40:19 | INFO    | Main | {"timestamp": "2025-12-08T21:40:19.143710", "event": "SESSION_END", "data": {"session_id": "20251208-213859"}}
+2025-12-08 21:44:15 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:44:15 | INFO    | Main | {"timestamp": "2025-12-08T21:44:15.381876", "event": "SESSION_START", "data": {"session_id": "20251208-214415"}}
+2025-12-08 21:44:15 | INFO    | LangManager | {"timestamp": "2025-12-08T21:44:15.426428", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:45:37 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:45:37 | INFO    | Main | {"timestamp": "2025-12-08T21:45:37.292613", "event": "SESSION_START", "data": {"session_id": "20251208-214537"}}
+2025-12-08 21:45:37 | INFO    | LangManager | {"timestamp": "2025-12-08T21:45:37.340032", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:48:17 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:48:17 | INFO    | Main | {"timestamp": "2025-12-08T21:48:17.014902", "event": "SESSION_START", "data": {"session_id": "20251208-214817"}}
+2025-12-08 21:48:17 | INFO    | LangManager | {"timestamp": "2025-12-08T21:48:17.061231", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 21:59:44 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 21:59:44 | INFO    | Main | {"timestamp": "2025-12-08T21:59:44.017357", "event": "SESSION_START", "data": {"session_id": "20251208-215944"}}
+2025-12-08 21:59:44 | INFO    | LangManager | {"timestamp": "2025-12-08T21:59:44.062229", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 22:19:13 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 22:19:13 | INFO    | Main | {"timestamp": "2025-12-08T22:19:13.283687", "event": "SESSION_START", "data": {"session_id": "20251208-221913"}}
+2025-12-08 22:19:13 | INFO    | LangManager | {"timestamp": "2025-12-08T22:19:13.330728", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 22:21:44 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 22:21:44 | INFO    | Main | {"timestamp": "2025-12-08T22:21:44.940280", "event": "SESSION_START", "data": {"session_id": "20251208-222144"}}
+2025-12-08 22:21:44 | INFO    | LangManager | {"timestamp": "2025-12-08T22:21:44.987860", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 22:26:15 | INFO    | Main | {"timestamp": "2025-12-08T22:26:15.547567", "event": "SESSION_END", "data": {"session_id": "20251208-222144"}}
+2025-12-08 22:40:44 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 22:40:44 | INFO    | Main | {"timestamp": "2025-12-08T22:40:44.681125", "event": "SESSION_START", "data": {"session_id": "20251208-224044"}}
+2025-12-08 22:40:44 | INFO    | LangManager | {"timestamp": "2025-12-08T22:40:44.727298", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 22:45:26 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-08 22:45:26 | INFO    | Main | {"timestamp": "2025-12-08T22:45:26.510368", "event": "SESSION_START", "data": {"session_id": "20251208-224526"}}
+2025-12-08 22:45:26 | INFO    | LangManager | {"timestamp": "2025-12-08T22:45:26.556470", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-08 23:47:02 | INFO    | Main | {"timestamp": "2025-12-08T23:47:02.919014", "event": "SESSION_END", "data": {"session_id": "20251208-224526"}}

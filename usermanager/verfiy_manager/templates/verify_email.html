@@ -1,111 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Email Verification</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <style>
-    body {
-      background: #eef3fa;
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-
-    .container {
-      background: #ffffff;
-      width: 420px;
-      padding: 35px 45px;
-      border-radius: 14px;
-      box-shadow: 0 8px 26px rgba(0,0,0,0.12);
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 26px;
-      margin-bottom: 10px;
-      color: #222;
-    }
-
-    p {
-      font-size: 15px;
-      color: #575757;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      font-size: 15px;
-      color: #fff;
-      background: #007bff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-
-    .btn:hover {
-      background: #005fcc;
-    }
-
-    .email-icon {
-      font-size: 48px;
-      color: #007bff;
-      margin-bottom: 18px;
-    }
-
-    .note {
-      margin-top: 25px;
-      font-size: 13px;
-      color: #888;
-      line-height: 1.5;
-    }
-
-    .note a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    .note a:hover {
-      text-decoration: underline;
-    }
-  </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email Verification</title>
 </head>
-<body>
+<body style="background: #eef3fa; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; min-height: 100vh;">
 
-<div class="container">
-  <div class="email-icon">📧</div>
-  <h1>Verify Your Email</h1>
-  <p>To activate your account, please confirm your email address by clicking the button below.</p>
+<table width="100%" cellpadding="0" cellspacing="0" style="background: #eef3fa; min-height: 100vh;">
+    <tr>
+        <td align="center" valign="middle" style="padding: 20px;">
+            <table width="420" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="border-radius: 14px; box-shadow: 0 8px 26px rgba(0,0,0,0.12); text-align: center; padding: 35px 45px;">
+                <tr>
+                    <td align="center" style="padding-bottom: 18px;">
+                        <div style="font-size: 48px; color: #007bff;">📧</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-bottom: 10px;">
+                        <h1 style="font-size: 26px; margin: 0; color: #222;">Verify Your Email</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-bottom: 30px;">
+                        <p style="font-size: 15px; color: #575757; margin: 0;">To activate your account, please confirm your email address by clicking the button below.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-bottom: 20px;">
+                        <form action="http://localhost:9090/verify/email" method="POST">
+                            <input type="hidden" name="token" value="{{ token }}">
+                            <button class="btn" type="submit" style="width: 100%; padding: 14px; font-size: 15px; color: #fff; background: #007bff; border: none; border-radius: 6px; cursor: pointer; transition: 0.25s; display: block;">Verify Email</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding-top: 25px;">
+                        <div style="font-size: 13px; color: #888; line-height: 1.5;">
+                            Didn't receive the email?<br>
+                            You can request a new verification message below.
 
-  <form action="/verify/email" method="POST">
-    <input type="hidden" name="token" value="{{ token }}">
-    <button class="btn" type="submit">Verify Email</button>
-  </form>
+                            <form action="http://localhost:9090/verify/resend" method="POST" style="margin-top: 12px;">
+                                <input type="hidden" name="email" value="{{ user_email }}">
+                                <input type="hidden" name="app_url" value="{{ app_url }}">
+                                <button type="submit" style="background: none; border: none; color: #007bff; cursor: pointer; padding: 0; text-decoration: underline; font-size: 13px;">Resend verification email</button>
+                            </form>
 
-  <div class="note">
-    Didn’t receive the email?<br>
-    You can request a new verification message below.
-
-    <form action="/verify/resend" method="POST" style="margin-top: 12px;">
-      <input type="hidden" name="email" value="{{ user_email }}">
-      <input type="hidden" name="app_url" value="{{ app_url }}">
-      <button type="submit" style="background:none;border:none;color:#007bff;cursor:pointer;padding:0;">
-        Resend verification email
-      </button>
-    </form>
-
-    <br>
-    If you did not request an account, you can simply disregard this page.
-  </div>
-</div>
+                            <br>
+                            If you did not request an account, you can simply disregard this page.
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>

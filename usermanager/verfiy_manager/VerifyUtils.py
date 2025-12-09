@@ -2,6 +2,7 @@
 import json
 import smtplib
 import re
+import traceback
 from pathlib import Path
 from email.mime.text import MIMEText
 
@@ -12,7 +13,11 @@ from PathHelper import PathHelper
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+current_dir = PathHelper.base_dir()
+
+env_path = current_dir / '.env'
+
+load_check = load_dotenv(dotenv_path=env_path)
 
 
 class VerifyUtils:
@@ -35,7 +40,7 @@ class VerifyUtils:
         self.db = self.client[cfg["name"]]
         self.collection = self.db["users"]
 
-        smtp_path = PathHelper.resource_path(smtp_filename)
+        smtp_path = PathHelper.resource_path(f"usermanager/{smtp_filename}")
         if not smtp_path.exists():
             raise FileNotFoundError(f"SMTP config not found at {smtp_path}")
 
@@ -51,14 +56,15 @@ class VerifyUtils:
     def send_verification_email(self, to_email: str, token: str, app_url: str) -> bool:
         verify_link = f"{app_url.rstrip('/')}/verify/email?token={token}&email={to_email}&app_url={app_url}"
 
-        template_path = PathHelper.resource_path("templates/verify_email.html")
+        template_path = PathHelper.resource_path("usermanager/verfiy_manager/templates/verify_email.html")
 
         body = self.render_template(
             template_path=str(template_path),
             context={
                 "verify_link": verify_link,
-                "email": to_email,
-                "app_url": app_url
+                "user_email": to_email,
+                "app_url": app_url,
+                "token": token
             }
         )
 
@@ -78,7 +84,9 @@ class VerifyUtils:
                     server.login(self.SMTP_EMAIL, self.SMTP_PASS)
                     server.send_message(msg)
             return True
-        except Exception:
+        except Exception as e:
+            print("SMTP ERROR:", str(e))
+            traceback.print_exc()
             return False
 
     def render_template(self, template_path: str, context: dict) -> str:

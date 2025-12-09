@@ -9,13 +9,12 @@ router = APIRouter()
 verify_utils = VerifyUtils()
 
 
-@router.get("/verify/email")
-def verify_email(token: str = Query(...)):
+@router.post("/email")
+def verify_email(token: str = Form(...)):
     return verify_utils.verify_email_token(token)
 
 
-
-@router.post("/verify/resend")
+@router.post("/resend")
 def resend_verification(email: str = Form(...), app_url: str = Form(...)):
     user_doc = verify_utils.collection.find_one({"email": email})
 
