@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import uuid
+from datetime import datetime
 
 from fastapi import APIRouter, Query, Form
 
@@ -37,3 +38,35 @@ def resend_verification(email: str = Form(...), app_url: str = Form(...)):
         return {"success": True, "message": "Verification email resent successfully."}
     else:
         return {"success": False, "message": "Failed to send verification email."}
+
+
+@router.get("/reset-confirm")
+def confirm_password_reset(token: str = Query(...)):
+    now = datetime.utcnow()
+
+    user_doc = verify_utils.collection.find_one({
+        "password_reset_token": token,
+        "password_reset_expires": {"$gt": now}
+    })
+
+    if not user_doc:
+        return {"success": False, "message": "Invalid or expired reset token."}
+
+    verify_utils.collection.update_one(
+        {"id": user_doc["id"]},
+        {"$set": {
+            "password": user_doc["password_reset_temp_password"],
+            "failed_attempts": 0,
+            "lock_until": None
+        },
+            "$unset": {
+                "password_reset_token": "",
+                "password_reset_expires": "",
+                "password_reset_temp_password": ""
+            }}
+    )
+
+    return {
+        "success": True,
+        "message": "New password activated successfully. You can now log in."
+    }

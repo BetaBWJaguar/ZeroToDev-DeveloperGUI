@@ -1,4 +1,6 @@
 import json
+import secrets
+import string
 import uuid
 from datetime import datetime, timedelta
 from pymongo import MongoClient
@@ -183,19 +185,55 @@ class UserManager:
             self.activity.log("unknown", "RESET_FAILED", f"Email not found: {email}")
             return self.lang.get("user_login_not_found")
 
+        new_password_plain = self.generate_secure_password()
+        new_password_hashed = UserManagerUtils.hash_password(new_password_plain)
+
         token = str(uuid.uuid4())
+        expires = datetime.utcnow() + timedelta(minutes=15)
+
         self.collection.update_one(
-            {"email": email},
-            {"$set": {"password_reset_token": token}}
+            {"id": user_doc["id"]},
+            {"$set": {
+                "password_reset_token": token,
+                "password_reset_expires": expires,
+                "password_reset_temp_password": new_password_hashed
+            }}
         )
 
-        self.activity.log(user_doc["username"], "RESET_TOKEN_CREATED",
-                          "Password reset token generated")
+        self.activity.log(
+            user_doc["username"],
+            "RESET_TOKEN_CREATED",
+            "Password reset token generated with pending password"
+        )
 
-        return {
-            "message": self.lang.get("user_reset_token_created"),
-            "reset_token": token
-        }
+        try:
+            from usermanager.verfiy_manager.VerifyUtils import VerifyUtils
+            verify_utils = VerifyUtils()
+
+            verify_utils.send_password_reset_confirm_email(
+                to_email=email,
+                username=user_doc["username"],
+                token=token,
+                new_password=new_password_plain,
+                app_url="http://localhost:9090/"
+            )
+
+            self.activity.log(
+                user_doc["username"],
+                "RESET_EMAIL_SENT",
+                "Password reset confirmation email sent"
+            )
+
+        except Exception as e:
+            self.activity.log(
+                user_doc["username"],
+                "RESET_EMAIL_FAILED",
+                str(e)
+            )
+
+        return self.lang.get("user_reset_token_created")
+
+
 
     def reset_password(self, token: str, new_password: str):
         if not UserManagerUtils.validate_password(new_password):
@@ -284,4 +322,6 @@ class UserManager:
 
         return self.lang.get("user_update_no_change")
 
-
+    def generate_secure_password(self, length: int = 12) -> str:
+        chars = string.ascii_letters + string.digits + "!@#$%^&*"
+        return ''.join(secrets.choice(chars) for _ in range(length))

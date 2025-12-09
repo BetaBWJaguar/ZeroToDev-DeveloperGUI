@@ -23,6 +23,8 @@ class User:
             email_verified: bool = False,
             email_verification_token: Optional[str] = None,
             password_reset_token: Optional[str] = None,
+            password_reset_expires: Optional[str] = None,
+            password_reset_temp_password: Optional[str] = None,
             twofa_enabled: bool = False,
             twofa_secret: Optional[str] = None,
             twofa_verified: bool = False,
@@ -41,6 +43,8 @@ class User:
         self.email_verified = email_verified
         self.email_verification_token = email_verification_token or str(uuid.uuid4())
         self.password_reset_token = password_reset_token
+        self.password_reset_expires = password_reset_expires
+        self.password_reset_temp_password = password_reset_temp_password
         self.twofa_enabled = twofa_enabled
         self.twofa_secret = twofa_secret
         self.twofa_verified = twofa_verified
@@ -95,6 +99,8 @@ class User:
             "email_verified": self.email_verified,
             "email_verification_token": self.email_verification_token,
             "password_reset_token": self.password_reset_token,
+            "password_reset_expires": self.password_reset_expires,
+            "password_reset_temp_password": self.password_reset_temp_password,
             "twofa_enabled": self.twofa_enabled,
             "twofa_secret": self.twofa_secret,
             "twofa_verified": self.twofa_verified,
@@ -116,6 +122,8 @@ class User:
             email_verified=data.get("email_verified", False),
             email_verification_token=data.get("email_verification_token"),
             password_reset_token=data.get("password_reset_token"),
+            password_reset_expires=data.get("password_reset_expires"),
+            password_reset_temp_password=data.get("password_reset_temp_password"),
             twofa_enabled=data.get("twofa_enabled", False),
             twofa_secret=data.get("twofa_secret"),
             twofa_verified=data.get("twofa_verified", False),

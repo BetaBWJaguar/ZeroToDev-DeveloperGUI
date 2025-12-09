@@ -116,3 +116,52 @@ class VerifyUtils:
         )
 
         return {"success": True, "message": "Email verified successfully."}
+
+    def send_password_reset_confirm_email(
+            self,
+            to_email: str,
+            username: str,
+            token: str,
+            new_password: str,
+            app_url: str
+    ) -> bool:
+
+        confirm_link = f"{app_url.rstrip('/')}/verify/reset-confirm?token={token}"
+
+        template_path = PathHelper.resource_path(
+            "usermanager/verfiy_manager/templates/reset_pass.html"
+        )
+
+        body = self.render_template(
+            template_path=str(template_path),
+            context={
+                "username": username,
+                "new_password": new_password,
+                "confirm_link": confirm_link
+            }
+        )
+
+        msg = MIMEText(body, "html", "utf-8")
+        msg["Subject"] = "Confirm Your New Password"
+        msg["From"] = self.SMTP_EMAIL
+        msg["To"] = to_email
+
+        try:
+            if self.SMTP_USE_SSL:
+                with smtplib.SMTP_SSL(self.SMTP_HOST, self.SMTP_PORT) as server:
+                    server.login(self.SMTP_EMAIL, self.SMTP_PASS)
+                    server.send_message(msg)
+            else:
+                with smtplib.SMTP(self.SMTP_HOST, self.SMTP_PORT) as server:
+                    server.starttls()
+                    server.login(self.SMTP_EMAIL, self.SMTP_PASS)
+                    server.send_message(msg)
+            return True
+
+        except Exception as e:
+            print("SMTP RESET CONFIRM MAIL ERROR:", str(e))
+            traceback.print_exc()
+            return False
+
+
+
