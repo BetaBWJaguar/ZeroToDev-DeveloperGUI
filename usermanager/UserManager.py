@@ -16,9 +16,10 @@ from language_manager.LangManager import LangManager
 
 
 class UserManager:
-    def __init__(self, config_file: str = "database_config.json"):
+    def __init__(self,lang: dict, config_file: str = "database_config.json"):
         self.MAX_FAILED_ATTEMPTS = 4
         self.LOCK_TIME_MINUTES = 10
+        self.lang = lang
 
         config_path = PathHelper.resource_path(f"usermanager/{config_file}")
         if not config_path.exists():
@@ -76,7 +77,7 @@ class UserManager:
 
         try:
             from usermanager.verfiy_manager.VerifyUtils import VerifyUtils
-            verify_utils = VerifyUtils()
+            verify_utils = VerifyUtils(lang_manager=self.lang)
 
             verify_utils.send_verification_email(
                 to_email=email,
@@ -185,6 +186,22 @@ class UserManager:
             self.activity.log("unknown", "RESET_FAILED", f"Email not found: {email}")
             return self.lang.get("user_login_not_found")
 
+
+        existing_token = user_doc.get("password_reset_token")
+        existing_expires = user_doc.get("password_reset_expires")
+
+        if existing_token and existing_expires and datetime.utcnow() < existing_expires:
+            minutes_left = int((existing_expires - datetime.utcnow()).total_seconds() // 60)
+
+            self.activity.log(
+                user_doc["username"],
+                "RESET_ALREADY_REQUESTED",
+                f"Password reset already requested. {minutes_left} minutes remaining"
+            )
+
+            return self.lang.get("user_reset_already_requested").format(minutes_left)
+
+
         new_password_plain = self.generate_secure_password()
         new_password_hashed = UserManagerUtils.hash_password(new_password_plain)
 
@@ -208,7 +225,7 @@ class UserManager:
 
         try:
             from usermanager.verfiy_manager.VerifyUtils import VerifyUtils
-            verify_utils = VerifyUtils()
+            verify_utils = VerifyUtils(lang_manager=self.lang)
 
             verify_utils.send_password_reset_confirm_email(
                 to_email=email,
@@ -230,6 +247,8 @@ class UserManager:
                 "RESET_EMAIL_FAILED",
                 str(e)
             )
+
+            return self.lang.get("user_reset_mail_failed")
 
         return self.lang.get("user_reset_token_created")
 

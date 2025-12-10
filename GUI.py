@@ -1002,7 +1002,7 @@ class TTSMenuApp(tk.Tk):
                 GUIError(win, self.lang.get("error_title"), self.lang.get("settings_username_empty"), icon="❌")
                 return
 
-            um = UserManager()
+            um = UserManager(self.lang)
             um.update_username(user_data.get("id"), new_username)
 
             user_data["username"] = new_username
@@ -1036,7 +1036,7 @@ class TTSMenuApp(tk.Tk):
         ttk.Entry(pw_frame, textvariable=confirm_pw, show="*").pack(fill="x")
 
         def change_password():
-            um = UserManager()
+            um = UserManager(self.lang)
 
             if new_pw.get() != confirm_pw.get():
                 GUIError(win, self.lang.get("error_title"), self.lang.get("settings_pw_mismatch"), icon="❌")

@@ -44,6 +44,7 @@ datas += [
 datas += [
     (str(PROJECT_ROOT / "main.enc"), "."),
     (str(PROJECT_ROOT / "secret.key"), "."),
+    (str(PROJECT_ROOT / ".env"), "."),
 ]
 
 datas += [

@@ -19,7 +19,7 @@ class LoginGUI(tk.Tk):
 
         self.lang = lang_manager
         self.logger = logger
-        self.user_manager = UserManager()
+        self.user_manager = UserManager(self.lang)
 
         self.title(self.lang.get("auth_login_title"))
         self.resizable(False, False)

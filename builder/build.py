@@ -8,7 +8,7 @@ from pathlib import Path
 from cryptography.fernet import Fernet
 
 APP_NAME = "ZeroToDev-DeveloperGUI"
-APP_VERSION = "1.1"
+APP_VERSION = "1.2"
 
 try:
     if sys.platform.startswith("win"):

@@ -185,6 +185,7 @@
   "user_update_not_found": "Benutzer wurde nicht gefunden.",
   "user_update_success": "Der Benutzername wurde erfolgreich aktualisiert.",
   "user_update_no_change": "Es wurden keine Änderungen vorgenommen.",
+  "user_reset_already_requested": "Es ist bereits eine aktive Passwortzurücksetzung vorhanden. Bitte überprüfe deine E-Mails. Verbleibende Zeit: {0} Minuten.",
   "menu_account": "Konto",
   "menu_profile": "Mein Profil",
   "menu_account_settings": "Kontoeinstellungen",
@@ -263,5 +264,17 @@
   "updater_completed": "Aktualisierung erfolgreich abgeschlossen.",
   "updater_update_now": "Jetzt aktualisieren",
   "updater_later": "Später",
-  "updater_failed": "Aktualisierung fehlgeschlagen: {0}"
+  "updater_failed": "Aktualisierung fehlgeschlagen: {0}",
+  "reset_title": "Neues Passwort bereit",
+  "reset_desc": "Für dein Konto wurde ein neues Passwort generiert. Bitte bestätige es über die Schaltfläche unten.",
+  "reset_button": "Neues Passwort aktivieren",
+  "reset_warn": "Wenn du diese Passwort-Zurücksetzung nicht angefordert hast, ignoriere bitte diese E-Mail.",
+  "verify_title": "E-Mail bestätigen",
+  "verify_desc": "Um dein Konto zu aktivieren, bestätige bitte deine E-Mail-Adresse über die Schaltfläche unten.",
+  "verify_button": "E-Mail bestätigen",
+  "verify_resend": "Bestätigungs-E-Mail erneut senden",
+  "verify_ignore": "Wenn du dieses Konto nicht erstellt hast, kannst du diese Nachricht ignorieren.",
+  "verify_resend_top": "Keine E-Mail erhalten?",
+  "verify_resend_desc": "Du kannst unten eine neue Bestätigungs-E-Mail anfordern.",
+  "verify_resend_button": "Bestätigungs-E-Mail erneut senden"
 }

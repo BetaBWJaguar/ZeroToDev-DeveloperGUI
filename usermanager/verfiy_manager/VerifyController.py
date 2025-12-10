@@ -4,10 +4,17 @@ from datetime import datetime
 
 from fastapi import APIRouter, Query, Form
 
+from PathHelper import PathHelper
+from data_manager.MemoryManager import MemoryManager
+from language_manager.LangManager import LangManager
 from usermanager.verfiy_manager.VerifyUtils import VerifyUtils
 
 router = APIRouter()
-verify_utils = VerifyUtils()
+langs_dir = PathHelper.resource_path("langs")
+ui_lang = MemoryManager.get("ui_language", "english")
+lang_manager = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
+
+verify_utils = VerifyUtils(lang_manager=lang_manager)
 
 
 @router.post("/email")

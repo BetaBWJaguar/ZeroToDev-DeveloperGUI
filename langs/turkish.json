@@ -185,6 +185,7 @@
   "user_update_not_found": "Kullanıcı bulunamadı.",
   "user_update_success": "Kullanıcı adı başarıyla güncellendi.",
   "user_update_no_change": "Herhangi bir değişiklik yapılmadı.",
+  "user_reset_already_requested": "Zaten aktif bir şifre sıfırlama isteğin var. Lütfen e-postanı kontrol et. Kalan süre: {0} dakika.",
   "menu_account": "Hesap",
   "menu_profile": "Profilim",
   "menu_account_settings": "Hesap Ayarları",
@@ -263,5 +264,17 @@
   "updater_completed": "Güncelleme başarıyla tamamlandı.",
   "updater_update_now": "Şimdi Güncelle",
   "updater_later": "Daha Sonra",
-  "updater_failed": "Güncelleme başarısız oldu: {0}"
+  "updater_failed": "Güncelleme başarısız oldu: {0}",
+  "reset_title": "Yeni Şifren Hazır",
+  "reset_desc": "Sistem senin için yeni bir şifre oluşturdu. Aktifleştirmek için aşağıdaki butona tıkla.",
+  "reset_button": "Yeni Şifreyi Aktifleştir",
+  "reset_warn": "Eğer bu şifre sıfırlama işlemini sen yapmadıysan bu e-postayı yok say.",
+  "verify_title": "E-Postanı Doğrula",
+  "verify_desc": "Hesabını aktifleştirmek için aşağıdaki butona tıklayarak e-posta adresini doğrula.",
+  "verify_button": "E-Postayı Doğrula",
+  "verify_resend": "Doğrulama e-postasını tekrar gönder",
+  "verify_ignore": "Eğer bu hesabı sen oluşturmadıysan bu e-postayı yok sayabilirsin.",
+  "verify_resend_top": "E-posta Gelmedi mi?",
+  "verify_resend_desc": "Aşağıdan yeni bir doğrulama e-postası talep edebilirsin.",
+  "verify_resend_button": "Doğrulama E-postasını Tekrar Gönder"
 }

@@ -7,13 +7,14 @@ from pathlib import Path
 from email.mime.text import MIMEText
 
 from pymongo import MongoClient
-from usermanager.user.UserStatus import UserStatus
 from PathHelper import PathHelper
 
 from dotenv import load_dotenv
 import os
 
-current_dir = PathHelper.base_dir()
+from usermanager.user.UserStatus import UserStatus
+
+current_dir = PathHelper.internal_dir()
 
 env_path = current_dir / '.env'
 
@@ -22,9 +23,11 @@ load_check = load_dotenv(dotenv_path=env_path)
 
 class VerifyUtils:
     def __init__(self,
+                 lang_manager,
                  config_filename: str = "database_config.json",
                  smtp_filename: str = "smtp_config.json"):
 
+        self.lang = lang_manager
         config_path = PathHelper.resource_path(config_filename)
 
         if not config_path.exists():
@@ -96,8 +99,17 @@ class VerifyUtils:
 
         html = template_file.read_text(encoding="utf-8")
 
-        for key, value in context.items():
-            html = re.sub(rf"\{{\{{\s*{key}\s*\}}\}}", str(value), html)
+        for key in re.findall(r"\{\{\s*([a-zA-Z0-9_.]+)\s*\}\}", html):
+
+            if key in context:
+                value = context[key]
+
+            else:
+                value = self.lang.get(key)
+
+            if value is not None:
+                html = html.replace(f"{{{{ {key} }}}}", str(value))
+                html = html.replace(f"{{{{{key}}}}}", str(value))
 
         return html
 
