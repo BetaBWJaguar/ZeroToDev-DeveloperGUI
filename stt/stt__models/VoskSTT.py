@@ -4,6 +4,7 @@ import wave
 import warnings
 from typing import Optional, Dict, Any, List
 
+from PathHelper import PathHelper
 from stt.MediaFormats import AudioFormatHandler
 from stt.STTEngine import STTEngine
 
@@ -29,9 +30,21 @@ class VoskSTT(STTEngine):
     
     def _load_config(self) -> Dict[str, Any]:
         try:
-            with open(self.config_path, 'r', encoding='utf-8') as f:
+            exe_config = PathHelper.base_dir() / self.config_path
+
+            bundled_config = PathHelper.resource_path(self.config_path)
+
+            if exe_config.exists():
+                path = exe_config
+            elif bundled_config.exists():
+                path = bundled_config
+            else:
+                raise FileNotFoundError("stt-config.json not found")
+
+            with open(path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
                 return config.get('engines', {}).get('vosk', {}).get('parameters', {})
+
         except Exception as e:
             warnings.warn(f"Config file could not be loaded: {e}. Using default values.")
             return {

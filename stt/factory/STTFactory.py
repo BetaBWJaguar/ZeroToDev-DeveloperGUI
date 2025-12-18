@@ -1,6 +1,7 @@
 import json
 from typing import Dict, Any, Optional, List
 
+from PathHelper import PathHelper
 from stt.STTEngine import STTEngine
 from stt.stt__models.VoskSTT import VoskSTT
 from stt.stt__models.WhisperSTT import WhisperSTT
@@ -9,13 +10,25 @@ from stt.stt__models.WhisperSTT import WhisperSTT
 class STTFactory:
     _engines: Dict[str, STTEngine] = {}
     _config: Dict[str, Any] = {}
-    
+
     @classmethod
     def load_config(cls, config_path: str = "stt/stt-config.json") -> Dict[str, Any]:
         try:
-            with open(config_path, 'r', encoding='utf-8') as f:
+            exe_config = PathHelper.base_dir() / config_path
+
+            bundled_config = PathHelper.resource_path(config_path)
+
+            if exe_config.exists():
+                path = exe_config
+            elif bundled_config.exists():
+                path = bundled_config
+            else:
+                raise FileNotFoundError("stt-config.json not found")
+
+            with open(path, 'r', encoding='utf-8') as f:
                 cls._config = json.load(f)
                 return cls._config
+
         except Exception as e:
             print(f"Config file could not be loaded: {e}. Using default configuration.")
             cls._config = {
