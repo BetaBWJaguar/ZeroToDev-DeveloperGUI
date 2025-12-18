@@ -5027,3 +5027,53 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2025-12-10 17:00:31 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
 2025-12-10 17:00:39 | INFO    | TTSMenuApp | {"timestamp": "2025-12-10T17:00:39.499933", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2025-12-10 17:00:43 | INFO    | Main | {"timestamp": "2025-12-10T17:00:43.013829", "event": "SESSION_END", "data": {"session_id": "20251210-165112"}}
+2025-12-18 20:10:06 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-18 20:10:06 | INFO    | Main | {"timestamp": "2025-12-18T20:10:06.813799", "event": "SESSION_START", "data": {"session_id": "20251218-201006"}}
+2025-12-18 20:10:06 | ERROR   | LangManager | {"timestamp": "2025-12-18T20:10:06.825927", "event": "ERROR", "data": {"action": "LANG_FILE_INVALID", "error": "english.json: Expecting property name enclosed in double quotes: line 287 column 1 (char 14334)"}}
+2025-12-18 20:10:06 | INFO    | LangManager | {"timestamp": "2025-12-18T20:10:06.859675", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["german", "turkish"]}}
+2025-12-18 20:10:20 | INFO    | Main | {"timestamp": "2025-12-18T20:10:20.923869", "event": "SESSION_END", "data": {"session_id": "20251218-201006"}}
+2025-12-18 20:10:29 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-18 20:10:29 | INFO    | Main | {"timestamp": "2025-12-18T20:10:29.556816", "event": "SESSION_START", "data": {"session_id": "20251218-201029"}}
+2025-12-18 20:10:29 | INFO    | LangManager | {"timestamp": "2025-12-18T20:10:29.602310", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-18 20:10:40 | INFO    | Main | {"timestamp": "2025-12-18T20:10:40.542279", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:10:44 | INFO    | Main | {"timestamp": "2025-12-18T20:10:44.793861", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:10:47 | INFO    | Main | {"timestamp": "2025-12-18T20:10:47.577313", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:11:32 | INFO    | Main | {"timestamp": "2025-12-18T20:11:32.408313", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:11:36 | INFO    | Main | {"timestamp": "2025-12-18T20:11:36.688594", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:11:36 | INFO    | Main | {"timestamp": "2025-12-18T20:11:36.919541", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-18 20:12:22 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-18 20:12:22 | INFO    | Main | {"timestamp": "2025-12-18T20:12:22.290960", "event": "SESSION_START", "data": {"session_id": "20251218-201222"}}
+2025-12-18 20:12:22 | INFO    | LangManager | {"timestamp": "2025-12-18T20:12:22.337181", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-18 20:12:33 | INFO    | Main | {"timestamp": "2025-12-18T20:12:33.862116", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:12:34 | INFO    | Main | {"timestamp": "2025-12-18T20:12:34.113703", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-18 20:12:34 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-18 20:13:35 | INFO    | Main | {"timestamp": "2025-12-18T20:13:35.958864", "event": "SESSION_END", "data": {"session_id": "20251218-201222"}}
+2025-12-18 20:15:02 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-18 20:15:02 | INFO    | Main | {"timestamp": "2025-12-18T20:15:02.360035", "event": "SESSION_START", "data": {"session_id": "20251218-201502"}}
+2025-12-18 20:15:02 | INFO    | LangManager | {"timestamp": "2025-12-18T20:15:02.415474", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-18 20:15:19 | INFO    | Main | {"timestamp": "2025-12-18T20:15:19.215977", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:15:19 | INFO    | Main | {"timestamp": "2025-12-18T20:15:19.475507", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-18 20:15:19 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-18 20:17:01 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-18 20:17:01 | INFO    | Main | {"timestamp": "2025-12-18T20:17:01.763301", "event": "SESSION_START", "data": {"session_id": "20251218-201701"}}
+2025-12-18 20:17:01 | INFO    | LangManager | {"timestamp": "2025-12-18T20:17:01.808220", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-18 20:17:16 | INFO    | Main | {"timestamp": "2025-12-18T20:17:16.937295", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:17:19 | INFO    | Main | {"timestamp": "2025-12-18T20:17:19.820673", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:17:20 | INFO    | Main | {"timestamp": "2025-12-18T20:17:20.051923", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-18 20:17:20 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-18 20:17:21 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:17:21.537012", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-18 20:17:53 | INFO    | Main | {"timestamp": "2025-12-18T20:17:53.962523", "event": "SESSION_END", "data": {"session_id": "20251218-201701"}}
+2025-12-18 20:18:02 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-18 20:18:02 | INFO    | Main | {"timestamp": "2025-12-18T20:18:02.333495", "event": "SESSION_START", "data": {"session_id": "20251218-201802"}}
+2025-12-18 20:18:02 | INFO    | LangManager | {"timestamp": "2025-12-18T20:18:02.380111", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-18 20:18:08 | INFO    | Main | {"timestamp": "2025-12-18T20:18:08.096960", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-18 20:18:08 | INFO    | Main | {"timestamp": "2025-12-18T20:18:08.349099", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-18 20:18:08 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-18 20:18:09 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:18:09.675794", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-18 20:18:44 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:18:44.779750", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "", "new": "TTS"}}}
+2025-12-18 20:18:46 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:18:46.356301", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-18 20:19:57 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:19:57.670991", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-18 20:19:59 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:19:59.095809", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2025-12-18 20:20:00 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:20:00.008176", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-18 20:20:02 | INFO    | TTSMenuApp | {"timestamp": "2025-12-18T20:20:02.442517", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
+2025-12-18 20:20:07 | INFO    | Main | {"timestamp": "2025-12-18T20:20:07.772737", "event": "SESSION_END", "data": {"session_id": "20251218-201802"}}

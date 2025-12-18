@@ -29,6 +29,8 @@ from zip.ZIPConvertor import ZIPConvertor
 from gui_listener.GUIListener import GUIListener
 from PathHelper import PathHelper
 from updater.Update_Checker import check_for_update_gui
+from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
+from AppMode import AppMode
 
 
 BASE_DIR = PathHelper.base_dir()
@@ -190,6 +192,16 @@ class TTSMenuApp(tk.Tk):
         menubar.add_cascade(
             label=self.lang.get("menu_resources"),
             menu=resources_menu
+        )
+
+        app_menu = tk.Menu(menubar, tearoff=0)
+        app_menu.add_command(
+            label=self.lang.get("menu_app_mode"),
+            command=self.open_app_mode_selector
+        )
+        menubar.add_cascade(
+            label=self.lang.get("menu_app"),
+            menu=app_menu
         )
 
         self.config(menu=menubar)
@@ -1104,6 +1116,13 @@ class TTSMenuApp(tk.Tk):
         ).pack(anchor="center")
 
         center_window(win, self)
+
+    def open_app_mode_selector(self):
+        AppModeSelectorGUI(
+            parent=self,
+            lang=self.lang,
+            logger=self.logger,
+        )
 
     def logout_user(self):
         LogsHelperManager.log_button(self.logger, "LOGOUT")

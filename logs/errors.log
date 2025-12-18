@@ -175,3 +175,4 @@ Traceback (most recent call last):
     csock.send(b'\0')
 TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: 'data'
 2025-11-30 02:13:25 | ERROR   | TTSMenuApp | {"timestamp": "2025-11-30T02:13:25.845582", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2025-12-18 20:10:06 | ERROR   | LangManager | {"timestamp": "2025-12-18T20:10:06.825927", "event": "ERROR", "data": {"action": "LANG_FILE_INVALID", "error": "english.json: Expecting property name enclosed in double quotes: line 287 column 1 (char 14334)"}}

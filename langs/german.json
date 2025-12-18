@@ -276,5 +276,12 @@
   "verify_ignore": "Wenn du dieses Konto nicht erstellt hast, kannst du diese Nachricht ignorieren.",
   "verify_resend_top": "Keine E-Mail erhalten?",
   "verify_resend_desc": "Du kannst unten eine neue Bestätigungs-E-Mail anfordern.",
-  "verify_resend_button": "Bestätigungs-E-Mail erneut senden"
+  "verify_resend_button": "Bestätigungs-E-Mail erneut senden",
+  "menu_app_mode": "Anwendungsmodus",
+  "menu_app": "Anwendungen",
+  "app_mode_title": "Anwendungsmodus",
+  "app_mode_desc": "Wählen Sie aus, wie Sie die Anwendung verwenden möchten.",
+  "app_mode_select": "Verfügbare Modi",
+  "mode_tts_desc": "Text in Sprache umwandeln (Text-zu-Sprache).",
+  "mode_stt_desc": "Sprache in Text umwandeln (Sprache-zu-Text)."
 }

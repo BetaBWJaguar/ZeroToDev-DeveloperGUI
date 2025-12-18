@@ -276,5 +276,12 @@
   "verify_ignore": "Eğer bu hesabı sen oluşturmadıysan bu e-postayı yok sayabilirsin.",
   "verify_resend_top": "E-posta Gelmedi mi?",
   "verify_resend_desc": "Aşağıdan yeni bir doğrulama e-postası talep edebilirsin.",
-  "verify_resend_button": "Doğrulama E-postasını Tekrar Gönder"
+  "verify_resend_button": "Doğrulama E-postasını Tekrar Gönder",
+  "menu_app_mode": "Uygulama Modu",
+  "menu_app": "Uygulamalar",
+  "app_mode_title": "Uygulama Modu",
+  "app_mode_desc": "Uygulamayı hangi modda kullanmak istediğinizi seçin.",
+  "app_mode_select": "Mevcut Modlar",
+  "mode_tts_desc": "Metni sese dönüştürme modu (Text to Speech).",
+  "mode_stt_desc": "Sesi metne dönüştürme modu (Speech to Text)."
 }

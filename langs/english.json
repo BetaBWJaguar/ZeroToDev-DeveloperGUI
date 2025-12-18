@@ -276,5 +276,12 @@
   "verify_ignore": "If you did not create this account, you can safely ignore this message.",
   "verify_resend_top": "Didn't receive the email?",
   "verify_resend_desc": "You can request a new verification email below.",
-  "verify_resend_button": "Resend Verification Email"
+  "verify_resend_button": "Resend Verification Email",
+  "menu_app_mode": "Application Mode",
+  "menu_app": "Applications",
+  "app_mode_title": "Application Mode",
+  "app_mode_desc": "Select how you want to use the application.",
+  "app_mode_select": "Available Modes",
+  "mode_tts_desc": "Convert written text into voice (Text to Speech).",
+  "mode_stt_desc": "Convert speech into text (Speech to Text)."
 }
