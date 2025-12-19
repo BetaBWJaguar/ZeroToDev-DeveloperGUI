@@ -98,4 +98,10 @@ class AppModeSelectorGUI(tk.Toplevel):
         if self.on_select:
             self.on_select(selected)
 
+        from tkinter import messagebox
+        messagebox.showwarning(
+            self.lang.get("app_mode_restart_required_title"),
+            self.lang.get("app_mode_restart_required_msg")
+        )
+
         self.destroy()

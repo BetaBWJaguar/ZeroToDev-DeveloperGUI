@@ -115,7 +115,7 @@ class TTSMenuApp(tk.Tk):
         self.output_dir = BASE_DIR / "output"
         self.output_dir.mkdir(exist_ok=True)
         init_style(self, COLORS, FONTS)
-        self.mode = MemoryManager.get("app_mode", AppMode.TTS)
+        self.mode = MemoryManager.get("app_mode")
         self._build_menubar()
         self._build()
         self.zip_convertor = ZIPConvertor(self.output_dir)

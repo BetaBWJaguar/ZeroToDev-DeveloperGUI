@@ -283,5 +283,7 @@
   "app_mode_desc": "Select how you want to use the application.",
   "app_mode_select": "Available Modes",
   "mode_tts_desc": "Convert written text into voice (Text to Speech).",
-  "mode_stt_desc": "Convert speech into text (Speech to Text)."
+  "mode_stt_desc": "Convert speech into text (Speech to Text).",
+  "app_mode_restart_required_title": "Restart Required",
+  "app_mode_restart_required_msg": "Application needs to be restarted to apply the new mode. Please restart the application."
 }

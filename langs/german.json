@@ -283,5 +283,7 @@
   "app_mode_desc": "Wählen Sie aus, wie Sie die Anwendung verwenden möchten.",
   "app_mode_select": "Verfügbare Modi",
   "mode_tts_desc": "Text in Sprache umwandeln (Text-zu-Sprache).",
-  "mode_stt_desc": "Sprache in Text umwandeln (Sprache-zu-Text)."
+  "mode_stt_desc": "Sprache in Text umwandeln (Sprache-zu-Text).",
+  "app_mode_restart_required_title": "Neustart erforderlich",
+  "app_mode_restart_required_msg": "Die Anwendung muss neu gestartet werden, um den neuen Modus anzuwenden. Bitte starten Sie die Anwendung neu."
 }

@@ -283,5 +283,7 @@
   "app_mode_desc": "Uygulamayı hangi modda kullanmak istediğinizi seçin.",
   "app_mode_select": "Mevcut Modlar",
   "mode_tts_desc": "Metni sese dönüştürme modu (Text to Speech).",
-  "mode_stt_desc": "Sesi metne dönüştürme modu (Speech to Text)."
+  "mode_stt_desc": "Sesi metne dönüştürme modu (Speech to Text).",
+  "app_mode_restart_required_title": "Yeniden Başlatma Gerekli",
+  "app_mode_restart_required_msg": "Yeni modu uygulamak için uygulamanın yeniden başlatılması gerekiyor. Lütfen uygulamayı yeniden başlatın."
 }
