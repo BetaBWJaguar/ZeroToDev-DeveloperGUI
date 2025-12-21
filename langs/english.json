@@ -285,5 +285,7 @@
   "mode_tts_desc": "Convert written text into voice (Text to Speech).",
   "mode_stt_desc": "Convert speech into text (Speech to Text).",
   "app_mode_restart_required_title": "Restart Required",
-  "app_mode_restart_required_msg": "Application needs to be restarted to apply the new mode. Please restart the application."
+  "app_mode_restart_required_msg": "Application needs to be restarted to apply the new mode. Please restart the application.",
+  "mode_tts_info": "Text to Speech mode is selected.\n\n• Converts written text into spoken audio\n• Ideal for presentations and content creation\n• Uses low system resources\n• No microphone required",
+  "mode_stt_info": "Speech to Text mode is selected.\n\n• Converts speech into written text\n• Suitable for dictation and voice commands\n• Requires microphone access\n• Sensitive to background noise"
 }

@@ -285,5 +285,7 @@
   "mode_tts_desc": "Text in Sprache umwandeln (Text-zu-Sprache).",
   "mode_stt_desc": "Sprache in Text umwandeln (Sprache-zu-Text).",
   "app_mode_restart_required_title": "Neustart erforderlich",
-  "app_mode_restart_required_msg": "Die Anwendung muss neu gestartet werden, um den neuen Modus anzuwenden. Bitte starten Sie die Anwendung neu."
+  "app_mode_restart_required_msg": "Die Anwendung muss neu gestartet werden, um den neuen Modus anzuwenden. Bitte starten Sie die Anwendung neu.",
+  "mode_tts_info": "Der Modus „Text zu Sprache“ ist ausgewählt.\n\n• Wandelt geschriebenen Text in gesprochene Sprache um\n• Ideal für Präsentationen und Inhaltserstellung\n• Geringer Ressourcenverbrauch\n• Kein Mikrofon erforderlich",
+  "mode_stt_info": "Der Modus „Sprache zu Text“ ist ausgewählt.\n\n• Wandelt gesprochene Sprache in Text um\n• Geeignet für Diktate und Sprachbefehle\n• Mikrofonzugriff erforderlich\n• Empfindlich gegenüber Hintergrundgeräuschen"
 }

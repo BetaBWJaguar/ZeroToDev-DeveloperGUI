@@ -18,7 +18,7 @@ class AppModeSelectorGUI(tk.Toplevel):
         self.transient(parent)
         self.grab_set()
         self.resizable(False, False)
-        self.geometry("520x620")
+        self.geometry("520x650")
 
         container = ttk.Frame(self, padding=30)
         container.pack(fill="both", expand=True)
@@ -38,7 +38,7 @@ class AppModeSelectorGUI(tk.Toplevel):
         ).pack(anchor="center", pady=(0, 20))
 
         self.mode_var = tk.StringVar(
-            value=MemoryManager.get("app_mode", "tts")
+            value=MemoryManager.get("app_mode", "TTS")
         )
 
         card, inner = section(container, self.lang.get("app_mode_select"))
@@ -46,6 +46,25 @@ class AppModeSelectorGUI(tk.Toplevel):
 
         self._radio(inner, "TTS", self.lang.get("mode_tts_desc"))
         self._radio(inner, "STT", self.lang.get("mode_stt_desc"))
+
+        self.info_var = tk.StringVar()
+        self._update_info(self.mode_var.get())
+
+        info_card = ttk.Frame(container, style="Card.TFrame", padding=14)
+        info_card.pack(fill="x", pady=(0, 20))
+
+        ttk.Label(
+            info_card,
+            textvariable=self.info_var,
+            style="Muted.TLabel",
+            wraplength=420,
+            justify="left"
+        ).pack(anchor="w")
+
+        self.mode_var.trace_add(
+            "write",
+            lambda *_: self._update_info(self.mode_var.get())
+        )
 
         primary_button(
             container,
@@ -82,6 +101,16 @@ class AppModeSelectorGUI(tk.Toplevel):
             style="Muted.TLabel",
             wraplength=360
         ).pack(anchor="w", padx=(22, 0))
+
+    def _update_info(self, mode: str):
+        if mode == "TTS":
+            self.info_var.set(
+                self.lang.get("mode_tts_info")
+            )
+        elif mode == "STT":
+            self.info_var.set(
+                self.lang.get("mode_stt_info")
+            )
 
     def apply_mode(self):
         selected = self.mode_var.get()
