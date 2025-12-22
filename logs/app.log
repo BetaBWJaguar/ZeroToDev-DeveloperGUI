@@ -5088,3 +5088,228 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2025-12-20 01:32:41 | INFO    | TTSMenuApp | {"timestamp": "2025-12-20T01:32:41.796207", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
 2025-12-20 01:32:43 | INFO    | TTSMenuApp | {"timestamp": "2025-12-20T01:32:43.634643", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
 2025-12-20 01:32:47 | INFO    | Main | {"timestamp": "2025-12-20T01:32:47.506020", "event": "SESSION_END", "data": {"session_id": "20251220-013211"}}
+2025-12-21 21:43:53 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:43:53 | INFO    | Main | {"timestamp": "2025-12-21T21:43:53.855734", "event": "SESSION_START", "data": {"session_id": "20251221-214353"}}
+2025-12-21 21:43:53 | INFO    | LangManager | {"timestamp": "2025-12-21T21:43:53.907829", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:44:03 | INFO    | Main | {"timestamp": "2025-12-21T21:44:03.266056", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 21:44:03 | INFO    | Main | {"timestamp": "2025-12-21T21:44:03.619911", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 21:44:04 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-21 21:44:09 | INFO    | TTSMenuApp | {"timestamp": "2025-12-21T21:44:09.835441", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-21 21:44:22 | INFO    | TTSMenuApp | {"timestamp": "2025-12-21T21:44:22.619198", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2025-12-21 21:44:25 | INFO    | Main | {"timestamp": "2025-12-21T21:44:25.231289", "event": "SESSION_END", "data": {"session_id": "20251221-214353"}}
+2025-12-21 21:44:42 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:44:42 | INFO    | Main | {"timestamp": "2025-12-21T21:44:42.803909", "event": "SESSION_START", "data": {"session_id": "20251221-214442"}}
+2025-12-21 21:44:42 | INFO    | LangManager | {"timestamp": "2025-12-21T21:44:42.850879", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:44:50 | INFO    | Main | {"timestamp": "2025-12-21T21:44:50.623024", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 21:44:50 | INFO    | Main | {"timestamp": "2025-12-21T21:44:50.922821", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 21:44:51 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-21 21:45:28 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:45:28 | INFO    | Main | {"timestamp": "2025-12-21T21:45:28.228481", "event": "SESSION_START", "data": {"session_id": "20251221-214528"}}
+2025-12-21 21:45:28 | INFO    | LangManager | {"timestamp": "2025-12-21T21:45:28.283436", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:45:32 | INFO    | Main | {"timestamp": "2025-12-21T21:45:32.878276", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 21:45:33 | INFO    | Main | {"timestamp": "2025-12-21T21:45:33.134224", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 21:45:44 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-21 21:45:45 | INFO    | Main | {"timestamp": "2025-12-21T21:45:45.130567", "event": "SESSION_END", "data": {"session_id": "20251221-214528"}}
+2025-12-21 21:46:26 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:46:26 | INFO    | Main | {"timestamp": "2025-12-21T21:46:26.376480", "event": "SESSION_START", "data": {"session_id": "20251221-214626"}}
+2025-12-21 21:46:26 | INFO    | LangManager | {"timestamp": "2025-12-21T21:46:26.423946", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:46:35 | INFO    | Main | {"timestamp": "2025-12-21T21:46:35.737182", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 21:46:36 | INFO    | Main | {"timestamp": "2025-12-21T21:46:36.008340", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 21:46:39 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-21 21:46:50 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:46:50.036768", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/KOLOMBİYA.mp3"}}
+2025-12-21 21:46:51 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:46:51.642440", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-21 21:46:52 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:46:52.998256", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "en"}}
+2025-12-21 21:46:53 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:46:53.985261", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "en", "new": "tr"}}
+2025-12-21 21:47:51 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:47:51.027651", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2025-12-21 21:49:34 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:49:34 | INFO    | Main | {"timestamp": "2025-12-21T21:49:34.937863", "event": "SESSION_START", "data": {"session_id": "20251221-214934"}}
+2025-12-21 21:49:34 | INFO    | LangManager | {"timestamp": "2025-12-21T21:49:34.990020", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:49:48 | INFO    | Main | {"timestamp": "2025-12-21T21:49:48.933195", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 21:49:49 | INFO    | Main | {"timestamp": "2025-12-21T21:49:49.188217", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 21:49:50 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-21 21:50:27 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:50:27.995636", "event": "BUTTON_CLICK", "data": {"action": "OPEN_ZIP_SETTINGS"}}
+2025-12-21 21:50:28 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:50:28.046443", "event": "ZIP_PASSWORD_DISABLED", "data": {}}
+2025-12-21 21:50:52 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:50:52.330680", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SETTINGS"}}
+2025-12-21 21:51:17 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:51:17.336016", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 21:52:11 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:52:11.359018", "event": "BUTTON_CLICK", "data": {"action": "OPEN_PROFILE"}}
+2025-12-21 21:52:14 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:52:14.590718", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-12-21 21:52:17 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:52:17.399419", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2025-12-21 21:52:17 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:52:17.972368", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2025-12-21 21:52:30 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:52:30.343667", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 21:52:39 | INFO    | Main | {"timestamp": "2025-12-21T21:52:39.201904", "event": "SESSION_END", "data": {"session_id": "20251221-214934"}}
+2025-12-21 21:52:58 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:52:58 | INFO    | Main | {"timestamp": "2025-12-21T21:52:58.517685", "event": "SESSION_START", "data": {"session_id": "20251221-215258"}}
+2025-12-21 21:52:58 | INFO    | LangManager | {"timestamp": "2025-12-21T21:52:58.563316", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:53:09 | INFO    | Main | {"timestamp": "2025-12-21T21:53:09.035426", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 21:53:09 | INFO    | Main | {"timestamp": "2025-12-21T21:53:09.290338", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 21:53:22 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:53:22.496449", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-12-21 21:55:26 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:55:26 | INFO    | Main | {"timestamp": "2025-12-21T21:55:26.379754", "event": "SESSION_START", "data": {"session_id": "20251221-215526"}}
+2025-12-21 21:55:26 | INFO    | LangManager | {"timestamp": "2025-12-21T21:55:26.428115", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:56:11 | INFO    | Main | {"timestamp": "2025-12-21T21:56:11.379104", "event": "SESSION_END", "data": {"session_id": "20251221-215526"}}
+2025-12-21 21:56:20 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 21:56:20 | INFO    | Main | {"timestamp": "2025-12-21T21:56:20.578034", "event": "SESSION_START", "data": {"session_id": "20251221-215620"}}
+2025-12-21 21:56:20 | INFO    | LangManager | {"timestamp": "2025-12-21T21:56:20.623191", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 21:56:29 | INFO    | Main | {"timestamp": "2025-12-21T21:56:29.637408", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 21:56:29 | INFO    | Main | {"timestamp": "2025-12-21T21:56:29.896041", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 21:56:37 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T21:56:37.412085", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-12-21 22:02:21 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:02:21.727084", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/Şarkı.mp3"}}
+2025-12-21 22:02:22 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:02:22.733537", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:02:23 | ERROR   | STTMenuApp | {"timestamp": "2025-12-21T22:02:23.635492", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Audio quality is not sufficient: C:/Users/tuna/Downloads/Şarkı.mp3"}}
+2025-12-21 22:03:06 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:03:06.545578", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-21 22:03:07 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:03:07.424035", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:03:07 | ERROR   | STTMenuApp | {"timestamp": "2025-12-21T22:03:07.812177", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Audio quality is not sufficient: C:/Users/tuna/Downloads/Şarkı.mp3"}}
+2025-12-21 22:04:29 | INFO    | Main | {"timestamp": "2025-12-21T22:04:29.415415", "event": "SESSION_END", "data": {"session_id": "20251221-215620"}}
+2025-12-21 22:04:39 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 22:04:39 | INFO    | Main | {"timestamp": "2025-12-21T22:04:39.333300", "event": "SESSION_START", "data": {"session_id": "20251221-220439"}}
+2025-12-21 22:04:39 | INFO    | LangManager | {"timestamp": "2025-12-21T22:04:39.377093", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 22:04:51 | INFO    | Main | {"timestamp": "2025-12-21T22:04:51.170273", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 22:04:51 | INFO    | Main | {"timestamp": "2025-12-21T22:04:51.430446", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 22:04:54 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:04:54.704527", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/Şarkı.mp3"}}
+2025-12-21 22:04:56 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:04:56.197200", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:05:01 | ERROR   | STTMenuApp | {"timestamp": "2025-12-21T22:05:01.262368", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Audio quality is not sufficient: C:/Users/tuna/Downloads/Şarkı.mp3"}}
+2025-12-21 22:07:17 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-21 22:07:17 | INFO    | Main | {"timestamp": "2025-12-21T22:07:17.899998", "event": "SESSION_START", "data": {"session_id": "20251221-220717"}}
+2025-12-21 22:07:17 | INFO    | LangManager | {"timestamp": "2025-12-21T22:07:17.944014", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-21 22:07:23 | INFO    | Main | {"timestamp": "2025-12-21T22:07:23.444229", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-21 22:07:23 | INFO    | Main | {"timestamp": "2025-12-21T22:07:23.699277", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-21 22:07:27 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:07:27.713926", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/Şarkı.mp3"}}
+2025-12-21 22:07:28 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:07:28.849832", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:07:48 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:07:48.323888", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/Şarkı.mp3", "engine": "whisper", "language": "auto", "length": 687}}}
+2025-12-21 22:08:00 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:08:00.095864", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-21 22:08:27 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:08:27.826530", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:08:45 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:08:45.123834", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/Şarkı.mp3", "engine": "whisper", "language": "tr", "length": 687}}}
+2025-12-21 22:08:50 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:08:50.807181", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-21 22:08:51 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:08:51.639300", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:08:52 | ERROR   | STTMenuApp | {"timestamp": "2025-12-21T22:08:52.014875", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Audio quality is not sufficient for Vosk: C:/Users/tuna/Downloads/Şarkı.mp3\nRequired: Mono, 16kHz+ sample rate, >0.1s duration"}}
+2025-12-21 22:09:02 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:09:02.561427", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2025-12-21 22:09:03 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:09:03.242430", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:09:19 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:09:19.532358", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/Şarkı.mp3", "engine": "whisper", "language": "tr", "length": 687}}}
+2025-12-21 22:09:23 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:09:23.786260", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/KOLOMBİYA.mp3"}}
+2025-12-21 22:09:25 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:09:25.012897", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-21 22:10:03 | INFO    | STTMenuApp | {"timestamp": "2025-12-21T22:10:03.060894", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/KOLOMBİYA.mp3", "engine": "whisper", "language": "tr", "length": 1436}}}
+2025-12-21 22:10:21 | INFO    | Main | {"timestamp": "2025-12-21T22:10:21.565380", "event": "SESSION_END", "data": {"session_id": "20251221-220717"}}
+2025-12-22 02:29:52 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 02:29:52 | INFO    | Main | {"timestamp": "2025-12-22T02:29:52.716032", "event": "SESSION_START", "data": {"session_id": "20251222-022952"}}
+2025-12-22 02:29:52 | INFO    | LangManager | {"timestamp": "2025-12-22T02:29:52.765196", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 02:30:07 | INFO    | Main | {"timestamp": "2025-12-22T02:30:07.599001", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 02:30:07 | INFO    | Main | {"timestamp": "2025-12-22T02:30:07.857390", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 02:30:12 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T02:30:12.137287", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-22 02:30:15 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T02:30:15.739027", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
+2025-12-22 02:30:18 | INFO    | Main | {"timestamp": "2025-12-22T02:30:18.077826", "event": "SESSION_END", "data": {"session_id": "20251222-022952"}}
+2025-12-22 02:30:41 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 02:30:41 | INFO    | Main | {"timestamp": "2025-12-22T02:30:41.819337", "event": "SESSION_START", "data": {"session_id": "20251222-023041"}}
+2025-12-22 02:30:41 | INFO    | LangManager | {"timestamp": "2025-12-22T02:30:41.864070", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 02:30:46 | INFO    | Main | {"timestamp": "2025-12-22T02:30:46.687996", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 02:30:46 | INFO    | Main | {"timestamp": "2025-12-22T02:30:46.941479", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 02:30:47 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-22 02:30:53 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:30:53.919001", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2025-12-22 02:30:54 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:30:54.497343", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-12-22 02:30:56 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:30:56.458895", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-12-22 02:30:58 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:30:58.666998", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-12-22 02:31:01 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:01.339007", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2025-12-22 02:31:05 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:05.045376", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:05 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:05.057282", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:31:08 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:31:08.734547", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:31:17 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:17.039458", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:17 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:17.052183", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:31:20 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:31:20.058044", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:31:25 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:25.366022", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "edge"}}
+2025-12-22 02:31:25 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:25.787691", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-12-22 02:31:26 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:26.702073", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:26 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:26.713513", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:31:27 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:31:27.099015", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 13824, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:31:27 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:31:27.378911", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.27989625930786133, "input_bytes": 13824, "output_bytes": 7340}}
+2025-12-22 02:31:30 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:30.302038", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:30 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:30.806210", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-12-22 02:31:31 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:31.239152", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:31 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:31.252596", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:31:35 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:31:35.053849", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:31:36 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:36.755928", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-12-22 02:31:40 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:40.042505", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:40 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:40.055542", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:31:40 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:31:40.373608", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15360, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:31:40 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:31:40.654910", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28130173683166504, "input_bytes": 15360, "output_bytes": 8108}}
+2025-12-22 02:31:43 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:43.791543", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:44 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:44.828777", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "en"}}
+2025-12-22 02:31:46 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:46.048833", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-12-22 02:31:46 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:46.634724", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:31:46 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:31:46.647953", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:31:50 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:31:50.895643", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:32:31 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:32:31.293252", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:32:31 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:32:31.305699", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:32:34 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:32:34.752001", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:32:55 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:32:55.940970", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-12-22 02:32:58 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:32:58.723249", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-12-22 02:33:00 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:33:00.078478", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-12-22 02:33:01 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:33:01.614468", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-12-22 02:33:05 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:33:05.979259", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:33:07 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:33:07.782712", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "edge", "new": "google"}}
+2025-12-22 02:33:08 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:33:08.759780", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-12-22 02:33:09 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:33:09.070673", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 15360, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:33:09 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:33:09.412991", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.3423187732696533, "input_bytes": 15360, "output_bytes": 8108}}
+2025-12-22 02:35:14 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:35:14.231625", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "google", "new": "edge"}}
+2025-12-22 02:35:14 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:35:14.680423", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:35:14 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:35:14.694100", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:35:19 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:35:19.247888", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:36:28 | INFO    | Main | {"timestamp": "2025-12-22T02:36:28.244801", "event": "SESSION_END", "data": {"session_id": "20251222-023041"}}
+2025-12-22 02:38:02 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 02:38:02 | INFO    | Main | {"timestamp": "2025-12-22T02:38:02.247293", "event": "SESSION_START", "data": {"session_id": "20251222-023802"}}
+2025-12-22 02:38:02 | INFO    | LangManager | {"timestamp": "2025-12-22T02:38:02.324624", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 02:38:11 | INFO    | Main | {"timestamp": "2025-12-22T02:38:11.647530", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 02:38:11 | INFO    | Main | {"timestamp": "2025-12-22T02:38:11.908723", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 02:38:12 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-22 02:38:14 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:38:14.806818", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-12-22 02:38:15 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:38:15.202126", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:38:15 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:38:15.215599", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:40:31 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:40:31.474910", "event": "ERROR", "data": {"action": "PREVIEW_FAIL", "error": "TTS failed after 1 attempts: No audio was received. Please verify that your parameters are correct."}}
+2025-12-22 02:44:30 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 02:44:30 | INFO    | Main | {"timestamp": "2025-12-22T02:44:30.955791", "event": "SESSION_START", "data": {"session_id": "20251222-024430"}}
+2025-12-22 02:44:31 | INFO    | LangManager | {"timestamp": "2025-12-22T02:44:31.000327", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 02:50:40 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 02:50:40 | INFO    | Main | {"timestamp": "2025-12-22T02:50:40.348118", "event": "SESSION_START", "data": {"session_id": "20251222-025040"}}
+2025-12-22 02:50:40 | INFO    | LangManager | {"timestamp": "2025-12-22T02:50:40.396412", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 02:50:50 | INFO    | Main | {"timestamp": "2025-12-22T02:50:50.115933", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 02:50:50 | INFO    | Main | {"timestamp": "2025-12-22T02:50:50.383406", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 02:50:50 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-22 02:50:52 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:50:52.894773", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "edge"}}
+2025-12-22 02:50:53 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:50:53.576570", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:50:53 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:50:53.588565", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:50:55 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:50:55.768934", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 9360, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:50:56 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:50:56.075092", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.30615758895874023, "input_bytes": 9360, "output_bytes": 6668}}
+2025-12-22 02:50:58 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:50:58.898297", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-12-22 02:50:59 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:50:59.061980", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2025-12-22 02:51:10 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:10.093377", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-12-22 02:51:10 | ERROR   | TTSMenuApp | {"timestamp": "2025-12-22T02:51:10.122092", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "Unknown format: "}}
+2025-12-22 02:51:11 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:11.702168", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2025-12-22 02:51:12 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:12.272925", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-12-22 02:51:12 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:51:12.821666", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 17712, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:51:13 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:51:13.103336", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28166961669921875, "input_bytes": 17712, "output_bytes": 12236}}
+2025-12-22 02:51:35 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:35.859313", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2025-12-22 02:51:36 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:36.601052", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:51:36 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:36.614407", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:51:37 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:51:37.160296", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 18864, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:51:37 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:51:37.450853", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.2905566692352295, "input_bytes": 18864, "output_bytes": 13004}}
+2025-12-22 02:51:40 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:40.600986", "event": "TTS_PREVIEW_STOP", "data": {}}
+2025-12-22 02:51:41 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:41.493219", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-12-22 02:51:42 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:42.122114", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "male", "new": "female"}}
+2025-12-22 02:51:42 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:42.734132", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:51:42 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:42.747497", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:51:43 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:51:43.295952", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 17712, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:51:43 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:51:43.576627", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28067541122436523, "input_bytes": 17712, "output_bytes": 12236}}
+2025-12-22 02:51:47 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:51:47.727615", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-12-22 02:52:05 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:05.051747", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2025-12-22 02:52:05 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:05.548137", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:52:05 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:05.562158", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:52:06 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:06.353951", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 18864, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:52:06 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:06.638039", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.284088134765625, "input_bytes": 18864, "output_bytes": 13004}}
+2025-12-22 02:52:10 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:10.989805", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-12-22 02:52:12 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:12.158511", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2025-12-22 02:52:12 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:12.171285", "event": "TTS_PREVIEW_START", "data": {}}
+2025-12-22 02:52:12 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:12.721385", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 20160, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:52:13 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:13.004533", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28314781188964844, "input_bytes": 20160, "output_bytes": 13868}}
+2025-12-22 02:52:17 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:17.511647", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2025-12-22 02:52:18 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T02:52:18.159736", "event": "BUTTON_CLICK", "data": {"action": "CONVERT"}}
+2025-12-22 02:52:18 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:18.697440", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 20160, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2025-12-22 02:52:18 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:18.984785", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28734540939331055, "input_bytes": 20160, "output_bytes": 13868}}
+2025-12-22 02:53:03 | INFO    | Main | {"timestamp": "2025-12-22T02:53:03.757313", "event": "SESSION_END", "data": {"session_id": "20251222-025040"}}

@@ -18,7 +18,7 @@ class AppModeSelectorGUI(tk.Toplevel):
         self.transient(parent)
         self.grab_set()
         self.resizable(False, False)
-        self.geometry("520x650")
+        self.geometry("520x720")
 
         container = ttk.Frame(self, padding=30)
         container.pack(fill="both", expand=True)

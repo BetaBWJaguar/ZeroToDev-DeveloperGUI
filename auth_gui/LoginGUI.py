@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from GUI import TTSMenuApp
+from STTGUI import STTMenuApp
 from GUIError import GUIError
 from fragments.UIFragments import center_window, apply_auth_style
 from logs_manager.LogsHelperManager import LogsHelperManager
@@ -112,6 +113,14 @@ class LoginGUI(tk.Tk):
         LogsHelperManager.log_success(self.logger, "LOGIN_SUCCESS", {"user": result.username})
 
         self.destroy()
-        app = TTSMenuApp(lang_manager=self.lang, current_user=result,user_manager=self.user_manager)
+
+        selected_mode = MemoryManager.get("app_mode", "TTS")
+        
+        if selected_mode == "STT":
+            app = STTMenuApp(lang_manager=self.lang, current_user=result, user_manager=self.user_manager)
+        else:
+            app = TTSMenuApp(lang_manager=self.lang, current_user=result, user_manager=self.user_manager)
+            
         print("DEBUG USER:", result.id if isinstance(result.id, dict) else {})
+        print("DEBUG MODE:", selected_mode)
         app.mainloop()

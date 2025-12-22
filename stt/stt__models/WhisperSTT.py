@@ -75,9 +75,10 @@ class WhisperSTT(STTEngine):
         
         if not self.audio_handler.validate_format(audio_path):
             raise ValueError(f"Unsupported audio format: {audio_path}")
-        
-        if not self.audio_handler.validate_audio_quality(audio_path):
-            raise ValueError(f"Audio quality is not sufficient: {audio_path}")
+
+        props = self.audio_handler.get_audio_properties(audio_path)
+        if props["duration_seconds"] <= 0.1:
+            raise ValueError(f"Audio file is too short: {audio_path}\nRequired: >0.1s duration")
         
         try:
 
@@ -128,6 +129,10 @@ class WhisperSTT(STTEngine):
         
         if not self.audio_handler.validate_format(audio_path):
             raise ValueError(f"Unsupported audio format: {audio_path}")
+
+        props = self.audio_handler.get_audio_properties(audio_path)
+        if props["duration_seconds"] <= 0.1:
+            raise ValueError(f"Audio file is too short: {audio_path}\nRequired: >0.1s duration")
         
         try:
             lang = None if language == "auto" else language
