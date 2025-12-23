@@ -227,7 +227,6 @@ class STTMenuApp(tk.Tk):
         self.select_audio_btn = primary_button(audio_inner, self.lang.get("select_audio_button"), self.select_audio_file)
         self.select_audio_btn.pack(fill="x")
 
-        # STT Engine selection
         engine_card, engine_inner = section(right, self.lang.get("stt_engine_section"))
         engine_card.grid(row=1, column=0, sticky="nsew")
 
@@ -247,9 +246,51 @@ class STTMenuApp(tk.Tk):
         ttk.Radiobutton(engine_row, text=self.lang.get("stt_engine_vosk"), value="vosk", variable=self.engine_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
-        # Language selection
+        model_card, model_inner = section(right, self.lang.get("whisper_model_section"))
+        model_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
+
+        self.whisper_model_map = {
+            "tiny": self.lang.get("whisper_model_tiny"),
+            "base": self.lang.get("whisper_model_base"),
+            "small": self.lang.get("whisper_model_small"),
+            "medium": self.lang.get("whisper_model_medium"),
+            "large": self.lang.get("whisper_model_large"),
+            "turbo": self.lang.get("whisper_model_turbo")
+        }
+        self.whisper_inv_model_map = {v: k for k, v in self.whisper_model_map.items()}
+
+        saved_model = MemoryManager.get("whisper_model", "base")
+        initial_model_text = self.whisper_model_map.get(saved_model, self.whisper_model_map["base"])
+
+        self.whisper_model_var = tk.StringVar(value=initial_model_text)
+
+        def whisper_model_changed(*_):
+            old_model = MemoryManager.get("whisper_model", "")
+            new_model = self.whisper_inv_model_map.get(self.whisper_model_var.get(), "base")
+            MemoryManager.set("whisper_model", new_model)
+            LogsHelperManager.log_config_change(self.logger, "whisper_model", old_model, new_model)
+
+        self.whisper_model_var.trace_add("write", whisper_model_changed)
+
+        def update_model_visibility(*_):
+            if self.engine_var.get() == "whisper":
+                model_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
+            else:
+                model_card.grid_forget()
+        
+        self.engine_var.trace_add("write", update_model_visibility)
+        update_model_visibility()
+
+        model_row, self.whisper_model_combo = styled_combobox(
+            model_inner,
+            self.lang.get("select_whisper_model_label"),
+            self.whisper_model_var,
+            list(self.whisper_model_map.values())
+        )
+        model_row.pack(fill="x", pady=(4, 6))
+
         lang_card, lang_inner = section(right, self.lang.get("language_section"))
-        lang_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
+        lang_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
 
         self.stt_lang_map = {
             "auto": self.lang.get("language_auto"),
@@ -279,20 +320,18 @@ class STTMenuApp(tk.Tk):
         )
         lang_row.pack(fill="x", pady=(4, 6))
 
-        # Transcribe button
         transcribe_card, transcribe_inner = section(right, self.lang.get("transcribe_section"))
-        transcribe_card.grid(row=3, column=0, sticky="ew", pady=(0, 12))
+        transcribe_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
         self.transcribe_btn = primary_button(transcribe_inner, self.lang.get("transcribe_button"), self.on_transcribe)
         self.transcribe_btn.pack(fill="x")
 
-        # Export button
         export_card, export_inner = section(right, self.lang.get("export_section"))
-        export_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
+        export_card.grid(row=5, column=0, sticky="ew", pady=(0, 12))
         self.export_btn = primary_button(export_inner, self.lang.get("export_button"), self.on_export)
         self.export_btn.pack(fill="x")
 
         self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right, self.lang)
-        self.progress_frame.grid(row=5, column=0, sticky="ew", pady=(8, 2))
+        self.progress_frame.grid(row=6, column=0, sticky="ew", pady=(8, 2))
 
         bar, self.status, self.counter = footer(root, self.lang)
         bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
@@ -346,7 +385,7 @@ class STTMenuApp(tk.Tk):
             self._set_progress(10, self.lang.get("loading_stt_model"))
 
             if engine_type == "whisper":
-                model_name = MemoryManager.get("whisper_model", "base")
+                model_name = self.whisper_inv_model_map.get(self.whisper_model_var.get(), "base")
                 self.stt_manager.set_engine("whisper", model_name)
             elif engine_type == "vosk":
                 model_path = MemoryManager.get("vosk_model_path", "")

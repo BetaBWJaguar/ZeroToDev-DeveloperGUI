@@ -117,10 +117,10 @@ class LoginGUI(tk.Tk):
         selected_mode = MemoryManager.get("app_mode", "TTS")
         
         if selected_mode == "STT":
-            app = STTMenuApp(lang_manager=self.lang, current_user=result, user_manager=self.user_manager)
+            app = STTMenuApp(lang_manager=self.lang, current_user=user_obj, user_manager=self.user_manager)
         else:
-            app = TTSMenuApp(lang_manager=self.lang, current_user=result, user_manager=self.user_manager)
-            
-        print("DEBUG USER:", result.id if isinstance(result.id, dict) else {})
+            app = TTSMenuApp(lang_manager=self.lang, current_user=user_obj, user_manager=self.user_manager)
+           
+        print("DEBUG USER:", user_obj.id if isinstance(user_obj.id, dict) else {})
         print("DEBUG MODE:", selected_mode)
         app.mainloop()

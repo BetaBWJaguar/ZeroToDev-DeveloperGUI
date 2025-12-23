@@ -5313,3 +5313,40 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2025-12-22 02:52:18 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:18.697440", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 20160, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
 2025-12-22 02:52:18 | INFO    | VoiceProcessor | {"timestamp": "2025-12-22T02:52:18.984785", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.28734540939331055, "input_bytes": 20160, "output_bytes": 13868}}
 2025-12-22 02:53:03 | INFO    | Main | {"timestamp": "2025-12-22T02:53:03.757313", "event": "SESSION_END", "data": {"session_id": "20251222-025040"}}
+2025-12-22 21:01:12 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 21:01:12 | INFO    | Main | {"timestamp": "2025-12-22T21:01:12.526556", "event": "SESSION_START", "data": {"session_id": "20251222-210112"}}
+2025-12-22 21:01:12 | INFO    | LangManager | {"timestamp": "2025-12-22T21:01:12.580317", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 21:01:28 | INFO    | Main | {"timestamp": "2025-12-22T21:01:28.011592", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 21:01:28 | INFO    | Main | {"timestamp": "2025-12-22T21:01:28.343424", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 21:01:28 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-22 21:01:30 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T21:01:30.858230", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-22 21:01:35 | INFO    | TTSMenuApp | {"timestamp": "2025-12-22T21:01:35.667675", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2025-12-22 21:01:37 | INFO    | Main | {"timestamp": "2025-12-22T21:01:37.416969", "event": "SESSION_END", "data": {"session_id": "20251222-210112"}}
+2025-12-22 21:01:48 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 21:01:48 | INFO    | Main | {"timestamp": "2025-12-22T21:01:48.836868", "event": "SESSION_START", "data": {"session_id": "20251222-210148"}}
+2025-12-22 21:01:48 | INFO    | LangManager | {"timestamp": "2025-12-22T21:01:48.884959", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 21:01:54 | INFO    | Main | {"timestamp": "2025-12-22T21:01:54.116672", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 21:01:54 | INFO    | Main | {"timestamp": "2025-12-22T21:01:54.375717", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 21:01:57 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:01:57.084086", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-22 21:01:58 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:01:58.003534", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2025-12-22 21:04:45 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 21:04:45 | INFO    | Main | {"timestamp": "2025-12-22T21:04:45.560209", "event": "SESSION_START", "data": {"session_id": "20251222-210445"}}
+2025-12-22 21:04:45 | INFO    | LangManager | {"timestamp": "2025-12-22T21:04:45.608245", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 21:05:17 | INFO    | Main | {"timestamp": "2025-12-22T21:05:17.805830", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 21:05:18 | INFO    | Main | {"timestamp": "2025-12-22T21:05:18.060813", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 21:07:36 | INFO    | Main | {"timestamp": "2025-12-22T21:07:36.162330", "event": "SESSION_END", "data": {"session_id": "20251222-210445"}}
+2025-12-22 21:07:48 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-22 21:07:48 | INFO    | Main | {"timestamp": "2025-12-22T21:07:48.846961", "event": "SESSION_START", "data": {"session_id": "20251222-210748"}}
+2025-12-22 21:07:48 | INFO    | LangManager | {"timestamp": "2025-12-22T21:07:48.894354", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-22 21:07:57 | INFO    | Main | {"timestamp": "2025-12-22T21:07:57.671384", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-22 21:07:57 | INFO    | Main | {"timestamp": "2025-12-22T21:07:57.940289", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-22 21:08:02 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:08:02.699233", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-22 21:08:04 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:08:04.022641", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2025-12-22 21:08:07 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:08:07.174063", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "tiny"}}
+2025-12-22 21:10:23 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:23.221996", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "tiny"}}
+2025-12-22 21:10:25 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:25.088769", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-22 21:10:28 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:28.512610", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "en"}}
+2025-12-22 21:10:30 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:30.826018", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "en", "new": "tr"}}
+2025-12-22 21:10:31 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:31.969505", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-22 21:10:34 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:34.526160", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
+2025-12-22 21:10:36 | INFO    | Main | {"timestamp": "2025-12-22T21:10:36.402944", "event": "SESSION_END", "data": {"session_id": "20251222-210748"}}

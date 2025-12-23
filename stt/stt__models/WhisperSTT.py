@@ -120,7 +120,7 @@ class WhisperSTT(STTEngine):
             "loaded": self._loaded,
             "config": self.config,
             "supported_formats": ["wav", "mp3", "m4a", "flac"],
-            "model_sizes": ["tiny", "base", "small", "medium", "large", "large-v2", "large-v3"]
+            "model_sizes": ["tiny", "base", "small", "medium", "large", "turbo"]
         }
     
     def transcribe_with_timestamps(self, audio_path: str, language: str = "auto") -> Dict[str, Any]:
