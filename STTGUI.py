@@ -142,6 +142,10 @@ class STTMenuApp(tk.Tk):
         SPACER = "\u2002"
         menubar.add_cascade(label=SPACER, state="disabled")
 
+        config_menu = tk.Menu(menubar, tearoff=0)
+        config_menu.add_command(label=self.lang.get("help_config_settings"))
+        menubar.add_cascade(label=self.lang.get("menu_config"), menu=config_menu)
+
         help_menu = tk.Menu(menubar, tearoff=0)
         help_menu.add_command(label=self.lang.get("help_developer"), command=self.show_developer)
         menubar.add_cascade(label=self.lang.get("menu_help"), menu=help_menu)

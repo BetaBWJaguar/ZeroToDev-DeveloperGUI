@@ -5350,3 +5350,26 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2025-12-22 21:10:31 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:31.969505", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
 2025-12-22 21:10:34 | INFO    | STTMenuApp | {"timestamp": "2025-12-22T21:10:34.526160", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
 2025-12-22 21:10:36 | INFO    | Main | {"timestamp": "2025-12-22T21:10:36.402944", "event": "SESSION_END", "data": {"session_id": "20251222-210748"}}
+2025-12-24 01:25:12 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 01:25:12 | INFO    | Main | {"timestamp": "2025-12-24T01:25:12.254037", "event": "SESSION_START", "data": {"session_id": "20251224-012512"}}
+2025-12-24 01:25:12 | INFO    | LangManager | {"timestamp": "2025-12-24T01:25:12.302698", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 01:25:20 | INFO    | Main | {"timestamp": "2025-12-24T01:25:20.414228", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 01:25:20 | INFO    | Main | {"timestamp": "2025-12-24T01:25:20.707931", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 01:25:21 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-24 01:25:23 | INFO    | TTSMenuApp | {"timestamp": "2025-12-24T01:25:23.110790", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-24 01:25:25 | INFO    | TTSMenuApp | {"timestamp": "2025-12-24T01:25:25.604614", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2025-12-24 01:25:27 | INFO    | Main | {"timestamp": "2025-12-24T01:25:27.303940", "event": "SESSION_END", "data": {"session_id": "20251224-012512"}}
+2025-12-24 01:25:38 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 01:25:38 | INFO    | Main | {"timestamp": "2025-12-24T01:25:38.077031", "event": "SESSION_START", "data": {"session_id": "20251224-012538"}}
+2025-12-24 01:25:38 | INFO    | LangManager | {"timestamp": "2025-12-24T01:25:38.122459", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 01:25:43 | INFO    | Main | {"timestamp": "2025-12-24T01:25:43.072446", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 01:25:43 | INFO    | Main | {"timestamp": "2025-12-24T01:25:43.333643", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 01:26:04 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 01:26:04 | INFO    | Main | {"timestamp": "2025-12-24T01:26:04.407086", "event": "SESSION_START", "data": {"session_id": "20251224-012604"}}
+2025-12-24 01:26:04 | INFO    | LangManager | {"timestamp": "2025-12-24T01:26:04.452283", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 01:26:09 | INFO    | Main | {"timestamp": "2025-12-24T01:26:09.694341", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 01:26:09 | INFO    | Main | {"timestamp": "2025-12-24T01:26:09.953697", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 01:26:19 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T01:26:19.639501", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-12-24 01:26:29 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T01:26:29.847664", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-24 01:26:39 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T01:26:39.134406", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
+2025-12-24 01:26:43 | INFO    | Main | {"timestamp": "2025-12-24T01:26:43.114396", "event": "SESSION_END", "data": {"session_id": "20251224-012604"}}
