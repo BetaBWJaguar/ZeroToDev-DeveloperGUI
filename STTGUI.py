@@ -144,7 +144,7 @@ class STTMenuApp(tk.Tk):
         menubar.add_cascade(label=SPACER, state="disabled")
 
         config_menu = tk.Menu(menubar, tearoff=0)
-        config_menu.add_command(label=self.lang.get("help_config_settings"))
+        config_menu.add_command(label=self.lang.get("help_config_settings"), command=self.show_config_settings)
         menubar.add_cascade(label=self.lang.get("menu_config"), menu=config_menu)
 
         help_menu = tk.Menu(menubar, tearoff=0)
@@ -410,7 +410,6 @@ class STTMenuApp(tk.Tk):
 
             self._set_progress(30, self.lang.get("transcribing_audio"))
 
-            # Use audio data for Vosk, file path for Whisper
             if engine_type == "vosk":
                 result = self.stt_manager.transcribe(self.selected_audio_data, lang_code)
             else:
@@ -446,9 +445,27 @@ class STTMenuApp(tk.Tk):
             GUIError(self, self.lang.get("error_title"), self.lang.get("error_no_text_to_export"), icon="❌")
             return
         
+
+        saved_format = MemoryManager.get("export_format", ".txt")
+        saved_output_dir = MemoryManager.get("export_output_dir", "")
+        saved_pattern = MemoryManager.get("export_filename_pattern", "timestamp")
+        saved_custom_name = MemoryManager.get("export_custom_name", "transcript")
+        
+
+        if saved_pattern == "timestamp":
+            from datetime import datetime
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            default_name = f"transcript_{timestamp}{saved_format}"
+        else:
+            default_name = f"{saved_custom_name}{saved_format}"
+
+        initial_dir = saved_output_dir if saved_output_dir else None
+        
         file_path = filedialog.asksaveasfilename(
             title=self.lang.get("export_text_title"),
-            defaultextension=".txt",
+            defaultextension=saved_format,
+            initialfile=default_name,
+            initialdir=initial_dir,
             filetypes=[
                 (self.lang.get("text_files"), "*.txt"),
                 (self.lang.get("markdown_files"), "*.md"),
@@ -463,6 +480,17 @@ class STTMenuApp(tk.Tk):
                 
                 GUIError(self, self.lang.get("info_title"), self.lang.get("export_success").format(path=file_path), icon="✅")
                 LogsHelperManager.log_success(self.logger, "TEXT_EXPORTED", {"path": file_path})
+                
+
+                if MemoryManager.get("export_auto_open", False):
+                    try:
+                        import os
+                        import subprocess
+                        if os.name == 'nt':
+                            os.startfile(file_path)
+                    except Exception as e:
+                        LogsHelperManager.log_error(self.logger, "AUTO_OPEN_FAIL", str(e))
+                        
             except Exception as e:
                 GUIError(self, self.lang.get("error_title"), f"{self.lang.get('export_failed')}\n{e}", icon="❌")
                 LogsHelperManager.log_error(self.logger, "EXPORT_FAIL", str(e))
@@ -866,3 +894,187 @@ class STTMenuApp(tk.Tk):
         except Exception as e:
             LogsHelperManager.log_error(self.logger, "LANGUAGE_RELOAD_FAIL", str(e))
             GUIError(self, "Error", f"Failed to reload language:\n{e}", icon="❌")
+
+    def show_config_settings(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_CONFIG_SETTINGS")
+
+        win = tk.Toplevel(self)
+        win.title(self.lang.get("config_export_title"))
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        container = ttk.Frame(win, padding=25, style="TFrame")
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text=self.lang.get("config_export_header"), style="Title.TLabel") \
+            .pack(anchor="center", pady=(0, 15))
+        ttk.Label(container, text=self.lang.get("config_export_description"),
+                  style="Muted.TLabel", wraplength=380, justify="center") \
+            .pack(anchor="center", pady=(0, 12))
+
+
+        format_frame = ttk.Frame(container, style="Card.TFrame")
+        format_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(format_frame, text=self.lang.get("config_default_format_label"), style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 8))
+
+        format_map = {
+            ".txt": self.lang.get("config_format_txt"),
+            ".md": self.lang.get("config_format_md")
+        }
+        inv_format_map = {v: k for k, v in format_map.items()}
+
+        saved_format = MemoryManager.get("export_format", ".txt")
+        initial_format_text = format_map.get(saved_format, format_map[".txt"])
+
+        format_var = tk.StringVar(value=initial_format_text)
+
+        format_row, format_combo = styled_combobox(
+            format_frame,
+            "",
+            format_var,
+            list(format_map.values())
+        )
+        format_row.pack(fill="x", pady=(0, 8))
+
+
+        output_frame = ttk.Frame(container, style="Card.TFrame")
+        output_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(output_frame, text=self.lang.get("config_output_dir_label"), style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 8))
+
+        output_dir_var = tk.StringVar(value=MemoryManager.get("export_output_dir", ""))
+        output_dir_entry = ttk.Entry(output_frame, textvariable=output_dir_var)
+        output_dir_entry.pack(fill="x", pady=(0, 8))
+
+        def browse_output_dir():
+            dir_path = filedialog.askdirectory(
+                title=self.lang.get("config_output_dir_browse")
+            )
+            if dir_path:
+                output_dir_var.set(dir_path)
+
+        ttk.Button(
+            output_frame,
+            text=self.lang.get("config_output_dir_browse"),
+            command=browse_output_dir,
+            style="Accent.TButton"
+        ).pack(anchor="center", pady=(0, 8))
+
+
+        auto_open_frame = ttk.Frame(container, style="Card.TFrame")
+        auto_open_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(auto_open_frame, text=self.lang.get("config_auto_open_label"), style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 8))
+
+        auto_open_var = tk.BooleanVar(value=MemoryManager.get("export_auto_open", False))
+
+        ttk.Radiobutton(
+            auto_open_frame,
+            text=self.lang.get("config_auto_open_enabled"),
+            variable=auto_open_var,
+            value=True,
+            style="Option.TRadiobutton",
+            takefocus=0
+        ).pack(anchor="w", pady=2)
+
+        ttk.Radiobutton(
+            auto_open_frame,
+            text=self.lang.get("config_auto_open_disabled"),
+            variable=auto_open_var,
+            value=False,
+            style="Option.TRadiobutton",
+            takefocus=0
+        ).pack(anchor="w", pady=2)
+
+
+        pattern_frame = ttk.Frame(container, style="Card.TFrame")
+        pattern_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(pattern_frame, text=self.lang.get("config_filename_pattern_label"), style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 8))
+
+        pattern_map = {
+            "timestamp": self.lang.get("config_pattern_timestamp"),
+            "custom": self.lang.get("config_pattern_custom")
+        }
+        inv_pattern_map = {v: k for k, v in pattern_map.items()}
+
+        saved_pattern = MemoryManager.get("export_filename_pattern", "timestamp")
+        initial_pattern_text = pattern_map.get(saved_pattern, pattern_map["timestamp"])
+
+        pattern_var = tk.StringVar(value=initial_pattern_text)
+
+        pattern_row, pattern_combo = styled_combobox(
+            pattern_frame,
+            "",
+            pattern_var,
+            list(pattern_map.values())
+        )
+        pattern_row.pack(fill="x", pady=(0, 8))
+
+        custom_name_var = tk.StringVar(value=MemoryManager.get("export_custom_name", "transcript"))
+        custom_name_entry = ttk.Entry(pattern_frame, textvariable=custom_name_var)
+        custom_name_entry.pack(fill="x", pady=(0, 8))
+
+        def update_custom_name_visibility(*_):
+            selected_pattern = inv_pattern_map.get(pattern_var.get(), "timestamp")
+            if selected_pattern == "custom":
+                custom_name_entry.pack(fill="x", pady=(0, 8))
+            else:
+                custom_name_entry.pack_forget()
+
+        pattern_var.trace_add("write", update_custom_name_visibility)
+        update_custom_name_visibility()
+
+
+        def save_settings():
+            try:
+                new_format = inv_format_map.get(format_var.get(), ".txt")
+                new_output_dir = output_dir_var.get().strip()
+                new_auto_open = auto_open_var.get()
+                new_pattern = inv_pattern_map.get(pattern_var.get(), "timestamp")
+                new_custom_name = custom_name_var.get().strip()
+
+                MemoryManager.set("export_format", new_format)
+                MemoryManager.set("export_output_dir", new_output_dir)
+                MemoryManager.set("export_auto_open", new_auto_open)
+                MemoryManager.set("export_filename_pattern", new_pattern)
+                MemoryManager.set("export_custom_name", new_custom_name if new_custom_name else "transcript")
+
+                LogsHelperManager.log_success(self.logger, "EXPORT_SETTINGS_SAVED", {
+                    "format": new_format,
+                    "output_dir": new_output_dir if new_output_dir else "default",
+                    "auto_open": new_auto_open,
+                    "pattern": new_pattern
+                })
+
+                GUIError(self, self.lang.get("success_title"),
+                        self.lang.get("config_export_settings_saved"), icon="✅")
+                win.destroy()
+
+            except Exception as e:
+                LogsHelperManager.log_error(self.logger, "EXPORT_SETTINGS_SAVE_FAIL", str(e))
+                GUIError(self, self.lang.get("error_title"),
+                        f"{self.lang.get('config_export_settings_error')}\n{e}", icon="❌")
+
+        ttk.Separator(container).pack(fill="x", pady=15)
+
+        primary_button(
+            container,
+            self.lang.get("config_save_export_settings"),
+            save_settings
+        ).pack(anchor="center", pady=(10, 5))
+
+        ttk.Button(
+            container,
+            text=self.lang.get("close_button"),
+            command=win.destroy,
+            style="Accent.TButton"
+        ).pack(anchor="center", pady=(5, 0))
+
+        center_window(win)
