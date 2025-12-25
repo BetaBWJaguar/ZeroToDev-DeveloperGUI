@@ -1,3 +1,4 @@
+import subprocess
 from typing import Dict
 from pathlib import Path
 
@@ -32,3 +33,50 @@ class AudioFormatHandler:
         import os
         size_bytes = os.path.getsize(audio_path)
         return size_bytes / (1024 * 1024)
+    def convert_for_vosk(self, audio_path: str) -> bytes:
+        input_path = Path(audio_path)
+
+        if not input_path.exists():
+            raise FileNotFoundError(f"Audio file not found: {audio_path}")
+
+        cmd = [
+            "ffmpeg",
+            "-y",
+            "-i", str(input_path),
+            "-map_metadata", "-1",
+            "-vn",
+            "-ac", "1",
+            "-ar", "16000",
+            "-f", "wav",
+            "-"
+        ]
+
+        try:
+            result = subprocess.run(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.DEVNULL,
+                check=True
+            )
+            return result.stdout
+        except subprocess.CalledProcessError:
+            raise RuntimeError("FFmpeg failed to convert audio for Vosk")
+
+    def ensure_vosk_compatible(self, audio_path: str) -> bytes:
+        if self.validate_audio_quality(audio_path):
+            with open(audio_path, 'rb') as f:
+                return f.read()
+        
+        return self.convert_for_vosk(audio_path)
+    
+    def save_audio_to_temp_file(self, audio_data: bytes) -> str:
+        import tempfile
+        import os
+
+        temp_fd, temp_path = tempfile.mkstemp(suffix='.wav')
+        os.close(temp_fd)
+
+        with open(temp_path, 'wb') as f:
+            f.write(audio_data)
+        
+        return temp_path

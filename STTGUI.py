@@ -109,6 +109,7 @@ class STTMenuApp(tk.Tk):
         self.stt_manager = STTManager()
         self.audio_handler = AudioFormatHandler()
         self.selected_audio_file = None
+        self.selected_audio_data = None
 
         self.after(3000, lambda: check_for_update_gui(
             parent=self,
@@ -379,8 +380,10 @@ class STTMenuApp(tk.Tk):
                 raise ValueError(f"Unsupported audio format: {self.selected_audio_file}")
 
             if engine_type == "vosk":
-                if not self.audio_handler.validate_audio_quality(self.selected_audio_file):
-                    raise ValueError(f"Audio quality is not sufficient for Vosk: {self.selected_audio_file}\nRequired: Mono, 16kHz+ sample rate, >0.1s duration")
+                audio_data = self.audio_handler.ensure_vosk_compatible(
+                    self.selected_audio_file
+                )
+                self.selected_audio_data = audio_data
             else:
                 props = self.audio_handler.get_audio_properties(self.selected_audio_file)
                 if props["duration_seconds"] <= 0.1:
@@ -392,16 +395,26 @@ class STTMenuApp(tk.Tk):
                 model_name = self.whisper_inv_model_map.get(self.whisper_model_var.get(), "base")
                 self.stt_manager.set_engine("whisper", model_name)
             elif engine_type == "vosk":
-                model_path = MemoryManager.get("vosk_model_path", "")
-                if not model_path:
-                    raise ValueError("Vosk model path not configured")
+                lang_code = self.stt_inv_lang_map.get(self.stt_lang_var.get(), "auto")
+
+                if lang_code == "tr" or lang_code == "auto":
+                    model_path = "models/vosk/tr"
+                elif lang_code == "en":
+                    model_path = "models/vosk/en"
+                else:
+                    model_path = "models/vosk/en"
+                
                 self.stt_manager.set_engine("vosk", model_path)
             else:
                 raise ValueError(f"Unsupported STT engine: {engine_type}")
 
             self._set_progress(30, self.lang.get("transcribing_audio"))
 
-            result = self.stt_manager.transcribe(self.selected_audio_file, lang_code)
+            # Use audio data for Vosk, file path for Whisper
+            if engine_type == "vosk":
+                result = self.stt_manager.transcribe(self.selected_audio_data, lang_code)
+            else:
+                result = self.stt_manager.transcribe(self.selected_audio_file, lang_code)
             
             self._set_progress(90, self.lang.get("transcription_complete"))
 

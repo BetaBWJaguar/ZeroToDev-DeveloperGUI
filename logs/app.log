@@ -5373,3 +5373,99 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2025-12-24 01:26:29 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T01:26:29.847664", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
 2025-12-24 01:26:39 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T01:26:39.134406", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
 2025-12-24 01:26:43 | INFO    | Main | {"timestamp": "2025-12-24T01:26:43.114396", "event": "SESSION_END", "data": {"session_id": "20251224-012604"}}
+2025-12-24 20:56:43 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 20:56:43 | INFO    | Main | {"timestamp": "2025-12-24T20:56:43.247162", "event": "SESSION_START", "data": {"session_id": "20251224-205643"}}
+2025-12-24 20:56:43 | INFO    | LangManager | {"timestamp": "2025-12-24T20:56:43.293395", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 20:56:49 | INFO    | Main | {"timestamp": "2025-12-24T20:56:49.984758", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 20:56:50 | INFO    | Main | {"timestamp": "2025-12-24T20:56:50.284992", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 20:56:50 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2025-12-24 20:56:53 | INFO    | TTSMenuApp | {"timestamp": "2025-12-24T20:56:53.103604", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-24 20:56:54 | INFO    | TTSMenuApp | {"timestamp": "2025-12-24T20:56:54.885838", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2025-12-24 20:56:56 | INFO    | Main | {"timestamp": "2025-12-24T20:56:56.623964", "event": "SESSION_END", "data": {"session_id": "20251224-205643"}}
+2025-12-24 20:57:06 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 20:57:06 | INFO    | Main | {"timestamp": "2025-12-24T20:57:06.739125", "event": "SESSION_START", "data": {"session_id": "20251224-205706"}}
+2025-12-24 20:57:06 | INFO    | LangManager | {"timestamp": "2025-12-24T20:57:06.785051", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 20:57:13 | INFO    | Main | {"timestamp": "2025-12-24T20:57:13.869154", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 20:57:14 | INFO    | Main | {"timestamp": "2025-12-24T20:57:14.124473", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 20:57:16 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T20:57:16.456424", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-24 20:57:18 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T20:57:18.453742", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-24 20:57:24 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T20:57:24.056933", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3"}}
+2025-12-24 20:57:24 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T20:57:24.645593", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-24 20:57:25 | ERROR   | STTMenuApp | {"timestamp": "2025-12-24T20:57:25.807979", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Audio quality is not sufficient for Vosk: C:/Users/tuna/Downloads/şarkı5.mp3\nRequired: Mono, 16kHz+ sample rate, >0.1s duration"}}
+2025-12-24 21:03:23 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 21:03:23 | INFO    | Main | {"timestamp": "2025-12-24T21:03:23.452946", "event": "SESSION_START", "data": {"session_id": "20251224-210323"}}
+2025-12-24 21:03:23 | INFO    | LangManager | {"timestamp": "2025-12-24T21:03:23.498510", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 21:03:33 | INFO    | Main | {"timestamp": "2025-12-24T21:03:33.244951", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 21:03:33 | INFO    | Main | {"timestamp": "2025-12-24T21:03:33.508574", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 21:03:36 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:03:36.398217", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-24 21:03:38 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:03:38.380566", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-24 21:03:41 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:03:41.760707", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3"}}
+2025-12-24 21:03:43 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:03:43.469379", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-24 21:03:43 | ERROR   | STTMenuApp | {"timestamp": "2025-12-24T21:03:43.829065", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Audio quality is not sufficient for Vosk: C:/Users/tuna/Downloads/şarkı5.mp3\nRequired: Mono, 16kHz+ sample rate, >0.1s duration"}}
+2025-12-24 21:06:49 | INFO    | Main | {"timestamp": "2025-12-24T21:06:49.041491", "event": "SESSION_END", "data": {"session_id": "20251224-210323"}}
+2025-12-24 21:06:58 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 21:06:58 | INFO    | Main | {"timestamp": "2025-12-24T21:06:58.779532", "event": "SESSION_START", "data": {"session_id": "20251224-210658"}}
+2025-12-24 21:06:58 | INFO    | LangManager | {"timestamp": "2025-12-24T21:06:58.826329", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 21:07:09 | INFO    | Main | {"timestamp": "2025-12-24T21:07:09.608717", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 21:07:09 | INFO    | Main | {"timestamp": "2025-12-24T21:07:09.865704", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 21:07:12 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:07:12.041787", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-24 21:07:14 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:07:14.049798", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-24 21:07:16 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:07:16.745142", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3"}}
+2025-12-24 21:07:17 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:07:17.443012", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-24 21:07:17 | ERROR   | STTMenuApp | {"timestamp": "2025-12-24T21:07:17.804135", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Audio quality is not sufficient for Vosk: C:/Users/tuna/Downloads/şarkı5.mp3\nRequired: Mono, 16kHz+ sample rate, >0.1s duration"}}
+2025-12-24 21:13:58 | INFO    | Main | {"timestamp": "2025-12-24T21:13:58.850954", "event": "SESSION_END", "data": {"session_id": "20251224-210658"}}
+2025-12-24 21:14:07 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 21:14:07 | INFO    | Main | {"timestamp": "2025-12-24T21:14:07.513173", "event": "SESSION_START", "data": {"session_id": "20251224-211407"}}
+2025-12-24 21:14:07 | INFO    | LangManager | {"timestamp": "2025-12-24T21:14:07.559659", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 21:15:20 | INFO    | Main | {"timestamp": "2025-12-24T21:15:20.463492", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 21:15:20 | INFO    | Main | {"timestamp": "2025-12-24T21:15:20.725142", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 21:15:22 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:15:22.262394", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-24 21:15:24 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:15:24.759898", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3"}}
+2025-12-24 21:15:25 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:15:25.234184", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-24 21:15:26 | ERROR   | STTMenuApp | {"timestamp": "2025-12-24T21:15:26.015773", "event": "ERROR", "data": {"action": "TRANSCRIBE_FAIL", "error": "Vosk model path not configured"}}
+2025-12-24 21:26:30 | INFO    | Main | {"timestamp": "2025-12-24T21:26:30.297105", "event": "SESSION_END", "data": {"session_id": "20251224-211407"}}
+2025-12-24 21:29:57 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 21:29:57 | INFO    | Main | {"timestamp": "2025-12-24T21:29:57.697660", "event": "SESSION_START", "data": {"session_id": "20251224-212957"}}
+2025-12-24 21:29:57 | INFO    | LangManager | {"timestamp": "2025-12-24T21:29:57.743454", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 21:30:02 | INFO    | Main | {"timestamp": "2025-12-24T21:30:02.979059", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 21:30:03 | INFO    | Main | {"timestamp": "2025-12-24T21:30:03.242941", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 21:30:06 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:30:06.336866", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-24 21:30:11 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:30:11.415832", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-24 21:30:17 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:30:17.260598", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3"}}
+2025-12-24 21:30:18 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:30:18.043536", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-24 21:30:34 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:30:34.473518", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:\\Users\\tuna\\Downloads\\şarkı5.vosk.wav", "engine": "vosk", "language": "tr", "length": 293}}}
+2025-12-24 21:32:42 | INFO    | Main | {"timestamp": "2025-12-24T21:32:42.337678", "event": "SESSION_END", "data": {"session_id": "20251224-212957"}}
+2025-12-24 21:37:22 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-24 21:37:22 | INFO    | Main | {"timestamp": "2025-12-24T21:37:22.195265", "event": "SESSION_START", "data": {"session_id": "20251224-213722"}}
+2025-12-24 21:37:22 | INFO    | LangManager | {"timestamp": "2025-12-24T21:37:22.240067", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-24 21:39:16 | INFO    | Main | {"timestamp": "2025-12-24T21:39:16.235171", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-24 21:39:16 | INFO    | Main | {"timestamp": "2025-12-24T21:39:16.504827", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-24 21:39:19 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:39:19.062316", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-24 21:39:20 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:39:20.504849", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-24 21:39:23 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:39:23.291980", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3"}}
+2025-12-24 21:39:24 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:39:24.960262", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-24 21:39:39 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:39:39.714298", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3", "engine": "vosk", "language": "tr", "length": 293}}}
+2025-12-24 21:42:50 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:42:50.373038", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "tr", "new": "auto"}}
+2025-12-24 21:42:51 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:42:51.081196", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-24 21:43:02 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:43:02.080483", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/şarkı5.mp3", "engine": "vosk", "language": "auto", "length": 293}}}
+2025-12-24 21:43:30 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:43:30.284859", "event": "BUTTON_CLICK", "data": {"action": "OPEN_PROFILE"}}
+2025-12-24 21:43:33 | INFO    | STTMenuApp | {"timestamp": "2025-12-24T21:43:33.311024", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-12-24 22:33:30 | INFO    | Main | {"timestamp": "2025-12-24T22:33:30.779967", "event": "SESSION_END", "data": {"session_id": "20251224-213722"}}
+2025-12-25 02:17:46 | INFO    | root | Logs initialized in INFO mode → handler=both
+2025-12-25 02:17:46 | INFO    | Main | {"timestamp": "2025-12-25T02:17:46.986114", "event": "SESSION_START", "data": {"session_id": "20251225-021746"}}
+2025-12-25 02:17:47 | INFO    | LangManager | {"timestamp": "2025-12-25T02:17:47.033794", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2025-12-25 02:17:54 | INFO    | Main | {"timestamp": "2025-12-25T02:17:54.457085", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2025-12-25 02:17:54 | INFO    | Main | {"timestamp": "2025-12-25T02:17:54.746596", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2025-12-25 02:20:10 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:20:10.074941", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "turbo"}}
+2025-12-25 02:20:25 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:20:25.418998", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2025-12-25 02:20:32 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:20:32.769946", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2025-12-25 02:20:44 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:20:44.493387", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2025-12-25 02:22:12 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:12.375724", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2025-12-25 02:22:15 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:15.323318", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2025-12-25 02:22:16 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:16.881452", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2025-12-25 02:22:17 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:17.331293", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-25 02:22:30 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:30.680150", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3", "engine": "vosk", "language": "tr", "length": 1637}}}
+2025-12-25 02:22:45 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:45.683734", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2025-12-25 02:22:48 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:48.796439", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "turbo", "new": "medium"}}
+2025-12-25 02:22:51 | INFO    | STTMenuApp | {"timestamp": "2025-12-25T02:22:51.106480", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2025-12-25 02:26:07 | INFO    | Main | {"timestamp": "2025-12-25T02:26:07.576728", "event": "SESSION_END", "data": {"session_id": "20251225-021746"}}

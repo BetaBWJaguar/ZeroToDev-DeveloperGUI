@@ -91,49 +91,50 @@ class VoskSTT(STTEngine):
         except Exception as e:
             raise RuntimeError(f"Audio conversion failed: {str(e)}")
     
-    def transcribe(self, audio_path: str, language: str = "auto") -> str:
+    def transcribe(self, audio_input, language: str = "auto") -> str:
         if not self._loaded:
             self.load()
-        
-        if not self.audio_handler.validate_format(audio_path):
-            raise ValueError(f"Unsupported audio format: {audio_path}")
-        
-        if not self.audio_handler.validate_audio_quality(audio_path):
-            raise ValueError(f"Audio quality is not sufficient: {audio_path}")
+
+        if isinstance(audio_input, str):
+            if not self.audio_handler.validate_format(audio_input):
+                raise ValueError(f"Unsupported audio format: {audio_input}")
+            wav_path = self._convert_audio_to_wav(audio_input)
+            cleanup_file = wav_path != audio_input
+        elif isinstance(audio_input, bytes):
+            wav_path = self.audio_handler.save_audio_to_temp_file(audio_input)
+            cleanup_file = True
+        else:
+            raise ValueError("Audio input must be a file path (str) or bytes")
         
         try:
-            wav_path = self._convert_audio_to_wav(audio_path)
+            with wave.open(wav_path, 'rb') as wf:
+                if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != self.config.get("sample_rate", 16000):
+                    raise ValueError("Audio must be WAV format mono PCM with 16kHz sample rate")
+
+                chunk_size = 4000
+                result_text = ""
+                
+                while True:
+                    data = wf.readframes(chunk_size)
+                    if len(data) == 0:
+                        break
+                    
+                    if self.recognizer.AcceptWaveform(data):
+                        result = json.loads(self.recognizer.Result())
+                        if 'text' in result:
+                            result_text += result['text'] + " "
+
+                final_result = json.loads(self.recognizer.FinalResult())
+                if 'text' in final_result:
+                    result_text += final_result['text']
             
-            try:
-                with wave.open(wav_path, 'rb') as wf:
-                    if wf.getnchannels() != 1 or wf.getsampwidth() != 2 or wf.getframerate() != self.config.get("sample_rate", 16000):
-                        raise ValueError("Audio must be WAV format mono PCM with 16kHz sample rate")
-
-                    chunk_size = 4000
-                    result_text = ""
-                    
-                    while True:
-                        data = wf.readframes(chunk_size)
-                        if len(data) == 0:
-                            break
-                        
-                        if self.recognizer.AcceptWaveform(data):
-                            result = json.loads(self.recognizer.Result())
-                            if 'text' in result:
-                                result_text += result['text'] + " "
-
-                    final_result = json.loads(self.recognizer.FinalResult())
-                    if 'text' in final_result:
-                        result_text += final_result['text']
-                
-                return result_text.strip()
-                
-            finally:
-                if wav_path != audio_path and os.path.exists(wav_path):
-                    os.remove(wav_path)
-                    
+            return result_text.strip()
+            
         except Exception as e:
             raise RuntimeError(f"Transcription failed: {str(e)}")
+        finally:
+            if cleanup_file and os.path.exists(wav_path):
+                os.remove(wav_path)
     
     def unload(self):
         if self._loaded:
@@ -158,12 +159,21 @@ class VoskSTT(STTEngine):
             "model_path": self.model_name if os.path.exists(self.model_name) else None
         }
     
-    def transcribe_with_alternatives(self, audio_path: str, language: str = "auto", max_alternatives: int = 3) -> Dict[str, Any]:
+    def transcribe_with_alternatives(self, audio_input, language: str = "auto", max_alternatives: int = 3) -> Dict[str, Any]:
         if not self._loaded:
             self.load()
+        if isinstance(audio_input, str):
+            if not self.audio_handler.validate_format(audio_input):
+                raise ValueError(f"Unsupported audio format: {audio_input}")
+            wav_path = self._convert_audio_to_wav(audio_input)
+            cleanup_file = wav_path != audio_input
+        elif isinstance(audio_input, bytes):
+            wav_path = self.audio_handler.save_audio_to_temp_file(audio_input)
+            cleanup_file = True
+        else:
+            raise ValueError("Audio input must be a file path (str) or bytes")
         
         try:
-            wav_path = self._convert_audio_to_wav(audio_path)
             
             try:
                 with wave.open(wav_path, 'rb') as wf:
@@ -203,7 +213,7 @@ class VoskSTT(STTEngine):
                 }
                 
             finally:
-                if wav_path != audio_path and os.path.exists(wav_path):
+                if cleanup_file and os.path.exists(wav_path):
                     os.remove(wav_path)
                     
         except Exception as e:
