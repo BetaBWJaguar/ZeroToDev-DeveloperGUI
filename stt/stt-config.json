@@ -7,14 +7,6 @@
         "beam_size": 5
       }
     },
-    "faster_whisper": {
-      "parameters": {
-        "beam_size": 5,
-        "best_of": 5,
-        "temperature": 0.0,
-        "compute_type": "float16"
-      }
-    },
     "vosk": {
       "parameters": {
         "sample_rate": 16000,

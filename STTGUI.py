@@ -14,8 +14,9 @@ from fragments.UIFragments import center_window
 from gui_listener.GUIListener import GUIListener
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
-from stt.factory.STTFactory import STTFactory, STTManager
+from stt.factory.STTFactory import STTManager
 from stt.MediaFormats import AudioFormatHandler
+from stt.stt__models.WhisperSTT import WhisperSTT
 from PathHelper import PathHelper
 from updater.Update_Checker import check_for_update_gui
 from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
@@ -93,8 +94,8 @@ class STTMenuApp(tk.Tk):
         self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
-        self.geometry("1200x1100")
-        self.minsize(1200, 1100)
+        self.geometry("1230x1180")
+        self.minsize(1230, 1180)
         self.listener = GUIListener(self)
         self.resizable(False, False)
         self.logger = LogsManager.get_logger("STTMenuApp")
@@ -242,6 +243,7 @@ class STTMenuApp(tk.Tk):
             new_engine = self.engine_var.get()
             MemoryManager.set("stt_engine", new_engine)
             LogsHelperManager.log_config_change(self.logger, "stt_engine", old_engine, new_engine)
+            self._update_window_size(new_engine)
 
         self.engine_var.trace_add("write", engine_changed)
         engine_row = ttk.Frame(engine_inner, style="Card.TFrame"); engine_row.pack(fill="x")
@@ -251,8 +253,41 @@ class STTMenuApp(tk.Tk):
         ttk.Radiobutton(engine_row, text=self.lang.get("stt_engine_vosk"), value="vosk", variable=self.engine_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
+        self.cuda_available = WhisperSTT.is_cuda_available()
+        self.device_var = tk.StringVar(value=MemoryManager.get("stt_device", "cpu"))
+
+        def device_changed(*_):
+            old_device = MemoryManager.get("stt_device", "")
+            new_device = self.device_var.get()
+            MemoryManager.set("stt_device", new_device)
+            LogsHelperManager.log_config_change(self.logger, "stt_device", old_device, new_device)
+
+        self.device_var.trace_add("write", device_changed)
+
+        def update_device_visibility(*_):
+            if self.engine_var.get() == "whisper":
+                device_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
+                model_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
+            else:
+                device_card.grid_forget()
+                model_card.grid_forget()
+
+        self.engine_var.trace_add("write", update_device_visibility)
+
+        device_card, device_inner = section(right, self.lang.get("stt_device_section"))
+        device_row = ttk.Frame(device_inner, style="Card.TFrame"); device_row.pack(fill="x")
+
+        ttk.Radiobutton(device_row, text=self.lang.get("stt_device_cpu"), value="cpu", variable=self.device_var,
+                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
+        
+        if self.cuda_available:
+            ttk.Radiobutton(device_row, text=self.lang.get("stt_device_gpu"), value="cuda", variable=self.device_var,
+                            style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
+        else:
+            ttk.Label(device_row, text=self.lang.get("stt_device_gpu_unavailable"),
+                     style="Muted.TLabel").pack(anchor="w", pady=2)
+
         model_card, model_inner = section(right, self.lang.get("whisper_model_section"))
-        model_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
 
         self.whisper_model_map = {
             "tiny": self.lang.get("whisper_model_tiny"),
@@ -277,14 +312,9 @@ class STTMenuApp(tk.Tk):
 
         self.whisper_model_var.trace_add("write", whisper_model_changed)
 
-        def update_model_visibility(*_):
-            if self.engine_var.get() == "whisper":
-                model_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
-            else:
-                model_card.grid_forget()
-        
-        self.engine_var.trace_add("write", update_model_visibility)
-        update_model_visibility()
+        self.engine_var.trace_add("write", update_device_visibility)
+        update_device_visibility()
+        self._update_window_size(self.engine_var.get())
 
         model_row, self.whisper_model_combo = styled_combobox(
             model_inner,
@@ -295,7 +325,7 @@ class STTMenuApp(tk.Tk):
         model_row.pack(fill="x", pady=(4, 6))
 
         lang_card, lang_inner = section(right, self.lang.get("language_section"))
-        lang_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
+        lang_card.grid(row=5, column=0, sticky="nsew", pady=(0, 12))
 
         self.stt_lang_map = {
             "auto": self.lang.get("language_auto"),
@@ -326,19 +356,20 @@ class STTMenuApp(tk.Tk):
         lang_row.pack(fill="x", pady=(4, 6))
 
         transcribe_card, transcribe_inner = section(right, self.lang.get("transcribe_section"))
-        transcribe_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
+        transcribe_card.grid(row=6, column=0, sticky="ew", pady=(0, 12))
         self.transcribe_btn = primary_button(transcribe_inner, self.lang.get("transcribe_button"), self.on_transcribe)
         self.transcribe_btn.pack(fill="x")
 
         export_card, export_inner = section(right, self.lang.get("export_section"))
-        export_card.grid(row=5, column=0, sticky="ew", pady=(0, 12))
+        export_card.grid(row=7, column=0, sticky="ew", pady=(0, 12))
         self.export_btn = primary_button(export_inner, self.lang.get("export_button"), self.on_export)
         self.export_btn.pack(fill="x")
 
         self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right, self.lang)
-        self.progress_frame.grid(row=6, column=0, sticky="ew", pady=(8, 2))
+        self.progress_frame.grid(row=8, column=0, sticky="ew", pady=(8, 2))
 
         bar, self.status, self.counter = footer(root, self.lang)
+        self.status.pack_forget()
         bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
 
     def select_audio_file(self):
@@ -393,7 +424,8 @@ class STTMenuApp(tk.Tk):
 
             if engine_type == "whisper":
                 model_name = self.whisper_inv_model_map.get(self.whisper_model_var.get(), "base")
-                self.stt_manager.set_engine("whisper", model_name)
+                device = self.device_var.get()
+                self.stt_manager.set_engine("whisper", model_name, device)
             elif engine_type == "vosk":
                 lang_code = self.stt_inv_lang_map.get(self.stt_lang_var.get(), "auto")
 
@@ -500,10 +532,19 @@ class STTMenuApp(tk.Tk):
         self.text.delete("1.0", tk.END)
         self.text.insert("1.0", result)
         self.text.config(state="disabled")
+        self.counter.config(text=self.lang.get("footer_char_counter").format(count=len(result)))
 
     def _set_progress(self, pct: int, msg: str):
         pct = max(0, min(100, int(pct)))
         self.after(0, lambda: (self.progress_var.set(pct), self.progress_label.config(text=msg)))
+
+    def _update_window_size(self, engine_type: str):
+        if engine_type == "whisper":
+            self.geometry("1230x1180")
+            self.minsize(1230, 1180)
+        else:
+            self.geometry("1230x900")
+            self.minsize(1230, 900)
 
     def show_developer(self):
         win = tk.Toplevel(self)

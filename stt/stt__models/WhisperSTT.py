@@ -1,8 +1,6 @@
-import os
 import json
 import torch
 import whisper
-import warnings
 from typing import Optional, Dict, Any, List
 
 from PathHelper import PathHelper
@@ -17,6 +15,10 @@ class WhisperSTT(STTEngine):
         self.config = self.load_config()
         self.model = None
         self.audio_handler = AudioFormatHandler()
+
+    @staticmethod
+    def is_cuda_available() -> bool:
+        return torch.cuda.is_available()
 
     @classmethod
     def load_config(cls, config_path: str = "stt/stt-config.json") -> Dict[str, Any]:
