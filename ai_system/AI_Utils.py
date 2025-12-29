@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Any, Dict, List
+import json
 
 
 class AIUtils:
@@ -21,8 +22,8 @@ class AIUtils:
         }
 
     @staticmethod
-    def safe_get(data: Dict[str, Any], key: str, default=None):
-        return data.get(key, default)
+    def to_prompt(data: Dict[str, Any]) -> str:
+        return json.dumps(data, ensure_ascii=False, indent=2)
 
     @staticmethod
     def merge_context(
