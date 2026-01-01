@@ -160,6 +160,15 @@ class TTSMenuApp(tk.Tk):
         help_menu.add_command(label=self.lang.get("help_markup_guide"), command=self.show_markup_guide)
         menubar.add_cascade(label=self.lang.get("menu_help"), menu=help_menu)
 
+        user_role = self.current_user.id.get("role", "USER") if isinstance(self.current_user.id, dict) else "USER"
+        if user_role in ["ADMIN", "DEVELOPER"]:
+            admin_menu = tk.Menu(menubar, tearoff=0)
+            admin_menu.add_command(
+                label=self.lang.get("menu_ai_monitoring"),
+                command=self.show_ai_monitoring
+            )
+            menubar.add_cascade(label=self.lang.get("menu_admin"), menu=admin_menu)
+
         package_menu = tk.Menu(menubar, tearoff=0)
         package_menu.add_command(label=self.lang.get("package_zip_settings"), command=self.show_zip_settings)
         menubar.add_cascade(label=self.lang.get("menu_package"), menu=package_menu)
@@ -1357,6 +1366,11 @@ class TTSMenuApp(tk.Tk):
         except Exception as e:
             LogsHelperManager.log_error(self.logger, "LANGUAGE_RELOAD_FAIL", str(e))
             GUIError(self, "Error", f"Failed to reload language:\n{e}", icon="❌")
+
+    def show_ai_monitoring(self):
+        from ai_system.monitoring.AIMonitoringGUI import AIMonitoringGUI
+        LogsHelperManager.log_button(self.logger, "OPEN_AI_MONITORING")
+        AIMonitoringGUI(self, self.lang, self.logger)
 
 
 

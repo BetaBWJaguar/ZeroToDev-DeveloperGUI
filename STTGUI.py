@@ -152,6 +152,15 @@ class STTMenuApp(tk.Tk):
         help_menu.add_command(label=self.lang.get("help_developer"), command=self.show_developer)
         menubar.add_cascade(label=self.lang.get("menu_help"), menu=help_menu)
 
+        user_role = self.current_user.id.get("role", "USER") if isinstance(self.current_user.id, dict) else "USER"
+        if user_role in ["ADMIN", "DEVELOPER"]:
+            admin_menu = tk.Menu(menubar, tearoff=0)
+            admin_menu.add_command(
+                label=self.lang.get("menu_ai_monitoring"),
+                command=self.show_ai_monitoring
+            )
+            menubar.add_cascade(label=self.lang.get("menu_admin"), menu=admin_menu)
+
         theme_menu = tk.Menu(menubar, tearoff=0)
         theme_menu.add_command(label=self.lang.get("menu_light"), command=lambda: self.change_theme("light"))
         theme_menu.add_command(label=self.lang.get("menu_dark"), command=lambda: self.change_theme("dark"))
@@ -935,6 +944,11 @@ class STTMenuApp(tk.Tk):
         except Exception as e:
             LogsHelperManager.log_error(self.logger, "LANGUAGE_RELOAD_FAIL", str(e))
             GUIError(self, "Error", f"Failed to reload language:\n{e}", icon="❌")
+
+    def show_ai_monitoring(self):
+        from ai_system.monitoring.AIMonitoringGUI import AIMonitoringGUI
+        LogsHelperManager.log_button(self.logger, "OPEN_AI_MONITORING")
+        AIMonitoringGUI(self, self.lang, self.logger)
 
     def show_config_settings(self):
         LogsHelperManager.log_button(self.logger, "OPEN_CONFIG_SETTINGS")
