@@ -6,6 +6,7 @@ import urllib
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
+import pygame
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
     progress_section, set_buttons_state, styled_combobox
@@ -94,8 +95,8 @@ class STTMenuApp(tk.Tk):
         self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
-        self.geometry("1230x1180")
-        self.minsize(1230, 1180)
+        self.geometry("1320x1280")
+        self.minsize(1320, 1280)
         self.listener = GUIListener(self)
         self.resizable(False, False)
         self.logger = LogsManager.get_logger("STTMenuApp")
@@ -111,6 +112,13 @@ class STTMenuApp(tk.Tk):
         self.audio_handler = AudioFormatHandler()
         self.selected_audio_file = None
         self.selected_audio_data = None
+        
+        pygame.mixer.init()
+        self.audio_playing = False
+        self.audio_paused = False
+        self.audio_position = 0
+        self.audio_duration = 0
+        self.audio_update_timer = None
 
         self.after(3000, lambda: check_for_update_gui(
             parent=self,
@@ -241,6 +249,54 @@ class STTMenuApp(tk.Tk):
         
         self.select_audio_btn = primary_button(audio_inner, self.lang.get("select_audio_button"), self.select_audio_file)
         self.select_audio_btn.pack(fill="x")
+
+        preview_controls_frame = ttk.Frame(audio_inner, style="Card.TFrame")
+        preview_controls_frame.pack(fill="x", pady=(8, 0))
+        
+        self.audio_time_var = tk.StringVar(value="0:00 / 0:00")
+        time_label = ttk.Label(preview_controls_frame, textvariable=self.audio_time_var, style="Muted.TLabel")
+        time_label.pack(anchor="w", pady=(0, 4))
+        
+        self.audio_progress_var = tk.DoubleVar(value=0)
+        self.audio_progress = ttk.Progressbar(
+            preview_controls_frame,
+            variable=self.audio_progress_var,
+            maximum=100,
+            style="Progress.TProgressbar"
+        )
+        self.audio_progress.pack(fill="x", pady=(0, 6))
+
+        self.audio_progress.bind("<Button-1>", self._seek_audio)
+        
+        buttons_frame = ttk.Frame(preview_controls_frame, style="Card.TFrame")
+        buttons_frame.pack(fill="x")
+        
+        self.play_btn = ttk.Button(
+            buttons_frame,
+            text="▶ Play",
+            command=self.play_audio,
+            style="Accent.TButton",
+            state="disabled"
+        )
+        self.play_btn.pack(side="left", padx=(0, 4), expand=True, fill="x")
+        
+        self.pause_btn = ttk.Button(
+            buttons_frame,
+            text="⏸ Pause",
+            command=self.pause_audio,
+            style="Accent.TButton",
+            state="disabled"
+        )
+        self.pause_btn.pack(side="left", padx=4, expand=True, fill="x")
+        
+        self.stop_btn = ttk.Button(
+            buttons_frame,
+            text="⏹ Stop",
+            command=self.stop_audio,
+            style="Accent.TButton",
+            state="disabled"
+        )
+        self.stop_btn.pack(side="left", padx=(4, 0), expand=True, fill="x")
 
         engine_card, engine_inner = section(right, self.lang.get("stt_engine_section"))
         engine_card.grid(row=1, column=0, sticky="nsew")
@@ -397,7 +453,138 @@ class STTMenuApp(tk.Tk):
         if file_path:
             self.selected_audio_file = file_path
             self.audio_file_var.set(Path(file_path).name)
-            LogsHelperManager.log_event(self.logger, "AUDIO_FILE_SELECTED", {"file": file_path})
+            self.stop_audio()
+            
+            try:
+                pygame.mixer.music.load(file_path)
+                sound = pygame.mixer.Sound(file_path)
+                self.audio_duration = sound.get_length()
+                self.audio_time_var.set(f"0:00 / {self._format_time(self.audio_duration)}")
+                self.play_btn.config(state="normal")
+                LogsHelperManager.log_event(self.logger, "AUDIO_FILE_SELECTED", {"file": file_path})
+            except Exception as e:
+                GUIError(self, self.lang.get("error_title"), f"{self.lang.get('error_audio_load')}\n{e}", icon="❌")
+                LogsHelperManager.log_error(self.logger, "AUDIO_LOAD_FAIL", str(e))
+
+    def play_audio(self):
+        if not self.selected_audio_file:
+            return
+        
+        try:
+            if self.audio_paused:
+                pygame.mixer.music.unpause()
+                self.audio_paused = False
+            else:
+                pygame.mixer.music.play(start=self.audio_position)
+            
+            self.audio_playing = True
+            self.play_btn.config(state="disabled")
+            self.pause_btn.config(state="normal")
+            self.stop_btn.config(state="normal")
+            
+            self._start_audio_progress_update()
+            LogsHelperManager.log_event(self.logger, "AUDIO_PLAY", {"file": self.selected_audio_file})
+        except Exception as e:
+            GUIError(self, self.lang.get("error_title"), f"{self.lang.get('error_audio_play')}\n{e}", icon="❌")
+            LogsHelperManager.log_error(self.logger, "AUDIO_PLAY_FAIL", str(e))
+
+    def pause_audio(self):
+        if self.audio_playing and not self.audio_paused:
+            pygame.mixer.music.pause()
+            self.audio_paused = True
+            self.play_btn.config(state="normal")
+            self.pause_btn.config(state="disabled")
+            
+            if self.audio_update_timer:
+                self.after_cancel(self.audio_update_timer)
+                self.audio_update_timer = None
+            
+            LogsHelperManager.log_event(self.logger, "AUDIO_PAUSE", {"file": self.selected_audio_file})
+
+    def stop_audio(self):
+        if self.audio_playing or self.audio_paused:
+            pygame.mixer.music.stop()
+            self.audio_playing = False
+            self.audio_paused = False
+            self.audio_position = 0
+            self.audio_progress_var.set(0)
+            self.audio_time_var.set(f"0:00 / {self._format_time(self.audio_duration)}")
+            
+            self.play_btn.config(state="normal")
+            self.pause_btn.config(state="disabled")
+            self.stop_btn.config(state="disabled")
+            
+            if self.audio_update_timer:
+                self.after_cancel(self.audio_update_timer)
+                self.audio_update_timer = None
+            
+            LogsHelperManager.log_event(self.logger, "AUDIO_STOP", {"file": self.selected_audio_file})
+
+    def _start_audio_progress_update(self):
+        def update_progress():
+            if self.audio_playing and not self.audio_paused:
+                current_pos = pygame.mixer.music.get_pos() / 1000
+                total_pos = self.audio_position + current_pos
+                
+                if total_pos >= self.audio_duration:
+                    self.stop_audio()
+                    return
+                
+                progress = (total_pos / self.audio_duration) * 100
+                self.audio_progress_var.set(progress)
+                self.audio_time_var.set(f"{self._format_time(total_pos)} / {self._format_time(self.audio_duration)}")
+                
+                self.audio_update_timer = self.after(100, update_progress)
+        
+        self.audio_update_timer = self.after(100, update_progress)
+
+    def _format_time(self, seconds: float) -> str:
+        minutes = int(seconds // 60)
+        secs = int(seconds % 60)
+        return f"{minutes}:{secs:02d}"
+
+    def _seek_audio(self, event):
+        if not self.selected_audio_file or self.audio_duration == 0:
+            return
+
+        widget = event.widget
+        click_x = event.x
+        width = widget.winfo_width()
+
+        click_percent = max(0, min(1, click_x / width))
+        new_position = click_percent * self.audio_duration
+
+        # 🔥 HER ZAMAN hard reset
+        pygame.mixer.music.stop()
+
+        self.audio_position = new_position
+        self.audio_paused = False
+        self.audio_playing = True
+
+        pygame.mixer.music.play(start=self.audio_position)
+
+        progress = (self.audio_position / self.audio_duration) * 100
+        self.audio_progress_var.set(progress)
+        self.audio_time_var.set(
+            f"{self._format_time(self.audio_position)} / {self._format_time(self.audio_duration)}"
+        )
+
+        self.play_btn.config(state="disabled")
+        self.pause_btn.config(state="normal")
+        self.stop_btn.config(state="normal")
+
+        if self.audio_update_timer:
+            self.after_cancel(self.audio_update_timer)
+            self.audio_update_timer = None
+
+        self._start_audio_progress_update()
+
+        LogsHelperManager.log_event(
+            self.logger,
+            "AUDIO_SEEK",
+            {"position": round(self.audio_position, 2)}
+        )
+
 
     def on_transcribe(self):
         import threading
@@ -406,6 +593,8 @@ class STTMenuApp(tk.Tk):
         if not self.selected_audio_file:
             GUIError(self, self.lang.get("error_title"), self.lang.get("error_no_audio_file"), icon="❌")
             return
+        
+        self.stop_audio()
         
         set_buttons_state("disabled", self.transcribe_btn, self.select_audio_btn, self.export_btn)
         self._set_progress(0, self.lang.get("transcribe_starting"))
@@ -549,11 +738,16 @@ class STTMenuApp(tk.Tk):
 
     def _update_window_size(self, engine_type: str):
         if engine_type == "whisper":
-            self.geometry("1230x1180")
-            self.minsize(1230, 1180)
+            self.geometry("1320x1280")
+            self.minsize(1320, 1280)
         else:
-            self.geometry("1230x900")
-            self.minsize(1230, 900)
+            self.geometry("1320x1000")
+            self.minsize(1320, 1000)
+
+    def destroy(self):
+        self.stop_audio()
+        pygame.mixer.quit()
+        super().destroy()
 
     def show_developer(self):
         win = tk.Toplevel(self)

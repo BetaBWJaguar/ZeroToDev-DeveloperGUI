@@ -100,6 +100,32 @@ def refresh_theme(root, colors: dict, fonts: dict):
         darkcolor=border,
         thickness=thickness
     )
+
+    style.layout(
+        "Progress.TProgressbar",
+        [("Horizontal.Progressbar.trough", {
+            "sticky": "nswe",
+            "children": [
+                ("Horizontal.Progressbar.pbar", {"side": "left", "sticky": "ns"})
+            ]
+        })]
+    )
+
+    style.configure(
+        "Progress.TProgressbar",
+        troughcolor=trough,
+        background=c["primary"],
+        bordercolor=border,
+        lightcolor=border,
+        darkcolor=border,
+        thickness=thickness
+    )
+
+    style.map(
+        "Progress.TProgressbar",
+        background=[("active", c["primary_active"])]
+    )
+
     style.map("Accent.Horizontal.TProgressbar", background=[("active", c["primary_active"])])
 
     def apply_recursive(w):

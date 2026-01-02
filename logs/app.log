@@ -5718,3 +5718,199 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-01 02:23:25 | INFO    | TTSMenuApp | {"timestamp": "2026-01-01T02:23:25.324732", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
 2026-01-01 02:23:25 | INFO    | TTSMenuApp | {"timestamp": "2026-01-01T02:23:25.399072", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
 2026-01-01 02:23:34 | INFO    | Main | {"timestamp": "2026-01-01T02:23:34.630475", "event": "SESSION_END", "data": {"session_id": "20260101-022140"}}
+2026-01-02 02:05:12 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:05:13 | INFO    | Main | {"timestamp": "2026-01-02T02:05:13.004860", "event": "SESSION_START", "data": {"session_id": "20260102-020513"}}
+2026-01-02 02:05:13 | INFO    | LangManager | {"timestamp": "2026-01-02T02:05:13.056018", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:05:20 | INFO    | Main | {"timestamp": "2026-01-02T02:05:20.076281", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:06:15 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:06:15 | INFO    | Main | {"timestamp": "2026-01-02T02:06:15.805009", "event": "SESSION_START", "data": {"session_id": "20260102-020615"}}
+2026-01-02 02:06:15 | INFO    | LangManager | {"timestamp": "2026-01-02T02:06:15.857085", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:06:21 | INFO    | Main | {"timestamp": "2026-01-02T02:06:21.727980", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:06:22 | INFO    | Main | {"timestamp": "2026-01-02T02:06:22.043250", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:06:22 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-02 02:06:24 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T02:06:24.868520", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2026-01-02 02:06:26 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T02:06:26.859383", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2026-01-02 02:06:30 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T02:06:30.180841", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-01-02 02:06:34 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T02:06:34.465961", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:06:34 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T02:06:34.726945", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:08:38 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:08:38 | INFO    | Main | {"timestamp": "2026-01-02T02:08:38.683296", "event": "SESSION_START", "data": {"session_id": "20260102-020838"}}
+2026-01-02 02:08:38 | INFO    | LangManager | {"timestamp": "2026-01-02T02:08:38.732445", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:08:44 | INFO    | Main | {"timestamp": "2026-01-02T02:08:44.515256", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:08:44 | INFO    | Main | {"timestamp": "2026-01-02T02:08:44.781283", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:08:54 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:08:54.354448", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:08:55 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:08:55.534722", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:08:57 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:08:57.598977", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:08:58 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:08:58.350519", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:01 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:01.299717", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:04 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:04.464963", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:16 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:16.800798", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:17 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:17.716308", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:31 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:31.813581", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:37 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:37.577686", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-02 02:09:39 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:39.124034", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-02 02:09:40 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:40.027229", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-02 02:09:41 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:41.338920", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-02 02:09:42 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:42.148591", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-02 02:09:43 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:43.317622", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:44 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:44.537707", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:44 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:44.981247", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:09:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:45.583263", "event": "AUDIO_SEEK", "data": {"position": 48.215689823545254}}
+2026-01-02 02:09:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:46.061669", "event": "AUDIO_SEEK", "data": {"position": 61.130606740566314}}
+2026-01-02 02:09:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:46.576050", "event": "AUDIO_SEEK", "data": {"position": 98.58386579992737}}
+2026-01-02 02:09:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:46.957300", "event": "AUDIO_SEEK", "data": {"position": 107.19381041127473}}
+2026-01-02 02:09:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:47.440726", "event": "AUDIO_SEEK", "data": {"position": 141.20309162609684}}
+2026-01-02 02:09:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:47.877410", "event": "AUDIO_SEEK", "data": {"position": 74.90651811872209}}
+2026-01-02 02:09:48 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:48.432310", "event": "AUDIO_SEEK", "data": {"position": 51.65966766808421}}
+2026-01-02 02:09:49 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:49.013208", "event": "AUDIO_SEEK", "data": {"position": 87.39093780517578}}
+2026-01-02 02:09:49 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:49.757253", "event": "AUDIO_SEEK", "data": {"position": 119.24773286716105}}
+2026-01-02 02:09:50 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:50.444110", "event": "AUDIO_SEEK", "data": {"position": 149.38253900687684}}
+2026-01-02 02:09:54 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:54.668681", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/KOLOMBİYA.mp3"}}
+2026-01-02 02:09:55 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:55.059077", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/KOLOMBİYA.mp3"}}
+2026-01-02 02:09:55 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:55.742492", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/KOLOMBİYA.mp3"}}
+2026-01-02 02:09:56 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:09:56.544339", "event": "AUDIO_SEEK", "data": {"position": 26.217117309570312}}
+2026-01-02 02:10:00 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:10:00.441425", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/KOLOMBİYA.mp3"}}
+2026-01-02 02:10:50 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:10:50 | INFO    | Main | {"timestamp": "2026-01-02T02:10:50.855324", "event": "SESSION_START", "data": {"session_id": "20260102-021050"}}
+2026-01-02 02:10:50 | INFO    | LangManager | {"timestamp": "2026-01-02T02:10:50.900516", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:11:00 | INFO    | Main | {"timestamp": "2026-01-02T02:11:00.773642", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:11:01 | INFO    | Main | {"timestamp": "2026-01-02T02:11:01.037244", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:11:04 | INFO    | Main | {"timestamp": "2026-01-02T02:11:04.431181", "event": "SESSION_END", "data": {"session_id": "20260102-021050"}}
+2026-01-02 02:11:29 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:11:29 | INFO    | Main | {"timestamp": "2026-01-02T02:11:29.674383", "event": "SESSION_START", "data": {"session_id": "20260102-021129"}}
+2026-01-02 02:11:29 | INFO    | LangManager | {"timestamp": "2026-01-02T02:11:29.719564", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:11:47 | INFO    | Main | {"timestamp": "2026-01-02T02:11:47.312923", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:11:47 | INFO    | Main | {"timestamp": "2026-01-02T02:11:47.570138", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:11:52 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:11:52.668609", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:11:52 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:11:52.741363", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:11:54 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:11:54.471930", "event": "AUDIO_SEEK", "data": {"position": 38.23238210548643}}
+2026-01-02 02:11:55 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:11:55.640277", "event": "AUDIO_SEEK", "data": {"position": 57.94595412862786}}
+2026-01-02 02:11:56 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:11:56.654783", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-02 02:12:00 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:00.116331", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:02 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:02.047882", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:04 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:04.071996", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:06 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:06.479159", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:07.725253", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:08 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:08.383670", "event": "AUDIO_SEEK", "data": {"position": 35.245477253495295}}
+2026-01-02 02:12:09 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:09.039936", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:10 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:10.727254", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:11 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:11.377666", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:11 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:11.780969", "event": "AUDIO_SEEK", "data": {"position": 59.73809703982254}}
+2026-01-02 02:12:12 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:12.197556", "event": "AUDIO_SEEK", "data": {"position": 106.03512224568502}}
+2026-01-02 02:12:12 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:12.647637", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:14 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:14.381825", "event": "AUDIO_SEEK", "data": {"position": 51.972144424645606}}
+2026-01-02 02:12:16 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:16.015689", "event": "AUDIO_SEEK", "data": {"position": 9.558095526371607}}
+2026-01-02 02:12:17 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:17.236656", "event": "AUDIO_SEEK", "data": {"position": 100.06131254170275}}
+2026-01-02 02:12:19 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:19.644998", "event": "AUDIO_SEEK", "data": {"position": 1.7921429111946763}}
+2026-01-02 02:12:20 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:20.815784", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:21 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:21.554445", "event": "AUDIO_SEEK", "data": {"position": 94.98357429331784}}
+2026-01-02 02:12:22 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:22.003222", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:23 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:23.867192", "event": "AUDIO_SEEK", "data": {"position": 22.999167360331676}}
+2026-01-02 02:12:24 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:24.556146", "event": "AUDIO_SEEK", "data": {"position": 7.467262129977818}}
+2026-01-02 02:12:25 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:25.622007", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:26 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:26.287458", "event": "AUDIO_SEEK", "data": {"position": 114.69714631645928}}
+2026-01-02 02:12:26 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:26.800958", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:29 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:29.258823", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:40 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:40.422717", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:41 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:41.165475", "event": "AUDIO_SEEK", "data": {"position": 76.46476421097286}}
+2026-01-02 02:12:42 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:42.533747", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:43 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:43.649170", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:44 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:44.523355", "event": "AUDIO_SEEK", "data": {"position": 94.98357429331784}}
+2026-01-02 02:12:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:45.224247", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:48 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:48.033793", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:48 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:48.834184", "event": "AUDIO_SEEK", "data": {"position": 23.895238815929016}}
+2026-01-02 02:12:49 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:49.254980", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:50 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:50.435151", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:51 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:51.081674", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:52 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:52.618686", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:53 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:53.086393", "event": "AUDIO_SEEK", "data": {"position": 126.64476572442379}}
+2026-01-02 02:12:53 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:53.626204", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:54 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:54.856330", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:56 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:56.178265", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:12:58 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:12:58.785969", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:13:12 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:12.202581", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:13:12 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:12.842115", "event": "AUDIO_SEEK", "data": {"position": 60.932858980618995}}
+2026-01-02 02:13:13 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:13.812750", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:13:14 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:14.760814", "event": "AUDIO_SEEK", "data": {"position": 100.36000302690186}}
+2026-01-02 02:13:15 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:15.417505", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:13:16 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:16.638499", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:13:17 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:17.513296", "event": "AUDIO_SEEK", "data": {"position": 59.73809703982254}}
+2026-01-02 02:13:17 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:17.871277", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:13:18 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:18.297626", "event": "AUDIO_SEEK", "data": {"position": 92.59405041172494}}
+2026-01-02 02:13:18 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:18.896407", "event": "AUDIO_SEEK", "data": {"position": 40.32321550188022}}
+2026-01-02 02:13:20 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:20.747013", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:13:49 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:13:49 | INFO    | Main | {"timestamp": "2026-01-02T02:13:49.533915", "event": "SESSION_START", "data": {"session_id": "20260102-021349"}}
+2026-01-02 02:13:49 | INFO    | LangManager | {"timestamp": "2026-01-02T02:13:49.581104", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:13:54 | INFO    | Main | {"timestamp": "2026-01-02T02:13:54.730785", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:13:54 | INFO    | Main | {"timestamp": "2026-01-02T02:13:54.987730", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:13:59 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:13:59.799833", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:14:00 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:00.249181", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:14:00 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:00.972784", "event": "AUDIO_SEEK", "data": {"position": 66.43}}
+2026-01-02 02:14:03 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:03.099262", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:14:03 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:03.837623", "event": "AUDIO_SEEK", "data": {"position": 112.3}}
+2026-01-02 02:14:05 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:05.969113", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:14:06 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:06.783408", "event": "AUDIO_SEEK", "data": {"position": 150.66}}
+2026-01-02 02:14:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:07.683487", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:14:08 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:08.652639", "event": "AUDIO_SEEK", "data": {"position": 24.12}}
+2026-01-02 02:14:10 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:10.237936", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:14:10 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:10.915633", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:14:14 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:14:14.659394", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:15:18 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:15:18.249229", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/ANNEŞARKI.mp3"}}
+2026-01-02 02:15:18 | INFO    | Main | {"timestamp": "2026-01-02T02:15:18.421071", "event": "SESSION_END", "data": {"session_id": "20260102-021349"}}
+2026-01-02 02:22:10 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:22:10 | INFO    | Main | {"timestamp": "2026-01-02T02:22:10.376258", "event": "SESSION_START", "data": {"session_id": "20260102-022210"}}
+2026-01-02 02:22:10 | INFO    | LangManager | {"timestamp": "2026-01-02T02:22:10.425110", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:22:16 | INFO    | Main | {"timestamp": "2026-01-02T02:22:16.830406", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:22:17 | INFO    | Main | {"timestamp": "2026-01-02T02:22:17.100261", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:22:19 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:22:19.317684", "event": "CONFIG_CHANGE", "data": {"key": "stt_device", "old": "", "new": "cuda"}}
+2026-01-02 02:22:29 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:22:29.500529", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:22:30 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:22:30.504831", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:22:33 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:22:33.623811", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "small"}}
+2026-01-02 02:22:34 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:22:34.760220", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:22:37 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:22:37.064857", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2026-01-02 02:22:37 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:22:37.077441", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:23:04 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:23:04.922561", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3", "engine": "whisper", "language": "auto", "length": 1858}}}
+2026-01-02 02:23:42 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 02:23:42 | INFO    | Main | {"timestamp": "2026-01-02T02:23:42.174826", "event": "SESSION_START", "data": {"session_id": "20260102-022342"}}
+2026-01-02 02:23:42 | INFO    | LangManager | {"timestamp": "2026-01-02T02:23:42.220149", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 02:23:47 | INFO    | Main | {"timestamp": "2026-01-02T02:23:47.627108", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 02:23:47 | INFO    | Main | {"timestamp": "2026-01-02T02:23:47.879111", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 02:23:50 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:23:50.462577", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-02 02:23:50 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:23:50.977345", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-02 02:23:53 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:23:53.877859", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2026-01-02 02:23:54 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:23:54.926748", "event": "CONFIG_CHANGE", "data": {"key": "stt_device", "old": "", "new": "cuda"}}
+2026-01-02 02:23:58 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:23:58.559047", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:23:59 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:23:59.866508", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "small"}}
+2026-01-02 02:24:02 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:24:02.360167", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2026-01-02 02:24:21 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:24:21.820315", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3", "engine": "whisper", "language": "tr", "length": 1858}}}
+2026-01-02 02:24:24 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:24:24.919709", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:24:49 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:24:49.025311", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:24:50 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:24:50.001489", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:24:51 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:24:51.909865", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:24:56 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:24:56.254927", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2026-01-02 02:25:12 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:12.820270", "event": "SUCCESS", "data": {"action": "EXPORT_SETTINGS_SAVED", "duration": {"format": ".md", "output_dir": "C:/Users/tuna/Downloads", "auto_open": true, "pattern": "timestamp"}}}
+2026-01-02 02:25:21 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:21.292884", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2026-01-02 02:25:25 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:25.599295", "event": "SUCCESS", "data": {"action": "EXPORT_SETTINGS_SAVED", "duration": {"format": ".md", "output_dir": "C:/Users/tuna/Downloads/chatmosphere", "auto_open": true, "pattern": "timestamp"}}}
+2026-01-02 02:25:29 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:29.682387", "event": "SUCCESS", "data": {"action": "TEXT_EXPORTED", "duration": {"path": "C:/Users/tuna/Downloads/chatmosphere/transcript_2026-01-02_02-25-27.md"}}}
+2026-01-02 02:25:40 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:40.212669", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-02 02:25:42 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:42.170906", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-02 02:25:43 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:43.200747", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-02 02:25:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:45.151833", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "tr", "new": "auto"}}
+2026-01-02 02:25:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:46.032981", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-02 02:25:49 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:49.229770", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-02 02:25:52 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:52.319825", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:25:53 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:25:53.167928", "event": "AUDIO_SEEK", "data": {"position": 112.61}}
+2026-01-02 02:26:12 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:26:12.629700", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:26:18 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:26:18.181329", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "auto", "new": "tr"}}
+2026-01-02 02:26:19 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:26:19.294573", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2026-01-02 02:26:33 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:26:33.165173", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3", "engine": "vosk", "language": "tr", "length": 1637}}}
+2026-01-02 02:26:40 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:26:40.747235", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-02 02:26:48 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:26:48.417135", "event": "CONFIG_CHANGE", "data": {"key": "stt_device", "old": "cuda", "new": "cpu"}}
+2026-01-02 02:26:56 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:26:56.546750", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:27:00 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:27:00.893237", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:27:02 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:27:02.284365", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:27:03 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:27:03.202326", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:27:04 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:27:04.832369", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2026-01-02 02:27:35 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:27:35.830181", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-02 02:27:35 | INFO    | Main | {"timestamp": "2026-01-02T02:27:35.988930", "event": "SESSION_END", "data": {"session_id": "20260102-022342"}}
