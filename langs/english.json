@@ -377,5 +377,13 @@
   "ai_status_success": "Success",
   "ai_status_failed": "Failed",
   "ai_refresh_button": "Refresh",
-  "ai_refresh_failed": "Failed to refresh data"
+  "ai_refresh_failed": "Failed to refresh data",
+  "audio_play_button": "▶ Play",
+  "audio_pause_button": "⏸ Pause",
+  "audio_stop_button": "⏹ Stop",
+  "timestamps_section": "Timestamps",
+  "timestamps_label": "Show timestamps in transcription",
+  "timestamps_description": "When enabled, each segment will show its start and end time.",
+  "timestamps_enabled": "Enabled",
+  "timestamps_disabled": "Disabled"
 }

@@ -190,6 +190,12 @@ class STTManager:
         
         return self.current_engine.get_model_info()
     
+    def get_segments(self) -> Optional[List[Dict[str, Any]]]:
+        if not self.current_engine:
+            return None
+        
+        return self.current_engine.get_segments()
+    
     def switch_engine(self, engine_type: str, model_name: Optional[str] = None, device: str = "cpu"):
         if self.current_engine:
             self.current_engine.unload()

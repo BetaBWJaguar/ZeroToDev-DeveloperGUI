@@ -377,5 +377,13 @@
   "ai_status_success": "Erfolg",
   "ai_status_failed": "Fehlgeschlagen",
   "ai_refresh_button": "Aktualisieren",
-  "ai_refresh_failed": "Aktualisierung der Daten fehlgeschlagen"
+  "ai_refresh_failed": "Aktualisierung der Daten fehlgeschlagen",
+  "audio_play_button": "▶ Abspielen",
+  "audio_pause_button": "⏸ Pausieren",
+  "audio_stop_button": "⏹ Stoppen",
+  "timestamps_section": "Zeitstempel",
+  "timestamps_label": "Zeitstempel in der Transkription anzeigen",
+  "timestamps_description": "Wenn aktiviert, zeigt jedes Segment seine Start- und Endzeit an.",
+  "timestamps_enabled": "Aktiviert",
+  "timestamps_disabled": "Deaktiviert"
 }

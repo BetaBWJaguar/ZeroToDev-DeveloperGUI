@@ -377,5 +377,13 @@
   "ai_status_success": "Başarılı",
   "ai_status_failed": "Başarısız",
   "ai_refresh_button": "Yenile",
-  "ai_refresh_failed": "Veriler yenilenemedi"
+  "ai_refresh_failed": "Veriler yenilenemedi",
+  "audio_play_button": "▶ Oynat",
+  "audio_pause_button": "⏸ Duraklat",
+  "audio_stop_button": "⏹ Durdur",
+  "timestamps_section": "Zaman Damgası",
+  "timestamps_label": "Transkriptte zaman damgası göster",
+  "timestamps_description": "Etkinleştirildiğinde, her segmentin başlangıç ve bitiş zamanı gösterilir.",
+  "timestamps_enabled": "Etkin",
+  "timestamps_disabled": "Devre Dışı"
 }

@@ -112,6 +112,7 @@ class STTMenuApp(tk.Tk):
         self.audio_handler = AudioFormatHandler()
         self.selected_audio_file = None
         self.selected_audio_data = None
+        self.transcription_segments = None
         
         pygame.mixer.init()
         self.audio_playing = False
@@ -217,6 +218,7 @@ class STTMenuApp(tk.Tk):
 
     def _build(self):
         root = ttk.Frame(self, padding=20); root.pack(fill="both", expand=True)
+        self.timestamps_frame = None
 
         root.grid_rowconfigure(1, weight=0)
         root.grid_rowconfigure(2, weight=1)
@@ -273,7 +275,7 @@ class STTMenuApp(tk.Tk):
         
         self.play_btn = ttk.Button(
             buttons_frame,
-            text="▶ Play",
+            text=self.lang.get("audio_play_button"),
             command=self.play_audio,
             style="Accent.TButton",
             state="disabled"
@@ -282,7 +284,7 @@ class STTMenuApp(tk.Tk):
         
         self.pause_btn = ttk.Button(
             buttons_frame,
-            text="⏸ Pause",
+            text=self.lang.get("audio_pause_button"),
             command=self.pause_audio,
             style="Accent.TButton",
             state="disabled"
@@ -291,7 +293,7 @@ class STTMenuApp(tk.Tk):
         
         self.stop_btn = ttk.Button(
             buttons_frame,
-            text="⏹ Stop",
+            text=self.lang.get("audio_stop_button"),
             command=self.stop_audio,
             style="Accent.TButton",
             state="disabled"
@@ -309,6 +311,7 @@ class STTMenuApp(tk.Tk):
             MemoryManager.set("stt_engine", new_engine)
             LogsHelperManager.log_config_change(self.logger, "stt_engine", old_engine, new_engine)
             self._update_window_size(new_engine)
+            update_device_visibility()
 
         self.engine_var.trace_add("write", engine_changed)
         engine_row = ttk.Frame(engine_inner, style="Card.TFrame"); engine_row.pack(fill="x")
@@ -333,9 +336,17 @@ class STTMenuApp(tk.Tk):
             if self.engine_var.get() == "whisper":
                 device_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
                 model_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
+
+                if self.timestamps_frame is not None:
+                    self.timestamps_frame.pack(fill="x", pady=(8, 0))
             else:
                 device_card.grid_forget()
                 model_card.grid_forget()
+
+                if self.timestamps_frame is not None:
+                    self.timestamps_frame.pack_forget()
+
+
 
         self.engine_var.trace_add("write", update_device_visibility)
 
@@ -424,6 +435,29 @@ class STTMenuApp(tk.Tk):
         transcribe_card.grid(row=6, column=0, sticky="ew", pady=(0, 12))
         self.transcribe_btn = primary_button(transcribe_inner, self.lang.get("transcribe_button"), self.on_transcribe)
         self.transcribe_btn.pack(fill="x")
+
+
+        self.timestamps_frame = ttk.Frame(transcribe_inner, style="Card.TFrame")
+        self.timestamps_frame.pack(fill="x", pady=(8, 0))
+
+        self.show_timestamps = tk.BooleanVar(value=MemoryManager.get("show_timestamps", False))
+
+        def timestamps_changed(*_):
+            MemoryManager.set("show_timestamps", self.show_timestamps.get())
+            current_text = self.text.get("1.0", tk.END).strip()
+            if current_text and hasattr(self, 'transcription_segments'):
+                self._display_transcription_result_with_timestamps()
+
+        self.show_timestamps.trace_add("write", timestamps_changed)
+
+        ttk.Checkbutton(
+            self.timestamps_frame,
+            text=self.lang.get("timestamps_label"),
+            variable=self.show_timestamps,
+            style="Option.TRadiobutton",
+            takefocus=0
+        ).pack(anchor="w", pady=2)
+
 
         export_card, export_inner = section(right, self.lang.get("export_section"))
         export_card.grid(row=7, column=0, sticky="ew", pady=(0, 12))
@@ -554,7 +588,6 @@ class STTMenuApp(tk.Tk):
         click_percent = max(0, min(1, click_x / width))
         new_position = click_percent * self.audio_duration
 
-        # 🔥 HER ZAMAN hard reset
         pygame.mixer.music.stop()
 
         self.audio_position = new_position
@@ -642,8 +675,13 @@ class STTMenuApp(tk.Tk):
 
             if engine_type == "vosk":
                 result = self.stt_manager.transcribe(self.selected_audio_data, lang_code)
+                self.transcription_segments = None
             else:
                 result = self.stt_manager.transcribe(self.selected_audio_file, lang_code)
+                try:
+                    self.transcription_segments = self.stt_manager.get_segments()
+                except Exception:
+                    self.transcription_segments = None
             
             self._set_progress(90, self.lang.get("transcription_complete"))
 
@@ -728,9 +766,28 @@ class STTMenuApp(tk.Tk):
     def _display_transcription_result(self, result):
         self.text.config(state="normal")
         self.text.delete("1.0", tk.END)
-        self.text.insert("1.0", result)
+        
+        if self.show_timestamps.get() and self.transcription_segments:
+            self._display_transcription_result_with_timestamps()
+        else:
+            self.text.insert("1.0", result)
+        
         self.text.config(state="disabled")
         self.counter.config(text=self.lang.get("footer_char_counter").format(count=len(result)))
+    
+    def _display_transcription_result_with_timestamps(self):
+        self.text.config(state="normal")
+        self.text.delete("1.0", tk.END)
+        
+        formatted_text = ""
+        for segment in self.transcription_segments:
+            start_time = self._format_time(segment.get('start', 0))
+            end_time = self._format_time(segment.get('end', 0))
+            text = segment.get('text', '').strip()
+            formatted_text += f"[{start_time} - {end_time}] {text}\n"
+        
+        self.text.insert("1.0", formatted_text)
+        self.text.config(state="disabled")
 
     def _set_progress(self, pct: int, msg: str):
         pct = max(0, min(100, int(pct)))

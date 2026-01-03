@@ -27,6 +27,9 @@ class STTEngine(ABC):
     @abstractmethod
     def get_model_info(self) -> Dict[str, Any]:
         pass
+    
+    def get_segments(self) -> Optional[list]:
+        return None
 
     def is_loaded(self) -> bool:
         return self._loaded

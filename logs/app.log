@@ -5914,3 +5914,92 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-02 02:27:04 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:27:04.832369", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
 2026-01-02 02:27:35 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T02:27:35.830181", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
 2026-01-02 02:27:35 | INFO    | Main | {"timestamp": "2026-01-02T02:27:35.988930", "event": "SESSION_END", "data": {"session_id": "20260102-022342"}}
+2026-01-02 23:48:05 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 23:48:05 | INFO    | Main | {"timestamp": "2026-01-02T23:48:05.147886", "event": "SESSION_START", "data": {"session_id": "20260102-234805"}}
+2026-01-02 23:48:05 | INFO    | LangManager | {"timestamp": "2026-01-02T23:48:05.198674", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 23:48:10 | INFO    | Main | {"timestamp": "2026-01-02T23:48:10.475265", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 23:48:10 | INFO    | Main | {"timestamp": "2026-01-02T23:48:10.760544", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 23:48:11 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-02 23:48:15 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T23:48:15.939004", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2026-01-02 23:48:24 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T23:48:24.122488", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2026-01-02 23:48:27 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T23:48:27.252838", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-01-02 23:48:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T23:48:31.148669", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 23:48:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-02T23:48:31.413594", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 23:48:38 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T23:48:38.730067", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-02 23:49:10 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T23:49:10.325489", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-02 23:49:11 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T23:49:11.919323", "event": "CONFIG_CHANGE", "data": {"key": "stt_device", "old": "", "new": "cuda"}}
+2026-01-02 23:49:14 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T23:49:14.984977", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2026-01-02 23:49:24 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T23:49:24.900589", "event": "BUTTON_CLICK", "data": {"action": "OPEN_DEVELOPER"}}
+2026-01-02 23:49:28 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T23:49:28.188713", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2026-01-02 23:50:53 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 23:50:54 | INFO    | Main | {"timestamp": "2026-01-02T23:50:54.000184", "event": "SESSION_START", "data": {"session_id": "20260102-235054"}}
+2026-01-02 23:50:54 | INFO    | LangManager | {"timestamp": "2026-01-02T23:50:54.053458", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 23:50:59 | INFO    | Main | {"timestamp": "2026-01-02T23:50:59.111472", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 23:50:59 | INFO    | Main | {"timestamp": "2026-01-02T23:50:59.366412", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 23:51:04 | INFO    | STTMenuApp | {"timestamp": "2026-01-02T23:51:04.454667", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-02 23:53:10 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 23:53:10 | INFO    | Main | {"timestamp": "2026-01-02T23:53:10.815300", "event": "SESSION_START", "data": {"session_id": "20260102-235310"}}
+2026-01-02 23:53:10 | INFO    | LangManager | {"timestamp": "2026-01-02T23:53:10.864033", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 23:53:19 | INFO    | Main | {"timestamp": "2026-01-02T23:53:19.574973", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 23:53:19 | INFO    | Main | {"timestamp": "2026-01-02T23:53:19.837363", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 23:55:03 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 23:55:03 | INFO    | Main | {"timestamp": "2026-01-02T23:55:03.997125", "event": "SESSION_START", "data": {"session_id": "20260102-235503"}}
+2026-01-02 23:55:04 | INFO    | LangManager | {"timestamp": "2026-01-02T23:55:04.046078", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 23:55:13 | INFO    | Main | {"timestamp": "2026-01-02T23:55:13.678398", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 23:55:13 | INFO    | Main | {"timestamp": "2026-01-02T23:55:13.932591", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-02 23:56:28 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-02 23:56:28 | INFO    | Main | {"timestamp": "2026-01-02T23:56:28.281112", "event": "SESSION_START", "data": {"session_id": "20260102-235628"}}
+2026-01-02 23:56:28 | INFO    | LangManager | {"timestamp": "2026-01-02T23:56:28.331183", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-02 23:56:39 | INFO    | Main | {"timestamp": "2026-01-02T23:56:39.327756", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-02 23:56:39 | INFO    | Main | {"timestamp": "2026-01-02T23:56:39.584758", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-03 00:24:51 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-03 00:24:51 | INFO    | Main | {"timestamp": "2026-01-03T00:24:51.977487", "event": "SESSION_START", "data": {"session_id": "20260103-002451"}}
+2026-01-03 00:24:52 | INFO    | LangManager | {"timestamp": "2026-01-03T00:24:52.025167", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-03 00:25:00 | INFO    | Main | {"timestamp": "2026-01-03T00:25:00.504093", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-03 00:25:00 | INFO    | Main | {"timestamp": "2026-01-03T00:25:00.757560", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-03 00:25:37 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:25:37.228454", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-03 00:25:37 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:25:37.848877", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-03 00:25:39 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:25:39.376374", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-03 00:25:41 | INFO    | Main | {"timestamp": "2026-01-03T00:25:41.288796", "event": "SESSION_END", "data": {"session_id": "20260103-002451"}}
+2026-01-03 00:29:51 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-03 00:29:51 | INFO    | Main | {"timestamp": "2026-01-03T00:29:51.667597", "event": "SESSION_START", "data": {"session_id": "20260103-002951"}}
+2026-01-03 00:29:51 | INFO    | LangManager | {"timestamp": "2026-01-03T00:29:51.713538", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-03 00:30:04 | INFO    | Main | {"timestamp": "2026-01-03T00:30:04.187587", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-03 00:30:04 | INFO    | Main | {"timestamp": "2026-01-03T00:30:04.505747", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-03 00:30:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:30:07.722372", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-03 00:30:12 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:30:12.462556", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-03 00:30:14 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:30:14.489210", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-03 00:45:16 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:45:16.308024", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-03 00:45:17 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:45:17.779858", "event": "CONFIG_CHANGE", "data": {"key": "stt_device", "old": "", "new": "cuda"}}
+2026-01-03 00:49:05 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:49:05.847432", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-03 00:49:10 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:49:10.668637", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-03 00:49:13 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:49:13.935235", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-03 00:49:15 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:49:15.598800", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "small"}}
+2026-01-03 00:49:16 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:49:16.802258", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2026-01-03 00:49:16 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:49:16.813674", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3"}}
+2026-01-03 00:49:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:49:47.188867", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3", "engine": "whisper", "language": "auto", "length": 1858}}}
+2026-01-03 00:50:01 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:50:01.458789", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2026-01-03 00:50:18 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:50:18.940982", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3", "engine": "whisper", "language": "auto", "length": 1858}}}
+2026-01-03 00:52:19 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:52:19.187903", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "whisper", "new": "vosk"}}
+2026-01-03 00:52:22 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:52:22.984837", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "tr"}}
+2026-01-03 00:52:24 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:52:24.035229", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2026-01-03 00:52:39 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:52:39.098201", "event": "SUCCESS", "data": {"action": "TRANSCRIPTION_COMPLETE", "duration": {"file": "C:/Users/tuna/Downloads/2025-12-24 20-14-52.mp3", "engine": "vosk", "language": "tr", "length": 1637}}}
+2026-01-03 00:52:49 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:52:49.516023", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "vosk", "new": "whisper"}}
+2026-01-03 00:53:00 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:53:00.220758", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2026-01-03 00:53:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:53:07.705700", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2026-01-03 00:53:15 | INFO    | Main | {"timestamp": "2026-01-03T00:53:15.162382", "event": "SESSION_END", "data": {"session_id": "20260103-002951"}}
+2026-01-03 00:59:18 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-03 00:59:18 | INFO    | Main | {"timestamp": "2026-01-03T00:59:18.563973", "event": "SESSION_START", "data": {"session_id": "20260103-005918"}}
+2026-01-03 00:59:18 | INFO    | LangManager | {"timestamp": "2026-01-03T00:59:18.612162", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-03 00:59:29 | INFO    | Main | {"timestamp": "2026-01-03T00:59:29.156732", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-03 00:59:29 | INFO    | Main | {"timestamp": "2026-01-03T00:59:29.418307", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-03 00:59:32 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T00:59:32.021745", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CONFIG_SETTINGS"}}
+2026-01-03 01:00:50 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:00:50.951659", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2026-01-03 01:00:52 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:00:52.523872", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "english", "new": "turkish"}}}
+2026-01-03 01:00:52 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:00:52.656137", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "turkish"}}}
+2026-01-03 01:01:19 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:01:19.099087", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
+2026-01-03 01:01:19 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:01:19.201577", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
+2026-01-03 01:01:23 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:01:23.066157", "event": "BUTTON_CLICK", "data": {"action": "OPEN_LANGUAGE_SETTINGS"}}
+2026-01-03 01:01:24 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:01:24.721925", "event": "SUCCESS", "data": {"action": "LANGUAGE_CHANGED", "duration": {"old": "turkish", "new": "english"}}}
+2026-01-03 01:01:24 | INFO    | STTMenuApp | {"timestamp": "2026-01-03T01:01:24.840032", "event": "SUCCESS", "data": {"action": "LANGUAGE_RELOAD_SUCCESS", "duration": {"language": "english"}}}
+2026-01-03 01:02:39 | INFO    | Main | {"timestamp": "2026-01-03T01:02:39.286256", "event": "SESSION_END", "data": {"session_id": "20260103-005918"}}

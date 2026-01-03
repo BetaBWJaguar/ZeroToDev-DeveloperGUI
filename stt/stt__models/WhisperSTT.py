@@ -15,6 +15,7 @@ class WhisperSTT(STTEngine):
         self.config = self.load_config()
         self.model = None
         self.audio_handler = AudioFormatHandler()
+        self._last_segments = None
 
     @staticmethod
     def is_cuda_available() -> bool:
@@ -83,7 +84,7 @@ class WhisperSTT(STTEngine):
             raise ValueError(f"Audio file is too short: {audio_path}\nRequired: >0.1s duration")
         
         try:
-
+ 
             lang = None if language == "auto" else language
             
 
@@ -94,6 +95,8 @@ class WhisperSTT(STTEngine):
                 word_timestamps=self.config.get("word_timestamps", False),
                 beam_size=self.config.get("beam_size", 5)
             )
+
+            self._last_segments = result.get("segments", [])
             
             return result["text"].strip()
             
@@ -125,6 +128,9 @@ class WhisperSTT(STTEngine):
             "model_sizes": ["tiny", "base", "small", "medium", "large", "turbo"]
         }
     
+    def get_segments(self) -> Optional[List[Dict[str, Any]]]:
+        return self._last_segments
+    
     def transcribe_with_timestamps(self, audio_path: str, language: str = "auto") -> Dict[str, Any]:
         if not self._loaded:
             self.load()
@@ -135,10 +141,10 @@ class WhisperSTT(STTEngine):
         props = self.audio_handler.get_audio_properties(audio_path)
         if props["duration_seconds"] <= 0.1:
             raise ValueError(f"Audio file is too short: {audio_path}\nRequired: >0.1s duration")
-        
         try:
             lang = None if language == "auto" else language
             
+
             result = self.model.transcribe(
                 audio_path,
                 language=lang,
@@ -146,6 +152,8 @@ class WhisperSTT(STTEngine):
                 word_timestamps=True,
                 beam_size=self.config.get("beam_size", 5)
             )
+            
+            self._last_segments = result.get("segments", [])
             
             return {
                 "text": result["text"].strip(),
