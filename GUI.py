@@ -183,6 +183,8 @@ class TTSMenuApp(tk.Tk):
         account_menu.add_command(label=self.lang.get("menu_profile"), command=self.show_profile)
         account_menu.add_command(label=self.lang.get("menu_account_settings"), command=self.show_account_settings)
         account_menu.add_separator()
+        account_menu.add_command(label="My Statistics", command=self.show_user_stats_dashboard)
+        account_menu.add_separator()
         account_menu.add_command(label=self.lang.get("menu_logout"), command=self.logout_user)
         menubar.add_cascade(label=self.lang.get("menu_account"), menu=account_menu)
 
@@ -1371,6 +1373,11 @@ class TTSMenuApp(tk.Tk):
         from ai_system.monitoring.AIMonitoringGUI import AIMonitoringGUI
         LogsHelperManager.log_button(self.logger, "OPEN_AI_MONITORING")
         AIMonitoringGUI(self, self.lang, self.logger)
+
+    def show_user_stats_dashboard(self):
+        from ai_system.StatsDashboardGUI import StatsDashboardGUI
+        LogsHelperManager.log_button(self.logger, "OPEN_USER_STATS_DASHBOARD")
+        StatsDashboardGUI(self, self.lang, self.current_user, self.logger)
 
 
 

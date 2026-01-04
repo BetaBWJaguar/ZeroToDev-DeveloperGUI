@@ -1,6 +1,5 @@
 from typing import Any, Dict, List, Optional
 from datetime import datetime
-from pathlib import Path
 import json
 from collections import defaultdict
 
@@ -71,22 +70,37 @@ class DataCollection:
                 for line in f:
                     if len(tts_events) >= limit:
                         break
+
                     try:
                         log_entry = json.loads(line.strip())
-                        if log_entry.get("name") == "MicrosoftEdgeTTSService":
-                            event = log_entry.get("message", "")
-                            if any(evt in event for evt in tts_event_types):
-                                tts_events.append({
-                                    "user_id": user_id,
-                                    "timestamp": log_entry.get("timestamp"),
-                                    "event": log_entry.get("name"),
-                                    "message": event,
-                                    "level": log_entry.get("level")
-                                })
-                    except json.JSONDecodeError:
+                        raw_message = log_entry.get("message")
+
+                        if not raw_message:
+                            continue
+
+                        try:
+                            parsed = json.loads(raw_message)
+                        except json.JSONDecodeError:
+                            continue
+
+                        event_type = parsed.get("event")
+                        if event_type not in tts_event_types:
+                            continue
+
+                        tts_events.append({
+                            "user_id": user_id,
+                            "timestamp": log_entry.get("timestamp"),
+                            "source": log_entry.get("name"),
+                            "event": event_type,
+                            "data": parsed.get("data", {}),
+                            "level": log_entry.get("level")
+                        })
+
+                    except Exception:
                         continue
+
         except Exception as e:
-            self.logger.error(f"Failed to read logs: {e}")
+            self.logger.error(f"Failed to read TTS logs: {e}")
 
         return tts_events
 
@@ -96,49 +110,98 @@ class DataCollection:
             return []
 
         stt_events = []
-        stt_event_types = [
-            "STT_LOAD", "STT_TRANSCRIBE", "STT_UNLOAD",
-            "TRANSCRIBE_START", "TRANSCRIBE_DONE", "TRANSCRIBE_FAIL"
-        ]
+        VALID_ACTIONS = {"TRANSCRIPTION_COMPLETE", "TRANSCRIBE_FAIL"}
 
         try:
             with open(log_file, "r", encoding="utf-8") as f:
                 for line in f:
                     if len(stt_events) >= limit:
                         break
+
                     try:
                         log_entry = json.loads(line.strip())
-                        if log_entry.get("name") in ["VoskSTT", "WhisperSTT", "STTEngine"]:
-                            event = log_entry.get("message", "")
-                            if any(evt in event for evt in stt_event_types):
-                                stt_events.append({
-                                    "user_id": user_id,
-                                    "timestamp": log_entry.get("timestamp"),
-                                    "event": log_entry.get("name"),
-                                    "message": event,
-                                    "level": log_entry.get("level")
-                                })
-                    except json.JSONDecodeError:
+                        raw_message = log_entry.get("message")
+                        if not raw_message:
+                            continue
+
+                        if not raw_message.startswith("{"):
+                            continue
+
+                        parsed = json.loads(raw_message)
+
+                        event_type = parsed.get("event")
+                        data = parsed.get("data", {})
+
+                        final_event = None
+
+                        if event_type == "SUCCESS":
+                            action = data.get("action")
+                            if action in VALID_ACTIONS:
+                                final_event = action
+                            else:
+                                continue
+                        else:
+                            if event_type == "TRANSCRIBE_FAIL":
+                                final_event = event_type
+                            else:
+                                continue
+
+                        stt_events.append({
+                            "user_id": user_id,
+                            "timestamp": log_entry.get("timestamp"),
+                            "source": log_entry.get("name"),
+                            "event": final_event,
+                            "data": data,
+                            "level": log_entry.get("level"),
+                        })
+
+                    except Exception:
                         continue
+
         except Exception as e:
-            self.logger.error(f"Failed to read logs: {e}")
+            self.logger.error(f"Failed to read STT logs: {e}")
 
         return stt_events
 
-    def collect_usage_statistics(self, user_id: str) -> Dict[str, Any]:
-        tts_logs = self.collect_tts_usage_from_logs(user_id, limit=1000)
-        stt_logs = self.collect_stt_usage_from_logs(user_id, limit=1000)
-        output_files = self.collect_output_files(user_id, limit=1000)
 
-        tts_preview_count = sum(1 for log in tts_logs if "PREVIEW" in log["message"])
-        tts_convert_count = sum(1 for log in tts_logs if "CONVERT" in log["message"] and "CONVERT_FAIL" not in log["message"])
-        tts_fail_count = sum(1 for log in tts_logs if "FAIL" in log["message"])
+
+    def collect_usage_statistics(self, user_id: str) -> Dict[str, Any]:
+        tts_logs = self.collect_tts_usage_from_logs(user_id, limit=1000) or []
+        stt_logs = self.collect_stt_usage_from_logs(user_id, limit=1000) or []
+        output_files = self.collect_output_files(user_id, limit=1000) or []
+
+        tts_preview_count = sum(
+            1 for log in tts_logs
+            if log.get("event") in {"PREVIEW_REQUEST", "TTS_PREVIEW_START"}
+        )
+
+        tts_convert_count = sum(
+            1 for log in tts_logs
+            if log.get("event") in {"CONVERT_REQUEST", "CONVERT_DONE", "SUCCESS"}
+        )
+
+        tts_fail_count = sum(
+            1 for log in tts_logs
+            if log.get("event") in {"ERROR", "CONVERT_FAIL"}
+        )
 
         format_counts = defaultdict(int)
         for file in output_files:
-            format_counts[file["extension"]] += 1
+            ext = file.get("extension")
+            if ext:
+                format_counts[ext] += 1
 
-        total_output_size = sum(f["size_bytes"] for f in output_files)
+        total_output_size = sum(f.get("size_bytes", 0) for f in output_files)
+
+        stt_transcribe_count = sum(
+            1 for log in stt_logs
+            if log.get("event") == "TRANSCRIPTION_COMPLETE"
+        )
+
+        stt_fail_count = sum(
+            1 for log in stt_logs
+            if log.get("event") == "TRANSCRIBE_FAIL"
+        )
 
         return {
             "user_id": user_id,
@@ -147,12 +210,15 @@ class DataCollection:
                 "preview_count": tts_preview_count,
                 "convert_count": tts_convert_count,
                 "failure_count": tts_fail_count,
-                "success_rate": round((tts_convert_count / max(len(tts_logs), 1)) * 100, 2)
+                "success_rate": round(
+                    (tts_convert_count / max(len(tts_logs), 1)) * 100,
+                    2
+                )
             },
             "stt": {
                 "total_events": len(stt_logs),
-                "transcribe_count": sum(1 for log in stt_logs if "TRANSCRIBE" in log["message"]),
-                "failure_count": sum(1 for log in stt_logs if "FAIL" in log["message"])
+                "transcribe_count": stt_transcribe_count,
+                "failure_count": stt_fail_count
             },
             "output": {
                 "total_files": len(output_files),
@@ -213,15 +279,13 @@ class DataCollection:
                         try:
                             log_entry = json.loads(line.strip())
                             msg = log_entry.get("message", "")
-                            
-                            # Extract service usage
+
                             if "service" in msg:
                                 if "edge" in msg.lower():
                                     service_usage["edge"] += 1
                                 elif "google" in msg.lower():
                                     service_usage["google"] += 1
-                            
-                            # Extract language usage
+
                             if "lang" in msg.lower():
                                 for lang_code in ["en", "tr", "de", "es", "fr", "it"]:
                                     if lang_code in msg:

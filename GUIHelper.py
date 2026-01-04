@@ -203,7 +203,7 @@ def footer(parent,lang) -> tuple[ttk.Frame, ttk.Label, ttk.Label]:
     counter.pack(side="right")
     return bar, status, counter
 
-def kv_row(parent, key: str, value: str) -> ttk.Frame:
+def kv_row(parent, key: str, value: str = None, textvariable: tk.StringVar = None) -> ttk.Frame:
     row = ttk.Frame(parent, style="TFrame")
 
 
@@ -211,7 +211,7 @@ def kv_row(parent, key: str, value: str) -> ttk.Frame:
     k.grid(row=0, column=0, sticky="w", padx=(0, 10))
 
 
-    v = ttk.Label(row, text=value, style="TLabel", anchor="w", justify="left", wraplength=300)
+    v = ttk.Label(row, text=value, textvariable=textvariable, style="TLabel", anchor="w", justify="left", wraplength=300)
     v.grid(row=0, column=1, sticky="w")
 
     row.grid_columnconfigure(0, minsize=100)
