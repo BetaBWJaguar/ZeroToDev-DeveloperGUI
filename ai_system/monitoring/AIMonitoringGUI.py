@@ -16,6 +16,10 @@ class AIMonitoringGUI:
         self.lang = lang
         self.logger = logger
         self.tracker = LatencyTracker()
+
+        self._is_loading = False
+        self._debounce_timer = None
+        self._last_time_range = None
         
         self.win = tk.Toplevel(parent)
         self.win.title(self.lang.get("ai_monitoring_title"))
@@ -176,10 +180,12 @@ class AIMonitoringGUI:
         self.tree.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
 
+        self._configure_tree_tags()
+
         ttk.Button(
             main_frame,
             text=self.lang.get("close_button"),
-            command=self.win.destroy,
+            command=self._on_close,
             style="Accent.TButton"
         ).grid(row=4, column=0, pady=(10, 0))
 
@@ -198,41 +204,77 @@ class AIMonitoringGUI:
         value_label.pack(side="right")
         
         setattr(self, f"{key}_var", value_var)
+    
+    def _configure_tree_tags(self):
+        self.tree.tag_configure(
+            "slow",
+            foreground=THEME["COLORS"].get("danger", "#e74c3c")
+        )
+        self.tree.tag_configure(
+            "medium",
+            foreground=THEME["COLORS"].get("warning", "#f39c12")
+        )
+    
+    def _on_close(self):
+        if self._debounce_timer:
+            self.win.after_cancel(self._debounce_timer)
+            self._debounce_timer = None
+        self.win.destroy()
 
     def refresh_data(self):
-        try:
-            time_range = self.time_range_var.get()
-            since_date = self._get_date_from_range(time_range)
-            
-            pipeline = [
-                {
-                    "$match": {
-                        "created_at": {"$gte": since_date}
+        if self._debounce_timer:
+            self.win.after_cancel(self._debounce_timer)
+            self._debounce_timer = None
+
+        self._debounce_timer = self.win.after(300, self._do_refresh)
+    
+    def _do_refresh(self):
+        if self._is_loading:
+            return
+
+        time_range = self.time_range_var.get()
+        if self._last_time_range == time_range and hasattr(self, '_cached_docs'):
+            docs = self._cached_docs
+        else:
+            self._is_loading = True
+            try:
+                since_date = self._get_date_from_range(time_range)
+                
+                pipeline = [
+                    {
+                        "$match": {
+                            "created_at": {"$gte": since_date}
+                        }
+                    },
+                    {
+                        "$sort": {"created_at": -1}
+                    },
+                    {
+                        "$limit": 1000
                     }
-                },
-                {
-                    "$sort": {"created_at": -1}
-                },
-                {
-                    "$limit": 1000
-                }
-            ]
-            
-            docs = list(self.tracker.collection.aggregate(pipeline))
-            
-            self._update_stats(docs)
-            self._update_table(docs)
-            
-            LogsHelperManager.log_debug(self.logger, "AI_MONITORING_REFRESH", {
-                "time_range": time_range,
-                "records_count": len(docs)
-            })
-            
-        except Exception as e:
-            LogsHelperManager.log_error(self.logger, "AI_MONITORING_REFRESH_FAIL", str(e))
-            from GUIError import GUIError
-            GUIError(self.win, self.lang.get("error_title"), 
-                    f"{self.lang.get('ai_refresh_failed')}\n{e}", icon="❌")
+                ]
+                
+                docs = list(self.tracker.collection.aggregate(pipeline))
+
+                self._cached_docs = docs
+                self._last_time_range = time_range
+                
+                self._update_stats(docs)
+                self._update_table(docs)
+                
+                LogsHelperManager.log_debug(self.logger, "AI_MONITORING_REFRESH", {
+                    "time_range": time_range,
+                    "records_count": len(docs)
+                })
+                
+            except Exception as e:
+                LogsHelperManager.log_error(self.logger, "AI_MONITORING_REFRESH_FAIL", str(e))
+                from GUIError import GUIError
+                GUIError(self.win, self.lang.get("error_title"),
+                        f"{self.lang.get('ai_refresh_failed')}\n{e}", icon="❌")
+            finally:
+                self._is_loading = False
+                self._debounce_timer = None
 
     def _get_date_from_range(self, time_range: str) -> datetime:
         now = datetime.utcnow()
@@ -272,9 +314,14 @@ class AIMonitoringGUI:
         self.min_latency_var.set(f"{min_latency:.2f} ms")
 
     def _update_table(self, docs):
-        for item in self.tree.get_children():
-            self.tree.delete(item)
+        """Update table with batch operations for better performance."""
+        # Batch delete all items at once
+        existing_items = self.tree.get_children()
+        if existing_items:
+            self.tree.delete(*existing_items)
         
+        # Prepare all data first, then batch insert
+        items_to_insert = []
         for doc in docs:
             timestamp = doc.get("created_at", datetime.utcnow())
             if isinstance(timestamp, datetime):
@@ -296,20 +343,9 @@ class AIMonitoringGUI:
                 elif lat > 2000:
                     tags = ("medium",)
             
-            self.tree.insert("", "end", values=(
-                timestamp_str,
-                provider,
-                latency,
-                status,
-                error
-            ), tags=tags)
-
-            self.tree.tag_configure(
-                "slow",
-                foreground=THEME["COLORS"].get("danger", "#e74c3c")
-            )
-            self.tree.tag_configure(
-                "medium",
-                foreground=THEME["COLORS"].get("warning", "#f39c12")
-            )
+            items_to_insert.append((timestamp_str, provider, latency, status, error, tags))
+        
+        # Batch insert all items
+        for values in items_to_insert:
+            self.tree.insert("", "end", values=values[:5], tags=values[5])
 

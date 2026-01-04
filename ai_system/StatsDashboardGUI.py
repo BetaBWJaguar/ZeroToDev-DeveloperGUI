@@ -203,18 +203,15 @@ class StatsDashboardGUI(tk.Toplevel):
         refresh_btn.pack(side="right")
     
     def _start_auto_refresh(self):
-        def refresh_loop():
-            while True:
-                time.sleep(5)
-                try:
-                    if self.winfo_exists():
-                        self.after(0, self._refresh_data)
-                except Exception as e:
-                    print(f"Auto-refresh error: {e}")
-                    break
-        
-        thread = threading.Thread(target=refresh_loop, daemon=True)
-        thread.start()
+        self._auto_refresh_active = True
+
+        def schedule():
+            if self._auto_refresh_active and self.winfo_exists():
+                self._refresh_data()
+                self.after(5000, schedule)
+
+        self.after(5000, schedule)
+
 
     def _refresh_data(self):
         try:
