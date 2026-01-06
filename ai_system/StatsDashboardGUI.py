@@ -50,7 +50,7 @@ class StatsDashboardGUI(tk.Toplevel):
         self.logger = logger or LogsManager.get_logger("StatsDashboardGUI")
         self.current_user = current_user
         
-        self.title("My Statistics Dashboard")
+        self.title(self.lang.get("stats_dashboard_title"))
         self.geometry("1000x1150")
         self.minsize(1000, 1150)
         self.transient(parent)
@@ -84,7 +84,7 @@ class StatsDashboardGUI(tk.Toplevel):
 
         ttk.Label(
             root,
-            text="My Statistics Dashboard",
+            text=self.lang.get("stats_dashboard_title"),
             style="Title.TLabel"
         ).grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 15))
 
@@ -93,63 +93,63 @@ class StatsDashboardGUI(tk.Toplevel):
 
         user_data = self.current_user.id if isinstance(self.current_user.id, dict) else {}
 
-        user_info_card, user_info_inner = section(left_frame, "User Information", padding=15)
+        user_info_card, user_info_inner = section(left_frame, self.lang.get("stats_user_info"), padding=15)
         user_info_card.pack(fill="x", pady=(0, 10))
         
         self.username_var = tk.StringVar(value=user_data.get("username", "N/A"))
         self.email_var = tk.StringVar(value=user_data.get("email", "N/A"))
         self.role_var = tk.StringVar(value=user_data.get("role", "N/A"))
         
-        ttk.Label(user_info_inner, text="Username:", style="Label.TLabel").pack(anchor="w")
+        ttk.Label(user_info_inner, text=self.lang.get("stats_username"), style="Label.TLabel").pack(anchor="w")
         ttk.Label(user_info_inner, textvariable=self.username_var, style="Muted.TLabel").pack(anchor="w", pady=(0, 8))
         
-        ttk.Label(user_info_inner, text="Email:", style="Label.TLabel").pack(anchor="w")
+        ttk.Label(user_info_inner, text=self.lang.get("stats_email"), style="Label.TLabel").pack(anchor="w")
         ttk.Label(user_info_inner, textvariable=self.email_var, style="Muted.TLabel").pack(anchor="w", pady=(0, 8))
         
-        ttk.Label(user_info_inner, text="Role:", style="Label.TLabel").pack(anchor="w")
+        ttk.Label(user_info_inner, text=self.lang.get("stats_role"), style="Label.TLabel").pack(anchor="w")
         ttk.Label(user_info_inner, textvariable=self.role_var, style="Muted.TLabel").pack(anchor="w", pady=(0, 8))
 
-        stats_card, stats_inner = section(left_frame, "TTS Statistics", padding=15)
+        stats_card, stats_inner = section(left_frame, self.lang.get("stats_tts_stats"), padding=15)
         stats_card.pack(fill="x", pady=(0, 10))
         
         self.total_conversions_var = tk.StringVar(value="0")
         self.total_previews_var = tk.StringVar(value="0")
         self.success_rate_var = tk.StringVar(value="0%")
         
-        row1 = kv_row(stats_inner, "Total Conversions:", textvariable=self.total_conversions_var)
+        row1 = kv_row(stats_inner, self.lang.get("stats_total_conversions"), textvariable=self.total_conversions_var)
         row1.pack(fill="x", pady=4)
         
-        row2 = kv_row(stats_inner, "Total Previews:", textvariable=self.total_previews_var)
+        row2 = kv_row(stats_inner, self.lang.get("stats_total_previews"), textvariable=self.total_previews_var)
         row2.pack(fill="x", pady=4)
         
-        row3 = kv_row(stats_inner, "Success Rate:", textvariable=self.success_rate_var)
+        row3 = kv_row(stats_inner, self.lang.get("stats_success_rate"), textvariable=self.success_rate_var)
         row3.pack(fill="x", pady=4)
 
-        stt_stats_card, stt_stats_inner = section(left_frame, "STT Statistics", padding=15)
+        stt_stats_card, stt_stats_inner = section(left_frame, self.lang.get("stats_stt_stats"), padding=15)
         stt_stats_card.pack(fill="x", pady=(0, 10))
         
         self.total_transcriptions_var = tk.StringVar(value="0")
         self.stt_fail_count_var = tk.StringVar(value="0")
         
-        row4 = kv_row(stt_stats_inner, "Total Transcriptions:", textvariable=self.total_transcriptions_var)
+        row4 = kv_row(stt_stats_inner, self.lang.get("stats_total_transcriptions"), textvariable=self.total_transcriptions_var)
         row4.pack(fill="x", pady=4)
         
-        row5 = kv_row(stt_stats_inner, "Failed Transcriptions:", textvariable=self.stt_fail_count_var)
+        row5 = kv_row(stt_stats_inner, self.lang.get("stats_failed_transcriptions"), textvariable=self.stt_fail_count_var)
         row5.pack(fill="x", pady=4)
 
-        storage_card, storage_inner = section(left_frame, "Storage Usage", padding=15)
+        storage_card, storage_inner = section(left_frame, self.lang.get("stats_storage_usage"), padding=15)
         storage_card.pack(fill="x", pady=(0, 10))
         
         self.total_files_var = tk.StringVar(value="0")
         self.total_size_var = tk.StringVar(value="0 MB")
         
-        row6 = kv_row(storage_inner, "Total Files:", textvariable=self.total_files_var)
+        row6 = kv_row(storage_inner, self.lang.get("stats_total_files"), textvariable=self.total_files_var)
         row6.pack(fill="x", pady=4)
         
-        row7 = kv_row(storage_inner, "Total Size:", textvariable=self.total_size_var)
+        row7 = kv_row(storage_inner, self.lang.get("stats_total_size"), textvariable=self.total_size_var)
         row7.pack(fill="x", pady=4)
 
-        format_card, format_inner = section(left_frame, "Format Distribution", padding=15)
+        format_card, format_inner = section(left_frame, self.lang.get("stats_format_distribution"), padding=15)
         format_card.pack(fill="x", pady=(0, 10))
         
         self.format_canvas = tk.Canvas(
@@ -164,7 +164,7 @@ class StatsDashboardGUI(tk.Toplevel):
         right_frame.grid(row=1, column=1, sticky="nsew")
         
 
-        log_card, log_inner = section(right_frame, "Recent Activity", padding=15)
+        log_card, log_inner = section(right_frame, self.lang.get("stats_recent_activity"), padding=15)
         log_card.pack(fill="both", expand=True)
         
 
@@ -197,7 +197,7 @@ class StatsDashboardGUI(tk.Toplevel):
         
         refresh_btn = primary_button(
             footer_frame,
-            "Refresh Now",
+            self.lang.get("stats_refresh_now"),
             self._refresh_data
         )
         refresh_btn.pack(side="right")
@@ -248,12 +248,12 @@ class StatsDashboardGUI(tk.Toplevel):
             try:
                 self._update_format_chart(format_dist)
             except Exception as chart_err:
-                self._safe_log(f"Chart update failed: {chart_err}", "warning")
+                self._safe_log(f"{self.lang.get('stats_chart_update_failed')} {chart_err}", "warning")
 
-            self._safe_log("Dashboard refreshed", "info")
+            self._safe_log(self.lang.get("stats_dashboard_refreshed"), "info")
 
         except Exception as e:
-            self._safe_log(f"Refresh error: {e}", "error"),
+            self._safe_log(f"{self.lang.get('stats_refresh_error')} {e}", "error"),
 
 
     def _safe_log(self, message: str, level: str = "info"):
@@ -269,7 +269,7 @@ class StatsDashboardGUI(tk.Toplevel):
         if not format_usage:
             self.format_canvas.create_text(
                 200, 75,
-                text="No format data available",
+                text=self.lang.get("stats_no_format_data"),
                 fill=self.colors.get("muted", "#999999"),
                 font=("Segoe UI", 10)
             )
@@ -332,7 +332,7 @@ class StatsDashboardGUI(tk.Toplevel):
         total = sum(format_usage.values())
         self.format_canvas.create_text(
             width - padding, padding,
-            text=f"Total: {total}",
+            text=f"{self.lang.get('stats_chart_total')} {total}",
             fill=self.colors.get("primary", "#007bff"),
             font=("Segoe UI", 10, "bold"),
             anchor="ne"
