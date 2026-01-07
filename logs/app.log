@@ -6179,3 +6179,39 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-04 02:35:10 | INFO    | TTSMenuApp | {"timestamp": "2026-01-04T02:35:10.251359", "event": "BUTTON_CLICK", "data": {"action": "CLOSE_USER_DASHBOARD"}}
 2026-01-04 02:35:14 | INFO    | TTSMenuApp | {"timestamp": "2026-01-04T02:35:14.535548", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2026-01-04 02:35:16 | INFO    | Main | {"timestamp": "2026-01-04T02:35:16.752707", "event": "SESSION_END", "data": {"session_id": "20260104-023435"}}
+2026-01-07 23:42:26 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-07 23:42:26 | INFO    | Main | {"timestamp": "2026-01-07T23:42:26.220860", "event": "SESSION_START", "data": {"session_id": "20260107-234226"}}
+2026-01-07 23:42:26 | INFO    | LangManager | {"timestamp": "2026-01-07T23:42:26.267251", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-07 23:42:49 | INFO    | Main | {"timestamp": "2026-01-07T23:42:49.418518", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-07 23:42:49 | INFO    | Main | {"timestamp": "2026-01-07T23:42:49.727337", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-07 23:42:50 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-07 23:43:07 | INFO    | TTSMenuApp | {"timestamp": "2026-01-07T23:43:07.557143", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2026-01-07 23:43:09 | INFO    | TTSMenuApp | {"timestamp": "2026-01-07T23:43:09.494356", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2026-01-07 23:43:11 | INFO    | Main | {"timestamp": "2026-01-07T23:43:11.079914", "event": "SESSION_END", "data": {"session_id": "20260107-234226"}}
+2026-01-07 23:43:19 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-07 23:43:19 | INFO    | Main | {"timestamp": "2026-01-07T23:43:19.829746", "event": "SESSION_START", "data": {"session_id": "20260107-234319"}}
+2026-01-07 23:43:19 | INFO    | LangManager | {"timestamp": "2026-01-07T23:43:19.875475", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-07 23:43:25 | INFO    | Main | {"timestamp": "2026-01-07T23:43:25.221736", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-07 23:43:25 | INFO    | Main | {"timestamp": "2026-01-07T23:43:25.483928", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-07 23:43:30 | INFO    | STTMenuApp | {"timestamp": "2026-01-07T23:43:30.749761", "event": "BUTTON_CLICK", "data": {"action": "OPEN_USER_STATS_DASHBOARD"}}
+2026-01-07 23:43:30 | INFO    | STTMenuApp | {"timestamp": "2026-01-07T23:43:30.801216", "event": "BUTTON_CLICK", "data": {"action": "OPEN_USER_DASHBOARD"}}
+2026-01-07 23:43:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-07T23:43:47.970441", "event": "BUTTON_CLICK", "data": {"action": "CLOSE_USER_DASHBOARD"}}
+2026-01-07 23:43:50 | INFO    | Main | {"timestamp": "2026-01-07T23:43:50.481845", "event": "SESSION_END", "data": {"session_id": "20260107-234319"}}
+2026-01-07 23:43:58 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-07 23:43:58 | INFO    | Main | {"timestamp": "2026-01-07T23:43:58.754489", "event": "SESSION_START", "data": {"session_id": "20260107-234358"}}
+2026-01-07 23:43:58 | INFO    | LangManager | {"timestamp": "2026-01-07T23:43:58.802150", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-07 23:44:03 | INFO    | Main | {"timestamp": "2026-01-07T23:44:03.878967", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-07 23:44:04 | INFO    | Main | {"timestamp": "2026-01-07T23:44:04.141512", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-07 23:44:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-07T23:44:07.286532", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2026-01-07 23:44:09 | INFO    | STTMenuApp | {"timestamp": "2026-01-07T23:44:09.147298", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
+2026-01-07 23:44:11 | INFO    | Main | {"timestamp": "2026-01-07T23:44:11.290556", "event": "SESSION_END", "data": {"session_id": "20260107-234358"}}
+2026-01-07 23:44:19 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-07 23:44:19 | INFO    | Main | {"timestamp": "2026-01-07T23:44:19.745562", "event": "SESSION_START", "data": {"session_id": "20260107-234419"}}
+2026-01-07 23:44:19 | INFO    | LangManager | {"timestamp": "2026-01-07T23:44:19.791549", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-07 23:44:24 | INFO    | Main | {"timestamp": "2026-01-07T23:44:24.799531", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-07 23:44:25 | INFO    | Main | {"timestamp": "2026-01-07T23:44:25.061514", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-07 23:44:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-07 23:44:26 | INFO    | TTSMenuApp | {"timestamp": "2026-01-07T23:44:26.912057", "event": "BUTTON_CLICK", "data": {"action": "OPEN_USER_STATS_DASHBOARD"}}
+2026-01-07 23:44:26 | INFO    | TTSMenuApp | {"timestamp": "2026-01-07T23:44:26.959323", "event": "BUTTON_CLICK", "data": {"action": "OPEN_USER_DASHBOARD"}}
+2026-01-07 23:44:33 | INFO    | TTSMenuApp | {"timestamp": "2026-01-07T23:44:33.561244", "event": "BUTTON_CLICK", "data": {"action": "CLOSE_USER_DASHBOARD"}}
+2026-01-07 23:44:34 | INFO    | Main | {"timestamp": "2026-01-07T23:44:34.505847", "event": "SESSION_END", "data": {"session_id": "20260107-234419"}}
