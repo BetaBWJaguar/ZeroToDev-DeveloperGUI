@@ -1,5 +1,7 @@
 from typing import Any, Dict, List, Optional
 import json
+from datetime import datetime
+from functools import lru_cache
 
 from PathHelper import PathHelper
 from ai_system.data_collection.DataCollection import DataCollection
@@ -11,6 +13,13 @@ class DataCollectionManager:
     def __init__(self):
         self.data_collection = DataCollection()
         self.logger = LogsManager.get_logger("DataCollectionManager")
+        self._valid_tts_prefs = frozenset([
+            "tts_service", "tts_language", "tts_voice",
+            "tts_format", "markup_enabled", "zip_export_enabled"
+        ])
+        self._valid_stt_prefs = frozenset([
+            "stt_model", "stt_language", "stt_device"
+        ])
 
     def get_user_tts_preferences(self, user_id: str) -> Dict[str, Any]:
         return self.data_collection.collect_tts_preferences(user_id)
@@ -52,9 +61,9 @@ class DataCollectionManager:
         system_data = self.get_system_usage_data()
         return [{
             "system_patterns": {
-                "preferred_tts_service": self._get_preferred_service(system_data["tts_service_usage"]),
-                "preferred_language": self._get_preferred_language(system_data["language_usage"]),
-                "preferred_format": self._get_preferred_format(system_data["output_format_usage"]),
+                "preferred_tts_service": self._get_max_value_key(system_data.get("tts_service_usage", {})),
+                "preferred_language": self._get_max_value_key(system_data.get("language_usage", {})),
+                "preferred_format": self._get_max_value_key(system_data.get("output_format_usage", {})),
                 "total_users": len(system_data.get("language_usage", {}))
             }
         }]
@@ -83,39 +92,10 @@ class DataCollectionManager:
         }
 
     def update_user_tts_preference(self, user_id: str, preference: str, value: Any) -> bool:
-        valid_preferences = [
-            "tts_service", "tts_language", "tts_voice", 
-            "tts_format", "markup_enabled", "zip_export_enabled"
-        ]
-
-        if preference not in valid_preferences:
-            self.logger.warning(f"Invalid TTS preference: {preference}")
-            return False
-
-        try:
-            MemoryManager.set(preference, value)
-            self.logger.info(f"Updated TTS preference for user {user_id}: {preference}={value}")
-            return True
-        except Exception as e:
-            self.logger.error(f"Failed to update TTS preference: {e}")
-            return False
+        return self._update_preference(user_id, preference, value, self._valid_tts_prefs, "TTS")
 
     def update_user_stt_preference(self, user_id: str, preference: str, value: Any) -> bool:
-        valid_preferences = [
-            "stt_model", "stt_language", "stt_device"
-        ]
-
-        if preference not in valid_preferences:
-            self.logger.warning(f"Invalid STT preference: {preference}")
-            return False
-
-        try:
-            MemoryManager.set(preference, value)
-            self.logger.info(f"Updated STT preference for user {user_id}: {preference}={value}")
-            return True
-        except Exception as e:
-            self.logger.error(f"Failed to update STT preference: {e}")
-            return False
+        return self._update_preference(user_id, preference, value, self._valid_stt_prefs, "STT")
 
     def export_user_usage_data(self, user_id: str, output_path: Optional[str] = None) -> str:
         user_data = {
@@ -126,15 +106,9 @@ class DataCollectionManager:
         }
 
         if output_path is None:
-            output_dir = PathHelper.resource_path("data_collection/exports")
-            output_dir.mkdir(parents=True, exist_ok=True)
-            from datetime import datetime
-            timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-            output_path = str(output_dir / f"user_{user_id}_usage_{timestamp}.json")
+            output_path = self._generate_export_path(f"user_{user_id}_usage")
 
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(user_data, f, ensure_ascii=False, indent=2)
-
+        self._write_json_file(user_data, output_path)
         self.logger.info(f"Exported user usage data to: {output_path}")
         return output_path
 
@@ -145,15 +119,9 @@ class DataCollectionManager:
         }
 
         if output_path is None:
-            output_dir = PathHelper.resource_path("data_collection/exports")
-            output_dir.mkdir(parents=True, exist_ok=True)
-            from datetime import datetime
-            timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-            output_path = str(output_dir / f"system_usage_{timestamp}.json")
+            output_path = self._generate_export_path("system_usage")
 
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(system_data, f, ensure_ascii=False, indent=2)
-
+        self._write_json_file(system_data, output_path)
         self.logger.info(f"Exported system usage data to: {output_path}")
         return output_path
 
@@ -186,23 +154,42 @@ class DataCollectionManager:
             }
         }
 
-    @staticmethod
-    def _get_preferred_service(service_usage: Dict[str, int]) -> Optional[str]:
-        if not service_usage:
-            return None
-        return max(service_usage.items(), key=lambda x: x[1])[0]
+    def _update_preference(
+        self,
+        user_id: str,
+        preference: str,
+        value: Any,
+        valid_prefs: frozenset,
+        pref_type: str
+    ) -> bool:
+        if preference not in valid_prefs:
+            self.logger.warning(f"Invalid {pref_type} preference: {preference}")
+            return False
+
+        try:
+            MemoryManager.set(preference, value)
+            self.logger.info(f"Updated {pref_type} preference for user {user_id}: {preference}={value}")
+            return True
+        except Exception as e:
+            self.logger.error(f"Failed to update {pref_type} preference: {e}")
+            return False
+
+    def _generate_export_path(self, filename_prefix: str) -> str:
+        output_dir = PathHelper.resource_path("data_collection/exports")
+        output_dir.mkdir(parents=True, exist_ok=True)
+        timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+        return str(output_dir / f"{filename_prefix}_{timestamp}.json")
 
     @staticmethod
-    def _get_preferred_language(language_usage: Dict[str, int]) -> Optional[str]:
-        if not language_usage:
-            return None
-        return max(language_usage.items(), key=lambda x: x[1])[0]
+    def _write_json_file(data: Dict[str, Any], file_path: str) -> None:
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
 
     @staticmethod
-    def _get_preferred_format(format_usage: Dict[str, int]) -> Optional[str]:
-        if not format_usage:
+    def _get_max_value_key(data: Dict[str, int]) -> Optional[str]:
+        if not data:
             return None
-        return max(format_usage.items(), key=lambda x: x[1])[0]
+        return max(data.items(), key=lambda x: x[1])[0]
 
     def close(self):
         pass
