@@ -408,5 +408,11 @@
   "stats_chart_total": "Total:",
   "stats_dashboard_refreshed": "Dashboard refreshed",
   "stats_chart_update_failed": "Chart update failed:",
-  "stats_refresh_error": "Refresh error:"
+  "stats_refresh_error": "Refresh error:",
+  "stats_analytics": "Analytics",
+  "stats_avg_file_size": "Average File Size",
+  "stats_preferred_service": "Preferred Service",
+  "stats_preferred_format": "Preferred Format",
+  "stats_preferred_model": "Preferred Model",
+  "stats_preferred_language": "Preferred Language"
 }

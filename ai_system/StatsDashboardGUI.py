@@ -53,8 +53,8 @@ class StatsDashboardGUI(tk.Toplevel):
         self._auto_refresh_active = False
 
         self.title(self.lang.get("stats_dashboard_title"))
-        self.geometry("1000x1150")
-        self.minsize(1000, 1150)
+        self.geometry("1000x1350")
+        self.minsize(1000, 1350)
         self.transient(parent)
         self.grab_set()
         self.resizable(True, True)
@@ -92,6 +92,11 @@ class StatsDashboardGUI(tk.Toplevel):
         self.stt_fail_count_var = tk.StringVar(value="0")
         self.total_files_var = tk.StringVar(value="0")
         self.total_size_var = tk.StringVar(value="0.00 MB")
+        self.avg_file_size_var = tk.StringVar(value="0.00 MB")
+        self.preferred_service_var = tk.StringVar(value="N/A")
+        self.preferred_format_var = tk.StringVar(value="N/A")
+        self.preferred_model_var = tk.StringVar(value="N/A")
+        self.preferred_language_var = tk.StringVar(value="N/A")
         self._log_tags_initialized = set()
 
     def _build_ui(self):
@@ -159,11 +164,20 @@ class StatsDashboardGUI(tk.Toplevel):
 
         self.format_canvas = tk.Canvas(
             format_inner,
-            height=150,
+            height=180,
             bg=self.colors.get("card", "#ffffff"),
             highlightthickness=0,
         )
         self.format_canvas.pack(fill="x", pady=(10, 0))
+
+        analytics_card, analytics_inner = section(parent, self.lang.get("stats_analytics", "Analytics"), padding=15)
+        analytics_card.pack(fill="x", pady=(0, 10))
+
+        kv_row(analytics_inner, self.lang.get("stats_avg_file_size"), textvariable=self.avg_file_size_var).pack(fill="x", pady=4)
+        kv_row(analytics_inner, self.lang.get("stats_preferred_service"), textvariable=self.preferred_service_var).pack(fill="x", pady=4)
+        kv_row(analytics_inner, self.lang.get("stats_preferred_format"), textvariable=self.preferred_format_var).pack(fill="x", pady=4)
+        kv_row(analytics_inner, self.lang.get("stats_preferred_model"), textvariable=self.preferred_model_var).pack(fill="x", pady=4)
+        kv_row(analytics_inner, self.lang.get("stats_preferred_language"), textvariable=self.preferred_language_var).pack(fill="x", pady=4)
 
     def _build_right_cards(self, parent: ttk.Frame):
         log_card, log_inner = section(parent, self.lang.get("stats_recent_activity"), padding=15)
@@ -206,10 +220,12 @@ class StatsDashboardGUI(tk.Toplevel):
     def _refresh_data(self, manual: bool = False):
         try:
             user_stats = self.data_collection_manager.get_user_usage_statistics(self.user_id) or {}
+            user_analytics = self.data_collection_manager.get_usage_analytics(self.user_id) or {}
 
             self._update_tts(user_stats.get("tts") or {})
             self._update_stt(user_stats.get("stt") or {})
             self._update_storage(user_stats.get("output") or {})
+            self._update_analytics(user_analytics)
 
             if manual:
                 self._log_activity(self.lang.get("stats_dashboard_refreshed"), "info")
@@ -248,26 +264,40 @@ class StatsDashboardGUI(tk.Toplevel):
         except Exception as chart_err:
             self._log_activity(f"{self.lang.get('stats_chart_update_failed')} {chart_err}", "warning")
 
+    def _update_analytics(self, analytics: Dict[str, Any]):
+        tts_analytics = analytics.get("tts_analytics") or {}
+        stt_analytics = analytics.get("stt_analytics") or {}
+
+        avg_file_size = tts_analytics.get("average_file_size", 0)
+        self.avg_file_size_var.set(f"{avg_file_size:.2f} MB")
+        self.preferred_service_var.set(tts_analytics.get("preferred_service", "N/A"))
+        self.preferred_format_var.set(tts_analytics.get("preferred_format", "N/A"))
+
+        self.preferred_model_var.set(stt_analytics.get("preferred_model", "N/A"))
+        self.preferred_language_var.set(stt_analytics.get("preferred_language", "N/A"))
+
 
     def _update_format_chart(self, format_usage: Dict[str, int]):
         self.format_canvas.delete("all")
 
+        width = max(self.format_canvas.winfo_width(), 400)
+        height = 180
+
+        padding = 10
+        label_height = 20
+        chart_width = width - 2 * padding
+        chart_height = height - 2 * padding - label_height
+
         if not format_usage:
             self.format_canvas.create_text(
-                200,
-                75,
+                width / 2,
+                height / 2,
                 text=self.lang.get("stats_no_format_data"),
                 fill=self.colors.get("muted", "#999999"),
                 font=("Segoe UI", 10),
+                anchor="center",
             )
             return
-
-        width = max(self.format_canvas.winfo_width(), 400)
-        height = 150
-
-        padding = 10
-        chart_width = width - 2 * padding
-        chart_height = height - 2 * padding
 
         counts = [int(v or 0) for v in format_usage.values()]
         max_count = max(counts) if counts else 1
@@ -304,23 +334,26 @@ class StatsDashboardGUI(tk.Toplevel):
                 outline="",
                 )
 
+            text_y = max(y + 8, padding + 10)
+
             self.format_canvas.create_text(
                 x + bar_width / 2,
-                y - 5,
+                text_y,
                 text=str(count),
-                fill=self.colors.get("text", "#333333"),
+                fill="#ffffff",
                 font=("Segoe UI", 8, "bold"),
-                anchor="s",
+                anchor="n",
                 )
+
 
             label = str(fmt).split("/")[-1].replace(".", "").upper()
             self.format_canvas.create_text(
                 x + bar_width / 2,
-                padding + chart_height + 10,
+                padding + chart_height + label_height / 2,
                 text=label,
                 fill=self.colors.get("muted", "#999999"),
                 font=("Segoe UI", 8),
-                anchor="n",
+                anchor="center",
                 )
 
         total = sum(int(v or 0) for v in format_usage.values())

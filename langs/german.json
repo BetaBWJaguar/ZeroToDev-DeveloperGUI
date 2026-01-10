@@ -408,5 +408,11 @@
   "stats_chart_total": "Gesamt:",
   "stats_dashboard_refreshed": "Dashboard aktualisiert",
   "stats_chart_update_failed": "Diagrammaktualisierung fehlgeschlagen:",
-  "stats_refresh_error": "Aktualisierungsfehler:"
+  "stats_refresh_error": "Aktualisierungsfehler:",
+  "stats_analytics": "Analytik",
+  "stats_avg_file_size": "Durchschnittliche Dateigröße",
+  "stats_preferred_service": "Bevorzugter Dienst",
+  "stats_preferred_format": "Bevorzugtes Format",
+  "stats_preferred_model": "Bevorzugtes Modell",
+  "stats_preferred_language": "Bevorzugte Sprache"
 }

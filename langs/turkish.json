@@ -408,5 +408,11 @@
   "stats_chart_total": "Toplam:",
   "stats_dashboard_refreshed": "Panel yenilendi",
   "stats_chart_update_failed": "Güncelleme başarısız:",
-  "stats_refresh_error": "Yenileme hatası:"
+  "stats_refresh_error": "Yenileme hatası:",
+  "stats_analytics": "Analitik",
+  "stats_avg_file_size": "Ortalama Dosya Boyutu",
+  "stats_preferred_service": "Tercih Edilen Servis",
+  "stats_preferred_format": "Tercih Edilen Format",
+  "stats_preferred_model": "Tercih Edilen Model",
+  "stats_preferred_language": "Tercih Edilen Dil"
 }
