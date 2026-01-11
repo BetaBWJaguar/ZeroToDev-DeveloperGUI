@@ -53,8 +53,8 @@ class StatsDashboardGUI(tk.Toplevel):
         self._auto_refresh_active = False
 
         self.title(self.lang.get("stats_dashboard_title"))
-        self.geometry("1000x1350")
-        self.minsize(1000, 1350)
+        self.geometry("1200x1350")
+        self.minsize(1200, 1350)
         self.transient(parent)
         self.grab_set()
         self.resizable(True, True)
@@ -97,6 +97,10 @@ class StatsDashboardGUI(tk.Toplevel):
         self.preferred_format_var = tk.StringVar(value="N/A")
         self.preferred_model_var = tk.StringVar(value="N/A")
         self.preferred_language_var = tk.StringVar(value="N/A")
+        self.export_json_var = tk.BooleanVar(value=False)
+        self.export_csv_var = tk.BooleanVar(value=False)
+        self.export_pdf_var = tk.BooleanVar(value=False)
+        self.export_status_var = tk.StringVar(value="")
         self._log_tags_initialized = set()
 
     def _build_ui(self):
@@ -206,6 +210,25 @@ class StatsDashboardGUI(tk.Toplevel):
         scrollbar.pack(side="right", fill="y")
         
         self.log_text.config(state="disabled")
+
+    def _on_export_checkbox_change(self):
+            selected = []
+
+            if self.export_json_var.get():
+                selected.append("JSON")
+            if self.export_csv_var.get():
+                selected.append("CSV")
+            if self.export_pdf_var.get():
+                selected.append("PDF")
+
+            if selected:
+                msg = f"Selected export formats: {', '.join(selected)} (not implemented)"
+            else:
+                msg = "No export format selected"
+
+            self.export_status_var.set(msg)
+            self._log_activity(msg, "info")
+
 
     def _start_auto_refresh(self):
         self._auto_refresh_active = True
