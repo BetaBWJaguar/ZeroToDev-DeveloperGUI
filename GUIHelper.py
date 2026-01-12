@@ -501,3 +501,64 @@ def markup_support_section(parent, lang, enabled_var, on_toggle=None):
 
     return frame
 
+def export_checkbox_section(parent, lang, json_var, csv_var, pdf_var, on_change=None):
+    frame = ttk.Frame(parent, style="Card.TFrame")
+
+    style = ttk.Style()
+    style.configure(
+        "Export.TCheckbutton",
+        background=THEME["COLORS"]["card"],
+        foreground=THEME["COLORS"]["text"],
+        font=tuple(THEME["FONTS"]["label"]),
+        padding=(6, 2)
+    )
+    style.map(
+        "Export.TCheckbutton",
+        background=[("active", THEME["COLORS"]["surface"])],
+        foreground=[("active", THEME["COLORS"]["primary_active"])],
+    )
+
+    ttk.Label(
+        frame,
+        text="JSON",
+        style="Muted.TLabel"
+    ).grid(row=0, column=0, sticky="w", padx=(0, 10))
+
+    json_check = ttk.Checkbutton(
+        frame,
+        variable=json_var,
+        style="Export.TCheckbutton",
+        command=on_change
+    )
+    json_check.grid(row=0, column=1, sticky="w")
+
+    ttk.Label(
+        frame,
+        text="CSV",
+        style="Muted.TLabel"
+    ).grid(row=1, column=0, sticky="w", padx=(0, 10))
+
+    csv_check = ttk.Checkbutton(
+        frame,
+        variable=csv_var,
+        style="Export.TCheckbutton",
+        command=on_change
+    )
+    csv_check.grid(row=1, column=1, sticky="w")
+
+    ttk.Label(
+        frame,
+        text="PDF",
+        style="Muted.TLabel"
+    ).grid(row=2, column=0, sticky="w", padx=(0, 10))
+
+    pdf_check = ttk.Checkbutton(
+        frame,
+        variable=pdf_var,
+        style="Export.TCheckbutton",
+        command=on_change
+    )
+    pdf_check.grid(row=2, column=1, sticky="w")
+
+    return frame
+

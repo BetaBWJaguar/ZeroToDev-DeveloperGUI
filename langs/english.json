@@ -402,6 +402,8 @@
   "stats_total_files": "Total Files:",
   "stats_total_size": "Total Size:",
   "stats_format_distribution": "Format Distribution",
+  "stats_export_section": "Export Format",
+  "stats_export_button": "Export",
   "stats_recent_activity": "Recent Activity",
   "stats_refresh_now": "Refresh Now",
   "stats_no_format_data": "No format data available",

@@ -402,6 +402,8 @@
   "stats_total_files": "Toplam Dosya:",
   "stats_total_size": "Toplam Boyut:",
   "stats_format_distribution": "Format Dağılımı",
+  "stats_export_section": "Dışa Aktarma Formatı",
+  "stats_export_button": "Dışa Aktar",
   "stats_recent_activity": "Son Aktivite",
   "stats_refresh_now": "Şimdi Yenile",
   "stats_no_format_data": "Format verisi yok",

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import json
+import csv
 from datetime import datetime
 from typing import Dict, Any, Optional
 import tkinter as tk
-from tkinter import ttk
-from GUIHelper import init_style, section, primary_button, kv_row
+from tkinter import ttk, filedialog
+from GUIHelper import init_style, section, primary_button, kv_row, export_checkbox_section
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
 from logs_manager.LogsHelperManager import LogsHelperManager
@@ -53,8 +54,8 @@ class StatsDashboardGUI(tk.Toplevel):
         self._auto_refresh_active = False
 
         self.title(self.lang.get("stats_dashboard_title"))
-        self.geometry("1200x1350")
-        self.minsize(1200, 1350)
+        self.geometry("1200x1325")
+        self.minsize(1200, 1325)
         self.transient(parent)
         self.grab_set()
         self.resizable(True, True)
@@ -184,6 +185,31 @@ class StatsDashboardGUI(tk.Toplevel):
         kv_row(analytics_inner, self.lang.get("stats_preferred_language"), textvariable=self.preferred_language_var).pack(fill="x", pady=4)
 
     def _build_right_cards(self, parent: ttk.Frame):
+        export_card, export_inner = section(parent, self.lang.get("stats_export_section"), padding=15)
+        export_card.pack(fill="x", pady=(0, 10))
+
+        export_checkbox_section(
+            export_inner,
+            self.lang,
+            self.export_json_var,
+            self.export_csv_var,
+            self.export_pdf_var,
+            self._on_export_checkbox_change
+        ).pack(fill="x")
+
+        ttk.Label(
+            export_inner,
+            textvariable=self.export_status_var,
+            style="Muted.TLabel"
+        ).pack(anchor="w", pady=(8, 8))
+
+        export_btn = primary_button(
+            export_inner,
+            self.lang.get("stats_export_button", "Export"),
+            self._handle_export
+        )
+        export_btn.pack(fill="x")
+
         log_card, log_inner = section(parent, self.lang.get("stats_recent_activity"), padding=15)
         log_card.pack(fill="both", expand=True)
 
@@ -222,12 +248,153 @@ class StatsDashboardGUI(tk.Toplevel):
                 selected.append("PDF")
 
             if selected:
-                msg = f"Selected export formats: {', '.join(selected)} (not implemented)"
+                msg = f"Selected export formats: {', '.join(selected)}"
             else:
                 msg = "No export format selected"
 
             self.export_status_var.set(msg)
             self._log_activity(msg, "info")
+
+    def _gather_export_data(self) -> Dict[str, Any]:
+        user_stats = self.data_collection_manager.get_user_usage_statistics(self.user_id) or {}
+        user_analytics = self.data_collection_manager.get_usage_analytics(self.user_id) or {}
+        user_prefs = self.data_collection_manager.get_user_preferences_summary(self.user_id) or {}
+
+        return {
+            "export_info": {
+                "user_id": self.user_id,
+                "exported_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "username": self.user_data.get("username", "N/A"),
+                "email": self.user_data.get("email", "N/A"),
+                "role": self.user_data.get("role", "N/A")
+            },
+            "tts_statistics": {
+                "total_conversions": self.total_conversions_var.get(),
+                "total_previews": self.total_previews_var.get(),
+                "success_rate": self.success_rate_var.get()
+            },
+            "stt_statistics": {
+                "total_transcriptions": self.total_transcriptions_var.get(),
+                "failed_transcriptions": self.stt_fail_count_var.get()
+            },
+            "storage_usage": {
+                "total_files": self.total_files_var.get(),
+                "total_size": self.total_size_var.get(),
+                "format_distribution": user_stats.get("output", {}).get("format_distribution", {})
+            },
+            "analytics": {
+                "average_file_size": self.avg_file_size_var.get(),
+                "preferred_service": self.preferred_service_var.get(),
+                "preferred_format": self.preferred_format_var.get(),
+                "preferred_model": self.preferred_model_var.get(),
+                "preferred_language": self.preferred_language_var.get()
+            },
+            "preferences": user_prefs
+        }
+
+    def _export_to_json(self, file_path: str) -> bool:
+        try:
+            data = self._gather_export_data()
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+            self._log_activity(f"JSON export successful: {file_path}", "success")
+            return True
+        except Exception as e:
+            self._log_activity(f"JSON export failed: {e}", "error")
+            return False
+
+    def _export_to_csv(self, file_path: str) -> bool:
+        try:
+            data = self._gather_export_data()
+            
+            with open(file_path, "w", newline="", encoding="utf-8") as f:
+                writer = csv.writer(f)
+                
+                writer.writerow(["Category", "Key", "Value"])
+                
+                for key, value in data["export_info"].items():
+                    writer.writerow(["Export Info", key, value])
+                
+                for key, value in data["tts_statistics"].items():
+                    writer.writerow(["TTS Statistics", key, value])
+                
+                for key, value in data["stt_statistics"].items():
+                    writer.writerow(["STT Statistics", key, value])
+                
+                for key, value in data["storage_usage"].items():
+                    if key != "format_distribution":
+                        writer.writerow(["Storage Usage", key, value])
+                
+                format_dist = data["storage_usage"].get("format_distribution", {})
+                for fmt, count in format_dist.items():
+                    writer.writerow(["Format Distribution", fmt, count])
+                
+                for key, value in data["analytics"].items():
+                    writer.writerow(["Analytics", key, value])
+                
+                for category, prefs in data["preferences"].items():
+                    if isinstance(prefs, dict):
+                        for key, value in prefs.items():
+                            writer.writerow([f"Preferences - {category}", key, value])
+            
+            self._log_activity(f"CSV export successful: {file_path}", "success")
+            return True
+        except Exception as e:
+            self._log_activity(f"CSV export failed: {e}", "error")
+            return False
+
+    def _handle_export(self):
+        selected_formats = []
+        
+        if self.export_json_var.get():
+            selected_formats.append("json")
+        if self.export_csv_var.get():
+            selected_formats.append("csv")
+        if self.export_pdf_var.get():
+            selected_formats.append("pdf")
+        
+        if not selected_formats:
+            self.export_status_var.set("No export format selected")
+            self._log_activity("No export format selected", "warning")
+            return
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        base_filename = f"stats_{self.user_id}_{timestamp}"
+        
+        export_results = []
+        
+        for fmt in selected_formats:
+            if fmt == "json":
+                file_path = filedialog.asksaveasfilename(
+                    defaultextension=".json",
+                    filetypes=[("JSON files", "*.json"), ("All files", "*.*")],
+                    initialfile=f"{base_filename}.json",
+                    title="Save JSON Export"
+                )
+                if file_path:
+                    if self._export_to_json(file_path):
+                        export_results.append(f"JSON: {file_path}")
+            
+            elif fmt == "csv":
+                file_path = filedialog.asksaveasfilename(
+                    defaultextension=".csv",
+                    filetypes=[("CSV files", "*.csv"), ("All files", "*.*")],
+                    initialfile=f"{base_filename}.csv",
+                    title="Save CSV Export"
+                )
+                if file_path:
+                    if self._export_to_csv(file_path):
+                        export_results.append(f"CSV: {file_path}")
+            
+            elif fmt == "pdf":
+                self.export_status_var.set("PDF export not implemented yet")
+                self._log_activity("PDF export not implemented yet", "warning")
+        
+        if export_results:
+            self.export_status_var.set(f"Exported: {len(export_results)} file(s)")
+            self._log_activity(f"Export completed: {', '.join(export_results)}", "success")
+        else:
+            self.export_status_var.set("Export cancelled or failed")
 
 
     def _start_auto_refresh(self):
