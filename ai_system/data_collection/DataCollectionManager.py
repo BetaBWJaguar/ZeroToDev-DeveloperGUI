@@ -21,42 +21,34 @@ class DataCollectionManager:
             "stt_model", "stt_language", "stt_device"
         ])
 
-    def get_user_tts_preferences(self, user_id: str) -> Dict[str, Any]:
-        return self.data_collection.collect_tts_preferences(user_id)
+    def get_tts_preferences(self) -> Dict[str, Any]:
+        return self.data_collection.collect_tts_preferences()
 
-    def get_user_stt_preferences(self, user_id: str) -> Dict[str, Any]:
-        return self.data_collection.collect_stt_preferences(user_id)
+    def get_stt_preferences(self) -> Dict[str, Any]:
+        return self.data_collection.collect_stt_preferences()
 
-    def get_user_usage_statistics(self, user_id: str) -> Dict[str, Any]:
-        return self.data_collection.collect_usage_statistics(user_id)
+    def get_usage_statistics(self) -> Dict[str, Any]:
+        return self.data_collection.collect_usage_statistics()
 
-    def get_user_behavior_for_ai(self, user_id: str) -> Optional[Dict[str, Any]]:
-        return self.data_collection.collect_user_behavior_for_recommendation(user_id)
+    def get_behavior_for_ai(self) -> Optional[Dict[str, Any]]:
+        return self.data_collection.collect_user_behavior_for_recommendation()
 
-    def get_users_behavior_for_ai(self, user_ids: List[str]) -> List[Dict[str, Any]]:
-        return self.data_collection.collect_all_users_behavior(user_ids)
+    def get_output_files(self, limit: int = 100) -> List[Dict[str, Any]]:
+        return self.data_collection.collect_output_files(limit)
 
-    def get_user_output_files(self, user_id: str, limit: int = 100) -> List[Dict[str, Any]]:
-        return self.data_collection.collect_output_files(user_id, limit)
+    def get_tts_usage_logs(self, limit: int = 100) -> List[Dict[str, Any]]:
+        return self.data_collection.collect_tts_usage_from_logs(limit)
 
-    def get_tts_usage_logs(self, user_id: str, limit: int = 100) -> List[Dict[str, Any]]:
-        return self.data_collection.collect_tts_usage_from_logs(user_id, limit)
-
-    def get_stt_usage_logs(self, user_id: str, limit: int = 100) -> List[Dict[str, Any]]:
-        return self.data_collection.collect_stt_usage_from_logs(user_id, limit)
+    def get_stt_usage_logs(self, limit: int = 100) -> List[Dict[str, Any]]:
+        return self.data_collection.collect_stt_usage_from_logs(limit)
 
     def get_system_usage_data(self) -> Dict[str, Any]:
         return self.data_collection.collect_system_usage_data()
 
-    def get_ai_recommendation_candidates(
-        self,
-        user_id: Optional[str] = None,
-        limit: int = 10
-    ) -> List[Dict[str, Any]]:
-        if user_id:
-            behavior = self.get_user_behavior_for_ai(user_id)
-            if behavior:
-                return [behavior]
+    def get_ai_recommendation_candidates(self, limit: int = 10) -> List[Dict[str, Any]]:
+        behavior = self.get_behavior_for_ai()
+        if behavior:
+            return [behavior]
 
         system_data = self.get_system_usage_data()
         return [{
@@ -68,12 +60,11 @@ class DataCollectionManager:
             }
         }]
 
-    def get_user_preferences_summary(self, user_id: str) -> Dict[str, Any]:
-        tts_prefs = self.get_user_tts_preferences(user_id)
-        stt_prefs = self.get_user_stt_preferences(user_id)
+    def get_preferences_summary(self) -> Dict[str, Any]:
+        tts_prefs = self.get_tts_preferences()
+        stt_prefs = self.get_stt_preferences()
 
         return {
-            "user_id": user_id,
             "tts": {
                 "service": tts_prefs.get("tts_service"),
                 "language": tts_prefs.get("tts_language"),
@@ -91,25 +82,25 @@ class DataCollectionManager:
             }
         }
 
-    def update_user_tts_preference(self, user_id: str, preference: str, value: Any) -> bool:
-        return self._update_preference(user_id, preference, value, self._valid_tts_prefs, "TTS")
+    def update_tts_preference(self, preference: str, value: Any) -> bool:
+        return self._update_preference(preference, value, self._valid_tts_prefs, "TTS")
 
-    def update_user_stt_preference(self, user_id: str, preference: str, value: Any) -> bool:
-        return self._update_preference(user_id, preference, value, self._valid_stt_prefs, "STT")
+    def update_stt_preference(self, preference: str, value: Any) -> bool:
+        return self._update_preference(preference, value, self._valid_stt_prefs, "STT")
 
-    def export_user_usage_data(self, user_id: str, output_path: Optional[str] = None) -> str:
+    def export_usage_data(self, output_path: Optional[str] = None) -> str:
         user_data = {
-            "preferences": self.get_user_preferences_summary(user_id),
-            "statistics": self.get_user_usage_statistics(user_id),
-            "behavior": self.get_user_behavior_for_ai(user_id),
-            "output_files": self.get_user_output_files(user_id, limit=1000)
+            "preferences": self.get_preferences_summary(),
+            "statistics": self.get_usage_statistics(),
+            "behavior": self.get_behavior_for_ai(),
+            "output_files": self.get_output_files(limit=1000)
         }
 
         if output_path is None:
-            output_path = self._generate_export_path(f"user_{user_id}_usage")
+            output_path = self._generate_export_path("usage")
 
         self._write_json_file(user_data, output_path)
-        self.logger.info(f"Exported user usage data to: {output_path}")
+        self.logger.info(f"Exported usage data to: {output_path}")
         return output_path
 
     def export_system_usage_data(self, output_path: Optional[str] = None) -> str:
@@ -125,12 +116,11 @@ class DataCollectionManager:
         self.logger.info(f"Exported system usage data to: {output_path}")
         return output_path
 
-    def get_usage_analytics(self, user_id: str) -> Dict[str, Any]:
-        stats = self.get_user_usage_statistics(user_id)
-        prefs = self.get_user_preferences_summary(user_id)
+    def get_usage_analytics(self) -> Dict[str, Any]:
+        stats = self.get_usage_statistics()
+        prefs = self.get_preferences_summary()
 
         return {
-            "user_id": user_id,
             "tts_analytics": {
                 "total_conversions": stats["tts"]["convert_count"],
                 "total_previews": stats["tts"]["preview_count"],
@@ -156,7 +146,6 @@ class DataCollectionManager:
 
     def _update_preference(
         self,
-        user_id: str,
         preference: str,
         value: Any,
         valid_prefs: frozenset,
@@ -168,7 +157,7 @@ class DataCollectionManager:
 
         try:
             MemoryManager.set(preference, value)
-            self.logger.info(f"Updated {pref_type} preference for user {user_id}: {preference}={value}")
+            self.logger.info(f"Updated {pref_type} preference: {preference}={value}")
             return True
         except Exception as e:
             self.logger.error(f"Failed to update {pref_type} preference: {e}")

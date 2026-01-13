@@ -10,7 +10,6 @@ from logs_manager.LogsManager import LogsManager
 
 
 class DataCollection:
-    LOG_FILE_PATH = "logs/json/logs.jsonl"
     OUTPUT_DIR_PATH = "output"
     
     TTS_EVENT_TYPES = frozenset([
@@ -25,13 +24,13 @@ class DataCollection:
     
     def __init__(self):
         self.logger = LogsManager.get_logger("DataCollection")
-        self._log_file_path = PathHelper.resource_path(self.LOG_FILE_PATH)
+        self._log_dir = PathHelper.resource_path("logs/json")
+        self._log_base_name = "logs.jsonl"
         self._output_dir_path = PathHelper.resource_path(self.OUTPUT_DIR_PATH)
 
-    def collect_tts_preferences(self, user_id: str) -> Dict[str, Any]:
+    def collect_tts_preferences(self) -> Dict[str, Any]:
         timestamp = datetime.utcnow().isoformat()
         return {
-            "user_id": user_id,
             "tts_service": MemoryManager.get("tts_service", "edge"),
             "tts_language": MemoryManager.get("tts_lang", "en"),
             "tts_voice": MemoryManager.get("tts_voice", "female"),
@@ -41,17 +40,16 @@ class DataCollection:
             "collected_at": timestamp
         }
 
-    def collect_stt_preferences(self, user_id: str) -> Dict[str, Any]:
+    def collect_stt_preferences(self) -> Dict[str, Any]:
         timestamp = datetime.utcnow().isoformat()
         return {
-            "user_id": user_id,
             "stt_model": MemoryManager.get("stt_model", "vosk"),
             "stt_language": MemoryManager.get("stt_lang", "en"),
             "stt_device": MemoryManager.get("stt_device", "cpu"),
             "collected_at": timestamp
         }
 
-    def collect_output_files(self, user_id: str, limit: int = 100) -> List[Dict[str, Any]]:
+    def collect_output_files(self, limit: int = 100) -> List[Dict[str, Any]]:
         if not self._output_dir_path.exists():
             return []
 
@@ -60,7 +58,6 @@ class DataCollection:
             if file_path.is_file():
                 stat = file_path.stat()
                 files.append({
-                    "user_id": user_id,
                     "filename": file_path.name,
                     "extension": file_path.suffix.lower(),
                     "size_bytes": stat.st_size,
@@ -73,8 +70,9 @@ class DataCollection:
         
         return heapq.nlargest(limit, files, key=lambda x: x["created_at"])
 
-    def collect_tts_usage_from_logs(self, user_id: str, limit: int = 100) -> List[Dict[str, Any]]:
-        if not self._log_file_path.exists():
+    def collect_tts_usage_from_logs(self, limit: int = 100) -> List[Dict[str, Any]]:
+        log_files = self._get_log_files()
+        if not log_files:
             return []
 
         tts_events = []
@@ -83,7 +81,6 @@ class DataCollection:
             event_type = parsed.get("event")
             if event_type in self.TTS_EVENT_TYPES:
                 tts_events.append({
-                    "user_id": user_id,
                     "timestamp": log_entry.get("timestamp"),
                     "source": log_entry.get("name"),
                     "event": event_type,
@@ -95,8 +92,9 @@ class DataCollection:
 
         return tts_events
 
-    def collect_stt_usage_from_logs(self, user_id: str, limit: int = 100) -> List[Dict[str, Any]]:
-        if not self._log_file_path.exists():
+    def collect_stt_usage_from_logs(self, limit: int = 100) -> List[Dict[str, Any]]:
+        log_files = self._get_log_files()
+        if not log_files:
             return []
 
         stt_events = []
@@ -108,7 +106,6 @@ class DataCollection:
             final_event = self._get_stt_event(event_type, data)
             if final_event:
                 stt_events.append({
-                    "user_id": user_id,
                     "timestamp": log_entry.get("timestamp"),
                     "source": log_entry.get("name"),
                     "event": final_event,
@@ -122,17 +119,16 @@ class DataCollection:
 
 
 
-    def collect_usage_statistics(self, user_id: str) -> Dict[str, Any]:
-        tts_logs = self.collect_tts_usage_from_logs(user_id, limit=1000)
-        stt_logs = self.collect_stt_usage_from_logs(user_id, limit=1000)
-        output_files = self.collect_output_files(user_id, limit=1000)
+    def collect_usage_statistics(self) -> Dict[str, Any]:
+        tts_logs = self.collect_tts_usage_from_logs(limit=1000)
+        stt_logs = self.collect_stt_usage_from_logs(limit=1000)
+        output_files = self.collect_output_files(limit=1000)
 
         tts_event_counts = self._count_tts_events(tts_logs)
         stt_event_counts = self._count_stt_events(stt_logs)
         format_counts, total_output_size = self._analyze_output_files(output_files)
 
         return {
-            "user_id": user_id,
             "tts": {
                 "total_events": len(tts_logs),
                 "preview_count": tts_event_counts["preview"],
@@ -156,13 +152,12 @@ class DataCollection:
             "collected_at": datetime.utcnow().isoformat()
         }
 
-    def collect_user_behavior_for_recommendation(self, user_id: str) -> Dict[str, Any]:
-        tts_prefs = self.collect_tts_preferences(user_id)
-        stt_prefs = self.collect_stt_preferences(user_id)
-        stats = self.collect_usage_statistics(user_id)
+    def collect_user_behavior_for_recommendation(self) -> Dict[str, Any]:
+        tts_prefs = self.collect_tts_preferences()
+        stt_prefs = self.collect_stt_preferences()
+        stats = self.collect_usage_statistics()
 
         return {
-            "user_id": user_id,
             "tts_preferences": {
                 "service": tts_prefs.get("tts_service"),
                 "language": tts_prefs.get("tts_language"),
@@ -197,20 +192,33 @@ class DataCollection:
         language_usage = defaultdict(int)
         format_usage = defaultdict(int)
 
-        if self._log_file_path.exists():
+        log_files = self._get_log_files()
+        if not log_files:
+            return {
+                "tts_service_usage": {},
+                "language_usage": {},
+                "output_format_usage": {},
+                "total_output_files": 0,
+                "collected_at": datetime.utcnow().isoformat()
+            }
+
+        for log_file in log_files:
             try:
-                with open(self._log_file_path, "r", encoding="utf-8") as f:
+                with open(log_file, "r", encoding="utf-8") as f:
                     for line in f:
                         try:
                             log_entry = json.loads(line.strip())
                             msg = log_entry.get("message", "")
-                            
+
                             self._analyze_message_for_service(msg, service_usage)
                             self._analyze_message_for_language(msg, language_usage)
+
                         except json.JSONDecodeError:
                             continue
             except Exception as e:
-                self.logger.error(f"Failed to analyze system logs: {e}")
+                self.logger.error(
+                    f"Failed to analyze system logs {log_file}: {e}"
+                )
 
         if self._output_dir_path.exists():
             for file_path in self._output_dir_path.glob("*"):
@@ -227,29 +235,44 @@ class DataCollection:
             "collected_at": datetime.utcnow().isoformat()
         }
 
-    def collect_all_users_behavior(self, user_ids: List[str]) -> List[Dict[str, Any]]:
-        return [
-            self.collect_user_behavior_for_recommendation(user_id)
-            for user_id in user_ids
-        ]
+    def _read_log_entries(
+            self,
+            limit: int
+    ) -> Generator[Tuple[Dict[str, Any], Dict[str, Any]], None, None]:
+        count = 0
 
-    def _read_log_entries(self, limit: int) -> Generator[Tuple[Dict[str, Any], Dict[str, Any]], None, None]:
-        try:
-            with open(self._log_file_path, "r", encoding="utf-8") as f:
-                for line in f:
-                    try:
-                        log_entry = json.loads(line.strip())
-                        raw_message = log_entry.get("message")
-                        
-                        if not raw_message or not raw_message.startswith("{"):
+        for log_file in self._get_log_files():
+            try:
+                with open(log_file, "r", encoding="utf-8") as f:
+                    for line in reversed(list(f)):
+                        if count >= limit:
+                            return
+                        try:
+                            log_entry = json.loads(line.strip())
+                            raw_message = log_entry.get("message")
+
+                            if not raw_message or not raw_message.startswith("{"):
+                                continue
+
+                            parsed = json.loads(raw_message)
+                            yield log_entry, parsed
+                            count += 1
+
+                        except json.JSONDecodeError:
                             continue
-                        
-                        parsed = json.loads(raw_message)
-                        yield log_entry, parsed
-                    except (json.JSONDecodeError, KeyError):
-                        continue
-        except Exception as e:
-            self.logger.error(f"Failed to read log file: {e}")
+            except Exception as e:
+                self.logger.error(f"Failed to read log file {log_file}: {e}")
+
+    def _get_log_files(self) -> List:
+        if not self._log_dir.exists():
+            return []
+
+        return sorted(
+            self._log_dir.glob(self._log_base_name + "*"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True
+        )
+
 
     def _get_stt_event(self, event_type: Optional[str], data: Dict[str, Any]) -> Optional[str]:
         if event_type == "SUCCESS":

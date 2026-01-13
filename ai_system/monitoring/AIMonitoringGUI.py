@@ -25,7 +25,7 @@ class AIMonitoringGUI:
         self.win.title(self.lang.get("ai_monitoring_title"))
         self.win.transient(parent)
         self.win.grab_set()
-        self.win.geometry("900x700")
+        self.win.geometry("1250x1250")
         self.win.resizable(True, True)
 
         colors = THEME["COLORS"]
@@ -167,12 +167,12 @@ class AIMonitoringGUI:
         self.tree.heading("latency", text=self.lang.get("ai_col_latency"))
         self.tree.heading("status", text=self.lang.get("ai_col_status"))
         self.tree.heading("error", text=self.lang.get("ai_col_error"))
-        
-        self.tree.column("timestamp", width=150)
-        self.tree.column("provider", width=120)
-        self.tree.column("latency", width=100)
-        self.tree.column("status", width=80)
-        self.tree.column("error", width=250)
+
+        self.tree.column("timestamp", width=150, anchor="center")
+        self.tree.column("provider", width=120, anchor="center")
+        self.tree.column("latency", width=120, anchor="center")
+        self.tree.column("status", width=100, anchor="center")
+        self.tree.column("error", width=250, anchor="center")
         
         scrollbar = ttk.Scrollbar(table_inner, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscrollcommand=scrollbar.set)

@@ -3,6 +3,7 @@ from tkinter import ttk
 from GUI import TTSMenuApp
 from STTGUI import STTMenuApp
 from GUIError import GUIError
+from ai_system.providers.TimedProviders import TimedProvider
 from fragments.UIFragments import center_window, apply_auth_style
 from logs_manager.LogsHelperManager import LogsHelperManager
 from data_manager.MemoryManager import MemoryManager
@@ -10,6 +11,9 @@ from usermanager.UserManager import UserManager
 from auth_gui.auth_factory import MainAuthFactory
 from auth_gui.ResetPasswordGUI import ResetPasswordGUI
 from auth_gui.RegisterGUI import RegisterGUI
+from ai_system.providers.ProviderRegistry import ProviderRegistry
+from ai_system.providers.DeepInfraProvider import DeepInfraProvider
+from ai_system.config.AIConfig import AIConfig
 
 
 class LoginGUI(tk.Tk):
@@ -111,6 +115,36 @@ class LoginGUI(tk.Tk):
 
         MemoryManager.set("cached_username", username)
         LogsHelperManager.log_success(self.logger, "LOGIN_SUCCESS", {"user": result.username})
+
+        try:
+            config = AIConfig.load()
+            provider_config = config.get("provider", {})
+
+            api_key = provider_config.get("api_key", "")
+
+            deepinfra_provider = DeepInfraProvider(
+                api_key=api_key,
+                model=provider_config.get("model")
+            )
+
+            timed_provider = TimedProvider(
+                provider=deepinfra_provider,
+                provider_name="deepinfra"
+            )
+
+            ProviderRegistry.register(timed_provider)
+
+            LogsHelperManager.log_success(self.logger, "AI_PROVIDER_INITIALIZED", {
+                "provider": "deepinfra",
+                "model": provider_config.get("model")
+            })
+
+        except Exception as e:
+            LogsHelperManager.log_error(
+                self.logger,
+                "AI_PROVIDER_INIT_FAILED",
+                str(e)
+            )
 
         self.destroy()
 

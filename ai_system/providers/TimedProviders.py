@@ -1,8 +1,9 @@
 import time
 from ai_system.monitoring.LatencyTracker import LatencyTracker
+from ai_system.providers.BaseProvider import BaseProvider
 
 
-class TimedProvider:
+class TimedProvider(BaseProvider):
     def __init__(self, provider, provider_name: str):
         self.provider = provider
         self.provider_name = provider_name

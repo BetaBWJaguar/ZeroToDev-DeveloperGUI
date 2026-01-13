@@ -1,13 +1,34 @@
 {
   "ai": {
+    "provider": {
+      "type": "deepinfra",
+      "api_key": "${DEEPINFRA_API_KEY}",
+      "model": "google/gemma-3-27b-it"
+    },
     "prompts": {
       "recommendation": {
-        "system": "",
-        "user_template": ""
+        "system": {
+          "tr": "",
+          "en": "",
+          "de": ""
+        },
+        "user_template": {
+          "tr": "",
+          "en": "",
+          "de": ""
+        }
       },
       "decision": {
-        "system": "",
-        "user_template": ""
+        "system": {
+          "tr": "",
+          "en": "",
+          "de": ""
+        },
+        "user_template": {
+          "tr": "{question}",
+          "en": "{question}",
+          "de": "{question}"
+        }
       }
     }
   }
