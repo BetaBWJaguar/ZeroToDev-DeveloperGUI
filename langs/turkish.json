@@ -190,6 +190,7 @@
   "user_reset_already_requested": "Zaten aktif bir şifre sıfırlama isteğin var. Lütfen e-postanı kontrol et. Kalan süre: {0} dakika.",
   "menu_account": "Hesap",
   "menu_profile": "Profilim",
+  "menu_my_statistics": "İstatistiklerim",
   "menu_account_settings": "Hesap Ayarları",
   "menu_logout": "Çıkış Yap",
   "menu_resources": "Kaynaklar",

@@ -4,15 +4,20 @@ from ai_system.config.AIConfig import AIConfig
 
 class PromptBuilder:
     @staticmethod
-    def build(prompt_key: str, payload: dict) -> tuple[str, str]:
+    def build(prompt_key: str, payload: dict, language: str = "en") -> tuple[str, str]:
         config = AIConfig.load()
         prompt_def = config["prompts"].get(prompt_key)
 
         if not prompt_def:
             raise KeyError(f"Prompt '{prompt_key}' not defined")
 
-        system_prompt = prompt_def["system"]
-        user_prompt = prompt_def["user_template"].replace(
+        system_prompts = prompt_def.get("system", {})
+        user_templates = prompt_def.get("user_template", {})
+
+        system_prompt = system_prompts.get(language, system_prompts.get("en", ""))
+        user_template = user_templates.get(language, user_templates.get("en", ""))
+
+        user_prompt = user_template.replace(
             "{{payload}}",
             AIUtils.to_prompt(payload)
         )

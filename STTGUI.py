@@ -180,7 +180,7 @@ class STTMenuApp(tk.Tk):
         account_menu.add_command(label=self.lang.get("menu_profile"), command=self.show_profile)
         account_menu.add_command(label=self.lang.get("menu_account_settings"), command=self.show_account_settings)
         account_menu.add_separator()
-        account_menu.add_command(label="My Statistics", command=self.show_user_stats_dashboard)
+        account_menu.add_command(label=self.lang.get("menu_my_statistics"), command=self.show_user_stats_dashboard)
         account_menu.add_separator()
         account_menu.add_command(label=self.lang.get("menu_logout"), command=self.logout_user)
         menubar.add_cascade(label=self.lang.get("menu_account"), menu=account_menu)

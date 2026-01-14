@@ -190,6 +190,7 @@
   "user_reset_already_requested": "A password reset request is already active. Please check your email. Remaining time: {0} minutes.",
   "menu_account": "Account",
   "menu_profile": "My Profile",
+  "menu_my_statistics": "My Statistics",
   "menu_account_settings": "Account Settings",
   "menu_logout": "Logout",
   "menu_resources": "Resources",

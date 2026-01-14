@@ -190,6 +190,7 @@
   "user_reset_already_requested": "Es ist bereits eine aktive Passwortzurücksetzung vorhanden. Bitte überprüfe deine E-Mails. Verbleibende Zeit: {0} Minuten.",
   "menu_account": "Konto",
   "menu_profile": "Mein Profil",
+  "menu_my_statistics": "Meine Statistiken",
   "menu_account_settings": "Kontoeinstellungen",
   "menu_logout": "Abmelden",
   "menu_resources": "Ressourcen",

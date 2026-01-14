@@ -8,14 +8,14 @@
     "prompts": {
       "recommendation": {
         "system": {
-          "tr": "",
-          "en": "",
-          "de": ""
+          "tr": "Sen bu uygulama için akıllı bir asistansın. Kullanıcının kullanım alışkanlıklarına ve tercihlerine dayalı olarak, tek bir net ve öz öneri sun. Öneri, kullanıcının verilerine dayalı olmalı ve onun deneyimini iyileştirmeye yönelik olmalı.",
+          "en": "You are an intelligent assistant for this application. Based on the user's usage habits and preferences, provide a single clear and concise recommendation. The recommendation should be based on the user's data and aimed at improving their experience.",
+          "de": "Du bist ein intelligenter Assistent für diese Anwendung. Basierend auf den Nutzungsgewohnheiten und Vorlieben des Benutzers, gib eine einzige klare und prägnante Empfehlung ab. Die Empfehlung sollte auf den Daten des Benutzers basieren und darauf abzielen, seine Erfahrung zu verbessern."
         },
         "user_template": {
-          "tr": "",
-          "en": "",
-          "de": ""
+          "tr": "Kullanıcı verilerine dayalı olarak, kullanıcının deneyimini iyileştirmek için tek bir öneri sun:\n\n{{payload}}",
+          "en": "Based on the user data, provide a single recommendation to improve the user's experience:\n\n{{payload}}",
+          "de": "Basierend auf den Benutzerdaten, gib eine einzelne Empfehlung ab, um die Erfahrung des Benutzers zu verbessern:\n\n{{payload}}"
         }
       },
       "decision": {
