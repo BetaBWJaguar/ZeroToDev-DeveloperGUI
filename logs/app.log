@@ -6576,3 +6576,219 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-12 15:19:12 | INFO    | TTSMenuApp | {"timestamp": "2026-01-12T15:19:12.149365", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
 2026-01-12 15:19:12 | INFO    | TTSMenuApp | {"timestamp": "2026-01-12T15:19:12.221681", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
 2026-01-12 15:19:25 | INFO    | TTSMenuApp | {"timestamp": "2026-01-12T15:19:25.376054", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2026-01-14 17:34:36 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 17:34:36 | INFO    | Main | {"timestamp": "2026-01-14T17:34:36.945485", "event": "SESSION_START", "data": {"session_id": "20260114-173436"}}
+2026-01-14 17:34:36 | INFO    | LangManager | {"timestamp": "2026-01-14T17:34:36.993861", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 17:34:42 | INFO    | Main | {"timestamp": "2026-01-14T17:34:42.371886", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 17:34:42 | INFO    | Main | {"timestamp": "2026-01-14T17:34:42.681626", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 17:34:42 | INFO    | Main | {"timestamp": "2026-01-14T17:34:42.700155", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 17:37:15 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 17:37:15 | INFO    | Main | {"timestamp": "2026-01-14T17:37:15.806771", "event": "SESSION_START", "data": {"session_id": "20260114-173715"}}
+2026-01-14 17:37:15 | INFO    | LangManager | {"timestamp": "2026-01-14T17:37:15.853906", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 17:37:25 | INFO    | Main | {"timestamp": "2026-01-14T17:37:25.680728", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 17:37:25 | INFO    | Main | {"timestamp": "2026-01-14T17:37:25.937983", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 17:37:25 | INFO    | Main | {"timestamp": "2026-01-14T17:37:25.958068", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 17:39:33 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 17:39:33 | INFO    | Main | {"timestamp": "2026-01-14T17:39:33.576344", "event": "SESSION_START", "data": {"session_id": "20260114-173933"}}
+2026-01-14 17:39:33 | INFO    | LangManager | {"timestamp": "2026-01-14T17:39:33.621158", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 17:39:43 | INFO    | Main | {"timestamp": "2026-01-14T17:39:43.098165", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 17:39:43 | INFO    | Main | {"timestamp": "2026-01-14T17:39:43.362567", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 17:39:43 | INFO    | Main | {"timestamp": "2026-01-14T17:39:43.385465", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 17:39:43 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 17:39:47 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:39:47.183392", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 17:40:03 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:40:03.513902", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:40:29 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:40:29.359293", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:40:29 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:40:29.506366", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:40:29 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:40:29.671364", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:40:29 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:40:29.837224", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:40:30 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:40:30.027433", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:43:22 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:43:22.668973", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:43:22 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:43:22.853842", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:43:22 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T17:43:22.999654", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 17:46:15 | INFO    | Main | {"timestamp": "2026-01-14T17:46:15.819718", "event": "SESSION_END", "data": {"session_id": "20260114-173933"}}
+2026-01-14 18:16:17 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:16:17 | INFO    | Main | {"timestamp": "2026-01-14T18:16:17.312486", "event": "SESSION_START", "data": {"session_id": "20260114-181617"}}
+2026-01-14 18:16:17 | INFO    | LangManager | {"timestamp": "2026-01-14T18:16:17.361981", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:16:27 | INFO    | Main | {"timestamp": "2026-01-14T18:16:27.905360", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:16:28 | INFO    | Main | {"timestamp": "2026-01-14T18:16:28.161610", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:16:28 | INFO    | Main | {"timestamp": "2026-01-14T18:16:28.182080", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:16:28 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:16:30 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:16:30.566034", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:16:30 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:16:30.930784", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:16:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:16:31.082772", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:16:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:16:31.243838", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:16:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:16:31.418262", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:16:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:16:31.821607", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:16:34 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-14T18:16:34.308428", "event": "ERROR", "data": {"action": "RECOMMENDATION_GENERATE_FAIL", "error": "DeepInfra API error: 401 Client Error: Unauthorized for url: https://api.deepinfra.com/v1/openai/chat/completions"}}
+2026-01-14 18:17:20 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:17:20 | INFO    | Main | {"timestamp": "2026-01-14T18:17:20.852476", "event": "SESSION_START", "data": {"session_id": "20260114-181720"}}
+2026-01-14 18:17:20 | INFO    | LangManager | {"timestamp": "2026-01-14T18:17:20.898900", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:17:25 | INFO    | Main | {"timestamp": "2026-01-14T18:17:25.935813", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:17:26 | INFO    | Main | {"timestamp": "2026-01-14T18:17:26.202979", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:17:26 | INFO    | Main | {"timestamp": "2026-01-14T18:17:26.222775", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:17:26 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:17:29 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:17:29.761941", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:17:32 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-14T18:17:32.371174", "event": "ERROR", "data": {"action": "RECOMMENDATION_GENERATE_FAIL", "error": "DeepInfra API error: 401 Client Error: Unauthorized for url: https://api.deepinfra.com/v1/openai/chat/completions"}}
+2026-01-14 18:17:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:17:56 | INFO    | Main | {"timestamp": "2026-01-14T18:17:56.067355", "event": "SESSION_START", "data": {"session_id": "20260114-181756"}}
+2026-01-14 18:17:56 | INFO    | LangManager | {"timestamp": "2026-01-14T18:17:56.114912", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:18:00 | INFO    | Main | {"timestamp": "2026-01-14T18:18:00.994015", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:18:01 | INFO    | Main | {"timestamp": "2026-01-14T18:18:01.248723", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:18:01 | INFO    | Main | {"timestamp": "2026-01-14T18:18:01.269549", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:18:01 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:18:04 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:04.761401", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:18:07 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-14T18:18:07.348368", "event": "ERROR", "data": {"action": "RECOMMENDATION_GENERATE_FAIL", "error": "DeepInfra API error: 401 Client Error: Unauthorized for url: https://api.deepinfra.com/v1/openai/chat/completions"}}
+2026-01-14 18:18:07 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:07.365221", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:07 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:07.444964", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:07 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:07.649302", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:10 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:10.231011", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:10 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:10.382315", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:10 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:10.554901", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:10 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:10.725773", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:10 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:10.889082", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:11 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:11.068152", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:18:30 | INFO    | Main | {"timestamp": "2026-01-14T18:18:30.950845", "event": "SESSION_END", "data": {"session_id": "20260114-181756"}}
+2026-01-14 18:18:39 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:18:39 | INFO    | Main | {"timestamp": "2026-01-14T18:18:39.482855", "event": "SESSION_START", "data": {"session_id": "20260114-181839"}}
+2026-01-14 18:18:39 | INFO    | LangManager | {"timestamp": "2026-01-14T18:18:39.529054", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:18:45 | INFO    | Main | {"timestamp": "2026-01-14T18:18:45.107196", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:18:45 | INFO    | Main | {"timestamp": "2026-01-14T18:18:45.361009", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:18:45 | INFO    | Main | {"timestamp": "2026-01-14T18:18:45.380669", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:18:45 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:18:48 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:18:48.884006", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:22:14 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-14T18:22:14.619044", "event": "ERROR", "data": {"action": "RECOMMENDATION_GENERATE_FAIL", "error": "DeepInfra API error: 401 Client Error: Unauthorized for url: https://api.deepinfra.com/v1/openai/chat/completions"}}
+2026-01-14 18:23:03 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:23:03 | INFO    | Main | {"timestamp": "2026-01-14T18:23:03.617717", "event": "SESSION_START", "data": {"session_id": "20260114-182303"}}
+2026-01-14 18:23:03 | INFO    | LangManager | {"timestamp": "2026-01-14T18:23:03.661606", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:23:10 | INFO    | Main | {"timestamp": "2026-01-14T18:23:10.815500", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:23:11 | INFO    | Main | {"timestamp": "2026-01-14T18:23:11.075161", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:23:20 | INFO    | Main | {"timestamp": "2026-01-14T18:23:20.038225", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:23:20 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:23:23 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:23:23.692494", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:23:27 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-14T18:23:27.619734", "event": "ERROR", "data": {"action": "RECOMMENDATION_GENERATE_FAIL", "error": "DeepInfra API error: 401 Client Error: Unauthorized for url: https://api.deepinfra.com/v1/openai/chat/completions"}}
+2026-01-14 18:23:29 | INFO    | Main | {"timestamp": "2026-01-14T18:23:29.073818", "event": "SESSION_END", "data": {"session_id": "20260114-182303"}}
+2026-01-14 18:32:41 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:32:41 | INFO    | Main | {"timestamp": "2026-01-14T18:32:41.930836", "event": "SESSION_START", "data": {"session_id": "20260114-183241"}}
+2026-01-14 18:32:42 | INFO    | LangManager | {"timestamp": "2026-01-14T18:32:42.014660", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:32:48 | INFO    | Main | {"timestamp": "2026-01-14T18:32:48.161037", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:32:52 | INFO    | Main | {"timestamp": "2026-01-14T18:32:52.472941", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:32:52 | INFO    | Main | {"timestamp": "2026-01-14T18:32:52.706494", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:33:00 | INFO    | Main | {"timestamp": "2026-01-14T18:33:00.320042", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:33:00 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:33:02 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:02.296927", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:02 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:02.710632", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:02 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:02.887281", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:03 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:03.049221", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:03 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:03.216520", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:03 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:03.394078", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:03 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:03.557349", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:03 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:03.722959", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:04 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:04.038907", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:33:05 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:05.933651", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:06 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:06.091267", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:06 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:06.248762", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:06 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:06.402888", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:06 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:06.563916", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:06 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:06.725423", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:06 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:06.905953", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:33:17 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:33:17.603679", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:35:06 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:35:06 | INFO    | Main | {"timestamp": "2026-01-14T18:35:06.124752", "event": "SESSION_START", "data": {"session_id": "20260114-183506"}}
+2026-01-14 18:35:06 | INFO    | LangManager | {"timestamp": "2026-01-14T18:35:06.174975", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:35:10 | INFO    | Main | {"timestamp": "2026-01-14T18:35:10.919636", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:35:11 | INFO    | Main | {"timestamp": "2026-01-14T18:35:11.172236", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:35:23 | INFO    | Main | {"timestamp": "2026-01-14T18:35:23.738988", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:35:24 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:35:27 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:35:27.228411", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:36:02 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a: You haven't used the Text-to-Speech feature yet. Try previewing a short text sample with your current settings (Edge, female voice, English, MP3) to experience how it sounds!
+2026-01-14 18:39:30 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:39:30 | INFO    | Main | {"timestamp": "2026-01-14T18:39:30.107792", "event": "SESSION_START", "data": {"session_id": "20260114-183930"}}
+2026-01-14 18:39:30 | INFO    | LangManager | {"timestamp": "2026-01-14T18:39:30.155113", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:39:39 | INFO    | Main | {"timestamp": "2026-01-14T18:39:39.811691", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:39:40 | INFO    | Main | {"timestamp": "2026-01-14T18:39:40.070840", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:39:42 | INFO    | Main | {"timestamp": "2026-01-14T18:39:42.152068", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:39:42 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:39:44 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:44.117614", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:44 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:44.466845", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:44 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:44.621015", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:44 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:44.769526", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:44 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:44.930693", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:45 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:45.072501", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:45 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:45.223693", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:45 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:45.373990", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:45 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:45.527568", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:45 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:45.805552", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:39:47 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:47.537822", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:47 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:47.696494", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:47 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:47.846426", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:39:48 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:39:48.007968", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:40:04 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:40:04.443342", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:40:04 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:40:04.600166", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:40:04 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:40:04.767658", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:40:04 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:40:04.926255", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:40:05 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:40:05.121262", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:42:26 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:42:26 | INFO    | Main | {"timestamp": "2026-01-14T18:42:26.679137", "event": "SESSION_START", "data": {"session_id": "20260114-184226"}}
+2026-01-14 18:42:26 | INFO    | LangManager | {"timestamp": "2026-01-14T18:42:26.725011", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:42:31 | INFO    | Main | {"timestamp": "2026-01-14T18:42:31.956505", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:42:32 | INFO    | Main | {"timestamp": "2026-01-14T18:42:32.213570", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:42:33 | INFO    | Main | {"timestamp": "2026-01-14T18:42:33.811038", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:42:34 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:42:38 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:42:38.521338", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:42:41 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:42:41.015368", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:42:42 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:42:42.054935", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2026-01-14 18:46:57 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:46:57 | INFO    | Main | {"timestamp": "2026-01-14T18:46:57.183457", "event": "SESSION_START", "data": {"session_id": "20260114-184657"}}
+2026-01-14 18:46:57 | INFO    | LangManager | {"timestamp": "2026-01-14T18:46:57.231547", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:47:02 | INFO    | Main | {"timestamp": "2026-01-14T18:47:02.068865", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:47:02 | INFO    | Main | {"timestamp": "2026-01-14T18:47:02.323361", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:47:12 | INFO    | Main | {"timestamp": "2026-01-14T18:47:12.111550", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:47:15 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:47:20 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:47:20.864961", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:47:42 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:47:42.083477", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 18:53:09 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 18:53:09 | INFO    | Main | {"timestamp": "2026-01-14T18:53:09.310098", "event": "SESSION_START", "data": {"session_id": "20260114-185309"}}
+2026-01-14 18:53:09 | INFO    | LangManager | {"timestamp": "2026-01-14T18:53:09.358469", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 18:53:27 | INFO    | Main | {"timestamp": "2026-01-14T18:53:27.530042", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 18:53:27 | INFO    | Main | {"timestamp": "2026-01-14T18:53:27.791714", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 18:53:38 | INFO    | Main | {"timestamp": "2026-01-14T18:53:38.686666", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 18:53:39 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 18:53:42 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:53:42.366010", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 18:54:28 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a: You haven't used the Text-to-Speech feature yet. Try previewing a short text sample with your current settings (Edge, female voice, English, MP3) to ensure it meets your expectations before converting larger files.
+2026-01-14 18:54:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:54:31.209847", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_ACTION"}}
+2026-01-14 18:54:31 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:54:31.777558", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_ACTION"}}
+2026-01-14 18:54:32 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:54:32.273827", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_ACTION"}}
+2026-01-14 18:54:32 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:54:32.472302", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_ACTION"}}
+2026-01-14 18:54:32 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:54:32.662545", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_ACTION"}}
+2026-01-14 18:56:23 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:56:23.637680", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_ACTION"}}
+2026-01-14 18:57:49 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T18:57:49.213514", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 19:03:36 | INFO    | Main | {"timestamp": "2026-01-14T19:03:36.574690", "event": "SESSION_END", "data": {"session_id": "20260114-185309"}}
+2026-01-14 19:05:05 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 19:05:05 | INFO    | Main | {"timestamp": "2026-01-14T19:05:05.773883", "event": "SESSION_START", "data": {"session_id": "20260114-190505"}}
+2026-01-14 19:05:05 | INFO    | LangManager | {"timestamp": "2026-01-14T19:05:05.820478", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 19:05:10 | INFO    | Main | {"timestamp": "2026-01-14T19:05:10.950331", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 19:05:11 | INFO    | Main | {"timestamp": "2026-01-14T19:05:11.209818", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 19:05:18 | INFO    | Main | {"timestamp": "2026-01-14T19:05:18.812416", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 19:05:19 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 19:05:22 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T19:05:22.465028", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 19:06:40 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 19:06:40 | INFO    | Main | {"timestamp": "2026-01-14T19:06:40.320897", "event": "SESSION_START", "data": {"session_id": "20260114-190640"}}
+2026-01-14 19:06:40 | INFO    | LangManager | {"timestamp": "2026-01-14T19:06:40.367089", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 19:06:45 | INFO    | Main | {"timestamp": "2026-01-14T19:06:45.065226", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 19:06:45 | INFO    | Main | {"timestamp": "2026-01-14T19:06:45.319564", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 19:06:46 | INFO    | Main | {"timestamp": "2026-01-14T19:06:46.686935", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 19:06:47 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 19:06:47 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T19:06:47.577817", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-01-14 19:06:50 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T19:06:50.189147", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 19:08:39 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T19:08:39.736348", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 19:10:17 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-14 19:10:17 | INFO    | Main | {"timestamp": "2026-01-14T19:10:17.892898", "event": "SESSION_START", "data": {"session_id": "20260114-191017"}}
+2026-01-14 19:10:17 | INFO    | LangManager | {"timestamp": "2026-01-14T19:10:17.940071", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-14 19:10:23 | INFO    | Main | {"timestamp": "2026-01-14T19:10:23.089836", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-14 19:10:23 | INFO    | Main | {"timestamp": "2026-01-14T19:10:23.345402", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-14 19:10:25 | INFO    | Main | {"timestamp": "2026-01-14T19:10:25.149907", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-14 19:10:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-01-14 19:10:26 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T19:10:26.064211", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-01-14 19:10:28 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T19:10:28.800527", "event": "UPDATER_GUI_OPENED", "data": {"local": "1.3", "remote": "1.2"}}
+2026-01-14 19:10:37 | INFO    | TTSMenuApp | {"timestamp": "2026-01-14T19:10:37.133100", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-14 19:27:42 | INFO    | Main | {"timestamp": "2026-01-14T19:27:42.657962", "event": "SESSION_END", "data": {"session_id": "20260114-191017"}}

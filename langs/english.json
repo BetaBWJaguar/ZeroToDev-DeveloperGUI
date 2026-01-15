@@ -417,5 +417,6 @@
   "stats_preferred_service": "Preferred Service",
   "stats_preferred_format": "Preferred Format",
   "stats_preferred_model": "Preferred Model",
-  "stats_preferred_language": "Preferred Language"
+  "stats_preferred_language": "Preferred Language",
+  "recommendation_title": "Recommendation System"
 }

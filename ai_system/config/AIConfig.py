@@ -1,7 +1,14 @@
 import json
 import os
 import re
+
+from dotenv import load_dotenv
 from PathHelper import PathHelper
+current_dir = PathHelper.internal_dir()
+
+env_path = current_dir / '.env'
+
+load_check = load_dotenv(dotenv_path=env_path)
 
 
 class AIConfig:

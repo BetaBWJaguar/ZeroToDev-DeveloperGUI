@@ -417,5 +417,6 @@
   "stats_preferred_service": "Bevorzugter Dienst",
   "stats_preferred_format": "Bevorzugtes Format",
   "stats_preferred_model": "Bevorzugtes Modell",
-  "stats_preferred_language": "Bevorzugte Sprache"
+  "stats_preferred_language": "Bevorzugte Sprache",
+  "recommendation_title": "Empfehlungssystem"
 }

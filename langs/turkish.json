@@ -417,5 +417,6 @@
   "stats_preferred_service": "Tercih Edilen Servis",
   "stats_preferred_format": "Tercih Edilen Format",
   "stats_preferred_model": "Tercih Edilen Model",
-  "stats_preferred_language": "Tercih Edilen Dil"
+  "stats_preferred_language": "Tercih Edilen Dil",
+  "recommendation_title": "Öneri Sistemi"
 }

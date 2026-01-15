@@ -21,6 +21,7 @@ from stt.stt__models.WhisperSTT import WhisperSTT
 from PathHelper import PathHelper
 from updater.Update_Checker import check_for_update_gui
 from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
+from ai_system.AIRecommendationWidget import AIRecommendationWidget
 
 
 BASE_DIR = PathHelper.base_dir()

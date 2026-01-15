@@ -28,6 +28,8 @@ class User:
             twofa_enabled: bool = False,
             twofa_secret: Optional[str] = None,
             twofa_verified: bool = False,
+            last_recommendation_time: Optional[str] = None,
+            recommendation_interval_seconds: Optional[int] = None,
             _id: Optional[str] = None
     ):
         self.id = id or str(uuid.uuid4())
@@ -48,6 +50,8 @@ class User:
         self.twofa_enabled = twofa_enabled
         self.twofa_secret = twofa_secret
         self.twofa_verified = twofa_verified
+        self.last_recommendation_time = last_recommendation_time
+        self.recommendation_interval_seconds = recommendation_interval_seconds
         self._id = _id
 
     @classmethod
@@ -104,6 +108,8 @@ class User:
             "twofa_enabled": self.twofa_enabled,
             "twofa_secret": self.twofa_secret,
             "twofa_verified": self.twofa_verified,
+            "last_recommendation_time": self.last_recommendation_time,
+            "recommendation_interval_seconds": self.recommendation_interval_seconds,
         }
 
     @classmethod
@@ -127,5 +133,7 @@ class User:
             twofa_enabled=data.get("twofa_enabled", False),
             twofa_secret=data.get("twofa_secret"),
             twofa_verified=data.get("twofa_verified", False),
+            last_recommendation_time=data.get("last_recommendation_time"),
+            recommendation_interval_seconds=data.get("recommendation_interval_seconds"),
             _id=str(data.get("_id")) if data.get("_id") else None
         )

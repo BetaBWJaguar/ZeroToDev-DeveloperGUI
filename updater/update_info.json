@@ -1,5 +1,5 @@
 {
-  "version": "1.2",
-  "zip_url": "https://github.com/BetaBWJaguar/ZeroToDev-DeveloperGUI/releases/download/1.2/ZeroToDev-DeveloperGUI-1.2-win.zip",
-  "changelog": "Version 1.2 Released\n\n- Major User Management System Added (Register, Login, Reset Password, Email Verification)\n- Integrated Resource Monitor (CPU, RAM, Disk Usage)\n- Built-in Auto Update System Implemented\n- General Performance Improvements\n- Various Bug Fixes and Stability Enhancements"
+  "version": "1.3",
+  "zip_url": "https://github.com/BetaBWJaguar/ZeroToDev-DeveloperGUI/releases/download/1.3/ZeroToDev-DeveloperGUI-1.3-win.zip",
+  "changelog": ""
 }

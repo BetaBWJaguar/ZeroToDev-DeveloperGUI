@@ -31,6 +31,7 @@ from PathHelper import PathHelper
 from updater.Update_Checker import check_for_update_gui
 from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
 from AppMode import AppMode
+from ai_system.AIRecommendationWidget import AIRecommendationWidget
 
 
 BASE_DIR = PathHelper.base_dir()
@@ -101,13 +102,15 @@ class TTSMenuApp(tk.Tk):
     def __init__(self,lang_manager,current_user,user_manager):
         super().__init__()
         self.zip_var = None
+        self._ai_recommendation_after_id = None
+        self.ai_recommendation_dismissed = False
         self.lang = lang_manager
         self.user_manager = user_manager
         self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
-        self.geometry("1200x1100")
-        self.minsize(1200, 1100)
+        self.geometry("1200x1200")
+        self.minsize(1200, 1200)
         self.listener = GUIListener(self)
         self.resizable(False, False)
         self.logger = LogsManager.get_logger("TTSMenuApp")
@@ -125,6 +128,11 @@ class TTSMenuApp(tk.Tk):
             lang=self.lang,
             logger=self.logger
         ))
+
+        self._ai_recommendation_after_id = self.after(
+            5000,
+            self.show_ai_recommendation
+        )
 
     def start_user_auto_refresh(self):
         def auto_refresh_loop():
@@ -225,44 +233,52 @@ class TTSMenuApp(tk.Tk):
 
 
     def _build(self):
-        root = ttk.Frame(self, padding=20); root.pack(fill="both", expand=True)
+        root = ttk.Frame(self, padding=20)
+        root.pack(fill="both", expand=True)
 
-        root.grid_rowconfigure(1, weight=0)
         root.grid_rowconfigure(2, weight=1)
-        root.grid_rowconfigure(3, weight=0)
         root.grid_columnconfigure(0, weight=3)
-        root.grid_columnconfigure(1, weight=2)
+        root.grid_columnconfigure(1, weight=0, minsize=400)
 
         ttk.Label(root, text=self.lang.get("app_title2"), style="Title.TLabel") \
             .grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 10))
-        ttk.Label(root, text=self.lang.get("enter_text"), style="Muted.TLabel") \
-            .grid(row=1, column=0, sticky="w")
 
+        ttk.Label(root, text=self.lang.get("enter_text"), style="Muted.TLabel") \
+            .grid(row=1, column=0, sticky="sw", pady=(0, 5))
 
         left = ttk.Frame(root)
         left.grid(row=2, column=0, sticky="nsew", padx=(0, 12))
-        left.grid_rowconfigure(0, weight=1); left.grid_columnconfigure(0, weight=1)
+        left.grid_rowconfigure(0, weight=1)
+        left.grid_columnconfigure(0, weight=1)
 
         text_wrap, self.text = make_textarea(left)
         text_wrap.grid(row=0, column=0, sticky="nsew")
 
-
         right = ttk.Frame(root)
-        right.grid(row=2, column=1, sticky="nsew")
+        right.grid(row=1, column=1, rowspan=2, sticky="nsew")
         right.grid_columnconfigure(0, weight=1)
 
+        self.recommendation_widget = AIRecommendationWidget(
+            parent=right,
+            lang_manager=self.lang,
+            logger=self.logger,
+            current_user=self.current_user,
+            user_manager=self.user_manager,
+            on_dismiss=self._on_recommendation_dismissed
+        )
+        rec_frame = self.recommendation_widget.create_widget()
+        rec_frame.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+        rec_frame.grid_remove()
 
         convert_card, convert_inner = section(right, self.lang.get("convert_section"))
-        convert_card.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+        convert_card.grid(row=1, column=0, sticky="ew", pady=(0, 12))
         self.convert_btn = primary_button(convert_inner, self.lang.get("convert_button"), self.on_convert)
         self.convert_btn.pack(fill="x")
-
         self.preview_btn = primary_button(convert_inner, self.lang.get("preview_button"), self.on_preview)
         self.preview_btn.pack(fill="x", pady=(0, 6))
 
         service_card, service_inner = section(right, self.lang.get("tts_service_section"))
-        service_card.grid(row=1, column=0, sticky="nsew")
-
+        service_card.grid(row=2, column=0, sticky="ew", pady=(0, 12))
         self.service_var = tk.StringVar(value=MemoryManager.get("tts_service", ""))
 
         def service_changed(*_):
@@ -273,14 +289,13 @@ class TTSMenuApp(tk.Tk):
 
         self.service_var.trace_add("write", service_changed)
         service_row = ttk.Frame(service_inner, style="Card.TFrame"); service_row.pack(fill="x")
-
         ttk.Radiobutton(service_row, text=self.lang.get("tts_service_edge"), value="edge", variable=self.service_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
         ttk.Radiobutton(service_row, text=self.lang.get("tts_service_google"), value="google", variable=self.service_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
         fmt_card, fmt_inner = section(right, self.lang.get("format_section"))
-        fmt_card.grid(row=2, column=0, sticky="nsew")
+        fmt_card.grid(row=3, column=0, sticky="ew", pady=(0, 12))
         self.format_var = tk.StringVar(value=MemoryManager.get("tts_format", ""))
 
         def format_changed(*_):
@@ -291,81 +306,46 @@ class TTSMenuApp(tk.Tk):
 
         self.format_var.trace_add("write", format_changed)
         fmt_row = ttk.Frame(fmt_inner, style="Card.TFrame"); fmt_row.pack(fill="x")
-        ttk.Radiobutton(fmt_row, text=self.lang.get("format_mp3"), value="mp3", variable=self.format_var,
-                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text=self.lang.get("format_wav"), value="wav", variable=self.format_var,
-                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text=self.lang.get("format_webm"), value="webm", variable=self.format_var,
-                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text=self.lang.get("format_flac"), value="flac", variable=self.format_var,
-                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
-        ttk.Radiobutton(fmt_row, text=self.lang.get("format_aac"), value="aac", variable=self.format_var,
-                        style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
+        for fmt in ["mp3", "wav", "webm", "flac", "aac"]:
+            ttk.Radiobutton(fmt_row, text=self.lang.get(f"format_{fmt}"), value=fmt, variable=self.format_var,
+                            style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
         lang_card, lang_inner = section(right, self.lang.get("language_section"))
-        lang_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
+        lang_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
 
         self.lang_map = {code: f"{info['label']} ({code})" for code, info in LANGS.items()}
         self.inv_lang_map = {v: k for k, v in self.lang_map.items()}
-
         saved_lang_code = MemoryManager.get("tts_lang", "en")
         initial_display_text = self.lang_map.get(saved_lang_code, self.lang_map["en"])
-
         self.lang_var = tk.StringVar(value=initial_display_text)
-        self.voice_var = tk.StringVar(value=MemoryManager.get("tts_voice", "female"))
-
-
         self.lang_var.trace_add("write", self.listener.on_lang_change)
-        self.voice_var.trace_add("write", self.listener.on_voice_change)
 
-        lang_row, self.lang_combo = styled_combobox(
-            lang_inner,
-            self.lang.get("select_language_tts_label"),
-            self.lang_var,
-            list(self.lang_map.values())
-        )
+        lang_row, self.lang_combo = styled_combobox(lang_inner, self.lang.get("select_language_tts_label"),
+                                                    self.lang_var, list(self.lang_map.values()))
         lang_row.pack(fill="x", pady=(4, 6))
 
-
-        self.voice_display_map = {
-            "female": self.lang.get("voice_female"),
-            "male": self.lang.get("voice_male")
-        }
-        self.voice_internal_map = {v: k for k, v in self.voice_display_map.items()}
-
+        self.voice_display_map = {"female": self.lang.get("voice_female"), "male": self.lang.get("voice_male")}
         saved_internal_voice = MemoryManager.get("tts_voice", "female")
-
         initial_display_voice = self.voice_display_map.get(saved_internal_voice, self.lang.get("voice_female"))
-
         self.voice_var = tk.StringVar(value=initial_display_voice)
         self.voice_var.trace_add("write", self.listener.on_voice_change)
 
-        voice_row, self.voice_combo = styled_combobox(
-            lang_inner,
-            self.lang.get("select_voice_label"),
-            self.voice_var,
-            list(self.voice_display_map.values())
-        )
+        voice_row, self.voice_combo = styled_combobox(lang_inner, self.lang.get("select_voice_label"),
+                                                      self.voice_var, list(self.voice_display_map.values()))
         voice_row.pack(fill="x", pady=(4, 6))
 
         def update_voice_state(*_):
-            if self.service_var.get().lower() == "google":
-                self.voice_combo.config(state="disabled")
-            else:
-                self.voice_combo.config(state="readonly")
-
+            self.voice_combo.config(state="disabled" if self.service_var.get().lower() == "google" else "readonly")
         update_voice_state()
         self.service_var.trace_add("write", lambda *_: update_voice_state())
 
-        output_card, self.output_label = output_selector(
-            right, self.output_dir, self.listener.on_output_change, self.lang
-        )
-        output_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
+        output_card, self.output_label = output_selector(right, self.output_dir, self.listener.on_output_change, self.lang)
+        output_card.grid(row=5, column=0, sticky="ew", pady=(0, 12))
 
-        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right,self.lang)
-        self.progress_frame.grid(row=5, column=0, sticky="ew", pady=(8, 2))
+        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right, self.lang)
+        self.progress_frame.grid(row=6, column=0, sticky="ew", pady=(8, 2))
 
-        bar, self.status, self.counter = footer(root,self.lang)
+        bar, self.status, self.counter = footer(root, self.lang)
         bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
 
         self.text.bind("<<Modified>>", self.listener.on_text_change)
@@ -1378,6 +1358,18 @@ class TTSMenuApp(tk.Tk):
         from ai_system.StatsDashboardGUI import StatsDashboardGUI
         LogsHelperManager.log_button(self.logger, "OPEN_USER_STATS_DASHBOARD")
         StatsDashboardGUI(self, self.lang, self.current_user, self.logger)
+
+    def _on_recommendation_dismissed(self):
+        self.ai_recommendation_dismissed = True
+        if self._ai_recommendation_after_id:
+            self.after_cancel(self._ai_recommendation_after_id)
+            self._ai_recommendation_after_id = None
+
+    def show_ai_recommendation(self):
+        if self.ai_recommendation_dismissed:
+            return
+        self.recommendation_widget.show_ai_recommendation()
+
 
 
 
