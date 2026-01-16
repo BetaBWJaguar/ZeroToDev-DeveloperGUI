@@ -91,6 +91,8 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
 class STTMenuApp(tk.Tk):
     def __init__(self, lang_manager, current_user, user_manager):
         super().__init__()
+        self._ai_recommendation_after_id = None
+        self.ai_recommendation_dismissed = False
         self.lang = lang_manager
         self.user_manager = user_manager
         self.start_user_auto_refresh()
@@ -127,6 +129,11 @@ class STTMenuApp(tk.Tk):
             lang=self.lang,
             logger=self.logger
         ))
+
+        self._ai_recommendation_after_id = self.after(
+            5000,
+            self.show_ai_recommendation
+        )
 
     def start_user_auto_refresh(self):
         def auto_refresh_loop():
@@ -244,9 +251,20 @@ class STTMenuApp(tk.Tk):
         right.grid(row=2, column=1, sticky="nsew")
         right.grid_columnconfigure(0, weight=1)
 
+        self.recommendation_widget = AIRecommendationWidget(
+            parent=right,
+            lang_manager=self.lang,
+            logger=self.logger,
+            current_user=self.current_user,
+            user_manager=self.user_manager,
+            on_dismiss=self._on_recommendation_dismissed
+        )
+        rec_frame = self.recommendation_widget.create_widget()
+        rec_frame.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+        rec_frame.grid_remove()
 
         audio_card, audio_inner = section(right, self.lang.get("audio_file_section"))
-        audio_card.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+        audio_card.grid(row=1, column=0, sticky="ew", pady=(0, 12))
         
         self.audio_file_var = tk.StringVar(value=self.lang.get("no_file_selected"))
         audio_file_label = ttk.Label(audio_inner, textvariable=self.audio_file_var, style="Muted.TLabel")
@@ -304,7 +322,7 @@ class STTMenuApp(tk.Tk):
         self.stop_btn.pack(side="left", padx=(4, 0), expand=True, fill="x")
 
         engine_card, engine_inner = section(right, self.lang.get("stt_engine_section"))
-        engine_card.grid(row=1, column=0, sticky="nsew")
+        engine_card.grid(row=2, column=0, sticky="nsew")
 
         self.engine_var = tk.StringVar(value=MemoryManager.get("stt_engine", "whisper"))
 
@@ -337,8 +355,8 @@ class STTMenuApp(tk.Tk):
 
         def update_device_visibility(*_):
             if self.engine_var.get() == "whisper":
-                device_card.grid(row=2, column=0, sticky="nsew", pady=(0, 12))
-                model_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
+                device_card.grid(row=3, column=0, sticky="nsew", pady=(0, 12))
+                model_card.grid(row=4, column=0, sticky="nsew", pady=(0, 12))
 
                 if self.timestamps_frame is not None:
                     self.timestamps_frame.pack(fill="x", pady=(8, 0))
@@ -404,7 +422,7 @@ class STTMenuApp(tk.Tk):
         model_row.pack(fill="x", pady=(4, 6))
 
         lang_card, lang_inner = section(right, self.lang.get("language_section"))
-        lang_card.grid(row=5, column=0, sticky="nsew", pady=(0, 12))
+        lang_card.grid(row=6, column=0, sticky="nsew", pady=(0, 12))
 
         self.stt_lang_map = {
             "auto": self.lang.get("language_auto"),
@@ -435,7 +453,7 @@ class STTMenuApp(tk.Tk):
         lang_row.pack(fill="x", pady=(4, 6))
 
         transcribe_card, transcribe_inner = section(right, self.lang.get("transcribe_section"))
-        transcribe_card.grid(row=6, column=0, sticky="ew", pady=(0, 12))
+        transcribe_card.grid(row=7, column=0, sticky="ew", pady=(0, 12))
         self.transcribe_btn = primary_button(transcribe_inner, self.lang.get("transcribe_button"), self.on_transcribe)
         self.transcribe_btn.pack(fill="x")
 
@@ -463,12 +481,12 @@ class STTMenuApp(tk.Tk):
 
 
         export_card, export_inner = section(right, self.lang.get("export_section"))
-        export_card.grid(row=7, column=0, sticky="ew", pady=(0, 12))
+        export_card.grid(row=8, column=0, sticky="ew", pady=(0, 12))
         self.export_btn = primary_button(export_inner, self.lang.get("export_button"), self.on_export)
         self.export_btn.pack(fill="x")
 
         self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right, self.lang)
-        self.progress_frame.grid(row=8, column=0, sticky="ew", pady=(8, 2))
+        self.progress_frame.grid(row=9, column=0, sticky="ew", pady=(8, 2))
 
         bar, self.status, self.counter = footer(root, self.lang)
         self.status.pack_forget()
@@ -1392,3 +1410,14 @@ class STTMenuApp(tk.Tk):
         ).pack(anchor="center", pady=(5, 0))
 
         center_window(win)
+
+    def _on_recommendation_dismissed(self):
+        self.ai_recommendation_dismissed = True
+        if self._ai_recommendation_after_id:
+            self.after_cancel(self._ai_recommendation_after_id)
+            self._ai_recommendation_after_id = None
+
+    def show_ai_recommendation(self):
+        if self.ai_recommendation_dismissed:
+            return
+        self.recommendation_widget.show_ai_recommendation()
