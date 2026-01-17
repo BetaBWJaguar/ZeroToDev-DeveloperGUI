@@ -3,6 +3,8 @@ from tkinter import ttk
 from GUI import TTSMenuApp
 from STTGUI import STTMenuApp
 from GUIError import GUIError
+from ai_system.data_collection.DataCollectionDatabaseManager import DataCollectionDatabaseManager
+from ai_system.data_collection.DataCollectionManager import DataCollectionManager
 from ai_system.providers.TimedProviders import TimedProvider
 from fragments.UIFragments import center_window, apply_auth_style
 from logs_manager.LogsHelperManager import LogsHelperManager
@@ -138,6 +140,38 @@ class LoginGUI(tk.Tk):
                 "provider": "deepinfra",
                 "model": provider_config.get("model")
             })
+
+            try:
+                runtime_collector = DataCollectionManager()
+                db_collector = DataCollectionDatabaseManager()
+
+                payload = {
+                    "preferences": {
+                        "tts": runtime_collector.get_tts_preferences(),
+                        "stt": runtime_collector.get_stt_preferences()
+                    },
+                    "usage_statistics": runtime_collector.get_usage_statistics(),
+                    "behavior": runtime_collector.get_behavior_for_ai(),
+                    "system_usage": runtime_collector.get_system_usage_data(),
+                    "output_files": runtime_collector.get_output_files(limit=1000)
+                }
+
+                user_id = user_obj.id.get("id", user_obj.id)
+
+                db_collector.collect_and_save_user_data(user_id, payload)
+
+                LogsHelperManager.log_success(
+                    self.logger,
+                    "USER_SNAPSHOT_SAVED",
+                    {"user": user_obj.username}
+                )
+
+            except Exception as snapshot_err:
+                LogsHelperManager.log_error(
+                    self.logger,
+                    "USER_SNAPSHOT_FAILED",
+                    str(snapshot_err)
+                )
 
         except Exception as e:
             LogsHelperManager.log_error(

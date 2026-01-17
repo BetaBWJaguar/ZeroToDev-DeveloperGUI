@@ -11,8 +11,7 @@ from fragments.UIFragments import center_window
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 from PathHelper import PathHelper
-from ai_system.data_collection.DataCollectionManager import DataCollectionManager
-
+from ai_system.data_collection.DataCollectionDatabaseManager import DataCollectionDatabaseManager
 
 UTILS_DIR = PathHelper.resource_path("utils")
 
@@ -64,11 +63,14 @@ class StatsDashboardGUI(tk.Toplevel):
         self.colors = load_theme(selected_theme)
         self.fonts = load_fonts()
         init_style(self, self.colors, self.fonts)
-
-        self.data_collection_manager = DataCollectionManager()
-
+        self.db_manager = DataCollectionDatabaseManager()
         self.user_data = self._extract_user_data()
-        self.user_id = self.user_data.get("id", "unknown")
+        if hasattr(self.current_user, 'id') and isinstance(self.current_user.id, dict):
+            self.user_data = self.current_user.id
+        else:
+            self.user_data = self.current_user if isinstance(self.current_user, dict) else {}
+
+        self.user_id = str(self.user_data.get("id", "unknown"))
 
         self._init_vars()
         self._build_ui()
@@ -78,9 +80,10 @@ class StatsDashboardGUI(tk.Toplevel):
 
         self._start_auto_refresh()
 
-
     def _extract_user_data(self) -> Dict[str, Any]:
-        return self.current_user.id if isinstance(self.current_user.id, dict) else {}
+        if hasattr(self.current_user, 'to_dict'):
+            return self.current_user.to_dict()
+        return self.current_user if isinstance(self.current_user, dict) else {}
 
     def _init_vars(self):
         self.username_var = tk.StringVar(value=self.user_data.get("username", "N/A"))
@@ -228,37 +231,29 @@ class StatsDashboardGUI(tk.Toplevel):
             padx=10,
             pady=10,
         )
-        
+
         scrollbar = ttk.Scrollbar(log_container, orient="vertical", command=self.log_text.yview)
         self.log_text.configure(yscrollcommand=scrollbar.set)
-        
+
         self.log_text.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
-        
+
         self.log_text.config(state="disabled")
 
     def _on_export_checkbox_change(self):
-            selected = []
+        selected = []
+        if self.export_json_var.get(): selected.append("JSON")
+        if self.export_csv_var.get(): selected.append("CSV")
+        if self.export_pdf_var.get(): selected.append("PDF")
 
-            if self.export_json_var.get():
-                selected.append("JSON")
-            if self.export_csv_var.get():
-                selected.append("CSV")
-            if self.export_pdf_var.get():
-                selected.append("PDF")
-
-            if selected:
-                msg = f"Selected export formats: {', '.join(selected)}"
-            else:
-                msg = "No export format selected"
-
-            self.export_status_var.set(msg)
-            self._log_activity(msg, "info")
+        msg = f"Selected export formats: {', '.join(selected)}" if selected else "No export format selected"
+        self.export_status_var.set(msg)
+        self._log_activity(msg, "info")
 
     def _gather_export_data(self) -> Dict[str, Any]:
-        user_stats = self.data_collection_manager.get_user_usage_statistics(self.user_id) or {}
-        user_analytics = self.data_collection_manager.get_usage_analytics(self.user_id) or {}
-        user_prefs = self.data_collection_manager.get_user_preferences_summary(self.user_id) or {}
+        user_stats = self.db_manager.get_user_usage_statistics(self.user_id) or {}
+        user_analytics = self.db_manager.get_usage_analytics(self.user_id) or {}
+        user_prefs = self.db_manager.get_user_preferences_summary(self.user_id) or {}
 
         return {
             "export_info": {
@@ -282,13 +277,7 @@ class StatsDashboardGUI(tk.Toplevel):
                 "total_size": self.total_size_var.get(),
                 "format_distribution": user_stats.get("output", {}).get("format_distribution", {})
             },
-            "analytics": {
-                "average_file_size": self.avg_file_size_var.get(),
-                "preferred_service": self.preferred_service_var.get(),
-                "preferred_format": self.preferred_format_var.get(),
-                "preferred_model": self.preferred_model_var.get(),
-                "preferred_language": self.preferred_language_var.get()
-            },
+            "analytics": user_analytics,
             "preferences": user_prefs
         }
 
@@ -306,37 +295,29 @@ class StatsDashboardGUI(tk.Toplevel):
     def _export_to_csv(self, file_path: str) -> bool:
         try:
             data = self._gather_export_data()
-            
             with open(file_path, "w", newline="", encoding="utf-8") as f:
                 writer = csv.writer(f)
-                
                 writer.writerow(["Category", "Key", "Value"])
-                
+
                 for key, value in data["export_info"].items():
                     writer.writerow(["Export Info", key, value])
-                
                 for key, value in data["tts_statistics"].items():
                     writer.writerow(["TTS Statistics", key, value])
-                
                 for key, value in data["stt_statistics"].items():
                     writer.writerow(["STT Statistics", key, value])
-                
                 for key, value in data["storage_usage"].items():
                     if key != "format_distribution":
                         writer.writerow(["Storage Usage", key, value])
-                
+
                 format_dist = data["storage_usage"].get("format_distribution", {})
                 for fmt, count in format_dist.items():
                     writer.writerow(["Format Distribution", fmt, count])
-                
-                for key, value in data["analytics"].items():
-                    writer.writerow(["Analytics", key, value])
-                
-                for category, prefs in data["preferences"].items():
-                    if isinstance(prefs, dict):
-                        for key, value in prefs.items():
-                            writer.writerow([f"Preferences - {category}", key, value])
-            
+
+                for cat, values in data["analytics"].items():
+                    if isinstance(values, dict):
+                        for k, v in values.items():
+                            writer.writerow([f"Analytics - {cat}", k, v])
+
             self._log_activity(f"CSV export successful: {file_path}", "success")
             return True
         except Exception as e:
@@ -345,57 +326,45 @@ class StatsDashboardGUI(tk.Toplevel):
 
     def _handle_export(self):
         selected_formats = []
-        
-        if self.export_json_var.get():
-            selected_formats.append("json")
-        if self.export_csv_var.get():
-            selected_formats.append("csv")
-        if self.export_pdf_var.get():
-            selected_formats.append("pdf")
-        
+        if self.export_json_var.get(): selected_formats.append("json")
+        if self.export_csv_var.get(): selected_formats.append("csv")
+        if self.export_pdf_var.get(): selected_formats.append("pdf")
+
         if not selected_formats:
             self.export_status_var.set("No export format selected")
             self._log_activity("No export format selected", "warning")
             return
-        
+
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         base_filename = f"stats_{self.user_id}_{timestamp}"
-        
         export_results = []
-        
+
         for fmt in selected_formats:
             if fmt == "json":
                 file_path = filedialog.asksaveasfilename(
                     defaultextension=".json",
-                    filetypes=[("JSON files", "*.json"), ("All files", "*.*")],
+                    filetypes=[("JSON files", "*.json")],
                     initialfile=f"{base_filename}.json",
                     title="Save JSON Export"
                 )
-                if file_path:
-                    if self._export_to_json(file_path):
-                        export_results.append(f"JSON: {file_path}")
-            
+                if file_path and self._export_to_json(file_path):
+                    export_results.append(f"JSON: {file_path}")
             elif fmt == "csv":
                 file_path = filedialog.asksaveasfilename(
                     defaultextension=".csv",
-                    filetypes=[("CSV files", "*.csv"), ("All files", "*.*")],
+                    filetypes=[("CSV files", "*.csv")],
                     initialfile=f"{base_filename}.csv",
                     title="Save CSV Export"
                 )
-                if file_path:
-                    if self._export_to_csv(file_path):
-                        export_results.append(f"CSV: {file_path}")
-            
+                if file_path and self._export_to_csv(file_path):
+                    export_results.append(f"CSV: {file_path}")
             elif fmt == "pdf":
                 self.export_status_var.set("PDF export not implemented yet")
                 self._log_activity("PDF export not implemented yet", "warning")
-        
+
         if export_results:
             self.export_status_var.set(f"Exported: {len(export_results)} file(s)")
             self._log_activity(f"Export completed: {', '.join(export_results)}", "success")
-        else:
-            self.export_status_var.set("Export cancelled or failed")
-
 
     def _start_auto_refresh(self):
         self._auto_refresh_active = True
@@ -409,8 +378,8 @@ class StatsDashboardGUI(tk.Toplevel):
 
     def _refresh_data(self, manual: bool = False):
         try:
-            user_stats = self.data_collection_manager.get_user_usage_statistics(self.user_id) or {}
-            user_analytics = self.data_collection_manager.get_usage_analytics(self.user_id) or {}
+            user_stats = self.db_manager.get_user_usage_statistics(self.user_id) or {}
+            user_analytics = self.db_manager.get_usage_analytics(self.user_id) or {}
 
             self._update_tts(user_stats.get("tts") or {})
             self._update_stt(user_stats.get("stt") or {})
@@ -421,28 +390,22 @@ class StatsDashboardGUI(tk.Toplevel):
                 self._log_activity(self.lang.get("stats_dashboard_refreshed"), "info")
 
         except Exception as e:
+            self.logger.error(f"Refresh data error: {e}")
             self._log_activity(f"{self.lang.get('stats_refresh_error')} {e}", "error")
 
     def _update_tts(self, tts_stats: Dict[str, Any]):
-        total_conversions = int(tts_stats.get("convert_count") or 0)
-        total_previews = int(tts_stats.get("preview_count") or 0)
-        success_rate = float(tts_stats.get("success_rate") or 0.0)
-
-        self.total_conversions_var.set(str(total_conversions))
-        self.total_previews_var.set(str(total_previews))
+        self.total_conversions_var.set(str(tts_stats.get("convert_count", 0)))
+        self.total_previews_var.set(str(tts_stats.get("preview_count", 0)))
+        success_rate = float(tts_stats.get("success_rate", 0.0))
         self.success_rate_var.set(f"{success_rate:.1f}%")
 
     def _update_stt(self, stt_stats: Dict[str, Any]):
-        total_transcriptions = int(stt_stats.get("transcribe_count") or 0)
-        stt_fail_count = int(stt_stats.get("failure_count") or 0)
-
-        self.total_transcriptions_var.set(str(total_transcriptions))
-        self.stt_fail_count_var.set(str(stt_fail_count))
+        self.total_transcriptions_var.set(str(stt_stats.get("transcribe_count", 0)))
+        self.stt_fail_count_var.set(str(stt_stats.get("failure_count", 0)))
 
     def _update_storage(self, output_stats: Dict[str, Any]):
-        total_files = int(output_stats.get("total_files") or 0)
-        total_size_bytes = int(output_stats.get("total_size_bytes") or 0)
-
+        total_files = int(output_stats.get("total_files", 0))
+        total_size_bytes = int(output_stats.get("total_size_bytes", 0))
         total_size_mb = total_size_bytes / (1024 * 1024) if total_size_bytes > 0 else 0.0
 
         self.total_files_var.set(str(total_files))
@@ -458,125 +421,78 @@ class StatsDashboardGUI(tk.Toplevel):
         tts_analytics = analytics.get("tts_analytics") or {}
         stt_analytics = analytics.get("stt_analytics") or {}
 
+        user_prefs = self.db_manager.get_user_preferences_summary(self.user_id) or {}
+        tts_prefs = user_prefs.get("tts", {})
+        stt_prefs = user_prefs.get("stt", {})
+
         avg_file_size = tts_analytics.get("average_file_size", 0)
         self.avg_file_size_var.set(f"{avg_file_size:.2f} MB")
-        self.preferred_service_var.set(tts_analytics.get("preferred_service", "N/A"))
-        self.preferred_format_var.set(tts_analytics.get("preferred_format", "N/A"))
 
-        self.preferred_model_var.set(stt_analytics.get("preferred_model", "N/A"))
-        self.preferred_language_var.set(stt_analytics.get("preferred_language", "N/A"))
+        pref_service = tts_prefs.get("tts_service") or tts_prefs.get("service") or "N/A"
+        self.preferred_service_var.set(pref_service)
 
+        pref_format = tts_prefs.get("tts_format") or tts_prefs.get("format") or "N/A"
+        self.preferred_format_var.set(pref_format)
+
+        pref_model = stt_prefs.get("stt_model") or stt_prefs.get("model") or "N/A"
+        self.preferred_model_var.set(pref_model)
+
+        pref_lang = stt_prefs.get("stt_language") or stt_prefs.get("language") or "N/A"
+        self.preferred_language_var.set(pref_lang)
 
     def _update_format_chart(self, format_usage: Dict[str, int]):
         self.format_canvas.delete("all")
-
         width = max(self.format_canvas.winfo_width(), 400)
         height = 180
-
-        padding = 10
-        label_height = 20
+        padding, label_height = 10, 20
         chart_width = width - 2 * padding
         chart_height = height - 2 * padding - label_height
 
         if not format_usage:
-            self.format_canvas.create_text(
-                width / 2,
-                height / 2,
-                text=self.lang.get("stats_no_format_data"),
-                fill=self.colors.get("muted", "#999999"),
-                font=("Segoe UI", 10),
-                anchor="center",
-            )
+            self.format_canvas.create_text(width / 2, height / 2, text=self.lang.get("stats_no_format_data"),
+                                           fill=self.colors.get("muted", "#999999"), font=("Segoe UI", 10))
             return
 
         counts = [int(v or 0) for v in format_usage.values()]
-        max_count = max(counts) if counts else 1
-        if max_count <= 0:
-            max_count = 1
-
+        max_count = max(counts) if any(counts) else 1
         n = max(len(format_usage), 1)
         bar_spacing = chart_width / n
         bar_width = min(40, max(8, bar_spacing - 10))
-
-        palette = [
-            self.colors.get("primary", "#007bff"),
-            self.colors.get("success", "#28a745"),
-            self.colors.get("warning", "#ffc107"),
-            self.colors.get("danger", "#dc3545"),
-            self.colors.get("info", "#17a2b8"),
-        ]
+        palette = [self.colors.get("primary", "#007bff"), self.colors.get("success", "#28a745"),
+                   self.colors.get("warning", "#ffc107"), self.colors.get("danger", "#dc3545"),
+                   self.colors.get("info", "#17a2b8")]
 
         for i, (fmt, count_raw) in enumerate(format_usage.items()):
             count = int(count_raw or 0)
-
             x = padding + i * bar_spacing + (bar_spacing - bar_width) / 2
             bar_h = (count / max_count) * chart_height
             y = padding + chart_height - bar_h
-
             color = palette[i % len(palette)]
 
-            self.format_canvas.create_rectangle(
-                x,
-                y,
-                x + bar_width,
-                padding + chart_height,
-                fill=color,
-                outline="",
-                )
-
+            self.format_canvas.create_rectangle(x, y, x + bar_width, padding + chart_height, fill=color, outline="")
             text_y = max(y + 8, padding + 10)
-
-            self.format_canvas.create_text(
-                x + bar_width / 2,
-                text_y,
-                text=str(count),
-                fill="#ffffff",
-                font=("Segoe UI", 8, "bold"),
-                anchor="n",
-                )
-
+            self.format_canvas.create_text(x + bar_width / 2, text_y, text=str(count), fill="#ffffff", font=("Segoe UI", 8, "bold"))
 
             label = str(fmt).split("/")[-1].replace(".", "").upper()
-            self.format_canvas.create_text(
-                x + bar_width / 2,
-                padding + chart_height + label_height / 2,
-                text=label,
-                fill=self.colors.get("muted", "#999999"),
-                font=("Segoe UI", 8),
-                anchor="center",
-                )
+            self.format_canvas.create_text(x + bar_width / 2, padding + chart_height + label_height / 2,
+                                           text=label, fill=self.colors.get("muted", "#999999"), font=("Segoe UI", 8))
 
-        total = sum(int(v or 0) for v in format_usage.values())
-        self.format_canvas.create_text(
-            width - padding,
-            padding,
-            text=f"{self.lang.get('stats_chart_total')} {total}",
-            fill=self.colors.get("primary", "#007bff"),
-            font=("Segoe UI", 10, "bold"),
-            anchor="ne",
-            )
+        total = sum(counts)
+        self.format_canvas.create_text(width - padding, padding, text=f"{self.lang.get('stats_chart_total')} {total}",
+                                       fill=self.colors.get("primary", "#007bff"), font=("Segoe UI", 10, "bold"), anchor="ne")
 
     def _ensure_log_tag(self, tag: str, color: str):
-        if tag in self._log_tags_initialized:
-            return
+        if tag in self._log_tags_initialized: return
         self.log_text.tag_config(tag, foreground=color)
         self._log_tags_initialized.add(tag)
 
     def _log_activity(self, message: str, level: str = "info"):
         timestamp = datetime.now().strftime("%H:%M:%S")
-
-        color_map = {
-            "info": self.colors.get("text", "#333333"),
-            "success": self.colors.get("success", "#28a745"),
-            "warning": self.colors.get("warning", "#ffc107"),
-            "error": self.colors.get("danger", "#dc3545"),
-        }
-
+        color_map = {"info": self.colors.get("text", "#333333"), "success": self.colors.get("success", "#28a745"),
+                     "warning": self.colors.get("warning", "#ffc107"), "error": self.colors.get("danger", "#dc3545")}
         tag = level if level in color_map else "info"
         color = color_map.get(tag, self.colors.get("text", "#333333"))
-
         self._ensure_log_tag(tag, color)
-
         self.log_text.config(state="normal")
         self.log_text.insert("end", f"[{timestamp}] ", tag)
         self.log_text.insert("end", f"{message}\n", tag)
@@ -585,11 +501,9 @@ class StatsDashboardGUI(tk.Toplevel):
 
     def destroy(self):
         self._auto_refresh_active = False
-
         try:
-            self.data_collection_manager.close()
+            self.db_manager.close()
         except Exception:
             pass
-
         LogsHelperManager.log_button(self.logger, "CLOSE_USER_DASHBOARD")
         super().destroy()

@@ -1,9 +1,5 @@
 from typing import Any, Dict, List, Optional
 import json
-from datetime import datetime
-from functools import lru_cache
-
-from PathHelper import PathHelper
 from ai_system.data_collection.DataCollection import DataCollection
 from data_manager.MemoryManager import MemoryManager
 from logs_manager.LogsManager import LogsManager
@@ -103,19 +99,6 @@ class DataCollectionManager:
         self.logger.info(f"Exported usage data to: {output_path}")
         return output_path
 
-    def export_system_usage_data(self, output_path: Optional[str] = None) -> str:
-        system_data = {
-            "statistics": self.get_system_usage_data(),
-            "collected_at": self.data_collection._get_last_activity(None)
-        }
-
-        if output_path is None:
-            output_path = self._generate_export_path("system_usage")
-
-        self._write_json_file(system_data, output_path)
-        self.logger.info(f"Exported system usage data to: {output_path}")
-        return output_path
-
     def get_usage_analytics(self) -> Dict[str, Any]:
         stats = self.get_usage_statistics()
         prefs = self.get_preferences_summary()
@@ -162,12 +145,6 @@ class DataCollectionManager:
         except Exception as e:
             self.logger.error(f"Failed to update {pref_type} preference: {e}")
             return False
-
-    def _generate_export_path(self, filename_prefix: str) -> str:
-        output_dir = PathHelper.resource_path("data_collection/exports")
-        output_dir.mkdir(parents=True, exist_ok=True)
-        timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-        return str(output_dir / f"{filename_prefix}_{timestamp}.json")
 
     @staticmethod
     def _write_json_file(data: Dict[str, Any], file_path: str) -> None:
