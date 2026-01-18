@@ -1,3 +1,4 @@
+import threading
 import tkinter as tk
 from tkinter import ttk
 from GUI import TTSMenuApp
@@ -27,6 +28,9 @@ class LoginGUI(tk.Tk):
         self.lang = lang_manager
         self.logger = logger
         self.user_manager = UserManager(self.lang)
+        self._snapshot_running = False
+        self._snapshot_user = None
+
 
         self.title(self.lang.get("auth_login_title"))
         self.resizable(False, False)
@@ -88,6 +92,7 @@ class LoginGUI(tk.Tk):
         RegisterGUI(self.lang, self.logger)
 
     def go_back(self):
+        self.stop_snapshot_loop()
         self.destroy()
         MainAuthFactory(self.lang, self.logger)
 
@@ -165,6 +170,7 @@ class LoginGUI(tk.Tk):
                     "USER_SNAPSHOT_SAVED",
                     {"user": user_obj.username}
                 )
+                self.start_snapshot_loop(user_obj)
 
             except Exception as snapshot_err:
                 LogsHelperManager.log_error(
@@ -192,3 +198,57 @@ class LoginGUI(tk.Tk):
         print("DEBUG USER:", user_obj.id if isinstance(user_obj.id, dict) else {})
         print("DEBUG MODE:", selected_mode)
         app.mainloop()
+
+
+    def start_snapshot_loop(self, user_obj):
+        self._snapshot_running = True
+        self._snapshot_user = user_obj
+        self.after(15000, self._run_snapshot_async)
+
+    def stop_snapshot_loop(self):
+        self._snapshot_running = False
+
+    def _run_snapshot_async(self):
+        if not self._snapshot_running:
+            return
+
+        def task():
+            try:
+                runtime_collector = DataCollectionManager()
+                db_collector = DataCollectionDatabaseManager()
+
+                payload = {
+                    "preferences": {
+                        "tts": runtime_collector.get_tts_preferences(),
+                        "stt": runtime_collector.get_stt_preferences()
+                    },
+                    "usage_statistics": runtime_collector.get_usage_statistics(),
+                    "behavior": runtime_collector.get_behavior_for_ai(),
+                    "system_usage": runtime_collector.get_system_usage_data(),
+                    "output_files": runtime_collector.get_output_files(limit=1000)
+                }
+
+                user_id = (
+                    self._snapshot_user.id.get("id")
+                    if isinstance(self._snapshot_user.id, dict)
+                    else self._snapshot_user.id
+                )
+
+                db_collector.collect_and_save_user_data(user_id, payload)
+
+                LogsHelperManager.log_success(
+                    self.logger,
+                    "USER_SNAPSHOT_AUTO_SAVED",
+                    {"user": self._snapshot_user.username}
+                )
+
+            except Exception as e:
+                LogsHelperManager.log_error(
+                    self.logger,
+                    "USER_SNAPSHOT_AUTO_FAILED",
+                    str(e)
+                )
+
+        threading.Thread(target=task, daemon=True).start()
+        self.after(15000, self._run_snapshot_async)
+
