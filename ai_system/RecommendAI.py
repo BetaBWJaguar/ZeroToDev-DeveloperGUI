@@ -1,4 +1,6 @@
 from ai_system.AI import AIEngine
+from ai_system.AI_Model import AIModel
+from ai_system.config.AIConfig import AIConfig
 from ai_system.data_collection.DataCollectionDatabaseManager import DataCollectionDatabaseManager
 from data_manager.MemoryManager import MemoryManager
 from logs_manager.LogsManager import LogsManager
@@ -6,7 +8,13 @@ from logs_manager.LogsManager import LogsManager
 
 class RecommendAI:
     def __init__(self):
-        self.ai_engine = AIEngine()
+        cfg = AIConfig.load()
+        provider_type = cfg["provider"]["type"]
+
+        self.model = AIModel(provider_type)
+        self.ai_engine = AIEngine(
+            provider_name=provider_type
+        )
         self.data_manager = DataCollectionDatabaseManager()
         self.logger = LogsManager.get_logger("RecommendAI")
 

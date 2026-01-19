@@ -6,8 +6,8 @@ from data_manager.MemoryManager import MemoryManager
 
 
 class AIEngine:
-    def __init__(self):
-        self.model = AIModel()
+    def __init__(self, provider_name: str):
+        self.model = AIModel(provider_name)
 
     def get_recommendations(
             self,

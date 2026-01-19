@@ -4,7 +4,7 @@ from ai_system.providers.BaseProvider import BaseProvider
 
 
 class TimedProvider(BaseProvider):
-    def __init__(self, provider, provider_name: str):
+    def __init__(self, provider: BaseProvider, provider_name: str):
         self.provider = provider
         self.provider_name = provider_name
         self.tracker = LatencyTracker()
@@ -13,7 +13,7 @@ class TimedProvider(BaseProvider):
         start = time.perf_counter()
 
         try:
-            result = self.provider.ask(system_prompt, user_prompt)
+            result = self.provider.ask(system_prompt, user_prompt, user_id)
             elapsed = (time.perf_counter() - start) * 1000
 
             self.tracker.record(
@@ -35,5 +35,4 @@ class TimedProvider(BaseProvider):
                 success=False,
                 error=str(e)
             )
-
             raise

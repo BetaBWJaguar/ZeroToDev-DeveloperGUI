@@ -1,21 +1,18 @@
-from typing import Optional
+from typing import Dict
 from ai_system.providers.BaseProvider import BaseProvider
 
 
 class ProviderRegistry:
-    _provider: Optional[BaseProvider] = None
+    _providers: Dict[str, BaseProvider] = {}
 
     @classmethod
-    def register(cls, provider: BaseProvider, force: bool = False):
-        if cls._provider is not None and not force:
-            raise RuntimeError("LLM provider already registered")
-        cls._provider = provider
+    def register(cls, name: str, provider: BaseProvider, force: bool = False):
+        if name in cls._providers and not force:
+            raise RuntimeError(f"Provider '{name}' already registered")
+        cls._providers[name] = provider
 
     @classmethod
-    def get(cls) -> BaseProvider:
-        if cls._provider is None:
-            raise RuntimeError(
-                "No LLM provider registered. "
-                "Register a provider before using AIEngine."
-            )
-        return cls._provider
+    def get(cls, name: str) -> BaseProvider:
+        if name not in cls._providers:
+            raise RuntimeError(f"Provider '{name}' not found")
+        return cls._providers[name]

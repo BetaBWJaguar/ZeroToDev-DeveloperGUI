@@ -7,6 +7,7 @@ from GUIError import GUIError
 from ai_system.data_collection.DataCollectionDatabaseManager import DataCollectionDatabaseManager
 from ai_system.data_collection.DataCollectionManager import DataCollectionManager
 from ai_system.providers.TimedProviders import TimedProvider
+from auth_gui.snapshot_service import SnapshotService
 from fragments.UIFragments import center_window, apply_auth_style
 from logs_manager.LogsHelperManager import LogsHelperManager
 from data_manager.MemoryManager import MemoryManager
@@ -15,7 +16,7 @@ from auth_gui.auth_factory import MainAuthFactory
 from auth_gui.ResetPasswordGUI import ResetPasswordGUI
 from auth_gui.RegisterGUI import RegisterGUI
 from ai_system.providers.ProviderRegistry import ProviderRegistry
-from ai_system.providers.DeepInfraProvider import DeepInfraProvider
+from ai_system.providers.prov.DeepInfraProvider import DeepInfraProvider
 from ai_system.config.AIConfig import AIConfig
 
 
@@ -30,6 +31,7 @@ class LoginGUI(tk.Tk):
         self.user_manager = UserManager(self.lang)
         self._snapshot_running = False
         self._snapshot_user = None
+        self._snapshot_after_id = None
 
 
         self.title(self.lang.get("auth_login_title"))
@@ -139,7 +141,10 @@ class LoginGUI(tk.Tk):
                 provider_name="deepinfra"
             )
 
-            ProviderRegistry.register(timed_provider)
+            ProviderRegistry.register(
+                name="deepinfra",
+                provider=timed_provider
+            )
 
             LogsHelperManager.log_success(self.logger, "AI_PROVIDER_INITIALIZED", {
                 "provider": "deepinfra",
@@ -170,7 +175,7 @@ class LoginGUI(tk.Tk):
                     "USER_SNAPSHOT_SAVED",
                     {"user": user_obj.username}
                 )
-                self.start_snapshot_loop(user_obj)
+                SnapshotService.start(user_obj, self.logger)
 
             except Exception as snapshot_err:
                 LogsHelperManager.log_error(
@@ -198,57 +203,4 @@ class LoginGUI(tk.Tk):
         print("DEBUG USER:", user_obj.id if isinstance(user_obj.id, dict) else {})
         print("DEBUG MODE:", selected_mode)
         app.mainloop()
-
-
-    def start_snapshot_loop(self, user_obj):
-        self._snapshot_running = True
-        self._snapshot_user = user_obj
-        self.after(15000, self._run_snapshot_async)
-
-    def stop_snapshot_loop(self):
-        self._snapshot_running = False
-
-    def _run_snapshot_async(self):
-        if not self._snapshot_running:
-            return
-
-        def task():
-            try:
-                runtime_collector = DataCollectionManager()
-                db_collector = DataCollectionDatabaseManager()
-
-                payload = {
-                    "preferences": {
-                        "tts": runtime_collector.get_tts_preferences(),
-                        "stt": runtime_collector.get_stt_preferences()
-                    },
-                    "usage_statistics": runtime_collector.get_usage_statistics(),
-                    "behavior": runtime_collector.get_behavior_for_ai(),
-                    "system_usage": runtime_collector.get_system_usage_data(),
-                    "output_files": runtime_collector.get_output_files(limit=1000)
-                }
-
-                user_id = (
-                    self._snapshot_user.id.get("id")
-                    if isinstance(self._snapshot_user.id, dict)
-                    else self._snapshot_user.id
-                )
-
-                db_collector.collect_and_save_user_data(user_id, payload)
-
-                LogsHelperManager.log_success(
-                    self.logger,
-                    "USER_SNAPSHOT_AUTO_SAVED",
-                    {"user": self._snapshot_user.username}
-                )
-
-            except Exception as e:
-                LogsHelperManager.log_error(
-                    self.logger,
-                    "USER_SNAPSHOT_AUTO_FAILED",
-                    str(e)
-                )
-
-        threading.Thread(target=task, daemon=True).start()
-        self.after(15000, self._run_snapshot_async)
 
