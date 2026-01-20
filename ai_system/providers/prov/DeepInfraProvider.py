@@ -12,7 +12,12 @@ class DeepInfraProvider(BaseProvider):
             "Content-Type": "application/json"
         }
 
-    def ask(self, system_prompt: str, user_prompt: str) -> str:
+    def ask(
+            self,
+            system_prompt: str,
+            user_prompt: str,
+            user_id: str | None = None
+    ) -> str:
         try:
             payload = {
                 "model": self.model,
