@@ -132,7 +132,7 @@ class STTMenuApp(tk.Tk):
 
         self._ai_recommendation_after_id = self.after(
             5000,
-            self.show_ai_recommendation
+            self._ai_recommendation_loop
         )
 
     def start_user_auto_refresh(self):
@@ -1421,3 +1421,15 @@ class STTMenuApp(tk.Tk):
         if self.ai_recommendation_dismissed:
             return
         self.recommendation_widget.show_ai_recommendation()
+
+    def _ai_recommendation_loop(self):
+        if self.ai_recommendation_dismissed:
+            return
+
+        self.show_ai_recommendation()
+
+
+        self._ai_recommendation_after_id = self.after(
+            10_000,
+            self._ai_recommendation_loop
+        )
