@@ -17,18 +17,6 @@
           "en": "Based on the user data, provide a single recommendation to improve the user's experience:\n\n{{payload}}",
           "de": "Basierend auf den Benutzerdaten, gib eine einzelne Empfehlung ab, um die Erfahrung des Benutzers zu verbessern:\n\n{{payload}}"
         }
-      },
-      "decision": {
-        "system": {
-          "tr": "",
-          "en": "",
-          "de": ""
-        },
-        "user_template": {
-          "tr": "{question}",
-          "en": "{question}",
-          "de": "{question}"
-        }
       }
     }
   }

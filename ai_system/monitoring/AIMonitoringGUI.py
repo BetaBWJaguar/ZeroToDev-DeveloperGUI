@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
-from typing import Optional
 import tkinter as tk
 from tkinter import ttk
 from ai_system.monitoring.LatencyTracker import LatencyTracker
 from fragments.UIFragments import center_window
-from GUIHelper import section, primary_button
+from GUIHelper import section
 from logs_manager.LogsHelperManager import LogsHelperManager
 from GUIHelper import THEME
 
@@ -204,7 +203,7 @@ class AIMonitoringGUI:
         value_label.pack(side="right")
         
         setattr(self, f"{key}_var", value_var)
-    
+
     def _configure_tree_tags(self):
         self.tree.tag_configure(
             "slow",
@@ -214,6 +213,11 @@ class AIMonitoringGUI:
             "medium",
             foreground=THEME["COLORS"].get("warning", "#f39c12")
         )
+        self.tree.tag_configure(
+            "failed",
+            foreground=THEME["COLORS"].get("danger", "#e74c3c")
+        )
+
     
     def _on_close(self):
         if self._debounce_timer:
@@ -314,18 +318,14 @@ class AIMonitoringGUI:
         self.min_latency_var.set(f"{min_latency:.2f} ms")
 
     def _update_table(self, docs):
-        """Update table with batch operations for better performance."""
-        # Batch delete all items at once
         existing_items = self.tree.get_children()
         if existing_items:
             self.tree.delete(*existing_items)
         
-        # Prepare all data first, then batch insert
         items_to_insert = []
         for doc in docs:
             timestamp = doc.get("created_at", datetime.utcnow())
             if isinstance(timestamp, datetime):
-                # User-friendly timestamp format: "2025-12-31 23:09:57"
                 timestamp_str = timestamp.strftime("%Y-%m-%d %H:%M:%S")
             else:
                 timestamp_str = str(timestamp)
@@ -334,9 +334,11 @@ class AIMonitoringGUI:
             latency = f"{doc.get('latency_ms', 0):.2f} ms"
             status = self.lang.get("ai_status_success") if doc.get("success", False) else self.lang.get("ai_status_failed")
             error = doc.get("error", "") or "-"
-            
             tags = ()
-            if doc.get("success", False):
+
+            if not doc.get("success", False):
+                tags = ("failed",)
+            else:
                 lat = doc.get("latency_ms", 0)
                 if lat > 5000:
                     tags = ("slow",)
@@ -345,7 +347,6 @@ class AIMonitoringGUI:
             
             items_to_insert.append((timestamp_str, provider, latency, status, error, tags))
         
-        # Batch insert all items
         for values in items_to_insert:
             self.tree.insert("", "end", values=values[:5], tags=values[5])
 
