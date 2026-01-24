@@ -3,19 +3,25 @@ from ai_system.config.AIConfig import AIConfig
 
 
 class PromptBuilder:
+
     @staticmethod
-    def build(prompt_key: str, payload: dict, language: str = "en") -> tuple[str, str]:
+    def build(prompt_key: str, payload: dict, language: str) -> tuple[str, str]:
         config = AIConfig.load()
         prompt_def = config["prompts"].get(prompt_key)
 
         if not prompt_def:
             raise KeyError(f"Prompt '{prompt_key}' not defined")
 
-        system_prompts = prompt_def.get("system", {})
-        user_templates = prompt_def.get("user_template", {})
+        system_prompts = prompt_def["system"]
+        user_templates = prompt_def["user_template"]
 
-        system_prompt = system_prompts.get(language, system_prompts.get("en", ""))
-        user_template = user_templates.get(language, user_templates.get("en", ""))
+        try:
+            system_prompt = system_prompts[language]
+            user_template = user_templates[language]
+        except KeyError:
+            raise KeyError(
+                f"Language '{language}' not defined for prompt '{prompt_key}'"
+            )
 
         user_prompt = user_template.replace(
             "{{payload}}",

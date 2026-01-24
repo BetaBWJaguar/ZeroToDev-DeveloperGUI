@@ -32,6 +32,7 @@ class RecommendAI:
         usage_stats = payload.get("usage_statistics", {})
         behavior = payload.get("behavior")
         system_usage = payload.get("system_usage", {})
+        ui_language = MemoryManager.get("ui_language")
 
         candidates = []
         if behavior:
@@ -65,7 +66,8 @@ class RecommendAI:
         result = self.ai_engine.get_recommendations(
             user_id=user_id,
             candidates=candidates,
-            context=context
+            context=context,
+            language=ui_language,
         )
 
         recommendation = result.get("output", "").strip()
