@@ -260,14 +260,19 @@ class STTMenuApp(tk.Tk):
             on_dismiss=self._on_recommendation_dismissed
         )
         rec_frame = self.recommendation_widget.create_widget()
-        rec_frame.grid(
-            row=1,
-            column=0,
-            columnspan=2,
-            sticky="ew",
-            pady=(0, 12)
-        )
-        rec_frame.grid_remove()
+        rec_frame.place(relx=1.0, rely=0.0, anchor="ne", x=-20, y=20)
+        rec_frame.place_forget()
+
+        def show_with_grid():
+            if self.recommendation_widget.widget_frame:
+                self.recommendation_widget.widget_frame.grid(row=0, column=0, sticky="ew", pady=(0, 12))
+
+        def hide_with_grid():
+            if self.recommendation_widget.widget_frame:
+                self.recommendation_widget.widget_frame.grid_forget()
+
+        self.recommendation_widget.show = show_with_grid
+        self.recommendation_widget.hide = hide_with_grid
 
         audio_card, audio_inner = section(right, self.lang.get("audio_file_section"))
         audio_card.grid(row=1, column=0, sticky="ew", pady=(0, 12))

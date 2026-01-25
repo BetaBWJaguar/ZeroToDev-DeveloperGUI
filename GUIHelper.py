@@ -128,6 +128,15 @@ def refresh_theme(root, colors: dict, fonts: dict):
 
     style.map("Accent.Horizontal.TProgressbar", background=[("active", c["primary_active"])])
 
+    style.configure("Vertical.TScrollbar",
+                    troughcolor=c["bg"],
+                    background=c["surface"],
+                    arrowcolor=c["primary"],
+                    bordercolor=c["bg"],
+                    thickness=12)
+    style.map("Vertical.TScrollbar",
+              background=[("active", c["primary_active"]), ("pressed", c["primary"])])
+
     def apply_recursive(w):
         if isinstance(w, tk.Text):
             w.config(
