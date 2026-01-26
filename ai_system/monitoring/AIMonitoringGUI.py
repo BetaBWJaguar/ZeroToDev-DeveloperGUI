@@ -69,6 +69,26 @@ class AIMonitoringGUI:
         
         ttk.Label(filter_row, text=self.lang.get("ai_filter_time_range"), style="Label.TLabel") \
             .pack(side="left", padx=(0, 8))
+
+
+        self.provider_all_label = self.lang.get("ai_provider_all")
+        self.provider_var = tk.StringVar(value=self.provider_all_label)
+
+        self.provider_filter = ttk.Combobox(
+            filter_row,
+            textvariable=self.provider_var,
+            state="readonly",
+            style="AIMonitor.TCombobox",
+            width=18
+        )
+
+        self.provider_filter.pack(side="left", padx=(8, 0))
+
+        self.provider_filter.bind(
+            "<<ComboboxSelected>>",
+            lambda e: self.refresh_data()
+        )
+
         
         self.time_range_var = tk.StringVar(value="24h")
         time_ranges = [
@@ -188,6 +208,7 @@ class AIMonitoringGUI:
             style="Accent.TButton"
         ).grid(row=4, column=0, pady=(10, 0))
 
+        self._load_providers()
         self.refresh_data()
 
     def _create_stat_row(self, parent, key: str, default_value: str):
@@ -236,49 +257,75 @@ class AIMonitoringGUI:
         if self._is_loading:
             return
 
-        time_range = self.time_range_var.get()
-        if self._last_time_range == time_range and hasattr(self, '_cached_docs'):
-            docs = self._cached_docs
-        else:
-            self._is_loading = True
-            try:
-                since_date = self._get_date_from_range(time_range)
-                
-                pipeline = [
-                    {
-                        "$match": {
-                            "created_at": {"$gte": since_date}
-                        }
-                    },
-                    {
-                        "$sort": {"created_at": -1}
-                    },
-                    {
-                        "$limit": 1000
-                    }
-                ]
-                
-                docs = list(self.tracker.collection.aggregate(pipeline))
+        self._is_loading = True
 
-                self._cached_docs = docs
-                self._last_time_range = time_range
-                
-                self._update_stats(docs)
-                self._update_table(docs)
-                
-                LogsHelperManager.log_debug(self.logger, "AI_MONITORING_REFRESH", {
+        try:
+            time_range = self.time_range_var.get()
+            since_date = self._get_date_from_range(time_range)
+            selected_provider = self.provider_var.get()
+
+            match_stage = {
+                "created_at": {"$gte": since_date}
+            }
+
+            selected_provider = self.provider_var.get()
+            if selected_provider != "ALL":
+                match_stage["provider"] = selected_provider
+
+            pipeline = [
+                {"$match": match_stage},
+                {"$sort": {"created_at": -1}},
+                {"$limit": 1000}
+            ]
+
+            docs = list(self.tracker.collection.aggregate(pipeline))
+
+            self._update_stats(docs)
+            self._update_table(docs)
+
+            LogsHelperManager.log_debug(
+                self.logger,
+                "AI_MONITORING_REFRESH",
+                {
                     "time_range": time_range,
+                    "provider": selected_provider,
                     "records_count": len(docs)
-                })
-                
-            except Exception as e:
-                LogsHelperManager.log_error(self.logger, "AI_MONITORING_REFRESH_FAIL", str(e))
-                from GUIError import GUIError
-                GUIError(self.win, self.lang.get("error_title"),
-                        f"{self.lang.get('ai_refresh_failed')}\n{e}", icon="❌")
-            finally:
-                self._is_loading = False
-                self._debounce_timer = None
+                }
+            )
+
+        except Exception as e:
+            LogsHelperManager.log_error(self.logger, "AI_MONITORING_REFRESH_FAIL", str(e))
+            from GUIError import GUIError
+            GUIError(
+                self.win,
+                self.lang.get("error_title"),
+                f"{self.lang.get('ai_refresh_failed')}\n{e}",
+                icon="❌"
+            )
+
+        finally:
+            self._is_loading = False
+            self._debounce_timer = None
+
+
+    def _load_providers(self):
+        try:
+            providers = self.tracker.collection.distinct("provider")
+            providers = [p for p in providers if p]
+            providers.sort()
+
+            values = ["ALL"] + providers
+            self.provider_filter["values"] = values
+
+            if self.provider_var.get() not in values:
+                self.provider_var.set("ALL")
+
+        except Exception as e:
+            LogsHelperManager.log_error(
+                self.logger,
+                "AI_PROVIDER_LOAD_FAIL",
+                str(e)
+            )
 
     def _get_date_from_range(self, time_range: str) -> datetime:
         now = datetime.utcnow()

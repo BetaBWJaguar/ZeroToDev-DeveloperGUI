@@ -418,5 +418,7 @@
   "stats_preferred_format": "Preferred Format",
   "stats_preferred_model": "Preferred Model",
   "stats_preferred_language": "Preferred Language",
-  "recommendation_title": "Recommendation System"
+  "recommendation_title": "Recommendation System",
+  "ai_filter_provider": "AI Provider Filter",
+  "ai_provider_all": "All Provider"
 }

@@ -418,5 +418,7 @@
   "stats_preferred_format": "Tercih Edilen Format",
   "stats_preferred_model": "Tercih Edilen Model",
   "stats_preferred_language": "Tercih Edilen Dil",
-  "recommendation_title": "Öneri Sistemi"
+  "recommendation_title": "Öneri Sistemi",
+  "ai_filter_provider": "Yapay Zeka Sağlayıcı Filtresi",
+  "ai_provider_all": "Hepsi"
 }

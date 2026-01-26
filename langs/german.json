@@ -418,5 +418,7 @@
   "stats_preferred_format": "Bevorzugtes Format",
   "stats_preferred_model": "Bevorzugtes Modell",
   "stats_preferred_language": "Bevorzugte Sprache",
-  "recommendation_title": "Empfehlungssystem"
+  "recommendation_title": "Empfehlungssystem",
+  "ai_filter_provider": "KI-Anbieterfilter",
+  "ai_provider_all": "Alle Anbieter"
 }
