@@ -10,6 +10,7 @@ import pygame
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
     progress_section, set_buttons_state, styled_combobox
+from ScrollBar import ScrollableFrame
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
 from gui_listener.GUIListener import GUIListener
@@ -249,10 +250,14 @@ class STTMenuApp(tk.Tk):
 
         right = ttk.Frame(root)
         right.grid(row=2, column=1, sticky="nsew")
+        right.grid_rowconfigure(0, weight=1)
         right.grid_columnconfigure(0, weight=1)
 
+        self.scrollable_right_frame = ScrollableFrame(right)
+        self.scrollable_right_frame.grid(row=0, column=0, sticky="nsew")
+
         self.recommendation_widget = AIRecommendationWidget(
-            parent=right,
+            parent=self.scrollable_right_frame.scrollable_frame,
             lang_manager=self.lang,
             logger=self.logger,
             current_user=self.current_user,
@@ -274,7 +279,7 @@ class STTMenuApp(tk.Tk):
         self.recommendation_widget.show = show_with_grid
         self.recommendation_widget.hide = hide_with_grid
 
-        audio_card, audio_inner = section(right, self.lang.get("audio_file_section"))
+        audio_card, audio_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("audio_file_section"))
         audio_card.grid(row=1, column=0, sticky="ew", pady=(0, 12))
         
         self.audio_file_var = tk.StringVar(value=self.lang.get("no_file_selected"))
@@ -332,7 +337,7 @@ class STTMenuApp(tk.Tk):
         )
         self.stop_btn.pack(side="left", padx=(4, 0), expand=True, fill="x")
 
-        engine_card, engine_inner = section(right, self.lang.get("stt_engine_section"))
+        engine_card, engine_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("stt_engine_section"))
         engine_card.grid(row=2, column=0, sticky="nsew")
 
         self.engine_var = tk.StringVar(value=MemoryManager.get("stt_engine", "whisper"))
@@ -382,7 +387,7 @@ class STTMenuApp(tk.Tk):
 
         self.engine_var.trace_add("write", update_device_visibility)
 
-        device_card, device_inner = section(right, self.lang.get("stt_device_section"))
+        device_card, device_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("stt_device_section"))
         device_row = ttk.Frame(device_inner, style="Card.TFrame"); device_row.pack(fill="x")
 
         ttk.Radiobutton(device_row, text=self.lang.get("stt_device_cpu"), value="cpu", variable=self.device_var,
@@ -395,7 +400,7 @@ class STTMenuApp(tk.Tk):
             ttk.Label(device_row, text=self.lang.get("stt_device_gpu_unavailable"),
                      style="Muted.TLabel").pack(anchor="w", pady=2)
 
-        model_card, model_inner = section(right, self.lang.get("whisper_model_section"))
+        model_card, model_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("whisper_model_section"))
 
         self.whisper_model_map = {
             "tiny": self.lang.get("whisper_model_tiny"),
@@ -432,7 +437,7 @@ class STTMenuApp(tk.Tk):
         )
         model_row.pack(fill="x", pady=(4, 6))
 
-        lang_card, lang_inner = section(right, self.lang.get("language_section"))
+        lang_card, lang_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("language_section"))
         lang_card.grid(row=6, column=0, sticky="nsew", pady=(0, 12))
 
         self.stt_lang_map = {
@@ -463,7 +468,7 @@ class STTMenuApp(tk.Tk):
         )
         lang_row.pack(fill="x", pady=(4, 6))
 
-        transcribe_card, transcribe_inner = section(right, self.lang.get("transcribe_section"))
+        transcribe_card, transcribe_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("transcribe_section"))
         transcribe_card.grid(row=7, column=0, sticky="ew", pady=(0, 12))
         self.transcribe_btn = primary_button(transcribe_inner, self.lang.get("transcribe_button"), self.on_transcribe)
         self.transcribe_btn.pack(fill="x")
@@ -491,12 +496,12 @@ class STTMenuApp(tk.Tk):
         ).pack(anchor="w", pady=2)
 
 
-        export_card, export_inner = section(right, self.lang.get("export_section"))
+        export_card, export_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("export_section"))
         export_card.grid(row=8, column=0, sticky="ew", pady=(0, 12))
         self.export_btn = primary_button(export_inner, self.lang.get("export_button"), self.on_export)
         self.export_btn.pack(fill="x")
 
-        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right, self.lang)
+        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(self.scrollable_right_frame.scrollable_frame, self.lang)
         self.progress_frame.grid(row=9, column=0, sticky="ew", pady=(8, 2))
 
         bar, self.status, self.counter = footer(root, self.lang)

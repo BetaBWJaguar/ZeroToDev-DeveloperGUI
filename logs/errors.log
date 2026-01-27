@@ -212,3 +212,4 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-19 03:47:13 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-19T03:47:13.455459", "event": "ERROR", "data": {"action": "RECOMMENDATION_GENERATE_FAIL", "error": "DeepInfraProvider.ask() takes 3 positional arguments but 4 were given"}}
 2026-01-19 14:52:56 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-19T14:52:56.655609", "event": "ERROR", "data": {"action": "RECOMMENDATION_GENERATE_FAIL", "error": "DeepInfraProvider.ask() takes 3 positional arguments but 4 were given"}}
 2026-01-25 19:55:20 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-25T19:55:20.078818", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2026-01-27 03:28:22 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-27T03:28:22.703354", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

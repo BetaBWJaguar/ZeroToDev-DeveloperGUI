@@ -10,6 +10,7 @@ from tkinter import ttk, messagebox
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
     progress_section, set_buttons_state, styled_combobox, toggle_button, logmode_selector, loghandler_selector, THEME, markup_support_section
+from ScrollBar import ScrollableFrame
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
@@ -109,8 +110,8 @@ class TTSMenuApp(tk.Tk):
         self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
-        self.geometry("1200x1200")
-        self.minsize(1200, 1200)
+        self.geometry("1650x1200")
+        self.minsize(1650, 1200)
         self.listener = GUIListener(self)
         self.resizable(False, False)
         self.logger = LogsManager.get_logger("TTSMenuApp")
@@ -238,7 +239,8 @@ class TTSMenuApp(tk.Tk):
 
         root.grid_rowconfigure(2, weight=1)
         root.grid_columnconfigure(0, weight=3)
-        root.grid_columnconfigure(1, weight=0, minsize=400)
+        root.grid_columnconfigure(0, weight=3)
+        root.grid_columnconfigure(1, weight=2)
 
         ttk.Label(root, text=self.lang.get("app_title2"), style="Title.TLabel") \
             .grid(row=0, column=0, columnspan=2, sticky="w", pady=(0, 10))
@@ -256,10 +258,14 @@ class TTSMenuApp(tk.Tk):
 
         right = ttk.Frame(root)
         right.grid(row=1, column=1, rowspan=2, sticky="nsew")
+        right.grid_rowconfigure(0, weight=1)
         right.grid_columnconfigure(0, weight=1)
 
+        self.scrollable_right_frame = ScrollableFrame(right)
+        self.scrollable_right_frame.grid(row=0, column=0, sticky="nsew")
+
         self.recommendation_widget = AIRecommendationWidget(
-            parent=right,
+            parent=self.scrollable_right_frame.scrollable_frame,
             lang_manager=self.lang,
             logger=self.logger,
             current_user=self.current_user,
@@ -270,14 +276,14 @@ class TTSMenuApp(tk.Tk):
         rec_frame.grid(row=0, column=0, sticky="ew", pady=(0, 12))
         rec_frame.grid_remove()
 
-        convert_card, convert_inner = section(right, self.lang.get("convert_section"))
+        convert_card, convert_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("convert_section"))
         convert_card.grid(row=1, column=0, sticky="ew", pady=(0, 12))
         self.convert_btn = primary_button(convert_inner, self.lang.get("convert_button"), self.on_convert)
         self.convert_btn.pack(fill="x")
         self.preview_btn = primary_button(convert_inner, self.lang.get("preview_button"), self.on_preview)
         self.preview_btn.pack(fill="x", pady=(0, 6))
 
-        service_card, service_inner = section(right, self.lang.get("tts_service_section"))
+        service_card, service_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("tts_service_section"))
         service_card.grid(row=2, column=0, sticky="ew", pady=(0, 12))
         self.service_var = tk.StringVar(value=MemoryManager.get("tts_service", ""))
 
@@ -294,7 +300,7 @@ class TTSMenuApp(tk.Tk):
         ttk.Radiobutton(service_row, text=self.lang.get("tts_service_google"), value="google", variable=self.service_var,
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
-        fmt_card, fmt_inner = section(right, self.lang.get("format_section"))
+        fmt_card, fmt_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("format_section"))
         fmt_card.grid(row=3, column=0, sticky="ew", pady=(0, 12))
         self.format_var = tk.StringVar(value=MemoryManager.get("tts_format", ""))
 
@@ -310,7 +316,7 @@ class TTSMenuApp(tk.Tk):
             ttk.Radiobutton(fmt_row, text=self.lang.get(f"format_{fmt}"), value=fmt, variable=self.format_var,
                             style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
-        lang_card, lang_inner = section(right, self.lang.get("language_section"))
+        lang_card, lang_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("language_section"))
         lang_card.grid(row=4, column=0, sticky="ew", pady=(0, 12))
 
         self.lang_map = {code: f"{info['label']} ({code})" for code, info in LANGS.items()}
@@ -324,9 +330,16 @@ class TTSMenuApp(tk.Tk):
                                                     self.lang_var, list(self.lang_map.values()))
         lang_row.pack(fill="x", pady=(4, 6))
 
-        self.voice_display_map = {"female": self.lang.get("voice_female"), "male": self.lang.get("voice_male")}
+        self.voice_display_map = {
+            "female": self.lang.get("voice_female"),
+            "male": self.lang.get("voice_male")
+        }
+        self.voice_internal_map = {v: k for k, v in self.voice_display_map.items()}
         saved_internal_voice = MemoryManager.get("tts_voice", "female")
-        initial_display_voice = self.voice_display_map.get(saved_internal_voice, self.lang.get("voice_female"))
+        initial_display_voice = self.voice_display_map.get(
+            saved_internal_voice,
+            self.lang.get("voice_female")
+        )
         self.voice_var = tk.StringVar(value=initial_display_voice)
         self.voice_var.trace_add("write", self.listener.on_voice_change)
 
@@ -339,10 +352,10 @@ class TTSMenuApp(tk.Tk):
         update_voice_state()
         self.service_var.trace_add("write", lambda *_: update_voice_state())
 
-        output_card, self.output_label = output_selector(right, self.output_dir, self.listener.on_output_change, self.lang)
+        output_card, self.output_label = output_selector(self.scrollable_right_frame.scrollable_frame, self.output_dir, self.listener.on_output_change, self.lang)
         output_card.grid(row=5, column=0, sticky="ew", pady=(0, 12))
 
-        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(right, self.lang)
+        self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(self.scrollable_right_frame.scrollable_frame, self.lang)
         self.progress_frame.grid(row=6, column=0, sticky="ew", pady=(8, 2))
 
         bar, self.status, self.counter = footer(root, self.lang)
