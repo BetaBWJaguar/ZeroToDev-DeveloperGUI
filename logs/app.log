@@ -10405,3 +10405,111 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-27 03:29:38 | INFO    | TTSMenuApp | {"timestamp": "2026-01-27T03:29:38.424533", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "en"}}
 2026-01-27 03:29:46 | INFO    | TTSMenuApp | {"timestamp": "2026-01-27T03:29:46.210723", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2026-01-27 03:29:48 | INFO    | Main | {"timestamp": "2026-01-27T03:29:48.609547", "event": "SESSION_END", "data": {"session_id": "20260127-032811"}}
+2026-01-27 19:54:49 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-27 19:54:49 | INFO    | Main | {"timestamp": "2026-01-27T19:54:49.694392", "event": "SESSION_START", "data": {"session_id": "20260127-195449"}}
+2026-01-27 19:54:49 | INFO    | LangManager | {"timestamp": "2026-01-27T19:54:49.743913", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-27 19:54:57 | INFO    | Main | {"timestamp": "2026-01-27T19:54:57.407174", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-27 19:54:57 | INFO    | Main | {"timestamp": "2026-01-27T19:54:57.731119", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-27 19:54:57 | INFO    | Main | {"timestamp": "2026-01-27T19:54:57.749940", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-27 19:54:57 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:54:57 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:54:57 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ede1f871d508fb5e8922
+2026-01-27 19:54:58 | INFO    | Main | {"timestamp": "2026-01-27T19:54:58.004449", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-01-27 19:54:58 | INFO    | Main | {"timestamp": "2026-01-27T19:54:58.017261", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-01-27 19:54:58 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:54:58 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:54:58 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ede2f871d508fb5e8924
+2026-01-27 19:54:58 | INFO    | Main | {"timestamp": "2026-01-27T19:54:58.343845", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:55:06 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a from DB snapshot: Your text-to-speech conversions are consistently failing (0% success rate). Please check your Edge TTS service connection or consider trying a different TTS service to ensure functionality.
+2026-01-27 19:55:06 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:06.412976", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-01-27 19:55:06 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:06.570129", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "tiny"}}
+2026-01-27 19:55:06 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:06.901020", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "base"}}
+2026-01-27 19:55:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:07.546361", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "tiny"}}
+2026-01-27 19:55:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:07.945958", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "base"}}
+2026-01-27 19:55:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:07.960596", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "small"}}
+2026-01-27 19:55:07 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:07.972668", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "large"}}
+2026-01-27 19:55:08 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:08.222099", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "large", "new": "medium"}}
+2026-01-27 19:55:08 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:08.235157", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "medium", "new": "small"}}
+2026-01-27 19:55:08 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:08.246909", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "tiny"}}
+2026-01-27 19:55:09 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:09.917870", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-01-27 19:55:11 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:11.192842", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "", "new": "en"}}
+2026-01-27 19:55:11 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:11.211957", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "en", "new": "tr"}}
+2026-01-27 19:55:11 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:11.747131", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "tr", "new": "en"}}
+2026-01-27 19:55:11 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:11.765014", "event": "CONFIG_CHANGE", "data": {"key": "stt_lang", "old": "en", "new": "auto"}}
+2026-01-27 19:55:13 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:55:13 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:55:13 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978edf1f871d508fb5e8928
+2026-01-27 19:55:13 | INFO    | Main | {"timestamp": "2026-01-27T19:55:13.587484", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:55:23 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:55:23.974505", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-01-27 19:55:26 | INFO    | Main | {"timestamp": "2026-01-27T19:55:26.258803", "event": "SESSION_END", "data": {"session_id": "20260127-195449"}}
+2026-01-27 19:56:36 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-01-27 19:56:36 | INFO    | Main | {"timestamp": "2026-01-27T19:56:36.341630", "event": "SESSION_START", "data": {"session_id": "20260127-195636"}}
+2026-01-27 19:56:36 | INFO    | LangManager | {"timestamp": "2026-01-27T19:56:36.391996", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-01-27 19:56:42 | INFO    | Main | {"timestamp": "2026-01-27T19:56:42.129610", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-01-27 19:56:42 | INFO    | Main | {"timestamp": "2026-01-27T19:56:42.384302", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-01-27 19:56:42 | INFO    | Main | {"timestamp": "2026-01-27T19:56:42.403641", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-01-27 19:56:42 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:56:42 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:56:42 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ee4a798eb790f7fae5fe
+2026-01-27 19:56:42 | INFO    | Main | {"timestamp": "2026-01-27T19:56:42.647850", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-01-27 19:56:42 | INFO    | Main | {"timestamp": "2026-01-27T19:56:42.659971", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-01-27 19:56:42 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:56:42 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:56:42 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ee4a798eb790f7fae600
+2026-01-27 19:56:42 | INFO    | Main | {"timestamp": "2026-01-27T19:56:42.966378", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:56:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:45.333992", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "tiny"}}
+2026-01-27 19:56:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:45.765217", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "base"}}
+2026-01-27 19:56:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:45.782489", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "small"}}
+2026-01-27 19:56:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:45.798247", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "medium"}}
+2026-01-27 19:56:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:45.815249", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "medium", "new": "large"}}
+2026-01-27 19:56:45 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:45.834600", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "large", "new": "turbo"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.034647", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "turbo", "new": "large"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.049655", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "large", "new": "medium"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.061225", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "medium", "new": "small"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.073938", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "base"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.086115", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "tiny"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.589969", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "base"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.604518", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "small"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.616615", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "medium"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.628758", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "medium", "new": "large"}}
+2026-01-27 19:56:46 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:46.653924", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "large", "new": "turbo"}}
+2026-01-27 19:56:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:47.139109", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "turbo", "new": "large"}}
+2026-01-27 19:56:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:47.155667", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "large", "new": "medium"}}
+2026-01-27 19:56:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:47.166804", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "medium", "new": "small"}}
+2026-01-27 19:56:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:47.182332", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "base"}}
+2026-01-27 19:56:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:47.199161", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "tiny"}}
+2026-01-27 19:56:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:47.862797", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "base"}}
+2026-01-27 19:56:47 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:56:47.895602", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "small"}}
+2026-01-27 19:56:58 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:56:58 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:56:58 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ee5a798eb790f7fae602
+2026-01-27 19:56:58 | INFO    | Main | {"timestamp": "2026-01-27T19:56:58.220022", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:57:06 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:06.420677", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/30 Minute Timer - Relaxing Instrumental Music - Tick Tock Countdown Timer.mp3"}}
+2026-01-27 19:57:13 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:13 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:13 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ee69798eb790f7fae604
+2026-01-27 19:57:13 | INFO    | Main | {"timestamp": "2026-01-27T19:57:13.465199", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:57:15 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:15.292387", "event": "AUDIO_FILE_SELECTED", "data": {"file": "C:/Users/tuna/Downloads/Yetmiş beş sene önce doğdu!.mp3"}}
+2026-01-27 19:57:17 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:17.351756", "event": "AUDIO_PLAY", "data": {"file": "C:/Users/tuna/Downloads/Yetmiş beş sene önce doğdu!.mp3"}}
+2026-01-27 19:57:19 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:19.721918", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "medium"}}
+2026-01-27 19:57:20 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:20.183012", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "medium", "new": "large"}}
+2026-01-27 19:57:20 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:20.208613", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "large", "new": "turbo"}}
+2026-01-27 19:57:22 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:22.972046", "event": "CONFIG_CHANGE", "data": {"key": "stt_engine", "old": "", "new": "vosk"}}
+2026-01-27 19:57:28 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:28 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:28 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ee78798eb790f7fae606
+2026-01-27 19:57:28 | INFO    | Main | {"timestamp": "2026-01-27T19:57:28.709623", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:57:34 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:34.962052", "event": "AUDIO_PAUSE", "data": {"file": "C:/Users/tuna/Downloads/Yetmiş beş sene önce doğdu!.mp3"}}
+2026-01-27 19:57:37 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:37.087593", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
+2026-01-27 19:57:37 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:57:37.197141", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
+2026-01-27 19:57:43 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:43 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:43 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ee87798eb790f7fae609
+2026-01-27 19:57:43 | INFO    | Main | {"timestamp": "2026-01-27T19:57:43.942787", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:57:59 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:59 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-01-27 19:57:59 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6978ee97798eb790f7fae60b
+2026-01-27 19:57:59 | INFO    | Main | {"timestamp": "2026-01-27T19:57:59.191503", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-01-27 19:58:02 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:58:02.064915", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-01-27 19:58:02 | INFO    | STTMenuApp | {"timestamp": "2026-01-27T19:58:02.917036", "event": "AUDIO_STOP", "data": {"file": "C:/Users/tuna/Downloads/Yetmiş beş sene önce doğdu!.mp3"}}
+2026-01-27 19:58:04 | INFO    | Main | {"timestamp": "2026-01-27T19:58:04.241521", "event": "SESSION_END", "data": {"session_id": "20260127-195636"}}
