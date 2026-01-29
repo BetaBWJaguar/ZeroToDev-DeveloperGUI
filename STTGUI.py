@@ -23,6 +23,7 @@ from PathHelper import PathHelper
 from updater.Update_Checker import check_for_update_gui
 from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
 from ai_system.AIRecommendationWidget import AIRecommendationWidget
+import mutagen
 
 
 BASE_DIR = PathHelper.base_dir()
@@ -154,7 +155,7 @@ class STTMenuApp(tk.Tk):
         user_id = self.current_user.id.get("id")
         fresh_doc = self.user_manager.collection.find_one({"id": user_id})
         if fresh_doc:
-            self.current_user.id.update(fresh_doc)
+            self.after(0, lambda: self.current_user.id.update(fresh_doc))
 
     def _build_menubar(self):
         from system.SystemUsageGUI import SystemUsageGUI
@@ -385,8 +386,6 @@ class STTMenuApp(tk.Tk):
 
 
 
-        self.engine_var.trace_add("write", update_device_visibility)
-
         device_card, device_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("stt_device_section"))
         device_row = ttk.Frame(device_inner, style="Card.TFrame"); device_row.pack(fill="x")
 
@@ -528,8 +527,8 @@ class STTMenuApp(tk.Tk):
             
             try:
                 pygame.mixer.music.load(file_path)
-                sound = pygame.mixer.Sound(file_path)
-                self.audio_duration = sound.get_length()
+                audio = mutagen.File(file_path)
+                self.audio_duration = audio.info.length
                 self.audio_time_var.set(f"0:00 / {self._format_time(self.audio_duration)}")
                 self.play_btn.config(state="normal")
                 LogsHelperManager.log_event(self.logger, "AUDIO_FILE_SELECTED", {"file": file_path})
