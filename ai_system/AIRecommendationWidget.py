@@ -104,6 +104,15 @@ class AIRecommendationWidget:
         if not self._can_show_recommendation():
             return False
 
+        if not self.widget_frame or not self.recommendation_text_var:
+            self.create_widget()
+
+        if action_text and self.action_btn and self.action_frame:
+            self.action_btn.config(text=action_text)
+            self.action_frame.pack(fill="x", pady=(0, 5))
+        elif self.action_frame:
+            self.action_frame.pack_forget()
+
         self.current_recommendation = text
         self.recommendation_text_var.set(text)
 
