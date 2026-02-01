@@ -3,8 +3,9 @@ from pathlib import Path
 from tkinter.ttk import Frame, Combobox
 import tkinter as tk
 from tkinter import ttk
+from ScrollBar import StyledScrollbar
+from theme_config import THEME
 
-THEME = {"COLORS": {}, "FONTS": {}}
 
 def refresh_theme(root, colors: dict, fonts: dict):
     THEME["COLORS"], THEME["FONTS"] = colors, fonts
@@ -184,7 +185,7 @@ def make_textarea(parent) -> tuple[ttk.Frame, tk.Text]:
         padx=12, pady=12
     )
 
-    sb = ttk.Scrollbar(frame, command=text.yview)
+    sb = StyledScrollbar(frame, orient="vertical", command=text.yview)
     text.configure(yscrollcommand=sb.set)
     text.grid(row=0, column=0, sticky="nsew")
     sb.grid(row=0, column=1, sticky="ns")

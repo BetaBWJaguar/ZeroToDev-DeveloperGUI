@@ -10548,3 +10548,155 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-31 03:34:32 | INFO    | Main | {"timestamp": "2026-01-31T03:34:32.833645", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
 2026-01-31 03:34:39 | INFO    | TTSMenuApp | {"timestamp": "2026-01-31T03:34:39.195532", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2026-01-31 03:34:41 | INFO    | Main | {"timestamp": "2026-01-31T03:34:41.379202", "event": "SESSION_END", "data": {"session_id": "20260131-033337"}}
+2026-02-01 03:30:10 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-02-01 03:30:10 | INFO    | Main | {"timestamp": "2026-02-01T03:30:10.469514", "event": "SESSION_START", "data": {"session_id": "20260201-033010"}}
+2026-02-01 03:30:10 | INFO    | LangManager | {"timestamp": "2026-02-01T03:30:10.531769", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-02-01 03:30:26 | INFO    | Main | {"timestamp": "2026-02-01T03:30:26.234493", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-02-01 03:30:26 | INFO    | Main | {"timestamp": "2026-02-01T03:30:26.571273", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-02-01 03:30:26 | INFO    | Main | {"timestamp": "2026-02-01T03:30:26.594284", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-02-01 03:30:26 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:26 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:26 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9ea256acbbabaee7627e
+2026-02-01 03:30:26 | INFO    | Main | {"timestamp": "2026-02-01T03:30:26.859589", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-02-01 03:30:26 | INFO    | Main | {"timestamp": "2026-02-01T03:30:26.871272", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-02-01 03:30:27 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:27 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:27 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9ea356acbbabaee76280
+2026-02-01 03:30:27 | INFO    | Main | {"timestamp": "2026-02-01T03:30:27.210502", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:30:27 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-02-01 03:30:34 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a from DB snapshot: Your text-to-speech conversions are consistently failing (0% success rate) despite frequent use. We recommend checking your Edge TTS service configuration or trying an alternative TTS service to ensure successful audio generation.
+2026-02-01 03:30:34 | INFO    | TTSMenuApp | {"timestamp": "2026-02-01T03:30:34.051362", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-02-01 03:30:42 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:42 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:42 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9eb256acbbabaee76284
+2026-02-01 03:30:42 | INFO    | Main | {"timestamp": "2026-02-01T03:30:42.463003", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:30:47 | INFO    | TTSMenuApp | {"timestamp": "2026-02-01T03:30:47.898437", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
+2026-02-01 03:30:47 | INFO    | TTSMenuApp | {"timestamp": "2026-02-01T03:30:47.998416", "event": "BUTTON_CLICK", "data": {"action": "OPEN_AI_MONITORING"}}
+2026-02-01 03:30:57 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:57 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:30:57 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9ec156acbbabaee76287
+2026-02-01 03:30:57 | INFO    | Main | {"timestamp": "2026-02-01T03:30:57.716705", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:31:12 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:12 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:12 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9ed056acbbabaee76289
+2026-02-01 03:31:12 | INFO    | Main | {"timestamp": "2026-02-01T03:31:12.981993", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:31:28 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:28 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:28 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9ee056acbbabaee7628b
+2026-02-01 03:31:28 | INFO    | Main | {"timestamp": "2026-02-01T03:31:28.235350", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:31:43 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:43 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:43 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9eef56acbbabaee7628d
+2026-02-01 03:31:43 | INFO    | Main | {"timestamp": "2026-02-01T03:31:43.489134", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:31:58 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:58 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:31:58 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9efe56acbbabaee7628f
+2026-02-01 03:31:58 | INFO    | Main | {"timestamp": "2026-02-01T03:31:58.716625", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:32:13 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:13 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:13 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f0d56acbbabaee76291
+2026-02-01 03:32:13 | INFO    | Main | {"timestamp": "2026-02-01T03:32:13.956859", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:32:29 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:29 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:29 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f1d56acbbabaee76293
+2026-02-01 03:32:29 | INFO    | Main | {"timestamp": "2026-02-01T03:32:29.185177", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:32:44 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:44 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:44 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f2c56acbbabaee76295
+2026-02-01 03:32:44 | INFO    | Main | {"timestamp": "2026-02-01T03:32:44.436058", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:32:59 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:59 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:32:59 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f3b56acbbabaee76297
+2026-02-01 03:32:59 | INFO    | Main | {"timestamp": "2026-02-01T03:32:59.715947", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:33:14 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:33:14 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:33:14 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f4a56acbbabaee76299
+2026-02-01 03:33:14 | INFO    | Main | {"timestamp": "2026-02-01T03:33:14.977901", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:33:30 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:33:30 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:33:30 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f5a56acbbabaee7629b
+2026-02-01 03:33:30 | INFO    | Main | {"timestamp": "2026-02-01T03:33:30.232167", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:33:45 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:33:45 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:33:45 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f6956acbbabaee7629d
+2026-02-01 03:33:45 | INFO    | Main | {"timestamp": "2026-02-01T03:33:45.493858", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:34:05 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-02-01 03:34:05 | INFO    | Main | {"timestamp": "2026-02-01T03:34:05.536884", "event": "SESSION_START", "data": {"session_id": "20260201-033405"}}
+2026-02-01 03:34:05 | INFO    | LangManager | {"timestamp": "2026-02-01T03:34:05.583709", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-02-01 03:34:35 | INFO    | Main | {"timestamp": "2026-02-01T03:34:35.702882", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-02-01 03:34:35 | INFO    | Main | {"timestamp": "2026-02-01T03:34:35.962427", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-02-01 03:34:35 | INFO    | Main | {"timestamp": "2026-02-01T03:34:35.983636", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-02-01 03:34:36 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:34:36 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:34:36 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f9c35c4f2f5c733dab0
+2026-02-01 03:34:36 | INFO    | Main | {"timestamp": "2026-02-01T03:34:36.211328", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-02-01 03:34:36 | INFO    | Main | {"timestamp": "2026-02-01T03:34:36.223015", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-02-01 03:34:36 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:34:36 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:34:36 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9f9c35c4f2f5c733dab2
+2026-02-01 03:34:36 | INFO    | Main | {"timestamp": "2026-02-01T03:34:36.545586", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:34:36 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-02-01 03:34:44 | INFO    | TTSMenuApp | {"timestamp": "2026-02-01T03:34:44.755235", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2026-02-01 03:34:45 | INFO    | TTSMenuApp | {"timestamp": "2026-02-01T03:34:45.261223", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "tr", "new": "en"}}
+2026-02-01 03:34:51 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:34:51 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:34:51 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9fab35c4f2f5c733dab4
+2026-02-01 03:34:51 | INFO    | Main | {"timestamp": "2026-02-01T03:34:51.773437", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:35:06 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:06 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:06 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9fba35c4f2f5c733dab6
+2026-02-01 03:35:06 | INFO    | Main | {"timestamp": "2026-02-01T03:35:06.991194", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:35:22 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:22 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:22 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9fca35c4f2f5c733dab8
+2026-02-01 03:35:22 | INFO    | Main | {"timestamp": "2026-02-01T03:35:22.235275", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:35:37 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:37 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:37 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9fd935c4f2f5c733daba
+2026-02-01 03:35:37 | INFO    | Main | {"timestamp": "2026-02-01T03:35:37.465289", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:35:52 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:52 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:35:52 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9fe835c4f2f5c733dabc
+2026-02-01 03:35:52 | INFO    | Main | {"timestamp": "2026-02-01T03:35:52.702228", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:36:07 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:07 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:07 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697e9ff735c4f2f5c733dabe
+2026-02-01 03:36:07 | INFO    | Main | {"timestamp": "2026-02-01T03:36:07.922885", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:36:23 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:23 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:23 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697ea00735c4f2f5c733dac0
+2026-02-01 03:36:23 | INFO    | Main | {"timestamp": "2026-02-01T03:36:23.165946", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:36:38 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:38 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:38 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697ea01635c4f2f5c733dac2
+2026-02-01 03:36:38 | INFO    | Main | {"timestamp": "2026-02-01T03:36:38.398204", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:36:53 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:53 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:36:53 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697ea02535c4f2f5c733dac4
+2026-02-01 03:36:53 | INFO    | Main | {"timestamp": "2026-02-01T03:36:53.640935", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:37:08 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:08 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:08 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697ea03435c4f2f5c733dac6
+2026-02-01 03:37:08 | INFO    | Main | {"timestamp": "2026-02-01T03:37:08.861346", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:37:28 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-02-01 03:37:28 | INFO    | Main | {"timestamp": "2026-02-01T03:37:28.884425", "event": "SESSION_START", "data": {"session_id": "20260201-033728"}}
+2026-02-01 03:37:28 | INFO    | LangManager | {"timestamp": "2026-02-01T03:37:28.930756", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-02-01 03:37:34 | INFO    | Main | {"timestamp": "2026-02-01T03:37:34.290165", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-02-01 03:37:34 | INFO    | Main | {"timestamp": "2026-02-01T03:37:34.543115", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-02-01 03:37:34 | INFO    | Main | {"timestamp": "2026-02-01T03:37:34.563120", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-02-01 03:37:34 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:34 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:34 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697ea04eff4d45c51c763e59
+2026-02-01 03:37:34 | INFO    | Main | {"timestamp": "2026-02-01T03:37:34.803005", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-02-01 03:37:34 | INFO    | Main | {"timestamp": "2026-02-01T03:37:34.814907", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-02-01 03:37:35 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:35 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:35 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697ea04fff4d45c51c763e5b
+2026-02-01 03:37:35 | INFO    | Main | {"timestamp": "2026-02-01T03:37:35.140958", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:37:35 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-02-01 03:37:50 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:50 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-01 03:37:50 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697ea05eff4d45c51c763e5d
+2026-02-01 03:37:50 | INFO    | Main | {"timestamp": "2026-02-01T03:37:50.405307", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-01 03:37:52 | INFO    | TTSMenuApp | {"timestamp": "2026-02-01T03:37:52.701950", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-02-01 03:37:55 | INFO    | Main | {"timestamp": "2026-02-01T03:37:55.651732", "event": "SESSION_END", "data": {"session_id": "20260201-033728"}}
