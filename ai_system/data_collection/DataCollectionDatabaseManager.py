@@ -58,9 +58,6 @@ class DataCollectionDatabaseManager:
     def get_latest_user_data(self, user_id: str) -> Optional[dict]:
         return self.db.get_latest_snapshot(user_id)
 
-    def get_user_history(self, user_id: str, limit: int = 20) -> list:
-        return self.db.get_all_snapshots(user_id, limit)
-
     def delete_user_data(self, user_id: str) -> int:
         return self.db.delete_user_data(user_id)
 

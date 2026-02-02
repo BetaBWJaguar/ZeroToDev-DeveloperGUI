@@ -78,7 +78,7 @@ class AIMonitoringGUI:
             filter_row,
             textvariable=self.provider_var,
             state="readonly",
-            style="AIMonitor.TCombobox",
+            style="Preset.TCombobox",
             width=18
         )
 
@@ -98,7 +98,7 @@ class AIMonitoringGUI:
             ("7d", "7 Days"),
             ("30d", "30 Days")
         ]
-        
+
         for value, label in time_ranges:
             ttk.Radiobutton(
                 filter_row,
