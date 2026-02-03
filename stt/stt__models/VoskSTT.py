@@ -2,6 +2,7 @@ import os
 import json
 import wave
 import warnings
+from pathlib import Path
 from typing import Optional, Dict, Any, List
 
 from PathHelper import PathHelper
@@ -52,23 +53,31 @@ class VoskSTT(STTEngine):
                 "frame_length": 30,
                 "frame_shift": 10
             }
-    
+
     def load(self):
         try:
             if not self._loaded:
-                if not os.path.exists(self.model_name):
-                    raise FileNotFoundError(f"Vosk model not found: {self.model_name}")
-                
-                print(f"Vosk model is loading: {self.model_name}")
-                self.model = vosk.Model(self.model_name)
 
+                model_path = Path(self.model_name)
+                if not model_path.exists():
+                    internal_model_path = PathHelper.resource_path(self.model_name)
+
+                    if internal_model_path.exists():
+                        model_path = internal_model_path
+                    else:
+                        raise FileNotFoundError(f"Vosk model not found: {self.model_name}")
+
+                print(f"Vosk model is loading from: {model_path}")
+
+                self.model = vosk.Model(str(model_path))
                 self.recognizer = vosk.KaldiRecognizer(
-                    self.model, 
+                    self.model,
                     self.config.get("sample_rate", 16000)
                 )
-                
+
                 self._loaded = True
-                print(f"Vosk model {self.model_name} loaded successfully.")
+                print(f"Vosk model loaded successfully.")
+
         except Exception as e:
             raise RuntimeError(f"Vosk model could not be loaded: {str(e)}")
     

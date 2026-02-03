@@ -10796,3 +10796,27 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-02-02 03:11:50 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
 2026-02-02 03:11:50 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 697febc6f3a97284f6edd92e
 2026-02-02 03:11:50 | INFO    | Main | {"timestamp": "2026-02-02T03:11:50.753247", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-03 00:25:14 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-02-03 00:25:14 | INFO    | Main | {"timestamp": "2026-02-03T00:25:14.487031", "event": "SESSION_START", "data": {"session_id": "20260203-002514"}}
+2026-02-03 00:25:14 | INFO    | LangManager | {"timestamp": "2026-02-03T00:25:14.538875", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-02-03 00:25:30 | INFO    | Main | {"timestamp": "2026-02-03T00:25:30.260124", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-02-03 00:25:30 | INFO    | Main | {"timestamp": "2026-02-03T00:25:30.628330", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-02-03 00:25:30 | INFO    | Main | {"timestamp": "2026-02-03T00:25:30.646402", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-02-03 00:25:30 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-03 00:25:30 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-03 00:25:30 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6981164a163d52adf0025cba
+2026-02-03 00:25:30 | INFO    | Main | {"timestamp": "2026-02-03T00:25:30.970889", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-02-03 00:25:30 | INFO    | Main | {"timestamp": "2026-02-03T00:25:30.983890", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-02-03 00:25:31 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-03 00:25:31 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-03 00:25:31 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6981164b163d52adf0025cbc
+2026-02-03 00:25:31 | INFO    | Main | {"timestamp": "2026-02-03T00:25:31.346012", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-03 00:25:31 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-02-03 00:25:38 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a from DB snapshot: Your text-to-speech conversions are consistently failing (0% success rate) despite frequent use. We recommend checking your Edge TTS service connection and ensuring it's properly configured within the application settings.
+2026-02-03 00:25:38 | INFO    | TTSMenuApp | {"timestamp": "2026-02-03T00:25:38.784628", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-02-03 00:25:46 | INFO    | DataCollectionDatabase | Deleted 1 data snapshots for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-03 00:25:46 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-03 00:25:46 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 6981165a163d52adf0025cc0
+2026-02-03 00:25:46 | INFO    | Main | {"timestamp": "2026-02-03T00:25:46.574855", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-03 00:25:50 | INFO    | TTSMenuApp | {"timestamp": "2026-02-03T00:25:50.651770", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-02-03 00:25:54 | INFO    | Main | {"timestamp": "2026-02-03T00:25:54.299684", "event": "SESSION_END", "data": {"session_id": "20260203-002514"}}

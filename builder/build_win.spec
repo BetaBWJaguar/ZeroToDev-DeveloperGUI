@@ -2,6 +2,8 @@
 import sys
 import pkgutil
 from pathlib import Path
+from PyInstaller.utils.hooks import collect_dynamic_libs
+from PyInstaller.utils.hooks import collect_submodules, collect_dynamic_libs
 from PyInstaller.utils.win32.versioninfo import (
     VSVersionInfo, VarFileInfo, StringFileInfo,
     StringTable, StringStruct, VarStruct, FixedFileInfo
@@ -29,7 +31,7 @@ excluded_dirs = {
     ".idea",
     ".vscode",
     "venv",
-    "env"
+    "requirements"
 }
 
 
@@ -52,19 +54,37 @@ datas += [
 ]
 
 hiddenimports = []
+
 try:
     import tkinter
     hiddenimports += [mod.name for mod in pkgutil.walk_packages(tkinter.__path__, "tkinter.")]
 except Exception:
     hiddenimports.append("tkinter")
 
+
 for _, modname, _ in pkgutil.walk_packages([str(PROJECT_ROOT)]):
     hiddenimports.append(modname)
+
+
+hiddenimports += collect_submodules("torch")
+hiddenimports += collect_submodules("torchaudio")
+hiddenimports += collect_submodules("torchvision")
+hiddenimports += ["whisper"]
+
+
+binaries = []
+
+
+binaries += collect_dynamic_libs("vosk")
+binaries += collect_dynamic_libs("torch")
+binaries += collect_dynamic_libs("torchaudio")
+binaries += collect_dynamic_libs("torchvision")
+
 
 a = Analysis(
     [str(MAIN_SCRIPT)],
     pathex=[str(PROJECT_ROOT)],
-    binaries=[],
+    binaries=binaries,
     datas=datas,
     hiddenimports=hiddenimports,
     hookspath=[],
