@@ -8,7 +8,7 @@ from PathHelper import PathHelper
 
 class LatencyTracker:
     def __init__(self, config_file: str = "database_config.json"):
-        config_path = PathHelper.base_dir() / "usermanager" / config_file
+        config_path = PathHelper.internal_dir() / "usermanager" / config_file
         if not config_path.exists():
             raise FileNotFoundError(f"Database config not found at {config_path.resolve()}")
 

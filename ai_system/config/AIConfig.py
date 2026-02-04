@@ -32,7 +32,7 @@ class AIConfig:
     @classmethod
     def load(cls):
         if cls._config is None:
-            path = PathHelper.base_dir() / "ai_system" / "AISettings.json"
+            path = PathHelper.internal_dir() / "ai_system" / "AISettings.json"
             with open(path, "r", encoding="utf-8") as f:
                 config = json.load(f)
                 cls._config = cls._substitute_env_vars(config["ai"])

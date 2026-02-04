@@ -2,8 +2,7 @@
 import sys
 import pkgutil
 from pathlib import Path
-from PyInstaller.utils.hooks import collect_dynamic_libs
-from PyInstaller.utils.hooks import collect_submodules, collect_dynamic_libs
+from PyInstaller.utils.hooks import collect_dynamic_libs, collect_submodules, collect_data_files
 from PyInstaller.utils.win32.versioninfo import (
     VSVersionInfo, VarFileInfo, StringFileInfo,
     StringTable, StringStruct, VarStruct, FixedFileInfo
@@ -41,17 +40,14 @@ for item in PROJECT_ROOT.iterdir():
 
 datas += [
     (str(PROJECT_ROOT / "usermanager" / "database_config.json"), "usermanager"),
-]
-
-datas += [
     (str(PROJECT_ROOT / "main.enc"), "."),
     (str(PROJECT_ROOT / "secret.key"), "."),
     (str(PROJECT_ROOT / ".env"), "."),
-]
-
-datas += [
     (str(PROJECT_ROOT / "client-version.txt"), "."),
 ]
+
+datas += collect_data_files("whisper")
+datas += collect_data_files("tiktoken")
 
 hiddenimports = []
 
@@ -69,8 +65,8 @@ for _, modname, _ in pkgutil.walk_packages([str(PROJECT_ROOT)]):
 hiddenimports += collect_submodules("torch")
 hiddenimports += collect_submodules("torchaudio")
 hiddenimports += collect_submodules("torchvision")
-hiddenimports += ["whisper"]
-
+hiddenimports += collect_submodules("whisper")
+hiddenimports += ["tiktoken", "regex", "tqdm", "requests"]
 
 binaries = []
 
