@@ -6,7 +6,15 @@ import urllib
 from pathlib import Path
 import simpleaudio as sa
 import tkinter as tk
+import ctypes
 from tkinter import ttk, messagebox
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)
+except:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except:
+        pass
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
     progress_section, set_buttons_state, styled_combobox, toggle_button, logmode_selector, loghandler_selector, THEME, markup_support_section
@@ -102,6 +110,12 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
 class TTSMenuApp(tk.Tk):
     def __init__(self,lang_manager,current_user,user_manager):
         super().__init__()
+
+        try:
+            self.tk.call('tk', 'scaling', self.winfo_fpixels('1i') / 72)
+        except:
+            pass
+
         self.zip_var = None
         self._ai_recommendation_after_id = None
         self.ai_recommendation_dismissed = False
@@ -110,8 +124,11 @@ class TTSMenuApp(tk.Tk):
         self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
-        self.geometry("1650x1200")
-        self.minsize(1650, 1200)
+        scale = self.winfo_fpixels('1i') / 96
+        base_w, base_h = 1400, 950
+        w = int(base_w * scale)
+        h = int(base_h * scale)
+        self.geometry(f"{w}x{h}")
         self.listener = GUIListener(self)
         self.resizable(False, False)
         self.logger = LogsManager.get_logger("TTSMenuApp")

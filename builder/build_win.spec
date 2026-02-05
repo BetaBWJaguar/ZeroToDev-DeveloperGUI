@@ -44,6 +44,7 @@ datas += [
     (str(PROJECT_ROOT / "secret.key"), "."),
     (str(PROJECT_ROOT / ".env"), "."),
     (str(PROJECT_ROOT / "client-version.txt"), "."),
+    (str(PROJECT_ROOT / "app_mode.txt"), "."),
 ]
 
 datas += collect_data_files("whisper")
@@ -104,7 +105,7 @@ exe = EXE(
     upx=True,
     windowed=True,
     version=version_info,
-    icon=str(icon_path)
+    icon=str(icon_path),
 )
 
 coll = COLLECT(
