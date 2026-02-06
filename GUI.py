@@ -125,7 +125,7 @@ class TTSMenuApp(tk.Tk):
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
         scale = self.winfo_fpixels('1i') / 96
-        base_w, base_h = 1400, 950
+        base_w, base_h = 1800, 950
         w = int(base_w * scale)
         h = int(base_h * scale)
         self.geometry(f"{w}x{h}")

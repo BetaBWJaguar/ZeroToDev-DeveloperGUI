@@ -5,8 +5,16 @@ import time
 import urllib
 from pathlib import Path
 import tkinter as tk
+import ctypes
 from tkinter import ttk, messagebox, filedialog
 import pygame
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)
+except:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except:
+        pass
 from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
     progress_section, set_buttons_state, styled_combobox
@@ -93,6 +101,12 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
 class STTMenuApp(tk.Tk):
     def __init__(self, lang_manager, current_user, user_manager):
         super().__init__()
+
+        try:
+            self.tk.call('tk', 'scaling', self.winfo_fpixels('1i') / 72)
+        except:
+            pass
+
         self._ai_recommendation_after_id = None
         self.ai_recommendation_dismissed = False
         self.lang = lang_manager
