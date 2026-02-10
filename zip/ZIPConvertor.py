@@ -182,7 +182,7 @@ class ZIPConvertor:
                 files["project.json"] = json.dumps({
                     "name": "Zero to Dev - Developer GUI",
                     "author": "Tuna Rasim OCAK",
-                    "version": "1.0",
+                    "version": "1.3.1",
                     "createdAt": datetime.now().isoformat()
                 }, indent=2).encode("utf-8")
             except Exception as e:
@@ -223,7 +223,7 @@ class ZIPConvertor:
                 files["credits.json"] = json.dumps({
                     "project": "Zero to Dev - Developer GUI",
                     "author": "Tuna Rasim OCAK",
-                    "version": "1.0",
+                    "version": "1.3.1",
                     "createdAt": datetime.now().isoformat(),
                     "credits": {
                         "tts_services": [

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import requests
 from updater.UpdaterGUI import UpdaterGUI
-from updater.Updater_Utils import download_update_zip, extract_update_zip, get_current_version
+from updater.Updater_Utils import download_update_zip_parts, extract_update_zip, get_current_version
 
-UPDATE_INFO_URL = "https://raw.githubusercontent.com/BetaBWJaguar/ZeroToDev-DeveloperGUI/master/updater/update_info.json"
+UPDATE_INFO_URL = "http://localhost:3000/MyProjects/ZeroToDev-DeveloperGUI/raw/branch/master/updater/update_info.json"
 
 
 def check_for_update_gui(parent, lang, logger):
@@ -12,7 +12,7 @@ def check_for_update_gui(parent, lang, logger):
         data = response.json()
 
         remote_version = data["version"]
-        zip_url = data["zip_url"]
+        zip_parts = data["zip_parts"]
         changelog = data.get("changelog", "")
 
         local_version = get_current_version()
@@ -20,7 +20,7 @@ def check_for_update_gui(parent, lang, logger):
         if remote_version != local_version:
 
             def confirmed():
-                zip_path = download_update_zip(zip_url)
+                zip_path = download_update_zip_parts(zip_parts)
                 extract_update_zip(zip_path)
                 run_updater()
 

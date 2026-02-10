@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import shutil
+
 import requests
 import zipfile
 import tempfile
@@ -16,18 +18,33 @@ def get_current_version():
     return "0.0"
 
 
-def download_update_zip(zip_url: str) -> Path:
-    print(f"[Updater] Downloading ZIP → {zip_url}")
+def download_update_zip_parts(zip_parts: list[str]) -> Path:
+    temp_dir = Path(tempfile.gettempdir())
+    part_files = []
 
-    tmp_zip = Path(tempfile.gettempdir()) / "update_package.zip"
+    print("[Updater] Downloading multi-part update...")
 
-    r = requests.get(zip_url, stream=True)
-    with open(tmp_zip, "wb") as f:
-        for chunk in r.iter_content(1024):
-            f.write(chunk)
+    for i, url in enumerate(zip_parts, start=1):
+        part_path = temp_dir / f"update_part_{i:03}.zip"
+        print(f"[Updater] Downloading part {i} → {url}")
 
-    print(f"[Updater] ZIP downloaded → {tmp_zip}")
-    return tmp_zip
+        r = requests.get(url, stream=True)
+        with open(part_path, "wb") as f:
+            for chunk in r.iter_content(1024 * 1024):
+                f.write(chunk)
+
+        part_files.append(part_path)
+
+    full_zip_path = temp_dir / "update_package_full.zip"
+    print("[Updater] Merging parts into single ZIP...")
+
+    with open(full_zip_path, "wb") as outfile:
+        for part in part_files:
+            with open(part, "rb") as pf:
+                shutil.copyfileobj(pf, outfile)
+
+    print(f"[Updater] Merge complete → {full_zip_path}")
+    return full_zip_path
 
 
 def extract_update_zip(zip_path: Path) -> Path:
