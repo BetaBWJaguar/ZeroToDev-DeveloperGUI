@@ -7,6 +7,7 @@ import tempfile
 import os
 from pathlib import Path
 from PathHelper import PathHelper
+from updater.SignatureVerifier import SignatureVerifier
 
 LOCAL_VERSION_FILE = PathHelper.internal_dir() / "client-version.txt"
 
@@ -18,13 +19,17 @@ def get_current_version():
     return "0.0"
 
 
-def download_update_zip_parts(zip_parts: list[str]) -> Path:
+def download_update_zip_parts(zip_parts: list[dict]) -> Path:
     temp_dir = Path(tempfile.gettempdir())
     part_files = []
+    verifier = SignatureVerifier()
 
     print("[Updater] Downloading multi-part update...")
 
-    for i, url in enumerate(zip_parts, start=1):
+    for i, part in enumerate(zip_parts, start=1):
+        url = part["url"]
+        expected_hash = part["sha256"]
+
         part_path = temp_dir / f"update_part_{i:03}.zip"
         print(f"[Updater] Downloading part {i} → {url}")
 
@@ -33,6 +38,12 @@ def download_update_zip_parts(zip_parts: list[str]) -> Path:
             for chunk in r.iter_content(1024 * 1024):
                 f.write(chunk)
 
+        print(f"[Updater] Verifying part {i} integrity...")
+
+        if not verifier.verify_checksum(part_path, expected_hash):
+            raise Exception(f"Integrity check failed for part {i}")
+
+        print(f"[Updater] Part {i} verified ✔")
         part_files.append(part_path)
 
     full_zip_path = temp_dir / "update_package_full.zip"

@@ -1,5 +1,14 @@
 {
   "version": "1.3.1",
-  "zip_parts": "",
+  "zip_parts": [
+    {
+      "url": "",
+      "sha256": ""
+    },
+    {
+      "url": "",
+      "sha256": ""
+    }
+  ],
   "changelog": "- Fixed multiple bugs across the application.\n- Resolved the Updater.exe launch issue.\n- Improved overall stability and performance."
 }
