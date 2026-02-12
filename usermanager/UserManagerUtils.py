@@ -28,7 +28,17 @@ class UserManagerUtils:
 
     @staticmethod
     def validate_password(password: str) -> bool:
-        return bool(re.match(r"^(?=.*[A-Z])(?=.*\d).{8,}$", password))
+        if len(password) < 10:
+            return False
+        if not re.search(r'[a-z]', password):
+            return False
+        if not re.search(r'[A-Z]', password):
+            return False
+        if not re.search(r'\d', password):
+            return False
+        if not re.search(r'[!@#$%^&*()_+\-=\[\]{}|;:,.<>?]', password):
+            return False
+        return True
 
     @staticmethod
     def timestamp() -> str:
