@@ -6,9 +6,12 @@ import subprocess
 import argparse
 from pathlib import Path
 from cryptography.fernet import Fernet
+import sys
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from versions.VersionsManager import VersionManager
 
 APP_NAME = "ZeroToDev-DeveloperGUI"
-APP_VERSION = "1.3"
+APP_VERSION = VersionManager.get()
 
 try:
     if sys.platform.startswith("win"):

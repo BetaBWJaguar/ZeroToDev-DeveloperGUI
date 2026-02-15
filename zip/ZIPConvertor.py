@@ -16,6 +16,7 @@ from data_manager.DataManager import DataManager
 from VoiceProcessor import VoiceProcessor
 from docx import Document
 from reportlab.lib.pagesizes import A4
+from versions.VersionsManager import VersionManager
 
 
 class ZIPConvertor:
@@ -182,7 +183,7 @@ class ZIPConvertor:
                 files["project.json"] = json.dumps({
                     "name": "Zero to Dev - Developer GUI",
                     "author": "Tuna Rasim OCAK",
-                    "version": "1.3.1",
+                    "version": VersionManager.get(),
                     "createdAt": datetime.now().isoformat()
                 }, indent=2).encode("utf-8")
             except Exception as e:
@@ -223,7 +224,7 @@ class ZIPConvertor:
                 files["credits.json"] = json.dumps({
                     "project": "Zero to Dev - Developer GUI",
                     "author": "Tuna Rasim OCAK",
-                    "version": "1.3.1",
+                    "version": VersionManager.get(),
                     "createdAt": datetime.now().isoformat(),
                     "credits": {
                         "tts_services": [
