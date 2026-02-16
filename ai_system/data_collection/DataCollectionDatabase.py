@@ -52,3 +52,13 @@ class DataCollectionDatabase:
         result = self.collection.delete_many({"user_id": user_id})
         self.logger.info(f"Deleted {result.deleted_count} data snapshots for user_id={user_id}")
         return result.deleted_count
+
+    def delete_snapshot(self, snapshot_id: str) -> bool:
+        from bson import ObjectId
+        try:
+            result = self.collection.delete_one({"_id": ObjectId(snapshot_id)})
+            self.logger.info(f"Deleted snapshot with id={snapshot_id}, deleted_count={result.deleted_count}")
+            return result.deleted_count > 0
+        except Exception as e:
+            self.logger.error(f"Failed to delete snapshot {snapshot_id}: {e}")
+            return False

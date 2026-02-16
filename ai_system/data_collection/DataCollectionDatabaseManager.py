@@ -49,9 +49,10 @@ class DataCollectionDatabaseManager:
         return files[:limit]
 
     def collect_and_save_user_data(self, user_id: str, payload: Dict[str, Any]) -> str:
-        payload["collected_at"] = datetime.utcnow().isoformat()
+        payload_copy = payload.copy()
+        payload_copy["collected_at"] = datetime.utcnow().isoformat()
         self.db.delete_user_data(user_id)
-        snapshot_id = self.db.save_snapshot(user_id, payload)
+        snapshot_id = self.db.save_snapshot(user_id, payload_copy)
         self.logger.info(f"Saved snapshot for user {user_id}: {snapshot_id}")
         return snapshot_id
 
@@ -111,8 +112,9 @@ class DataCollectionDatabaseManager:
         deleted = 0
 
         for snap in to_delete:
-            self.db.collection.delete_one({"_id": snap["_id"]})
-            deleted += 1
+            snapshot_id = str(snap["_id"])
+            if self.db.delete_snapshot(snapshot_id):
+                deleted += 1
 
         return deleted
 
