@@ -168,7 +168,7 @@ class LoginGUI(tk.Tk):
 
                 user_id = user_obj.id.get("id", user_obj.id)
 
-                db_collector.collect_and_save_user_data(user_id, payload)
+                db_collector.collect_and_save_user_data(user_id, payload, cleanup_old=True, keep_snapshots=1)
 
                 LogsHelperManager.log_success(
                     self.logger,
