@@ -326,3 +326,4 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-01-24 17:44:57 | ERROR   | STTMenuApp | {"timestamp": "2026-01-24T17:44:57.196448", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
 2026-01-25 19:55:20 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-25T19:55:20.078818", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2026-01-27 03:28:22 | ERROR   | TTSMenuApp | {"timestamp": "2026-01-27T03:28:22.703354", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2026-02-17 13:39:34 | ERROR   | TTSMenuApp | {"timestamp": "2026-02-17T13:39:34.287837", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}

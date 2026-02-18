@@ -6,11 +6,12 @@ import zipfile
 import tempfile
 import os
 from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from PathHelper import PathHelper
 from updater.SignatureVerifier import SignatureVerifier
 
 LOCAL_VERSION_FILE = PathHelper.internal_dir() / "client-version.txt"
-
+MAX_DOWNLOAD_WORKERS = 4
 
 
 def get_current_version():
@@ -19,42 +20,73 @@ def get_current_version():
     return "0.0"
 
 
-def download_update_zip_parts(zip_parts: list[dict]) -> Path:
-    temp_dir = Path(tempfile.gettempdir())
-    part_files = []
+def _download_single_part(index: int, part: dict, temp_dir: Path) -> Path:
     verifier = SignatureVerifier()
 
-    print("[Updater] Downloading multi-part update...")
+    url = part["url"]
+    expected_hash = part["sha256"]
 
-    for i, part in enumerate(zip_parts, start=1):
-        url = part["url"]
-        expected_hash = part["sha256"]
+    part_path = temp_dir / f"update_part_{index:03}.zip"
 
-        part_path = temp_dir / f"update_part_{i:03}.zip"
-        print(f"[Updater] Downloading part {i} → {url}")
+    print(f"[Updater] Downloading part {index} → {url}")
 
-        r = requests.get(url, stream=True)
-        with open(part_path, "wb") as f:
-            for chunk in r.iter_content(1024 * 1024):
+    r = requests.get(url, stream=True)
+    r.raise_for_status()
+
+    with open(part_path, "wb") as f:
+        for chunk in r.iter_content(1024 * 1024):
+            if chunk:
                 f.write(chunk)
 
-        print(f"[Updater] Verifying part {i} integrity...")
+    print(f"[Updater] Verifying part {index}...")
 
-        if not verifier.verify_checksum(part_path, expected_hash):
-            raise Exception(f"Integrity check failed for part {i}")
+    if not verifier.verify_checksum(part_path, expected_hash):
+        raise Exception(f"Integrity check failed for part {index}")
 
-        print(f"[Updater] Part {i} verified ✔")
-        part_files.append(part_path)
+    print(f"[Updater] Part {index} verified ✔")
+    return part_path
+
+
+
+def download_update_zip_parts(zip_parts: list[dict]) -> Path:
+    temp_dir = Path(tempfile.gettempdir())
+
+    print("[Updater] Downloading update parts...")
+
+    part_files = {}
+
+    workers = min(MAX_DOWNLOAD_WORKERS, len(zip_parts))
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+
+        futures = {
+            executor.submit(
+                _download_single_part, i, part, temp_dir
+            ): i
+            for i, part in enumerate(zip_parts, start=1)
+        }
+
+        for future in as_completed(futures):
+            index = futures[future]
+            try:
+                part_path = future.result()
+                part_files[index] = part_path
+            except Exception as e:
+                raise Exception(f"Download failed (part {index}): {e}")
+
+    print("[Updater] All parts downloaded ✔")
+
 
     full_zip_path = temp_dir / "update_package_full.zip"
     print("[Updater] Merging parts into single ZIP...")
 
     with open(full_zip_path, "wb") as outfile:
-        for part in part_files:
-            with open(part, "rb") as pf:
+        for i in sorted(part_files.keys()):
+            with open(part_files[i], "rb") as pf:
                 shutil.copyfileobj(pf, outfile)
 
     print(f"[Updater] Merge complete → {full_zip_path}")
+
     return full_zip_path
 
 
