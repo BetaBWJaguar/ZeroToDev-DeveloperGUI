@@ -11,7 +11,7 @@ from PathHelper import PathHelper
 from updater.SignatureVerifier import SignatureVerifier
 
 LOCAL_VERSION_FILE = PathHelper.internal_dir() / "client-version.txt"
-MAX_DOWNLOAD_WORKERS = 4
+MAX_DOWNLOAD_WORKERS = 6
 
 
 def get_current_version():
