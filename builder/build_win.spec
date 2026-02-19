@@ -14,8 +14,9 @@ PROJECT_ROOT = BUILDER_DIR.parent
 MAIN_SCRIPT = PROJECT_ROOT / "main.py"
 
 with open(BUILDER_DIR / "version.txt", "r", encoding="utf-8") as f:
-    version_info_code = f.read()
-version_info = eval(version_info_code)
+    v = f.read().strip().split(".")
+
+version_tuple = (int(v[0]), int(v[1]), int(v[2]), 0)
 
 block_cipher = None
 
