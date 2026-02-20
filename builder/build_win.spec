@@ -13,10 +13,26 @@ BUILDER_DIR = CURRENT_FILE.parent
 PROJECT_ROOT = BUILDER_DIR.parent
 MAIN_SCRIPT = PROJECT_ROOT / "main.py"
 
-with open(BUILDER_DIR / "version.txt", "r", encoding="utf-8") as f:
-    v = f.read().strip().split(".")
+sys.path.insert(0, str(PROJECT_ROOT))
 
-version_tuple = (int(v[0]), int(v[1]), int(v[2]), 0)
+from versions.VersionsManager import VersionManager
+
+version_tuple = VersionManager.get_windows_tuple()
+
+version_info_namespace = {
+    'VSVersionInfo': VSVersionInfo,
+    'VarFileInfo': VarFileInfo,
+    'StringFileInfo': StringFileInfo,
+    'StringTable': StringTable,
+    'StringStruct': StringStruct,
+    'VarStruct': VarStruct,
+    'FixedFileInfo': FixedFileInfo,
+    'VersionManager': VersionManager,
+    '__builtins__': __builtins__
+}
+with open(BUILDER_DIR / "version.txt", "r", encoding="utf-8") as f:
+    exec(f.read(), version_info_namespace)
+version_info = version_info_namespace.get('version_info')
 
 block_cipher = None
 

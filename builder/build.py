@@ -47,7 +47,7 @@ def encrypt_main():
     decrypt_code = f"""\
 from cryptography.fernet import Fernet
 from pathlib import Path
-import tempfile, runpy, sys, os
+import tempfile, runpy, sys, os, atexit
 
 ROOT = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
 KEY_FILE = ROOT / "secret.key"
@@ -57,13 +57,22 @@ def decrypt_and_run():
     key = KEY_FILE.read_bytes()
     cipher = Fernet(key)
     data = cipher.decrypt(ENC_FILE.read_bytes())
-    tmp = tempfile.NamedTemporaryFile(delete=False, suffix='.py')
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".py")
     tmp.write(data)
     tmp.flush()
     tmp.close()
-    runpy.run_path(tmp.name, run_name='__main__')
+    def cleanup():
+        try:
+            if os.path.exists(tmp.name):
+                os.unlink(tmp.name)
+        except Exception:
+            pass
 
-if __name__ == '__main__':
+    atexit.register(cleanup)
+
+    runpy.run_path(tmp.name, run_name="__main__")
+
+if __name__ == "__main__":
     decrypt_and_run()
 """
     decrypt_path.write_text(decrypt_code, encoding="utf-8")

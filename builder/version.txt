@@ -1,6 +1,6 @@
 from versions.VersionsManager import VersionManager
 
-VSVersionInfo(
+version_info = VSVersionInfo(
   ffi=FixedFileInfo(
     filevers=VersionManager.get_windows_tuple(),
     prodvers=VersionManager.get_windows_tuple(),
@@ -18,12 +18,12 @@ VSVersionInfo(
         [
           StringStruct(u'CompanyName', u'Tuna Ocak'),
           StringStruct(u'FileDescription', u'Zero to Dev - Developer GUI'),
-          StringStruct(u'FileVersion', u'1.3.1'),
+          StringStruct(u'FileVersion', VersionManager.get_windows()),
           StringStruct(u'InternalName', u'ZeroToDev-DEVGUI'),
           StringStruct(u'LegalCopyright', u'© 2026 Tuna Ocak.'),
           StringStruct(u'OriginalFilename', u'ZeroToDev-DEVGUI.exe'),
           StringStruct(u'ProductName', u'ZeroToDev-DEVGUI Application'),
-          StringStruct(u'ProductVersion', u'1.3.1')
+          StringStruct(u'ProductVersion', VersionManager.get_windows())
         ]
       )
     ]),
