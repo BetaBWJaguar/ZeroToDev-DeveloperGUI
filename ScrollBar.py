@@ -65,8 +65,10 @@ class ScrollableFrame(ttk.Frame):
         self.canvas.itemconfig(self.canvas_window, width=event.width)
 
     def _on_mousewheel(self, event):
-        if event.num == 5 or event.delta < 0:
+        if event.delta:
+            self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        elif event.num == 5:
             self.canvas.yview_scroll(1, "units")
-        elif event.num == 4 or event.delta > 0:
+        elif event.num == 4:
             self.canvas.yview_scroll(-1, "units")
         return "break"
