@@ -1,0 +1,8 @@
+{
+  "paths": {
+    "updates_dir": "T:/ZTDGUI-Files/updates"
+  },
+  "endpoints": {
+    "base_url": "http://localhost:9090"
+  }
+}
