@@ -11164,3 +11164,20 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-02-17 13:44:40 | INFO    | Main | {"timestamp": "2026-02-17T13:44:40.244442", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
 2026-02-17 13:44:48 | INFO    | STTMenuApp | {"timestamp": "2026-02-17T13:44:48.044812", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2026-02-17 13:44:51 | INFO    | Main | {"timestamp": "2026-02-17T13:44:51.095119", "event": "SESSION_END", "data": {"session_id": "20260217-133814"}}
+2026-02-25 01:55:00 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-02-25 01:55:00 | INFO    | Main | {"timestamp": "2026-02-25T01:55:00.959744", "event": "SESSION_START", "data": {"session_id": "20260225-015500"}}
+2026-02-25 01:55:01 | INFO    | LangManager | {"timestamp": "2026-02-25T01:55:01.006011", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-02-25 01:55:21 | INFO    | Main | {"timestamp": "2026-02-25T01:55:21.623512", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-02-25 01:55:21 | INFO    | Main | {"timestamp": "2026-02-25T01:55:21.898169", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-02-25 01:55:21 | INFO    | Main | {"timestamp": "2026-02-25T01:55:21.922274", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-02-25 01:55:22 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69944688c3c01fa7454fcb69, deleted_count=1
+2026-02-25 01:55:22 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-25 01:55:22 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 699e2c5aaeca0273440db8f3
+2026-02-25 01:55:22 | INFO    | Main | {"timestamp": "2026-02-25T01:55:22.235956", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-02-25 01:55:22 | INFO    | Main | {"timestamp": "2026-02-25T01:55:22.250092", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-02-25 01:55:22 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69944698c3c01fa7454fcb6c, deleted_count=1
+2026-02-25 01:55:22 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-02-25 01:55:22 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 699e2c5aaeca0273440db8f5
+2026-02-25 01:55:22 | INFO    | Main | {"timestamp": "2026-02-25T01:55:22.592456", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-02-25 01:55:22 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-02-25 01:55:25 | INFO    | Main | {"timestamp": "2026-02-25T01:55:25.733296", "event": "SESSION_END", "data": {"session_id": "20260225-015500"}}

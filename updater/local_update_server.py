@@ -5,8 +5,9 @@ import hashlib
 from pathlib import Path
 from typing import List, Dict
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import FileResponse
+from updater.auth_utils import require_admin_or_developer
 
 
 CONFIG_FILE = Path(__file__).parent / "local_update_server.json"
@@ -31,7 +32,7 @@ def calculate_sha256(file_path: Path) -> str:
 
 
 @router.get('/')
-def index() -> Dict:
+def index(current_user = Depends(require_admin_or_developer)) -> Dict:
     return {
         "status": "running",
         "service": "Local Update Server",
@@ -41,7 +42,7 @@ def index() -> Dict:
 
 
 @router.get('/updates')
-def list_updates() -> Dict[str, List[Dict]]:
+def list_updates(current_user = Depends(require_admin_or_developer)) -> Dict[str, List[Dict]]:
     updates = []
     if UPDATES_DIR.exists():
         for file in sorted(UPDATES_DIR.glob("*.zip")):
@@ -55,7 +56,7 @@ def list_updates() -> Dict[str, List[Dict]]:
 
 
 @router.get('/updates/zip_parts')
-def get_zip_parts_for_update_info() -> Dict:
+def get_zip_parts_for_update_info(current_user = Depends(require_admin_or_developer)) -> Dict:
     zip_parts = []
     if UPDATES_DIR.exists():
         for file in sorted(UPDATES_DIR.glob("*.zip")):
@@ -67,7 +68,7 @@ def get_zip_parts_for_update_info() -> Dict:
 
 
 @router.get('/updates/{filename}')
-def serve_update_file(filename: str):
+def serve_update_file(filename: str, current_user = Depends(require_admin_or_developer)):
     file_path = UPDATES_DIR / filename
     if file_path.exists() and file_path.suffix == '.zip':
         return FileResponse(file_path, filename=filename)
