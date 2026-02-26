@@ -19,6 +19,7 @@ from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
     progress_section, set_buttons_state, styled_combobox, toggle_button, logmode_selector, loghandler_selector, THEME, markup_support_section
 from ScrollBar import ScrollableFrame
+from responsive.Responsive import make_responsive
 from VoiceProcessor import VoiceProcessor
 from data_manager.DataManager import DataManager
 from data_manager.MemoryManager import MemoryManager
