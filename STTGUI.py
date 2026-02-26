@@ -19,6 +19,7 @@ from GUIError import GUIError
 from GUIHelper import init_style, make_textarea, primary_button, section, footer, kv_row, output_selector, \
     progress_section, set_buttons_state, styled_combobox
 from ScrollBar import ScrollableFrame
+from responsive.Responsive import make_responsive
 from data_manager.MemoryManager import MemoryManager
 from fragments.UIFragments import center_window
 from gui_listener.GUIListener import GUIListener
@@ -114,10 +115,8 @@ class STTMenuApp(tk.Tk):
         self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
-        self.geometry("1650x1280")
-        self.minsize(1650, 1280)
         self.listener = GUIListener(self)
-        self.resizable(False, False)
+        make_responsive(self, 1650, 1280, resizable=False)
         self.logger = LogsManager.get_logger("STTMenuApp")
 
         self.output_dir = BASE_DIR / "output"
@@ -845,11 +844,9 @@ class STTMenuApp(tk.Tk):
 
     def _update_window_size(self, engine_type: str):
         if engine_type == "whisper":
-            self.geometry("1650x1280")
-            self.minsize(1650, 1280)
+            make_responsive(self, 1650, 1280, resizable=False)
         else:
-            self.geometry("1650x1000")
-            self.minsize(1650, 1000)
+            make_responsive(self, 1650, 1000, resizable=False)
 
     def destroy(self):
         self.stop_audio()
