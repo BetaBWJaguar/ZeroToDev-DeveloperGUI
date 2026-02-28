@@ -65,8 +65,23 @@ class AIRecommendationWidget:
             )
             return False
 
-        try:
+        if not self.widget_frame or not self.recommendation_text_var:
+            self.create_widget()
 
+        self.recommendation_text_var.set(self.lang.get("recommendation_generating"))
+        self.show()
+
+        import threading
+        threading.Thread(
+            target=self._generate_recommendation_background,
+            args=(action_text,),
+            daemon=True
+        ).start()
+
+        return True
+
+    def _generate_recommendation_background(self, action_text):
+        try:
             user_data = self.current_user.id if isinstance(self.current_user.id, dict) else {}
             user_id = user_data.get("id")
 
@@ -76,8 +91,11 @@ class AIRecommendationWidget:
                     "RECOMMENDATION_NO_USER_ID",
                     "No user ID available"
                 )
-                return False
-
+                self.parent.after(
+                    0,
+                    lambda: self.recommendation_text_var.set(self.lang.get("recommendation_user_id_not_found"))
+                )
+                return
 
             with RecommendAI() as recommender:
                 recommendation = recommender.get_recommendation(user_id)
@@ -88,9 +106,16 @@ class AIRecommendationWidget:
                     "RECOMMENDATION_EMPTY",
                     "No recommendation generated"
                 )
-                return False
+                self.parent.after(
+                    0,
+                    lambda: self.recommendation_text_var.set(self.lang.get("recommendation_no_recommendation"))
+                )
+                return
 
-            return self.show_recommendation(recommendation, action_text)
+            self.parent.after(
+                0,
+                lambda: self.show_recommendation(recommendation, action_text)
+            )
 
         except Exception as e:
             LogsHelperManager.log_error(
@@ -98,7 +123,11 @@ class AIRecommendationWidget:
                 "RECOMMENDATION_GENERATE_FAIL",
                 str(e)
             )
-            return False
+
+            self.parent.after(
+                0,
+                lambda: self.recommendation_text_var.set(self.lang.get("recommendation_failed"))
+            )
 
     def show_recommendation(self, text: str, action_text: Optional[str] = None) -> bool:
         if not self._can_show_recommendation():

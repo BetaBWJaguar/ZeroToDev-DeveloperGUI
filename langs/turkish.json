@@ -420,5 +420,9 @@
   "stats_preferred_language": "Tercih Edilen Dil",
   "recommendation_title": "Öneri Sistemi",
   "ai_filter_provider": "Yapay Zeka Sağlayıcı Filtresi",
-  "ai_provider_all": "Hepsi"
+  "ai_provider_all": "Hepsi",
+  "recommendation_generating": "Öneri oluşturuluyor...",
+  "recommendation_user_id_not_found": "Kullanıcı kimliği bulunamadı.",
+  "recommendation_no_recommendation": "Kullanılabilir öneri yok.",
+  "recommendation_failed": "Öneri oluşturulamadı."
 }

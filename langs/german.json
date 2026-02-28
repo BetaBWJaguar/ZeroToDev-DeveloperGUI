@@ -420,5 +420,9 @@
   "stats_preferred_language": "Bevorzugte Sprache",
   "recommendation_title": "Empfehlungssystem",
   "ai_filter_provider": "KI-Anbieterfilter",
-  "ai_provider_all": "Alle Anbieter"
+  "ai_provider_all": "Alle Anbieter",
+  "recommendation_generating": "Empfehlung wird generiert...",
+  "recommendation_user_id_not_found": "Benutzer-ID nicht gefunden.",
+  "recommendation_no_recommendation": "Keine Empfehlung verfügbar.",
+  "recommendation_failed": "Empfehlung konnte nicht generiert werden."
 }

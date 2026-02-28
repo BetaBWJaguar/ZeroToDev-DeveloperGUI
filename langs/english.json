@@ -420,5 +420,9 @@
   "stats_preferred_language": "Preferred Language",
   "recommendation_title": "Recommendation System",
   "ai_filter_provider": "AI Provider Filter",
-  "ai_provider_all": "All Provider"
+  "ai_provider_all": "All Provider",
+  "recommendation_generating": "Generating recommendation...",
+  "recommendation_user_id_not_found": "User ID not found.",
+  "recommendation_no_recommendation": "No recommendation available.",
+  "recommendation_failed": "Failed to generate recommendation."
 }
