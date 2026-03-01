@@ -67,6 +67,20 @@ def get_zip_parts_for_update_info(current_user = Depends(require_admin_or_develo
     return {"zip_parts": zip_parts}
 
 
+@router.get("/update-info")
+def get_update_info(current_user = Depends(require_admin_or_developer)):
+
+    info_file = UPDATES_DIR / "update-info.json"
+
+    if not info_file.exists():
+        raise HTTPException(status_code=404, detail="update-info.json not found")
+
+    return FileResponse(
+        path=info_file,
+        media_type="application/json"
+    )
+
+
 @router.get('/updates/{filename}')
 def serve_update_file(filename: str, current_user = Depends(require_admin_or_developer)):
     file_path = UPDATES_DIR / filename

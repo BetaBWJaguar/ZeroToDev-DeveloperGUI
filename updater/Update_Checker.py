@@ -3,7 +3,7 @@ import requests
 from updater.UpdaterGUI import UpdaterGUI
 from updater.Updater_Utils import download_update_zip_parts, extract_update_zip, get_current_version
 
-UPDATE_INFO_URL = "http://localhost:3000/MyProjects/ZeroToDev-DeveloperGUI/raw/branch/master/updater/update_info.json"
+UPDATE_INFO_URL = "http://localhost:9090/api/update-info"
 
 
 def check_for_update_gui(parent, lang, logger):

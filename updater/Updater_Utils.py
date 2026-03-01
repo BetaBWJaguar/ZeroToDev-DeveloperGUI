@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import hashlib
 import shutil
 
 import requests
@@ -21,14 +22,12 @@ def get_current_version():
 
 
 def _download_single_part(index: int, part: dict, temp_dir: Path) -> Path:
-    verifier = SignatureVerifier()
-
     url = part["url"]
     expected_hash = part["sha256"]
 
     part_path = temp_dir / f"update_part_{index:03}.zip"
 
-    print(f"[Updater] Downloading part {index} → {url}")
+    sha256 = hashlib.sha256()
 
     r = requests.get(url, stream=True)
     r.raise_for_status()
@@ -37,13 +36,15 @@ def _download_single_part(index: int, part: dict, temp_dir: Path) -> Path:
         for chunk in r.iter_content(1024 * 1024):
             if chunk:
                 f.write(chunk)
+                sha256.update(chunk)
 
-    print(f"[Updater] Verifying part {index}...")
+    actual_hash = sha256.hexdigest()
 
-    if not verifier.verify_checksum(part_path, expected_hash):
+    if actual_hash.lower() != expected_hash.lower():
         raise Exception(f"Integrity check failed for part {index}")
 
     print(f"[Updater] Part {index} verified ✔")
+
     return part_path
 
 
@@ -60,32 +61,33 @@ def download_update_zip_parts(zip_parts: list[dict]) -> Path:
     with ThreadPoolExecutor(max_workers=workers) as executor:
 
         futures = {
-            executor.submit(
-                _download_single_part, i, part, temp_dir
-            ): i
+            executor.submit(_download_single_part, i, part, temp_dir): i
             for i, part in enumerate(zip_parts, start=1)
         }
 
         for future in as_completed(futures):
             index = futures[future]
-            try:
-                part_path = future.result()
-                part_files[index] = part_path
-            except Exception as e:
-                raise Exception(f"Download failed (part {index}): {e}")
-
-    print("[Updater] All parts downloaded ✔")
-
+            part_path = future.result()
+            part_files[index] = part_path
 
     full_zip_path = temp_dir / "update_package_full.zip"
-    print("[Updater] Merging parts into single ZIP...")
 
     with open(full_zip_path, "wb") as outfile:
         for i in sorted(part_files.keys()):
             with open(part_files[i], "rb") as pf:
                 shutil.copyfileobj(pf, outfile)
 
-    print(f"[Updater] Merge complete → {full_zip_path}")
+
+    expected_full_hash = hashlib.sha256()
+    for i in sorted(part_files.keys()):
+        expected_full_hash.update(open(part_files[i], "rb").read())
+
+    final_hash = hashlib.sha256(full_zip_path.read_bytes()).hexdigest()
+
+    if final_hash != expected_full_hash.hexdigest():
+        raise Exception("Final merged ZIP integrity check FAILED")
+
+    print("[Updater] Final ZIP verified ✔")
 
     return full_zip_path
 
