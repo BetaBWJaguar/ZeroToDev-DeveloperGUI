@@ -481,9 +481,8 @@ class TTSMenuApp(tk.Tk):
                 )
 
                 self.tts_helper.do_preview(
-                    self.lang,
-                    lambda txt: processed_bytes,
-                    text,
+                    synthesize_func=lambda txt: processed_bytes,
+                    text=text,
                     seconds=20,
                     play_audio=True,
                     progress_cb=markup_progress
@@ -939,19 +938,19 @@ class TTSMenuApp(tk.Tk):
 
             ttk.Label(
                 container,
-                text=f"Username: {user_data.get('username', 'N/A')}",
+                text=f"{self.lang.get('profile_username')}: {user_data.get('username', 'N/A')}",
                 style="Label.TLabel"
             ).pack(anchor="w", pady=(5, 2))
 
             ttk.Label(
                 container,
-                text=f"Email: {user_data.get('email', 'N/A')}",
+                text=f"{self.lang.get('profile_email')}: {user_data.get('email', 'N/A')}",
                 style="Label.TLabel"
             ).pack(anchor="w", pady=(5, 2))
 
             ttk.Label(
                 container,
-                text=f"Role: {user_data.get('role', 'N/A')}",
+                text=f"{self.lang.get('profile_role')}: {user_data.get('role', 'N/A')}",
                 style="Label.TLabel"
             ).pack(anchor="w", pady=(5, 2))
 
@@ -959,20 +958,20 @@ class TTSMenuApp(tk.Tk):
                 full_name = f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip()
                 ttk.Label(
                     container,
-                    text=f"Name: {full_name}",
+                    text=f"{self.lang.get('profile_name')}: {full_name}",
                     style="Label.TLabel"
                 ).pack(anchor="w", pady=(5, 2))
 
             ttk.Label(
                 container,
-                text=f"Status: {user_data.get('status', 'N/A')}",
+                text=f"{self.lang.get('profile_status')}: {user_data.get('status', 'N/A')}",
                 style="Label.TLabel"
             ).pack(anchor="w", pady=(5, 2))
 
         else:
             ttk.Label(
                 container,
-                text="No user data loaded.",
+                text=self.lang.get("profile_no_data"),
                 style="Muted.TLabel"
             ).pack(anchor="center")
 

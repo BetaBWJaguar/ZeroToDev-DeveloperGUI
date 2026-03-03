@@ -117,7 +117,7 @@ class SystemUsageGUI(tk.Toplevel):
         self.lang = lang
 
         self.title(self.lang.get("app_title"))
-        self.geometry("800x780")
+        self.geometry("800x850")
         self.resizable(False, False)
 
         self._running = True
