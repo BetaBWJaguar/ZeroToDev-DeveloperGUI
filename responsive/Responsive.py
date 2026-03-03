@@ -13,6 +13,7 @@ class WindowClass(Enum):
 class Responsive:
 
     BASE_DPI = 96
+    MARGIN = 80
 
     def __init__(self, root: tk.Tk):
         self.root = root
@@ -38,14 +39,15 @@ class Responsive:
             except Exception:
                 pass
 
+
     def _detect_dpi_scale(self) -> float:
         try:
-            if self.window_class == WindowClass.LARGE or self.window_class == WindowClass.ULTRA:
-                return 1.0
-            
             dpi = self.root.winfo_fpixels("1i")
             scale = dpi / self.BASE_DPI
-    
+
+            if scale <= 0:
+                scale = 1.0
+
             self.root.tk.call("tk", "scaling", scale)
 
             return scale
@@ -69,9 +71,10 @@ class Responsive:
         else:
             return WindowClass.SMALL
 
+
     def _calculate_factor(self) -> float:
 
-        if self.window_class == WindowClass.LARGE or self.window_class == WindowClass.ULTRA:
+        if self.window_class in (WindowClass.LARGE, WindowClass.ULTRA):
             return 1.0
 
         elif self.window_class == WindowClass.MEDIUM:
@@ -87,9 +90,8 @@ class Responsive:
         width = int(base_width * self.factor)
         height = int(base_height * self.factor)
 
-
-        width = min(width, self.screen_width - 80)
-        height = min(height, self.screen_height - 80)
+        width = min(width, self.screen_width - self.MARGIN)
+        height = min(height, self.screen_height - self.MARGIN)
 
         return width, height
 
@@ -99,8 +101,8 @@ class Responsive:
 
         self.root.resizable(resizable, resizable)
 
-        x = (self.screen_width - width) // 2
-        y = (self.screen_height - height) // 2
+        x = max((self.screen_width - width) // 2, 0)
+        y = max((self.screen_height - height) // 2, 0)
 
         self.root.geometry(f"{width}x{height}+{x}+{y}")
 
@@ -113,7 +115,8 @@ class Responsive:
 
 
     def scale_value(self, value: int) -> int:
-        return int(value * self.factor)
+        return max(1, int(value * self.factor))
+
 
     def is_small(self) -> bool:
         return self.window_class == WindowClass.SMALL
