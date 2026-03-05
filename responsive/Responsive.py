@@ -17,7 +17,7 @@ class Responsive:
         self.screen_width = root.winfo_screenwidth()
         self.screen_height = root.winfo_screenheight()
 
-        if self.screen_height >= 1440:
+        if self.screen_width >= 2560 and self.screen_height >= 1440:
             self.window_factor = 1.0
             self.font_factor = 1.0
         else:
@@ -37,7 +37,6 @@ class Responsive:
         y = (self.screen_height - height) // 2
         self.root.geometry(f"{width}x{height}+{x}+{y}")
 
-        self.root.tk.call('tk', 'scaling', self.font_factor * 1.33)
 
         return width, height
 

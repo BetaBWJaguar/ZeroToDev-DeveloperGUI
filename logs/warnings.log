@@ -346,3 +346,6 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-03-04 18:21:19 | ERROR   | TTSMenuApp | {"timestamp": "2026-03-04T18:21:19.795198", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
 2026-03-04 18:21:42 | ERROR   | ZIPConvertor | {"timestamp": "2026-03-04T18:21:42.176932", "event": "ERROR", "data": {"action": "ZIP_EXPORT", "error": "MicrosoftEdgeTTS.__init__() missing 1 required positional argument: 'ui_lang'"}}
 2026-03-04 18:21:42 | ERROR   | TTSMenuApp | {"timestamp": "2026-03-04T18:21:42.189937", "event": "ERROR", "data": {"action": "ZIP_EXPORT_FAIL", "error": "MicrosoftEdgeTTS.__init__() missing 1 required positional argument: 'ui_lang'"}}
+2026-03-05 23:55:59 | ERROR   | TTSMenuApp | {"timestamp": "2026-03-05T23:55:59.227183", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
+2026-03-05 23:59:23 | ERROR   | STTMenuApp | {"timestamp": "2026-03-05T23:59:23.599763", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
+2026-03-06 00:21:57 | ERROR   | TTSMenuApp | {"timestamp": "2026-03-06T00:21:57.632298", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}

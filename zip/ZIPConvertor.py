@@ -45,9 +45,9 @@ class ZIPConvertor:
         voice = MemoryManager.get("tts_voice", "female")
 
         if svc == "google":
-            return GTTSService(lang=LANGS[lang]["gtts"]["lang"])
+            return GTTSService(gtts_lang=LANGS[lang]["gtts"]["lang"],ui_lang=lang)
         elif svc == "edge":
-            return MicrosoftEdgeTTS(voice=LANGS[lang]["edge"]["voices"][voice])
+            return MicrosoftEdgeTTS(voice=LANGS[lang]["edge"]["voices"][voice],ui_lang=lang)
         else:
             raise RuntimeError(f"Unknown TTS service: {svc}")
 

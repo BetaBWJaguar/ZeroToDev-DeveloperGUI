@@ -10,8 +10,23 @@ from theme_config import THEME
 def refresh_theme(root, colors: dict, fonts: dict):
     THEME["COLORS"], THEME["FONTS"] = colors, fonts
 
+    screen_h = root.winfo_screenheight()
+
+    if screen_h >= 1440:
+        factor = 1.0
+    else:
+        factor = screen_h / 1440
+
+    scaled_fonts = {}
+
+    for key, value in fonts.items():
+        family = value[0]
+        size = max(9, int(value[1] * factor))
+        extra = value[2:] if len(value) > 2 else []
+        scaled_fonts[key] = (family, size, *extra)
+
+    f = scaled_fonts
     c = colors
-    f = fonts
 
     style = ttk.Style(root)
     try:
@@ -236,7 +251,7 @@ def output_selector(parent, initial_dir: Path, callback,lang) -> tuple[ttk.Label
     inner.pack(fill="x", expand=True)
 
     output_label = ttk.Label(inner, text=str(initial_dir), style="Muted.TLabel")
-    output_label.grid(row=0, column=0, sticky="w")
+    output_label.grid(row=0, column=0, sticky="ew")
 
     def choose_output():
         folder = fd.askdirectory(initialdir=str(initial_dir))
@@ -248,7 +263,12 @@ def output_selector(parent, initial_dir: Path, callback,lang) -> tuple[ttk.Label
     browse_btn = ttk.Button(inner, text=lang.get("browse_button_text"), command=choose_output, style="Accent.TButton")
     browse_btn.grid(row=0, column=1, sticky="e", padx=(8, 0))
 
-    inner.grid_columnconfigure(0, weight=1)
+    screen_h = parent.winfo_screenheight()
+    factor = min(1.0, screen_h / 1440)
+
+    min_w = int(400 * factor)
+
+    inner.grid_columnconfigure(0, weight=1, minsize=min_w)
     return lf, output_label
 
 def labeled_scale(parent, text: str, var: tk.DoubleVar,
