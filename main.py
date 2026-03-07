@@ -1,5 +1,15 @@
 # -*- coding: utf-8 -*-
 import sys
+import ctypes
+
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)
+except Exception:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except Exception:
+        pass
+
 import tkinter as tk
 from datetime import datetime
 from tkinter import messagebox

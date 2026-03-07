@@ -104,9 +104,13 @@ class STTMenuApp(tk.Tk):
         super().__init__()
 
         try:
-            self.tk.call('tk', 'scaling', self.winfo_fpixels('1i') / 72)
-        except:
-            pass
+            scale_factor = self.winfo_fpixels('1i') / 72.0
+            self.tk.call('tk', 'scaling', scale_factor)
+        except Exception:
+            try:
+                self.tk.call('tk', 'scaling', 1.0)
+            except Exception:
+                pass
 
         self._ai_recommendation_after_id = None
         self.ai_recommendation_dismissed = False

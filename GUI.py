@@ -113,9 +113,13 @@ class TTSMenuApp(tk.Tk):
         super().__init__()
 
         try:
-            self.tk.call('tk', 'scaling', self.winfo_fpixels('1i') / 72)
-        except:
-            pass
+            scale_factor = self.winfo_fpixels('1i') / 72.0
+            self.tk.call('tk', 'scaling', scale_factor)
+        except Exception:
+            try:
+                self.tk.call('tk', 'scaling', 1.0)
+            except Exception:
+                pass
 
         self.zip_var = None
         self._ai_recommendation_after_id = None

@@ -48,14 +48,25 @@ class DataCollectionDatabaseManager:
         files = payload.get("output_files", [])
         return files[:limit]
 
-    def collect_and_save_user_data(self, user_id: str, payload: Dict[str, Any], cleanup_old: bool = False, keep_snapshots: int = 5) -> str:
+    def collect_and_save_user_data(
+            self,
+            user_id: str,
+            payload: Dict[str, Any],
+            cleanup_old: bool = False,
+            keep_snapshots: int = 1
+    ) -> str:
+
         payload_copy = payload.copy()
         payload_copy["collected_at"] = datetime.utcnow().isoformat()
+
+        snapshot_id = self.db.save_snapshot(user_id, payload_copy)
+
         if cleanup_old:
             self.delete_old_snapshots(user_id, keep_latest=keep_snapshots)
         else:
             self.db.delete_user_data(user_id)
-        snapshot_id = self.db.save_snapshot(user_id, payload_copy)
+            self.db.save_snapshot(user_id, payload_copy)
+
         self.logger.info(f"Saved snapshot for user {user_id}: {snapshot_id}")
         return snapshot_id
 

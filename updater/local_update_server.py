@@ -45,7 +45,7 @@ def index(current_user = Depends(require_admin_or_developer)) -> Dict:
 def list_updates(current_user = Depends(require_admin_or_developer)) -> Dict[str, List[Dict]]:
     updates = []
     if UPDATES_DIR.exists():
-        for file in sorted(UPDATES_DIR.glob("*.zip")):
+        for file in sorted(UPDATES_DIR.glob("*.zip")) + sorted(UPDATES_DIR.glob("*.zip.*")):
             updates.append({
                 "filename": file.name,
                 "sha256": calculate_sha256(file),
@@ -59,7 +59,7 @@ def list_updates(current_user = Depends(require_admin_or_developer)) -> Dict[str
 def get_zip_parts_for_update_info(current_user = Depends(require_admin_or_developer)) -> Dict:
     zip_parts = []
     if UPDATES_DIR.exists():
-        for file in sorted(UPDATES_DIR.glob("*.zip")):
+        for file in sorted(UPDATES_DIR.glob("*.zip")) + sorted(UPDATES_DIR.glob("*.zip.*")):
             zip_parts.append({
                 "url": f"{BASE_URL}/api/updates/{file.name}",
                 "sha256": calculate_sha256(file)
@@ -68,8 +68,7 @@ def get_zip_parts_for_update_info(current_user = Depends(require_admin_or_develo
 
 
 @router.get("/update-info")
-def get_update_info(current_user = Depends(require_admin_or_developer)):
-
+def get_update_info():
     info_file = UPDATES_DIR / "update-info.json"
 
     if not info_file.exists():
@@ -82,8 +81,8 @@ def get_update_info(current_user = Depends(require_admin_or_developer)):
 
 
 @router.get('/updates/{filename}')
-def serve_update_file(filename: str, current_user = Depends(require_admin_or_developer)):
+def serve_update_file(filename: str):
     file_path = UPDATES_DIR / filename
-    if file_path.exists() and file_path.suffix == '.zip':
+    if file_path.exists() and (file_path.suffix == '.zip' or filename.startswith('updates.zip.')):
         return FileResponse(file_path, filename=filename)
     raise HTTPException(status_code=404, detail="File not found")

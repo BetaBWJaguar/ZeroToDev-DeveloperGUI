@@ -3,22 +3,12 @@ import tkinter as tk
 import ctypes
 
 
-def _set_dpi_awareness():
-    try:
-        ctypes.windll.shcore.SetProcessDpiAwareness(1)
-    except Exception:
-        try:
-            ctypes.windll.user32.SetProcessDPIAware()
-        except Exception:
-            pass
-
 
 class Responsive:
 
     def __init__(self, root: tk.Tk):
         self.root = root
 
-        _set_dpi_awareness()
         self.screen_width = root.winfo_screenwidth()
         self.screen_height = root.winfo_screenheight()
 

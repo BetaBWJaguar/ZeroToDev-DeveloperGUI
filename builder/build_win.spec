@@ -1,5 +1,15 @@
 # -*- mode: python -*-
 import sys
+import ctypes
+
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)
+except Exception:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except Exception:
+        pass
+
 import pkgutil
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_dynamic_libs, collect_submodules, collect_data_files
