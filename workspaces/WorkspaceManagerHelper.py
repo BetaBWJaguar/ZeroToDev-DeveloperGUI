@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 
 class WorkspaceManagerHelper:
@@ -30,6 +31,15 @@ class WorkspaceManagerHelper:
         (p / "logs").mkdir(exist_ok=True)
         (p / "temp").mkdir(exist_ok=True)
         (p / "exports").mkdir(exist_ok=True)
+
+        config_file = p / "config.json"
+        metadata_file = p / "workspace.json"
+
+        if not config_file.exists():
+            config_file.write_text(json.dumps({}, indent=4))
+
+        if not metadata_file.exists():
+            metadata_file.write_text(json.dumps({}, indent=4))
 
         return p
 
