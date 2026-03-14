@@ -180,6 +180,11 @@ class STTMenuApp(tk.Tk):
         SPACER = "\u2002"
         menubar.add_cascade(label=SPACER, state="disabled")
 
+        workspace_menu = tk.Menu(menubar, tearoff=0)
+        workspace_menu.add_command(label=self.lang.get("menu_create_workspace"), command=lambda: None)
+        workspace_menu.add_command(label=self.lang.get("menu_recent_workspace"), command=lambda: None)
+        menubar.add_cascade(label=self.lang.get("menu_workspace"), menu=workspace_menu)
+
         config_menu = tk.Menu(menubar, tearoff=0)
         config_menu.add_command(label=self.lang.get("help_config_settings"), command=self.show_config_settings)
         menubar.add_cascade(label=self.lang.get("menu_config"), menu=config_menu)

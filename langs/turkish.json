@@ -430,5 +430,8 @@
   "recommendation_generating": "Öneri oluşturuluyor...",
   "recommendation_user_id_not_found": "Kullanıcı kimliği bulunamadı.",
   "recommendation_no_recommendation": "Kullanılabilir öneri yok.",
-  "recommendation_failed": "Öneri oluşturulamadı."
+  "recommendation_failed": "Öneri oluşturulamadı.",
+  "menu_workspace": "Çalışma Alanı",
+  "menu_create_workspace": "Çalışma Alanı Oluştur",
+  "menu_recent_workspace": "Son Çalışma Alanları"
 }

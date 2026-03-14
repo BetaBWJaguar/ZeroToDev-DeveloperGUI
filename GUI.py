@@ -179,6 +179,11 @@ class TTSMenuApp(tk.Tk):
         SPACER = "\u2002"
         menubar.add_cascade(label=SPACER, state="disabled")
 
+        workspace_menu = tk.Menu(menubar, tearoff=0)
+        workspace_menu.add_command(label=self.lang.get("menu_create_workspace"), command=lambda: None)
+        workspace_menu.add_command(label=self.lang.get("menu_recent_workspace"), command=lambda: None)
+        menubar.add_cascade(label=self.lang.get("menu_workspace"), menu=workspace_menu)
+
         help_menu = tk.Menu(menubar, tearoff=0)
         help_menu.add_command(label=self.lang.get("help_developer"), command=self.show_developer)
         help_menu.add_command(label=self.lang.get("help_voice_settings"), command=self.show_settings)
