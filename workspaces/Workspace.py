@@ -5,9 +5,13 @@ import shutil
 
 class Workspace:
 
-    def __init__(self, path: str):
+    def __init__(self, path: str, workspace_id: str = None, user_id: str = None, db_record: dict = None):
         self.path = Path(path)
         self.lock_file = self.path / ".workspace.lock"
+        
+        self.workspace_id = workspace_id
+        self.user_id = user_id
+        self.db_record = db_record
 
         self.config_file = self.path / "config.json"
         self.metadata_file = self.path / "workspace.json"
@@ -20,6 +24,12 @@ class Workspace:
 
     def get_name(self):
         return self.path.name
+
+    def get_workspace_id(self):
+        return self.workspace_id
+
+    def get_user_id(self):
+        return self.user_id
 
     def get_data_path(self):
         return self.path / "data"
@@ -94,8 +104,8 @@ class Workspace:
 
 
     def info(self):
-
-        return {
+        
+        info_dict = {
             "name": self.get_name(),
             "path": str(self.get_path()),
             "data": str(self.get_data_path()),
@@ -106,3 +116,18 @@ class Workspace:
             "metadata": str(self.get_metadata_path()),
             "locked": self.is_locked()
         }
+        
+        if self.workspace_id:
+            info_dict["workspace_id"] = self.workspace_id
+        
+        if self.user_id:
+            info_dict["user_id"] = self.user_id
+        
+        if self.db_record:
+            info_dict["created_at"] = self.db_record.get("created_at")
+            info_dict["updated_at"] = self.db_record.get("updated_at")
+            info_dict["last_accessed"] = self.db_record.get("last_accessed")
+            info_dict["is_active"] = self.db_record.get("is_active", False)
+            info_dict["description"] = self.db_record.get("description", "")
+        
+        return info_dict
