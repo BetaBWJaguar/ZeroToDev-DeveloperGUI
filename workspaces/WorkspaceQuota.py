@@ -1,6 +1,6 @@
-from Workspace import Workspace
-from WorkspaceDatabase import WorkspaceDatabase
-from WorkspaceManagerHelper import WorkspaceManagerHelper
+from .Workspace import Workspace
+from .WorkspaceDatabase import WorkspaceDatabase
+from .WorkspaceManagerHelper import WorkspaceManagerHelper
 
 
 class WorkspaceQuota:

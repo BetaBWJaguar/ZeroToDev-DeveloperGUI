@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-from Workspace import Workspace
+from .Workspace import Workspace
 
 
 class WorkspaceEvents:

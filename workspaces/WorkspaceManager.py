@@ -1,8 +1,8 @@
-from Workspace import Workspace
-from WorkspaceManagerHelper import WorkspaceManagerHelper
-from WorkspaceDatabase import WorkspaceDatabase
-from WorkspaceEvents import WorkspaceEvents
-from WorkspaceQuota import WorkspaceQuota
+from .Workspace import Workspace
+from .WorkspaceManagerHelper import WorkspaceManagerHelper
+from .WorkspaceDatabase import WorkspaceDatabase
+from .WorkspaceEvents import WorkspaceEvents
+from .WorkspaceQuota import WorkspaceQuota
 
 
 class WorkspaceManager:

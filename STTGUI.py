@@ -26,6 +26,8 @@ from gui_listener.GUIListener import GUIListener
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 from stt.factory.STTFactory import STTManager
+from workspaces.WorkspaceManager import WorkspaceManager
+from workspaces.WorkspaceManagerHelper import WorkspaceManagerHelper
 from stt.MediaFormats import AudioFormatHandler
 from stt.stt__models.WhisperSTT import WhisperSTT
 from PathHelper import PathHelper
@@ -116,6 +118,7 @@ class STTMenuApp(tk.Tk):
         self.ai_recommendation_dismissed = False
         self.lang = lang_manager
         self.user_manager = user_manager
+        self.workspace_manager = WorkspaceManager(user_id=current_user.id.get("id") if isinstance(current_user.id, dict) else None)
         self.start_user_auto_refresh()
         self.current_user = current_user
         self.title(lang_manager.get("app_title"))
@@ -181,8 +184,8 @@ class STTMenuApp(tk.Tk):
         menubar.add_cascade(label=SPACER, state="disabled")
 
         workspace_menu = tk.Menu(menubar, tearoff=0)
-        workspace_menu.add_command(label=self.lang.get("menu_create_workspace"), command=lambda: None)
-        workspace_menu.add_command(label=self.lang.get("menu_recent_workspace"), command=lambda: None)
+        workspace_menu.add_command(label=self.lang.get("menu_create_workspace"), command=self.show_create_workspace_dialog)
+        workspace_menu.add_command(label=self.lang.get("menu_recent_workspace"), command=self.show_recent_workspaces)
         menubar.add_cascade(label=self.lang.get("menu_workspace"), menu=workspace_menu)
 
         config_menu = tk.Menu(menubar, tearoff=0)
@@ -856,6 +859,179 @@ class STTMenuApp(tk.Tk):
             make_responsive(self, 1650, 1280, resizable=False)
         else:
             make_responsive(self, 1650, 1000, resizable=False)
+
+    def show_create_workspace_dialog(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_CREATE_WORKSPACE_DIALOG")
+
+        win = tk.Toplevel(self)
+        win.title(self.lang.get("workspace_create_title"))
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        container = ttk.Frame(win, padding=25, style="TFrame")
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text=self.lang.get("workspace_create_header"), style="Title.TLabel") \
+            .pack(anchor="center", pady=(0, 15))
+
+        name_frame = ttk.Frame(container, style="Card.TFrame")
+        name_frame.pack(fill="x", pady=(0, 12))
+
+        ttk.Label(name_frame, text=self.lang.get("workspace_name_label"), style="Label.TLabel").pack(anchor="w")
+        name_var = tk.StringVar()
+        name_entry = ttk.Entry(name_frame, textvariable=name_var)
+        name_entry.pack(fill="x", pady=(4, 0))
+        ttk.Label(name_frame, text=self.lang.get("workspace_name_hint"), style="Muted.TLabel").pack(anchor="w", pady=(2, 0))
+
+        path_frame = ttk.Frame(container, style="Card.TFrame")
+        path_frame.pack(fill="x", pady=(0, 12))
+
+        ttk.Label(path_frame, text=self.lang.get("workspace_path_label"), style="Label.TLabel").pack(anchor="w")
+        path_var = tk.StringVar()
+        default_path = str(BASE_DIR / "workspaces")
+        path_var.set(default_path)
+        path_entry = ttk.Entry(path_frame, textvariable=path_var)
+        path_entry.pack(fill="x", pady=(4, 0))
+
+        def browse_path():
+            dir_path = filedialog.askdirectory(
+                title=self.lang.get("workspace_path_browse"),
+                initialdir=path_var.get()
+            )
+            if dir_path:
+                path_var.set(dir_path)
+
+        ttk.Button(
+            path_frame,
+            text=self.lang.get("workspace_path_browse"),
+            command=browse_path,
+            style="Accent.TButton"
+        ).pack(anchor="w", pady=(4, 0))
+
+        desc_frame = ttk.Frame(container, style="Card.TFrame")
+        desc_frame.pack(fill="x", pady=(0, 12))
+
+        ttk.Label(desc_frame, text=self.lang.get("workspace_description_label"), style="Label.TLabel").pack(anchor="w")
+        desc_var = tk.StringVar()
+        desc_entry = ttk.Entry(desc_frame, textvariable=desc_var)
+        desc_entry.pack(fill="x", pady=(4, 0))
+
+        def create_workspace():
+            name = name_var.get().strip()
+            path = path_var.get().strip()
+            description = desc_var.get().strip()
+
+            if not name:
+                GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_name_empty"), icon="❌")
+                return
+
+            if not WorkspaceManagerHelper.validate_workspace_name(name):
+                GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_name_invalid"), icon="❌")
+                return
+
+            if not path:
+                GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_path_empty"), icon="❌")
+                return
+
+            workspace_path = WorkspaceManagerHelper.generate_workspace_path(path, name)
+
+            try:
+                workspace = self.workspace_manager.create_workspace(
+                    name=name,
+                    path=workspace_path,
+                    description=description
+                )
+                self._update_output_dir_for_workspace(workspace)
+                GUIError(self, self.lang.get("success_title"),
+                        self.lang.get("workspace_success_created").format(name=name), icon="✅")
+                LogsHelperManager.log_success(self.logger, "WORKSPACE_CREATED", {
+                    "name": name,
+                    "path": workspace_path
+                })
+                win.destroy()
+            except Exception as e:
+                GUIError(self, self.lang.get("error_title"),
+                        self.lang.get("workspace_error_create_failed").format(error=str(e)), icon="❌")
+                LogsHelperManager.log_error(self.logger, "WORKSPACE_CREATE_FAIL", str(e))
+
+        ttk.Separator(container).pack(fill="x", pady=15)
+
+        primary_button(
+            container,
+            self.lang.get("workspace_create_button"),
+            create_workspace
+        ).pack(anchor="center", pady=(10, 5))
+
+        ttk.Button(
+            container,
+            text=self.lang.get("workspace_cancel_button"),
+            command=win.destroy,
+            style="Accent.TButton"
+        ).pack(anchor="center", pady=(5, 0))
+
+        center_window(win)
+
+    def show_recent_workspaces(self):
+        LogsHelperManager.log_button(self.logger, "OPEN_RECENT_WORKSPACES")
+
+        workspaces = self.workspace_manager.get_user_workspaces()
+
+        if not workspaces:
+            GUIError(self, self.lang.get("info_title"), self.lang.get("workspace_none"), icon="ℹ️")
+            return
+
+        win = tk.Toplevel(self)
+        win.title(self.lang.get("workspace_switch_title"))
+        win.transient(self)
+        win.grab_set()
+        win.resizable(False, False)
+
+        container = ttk.Frame(win, padding=25, style="TFrame")
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text=self.lang.get("workspace_switch_header"), style="Title.TLabel") \
+            .pack(anchor="center", pady=(0, 15))
+
+        scroll_frame = ScrollableFrame(container)
+        scroll_frame.pack(fill="both", expand=True, pady=(0, 12))
+
+        for ws in workspaces:
+            ws_frame = ttk.Frame(scroll_frame.scrollable_frame, style="Card.TFrame")
+            ws_frame.pack(fill="x", pady=(0, 8))
+
+            info_text = f"{ws.get('name', 'N/A')} - {ws.get('path', 'N/A')}"
+            ttk.Label(ws_frame, text=info_text, style="Label.TLabel").pack(anchor="w", padx=8, pady=4)
+
+            if ws.get('description'):
+                ttk.Label(ws_frame, text=ws['description'], style="Muted.TLabel").pack(anchor="w", padx=8, pady=(0, 4))
+
+        current_ws = self.workspace_manager.get_current_workspace()
+        current_label = ttk.Label(
+            container,
+            text=f"{self.lang.get('workspace_current_label')} {current_ws.get_name() if current_ws else self.lang.get('workspace_none')}",
+            style="Muted.TLabel"
+        )
+        current_label.pack(anchor="w", pady=(8, 0))
+
+        ttk.Separator(container).pack(fill="x", pady=12)
+
+        ttk.Button(
+            container,
+            text=self.lang.get("close_button"),
+            command=win.destroy,
+            style="Accent.TButton"
+        ).pack(anchor="center", pady=(5, 0))
+
+        center_window(win)
+
+    def _update_output_dir_for_workspace(self, workspace):
+        self.output_dir = workspace.get_exports_path()
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        LogsHelperManager.log_debug(self.logger, "OUTPUT_DIR_UPDATED", {
+            "workspace": workspace.get_name(),
+            "output_dir": str(self.output_dir)
+        })
 
     def destroy(self):
         self.stop_audio()
