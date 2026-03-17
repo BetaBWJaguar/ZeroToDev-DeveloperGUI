@@ -1,6 +1,8 @@
 from Workspace import Workspace
 from WorkspaceManagerHelper import WorkspaceManagerHelper
 from WorkspaceDatabase import WorkspaceDatabase
+from WorkspaceEvents import WorkspaceEvents
+from WorkspaceQuota import WorkspaceQuota
 
 
 class WorkspaceManager:
@@ -9,6 +11,7 @@ class WorkspaceManager:
         self.current_workspace = None
         self.user_id = user_id
         self.db = WorkspaceDatabase()
+        self.quota = WorkspaceQuota()
 
     def set_user(self, user_id: str):
         self.user_id = user_id
@@ -45,6 +48,11 @@ class WorkspaceManager:
 
         self.current_workspace = workspace
 
+        events = WorkspaceEvents(workspace)
+        events.log_event("WORKSPACE_LOADED")
+
+        self.quota.update_usage(workspace)
+
         return workspace
 
     def create_workspace(self, name: str, path: str, description: str = ""):
@@ -77,6 +85,9 @@ class WorkspaceManager:
 
         self.db.set_active_workspace(self.user_id, workspace_id)
 
+        events = WorkspaceEvents(workspace)
+        events.log_event("WORKSPACE_CREATED")
+
         return workspace
 
     def switch_workspace(self, workspace_id: str = None, path: str = None):
@@ -84,7 +95,12 @@ class WorkspaceManager:
         if self.current_workspace:
             self.current_workspace.unlock()
 
-        return self.load_workspace(workspace_id=workspace_id, path=path)
+        workspace = self.load_workspace(workspace_id=workspace_id, path=path)
+
+        events = WorkspaceEvents(workspace)
+        events.log_event("WORKSPACE_SWITCHED")
+
+        return workspace
 
     def get_current_workspace(self):
         return self.current_workspace
@@ -130,7 +146,10 @@ class WorkspaceManager:
             user_id=db_record["user_id"],
             db_record=db_record
         )
-        
+
+        events = WorkspaceEvents(workspace)
+        events.log_event("WORKSPACE_DELETED")
+
         if workspace.exists():
             import shutil
             shutil.rmtree(workspace.get_path())
@@ -158,8 +177,14 @@ class WorkspaceManager:
         )
         workspace.save_config(config)
 
+
+        events = WorkspaceEvents(workspace)
+        events.log_event("CONFIG_UPDATED")
+
     def update_workspace_metadata(self, workspace_id: str, metadata: dict):
+
         db_record = self.db.get_workspace(workspace_id)
+
         if not db_record:
             raise Exception("Workspace not found")
         
@@ -175,6 +200,25 @@ class WorkspaceManager:
             db_record=db_record
         )
         workspace.save_metadata(metadata)
+
+        events = WorkspaceEvents(workspace)
+        events.log_event("METADATA_UPDATED")
+
+    def check_workspace_quota(self, workspace_id: str):
+
+        db_record = self.db.get_workspace(workspace_id)
+
+        if not db_record:
+            return
+
+        workspace = Workspace(
+            path=db_record["path"],
+            workspace_id=workspace_id,
+            user_id=db_record["user_id"],
+            db_record=db_record
+        )
+
+        self.quota.check_quota(workspace)
 
     def get_workspace_stats(self):
         if not self.user_id:
