@@ -48,7 +48,7 @@ class WorkspaceEvents:
             event_dict_for_file["timestamp"] = event["timestamp"].isoformat()
             f.write(json.dumps(event_dict_for_file) + "\n")
 
-        if self.collection:
+        if self.collection is not None:
             try:
                 db_event = event.copy()
                 db_event["workspace_id"] = self.workspace.workspace_id
@@ -59,7 +59,7 @@ class WorkspaceEvents:
         return event
 
     def read_events(self, limit: int | None = None, from_db: bool = False):
-        if from_db and self.collection:
+        if from_db and self.collection is not None:
             try:
                 query = {"workspace_id": self.workspace.workspace_id}
                 events = list(self.collection.find(query).sort("timestamp", -1))
@@ -87,7 +87,7 @@ class WorkspaceEvents:
         return events[-limit:] if limit else events
 
     def get_events_by_type(self, event_type: str, from_db: bool = False):
-        if from_db and self.collection:
+        if from_db and self.collection is not None:
             try:
                 query = {
                     "workspace_id": self.workspace.workspace_id,
@@ -107,7 +107,7 @@ class WorkspaceEvents:
         return [e for e in self.read_events() if e.get("event") == event_type]
 
     def count_events(self, from_db: bool = False):
-        if from_db and self.collection:
+        if from_db and self.collection is not None:
             try:
                 return self.collection.count_documents({
                     "workspace_id": self.workspace.workspace_id
@@ -122,7 +122,7 @@ class WorkspaceEvents:
             return sum(1 for _ in f)
 
     def clear_events(self, from_db: bool = False):
-        if from_db and self.collection:
+        if from_db and self.collection is not None:
             try:
                 self.collection.delete_many({
                     "workspace_id": self.workspace.workspace_id
@@ -134,7 +134,7 @@ class WorkspaceEvents:
             self.event_file.unlink()
 
     def get_last_event(self, from_db: bool = False):
-        if from_db and self.collection:
+        if from_db and self.collection is not None:
             try:
                 event = self.collection.find_one(
                     {"workspace_id": self.workspace.workspace_id},
@@ -153,7 +153,7 @@ class WorkspaceEvents:
         return events[-1] if events else None
 
     def get_events_in_date_range(self, start_date: datetime, end_date: datetime):
-        if not self.collection:
+        if self.collection is None:
             return []
 
         try:
@@ -178,7 +178,7 @@ class WorkspaceEvents:
             return []
 
     def close(self):
-        if self.client:
+        if self.client is not None:
             self.client.close()
 
     def __del__(self):
