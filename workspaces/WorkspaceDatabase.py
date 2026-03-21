@@ -26,7 +26,7 @@ class WorkspaceDatabase:
         self.collection.create_index("user_id")
         self.collection.create_index([("user_id", 1), ("name", 1)], unique=True)
 
-    def create_workspace(self, user_id: str, name: str, path: str, description: str = "") -> str:
+    def create_workspace(self, user_id: str, name: str, path: str, description: str = "", quota_mb: int = None) -> str:
         workspace_id = f"ws_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}_{name.lower().replace(' ', '_')}"
         
         doc = {
@@ -41,7 +41,9 @@ class WorkspaceDatabase:
             "updated_at": datetime.utcnow(),
             "last_accessed": None,
             "metadata": {},
-            "config": {}
+            "config": {},
+            "quota_mb": quota_mb,
+            "used_mb": 0
         }
 
         try:

@@ -55,7 +55,7 @@ class WorkspaceManager:
 
         return workspace
 
-    def create_workspace(self, name: str, path: str, description: str = ""):
+    def create_workspace(self, name: str, path: str, description: str = "", quota_mb: int = None):
         
         if not self.user_id:
             raise Exception("User ID is required to create a workspace")
@@ -69,7 +69,8 @@ class WorkspaceManager:
             user_id=self.user_id,
             name=name,
             path=path,
-            description=description
+            description=description,
+            quota_mb=quota_mb
         )
 
         db_record = self.db.get_workspace(workspace_id)

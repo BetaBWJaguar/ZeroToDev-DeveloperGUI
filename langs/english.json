@@ -443,6 +443,8 @@
   "workspace_path_browse": "Browse...",
   "workspace_description_label": "Description (Optional):",
   "workspace_description_placeholder": "Enter a description for this workspace",
+  "workspace_quota_label": "Quota (MB) - Optional:",
+  "workspace_quota_hint": "Maximum storage space for this workspace (MB). Leave empty for unlimited.",
   "workspace_create_button": "Create Workspace",
   "workspace_cancel_button": "Cancel",
   "workspace_error_name_empty": "Workspace name cannot be empty!",

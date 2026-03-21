@@ -443,6 +443,8 @@
   "workspace_path_browse": "Durchsuchen...",
   "workspace_description_label": "Beschreibung (Optional):",
   "workspace_description_placeholder": "Geben Sie eine Beschreibung für diesen Arbeitsbereich ein",
+  "workspace_quota_label": "Kontingent (MB) - Optional:",
+  "workspace_quota_hint": "Maximaler Speicherplatz für diesen Arbeitsbereich (MB). Leer lassen für unbegrenzt.",
   "workspace_create_button": "Arbeitsbereich erstellen",
   "workspace_cancel_button": "Abbrechen",
   "workspace_error_name_empty": "Arbeitsbereichsname darf nicht leer sein!",

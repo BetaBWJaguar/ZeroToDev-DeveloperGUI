@@ -443,6 +443,8 @@
   "workspace_path_browse": "Gözat...",
   "workspace_description_label": "Açıklama (İsteğe Bağlı):",
   "workspace_description_placeholder": "Bu çalışma alanı için bir açıklama girin",
+  "workspace_quota_label": "Kota (MB) - İsteğe Bağlı:",
+  "workspace_quota_hint": "Çalışma alanı için maksimum depolama alanı (MB). Boş bırakırsanız sınırsız olur.",
   "workspace_create_button": "Çalışma Alanı Oluştur",
   "workspace_cancel_button": "İptal",
   "workspace_error_name_empty": "Çalışma alanı adı boş olamaz!",

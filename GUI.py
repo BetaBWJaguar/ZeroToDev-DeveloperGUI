@@ -1453,10 +1453,21 @@ class TTSMenuApp(tk.Tk):
         desc_entry = ttk.Entry(desc_frame, textvariable=desc_var)
         desc_entry.pack(fill="x", pady=(4, 0))
 
+        quota_frame = ttk.Frame(container, style="Card.TFrame")
+        quota_frame.pack(fill="x", pady=(0, 12))
+
+        ttk.Label(quota_frame, text=self.lang.get("workspace_quota_label"), style="Label.TLabel").pack(anchor="w")
+        quota_var = tk.StringVar()
+        quota_entry = ttk.Entry(quota_frame, textvariable=quota_var)
+        quota_entry.pack(fill="x", pady=(4, 0))
+        ttk.Label(quota_frame, text=self.lang.get("workspace_quota_hint"), style="Muted.TLabel").pack(anchor="w", pady=(2, 0))
+
         def create_workspace():
             name = name_var.get().strip()
             path = path_var.get().strip()
             description = desc_var.get().strip()
+            quota_str = quota_var.get().strip()
+            quota_mb = int(quota_str) if quota_str else None
 
             if not name:
                 GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_name_empty"), icon="❌")
@@ -1476,7 +1487,8 @@ class TTSMenuApp(tk.Tk):
                 workspace = self.workspace_manager.create_workspace(
                     name=name,
                     path=workspace_path,
-                    description=description
+                    description=description,
+                    quota_mb=quota_mb
                 )
                 self._update_output_dir_for_workspace(workspace)
                 GUIError(self, self.lang.get("success_title"),
