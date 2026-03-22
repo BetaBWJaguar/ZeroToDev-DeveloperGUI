@@ -1002,14 +1002,21 @@ class STTMenuApp(tk.Tk):
         container = ttk.Frame(win, padding=25, style="TFrame")
         container.pack(fill="both", expand=True)
 
-        ttk.Label(container, text=self.lang.get("workspace_switch_header"), style="Title.TLabel") \
-            .pack(anchor="center", pady=(0, 15))
+        container.grid_rowconfigure(0, weight=0)
+        container.grid_rowconfigure(1, weight=0)
+        container.grid_rowconfigure(2, weight=0)
+        container.grid_rowconfigure(3, weight=0)
+        container.grid_rowconfigure(4, weight=0)
+        container.grid_columnconfigure(0, weight=1)
 
-        scroll_frame = ScrollableFrame(container)
-        scroll_frame.pack(fill="both", expand=True, pady=(0, 12))
+        ttk.Label(container, text=self.lang.get("workspace_switch_header"), style="Title.TLabel") \
+            .grid(row=0, column=0, sticky="ew", pady=(0, 15))
+
+        workspaces_frame = ttk.Frame(container, style="TFrame")
+        workspaces_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 12))
 
         for ws in workspaces:
-            ws_frame = ttk.Frame(scroll_frame.scrollable_frame, style="Card.TFrame")
+            ws_frame = ttk.Frame(workspaces_frame, style="Card.TFrame")
             ws_frame.pack(fill="x", pady=(0, 8))
 
             info_text = f"{ws.get('name', 'N/A')} - {ws.get('path', 'N/A')}"
@@ -1024,16 +1031,16 @@ class STTMenuApp(tk.Tk):
             text=f"{self.lang.get('workspace_current_label')} {current_ws.get_name() if current_ws else self.lang.get('workspace_none')}",
             style="Muted.TLabel"
         )
-        current_label.pack(anchor="w", pady=(8, 0))
+        current_label.grid(row=2, column=0, sticky="w", pady=(0, 8))
 
-        ttk.Separator(container).pack(fill="x", pady=12)
+        ttk.Separator(container).grid(row=3, column=0, sticky="ew", pady=(0, 12))
 
         ttk.Button(
             container,
             text=self.lang.get("close_button"),
             command=win.destroy,
             style="Accent.TButton"
-        ).pack(anchor="center", pady=(5, 0))
+        ).grid(row=4, column=0, sticky="e")
 
         center_window(win)
 

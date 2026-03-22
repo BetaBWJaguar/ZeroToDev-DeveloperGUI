@@ -1,4 +1,4 @@
-from .Workspace import Workspace
+from .Workspace import Workspace, WorkspaceLockError
 from .WorkspaceManagerHelper import WorkspaceManagerHelper
 from .WorkspaceDatabase import WorkspaceDatabase
 from .WorkspaceEvents import WorkspaceEvents
@@ -17,7 +17,6 @@ class WorkspaceManager:
         self.user_id = user_id
 
     def load_workspace(self, workspace_id: str = None, path: str = None):
-        
         if workspace_id:
             db_record = self.db.get_workspace(workspace_id)
             if not db_record:
@@ -41,10 +40,10 @@ class WorkspaceManager:
             
             workspace = Workspace(path=path)
 
-        if workspace.is_locked():
-            raise Exception("Workspace is locked")
-
-        workspace.lock()
+        try:
+            workspace.lock(timeout=5)
+        except WorkspaceLockError:
+            raise Exception("Workspace is busy, try again later")
 
         self.current_workspace = workspace
 
@@ -81,7 +80,11 @@ class WorkspaceManager:
             db_record=db_record
         )
 
-        workspace.lock()
+        try:
+            workspace.lock(timeout=5)
+        except WorkspaceLockError:
+            raise Exception("Failed to lock newly created workspace")
+
         self.current_workspace = workspace
 
         self.db.set_active_workspace(self.user_id, workspace_id)
@@ -148,6 +151,11 @@ class WorkspaceManager:
             db_record=db_record
         )
 
+        try:
+            workspace.lock(timeout=5)
+        except WorkspaceLockError:
+            raise Exception("Workspace is in use, cannot delete")
+
         events = WorkspaceEvents(workspace)
         events.log_event("WORKSPACE_DELETED")
 
@@ -167,43 +175,55 @@ class WorkspaceManager:
         
         if self.user_id and db_record["user_id"] != self.user_id:
             raise Exception("Access denied: Workspace belongs to another user")
-        
-        self.db.update_workspace_config(workspace_id, config)
-        
+
         workspace = Workspace(
             path=db_record["path"],
             workspace_id=workspace_id,
             user_id=db_record["user_id"],
             db_record=db_record
         )
-        workspace.save_config(config)
 
+        try:
+            workspace.lock(timeout=5)
+        except WorkspaceLockError:
+            raise Exception("Workspace is busy")
+
+        self.db.update_workspace_config(workspace_id, config)
+        workspace.save_config(config)
 
         events = WorkspaceEvents(workspace)
         events.log_event("CONFIG_UPDATED")
 
+        workspace.unlock()
+
     def update_workspace_metadata(self, workspace_id: str, metadata: dict):
 
         db_record = self.db.get_workspace(workspace_id)
-
         if not db_record:
             raise Exception("Workspace not found")
         
         if self.user_id and db_record["user_id"] != self.user_id:
             raise Exception("Access denied: Workspace belongs to another user")
-        
-        self.db.update_workspace_metadata(workspace_id, metadata)
-        
+
         workspace = Workspace(
             path=db_record["path"],
             workspace_id=workspace_id,
             user_id=db_record["user_id"],
             db_record=db_record
         )
+
+        try:
+            workspace.lock(timeout=5)
+        except WorkspaceLockError:
+            raise Exception("Workspace is busy")
+
+        self.db.update_workspace_metadata(workspace_id, metadata)
         workspace.save_metadata(metadata)
 
         events = WorkspaceEvents(workspace)
         events.log_event("METADATA_UPDATED")
+
+        workspace.unlock()
 
     def check_workspace_quota(self, workspace_id: str):
 

@@ -118,10 +118,51 @@ class WorkspaceDatabase:
         return self.update_workspace(workspace_id, {"metadata": metadata})
 
     def lock_workspace(self, workspace_id: str) -> bool:
-        return self.update_workspace(workspace_id, {"is_locked": True})
+        try:
+            result = self.collection.update_one(
+                {
+                    "workspace_id": workspace_id,
+                    "is_locked": False
+                },
+                {
+                    "$set": {
+                        "is_locked": True,
+                        "updated_at": datetime.utcnow()
+                    }
+                }
+            )
+            
+            if result.modified_count > 0:
+                self.logger.info(f"Workspace locked: workspace_id={workspace_id}")
+            else:
+                self.logger.warning(f"Workspace lock failed (already locked or not found): workspace_id={workspace_id}")
+            
+            return result.modified_count > 0
+        except Exception as e:
+            self.logger.error(f"Failed to lock workspace: workspace_id={workspace_id}, error={e}")
+            return False
 
     def unlock_workspace(self, workspace_id: str) -> bool:
-        return self.update_workspace(workspace_id, {"is_locked": False})
+        try:
+            result = self.collection.update_one(
+                {"workspace_id": workspace_id},
+                {
+                    "$set": {
+                        "is_locked": False,
+                        "updated_at": datetime.utcnow()
+                    }
+                }
+            )
+            
+            if result.modified_count > 0:
+                self.logger.info(f"Workspace unlocked: workspace_id={workspace_id}")
+            else:
+                self.logger.warning(f"Workspace unlock failed (workspace not found): workspace_id={workspace_id}")
+            
+            return result.modified_count > 0
+        except Exception as e:
+            self.logger.error(f"Failed to unlock workspace: workspace_id={workspace_id}, error={e}")
+            return False
 
     def delete_workspace(self, workspace_id: str) -> bool:
         try:
