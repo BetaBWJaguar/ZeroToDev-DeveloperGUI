@@ -462,5 +462,7 @@
   "workspace_delete_button": "Löschen",
   "workspace_delete_confirm": "Möchten Sie den Arbeitsbereich '{name}' wirklich löschen?",
   "workspace_error_delete_failed": "Fehler beim Löschen des Arbeitsbereichs:\n{error}",
-  "workspace_success_deleted": "Arbeitsbereich '{name}' erfolgreich gelöscht!"
+  "workspace_success_deleted": "Arbeitsbereich '{name}' erfolgreich gelöscht!",
+  "workspace_success_switched": "Erfolgreich zum Arbeitsbereich '{name}' gewechselt!",
+  "workspace_error_switch_failed": "Fehler beim Wechseln des Arbeitsbereichs:\n{error}"
 }

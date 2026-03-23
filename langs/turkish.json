@@ -462,5 +462,7 @@
   "workspace_delete_button": "Sil",
   "workspace_delete_confirm": "'{name}' çalışma alanını silmek istediğinize emin misiniz?",
   "workspace_error_delete_failed": "Çalışma alanı silinemedi:\n{error}",
-  "workspace_success_deleted": "'{name}' çalışma alanı başarıyla silindi!"
+  "workspace_success_deleted": "'{name}' çalışma alanı başarıyla silindi!",
+  "workspace_success_switched": "'{name}' çalışma alanına başarıyla geçildi!",
+  "workspace_error_switch_failed": "Çalışma alanı değiştirilemedi:\n{error}"
 }

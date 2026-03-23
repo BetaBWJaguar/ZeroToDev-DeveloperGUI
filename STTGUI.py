@@ -1015,15 +1015,40 @@ class STTMenuApp(tk.Tk):
         workspaces_frame = ttk.Frame(container, style="TFrame")
         workspaces_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 12))
 
+        def switch_to_workspace(workspace_id):
+            try:
+                workspace = self.workspace_manager.switch_workspace(workspace_id=workspace_id)
+                self._update_output_dir_for_workspace(workspace)
+                from workspaces.WorkspaceDatabase import WorkspaceDatabase
+                db = WorkspaceDatabase()
+                db.set_active_workspace(self.current_user.id.get("id"), workspace_id)
+                GUIError(self, self.lang.get("success_title"),
+                        self.lang.get("workspace_success_switched").format(name=workspace.get_name()), icon="✅")
+                LogsHelperManager.log_success(self.logger, "WORKSPACE_SWITCHED", {
+                    "workspace_id": workspace_id,
+                    "workspace_name": workspace.get_name()
+                })
+                win.destroy()
+            except Exception as e:
+                GUIError(self, self.lang.get("error_title"),
+                        self.lang.get("workspace_error_switch_failed").format(error=str(e)), icon="❌")
+                LogsHelperManager.log_error(self.logger, "WORKSPACE_SWITCH_FAIL", str(e))
+
         for ws in workspaces:
             ws_frame = ttk.Frame(workspaces_frame, style="Card.TFrame")
             ws_frame.pack(fill="x", pady=(0, 8))
-
+            
+            ws_frame.bind("<Button-1>", lambda e, ws_id=ws.get('workspace_id'): switch_to_workspace(ws_id))
+            
             info_text = f"{ws.get('name', 'N/A')} - {ws.get('path', 'N/A')}"
-            ttk.Label(ws_frame, text=info_text, style="Label.TLabel").pack(anchor="w", padx=8, pady=4)
+            info_label = ttk.Label(ws_frame, text=info_text, style="Label.TLabel")
+            info_label.pack(anchor="w", padx=8, pady=4)
+            info_label.bind("<Button-1>", lambda e, ws_id=ws.get('workspace_id'): switch_to_workspace(ws_id))
 
             if ws.get('description'):
-                ttk.Label(ws_frame, text=ws['description'], style="Muted.TLabel").pack(anchor="w", padx=8, pady=(0, 4))
+                desc_label = ttk.Label(ws_frame, text=ws['description'], style="Muted.TLabel")
+                desc_label.pack(anchor="w", padx=8, pady=(0, 4))
+                desc_label.bind("<Button-1>", lambda e, ws_id=ws.get('workspace_id'): switch_to_workspace(ws_id))
 
         current_ws = self.workspace_manager.get_current_workspace()
         current_label = ttk.Label(

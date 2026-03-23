@@ -462,5 +462,7 @@
   "workspace_delete_button": "Delete",
   "workspace_delete_confirm": "Are you sure you want to delete workspace '{name}'?",
   "workspace_error_delete_failed": "Failed to delete workspace:\n{error}",
-  "workspace_success_deleted": "Workspace '{name}' deleted successfully!"
+  "workspace_success_deleted": "Workspace '{name}' deleted successfully!",
+  "workspace_success_switched": "Successfully switched to workspace '{name}'!",
+  "workspace_error_switch_failed": "Failed to switch workspace:\n{error}"
 }
