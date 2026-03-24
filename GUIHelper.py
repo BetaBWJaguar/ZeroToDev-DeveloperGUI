@@ -39,6 +39,34 @@ def refresh_theme(root, colors: dict, fonts: dict):
     style.configure("TFrame", background=c["bg"])
     style.configure("Card.TFrame", background=c["card"])
 
+    style.configure("WorkspaceCard.TFrame", background=c["card"], relief="flat", borderwidth=1)
+    style.configure(
+        "WorkspaceCardHover.TFrame",
+        background=c["primary"],
+        borderwidth=1,
+        relief="flat"
+    )
+    style.configure("WorkspaceIcon.TFrame", background=c["card"])
+    style.configure("WorkspaceContent.TFrame", background=c["card"])
+    style.configure("WorkspaceName.TLabel", background=c["card"], foreground=c["text"], font=("Segoe UI", 11, "bold"))
+    style.configure("WorkspacePath.TLabel", background=c["card"], foreground=c["muted"], font=("Segoe UI", 9))
+    style.configure("WorkspaceDesc.TLabel", background=c["card"], foreground=c["muted"], font=("Segoe UI", 9))
+    style.configure("WorkspaceClick.TLabel", background=c["card"], foreground=c["primary"], font=("Segoe UI", 14, "bold"))
+    
+    label_layout = style.layout("TLabel")
+    style.layout("WorkspaceName.TLabelHover", label_layout)
+    style.layout("WorkspacePath.TLabelHover", label_layout)
+    style.layout("WorkspaceDesc.TLabelHover", label_layout)
+    style.layout("WorkspaceClick.TLabelHover", label_layout)
+    
+    style.configure("WorkspaceClick.TLabelHover", background=c["primary"], foreground="white", font=("Segoe UI", 14, "bold"))
+    style.configure("WorkspaceName.TLabelHover", background=c["primary"], foreground="white", font=("Segoe UI", 11, "bold"))
+    style.configure("WorkspacePath.TLabelHover", background=c["primary"], foreground="white", font=("Segoe UI", 9))
+    style.configure("WorkspaceDesc.TLabelHover", background=c["primary"], foreground="white", font=("Segoe UI", 9))
+
+    style.configure("WorkspaceContentHover.TFrame", background=c["primary"])
+    style.configure("WorkspaceIconHover.TFrame", background=c["primary"])
+
     style.configure("TLabel", background=c["bg"], foreground=c["text"], font=tuple(f["label"]))
     style.configure("Title.TLabel", background=c["bg"], foreground=c["title"], font=tuple(f["title"]))
     style.configure("Muted.TLabel", background=c["bg"], foreground=c["muted"], font=tuple(f["label"]))

@@ -15362,3 +15362,366 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-03-23 02:18:32 | INFO    | TTSMenuApp | {"timestamp": "2026-03-23T02:18:32.634813", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
 2026-03-23 02:18:37 | INFO    | TTSMenuApp | {"timestamp": "2026-03-23T02:18:37.396717", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2026-03-23 02:18:39 | INFO    | Main | {"timestamp": "2026-03-23T02:18:39.447067", "event": "SESSION_END", "data": {"session_id": "20260323-021727"}}
+2026-03-24 00:00:11 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:00:11 | INFO    | Main | {"timestamp": "2026-03-24T00:00:11.515483", "event": "SESSION_START", "data": {"session_id": "20260324-000011"}}
+2026-03-24 00:00:11 | INFO    | LangManager | {"timestamp": "2026-03-24T00:00:11.562986", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:00:17 | INFO    | Main | {"timestamp": "2026-03-24T00:00:17.349137", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:00:17 | INFO    | Main | {"timestamp": "2026-03-24T00:00:17.657434", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:00:17 | INFO    | Main | {"timestamp": "2026-03-24T00:00:17.676151", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:00:17 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:00:18 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c078c1810abc52d3018998, deleted_count=1
+2026-03-24 00:00:18 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1a9e177749643fb46cde1
+2026-03-24 00:00:18 | INFO    | Main | {"timestamp": "2026-03-24T00:00:18.038937", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:00:18 | INFO    | Main | {"timestamp": "2026-03-24T00:00:18.050936", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:00:18 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:00:18 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1a9e177749643fb46cde1, deleted_count=1
+2026-03-24 00:00:18 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1a9e277749643fb46cde5
+2026-03-24 00:00:18 | INFO    | Main | {"timestamp": "2026-03-24T00:00:18.461357", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:00:18 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:00:27 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:00:27.022127", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:00:28 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a from DB snapshot: You primarily work with .mp3 files, and your TTS hasn't been used yet. **Try using the Text-to-Speech feature with your preferred settings to convert some text to .mp3 and explore the application's full capabilities.**
+2026-03-24 00:00:28 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:00:28.911499", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-03-24 00:00:33 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:00:33 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1a9e277749643fb46cde5, deleted_count=1
+2026-03-24 00:00:33 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1a9f177749643fb46cde9
+2026-03-24 00:00:33 | INFO    | Main | {"timestamp": "2026-03-24T00:00:33.879177", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:00:49 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:00:49 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1a9f177749643fb46cde9, deleted_count=1
+2026-03-24 00:00:49 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa0177749643fb46cdeb
+2026-03-24 00:00:49 | INFO    | Main | {"timestamp": "2026-03-24T00:00:49.205516", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:01:04 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:01:04 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa0177749643fb46cdeb, deleted_count=1
+2026-03-24 00:01:04 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa1077749643fb46cded
+2026-03-24 00:01:04 | INFO    | Main | {"timestamp": "2026-03-24T00:01:04.538727", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:01:20 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:01:20 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa1077749643fb46cded, deleted_count=1
+2026-03-24 00:01:20 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa2077749643fb46cdef
+2026-03-24 00:01:20 | INFO    | Main | {"timestamp": "2026-03-24T00:01:20.460787", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:01:35 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:01:35 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa2077749643fb46cdef, deleted_count=1
+2026-03-24 00:01:35 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa2f77749643fb46cdf1
+2026-03-24 00:01:35 | INFO    | Main | {"timestamp": "2026-03-24T00:01:35.811723", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:01:51 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:01:51 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa2f77749643fb46cdf1, deleted_count=1
+2026-03-24 00:01:51 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa3f77749643fb46cdf3
+2026-03-24 00:01:51 | INFO    | Main | {"timestamp": "2026-03-24T00:01:51.153571", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:02:06 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:02:06 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa3f77749643fb46cdf3, deleted_count=1
+2026-03-24 00:02:06 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa4e77749643fb46cdf5
+2026-03-24 00:02:06 | INFO    | Main | {"timestamp": "2026-03-24T00:02:06.505764", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:02:21 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:02:21 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa4e77749643fb46cdf5, deleted_count=1
+2026-03-24 00:02:21 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa5d77749643fb46cdf7
+2026-03-24 00:02:22 | INFO    | Main | {"timestamp": "2026-03-24T00:02:22.005089", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:02:37 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:02:37 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa5d77749643fb46cdf7, deleted_count=1
+2026-03-24 00:02:37 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa6d77749643fb46cdf9
+2026-03-24 00:02:37 | INFO    | Main | {"timestamp": "2026-03-24T00:02:37.346128", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:02:52 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:02:52 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa6d77749643fb46cdf9, deleted_count=1
+2026-03-24 00:02:52 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa7c77749643fb46cdfb
+2026-03-24 00:02:52 | INFO    | Main | {"timestamp": "2026-03-24T00:02:52.676472", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:02:55 | INFO    | Main | {"timestamp": "2026-03-24T00:02:55.312293", "event": "SESSION_END", "data": {"session_id": "20260324-000011"}}
+2026-03-24 00:03:04 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:03:04 | INFO    | Main | {"timestamp": "2026-03-24T00:03:04.840170", "event": "SESSION_START", "data": {"session_id": "20260324-000304"}}
+2026-03-24 00:03:04 | INFO    | LangManager | {"timestamp": "2026-03-24T00:03:04.886533", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:03:11 | INFO    | Main | {"timestamp": "2026-03-24T00:03:11.433563", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:03:11 | INFO    | Main | {"timestamp": "2026-03-24T00:03:11.689163", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:03:11 | INFO    | Main | {"timestamp": "2026-03-24T00:03:11.709696", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:03:11 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:03:11 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa7c77749643fb46cdfb, deleted_count=1
+2026-03-24 00:03:12 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa8feaf05bffa22c2c2d
+2026-03-24 00:03:12 | INFO    | Main | {"timestamp": "2026-03-24T00:03:12.019436", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:03:12 | INFO    | Main | {"timestamp": "2026-03-24T00:03:12.031429", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:03:12 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:03:12 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa8feaf05bffa22c2c2d, deleted_count=1
+2026-03-24 00:03:12 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa90eaf05bffa22c2c31
+2026-03-24 00:03:12 | INFO    | Main | {"timestamp": "2026-03-24T00:03:12.437713", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:03:12 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:03:13 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:03:13.442554", "event": "BUTTON_CLICK", "data": {"action": "OPEN_CREATE_WORKSPACE_DIALOG"}}
+2026-03-24 00:03:20 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:03:20.932910", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:03:25 | INFO    | WorkspaceDatabase | Workspace updated: workspace_id=ws_20260320224959_test
+2026-03-24 00:03:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at C:\Users\tuna\Desktop\workspaces\Test\exports
+2026-03-24 00:03:26 | INFO    | WorkspaceDatabase | Workspace activated: workspace_id=ws_20260320224959_test, user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:03:26 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:03:26.073006", "event": "SUCCESS", "data": {"action": "WORKSPACE_SWITCHED", "duration": {"workspace_id": "ws_20260320224959_test", "workspace_name": "Test"}}}
+2026-03-24 00:03:27 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:03:27 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa90eaf05bffa22c2c31, deleted_count=1
+2026-03-24 00:03:27 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aa9feaf05bffa22c2c38
+2026-03-24 00:03:27 | INFO    | Main | {"timestamp": "2026-03-24T00:03:27.796006", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:03:28 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:03:28.075223", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:03:43 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:03:43 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aa9feaf05bffa22c2c38, deleted_count=1
+2026-03-24 00:03:43 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aaafeaf05bffa22c2c3a
+2026-03-24 00:03:43 | INFO    | Main | {"timestamp": "2026-03-24T00:03:43.127928", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:03:58 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:03:58 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aaafeaf05bffa22c2c3a, deleted_count=1
+2026-03-24 00:03:58 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aabeeaf05bffa22c2c3c
+2026-03-24 00:03:58 | INFO    | Main | {"timestamp": "2026-03-24T00:03:58.435751", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:04:13 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:04:13 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aabeeaf05bffa22c2c3c, deleted_count=1
+2026-03-24 00:04:13 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aacdeaf05bffa22c2c3e
+2026-03-24 00:04:13 | INFO    | Main | {"timestamp": "2026-03-24T00:04:13.752522", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:04:29 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:04:29 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aacdeaf05bffa22c2c3e, deleted_count=1
+2026-03-24 00:04:29 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aaddeaf05bffa22c2c40
+2026-03-24 00:04:29 | INFO    | Main | {"timestamp": "2026-03-24T00:04:29.086136", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:04:44 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:04:44 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aaddeaf05bffa22c2c40, deleted_count=1
+2026-03-24 00:04:44 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aaeceaf05bffa22c2c42
+2026-03-24 00:04:44 | INFO    | Main | {"timestamp": "2026-03-24T00:04:44.386722", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:04:59 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:04:59 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aaeceaf05bffa22c2c42, deleted_count=1
+2026-03-24 00:04:59 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aafbeaf05bffa22c2c44
+2026-03-24 00:04:59 | INFO    | Main | {"timestamp": "2026-03-24T00:04:59.710636", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:05:15 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:05:15 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aafbeaf05bffa22c2c44, deleted_count=1
+2026-03-24 00:05:15 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab0beaf05bffa22c2c46
+2026-03-24 00:05:15 | INFO    | Main | {"timestamp": "2026-03-24T00:05:15.043406", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:05:30 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:05:30 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab0beaf05bffa22c2c46, deleted_count=1
+2026-03-24 00:05:30 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab1aeaf05bffa22c2c48
+2026-03-24 00:05:30 | INFO    | Main | {"timestamp": "2026-03-24T00:05:30.361696", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:05:45 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:05:45 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab1aeaf05bffa22c2c48, deleted_count=1
+2026-03-24 00:05:45 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab29eaf05bffa22c2c4a
+2026-03-24 00:05:45 | INFO    | Main | {"timestamp": "2026-03-24T00:05:45.681588", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:06:00 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:06:01 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab29eaf05bffa22c2c4a, deleted_count=1
+2026-03-24 00:06:01 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab38eaf05bffa22c2c4c
+2026-03-24 00:06:01 | INFO    | Main | {"timestamp": "2026-03-24T00:06:01.026402", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:06:18 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:06:18 | INFO    | Main | {"timestamp": "2026-03-24T00:06:18.935149", "event": "SESSION_START", "data": {"session_id": "20260324-000618"}}
+2026-03-24 00:06:18 | INFO    | LangManager | {"timestamp": "2026-03-24T00:06:18.980630", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:06:24 | INFO    | Main | {"timestamp": "2026-03-24T00:06:24.606055", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:06:24 | INFO    | Main | {"timestamp": "2026-03-24T00:06:24.899353", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:06:24 | INFO    | Main | {"timestamp": "2026-03-24T00:06:24.927936", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:06:25 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:06:25 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab38eaf05bffa22c2c4c, deleted_count=1
+2026-03-24 00:06:25 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab515ba268c99ab51f87
+2026-03-24 00:06:25 | INFO    | Main | {"timestamp": "2026-03-24T00:06:25.273419", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:06:25 | INFO    | Main | {"timestamp": "2026-03-24T00:06:25.284418", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:06:25 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:06:25 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab515ba268c99ab51f87, deleted_count=1
+2026-03-24 00:06:25 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab515ba268c99ab51f8b
+2026-03-24 00:06:25 | INFO    | Main | {"timestamp": "2026-03-24T00:06:25.691879", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:06:25 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:06:26 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:06:26.869287", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:06:40 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:06:40 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab515ba268c99ab51f8b, deleted_count=1
+2026-03-24 00:06:41 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab605ba268c99ab51f8d
+2026-03-24 00:06:41 | INFO    | Main | {"timestamp": "2026-03-24T00:06:41.016416", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:06:56 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:06:56 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab605ba268c99ab51f8d, deleted_count=1
+2026-03-24 00:06:56 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab705ba268c99ab51f8f
+2026-03-24 00:06:56 | INFO    | Main | {"timestamp": "2026-03-24T00:06:56.383150", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:07:11 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:07:11 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab705ba268c99ab51f8f, deleted_count=1
+2026-03-24 00:07:11 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab7f5ba268c99ab51f91
+2026-03-24 00:07:11 | INFO    | Main | {"timestamp": "2026-03-24T00:07:11.698929", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:07:26 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:07:27 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab7f5ba268c99ab51f91, deleted_count=1
+2026-03-24 00:07:27 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab8e5ba268c99ab51f93
+2026-03-24 00:07:27 | INFO    | Main | {"timestamp": "2026-03-24T00:07:27.036694", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:07:42 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:07:42 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab8e5ba268c99ab51f93, deleted_count=1
+2026-03-24 00:07:42 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ab9e5ba268c99ab51f95
+2026-03-24 00:07:42 | INFO    | Main | {"timestamp": "2026-03-24T00:07:42.335772", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:07:57 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:07:57 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ab9e5ba268c99ab51f95, deleted_count=1
+2026-03-24 00:07:57 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1abad5ba268c99ab51f97
+2026-03-24 00:07:57 | INFO    | Main | {"timestamp": "2026-03-24T00:07:57.697600", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:08:12 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:08:13 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1abad5ba268c99ab51f97, deleted_count=1
+2026-03-24 00:08:13 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1abbc5ba268c99ab51f99
+2026-03-24 00:08:13 | INFO    | Main | {"timestamp": "2026-03-24T00:08:13.032152", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:08:21 | INFO    | Main | {"timestamp": "2026-03-24T00:08:21.220611", "event": "SESSION_END", "data": {"session_id": "20260324-000618"}}
+2026-03-24 00:08:31 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:08:31 | INFO    | Main | {"timestamp": "2026-03-24T00:08:31.530701", "event": "SESSION_START", "data": {"session_id": "20260324-000831"}}
+2026-03-24 00:08:31 | INFO    | LangManager | {"timestamp": "2026-03-24T00:08:31.576020", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:08:36 | INFO    | Main | {"timestamp": "2026-03-24T00:08:36.962595", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:08:37 | INFO    | Main | {"timestamp": "2026-03-24T00:08:37.232030", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:08:37 | INFO    | Main | {"timestamp": "2026-03-24T00:08:37.250539", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:08:37 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:08:37 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1abbc5ba268c99ab51f99, deleted_count=1
+2026-03-24 00:08:37 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1abd5f33a943419c59415
+2026-03-24 00:08:37 | INFO    | Main | {"timestamp": "2026-03-24T00:08:37.606274", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:08:37 | INFO    | Main | {"timestamp": "2026-03-24T00:08:37.623276", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:08:38 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:08:38 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1abd5f33a943419c59415, deleted_count=1
+2026-03-24 00:08:38 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1abd6f33a943419c59419
+2026-03-24 00:08:38 | INFO    | Main | {"timestamp": "2026-03-24T00:08:38.096404", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:08:38 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:08:39 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:08:39.380560", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:08:53 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:08:53 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1abd6f33a943419c59419, deleted_count=1
+2026-03-24 00:08:53 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1abe5f33a943419c5941b
+2026-03-24 00:08:53 | INFO    | Main | {"timestamp": "2026-03-24T00:08:53.446886", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:09:07 | INFO    | Main | {"timestamp": "2026-03-24T00:09:07.482739", "event": "SESSION_END", "data": {"session_id": "20260324-000831"}}
+2026-03-24 00:09:16 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:09:16 | INFO    | Main | {"timestamp": "2026-03-24T00:09:16.229406", "event": "SESSION_START", "data": {"session_id": "20260324-000916"}}
+2026-03-24 00:09:16 | INFO    | LangManager | {"timestamp": "2026-03-24T00:09:16.276182", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:09:23 | INFO    | Main | {"timestamp": "2026-03-24T00:09:23.586777", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:09:23 | INFO    | Main | {"timestamp": "2026-03-24T00:09:23.841125", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:09:23 | INFO    | Main | {"timestamp": "2026-03-24T00:09:23.860731", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:09:24 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:09:24 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1abe5f33a943419c5941b, deleted_count=1
+2026-03-24 00:09:24 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac047e2def3179d233ac
+2026-03-24 00:09:24 | INFO    | Main | {"timestamp": "2026-03-24T00:09:24.181810", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:09:24 | INFO    | Main | {"timestamp": "2026-03-24T00:09:24.194011", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:09:24 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:09:24 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac047e2def3179d233ac, deleted_count=1
+2026-03-24 00:09:24 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac047e2def3179d233b0
+2026-03-24 00:09:24 | INFO    | Main | {"timestamp": "2026-03-24T00:09:24.608099", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:09:24 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:09:25 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:09:25.837485", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:09:39 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:09:39 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac047e2def3179d233b0, deleted_count=1
+2026-03-24 00:09:39 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac137e2def3179d233b2
+2026-03-24 00:09:39 | INFO    | Main | {"timestamp": "2026-03-24T00:09:39.939534", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:09:43 | INFO    | WorkspaceDatabase | Workspace updated: workspace_id=ws_20260320224959_test
+2026-03-24 00:09:43 | INFO    | ZIPConvertor | ZIPConvertor initialized at C:\Users\tuna\Desktop\workspaces\Test\exports
+2026-03-24 00:09:43 | INFO    | WorkspaceDatabase | Workspace activated: workspace_id=ws_20260320224959_test, user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:09:43 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:09:43.319160", "event": "SUCCESS", "data": {"action": "WORKSPACE_SWITCHED", "duration": {"workspace_id": "ws_20260320224959_test", "workspace_name": "Test"}}}
+2026-03-24 00:09:45 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:09:45.171019", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:09:48 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:09:48.998124", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:09:55 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:09:55 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac137e2def3179d233b2, deleted_count=1
+2026-03-24 00:09:55 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac237e2def3179d233b9
+2026-03-24 00:09:55 | INFO    | Main | {"timestamp": "2026-03-24T00:09:55.298280", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:09:55 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:09:55.454960", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:10:10 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:10:10 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac237e2def3179d233b9, deleted_count=1
+2026-03-24 00:10:10 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac327e2def3179d233bb
+2026-03-24 00:10:10 | INFO    | Main | {"timestamp": "2026-03-24T00:10:10.647371", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:10:25 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:10:25 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac327e2def3179d233bb, deleted_count=1
+2026-03-24 00:10:25 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac417e2def3179d233bd
+2026-03-24 00:10:25 | INFO    | Main | {"timestamp": "2026-03-24T00:10:25.995233", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:10:41 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:10:41 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac417e2def3179d233bd, deleted_count=1
+2026-03-24 00:10:41 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac517e2def3179d233bf
+2026-03-24 00:10:41 | INFO    | Main | {"timestamp": "2026-03-24T00:10:41.328212", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:10:56 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:10:56 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac517e2def3179d233bf, deleted_count=1
+2026-03-24 00:10:56 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac607e2def3179d233c1
+2026-03-24 00:10:56 | INFO    | Main | {"timestamp": "2026-03-24T00:10:56.681163", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:11:11 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:11:11 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac607e2def3179d233c1, deleted_count=1
+2026-03-24 00:11:11 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac6f7e2def3179d233c3
+2026-03-24 00:11:11 | INFO    | Main | {"timestamp": "2026-03-24T00:11:11.974290", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:11:27 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:11:27 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac6f7e2def3179d233c3, deleted_count=1
+2026-03-24 00:11:27 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac7f7e2def3179d233c5
+2026-03-24 00:11:27 | INFO    | Main | {"timestamp": "2026-03-24T00:11:27.282400", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:11:42 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:11:42 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac7f7e2def3179d233c5, deleted_count=1
+2026-03-24 00:11:42 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ac8e7e2def3179d233c7
+2026-03-24 00:11:42 | INFO    | Main | {"timestamp": "2026-03-24T00:11:42.611330", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:11:52 | INFO    | Main | {"timestamp": "2026-03-24T00:11:52.942682", "event": "SESSION_END", "data": {"session_id": "20260324-000916"}}
+2026-03-24 00:12:01 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:12:01 | INFO    | Main | {"timestamp": "2026-03-24T00:12:01.393105", "event": "SESSION_START", "data": {"session_id": "20260324-001201"}}
+2026-03-24 00:12:01 | INFO    | LangManager | {"timestamp": "2026-03-24T00:12:01.437525", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:12:06 | INFO    | Main | {"timestamp": "2026-03-24T00:12:06.727195", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:12:06 | INFO    | Main | {"timestamp": "2026-03-24T00:12:06.993066", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:12:07 | INFO    | Main | {"timestamp": "2026-03-24T00:12:07.013650", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:12:07 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:12:07 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ac8e7e2def3179d233c7, deleted_count=1
+2026-03-24 00:12:07 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aca78632da67cc8a8b4a
+2026-03-24 00:12:07 | INFO    | Main | {"timestamp": "2026-03-24T00:12:07.428118", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:12:07 | INFO    | Main | {"timestamp": "2026-03-24T00:12:07.447139", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:12:07 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:12:07 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aca78632da67cc8a8b4a, deleted_count=1
+2026-03-24 00:12:07 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1aca78632da67cc8a8b4e
+2026-03-24 00:12:07 | INFO    | Main | {"timestamp": "2026-03-24T00:12:07.882883", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:12:07 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:12:09 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:12:09.056795", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:12:23 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:12:23 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1aca78632da67cc8a8b4e, deleted_count=1
+2026-03-24 00:12:23 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1acb78632da67cc8a8b50
+2026-03-24 00:12:23 | INFO    | Main | {"timestamp": "2026-03-24T00:12:23.172890", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:12:38 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:12:38 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1acb78632da67cc8a8b50, deleted_count=1
+2026-03-24 00:12:38 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1acc68632da67cc8a8b52
+2026-03-24 00:12:38 | INFO    | Main | {"timestamp": "2026-03-24T00:12:38.554240", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:12:53 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:12:53 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1acc68632da67cc8a8b52, deleted_count=1
+2026-03-24 00:12:53 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1acd58632da67cc8a8b54
+2026-03-24 00:12:53 | INFO    | Main | {"timestamp": "2026-03-24T00:12:53.922937", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:13:09 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:13:09 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1acd58632da67cc8a8b54, deleted_count=1
+2026-03-24 00:13:09 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ace58632da67cc8a8b56
+2026-03-24 00:13:09 | INFO    | Main | {"timestamp": "2026-03-24T00:13:09.271515", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:13:24 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:13:24 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ace58632da67cc8a8b56, deleted_count=1
+2026-03-24 00:13:24 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1acf48632da67cc8a8b58
+2026-03-24 00:13:24 | INFO    | Main | {"timestamp": "2026-03-24T00:13:24.619503", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:13:41 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:13:41 | INFO    | Main | {"timestamp": "2026-03-24T00:13:41.267820", "event": "SESSION_START", "data": {"session_id": "20260324-001341"}}
+2026-03-24 00:13:41 | INFO    | LangManager | {"timestamp": "2026-03-24T00:13:41.313059", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:13:47 | INFO    | Main | {"timestamp": "2026-03-24T00:13:47.511580", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:13:47 | INFO    | Main | {"timestamp": "2026-03-24T00:13:47.773031", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:13:47 | INFO    | Main | {"timestamp": "2026-03-24T00:13:47.792464", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:13:48 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:13:48 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1acf48632da67cc8a8b58, deleted_count=1
+2026-03-24 00:13:48 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad0c222f43fc52bcbc3e
+2026-03-24 00:13:48 | INFO    | Main | {"timestamp": "2026-03-24T00:13:48.111628", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:13:48 | INFO    | Main | {"timestamp": "2026-03-24T00:13:48.123628", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:13:48 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:13:48 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad0c222f43fc52bcbc3e, deleted_count=1
+2026-03-24 00:13:48 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad0c222f43fc52bcbc42
+2026-03-24 00:13:48 | INFO    | Main | {"timestamp": "2026-03-24T00:13:48.547155", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:13:48 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:13:49 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:13:49.948311", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:14:03 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:14:03 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad0c222f43fc52bcbc42, deleted_count=1
+2026-03-24 00:14:03 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad1b222f43fc52bcbc44
+2026-03-24 00:14:03 | INFO    | Main | {"timestamp": "2026-03-24T00:14:03.906153", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:14:19 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:14:19 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad1b222f43fc52bcbc44, deleted_count=1
+2026-03-24 00:14:19 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad2b222f43fc52bcbc46
+2026-03-24 00:14:19 | INFO    | Main | {"timestamp": "2026-03-24T00:14:19.250872", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:14:31 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:14:31.157705", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:14:34 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:14:34 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad2b222f43fc52bcbc46, deleted_count=1
+2026-03-24 00:14:34 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad3a222f43fc52bcbc48
+2026-03-24 00:14:34 | INFO    | Main | {"timestamp": "2026-03-24T00:14:34.647145", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:14:49 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:14:49 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad3a222f43fc52bcbc48, deleted_count=1
+2026-03-24 00:14:49 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad49222f43fc52bcbc4a
+2026-03-24 00:14:49 | INFO    | Main | {"timestamp": "2026-03-24T00:14:49.967591", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:15:05 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:15:05 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad49222f43fc52bcbc4a, deleted_count=1
+2026-03-24 00:15:05 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad59222f43fc52bcbc4c
+2026-03-24 00:15:05 | INFO    | Main | {"timestamp": "2026-03-24T00:15:05.527801", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:15:20 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:15:20 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad59222f43fc52bcbc4c, deleted_count=1
+2026-03-24 00:15:20 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad68222f43fc52bcbc4e
+2026-03-24 00:15:20 | INFO    | Main | {"timestamp": "2026-03-24T00:15:20.841734", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:15:36 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:15:36 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad68222f43fc52bcbc4e, deleted_count=1
+2026-03-24 00:15:36 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad78222f43fc52bcbc50
+2026-03-24 00:15:36 | INFO    | Main | {"timestamp": "2026-03-24T00:15:36.231206", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:15:38 | INFO    | Main | {"timestamp": "2026-03-24T00:15:38.042212", "event": "SESSION_END", "data": {"session_id": "20260324-001341"}}
+2026-03-24 00:15:46 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-24 00:15:46 | INFO    | Main | {"timestamp": "2026-03-24T00:15:46.795476", "event": "SESSION_START", "data": {"session_id": "20260324-001546"}}
+2026-03-24 00:15:46 | INFO    | LangManager | {"timestamp": "2026-03-24T00:15:46.841251", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-24 00:15:52 | INFO    | Main | {"timestamp": "2026-03-24T00:15:52.565148", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-24 00:15:52 | INFO    | Main | {"timestamp": "2026-03-24T00:15:52.821534", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-24 00:15:52 | INFO    | Main | {"timestamp": "2026-03-24T00:15:52.840567", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-24 00:15:53 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:15:53 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad78222f43fc52bcbc50, deleted_count=1
+2026-03-24 00:15:53 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad8912d25413b9f22835
+2026-03-24 00:15:53 | INFO    | Main | {"timestamp": "2026-03-24T00:15:53.162555", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-24 00:15:53 | INFO    | Main | {"timestamp": "2026-03-24T00:15:53.174553", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-24 00:15:53 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:15:53 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad8912d25413b9f22835, deleted_count=1
+2026-03-24 00:15:53 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad8912d25413b9f22839
+2026-03-24 00:15:53 | INFO    | Main | {"timestamp": "2026-03-24T00:15:53.599178", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:15:53 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-24 00:15:54 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:15:54.882864", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-24 00:16:08 | INFO    | TTSMenuApp | {"timestamp": "2026-03-24T00:16:08.260877", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-03-24 00:16:08 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-24 00:16:08 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c1ad8912d25413b9f22839, deleted_count=1
+2026-03-24 00:16:08 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c1ad9812d25413b9f2283b
+2026-03-24 00:16:08 | INFO    | Main | {"timestamp": "2026-03-24T00:16:08.938714", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-24 00:16:10 | INFO    | Main | {"timestamp": "2026-03-24T00:16:10.261129", "event": "SESSION_END", "data": {"session_id": "20260324-001546"}}
