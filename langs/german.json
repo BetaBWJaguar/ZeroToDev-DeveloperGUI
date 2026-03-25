@@ -464,5 +464,15 @@
   "workspace_error_delete_failed": "Fehler beim Löschen des Arbeitsbereichs:\n{error}",
   "workspace_success_deleted": "Arbeitsbereich '{name}' erfolgreich gelöscht!",
   "workspace_success_switched": "Erfolgreich zum Arbeitsbereich '{name}' gewechselt!",
-  "workspace_error_switch_failed": "Fehler beim Wechseln des Arbeitsbereichs:\n{error}"
+  "workspace_error_switch_failed": "Fehler beim Wechseln des Arbeitsbereichs:\n{error}",
+  "workspace_archived_section": "Archivierte Arbeitsbereiche",
+  "workspace_archive_button": "Archivieren",
+  "workspace_unarchive_button": "Aus Archiv entnehmen",
+  "workspace_archive_confirm": "Möchten Sie den Arbeitsbereich '{name}' wirklich archivieren?",
+  "workspace_unarchive_confirm": "Möchten Sie den Arbeitsbereich '{name}' wirklich aus dem Archiv entnehmen?",
+  "workspace_success_archived": "Arbeitsbereich '{name}' erfolgreich archiviert!",
+  "workspace_success_unarchived": "Arbeitsbereich '{name}' erfolgreich aus dem Archiv entnommen!",
+  "workspace_error_archive_failed": "Fehler beim Archivieren des Arbeitsbereichs:\n{error}",
+  "workspace_error_unarchive_failed": "Fehler beim Entnehmen aus dem Archiv:\n{error}",
+  "workspace_no_archived": "Keine archivierten Arbeitsbereiche"
 }

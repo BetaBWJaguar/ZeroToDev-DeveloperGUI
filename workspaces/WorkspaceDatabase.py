@@ -37,6 +37,7 @@ class WorkspaceDatabase:
             "path": path,
             "is_active": False,
             "is_locked": False,
+            "is_archived": False,
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow(),
             "last_accessed": None,
@@ -62,9 +63,57 @@ class WorkspaceDatabase:
 
     def get_user_workspaces(self, user_id: str) -> list:
         return list(
-            self.collection.find({"user_id": user_id})
+            self.collection.find({"user_id": user_id, "is_archived": False})
             .sort("created_at", -1)
         )
+
+    def get_archived_workspaces(self, user_id: str) -> list:
+        return list(
+            self.collection.find({"user_id": user_id, "is_archived": True})
+            .sort("created_at", -1)
+        )
+
+    def archive_workspace(self, workspace_id: str) -> bool:
+        try:
+            result = self.collection.update_one(
+                {"workspace_id": workspace_id},
+                {
+                    "$set": {
+                        "is_archived": True,
+                        "is_active": False,
+                        "updated_at": datetime.utcnow()
+                    }
+                }
+            )
+            
+            if result.modified_count > 0:
+                self.logger.info(f"Workspace archived: workspace_id={workspace_id}")
+                return True
+            return False
+        except Exception as e:
+            self.logger.error(f"Failed to archive workspace: {e}")
+            return False
+
+    def unarchive_workspace(self, workspace_id: str) -> bool:
+        try:
+            result = self.collection.update_one(
+                {"workspace_id": workspace_id},
+                {
+                    "$set": {
+                        "is_archived": False,
+                        "is_active": True,
+                        "updated_at": datetime.utcnow()
+                    }
+                }
+            )
+            
+            if result.modified_count > 0:
+                self.logger.info(f"Workspace unarchived: workspace_id={workspace_id}")
+                return True
+            return False
+        except Exception as e:
+            self.logger.error(f"Failed to unarchive workspace: {e}")
+            return False
 
     def get_active_workspace(self, user_id: str) -> dict | None:
         return self.collection.find_one({"user_id": user_id, "is_active": True})

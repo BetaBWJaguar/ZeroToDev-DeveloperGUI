@@ -464,5 +464,15 @@
   "workspace_error_delete_failed": "Failed to delete workspace:\n{error}",
   "workspace_success_deleted": "Workspace '{name}' deleted successfully!",
   "workspace_success_switched": "Successfully switched to workspace '{name}'!",
-  "workspace_error_switch_failed": "Failed to switch workspace:\n{error}"
+  "workspace_error_switch_failed": "Failed to switch workspace:\n{error}",
+  "workspace_archived_section": "Archived Workspaces",
+  "workspace_archive_button": "Archive",
+  "workspace_unarchive_button": "Unarchive",
+  "workspace_archive_confirm": "Are you sure you want to archive workspace '{name}'?",
+  "workspace_unarchive_confirm": "Are you sure you want to unarchive workspace '{name}'?",
+  "workspace_success_archived": "Workspace '{name}' archived successfully!",
+  "workspace_success_unarchived": "Workspace '{name}' unarchived successfully!",
+  "workspace_error_archive_failed": "Failed to archive workspace:\n{error}",
+  "workspace_error_unarchive_failed": "Failed to unarchive workspace:\n{error}",
+  "workspace_no_archived": "No archived workspaces"
 }

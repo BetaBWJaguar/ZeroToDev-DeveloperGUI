@@ -125,6 +125,38 @@ class WorkspaceManager:
         
         return self.db.get_user_workspaces(self.user_id)
 
+    def get_archived_workspaces(self):
+        if not self.user_id:
+            return []
+        
+        return self.db.get_archived_workspaces(self.user_id)
+
+    def archive_workspace(self, workspace_id: str) -> bool:
+        if not self.user_id:
+            return False
+        
+        db_record = self.db.get_workspace(workspace_id)
+        if not db_record:
+            return False
+        
+        if db_record["user_id"] != self.user_id:
+            return False
+        
+        return self.db.archive_workspace(workspace_id)
+
+    def unarchive_workspace(self, workspace_id: str) -> bool:
+        if not self.user_id:
+            return False
+        
+        db_record = self.db.get_workspace(workspace_id)
+        if not db_record:
+            return False
+        
+        if db_record["user_id"] != self.user_id:
+            return False
+        
+        return self.db.unarchive_workspace(workspace_id)
+
     def get_active_workspace(self):
         if not self.user_id:
             return None

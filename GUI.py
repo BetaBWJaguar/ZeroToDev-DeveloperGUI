@@ -1693,8 +1693,9 @@ class TTSMenuApp(tk.Tk):
         LogsHelperManager.log_button(self.logger, "OPEN_RECENT_WORKSPACES")
 
         workspaces = self.workspace_manager.get_user_workspaces()
+        archived_workspaces = self.workspace_manager.get_archived_workspaces()
 
-        if not workspaces:
+        if not workspaces and not archived_workspaces:
             GUIError(self, self.lang.get("info_title"), self.lang.get("workspace_none"), icon="ℹ️")
             return
 
@@ -1712,6 +1713,8 @@ class TTSMenuApp(tk.Tk):
         container.grid_rowconfigure(2, weight=0)
         container.grid_rowconfigure(3, weight=0)
         container.grid_rowconfigure(4, weight=0)
+        container.grid_rowconfigure(5, weight=0)
+        container.grid_rowconfigure(6, weight=0)
         container.grid_columnconfigure(0, weight=1)
 
         ttk.Label(container, text=self.lang.get("workspace_switch_header"), style="Title.TLabel") \
@@ -1739,6 +1742,42 @@ class TTSMenuApp(tk.Tk):
                         self.lang.get("workspace_error_switch_failed").format(error=str(e)), icon="❌")
                 LogsHelperManager.log_error(self.logger, "WORKSPACE_SWITCH_FAIL", str(e))
 
+        def archive_workspace(workspace_id):
+            if messagebox.askyesno(self.lang.get("info_title"),
+                                    self.lang.get("workspace_archive_confirm").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name"))):
+                try:
+                    if self.workspace_manager.archive_workspace(workspace_id):
+                        GUIError(self, self.lang.get("success_title"),
+                                self.lang.get("workspace_success_archived").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name")), icon="✅")
+                        LogsHelperManager.log_success(self.logger, "WORKSPACE_ARCHIVED", {"workspace_id": workspace_id})
+                        win.destroy()
+                        self.show_recent_workspaces()
+                    else:
+                        GUIError(self, self.lang.get("error_title"),
+                                self.lang.get("workspace_error_archive_failed").format(error="Unknown error"), icon="❌")
+                except Exception as e:
+                    GUIError(self, self.lang.get("error_title"),
+                            self.lang.get("workspace_error_archive_failed").format(error=str(e)), icon="❌")
+                    LogsHelperManager.log_error(self.logger, "WORKSPACE_ARCHIVE_FAIL", str(e))
+
+        def unarchive_workspace(workspace_id):
+            if messagebox.askyesno(self.lang.get("info_title"),
+                                    self.lang.get("workspace_unarchive_confirm").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name"))):
+                try:
+                    if self.workspace_manager.unarchive_workspace(workspace_id):
+                        GUIError(self, self.lang.get("success_title"),
+                                self.lang.get("workspace_success_unarchived").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name")), icon="✅")
+                        LogsHelperManager.log_success(self.logger, "WORKSPACE_UNARCHIVED", {"workspace_id": workspace_id})
+                        win.destroy()
+                        self.show_recent_workspaces()
+                    else:
+                        GUIError(self, self.lang.get("error_title"),
+                                self.lang.get("workspace_error_unarchive_failed").format(error="Unknown error"), icon="❌")
+                except Exception as e:
+                    GUIError(self, self.lang.get("error_title"),
+                            self.lang.get("workspace_error_unarchive_failed").format(error=str(e)), icon="❌")
+                    LogsHelperManager.log_error(self.logger, "WORKSPACE_UNARCHIVE_FAIL", str(e))
+
         for ws in workspaces:
             card = WorkspaceCard(
                 workspaces_frame,
@@ -1758,12 +1797,34 @@ class TTSMenuApp(tk.Tk):
 
         ttk.Separator(container).grid(row=3, column=0, sticky="ew", pady=(0, 12))
 
+        ttk.Label(container, text=self.lang.get("workspace_archived_section"), style="Title.TLabel") \
+            .grid(row=4, column=0, sticky="ew", pady=(0, 10))
+
+        archived_frame = ttk.Frame(container, style="TFrame")
+        archived_frame.grid(row=5, column=0, sticky="nsew", pady=(0, 12))
+
+        if archived_workspaces:
+            for ws in archived_workspaces:
+                card = WorkspaceCard(
+                    archived_frame,
+                    ws,
+                    unarchive_workspace,
+                    padding=0
+                )
+                card.pack(fill="x", pady=(0, 8))
+        else:
+            ttk.Label(
+                archived_frame,
+                text=self.lang.get("workspace_no_archived"),
+                style="Muted.TLabel"
+            ).pack(pady=10)
+
         ttk.Button(
             container,
             text=self.lang.get("close_button"),
             command=win.destroy,
             style="Accent.TButton"
-        ).grid(row=4, column=0, sticky="e")
+        ).grid(row=6, column=0, sticky="e")
 
         center_window(win)
 

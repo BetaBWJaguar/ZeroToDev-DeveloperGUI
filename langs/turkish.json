@@ -464,5 +464,15 @@
   "workspace_error_delete_failed": "Çalışma alanı silinemedi:\n{error}",
   "workspace_success_deleted": "'{name}' çalışma alanı başarıyla silindi!",
   "workspace_success_switched": "'{name}' çalışma alanına başarıyla geçildi!",
-  "workspace_error_switch_failed": "Çalışma alanı değiştirilemedi:\n{error}"
+  "workspace_error_switch_failed": "Çalışma alanı değiştirilemedi:\n{error}",
+  "workspace_archived_section": "Arşivlenmiş Çalışma Alanları",
+  "workspace_archive_button": "Arşivle",
+  "workspace_unarchive_button": "Arşivden Çıkar",
+  "workspace_archive_confirm": "'{name}' çalışma alanını arşivlemek istediğinize emin misiniz?",
+  "workspace_unarchive_confirm": "'{name}' çalışma alanını arşivden çıkarmak istediğinize emin misiniz?",
+  "workspace_success_archived": "'{name}' çalışma alanı başarıyla arşivlendi!",
+  "workspace_success_unarchived": "'{name}' çalışma alanı başarıyla arşivden çıkarıldı!",
+  "workspace_error_archive_failed": "Çalışma alanı arşivlenemedi:\n{error}",
+  "workspace_error_unarchive_failed": "Çalışma alanı arşivden çıkarılamadı:\n{error}",
+  "workspace_no_archived": "Arşivlenmiş çalışma alanı yok"
 }
