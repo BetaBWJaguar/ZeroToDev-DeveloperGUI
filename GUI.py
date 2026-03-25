@@ -287,9 +287,9 @@ class TTSMenuApp(tk.Tk):
         self.listener = GUIListener(self)
         make_responsive(self, 1800, 950, resizable=False)
         self.logger = LogsManager.get_logger("TTSMenuApp")
-
-        self.output_dir = BASE_DIR / "output"
-        self.output_dir.mkdir(exist_ok=True)
+        self.browse_path = BASE_DIR / "output"
+        self.browse_path.mkdir(exist_ok=True)
+        self.output_dir = self.browse_path
         init_style(self, COLORS, FONTS)
         self.mode = MemoryManager.get("app_mode")
         self._build_menubar()
@@ -307,6 +307,8 @@ class TTSMenuApp(tk.Tk):
             self._ai_recommendation_loop
         )
 
+        self.protocol("WM_DELETE_WINDOW", self._on_window_close)
+
     def start_user_auto_refresh(self):
         def auto_refresh_loop():
             while True:
@@ -320,6 +322,19 @@ class TTSMenuApp(tk.Tk):
 
         thread = threading.Thread(target=auto_refresh_loop, daemon=True)
         thread.start()
+
+    def _on_window_close(self):
+        current_workspace = self.workspace_manager.get_current_workspace()
+        if current_workspace:
+            workspace_id = current_workspace.get_workspace_id()
+            if workspace_id:
+                from workspaces.WorkspaceDatabase import WorkspaceDatabase
+                db = WorkspaceDatabase()
+                db.unlock_workspace(workspace_id)
+                LogsHelperManager.log_debug(self.logger, "WORKSPACE_UNLOCKED_ON_CLOSE", {
+                    "workspace_id": workspace_id
+                })
+        self.destroy()
 
 
     def reload_current_user(self):
@@ -529,11 +544,13 @@ class TTSMenuApp(tk.Tk):
         update_voice_state()
         self.service_var.trace_add("write", lambda *_: update_voice_state())
 
-        output_card, self.output_label = output_selector(self.scrollable_right_frame.scrollable_frame, self.output_dir, self.listener.on_output_change, self.lang)
+        output_card, self.output_label, self.browse_btn = output_selector(self.scrollable_right_frame.scrollable_frame, self.browse_path, self.listener.on_output_change, self.lang)
         output_card.grid(row=5, column=0, sticky="ew", pady=(0, 12))
 
         self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(self.scrollable_right_frame.scrollable_frame, self.lang)
         self.progress_frame.grid(row=6, column=0, sticky="ew", pady=(8, 2))
+        
+        self._update_output_label()
 
         bar, self.status, self.counter = footer(root, self.lang)
         bar.grid(row=3, column=0, columnspan=2, sticky="ew", pady=(12, 0))
@@ -1709,7 +1726,7 @@ class TTSMenuApp(tk.Tk):
                 self._update_output_dir_for_workspace(workspace)
                 from workspaces.WorkspaceDatabase import WorkspaceDatabase
                 db = WorkspaceDatabase()
-                db.set_active_workspace(self.current_user.id.get("id"), workspace_id)
+                db.lock_workspace(workspace_id)
                 GUIError(self, self.lang.get("success_title"),
                         self.lang.get("workspace_success_switched").format(name=workspace.get_name()), icon="✅")
                 LogsHelperManager.log_success(self.logger, "WORKSPACE_SWITCHED", {
@@ -1754,10 +1771,22 @@ class TTSMenuApp(tk.Tk):
         self.output_dir = workspace.get_exports_path()
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.zip_convertor = ZIPConvertor(self.output_dir)
+        self._update_output_label()
+        self.browse_btn.config(state="disabled")
         LogsHelperManager.log_debug(self.logger, "OUTPUT_DIR_UPDATED", {
             "workspace": workspace.get_name(),
             "output_dir": str(self.output_dir)
         })
+
+    def _update_output_label(self):
+        current_workspace = self.workspace_manager.get_current_workspace()
+        if current_workspace:
+            display_path = str(current_workspace.get_exports_path())
+            self.browse_btn.config(state="disabled")
+        else:
+            display_path = str(self.browse_path)
+            self.browse_btn.config(state="normal")
+        self.output_label.config(text=display_path)
 
     def _on_recommendation_dismissed(self):
         self.ai_recommendation_dismissed = True

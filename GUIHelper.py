@@ -271,7 +271,7 @@ def kv_row(parent, key: str, value: str = None, textvariable: tk.StringVar = Non
     row.grid_columnconfigure(1, weight=1)
     return row
 
-def output_selector(parent, initial_dir: Path, callback,lang) -> tuple[ttk.Labelframe, ttk.Label]:
+def output_selector(parent, initial_dir: Path, callback,lang) -> tuple[ttk.Labelframe, ttk.Label, ttk.Button]:
     import tkinter.filedialog as fd
 
     lf = ttk.Labelframe(parent, text=lang.get("output_section"), style="Section.TLabelframe", padding=12)
@@ -297,7 +297,7 @@ def output_selector(parent, initial_dir: Path, callback,lang) -> tuple[ttk.Label
     min_w = int(400 * factor)
 
     inner.grid_columnconfigure(0, weight=1, minsize=min_w)
-    return lf, output_label
+    return lf, output_label, browse_btn
 
 def labeled_scale(parent, text: str, var: tk.DoubleVar,
                   from_: float, to: float, resolution: float = 0.1) -> ttk.Frame:

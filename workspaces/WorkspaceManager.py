@@ -98,6 +98,9 @@ class WorkspaceManager:
 
         if self.current_workspace:
             self.current_workspace.unlock()
+            prev_workspace_id = self.current_workspace.get_workspace_id()
+            if prev_workspace_id:
+                self.db.unlock_workspace(prev_workspace_id)
 
         workspace = self.load_workspace(workspace_id=workspace_id, path=path)
 

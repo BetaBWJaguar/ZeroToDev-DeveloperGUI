@@ -124,4 +124,8 @@ class GUIListener:
     def on_output_change(self, new_path):
         if not new_path.exists() or not new_path.is_dir():
             LogsHelperManager.log_warning(self.app.logger, "OUTPUT", f"Invalid output directory selected: {new_path}")
-        self.app.output_dir = new_path
+        self.app.browse_path = new_path
+        current_workspace = self.app.workspace_manager.get_current_workspace()
+        if not current_workspace:
+            self.app.output_dir = new_path
+            self.app.zip_convertor = self.app.zip_convertor.__class__(new_path)
