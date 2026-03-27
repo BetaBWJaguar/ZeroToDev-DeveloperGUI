@@ -104,10 +104,11 @@ def check_internet(url="http://www.google.com", timeout=3) -> bool:
 
 class WorkspaceCard(ttk.Frame):
 
-    def __init__(self, parent, workspace_data, on_click, **kwargs):
+    def __init__(self, parent, workspace_data, on_click, on_archive=None, **kwargs):
         super().__init__(parent, style="WorkspaceCard.TFrame", **kwargs)
         self.workspace_data = workspace_data
         self.on_click = on_click
+        self.on_archive = on_archive
         self.is_hovered = False
         
         self.grid_columnconfigure(1, weight=1)
@@ -124,7 +125,8 @@ class WorkspaceCard(ttk.Frame):
         for child in widget.winfo_children():
             child.bind("<Enter>", self._on_enter)
             child.bind("<Leave>", self._on_leave)
-            child.bind("<Button-1>", self._on_click)
+            if not isinstance(child, ttk.Button):
+                child.bind("<Button-1>", self._on_click)
             self._bind_children(child)
     
     def _build_content(self):
@@ -163,8 +165,21 @@ class WorkspaceCard(ttk.Frame):
             )
             desc_label.pack(anchor="w", pady=(4, 0))
         
-        click_label = ttk.Label(self, text="→", style="WorkspaceClick.TLabel")
-        click_label.grid(row=0, column=2, sticky="ns", padx=(4, 8), pady=8)
+        actions_frame = ttk.Frame(self, style="WorkspaceActions.TFrame")
+        actions_frame.grid(row=0, column=2, sticky="ns", padx=(4, 8), pady=8)
+        
+        click_label = ttk.Label(actions_frame, text="→", style="WorkspaceClick.TLabel")
+        click_label.pack(side="left", padx=(0, 4))
+        
+        if self.on_archive:
+            archive_btn = ttk.Button(
+                actions_frame,
+                text="📦",
+                style="Accent.TButton",
+                width=3
+            )
+            archive_btn.pack(side="left")
+            archive_btn.bind("<Button-1>", lambda e: self._on_archive_click(e))
     
     def _on_enter(self, event):
         if not self.is_hovered:
@@ -180,6 +195,11 @@ class WorkspaceCard(ttk.Frame):
     
     def _on_click(self, event):
         self.on_click(self.workspace_data.get('workspace_id'))
+    
+    def _on_archive_click(self, event):
+        if self.on_archive:
+            self.on_archive(self.workspace_data.get('workspace_id'))
+        return "break"
     
     def _update_children_style(self, state):
         style_map = {
@@ -1192,6 +1212,7 @@ class STTMenuApp(tk.Tk):
                 workspaces_frame,
                 ws,
                 switch_to_workspace,
+                on_archive=archive_workspace,
                 padding=0
             )
             card.pack(fill="x", pady=(0, 8))
