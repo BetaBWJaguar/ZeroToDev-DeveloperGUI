@@ -16688,3 +16688,37 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-03-27 01:08:11 | INFO    | Main | {"timestamp": "2026-03-27T01:08:11.627776", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
 2026-03-27 01:08:22 | INFO    | WorkspaceDatabase | Workspace unlocked: workspace_id=ws_20260325233936_test
 2026-03-27 01:08:23 | INFO    | Main | {"timestamp": "2026-03-27T01:08:23.070781", "event": "SESSION_END", "data": {"session_id": "20260327-010252"}}
+2026-03-28 03:27:48 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-03-28 03:27:48 | INFO    | Main | {"timestamp": "2026-03-28T03:27:48.672294", "event": "SESSION_START", "data": {"session_id": "20260328-032748"}}
+2026-03-28 03:27:48 | INFO    | LangManager | {"timestamp": "2026-03-28T03:27:48.730623", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-03-28 03:27:55 | INFO    | Main | {"timestamp": "2026-03-28T03:27:55.848921", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-03-28 03:27:56 | INFO    | Main | {"timestamp": "2026-03-28T03:27:56.156881", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-03-28 03:27:56 | INFO    | Main | {"timestamp": "2026-03-28T03:27:56.179060", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-03-28 03:27:56 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-28 03:27:56 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c5ae4be2c6884a5b351e0e, deleted_count=1
+2026-03-28 03:27:56 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c7208c9a26a9ba839a7bc6
+2026-03-28 03:27:56 | INFO    | Main | {"timestamp": "2026-03-28T03:27:56.566342", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-03-28 03:27:56 | INFO    | Main | {"timestamp": "2026-03-28T03:27:56.577929", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-03-28 03:27:56 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-28 03:27:56 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c7208c9a26a9ba839a7bc6, deleted_count=1
+2026-03-28 03:27:57 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c7208c9a26a9ba839a7bca
+2026-03-28 03:27:57 | INFO    | Main | {"timestamp": "2026-03-28T03:27:57.017593", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-28 03:27:57 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-03-28 03:28:05 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:05.871094", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-28 03:28:06 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a from DB snapshot: Consider exploring the Text-to-Speech feature – you haven't used it yet, and your preferences are already set up for a seamless experience with the Edge service, a female voice, and MP3 format.
+2026-03-28 03:28:06 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:06.077815", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-03-28 03:28:09 | INFO    | WorkspaceDatabase | Workspace archived: workspace_id=ws_20260325233936_test
+2026-03-28 03:28:09 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:09.835799", "event": "SUCCESS", "data": {"action": "WORKSPACE_ARCHIVED", "duration": {"workspace_id": "ws_20260325233936_test"}}}
+2026-03-28 03:28:09 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:09.854752", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-03-28 03:28:12 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-03-28 03:28:12 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69c7208c9a26a9ba839a7bca, deleted_count=1
+2026-03-28 03:28:12 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69c7209c9a26a9ba839a7bce
+2026-03-28 03:28:12 | INFO    | Main | {"timestamp": "2026-03-28T03:28:12.394411", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-03-28 03:28:15 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:15.824416", "event": "BUTTON_CLICK", "data": {"action": "RECOMMENDATION_DISMISS"}}
+2026-03-28 03:28:16 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:16.803423", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2026-03-28 03:28:16 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:16.817179", "event": "TTS_PREVIEW_START", "data": {}}
+2026-03-28 03:28:16 | ERROR   | TTSMenuApp | {"timestamp": "2026-03-28T03:28:16.829235", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2026-03-28 03:28:18 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:18.027790", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2026-03-28 03:28:18 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:18.429952", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2026-03-28 03:28:21 | INFO    | TTSMenuApp | {"timestamp": "2026-03-28T03:28:21.201032", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-03-28 03:28:23 | INFO    | Main | {"timestamp": "2026-03-28T03:28:23.811918", "event": "SESSION_END", "data": {"session_id": "20260328-032748"}}
