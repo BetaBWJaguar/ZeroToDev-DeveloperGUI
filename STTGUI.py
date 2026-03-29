@@ -1048,7 +1048,6 @@ class STTMenuApp(tk.Tk):
                                 self.lang.get("workspace_success_archived").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name")), icon="✅")
                         LogsHelperManager.log_success(self.logger, "WORKSPACE_ARCHIVED", {"workspace_id": workspace_id})
                         win.destroy()
-                        self.show_recent_workspaces()
                     else:
                         GUIError(self, self.lang.get("error_title"),
                                 self.lang.get("workspace_error_archive_failed").format(error="Unknown error"), icon="❌")
@@ -1066,7 +1065,6 @@ class STTMenuApp(tk.Tk):
                                 self.lang.get("workspace_success_unarchived").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name")), icon="✅")
                         LogsHelperManager.log_success(self.logger, "WORKSPACE_UNARCHIVED", {"workspace_id": workspace_id})
                         win.destroy()
-                        self.show_recent_workspaces()
                     else:
                         GUIError(self, self.lang.get("error_title"),
                                 self.lang.get("workspace_error_unarchive_failed").format(error="Unknown error"), icon="❌")
