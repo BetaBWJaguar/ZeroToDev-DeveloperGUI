@@ -40,6 +40,7 @@ from zip.ZIPConvertor import ZIPConvertor
 from gui_listener.GUIListener import GUIListener
 from workspaces.WorkspaceManager import WorkspaceManager
 from workspaces.WorkspaceManagerHelper import WorkspaceManagerHelper
+from workspaces.WorkspacePathHelper import WorkspacePathHelper
 from PathHelper import PathHelper
 from updater.Update_Checker import check_for_update_gui
 from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
@@ -1687,6 +1688,18 @@ class TTSMenuApp(tk.Tk):
             "workspace": workspace.get_name(),
             "output_dir": str(self.output_dir)
         })
+    
+    def get_data_dir(self):
+        return WorkspacePathHelper.get_data_dir(self.workspace_manager)
+    
+    def get_logs_dir(self):
+        return WorkspacePathHelper.get_logs_dir(self.workspace_manager)
+    
+    def get_temp_dir(self):
+        return WorkspacePathHelper.get_temp_dir(self.workspace_manager)
+    
+    def get_exports_dir(self):
+        return WorkspacePathHelper.get_exports_dir(self.workspace_manager, self.browse_path)
 
     def _update_output_label(self):
         current_workspace = self.workspace_manager.get_current_workspace()

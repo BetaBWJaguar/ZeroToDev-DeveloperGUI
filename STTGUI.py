@@ -29,6 +29,7 @@ from logs_manager.LogsManager import LogsManager
 from stt.factory.STTFactory import STTManager
 from workspaces.WorkspaceManager import WorkspaceManager
 from workspaces.WorkspaceManagerHelper import WorkspaceManagerHelper
+from workspaces.WorkspacePathHelper import WorkspacePathHelper
 from stt.MediaFormats import AudioFormatHandler
 from stt.stt__models.WhisperSTT import WhisperSTT
 from PathHelper import PathHelper
@@ -1131,6 +1132,18 @@ class STTMenuApp(tk.Tk):
             "workspace": workspace.get_name(),
             "output_dir": str(self.output_dir)
         })
+    
+    def get_data_dir(self):
+        return WorkspacePathHelper.get_data_dir(self.workspace_manager)
+    
+    def get_logs_dir(self):
+        return WorkspacePathHelper.get_logs_dir(self.workspace_manager)
+    
+    def get_temp_dir(self):
+        return WorkspacePathHelper.get_temp_dir(self.workspace_manager)
+    
+    def get_exports_dir(self):
+        return WorkspacePathHelper.get_exports_dir(self.workspace_manager, self.output_dir)
 
     def destroy(self):
         self.stop_audio()
