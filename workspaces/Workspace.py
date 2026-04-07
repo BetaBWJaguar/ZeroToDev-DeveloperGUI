@@ -25,6 +25,7 @@ class Workspace:
 
         self.config_file = self.path / "config.json"
         self.metadata_file = self.path / "workspace.json"
+        self._initialize_config_file()
 
     def exists(self):
         return self.path.exists()
@@ -166,6 +167,37 @@ class Workspace:
 
     def save_metadata(self, data: dict):
         self.metadata_file.write_text(json.dumps(data, indent=4))
+    
+    def _initialize_config_file(self):
+        if not self.config_file.exists():
+            default_config = {
+                "tts_settings": {
+                    "default_service": "edge",
+                    "default_format": "mp3",
+                    "default_language": "tr",
+                    "default_voice": "female",
+                    "pitch": 0,
+                    "speed": 1.0,
+                    "volume": 1.0
+                }
+            }
+            self.config_file.write_text(json.dumps(default_config, indent=4))
+
+
+
+    def update_usage(self):
+        from .WorkspaceManagerHelper import WorkspaceManagerHelper
+        
+        if not self.path.exists():
+            return 0
+        
+        size_bytes = WorkspaceManagerHelper.get_workspace_size(str(self.path))
+        used_mb = size_bytes // (1024 * 1024)
+        
+        if self.db and self.workspace_id:
+            self.db.update_workspace(self.workspace_id, {"used_mb": used_mb})
+        
+        return used_mb
 
 
     def cleanup_temp(self):

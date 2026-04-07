@@ -1,6 +1,7 @@
 import re
 from pathlib import Path
 import json
+from .WorkspaceConfig import WorkspaceConfig
 
 
 class WorkspaceManagerHelper:
@@ -37,7 +38,8 @@ class WorkspaceManagerHelper:
         metadata_file = p / "workspace.json"
 
         if not config_file.exists():
-            config_file.write_text(json.dumps({}, indent=4))
+            workspace_config = WorkspaceConfig(str(p))
+            workspace_config.save_config({})
 
         if not metadata_file.exists():
             metadata_file.write_text(json.dumps({}, indent=4))

@@ -4,6 +4,7 @@ from pymongo import MongoClient
 
 from PathHelper import PathHelper
 from logs_manager.LogsManager import LogsManager
+from workspaces.WorkspaceConfig import WorkspaceConfig
 
 
 class WorkspaceDatabase:
@@ -42,7 +43,7 @@ class WorkspaceDatabase:
             "updated_at": datetime.utcnow(),
             "last_accessed": None,
             "metadata": {},
-            "config": {},
+            "config": WorkspaceConfig._get_default_config(),
             "quota_mb": quota_mb,
             "used_mb": 0
         }

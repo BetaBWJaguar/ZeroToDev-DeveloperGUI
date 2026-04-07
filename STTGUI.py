@@ -1132,18 +1132,33 @@ class STTMenuApp(tk.Tk):
             "workspace": workspace.get_name(),
             "output_dir": str(self.output_dir)
         })
-    
+
     def get_data_dir(self):
-        return WorkspacePathHelper.get_data_dir(self.workspace_manager)
-    
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspacePathHelper.get_data_dir(self.workspace_manager)
+        return None
+
+
     def get_logs_dir(self):
-        return WorkspacePathHelper.get_logs_dir(self.workspace_manager)
-    
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspacePathHelper.get_logs_dir(self.workspace_manager)
+        return None
+
+
     def get_temp_dir(self):
-        return WorkspacePathHelper.get_temp_dir(self.workspace_manager)
-    
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspacePathHelper.get_temp_dir(self.workspace_manager)
+        return None
+
+
     def get_exports_dir(self):
-        return WorkspacePathHelper.get_exports_dir(self.workspace_manager, self.output_dir)
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return ws.get_exports_path()
+        return self.output_dir
 
     def destroy(self):
         self.stop_audio()

@@ -645,7 +645,7 @@ class TTSMenuApp(tk.Tk):
             processed_audio = DataManager.from_bytes(processed_bytes, "mp3")
             self._set_progress(90, self.lang.get("progress_exporting"))
             formatter = fmt_class(processed_audio)
-            out_path = formatter.export(self.output_dir)
+            out_path = formatter.export(self.get_exports_dir())
 
             if MemoryManager.get("zip_export_enabled", False):
                 try:
@@ -1688,18 +1688,33 @@ class TTSMenuApp(tk.Tk):
             "workspace": workspace.get_name(),
             "output_dir": str(self.output_dir)
         })
-    
+
     def get_data_dir(self):
-        return WorkspacePathHelper.get_data_dir(self.workspace_manager)
-    
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspacePathHelper.get_data_dir(self.workspace_manager)
+        return None
+
+
     def get_logs_dir(self):
-        return WorkspacePathHelper.get_logs_dir(self.workspace_manager)
-    
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspacePathHelper.get_logs_dir(self.workspace_manager)
+        return None
+
+
     def get_temp_dir(self):
-        return WorkspacePathHelper.get_temp_dir(self.workspace_manager)
-    
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspacePathHelper.get_temp_dir(self.workspace_manager)
+        return None
+
+
     def get_exports_dir(self):
-        return WorkspacePathHelper.get_exports_dir(self.workspace_manager, self.browse_path)
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspacePathHelper.get_exports_dir(self.workspace_manager)
+        return self.browse_path
 
     def _update_output_label(self):
         current_workspace = self.workspace_manager.get_current_workspace()
