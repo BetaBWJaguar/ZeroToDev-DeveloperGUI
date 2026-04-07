@@ -1025,9 +1025,6 @@ class STTMenuApp(tk.Tk):
             try:
                 workspace = self.workspace_manager.switch_workspace(workspace_id=workspace_id)
                 self._update_output_dir_for_workspace(workspace)
-                from workspaces.WorkspaceDatabase import WorkspaceDatabase
-                db = WorkspaceDatabase()
-                db.set_active_workspace(self.current_user.id.get("id"), workspace_id)
                 GUIError(self, self.lang.get("success_title"),
                         self.lang.get("workspace_success_switched").format(name=workspace.get_name()), icon="✅")
                 LogsHelperManager.log_success(self.logger, "WORKSPACE_SWITCHED", {
@@ -1161,6 +1158,18 @@ class STTMenuApp(tk.Tk):
         return self.output_dir
 
     def destroy(self):
+        current_workspace = self.workspace_manager.get_current_workspace()
+        if current_workspace:
+            workspace_id = current_workspace.get_workspace_id()
+            if workspace_id:
+                from workspaces.WorkspaceDatabase import WorkspaceDatabase
+                db = WorkspaceDatabase()
+                db.deactivate_workspace(workspace_id)
+                current_workspace.unlock()
+                LogsHelperManager.log_debug(self.logger, "WORKSPACE_CLEANUP_ON_CLOSE", {
+                    "workspace_id": workspace_id,
+                    "action": "deactivated_and_unlocked"
+                })
         self.stop_audio()
         pygame.mixer.quit()
         super().destroy()

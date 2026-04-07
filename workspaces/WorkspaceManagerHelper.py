@@ -2,6 +2,7 @@ import re
 from pathlib import Path
 import json
 from .WorkspaceConfig import WorkspaceConfig
+from .WorkspaceProjectMeta import WorkspaceProjectMeta
 
 
 class WorkspaceManagerHelper:
@@ -23,7 +24,7 @@ class WorkspaceManagerHelper:
         return True
 
     @staticmethod
-    def create_workspace(path: str):
+    def create_workspace(path: str, workspace_id: str = None, name: str = None, description: str = ""):
 
         p = Path(path)
 
@@ -42,7 +43,14 @@ class WorkspaceManagerHelper:
             workspace_config.save_config({})
 
         if not metadata_file.exists():
-            metadata_file.write_text(json.dumps({}, indent=4))
+            workspace_meta = WorkspaceProjectMeta(
+                workspace_id=workspace_id,
+                workspace_name=name,
+                workspace_description=description,
+                workspace_path=str(p)
+            )
+            project_json = json.dumps(workspace_meta.to_dict(), indent=2).encode("utf-8")
+            metadata_file.write_bytes(project_json)
 
         return p
 

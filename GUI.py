@@ -181,9 +181,11 @@ class TTSMenuApp(tk.Tk):
             if workspace_id:
                 from workspaces.WorkspaceDatabase import WorkspaceDatabase
                 db = WorkspaceDatabase()
-                db.unlock_workspace(workspace_id)
-                LogsHelperManager.log_debug(self.logger, "WORKSPACE_UNLOCKED_ON_CLOSE", {
-                    "workspace_id": workspace_id
+                db.deactivate_workspace(workspace_id)
+                current_workspace.unlock()
+                LogsHelperManager.log_debug(self.logger, "WORKSPACE_CLEANUP_ON_CLOSE", {
+                    "workspace_id": workspace_id,
+                    "action": "deactivated_and_unlocked"
                 })
         self.destroy()
 
@@ -1578,9 +1580,6 @@ class TTSMenuApp(tk.Tk):
             try:
                 workspace = self.workspace_manager.switch_workspace(workspace_id=workspace_id)
                 self._update_output_dir_for_workspace(workspace)
-                from workspaces.WorkspaceDatabase import WorkspaceDatabase
-                db = WorkspaceDatabase()
-                db.lock_workspace(workspace_id)
                 GUIError(self, self.lang.get("success_title"),
                         self.lang.get("workspace_success_switched").format(name=workspace.get_name()), icon="✅")
                 LogsHelperManager.log_success(self.logger, "WORKSPACE_SWITCHED", {

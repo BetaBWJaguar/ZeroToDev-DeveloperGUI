@@ -30,6 +30,15 @@ class WorkspaceDatabase:
     def create_workspace(self, user_id: str, name: str, path: str, description: str = "", quota_mb: int = None) -> str:
         workspace_id = f"ws_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}_{name.lower().replace(' ', '_')}"
         
+        metadata = {
+            "name": "Zero to Dev - Developer GUI",
+            "author": "Tuna Rasim OCAK",
+            "workspace_id": workspace_id,
+            "workspace_name": name,
+            "workspace_description": description,
+            "workspace_path": path
+        }
+        
         doc = {
             "workspace_id": workspace_id,
             "user_id": user_id,
@@ -42,7 +51,7 @@ class WorkspaceDatabase:
             "created_at": datetime.utcnow(),
             "updated_at": datetime.utcnow(),
             "last_accessed": None,
-            "metadata": {},
+            "metadata": metadata,
             "config": WorkspaceConfig._get_default_config(),
             "quota_mb": quota_mb,
             "used_mb": 0
@@ -143,6 +152,26 @@ class WorkspaceDatabase:
             return False
         except Exception as e:
             self.logger.error(f"Failed to activate workspace: {e}")
+            return False
+
+    def deactivate_workspace(self, workspace_id: str) -> bool:
+        try:
+            result = self.collection.update_one(
+                {"workspace_id": workspace_id},
+                {
+                    "$set": {
+                        "is_active": False,
+                        "updated_at": datetime.utcnow()
+                    }
+                }
+            )
+            
+            if result.modified_count > 0:
+                self.logger.info(f"Workspace deactivated: workspace_id={workspace_id}")
+                return True
+            return False
+        except Exception as e:
+            self.logger.error(f"Failed to deactivate workspace: {e}")
             return False
 
     def update_workspace(self, workspace_id: str, updates: dict) -> bool:

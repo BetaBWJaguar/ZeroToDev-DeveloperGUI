@@ -249,3 +249,6 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-03-24 21:04:04 | ERROR   | STTMenuApp | {"timestamp": "2026-03-24T21:04:04.492659", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
 2026-03-24 21:04:12 | ERROR   | TTSMenuApp | {"timestamp": "2026-03-24T21:04:12.491978", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}
 2026-03-28 03:28:16 | ERROR   | TTSMenuApp | {"timestamp": "2026-03-28T03:28:16.829235", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2026-04-08 02:09:23 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-08T02:09:23.985519", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}
+2026-04-08 02:09:32 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-08T02:09:32.027723", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}
+2026-04-08 02:14:47 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-08T02:14:47.091562", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}

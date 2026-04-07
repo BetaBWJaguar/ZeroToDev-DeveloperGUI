@@ -32,13 +32,14 @@ class WorkspaceManager:
                 path=path,
                 workspace_id=workspace_id,
                 user_id=user_id,
-                db_record=db_record
+                db_record=db_record,
+                db=self.db
             )
         else:
             if not WorkspaceManagerHelper.is_valid_workspace(path):
                 raise Exception("Invalid workspace")
             
-            workspace = Workspace(path=path)
+            workspace = Workspace(path=path, db=self.db)
 
         try:
             workspace.lock(timeout=5)
@@ -62,8 +63,6 @@ class WorkspaceManager:
         if self.db.workspace_exists(self.user_id, name):
             raise Exception(f"Workspace with name '{name}' already exists")
 
-        WorkspaceManagerHelper.create_workspace(path)
-
         workspace_id = self.db.create_workspace(
             user_id=self.user_id,
             name=name,
@@ -72,12 +71,15 @@ class WorkspaceManager:
             quota_mb=quota_mb
         )
 
+        WorkspaceManagerHelper.create_workspace(path, workspace_id, name, description)
+
         db_record = self.db.get_workspace(workspace_id)
         workspace = Workspace(
             path=path,
             workspace_id=workspace_id,
             user_id=self.user_id,
-            db_record=db_record
+            db_record=db_record,
+            db=self.db
         )
 
         try:
@@ -95,14 +97,17 @@ class WorkspaceManager:
         return workspace
 
     def switch_workspace(self, workspace_id: str = None, path: str = None):
-
         if self.current_workspace:
-            self.current_workspace.unlock()
             prev_workspace_id = self.current_workspace.get_workspace_id()
             if prev_workspace_id:
-                self.db.unlock_workspace(prev_workspace_id)
+                self.db.deactivate_workspace(prev_workspace_id)
+            self.current_workspace.unlock()
 
         workspace = self.load_workspace(workspace_id=workspace_id, path=path)
+
+        new_workspace_id = workspace.get_workspace_id()
+        if new_workspace_id and self.user_id:
+            self.db.set_active_workspace(self.user_id, new_workspace_id)
 
         events = WorkspaceEvents(workspace)
         events.log_event("WORKSPACE_SWITCHED")
@@ -167,7 +172,8 @@ class WorkspaceManager:
                 path=db_record["path"],
                 workspace_id=db_record["workspace_id"],
                 user_id=db_record["user_id"],
-                db_record=db_record
+                db_record=db_record,
+                db=self.db
             )
         return None
 
@@ -183,7 +189,8 @@ class WorkspaceManager:
             path=db_record["path"],
             workspace_id=workspace_id,
             user_id=db_record["user_id"],
-            db_record=db_record
+            db_record=db_record,
+            db=self.db
         )
 
         try:
@@ -215,7 +222,8 @@ class WorkspaceManager:
             path=db_record["path"],
             workspace_id=workspace_id,
             user_id=db_record["user_id"],
-            db_record=db_record
+            db_record=db_record,
+            db=self.db
         )
 
         try:
@@ -244,7 +252,8 @@ class WorkspaceManager:
             path=db_record["path"],
             workspace_id=workspace_id,
             user_id=db_record["user_id"],
-            db_record=db_record
+            db_record=db_record,
+            db=self.db
         )
 
         try:
@@ -271,7 +280,8 @@ class WorkspaceManager:
             path=db_record["path"],
             workspace_id=workspace_id,
             user_id=db_record["user_id"],
-            db_record=db_record
+            db_record=db_record,
+            db=self.db
         )
 
         self.quota.check_quota(workspace)

@@ -26,6 +26,7 @@ class Workspace:
         self.config_file = self.path / "config.json"
         self.metadata_file = self.path / "workspace.json"
         self._initialize_config_file()
+        self._initialize_metadata_file()
 
     def exists(self):
         return self.path.exists()
@@ -90,18 +91,19 @@ class Workspace:
                 time.sleep(self.RETRY_INTERVAL)
 
     def unlock(self):
-        if not self.lock_file.exists():
-            return
-
-        try:
-            data = json.loads(self.lock_file.read_text())
-            if data.get("pid") == os.getpid():
-                self.lock_file.unlink()
-                
-                if self.db and self.workspace_id:
-                    self.db.unlock_workspace(self.workspace_id)
-        except Exception:
-            pass
+        if self.db and self.workspace_id:
+            self.db.unlock_workspace(self.workspace_id)
+        
+        if self.lock_file.exists():
+            try:
+                data = json.loads(self.lock_file.read_text())
+                if data.get("pid") == os.getpid() or self._is_lock_stale():
+                    self.lock_file.unlink()
+            except Exception:
+                try:
+                    self.lock_file.unlink()
+                except Exception:
+                    pass
 
     def _is_lock_stale(self):
         try:
@@ -167,6 +169,13 @@ class Workspace:
 
     def save_metadata(self, data: dict):
         self.metadata_file.write_text(json.dumps(data, indent=4))
+
+    def _initialize_metadata_file(self):
+        if not self.metadata_file.exists():
+            from .WorkspaceProjectMeta import WorkspaceProjectMeta
+
+            project_json = WorkspaceProjectMeta.create_project_json(self)
+            self.metadata_file.write_bytes(project_json)
     
     def _initialize_config_file(self):
         if not self.config_file.exists():
