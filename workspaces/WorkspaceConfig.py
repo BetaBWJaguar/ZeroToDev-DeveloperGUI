@@ -16,7 +16,11 @@ class WorkspaceConfig:
                 "default_voice": "female",
                 "pitch": 0,
                 "speed": 1.0,
-                "volume": 1.0
+                "volume": 1.0,
+                "echo": False,
+                "reverb": False,
+                "robot": False,
+                "preset": ""
             },
         }
     
@@ -74,10 +78,16 @@ class WorkspaceConfig:
         return {
             "pitch": tts_settings.get("pitch", 0),
             "speed": tts_settings.get("speed", 1.0),
-            "volume": tts_settings.get("volume", 1.0)
+            "volume": tts_settings.get("volume", 1.0),
+            "echo": tts_settings.get("echo", False),
+            "reverb": tts_settings.get("reverb", False),
+            "robot": tts_settings.get("robot", False),
+            "preset": tts_settings.get("preset", "")
         }
     
-    def set_voice_settings(self, pitch: int = None, speed: float = None, volume: float = None) -> bool:
+    def set_voice_settings(self, pitch: int = None, speed: float = None, volume: float = None,
+                         echo: bool = None, reverb: bool = None, robot: bool = None,
+                         preset: str = None) -> bool:
         tts_settings = self.get_tts_settings()
         if pitch is not None:
             tts_settings["pitch"] = pitch
@@ -85,5 +95,13 @@ class WorkspaceConfig:
             tts_settings["speed"] = speed
         if volume is not None:
             tts_settings["volume"] = volume
+        if echo is not None:
+            tts_settings["echo"] = echo
+        if reverb is not None:
+            tts_settings["reverb"] = reverb
+        if robot is not None:
+            tts_settings["robot"] = robot
+        if preset is not None:
+            tts_settings["preset"] = preset
         return self.set_tts_settings(tts_settings)
     

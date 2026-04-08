@@ -779,7 +779,7 @@ class STTMenuApp(tk.Tk):
         
 
         saved_format = MemoryManager.get("export_format", ".txt")
-        saved_output_dir = MemoryManager.get("export_output_dir", "")
+        saved_output_dir = str(self.get_exports_dir())
         saved_pattern = MemoryManager.get("export_filename_pattern", "timestamp")
         saved_custom_name = MemoryManager.get("export_custom_name", "transcript")
         

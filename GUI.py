@@ -41,6 +41,7 @@ from gui_listener.GUIListener import GUIListener
 from workspaces.WorkspaceManager import WorkspaceManager
 from workspaces.WorkspaceManagerHelper import WorkspaceManagerHelper
 from workspaces.WorkspacePathHelper import WorkspacePathHelper
+from workspaces.WorkspaceConfig import WorkspaceConfig
 from PathHelper import PathHelper
 from updater.Update_Checker import check_for_update_gui
 from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
@@ -146,6 +147,7 @@ class TTSMenuApp(tk.Tk):
         self._build_menubar()
         self._build()
         self.zip_convertor = ZIPConvertor(self.output_dir)
+        self._load_workspace_settings()
 
         self.after(3000, lambda: check_for_update_gui(
             parent=self,
@@ -330,12 +332,20 @@ class TTSMenuApp(tk.Tk):
 
         service_card, service_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("tts_service_section"))
         service_card.grid(row=2, column=0, sticky="ew", pady=(0, 12))
-        self.service_var = tk.StringVar(value=MemoryManager.get("tts_service", ""))
+        self.service_var = tk.StringVar(value=self._get_setting("default_service", ""))
 
         def service_changed(*_):
-            old_service = MemoryManager.get("tts_service", "")
+            old_service = self._get_setting("default_service", "")
             new_service = self.service_var.get()
-            MemoryManager.set("tts_service", new_service)
+            
+            ws_config = self._get_workspace_config()
+            if ws_config:
+                tts_settings = ws_config.get_tts_settings()
+                tts_settings["default_service"] = new_service
+                ws_config.set_tts_settings(tts_settings)
+            else:
+                MemoryManager.set("tts_service", new_service)
+            
             LogsHelperManager.log_config_change(self.logger, "tts_service", old_service, new_service)
 
         self.service_var.trace_add("write", service_changed)
@@ -347,12 +357,20 @@ class TTSMenuApp(tk.Tk):
 
         fmt_card, fmt_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("format_section"))
         fmt_card.grid(row=3, column=0, sticky="ew", pady=(0, 12))
-        self.format_var = tk.StringVar(value=MemoryManager.get("tts_format", ""))
+        self.format_var = tk.StringVar(value=self._get_setting("default_format", ""))
 
         def format_changed(*_):
-            old_fmt = MemoryManager.get("tts_format", "")
+            old_fmt = self._get_setting("default_format", "")
             new_fmt = self.format_var.get()
-            MemoryManager.set("tts_format", new_fmt)
+            
+            ws_config = self._get_workspace_config()
+            if ws_config:
+                tts_settings = ws_config.get_tts_settings()
+                tts_settings["default_format"] = new_fmt
+                ws_config.set_tts_settings(tts_settings)
+            else:
+                MemoryManager.set("tts_format", new_fmt)
+            
             LogsHelperManager.log_config_change(self.logger, "tts_format", old_fmt, new_fmt)
 
         self.format_var.trace_add("write", format_changed)
@@ -366,10 +384,10 @@ class TTSMenuApp(tk.Tk):
 
         self.lang_map = {code: f"{info['label']} ({code})" for code, info in LANGS.items()}
         self.inv_lang_map = {v: k for k, v in self.lang_map.items()}
-        saved_lang_code = MemoryManager.get("tts_lang", "en")
+        saved_lang_code = self._get_setting("default_language", "en")
         initial_display_text = self.lang_map.get(saved_lang_code, self.lang_map["en"])
         self.lang_var = tk.StringVar(value=initial_display_text)
-        self.lang_var.trace_add("write", self.listener.on_lang_change)
+        self.lang_var.trace_add("write", self._on_lang_change)
 
         lang_row, self.lang_combo = styled_combobox(lang_inner, self.lang.get("select_language_tts_label"),
                                                     self.lang_var, list(self.lang_map.values()))
@@ -380,13 +398,13 @@ class TTSMenuApp(tk.Tk):
             "male": self.lang.get("voice_male")
         }
         self.voice_internal_map = {v: k for k, v in self.voice_display_map.items()}
-        saved_internal_voice = MemoryManager.get("tts_voice", "female")
+        saved_internal_voice = self._get_setting("default_voice", "female")
         initial_display_voice = self.voice_display_map.get(
             saved_internal_voice,
             self.lang.get("voice_female")
         )
         self.voice_var = tk.StringVar(value=initial_display_voice)
-        self.voice_var.trace_add("write", self.listener.on_voice_change)
+        self.voice_var.trace_add("write", self._on_voice_change)
 
         voice_row, self.voice_combo = styled_combobox(lang_inner, self.lang.get("select_voice_label"),
                                                       self.voice_var, list(self.voice_display_map.values()))
@@ -444,7 +462,7 @@ class TTSMenuApp(tk.Tk):
             return
 
         svc_key = (self.service_var.get() or "").lower()
-        lang_code = MemoryManager.get("tts_lang", "en")
+        lang_code = self._get_setting("default_language", "en")
         try:
 
             LogsHelperManager.log_debug(self.logger, "PREVIEW_REQUEST", {
@@ -458,7 +476,7 @@ class TTSMenuApp(tk.Tk):
                 self.tts_helper = GTTSService(gtts_lang=gtts_lang,ui_lang=self.lang)
 
             elif svc_key == "edge":
-                gender = MemoryManager.get("tts_voice", "female")
+                gender = self._get_setting("default_voice", "female")
                 edge_voice = LANGS[lang_code]["edge"]["voices"][gender]
                 self.tts_helper = MicrosoftEdgeTTS(voice=edge_voice, ui_lang=self.lang)
 
@@ -505,7 +523,7 @@ class TTSMenuApp(tk.Tk):
                     text, progress_cb=markup_progress
                 )
 
-                settings = {k: MemoryManager.get(k, v) for k, v in {
+                settings = {k: self._get_setting(k, v) for k, v in {
                     "pitch": 0, "speed": 1.0, "volume": 1.0,
                     "echo": False, "reverb": False, "robot": False
                 }.items()}
@@ -579,7 +597,7 @@ class TTSMenuApp(tk.Tk):
             return
         fmt_key = (self.format_var.get() or "").upper()
         svc_key = (self.service_var.get() or "").upper()
-        lang_code = MemoryManager.get("tts_lang", "en")
+        lang_code = self._get_setting("default_language", "en")
         t0 = time.time()
 
         try:
@@ -587,7 +605,7 @@ class TTSMenuApp(tk.Tk):
                 gtts_lang = LANGS[lang_code]["gtts"]["lang"]
                 tts = GTTSService(gtts_lang=gtts_lang, ui_lang=self.lang)
             elif svc_key == "EDGE":
-                gender = MemoryManager.get("tts_voice", "female")
+                gender = self._get_setting("default_voice", "female")
                 edge_voice = LANGS[lang_code]["edge"]["voices"][gender]
                 tts = MicrosoftEdgeTTS(voice=edge_voice, ui_lang=self.lang)
             else:
@@ -635,7 +653,7 @@ class TTSMenuApp(tk.Tk):
                 raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
 
             self._set_progress(62, self.lang.get("progress_applying_effects"))
-            settings = {k: MemoryManager.get(k, v) for k, v in {
+            settings = {k: self._get_setting(k, v) for k, v in {
                 "pitch": 0, "speed": 1.0, "volume": 1.0,
                 "echo": False, "reverb": False, "robot": False
             }.items()}
@@ -1683,6 +1701,7 @@ class TTSMenuApp(tk.Tk):
         self.zip_convertor = ZIPConvertor(self.output_dir)
         self._update_output_label()
         self.browse_btn.config(state="disabled")
+        self._load_workspace_settings()
         LogsHelperManager.log_debug(self.logger, "OUTPUT_DIR_UPDATED", {
             "workspace": workspace.get_name(),
             "output_dir": str(self.output_dir)
@@ -1724,6 +1743,99 @@ class TTSMenuApp(tk.Tk):
             display_path = str(self.browse_path)
             self.browse_btn.config(state="normal")
         self.output_label.config(text=display_path)
+
+    def _get_workspace_config(self):
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspaceConfig(ws.get_path())
+        return None
+
+    def _get_setting(self, key: str, default=None):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            tts_settings = ws_config.get_tts_settings()
+            
+            if key in tts_settings:
+                return tts_settings[key]
+            
+            voice_settings_keys = ["pitch", "speed", "volume", "echo", "reverb", "robot", "preset"]
+            if key in voice_settings_keys:
+                return tts_settings.get(key, default)
+        
+        return MemoryManager.get(key, default)
+
+    def _save_setting(self, key: str, value):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            tts_settings = ws_config.get_tts_settings()
+            tts_settings[key] = value
+            
+            voice_settings_keys = ["pitch", "speed", "volume", "echo", "reverb", "robot", "preset"]
+            if key in voice_settings_keys:
+                ws_config.set_voice_settings(
+                    pitch=tts_settings.get("pitch"),
+                    speed=tts_settings.get("speed"),
+                    volume=tts_settings.get("volume"),
+                    echo=tts_settings.get("echo"),
+                    reverb=tts_settings.get("reverb"),
+                    robot=tts_settings.get("robot"),
+                    preset=tts_settings.get("preset")
+                )
+            else:
+                ws_config.set_tts_settings(tts_settings)
+        else:
+            MemoryManager.set(key, value)
+
+    def _load_workspace_settings(self):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            tts_settings = ws_config.get_tts_settings()
+            voice_settings = ws_config.get_voice_settings()
+            
+            if hasattr(self, 'service_var'):
+                self.service_var.set(tts_settings.get("default_service", "edge"))
+            if hasattr(self, 'format_var'):
+                self.format_var.set(tts_settings.get("default_format", "mp3"))
+            if hasattr(self, 'lang_var'):
+                lang_code = tts_settings.get("default_language", "tr")
+                if lang_code in self.lang_map:
+                    self.lang_var.set(self.lang_map[lang_code])
+            if hasattr(self, 'voice_var'):
+                voice = tts_settings.get("default_voice", "female")
+                if voice in self.voice_display_map:
+                    self.voice_var.set(self.voice_display_map[voice])
+            
+
+            LogsHelperManager.log_debug(self.logger, "WORKSPACE_SETTINGS_LOADED", {
+                "tts_settings": tts_settings,
+                "voice_settings": voice_settings
+            })
+
+    def _on_lang_change(self, *args):
+        self.listener.on_lang_change(*args)
+        new_lang_code = self.inv_lang_map.get(self.lang_var.get(), "en")
+        
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            tts_settings = ws_config.get_tts_settings()
+            tts_settings["default_language"] = new_lang_code
+            ws_config.set_tts_settings(tts_settings)
+        else:
+            MemoryManager.set("tts_lang", new_lang_code)
+            MemoryManager.set("default_language", new_lang_code)
+
+    def _on_voice_change(self, *args):
+        self.listener.on_voice_change(*args)
+        new_voice = self.voice_internal_map.get(self.voice_var.get(), "female")
+        
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            tts_settings = ws_config.get_tts_settings()
+            tts_settings["default_voice"] = new_voice
+            ws_config.set_tts_settings(tts_settings)
+        else:
+            MemoryManager.set("tts_voice", new_voice)
+            MemoryManager.set("default_voice", new_voice)
 
     def _on_recommendation_dismissed(self):
         self.ai_recommendation_dismissed = True

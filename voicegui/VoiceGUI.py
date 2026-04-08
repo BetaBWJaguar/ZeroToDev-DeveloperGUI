@@ -9,6 +9,7 @@ from fragments.UIFragments import center_window
 from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 from GuideLabel import GuideLabel
+from workspaces.WorkspaceConfig import WorkspaceConfig
 
 PRESET_FILE = Path(__file__).resolve().parent.parent / "utils" / "Preset-Default.json"
 
@@ -27,6 +28,7 @@ class VoiceSettings(tk.Toplevel):
 
         self.lang = parent.lang
         self.title(self.lang.get("voice_settings_title"))
+        self.parent = parent
 
         self.transient(parent)
         self.logger = LogsManager.get_logger("VoiceSettings")
@@ -42,7 +44,7 @@ class VoiceSettings(tk.Toplevel):
         preset_card, preset_inner = section(container, self.lang.get("voice_settings_preset_section"))
         preset_card.pack(fill="x", pady=(0, 2))
 
-        last_preset = MemoryManager.get("preset", "Default")
+        last_preset = self._get_setting("preset", "Default")
         self.preset_var = tk.StringVar(value=last_preset)
         translated_list = [self.translate_preset(name) for name in self.presets.keys()]
 
@@ -51,7 +53,7 @@ class VoiceSettings(tk.Toplevel):
         }
 
         self.preset_var = tk.StringVar(
-            value=original_to_display.get(MemoryManager.get("preset", "Default"))
+            value=original_to_display.get(self._get_setting("preset", "Default"))
         )
 
         preset_frame, preset_combo = styled_combobox(
@@ -69,17 +71,17 @@ class VoiceSettings(tk.Toplevel):
         param_card, param_inner = section(container, self.lang.get("voice_settings_params_section"))
         param_card.pack(fill="x", pady=(0, 15))
 
-        self.pitch_var = tk.DoubleVar(value=MemoryManager.get("pitch", 0))
+        self.pitch_var = tk.DoubleVar(value=self._get_setting("pitch", 0))
         self.pitch_var.trace_add("write", lambda *_: self._on_param_change("pitch", self.pitch_var.get()))
         labeled_scale(param_inner, self.lang.get("voice_settings_pitch_label"), self.pitch_var, -10, 10).pack(fill="x")
         GuideLabel(param_inner, self.lang.get("voice_settings_pitch_guide"))
 
-        self.speed_var = tk.DoubleVar(value=MemoryManager.get("speed", 1.0))
+        self.speed_var = tk.DoubleVar(value=self._get_setting("speed", 1.0))
         self.speed_var.trace_add("write", lambda *_: self._on_param_change("speed", self.speed_var.get()))
         labeled_scale(param_inner, self.lang.get("voice_settings_speed_label"), self.speed_var, 0.5, 2.0).pack(fill="x")
         GuideLabel(param_inner, self.lang.get("voice_settings_speed_guide"))
 
-        self.volume_var = tk.DoubleVar(value=MemoryManager.get("volume", 1.0))
+        self.volume_var = tk.DoubleVar(value=self._get_setting("volume", 1.0))
         self.volume_var.trace_add("write", lambda *_: self._on_param_change("volume", self.volume_var.get()))
         labeled_scale(param_inner, self.lang.get("voice_settings_volume_label"), self.volume_var, 0.5, 2.0).pack(fill="x")
         GuideLabel(param_inner, self.lang.get("voice_settings_volume_guide"))
@@ -87,19 +89,19 @@ class VoiceSettings(tk.Toplevel):
         effect_card, effect_inner = section(container, self.lang.get("voice_settings_effects_section"))
         effect_card.pack(fill="x", pady=(0, 15))
 
-        self.echo_var = tk.BooleanVar(value=MemoryManager.get("echo", False))
+        self.echo_var = tk.BooleanVar(value=self._get_setting("echo", False))
         self.echo_var.trace_add("write", lambda *_: self._on_param_change("echo", self.echo_var.get()))
         ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_echo_label"), variable=self.echo_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
         GuideLabel(effect_inner, self.lang.get("voice_settings_echo_guide"))
 
-        self.reverb_var = tk.BooleanVar(value=MemoryManager.get("reverb", False))
+        self.reverb_var = tk.BooleanVar(value=self._get_setting("reverb", False))
         self.reverb_var.trace_add("write", lambda *_: self._on_param_change("reverb", self.reverb_var.get()))
         ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_reverb_label"), variable=self.reverb_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
         GuideLabel(effect_inner, self.lang.get("voice_settings_reverb_guide"))
 
-        self.robot_var = tk.BooleanVar(value=MemoryManager.get("robot", False))
+        self.robot_var = tk.BooleanVar(value=self._get_setting("robot", False))
         self.robot_var.trace_add("write", lambda *_: self._on_param_change("robot", self.robot_var.get()))
         ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_robot_label"), variable=self.robot_var,
                         style="Option.TRadiobutton").pack(anchor="w", pady=2)
@@ -112,11 +114,54 @@ class VoiceSettings(tk.Toplevel):
         parent.update()
         center_window(self, parent)
 
+    def _get_workspace_config(self):
+        if hasattr(self.parent, 'workspace_manager'):
+            ws = self.parent.workspace_manager.get_current_workspace()
+            if ws:
+                return WorkspaceConfig(ws.get_path())
+        return None
+
+    def _get_setting(self, key: str, default=None):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            tts_settings = ws_config.get_tts_settings()
+            
+            if key in tts_settings:
+                return tts_settings[key]
+            
+            voice_settings_keys = ["pitch", "speed", "volume", "echo", "reverb", "robot", "preset"]
+            if key in voice_settings_keys:
+                return tts_settings.get(key, default)
+        
+        return MemoryManager.get(key, default)
+
+    def _save_setting(self, key: str, value):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            tts_settings = ws_config.get_tts_settings()
+            tts_settings[key] = value
+            
+            voice_settings_keys = ["pitch", "speed", "volume", "echo", "reverb", "robot", "preset"]
+            if key in voice_settings_keys:
+                ws_config.set_voice_settings(
+                    pitch=tts_settings.get("pitch"),
+                    speed=tts_settings.get("speed"),
+                    volume=tts_settings.get("volume"),
+                    echo=tts_settings.get("echo"),
+                    reverb=tts_settings.get("reverb"),
+                    robot=tts_settings.get("robot"),
+                    preset=tts_settings.get("preset")
+                )
+            else:
+                ws_config.set_tts_settings(tts_settings)
+        else:
+            MemoryManager.set(key, value)
+
     def apply_preset(self, *_):
         display_name = self.preset_var.get()
         preset_name = self.reverse_translate_preset(display_name)
 
-        MemoryManager.set("preset", preset_name)
+        self._save_setting("preset", preset_name)
 
         preset = self.presets.get(preset_name, {})
         if not preset:
@@ -132,8 +177,8 @@ class VoiceSettings(tk.Toplevel):
         LogsHelperManager.log_event(self.logger, "PRESET_APPLY", {"preset": preset_name})
 
     def _on_param_change(self, key, value, delay=800):
-        old_value = MemoryManager.get(key, None)
-        MemoryManager.set(key, value)
+        old_value = self._get_setting(key, None)
+        self._save_setting(key, value)
 
         if not hasattr(self, "_pending_logs"):
             self._pending_logs = {}

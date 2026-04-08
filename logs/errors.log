@@ -252,3 +252,4 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-04-08 02:09:23 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-08T02:09:23.985519", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}
 2026-04-08 02:09:32 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-08T02:09:32.027723", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}
 2026-04-08 02:14:47 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-08T02:14:47.091562", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}
+2026-04-09 02:04:29 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-09T02:04:29.878931", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
