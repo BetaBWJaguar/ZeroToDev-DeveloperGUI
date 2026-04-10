@@ -1747,7 +1747,7 @@ class TTSMenuApp(tk.Tk):
     def _get_workspace_config(self):
         ws = self.workspace_manager.get_current_workspace()
         if ws:
-            return WorkspaceConfig(ws.get_path())
+            return WorkspaceConfig(ws.get_path(), ws.get_workspace_id(), ws.db)
         return None
 
     def _get_setting(self, key: str, default=None):

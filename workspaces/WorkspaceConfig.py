@@ -24,9 +24,11 @@ class WorkspaceConfig:
             },
         }
     
-    def __init__(self, workspace_path: str):
+    def __init__(self, workspace_path: str, workspace_id: str = None, db=None):
         self.path = Path(workspace_path)
         self.config_file = self.path / "config.json"
+        self.workspace_id = workspace_id
+        self.db = db
         self.logger = LogsManager.get_logger("WorkspaceConfig")
         
     def load_config(self) -> dict:
@@ -47,6 +49,10 @@ class WorkspaceConfig:
             
             with open(self.config_file, 'w', encoding='utf-8') as f:
                 json.dump(merged_config, f, indent=4, ensure_ascii=False)
+            
+            if self.workspace_id and self.db:
+                self.db.update_workspace_config(self.workspace_id, merged_config)
+            
             return True
         except Exception as e:
             self.logger.error(f"Config Error: {e}")
