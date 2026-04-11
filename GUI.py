@@ -146,7 +146,8 @@ class TTSMenuApp(tk.Tk):
         self.mode = MemoryManager.get("app_mode")
         self._build_menubar()
         self._build()
-        self.zip_convertor = ZIPConvertor(self.output_dir)
+        data_dir = self.get_data_dir()
+        self.zip_convertor = ZIPConvertor(data_dir if data_dir else self.output_dir)
         self._load_workspace_settings()
 
         self.after(3000, lambda: check_for_update_gui(
@@ -1698,13 +1699,15 @@ class TTSMenuApp(tk.Tk):
     def _update_output_dir_for_workspace(self, workspace):
         self.output_dir = workspace.get_exports_path()
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        self.zip_convertor = ZIPConvertor(self.output_dir)
+        data_dir = self.get_data_dir()
+        self.zip_convertor = ZIPConvertor(data_dir if data_dir else self.output_dir)
         self._update_output_label()
         self.browse_btn.config(state="disabled")
         self._load_workspace_settings()
         LogsHelperManager.log_debug(self.logger, "OUTPUT_DIR_UPDATED", {
             "workspace": workspace.get_name(),
-            "output_dir": str(self.output_dir)
+            "output_dir": str(self.output_dir),
+            "data_dir": str(data_dir) if data_dir else None
         })
 
     def get_data_dir(self):
