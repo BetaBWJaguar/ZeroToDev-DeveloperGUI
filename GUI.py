@@ -653,6 +653,18 @@ class TTSMenuApp(tk.Tk):
                     )
                 raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
 
+            data_dir = self.get_data_dir()
+            if data_dir:
+                import time
+                timestamp = int(time.time())
+                raw_audio_path = data_dir / f"raw_audio_{timestamp}.mp3"
+                try:
+                    with raw_audio_path.open("wb") as f:
+                        f.write(raw_bytes)
+                    LogsHelperManager.log_debug(self.logger, "RAW_AUDIO_SAVED", {"path": str(raw_audio_path)})
+                except Exception as e:
+                    LogsHelperManager.log_error(self.logger, "RAW_AUDIO_SAVE_FAIL", str(e))
+
             self._set_progress(62, self.lang.get("progress_applying_effects"))
             settings = {k: self._get_setting(k, v) for k, v in {
                 "pitch": 0, "speed": 1.0, "volume": 1.0,
@@ -660,6 +672,16 @@ class TTSMenuApp(tk.Tk):
             }.items()}
             processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
             LogsHelperManager.log_debug(self.logger, "EFFECTS_APPLIED_CONVERT", settings)
+
+            if data_dir:
+                processed_audio_path = data_dir / f"processed_audio_{timestamp}.mp3"
+                try:
+                    with processed_audio_path.open("wb") as f:
+                        f.write(processed_bytes)
+                    LogsHelperManager.log_debug(self.logger, "PROCESSED_AUDIO_SAVED", {"path": str(processed_audio_path)})
+                except Exception as e:
+                    LogsHelperManager.log_error(self.logger, "PROCESSED_AUDIO_SAVE_FAIL", str(e))
+
             self._set_progress(85, self.lang.get("progress_effects_done"))
 
             fmt_class = FORMAT_MAP.get(fmt_key)
