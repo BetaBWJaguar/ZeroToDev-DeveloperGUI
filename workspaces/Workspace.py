@@ -187,7 +187,11 @@ class Workspace:
                     "default_voice": "female",
                     "pitch": 0,
                     "speed": 1.0,
-                    "volume": 1.0
+                    "volume": 1.0,
+                    "echo": False,
+                    "reverb": False,
+                    "robot": False,
+                    "preset": "Default"
                 }
             }
             self.config_file.write_text(json.dumps(default_config, indent=4))

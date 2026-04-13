@@ -138,21 +138,21 @@ class VoiceSettings(tk.Toplevel):
     def _save_setting(self, key: str, value):
         ws_config = self._get_workspace_config()
         if ws_config:
-            tts_settings = ws_config.get_tts_settings()
-            tts_settings[key] = value
-            
             voice_settings_keys = ["pitch", "speed", "volume", "echo", "reverb", "robot", "preset"]
             if key in voice_settings_keys:
-                ws_config.set_voice_settings(
-                    pitch=tts_settings.get("pitch"),
-                    speed=tts_settings.get("speed"),
-                    volume=tts_settings.get("volume"),
-                    echo=tts_settings.get("echo"),
-                    reverb=tts_settings.get("reverb"),
-                    robot=tts_settings.get("robot"),
-                    preset=tts_settings.get("preset")
-                )
+                voice_kwargs = {
+                    "pitch": self.pitch_var.get() if hasattr(self, 'pitch_var') else None,
+                    "speed": self.speed_var.get() if hasattr(self, 'speed_var') else None,
+                    "volume": self.volume_var.get() if hasattr(self, 'volume_var') else None,
+                    "echo": self.echo_var.get() if hasattr(self, 'echo_var') else None,
+                    "reverb": self.reverb_var.get() if hasattr(self, 'reverb_var') else None,
+                    "robot": self.robot_var.get() if hasattr(self, 'robot_var') else None,
+                    "preset": self.preset_var.get() if hasattr(self, 'preset_var') else None,
+                }
+                ws_config.set_voice_settings(**voice_kwargs)
             else:
+                tts_settings = ws_config.get_tts_settings()
+                tts_settings[key] = value
                 ws_config.set_tts_settings(tts_settings)
         else:
             MemoryManager.set(key, value)

@@ -50,7 +50,8 @@ class TTSHelper:
     def do_preview(self, synthesize_func, text: str,
                    seconds: int = 20,
                    play_audio: bool = True,
-                   progress_cb=None) -> bytes:
+                   progress_cb=None,
+                   voice_settings: dict = None) -> bytes:
         paragraphs = text.split("\n\n")
         snippet = paragraphs[0] if paragraphs else text[:300]
 
@@ -58,10 +59,13 @@ class TTSHelper:
         raw_bytes = synthesize_func(snippet)
 
         if progress_cb: progress_cb(50, self.lang.get("progress_applying_preview_effects"))
-        settings = {k: MemoryManager.get(k, v) for k, v in {
-            "pitch": 0, "speed": 1.0, "volume": 1.0,
-            "echo": False, "reverb": False, "robot": False
-        }.items()}
+        if voice_settings is None:
+            settings = {k: MemoryManager.get(k, v) for k, v in {
+                "pitch": 0, "speed": 1.0, "volume": 1.0,
+                "echo": False, "reverb": False, "robot": False
+            }.items()}
+        else:
+            settings = voice_settings
         logger = LogsManager.get_logger("TTSHelper")
         LogsHelperManager.log_debug(logger, "EFFECTS_APPLIED_PREVIEW", settings)
         processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)

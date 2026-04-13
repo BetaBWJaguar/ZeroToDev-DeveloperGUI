@@ -551,11 +551,17 @@ class TTSMenuApp(tk.Tk):
                         {"info": "Markup tags ignored — markup support disabled in Config Settings"}
                     )
 
+                settings = {k: self._get_setting(k, v) for k, v in {
+                    "pitch": 0, "speed": 1.0, "volume": 1.0,
+                    "echo": False, "reverb": False, "robot": False
+                }.items()}
+                
                 self.tts_helper.synthesize_preview(
                     text,
                     seconds=20,
                     play_audio=True,
-                    progress_cb=preview_progress
+                    progress_cb=preview_progress,
+                    voice_settings=settings
                 )
 
                 LogsHelperManager.log_success(self.logger, "PREVIEW")
@@ -1792,21 +1798,23 @@ class TTSMenuApp(tk.Tk):
     def _save_setting(self, key: str, value):
         ws_config = self._get_workspace_config()
         if ws_config:
-            tts_settings = ws_config.get_tts_settings()
-            tts_settings[key] = value
-            
             voice_settings_keys = ["pitch", "speed", "volume", "echo", "reverb", "robot", "preset"]
             if key in voice_settings_keys:
-                ws_config.set_voice_settings(
-                    pitch=tts_settings.get("pitch"),
-                    speed=tts_settings.get("speed"),
-                    volume=tts_settings.get("volume"),
-                    echo=tts_settings.get("echo"),
-                    reverb=tts_settings.get("reverb"),
-                    robot=tts_settings.get("robot"),
-                    preset=tts_settings.get("preset")
-                )
+                tts_settings = ws_config.get_tts_settings()
+                voice_kwargs = {
+                    "pitch": tts_settings.get("pitch", 0),
+                    "speed": tts_settings.get("speed", 1.0),
+                    "volume": tts_settings.get("volume", 1.0),
+                    "echo": tts_settings.get("echo", False),
+                    "reverb": tts_settings.get("reverb", False),
+                    "robot": tts_settings.get("robot", False),
+                    "preset": tts_settings.get("preset", "Default")
+                }
+                voice_kwargs[key] = value
+                ws_config.set_voice_settings(**voice_kwargs)
             else:
+                tts_settings = ws_config.get_tts_settings()
+                tts_settings[key] = value
                 ws_config.set_tts_settings(tts_settings)
         else:
             MemoryManager.set(key, value)

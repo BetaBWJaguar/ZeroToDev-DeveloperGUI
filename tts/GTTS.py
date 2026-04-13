@@ -79,5 +79,5 @@ class GTTSService(TTSHelper):
         })
         return DataManager.read_from_memory(mem_buf)
 
-    def synthesize_preview(self, text: str, seconds=20, play_audio=True, progress_cb=None) -> bytes:
-        return self.do_preview(self.synthesize_to_bytes, text, seconds, play_audio, progress_cb)
+    def synthesize_preview(self, text: str, seconds=20, play_audio=True, progress_cb=None, voice_settings: dict = None) -> bytes:
+        return self.do_preview(self.synthesize_to_bytes, text, seconds, play_audio, progress_cb, voice_settings)

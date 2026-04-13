@@ -363,6 +363,9 @@
   "config_save_export_settings": "Save Export Settings",
   "config_export_settings_saved": "Export settings saved successfully!",
   "config_export_settings_error": "Failed to save export settings:\n{error}",
+  "config_data_dir_label": "Data Directory:",
+  "config_logs_dir_label": "Logs Directory:",
+  "config_no_workspace": "No workspace selected",
   "menu_admin": "Admin",
   "menu_ai_monitoring": "AI Monitoring",
   "ai_monitoring_title": "🤖 AI System Monitoring",
@@ -474,5 +477,13 @@
   "workspace_success_unarchived": "Workspace '{name}' unarchived successfully!",
   "workspace_error_archive_failed": "Failed to archive workspace:\n{error}",
   "workspace_error_unarchive_failed": "Failed to unarchive workspace:\n{error}",
-  "workspace_no_archived": "No archived workspaces"
+  "workspace_no_archived": "No archived workspaces",
+  "stats_export_no_format_selected": "No export format selected",
+  "stats_export_save_json_title": "Save JSON Export",
+  "stats_export_save_csv_title": "Save CSV Export",
+  "stats_export_completed": "Exported: {count} file(s)",
+  "stats_export_json_success": "JSON export successful: {path}",
+  "stats_export_json_failed": "JSON export failed: {error}",
+  "stats_export_csv_success": "CSV export successful: {path}",
+  "stats_export_csv_failed": "CSV export failed: {error}"
 }

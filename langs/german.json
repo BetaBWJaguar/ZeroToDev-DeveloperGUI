@@ -363,6 +363,9 @@
   "config_save_export_settings": "Exporteinstellungen speichern",
   "config_export_settings_saved": "Exporteinstellungen erfolgreich gespeichert!",
   "config_export_settings_error": "Fehler beim Speichern der Exporteinstellungen:\n{error}",
+  "config_data_dir_label": "Datenverzeichnis:",
+  "config_logs_dir_label": "Protokollverzeichnis:",
+  "config_no_workspace": "Kein Arbeitsbereich ausgewählt",
   "menu_admin": "Admin",
   "menu_ai_monitoring": "AI-Überwachung",
   "ai_monitoring_title": "🤖 AI-Systemüberwachung",
@@ -474,5 +477,13 @@
   "workspace_success_unarchived": "Arbeitsbereich '{name}' erfolgreich aus dem Archiv entnommen!",
   "workspace_error_archive_failed": "Fehler beim Archivieren des Arbeitsbereichs:\n{error}",
   "workspace_error_unarchive_failed": "Fehler beim Entnehmen aus dem Archiv:\n{error}",
-  "workspace_no_archived": "Keine archivierten Arbeitsbereiche"
+  "workspace_no_archived": "Keine archivierten Arbeitsbereiche",
+  "stats_export_no_format_selected": "Kein Exportformat ausgewählt",
+  "stats_export_save_json_title": "JSON-Export speichern",
+  "stats_export_save_csv_title": "CSV-Export speichern",
+  "stats_export_completed": "Exportiert: {count} Datei(en)",
+  "stats_export_json_success": "JSON-Export erfolgreich: {path}",
+  "stats_export_json_failed": "JSON-Export fehlgeschlagen: {error}",
+  "stats_export_csv_success": "CSV-Export erfolgreich: {path}",
+  "stats_export_csv_failed": "CSV-Export fehlgeschlagen: {error}"
 }

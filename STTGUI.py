@@ -754,16 +754,61 @@ class STTMenuApp(tk.Tk):
             self._set_progress(100, self.lang.get("transcribe_done"))
             GUIError(self, self.lang.get("info_title"), self.lang.get("transcribe_success"), icon="✅")
             
-            LogsHelperManager.log_success(self.logger, "TRANSCRIPTION_COMPLETE", {
+            transcription_log_data = {
                 "file": self.selected_audio_file,
                 "engine": engine_type,
                 "language": lang_code,
-                "length": len(result)
-            })
+                "length": len(result),
+                "timestamp": time.time()
+            }
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                logs_dir.mkdir(parents=True, exist_ok=True)
+                log_file = logs_dir / f"transcription_{int(time.time())}.json"
+                with open(log_file, 'w', encoding='utf-8') as f:
+                    json.dump(transcription_log_data, f, indent=2, ensure_ascii=False)
+            
+            data_dir = self.get_data_dir()
+            if data_dir:
+                data_dir.mkdir(parents=True, exist_ok=True)
+                
+                transcription_data_file = data_dir / f"transcription_{int(time.time())}.json"
+                with open(transcription_data_file, 'w', encoding='utf-8') as f:
+                    json.dump({
+                        "file": self.selected_audio_file,
+                        "engine": engine_type,
+                        "language": lang_code,
+                        "text": result,
+                        "segments": self.transcription_segments,
+                        "timestamp": time.time()
+                    }, f, indent=2, ensure_ascii=False)
+                
+                import shutil
+                audio_filename = Path(self.selected_audio_file).name
+                audio_copy_path = data_dir / audio_filename
+                shutil.copy2(self.selected_audio_file, audio_copy_path)
+            
+            LogsHelperManager.log_success(self.logger, "TRANSCRIPTION_COMPLETE", transcription_log_data)
             
         except Exception as e:
             GUIError(self, self.lang.get("error_title"), f"{self.lang.get('transcribe_failed')}\n{e}", icon="❌")
             self._set_progress(0, self.lang.get("progress_ready"))
+            
+            error_log_data = {
+                "error": str(e),
+                "file": self.selected_audio_file if hasattr(self, 'selected_audio_file') else None,
+                "engine": self.engine_var.get() if hasattr(self, 'engine_var') else None,
+                "timestamp": time.time()
+            }
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                logs_dir.mkdir(parents=True, exist_ok=True)
+                error_log_file = logs_dir / f"error_{int(time.time())}.json"
+                with open(error_log_file, 'w', encoding='utf-8') as f:
+                    json.dump(error_log_data, f, indent=2, ensure_ascii=False)
+            
             LogsHelperManager.log_error(self.logger, "TRANSCRIBE_FAIL", str(e))
         finally:
             self.after(0, lambda: set_buttons_state("normal", self.transcribe_btn, self.select_audio_btn, self.export_btn))
@@ -809,6 +854,15 @@ class STTMenuApp(tk.Tk):
             try:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(transcribed_text)
+                
+                data_dir = self.get_data_dir()
+                if data_dir:
+                    data_dir.mkdir(parents=True, exist_ok=True)
+                    from datetime import datetime
+                    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                    data_file_path = data_dir / f"transcript_{timestamp}{saved_format}"
+                    with open(data_file_path, 'w', encoding='utf-8') as f:
+                        f.write(transcribed_text)
                 
                 GUIError(self, self.lang.get("info_title"), self.lang.get("export_success").format(path=file_path), icon="✅")
                 LogsHelperManager.log_success(self.logger, "TEXT_EXPORTED", {"path": file_path})
@@ -1642,6 +1696,26 @@ class STTMenuApp(tk.Tk):
             command=browse_output_dir,
             style="Accent.TButton"
         ).pack(anchor="center", pady=(0, 8))
+
+
+        data_logs_frame = ttk.Frame(container, style="Card.TFrame")
+        data_logs_frame.pack(fill="x", pady=(0, 18))
+
+        ttk.Label(data_logs_frame, text=self.lang.get("config_data_dir_label"), style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 4))
+
+        data_dir = self.get_data_dir()
+        data_dir_text = str(data_dir) if data_dir else self.lang.get("config_no_workspace")
+        ttk.Label(data_logs_frame, text=data_dir_text, style="Muted.TLabel", wraplength=380) \
+            .pack(anchor="w", pady=(0, 8))
+
+        ttk.Label(data_logs_frame, text=self.lang.get("config_logs_dir_label"), style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 4))
+
+        logs_dir = self.get_logs_dir()
+        logs_dir_text = str(logs_dir) if logs_dir else self.lang.get("config_no_workspace")
+        ttk.Label(data_logs_frame, text=logs_dir_text, style="Muted.TLabel", wraplength=380) \
+            .pack(anchor="w", pady=(0, 8))
 
 
         auto_open_frame = ttk.Frame(container, style="Card.TFrame")

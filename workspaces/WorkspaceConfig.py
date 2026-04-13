@@ -20,7 +20,7 @@ class WorkspaceConfig:
                 "echo": False,
                 "reverb": False,
                 "robot": False,
-                "preset": ""
+                "preset": "Default"
             },
         }
     
@@ -30,14 +30,19 @@ class WorkspaceConfig:
         self.workspace_id = workspace_id
         self.db = db
         self.logger = LogsManager.get_logger("WorkspaceConfig")
-        
+
     def load_config(self) -> dict:
         if not self.config_file.exists():
             return self._get_default_config()
-        
         try:
             with open(self.config_file, 'r', encoding='utf-8') as f:
-                return json.load(f)
+                config = json.load(f)
+
+            if self.workspace_id and self.db:
+                self.db.update_workspace_config(self.workspace_id, config)
+
+            return config
+
         except Exception as e:
             self.logger.error(f"Config Error: {e}")
             return self._get_default_config()

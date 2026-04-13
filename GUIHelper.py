@@ -559,7 +559,7 @@ def markup_support_section(parent, lang, enabled_var, on_toggle=None):
 
     return frame
 
-def export_checkbox_section(parent, lang, json_var, csv_var, pdf_var, on_change=None):
+def export_checkbox_section(parent, json_var, csv_var, on_change=None):
     frame = ttk.Frame(parent, style="Card.TFrame")
 
     style = ttk.Style()
@@ -603,20 +603,6 @@ def export_checkbox_section(parent, lang, json_var, csv_var, pdf_var, on_change=
         command=on_change
     )
     csv_check.grid(row=1, column=1, sticky="w")
-
-    ttk.Label(
-        frame,
-        text="PDF",
-        style="Muted.TLabel"
-    ).grid(row=2, column=0, sticky="w", padx=(0, 10))
-
-    pdf_check = ttk.Checkbutton(
-        frame,
-        variable=pdf_var,
-        style="Export.TCheckbutton",
-        command=on_change
-    )
-    pdf_check.grid(row=2, column=1, sticky="w")
 
     return frame
 

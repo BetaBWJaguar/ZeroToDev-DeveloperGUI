@@ -103,7 +103,6 @@ class StatsDashboardGUI(tk.Toplevel):
         self.preferred_language_var = tk.StringVar(value="N/A")
         self.export_json_var = tk.BooleanVar(value=False)
         self.export_csv_var = tk.BooleanVar(value=False)
-        self.export_pdf_var = tk.BooleanVar(value=False)
         self.export_status_var = tk.StringVar(value="")
         self._log_tags_initialized = set()
 
@@ -196,7 +195,6 @@ class StatsDashboardGUI(tk.Toplevel):
             self.lang,
             self.export_json_var,
             self.export_csv_var,
-            self.export_pdf_var,
             self._on_export_checkbox_change
         ).pack(fill="x")
 
@@ -244,9 +242,8 @@ class StatsDashboardGUI(tk.Toplevel):
         selected = []
         if self.export_json_var.get(): selected.append("JSON")
         if self.export_csv_var.get(): selected.append("CSV")
-        if self.export_pdf_var.get(): selected.append("PDF")
 
-        msg = f"Selected export formats: {', '.join(selected)}" if selected else "No export format selected"
+        msg = f"Selected export formats: {', '.join(selected)}" if selected else self.lang.get("stats_export_no_format_selected")
         self.export_status_var.set(msg)
         self._log_activity(msg, "info")
 
@@ -286,10 +283,10 @@ class StatsDashboardGUI(tk.Toplevel):
             data = self._gather_export_data()
             with open(file_path, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
-            self._log_activity(f"JSON export successful: {file_path}", "success")
+            self._log_activity(self.lang.get("stats_export_json_success").format(path=file_path), "success")
             return True
         except Exception as e:
-            self._log_activity(f"JSON export failed: {e}", "error")
+            self._log_activity(self.lang.get("stats_export_json_failed").format(error=e), "error")
             return False
 
     def _export_to_csv(self, file_path: str) -> bool:
@@ -318,21 +315,20 @@ class StatsDashboardGUI(tk.Toplevel):
                         for k, v in values.items():
                             writer.writerow([f"Analytics - {cat}", k, v])
 
-            self._log_activity(f"CSV export successful: {file_path}", "success")
+            self._log_activity(self.lang.get("stats_export_csv_success").format(path=file_path), "success")
             return True
         except Exception as e:
-            self._log_activity(f"CSV export failed: {e}", "error")
+            self._log_activity(self.lang.get("stats_export_csv_failed").format(error=e), "error")
             return False
 
     def _handle_export(self):
         selected_formats = []
         if self.export_json_var.get(): selected_formats.append("json")
         if self.export_csv_var.get(): selected_formats.append("csv")
-        if self.export_pdf_var.get(): selected_formats.append("pdf")
 
         if not selected_formats:
-            self.export_status_var.set("No export format selected")
-            self._log_activity("No export format selected", "warning")
+            self.export_status_var.set(self.lang.get("stats_export_no_format_selected"))
+            self._log_activity(self.lang.get("stats_export_no_format_selected"), "warning")
             return
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -345,7 +341,7 @@ class StatsDashboardGUI(tk.Toplevel):
                     defaultextension=".json",
                     filetypes=[("JSON files", "*.json")],
                     initialfile=f"{base_filename}.json",
-                    title="Save JSON Export"
+                    title=self.lang.get("stats_export_save_json_title")
                 )
                 if file_path and self._export_to_json(file_path):
                     export_results.append(f"JSON: {file_path}")
@@ -354,16 +350,13 @@ class StatsDashboardGUI(tk.Toplevel):
                     defaultextension=".csv",
                     filetypes=[("CSV files", "*.csv")],
                     initialfile=f"{base_filename}.csv",
-                    title="Save CSV Export"
+                    title=self.lang.get("stats_export_save_csv_title")
                 )
                 if file_path and self._export_to_csv(file_path):
                     export_results.append(f"CSV: {file_path}")
-            elif fmt == "pdf":
-                self.export_status_var.set("PDF export not implemented yet")
-                self._log_activity("PDF export not implemented yet", "warning")
 
         if export_results:
-            self.export_status_var.set(f"Exported: {len(export_results)} file(s)")
+            self.export_status_var.set(self.lang.get("stats_export_completed").format(count=len(export_results)))
             self._log_activity(f"Export completed: {', '.join(export_results)}", "success")
 
     def _start_auto_refresh(self):

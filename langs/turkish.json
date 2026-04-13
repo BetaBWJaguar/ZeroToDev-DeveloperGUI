@@ -363,6 +363,9 @@
   "config_save_export_settings": "Dışa Aktarma Ayarlarını Kaydet",
   "config_export_settings_saved": "Dışa aktarma ayarları başarıyla kaydedildi!",
   "config_export_settings_error": "Dışa aktarma ayarları kaydedilemedi:\n{error}",
+  "config_data_dir_label": "Veri Dizini:",
+  "config_logs_dir_label": "Log Dizini:",
+  "config_no_workspace": "Çalışma alanı seçilmedi",
   "menu_admin": "Yönetici",
   "menu_ai_monitoring": "AI İzleme",
   "ai_monitoring_title": "🤖 AI Sistem İzleme",
@@ -474,5 +477,13 @@
   "workspace_success_unarchived": "'{name}' çalışma alanı başarıyla arşivden çıkarıldı!",
   "workspace_error_archive_failed": "Çalışma alanı arşivlenemedi:\n{error}",
   "workspace_error_unarchive_failed": "Çalışma alanı arşivden çıkarılamadı:\n{error}",
-  "workspace_no_archived": "Arşivlenmiş çalışma alanı yok"
+  "workspace_no_archived": "Arşivlenmiş çalışma alanı yok",
+  "stats_export_no_format_selected": "Dışa aktarma formatı seçilmedi",
+  "stats_export_save_json_title": "JSON Dışa Aktarmayı Kaydet",
+  "stats_export_save_csv_title": "CSV Dışa Aktarmayı Kaydet",
+  "stats_export_completed": "Dışa aktarıldı: {count} dosya",
+  "stats_export_json_success": "JSON dışa aktarma başarılı: {path}",
+  "stats_export_json_failed": "JSON dışa aktarma başarısız: {error}",
+  "stats_export_csv_success": "CSV dışa aktarma başarılı: {path}",
+  "stats_export_csv_failed": "CSV dışa aktarma başarısız: {error}"
 }
