@@ -377,3 +377,6 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-04-09 02:04:38 | WARNING | WorkspaceDatabase | Workspace lock failed (already locked or not found): workspace_id=ws_20260407231343_sea123
 2026-04-13 01:18:13 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-13T01:18:13.685720", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
 2026-04-13 01:21:08 | WARNING | WorkspaceDatabase | Workspace lock failed (already locked or not found): workspace_id=ws_20260412221528_tunaosak
+2026-04-14 02:20:47 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-14T02:20:47.344931", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
+2026-04-14 02:21:12 | WARNING | WorkspaceDatabase | Workspace lock failed (already locked or not found): workspace_id=ws_20260412221528_tunaosak
+2026-04-14 02:21:34 | ERROR   | STTMenuApp | {"timestamp": "2026-04-14T02:21:34.612284", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}

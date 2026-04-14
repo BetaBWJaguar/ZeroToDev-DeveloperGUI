@@ -560,9 +560,35 @@ class STTMenuApp(tk.Tk):
                 self.audio_time_var.set(f"0:00 / {self._format_time(self.audio_duration)}")
                 self.play_btn.config(state="normal")
                 LogsHelperManager.log_event(self.logger, "AUDIO_FILE_SELECTED", {"file": file_path})
+                
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    logs_dir.mkdir(parents=True, exist_ok=True)
+                    audio_log_data = {
+                        "file": file_path,
+                        "filename": Path(file_path).name,
+                        "duration": self.audio_duration,
+                        "timestamp": time.time()
+                    }
+                    audio_log_file = logs_dir / f"audio_select_{int(time.time())}.json"
+                    with open(audio_log_file, 'w', encoding='utf-8') as f:
+                        json.dump(audio_log_data, f, indent=2, ensure_ascii=False)
             except Exception as e:
                 GUIError(self, self.lang.get("error_title"), f"{self.lang.get('error_audio_load')}\n{e}", icon="❌")
                 LogsHelperManager.log_error(self.logger, "AUDIO_LOAD_FAIL", str(e))
+                
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    logs_dir.mkdir(parents=True, exist_ok=True)
+                    error_log_data = {
+                        "error": str(e),
+                        "file": file_path,
+                        "action": "audio_file_select",
+                        "timestamp": time.time()
+                    }
+                    error_log_file = logs_dir / f"audio_error_{int(time.time())}.json"
+                    with open(error_log_file, 'w', encoding='utf-8') as f:
+                        json.dump(error_log_data, f, indent=2, ensure_ascii=False)
 
     def play_audio(self):
         if not self.selected_audio_file:
@@ -582,9 +608,35 @@ class STTMenuApp(tk.Tk):
             
             self._start_audio_progress_update()
             LogsHelperManager.log_event(self.logger, "AUDIO_PLAY", {"file": self.selected_audio_file})
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                logs_dir.mkdir(parents=True, exist_ok=True)
+                audio_play_log = {
+                    "file": self.selected_audio_file,
+                    "position": self.audio_position,
+                    "action": "play",
+                    "timestamp": time.time()
+                }
+                play_log_file = logs_dir / f"audio_play_{int(time.time())}.json"
+                with open(play_log_file, 'w', encoding='utf-8') as f:
+                    json.dump(audio_play_log, f, indent=2, ensure_ascii=False)
         except Exception as e:
             GUIError(self, self.lang.get("error_title"), f"{self.lang.get('error_audio_play')}\n{e}", icon="❌")
             LogsHelperManager.log_error(self.logger, "AUDIO_PLAY_FAIL", str(e))
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                logs_dir.mkdir(parents=True, exist_ok=True)
+                error_log_data = {
+                    "error": str(e),
+                    "file": self.selected_audio_file,
+                    "action": "audio_play",
+                    "timestamp": time.time()
+                }
+                error_log_file = logs_dir / f"audio_error_{int(time.time())}.json"
+                with open(error_log_file, 'w', encoding='utf-8') as f:
+                    json.dump(error_log_data, f, indent=2, ensure_ascii=False)
 
     def pause_audio(self):
         if self.audio_playing and not self.audio_paused:
@@ -598,6 +650,19 @@ class STTMenuApp(tk.Tk):
                 self.audio_update_timer = None
             
             LogsHelperManager.log_event(self.logger, "AUDIO_PAUSE", {"file": self.selected_audio_file})
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                logs_dir.mkdir(parents=True, exist_ok=True)
+                audio_pause_log = {
+                    "file": self.selected_audio_file,
+                    "position": self.audio_position,
+                    "action": "pause",
+                    "timestamp": time.time()
+                }
+                pause_log_file = logs_dir / f"audio_pause_{int(time.time())}.json"
+                with open(pause_log_file, 'w', encoding='utf-8') as f:
+                    json.dump(audio_pause_log, f, indent=2, ensure_ascii=False)
 
     def stop_audio(self):
         if self.audio_playing or self.audio_paused:
@@ -617,6 +682,18 @@ class STTMenuApp(tk.Tk):
                 self.audio_update_timer = None
             
             LogsHelperManager.log_event(self.logger, "AUDIO_STOP", {"file": self.selected_audio_file})
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                logs_dir.mkdir(parents=True, exist_ok=True)
+                audio_stop_log = {
+                    "file": self.selected_audio_file,
+                    "action": "stop",
+                    "timestamp": time.time()
+                }
+                stop_log_file = logs_dir / f"audio_stop_{int(time.time())}.json"
+                with open(stop_log_file, 'w', encoding='utf-8') as f:
+                    json.dump(audio_stop_log, f, indent=2, ensure_ascii=False)
 
     def _start_audio_progress_update(self):
         def update_progress():
@@ -681,6 +758,21 @@ class STTMenuApp(tk.Tk):
             "AUDIO_SEEK",
             {"position": round(self.audio_position, 2)}
         )
+
+        logs_dir = self.get_logs_dir()
+        if logs_dir:
+            logs_dir.mkdir(parents=True, exist_ok=True)
+            audio_seek_log = {
+                "file": self.selected_audio_file,
+                "old_position": round(self.audio_position, 2),
+                "new_position": round(new_position, 2),
+                "click_percent": round(click_percent, 2),
+                "action": "seek",
+                "timestamp": time.time()
+            }
+            seek_log_file = logs_dir / f"audio_seek_{int(time.time())}.json"
+            with open(seek_log_file, 'w', encoding='utf-8') as f:
+                json.dump(audio_seek_log, f, indent=2, ensure_ascii=False)
 
 
     def on_transcribe(self):
@@ -867,6 +959,21 @@ class STTMenuApp(tk.Tk):
                 GUIError(self, self.lang.get("info_title"), self.lang.get("export_success").format(path=file_path), icon="✅")
                 LogsHelperManager.log_success(self.logger, "TEXT_EXPORTED", {"path": file_path})
                 
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    logs_dir.mkdir(parents=True, exist_ok=True)
+                    export_log_data = {
+                        "file_path": file_path,
+                        "data_file_path": str(data_file_path) if data_dir else None,
+                        "format": saved_format,
+                        "pattern": saved_pattern,
+                        "text_length": len(transcribed_text),
+                        "timestamp": time.time()
+                    }
+                    export_log_file = logs_dir / f"export_{int(time.time())}.json"
+                    with open(export_log_file, 'w', encoding='utf-8') as f:
+                        json.dump(export_log_data, f, indent=2, ensure_ascii=False)
+                
 
                 if MemoryManager.get("export_auto_open", False):
                     try:
@@ -880,6 +987,21 @@ class STTMenuApp(tk.Tk):
             except Exception as e:
                 GUIError(self, self.lang.get("error_title"), f"{self.lang.get('export_failed')}\n{e}", icon="❌")
                 LogsHelperManager.log_error(self.logger, "EXPORT_FAIL", str(e))
+                
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    logs_dir.mkdir(parents=True, exist_ok=True)
+                    error_log_data = {
+                        "error": str(e),
+                        "file_path": file_path if file_path else None,
+                        "text_length": len(transcribed_text),
+                        "format": saved_format,
+                        "action": "export",
+                        "timestamp": time.time()
+                    }
+                    error_log_file = logs_dir / f"export_error_{int(time.time())}.json"
+                    with open(error_log_file, 'w', encoding='utf-8') as f:
+                        json.dump(error_log_data, f, indent=2, ensure_ascii=False)
 
     def _display_transcription_result(self, result):
         self.text.config(state="normal")

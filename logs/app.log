@@ -19491,3 +19491,73 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-04-13 01:52:09 | INFO    | TTSMenuApp | {"timestamp": "2026-04-13T01:52:09.744281", "event": "BUTTON_CLICK", "data": {"action": "CLOSE_USER_DASHBOARD"}}
 2026-04-13 01:52:12 | INFO    | TTSMenuApp | {"timestamp": "2026-04-13T01:52:12.855176", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2026-04-13 01:52:15 | INFO    | Main | {"timestamp": "2026-04-13T01:52:15.693493", "event": "SESSION_END", "data": {"session_id": "20260413-014434"}}
+2026-04-14 02:20:09 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-04-14 02:20:09 | INFO    | Main | {"timestamp": "2026-04-14T02:20:09.352292", "event": "SESSION_START", "data": {"session_id": "20260414-022009"}}
+2026-04-14 02:20:09 | INFO    | LangManager | {"timestamp": "2026-04-14T02:20:09.402286", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-04-14 02:20:22 | INFO    | Main | {"timestamp": "2026-04-14T02:20:22.501619", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-04-14 02:20:22 | INFO    | Main | {"timestamp": "2026-04-14T02:20:22.811851", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-04-14 02:20:22 | INFO    | Main | {"timestamp": "2026-04-14T02:20:22.831559", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-04-14 02:20:23 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:20:23 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69dc2218482b91937a14afaf, deleted_count=1
+2026-04-14 02:20:23 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69dd7a3707c3a4a06f73bffd
+2026-04-14 02:20:23 | INFO    | Main | {"timestamp": "2026-04-14T02:20:23.238483", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-04-14 02:20:23 | INFO    | Main | {"timestamp": "2026-04-14T02:20:23.249484", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-04-14 02:20:23 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:20:23 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69dd7a3707c3a4a06f73bffd, deleted_count=1
+2026-04-14 02:20:23 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69dd7a3707c3a4a06f73c001
+2026-04-14 02:20:23 | INFO    | Main | {"timestamp": "2026-04-14T02:20:23.715358", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-04-14 02:20:23 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-04-14 02:20:33 | INFO    | RecommendAI | Generated recommendation for user e1d276ef-17db-419f-812e-3759e95b6e0a from DB snapshot: Given your consistent use of Text-to-Speech and preference for MP3 format, consider exploring options to automate or batch-process your TTS conversions to save time.
+2026-04-14 02:20:33 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:33.112480", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-04-14 02:20:35 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:35.597970", "event": "CONFIG_CHANGE", "data": {"key": "tts_lang", "old": "en", "new": "tr"}}
+2026-04-14 02:20:35 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:35.984745", "event": "CONFIG_CHANGE", "data": {"key": "tts_voice", "old": "female", "new": "male"}}
+2026-04-14 02:20:38 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:38.543404", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2026-04-14 02:20:39 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:20:39 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69dd7a3707c3a4a06f73c001, deleted_count=1
+2026-04-14 02:20:39 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69dd7a4707c3a4a06f73c005
+2026-04-14 02:20:39 | INFO    | Main | {"timestamp": "2026-04-14T02:20:39.096519", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-04-14 02:20:40 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:40.221801", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "TTS", "new": "STT"}}}
+2026-04-14 02:20:42 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:42.741611", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-04-14 02:20:47 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:47.060091", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-04-14 02:20:47 | INFO    | TTSMenuApp | {"timestamp": "2026-04-14T02:20:47.327941", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-04-14 02:20:47 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-14T02:20:47.344931", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
+2026-04-14 02:20:54 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:20:54 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69dd7a4707c3a4a06f73c005, deleted_count=1
+2026-04-14 02:20:54 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69dd7a5607c3a4a06f73c00d
+2026-04-14 02:20:54 | INFO    | Main | {"timestamp": "2026-04-14T02:20:54.475690", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-04-14 02:20:58 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:20:58.274660", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "", "new": "tiny"}}
+2026-04-14 02:20:58 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:20:58.436897", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "base"}}
+2026-04-14 02:20:58 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:20:58.478593", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "small"}}
+2026-04-14 02:20:58 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:20:58.502050", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "medium"}}
+2026-04-14 02:21:01 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:01.130412", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "medium", "new": "small"}}
+2026-04-14 02:21:01 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:01.166868", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "small", "new": "base"}}
+2026-04-14 02:21:01 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:01.887781", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "base", "new": "tiny"}}
+2026-04-14 02:21:09 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:09.753236", "event": "BUTTON_CLICK", "data": {"action": "OPEN_RECENT_WORKSPACES"}}
+2026-04-14 02:21:09 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:21:09 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69dd7a5607c3a4a06f73c00d, deleted_count=1
+2026-04-14 02:21:09 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69dd7a6507c3a4a06f73c00f
+2026-04-14 02:21:09 | INFO    | Main | {"timestamp": "2026-04-14T02:21:09.867825", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-04-14 02:21:12 | WARNING | WorkspaceDatabase | Workspace lock failed (already locked or not found): workspace_id=ws_20260412221528_tunaosak
+2026-04-14 02:21:12 | INFO    | WorkspaceDatabase | Workspace updated: workspace_id=ws_20260412221528_tunaosak
+2026-04-14 02:21:12 | INFO    | WorkspaceDatabase | Workspace activated: workspace_id=ws_20260412221528_tunaosak, user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:21:13 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:13.045772", "event": "SUCCESS", "data": {"action": "WORKSPACE_SWITCHED", "duration": {"workspace_id": "ws_20260412221528_tunaosak", "workspace_name": "TUNAOSAK"}}}
+2026-04-14 02:21:16 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:16.508675", "event": "BUTTON_CLICK", "data": {"action": "TRANSCRIBE"}}
+2026-04-14 02:21:20 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:20.901713", "event": "CONFIG_CHANGE", "data": {"key": "whisper_model", "old": "tiny", "new": "medium"}}
+2026-04-14 02:21:24 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:24.158843", "event": "BUTTON_CLICK", "data": {"action": "OPEN_APP_MODE_SELECTOR"}}
+2026-04-14 02:21:25 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:21:25 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69dd7a6507c3a4a06f73c00f, deleted_count=1
+2026-04-14 02:21:25 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69dd7a7507c3a4a06f73c015
+2026-04-14 02:21:25 | INFO    | Main | {"timestamp": "2026-04-14T02:21:25.244885", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-04-14 02:21:26 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:26.193476", "event": "SUCCESS", "data": {"action": "APP_MODE_CHANGED", "duration": {"old": "STT", "new": "TTS"}}}
+2026-04-14 02:21:29 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:29.884509", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-04-14 02:21:30 | INFO    | WorkspaceDatabase | Workspace deactivated: workspace_id=ws_20260412221528_tunaosak
+2026-04-14 02:21:31 | INFO    | WorkspaceDatabase | Workspace unlocked: workspace_id=ws_20260412221528_tunaosak
+2026-04-14 02:21:33 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:33.939072", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-04-14 02:21:34 | INFO    | STTMenuApp | {"timestamp": "2026-04-14T02:21:34.530719", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-04-14 02:21:34 | ERROR   | STTMenuApp | {"timestamp": "2026-04-14T02:21:34.612284", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
+2026-04-14 02:21:35 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-04-14 02:21:40 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=e1d276ef-17db-419f-812e-3759e95b6e0a
+2026-04-14 02:21:40 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69dd7a7507c3a4a06f73c015, deleted_count=1
+2026-04-14 02:21:40 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user e1d276ef-17db-419f-812e-3759e95b6e0a: 69dd7a8407c3a4a06f73c01e
+2026-04-14 02:21:40 | INFO    | Main | {"timestamp": "2026-04-14T02:21:40.629304", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-04-14 02:21:52 | INFO    | Main | {"timestamp": "2026-04-14T02:21:52.569081", "event": "SESSION_END", "data": {"session_id": "20260414-022009"}}
