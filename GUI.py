@@ -8,6 +8,8 @@ import simpleaudio as sa
 import tkinter as tk
 import ctypes
 from tkinter import ttk, messagebox, filedialog
+from utils.UtilityHelper import ensure_dir
+from utils.UtilityHelper import ensure_dir
 try:
     ctypes.windll.shcore.SetProcessDpiAwareness(2)
 except:
@@ -140,7 +142,7 @@ class TTSMenuApp(tk.Tk):
         make_responsive(self, 1800, 950, resizable=False)
         self.logger = LogsManager.get_logger("TTSMenuApp")
         self.browse_path = BASE_DIR / "output"
-        self.browse_path.mkdir(exist_ok=True)
+        ensure_dir(self.browse_path)
         self.output_dir = self.browse_path
         init_style(self, COLORS, FONTS)
         self.mode = MemoryManager.get("app_mode")
@@ -661,6 +663,7 @@ class TTSMenuApp(tk.Tk):
 
             data_dir = self.get_data_dir()
             if data_dir:
+                ensure_dir(data_dir)
                 import time
                 timestamp = int(time.time())
                 raw_audio_path = data_dir / f"raw_audio_{timestamp}.mp3"
@@ -1726,8 +1729,10 @@ class TTSMenuApp(tk.Tk):
 
     def _update_output_dir_for_workspace(self, workspace):
         self.output_dir = workspace.get_exports_path()
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+        ensure_dir(self.output_dir)
         data_dir = self.get_data_dir()
+        if data_dir:
+            ensure_dir(data_dir)
         self.zip_convertor = ZIPConvertor(data_dir if data_dir else self.output_dir)
         self._update_output_label()
         self.browse_btn.config(state="disabled")
