@@ -5,6 +5,7 @@ from typing import Optional, Dict, Any
 
 from subscription.SubscriptionPlan import SubscriptionPlan
 from subscription.SubscriptionStatus import SubscriptionStatus
+from subscription.SubscriptionFeatures import SubscriptionFeatures
 
 
 class Subscription:
@@ -142,3 +143,35 @@ class Subscription:
     def __repr__(self) -> str:
         return (f"Subscription(id={self.id}, user_id={self.user_id}, "
                 f"plan={self.plan.value}, status={self.status.value})")
+    
+
+    def is_feature_available(self, feature: str) -> bool:
+        return SubscriptionFeatures.is_feature_available(self.plan, feature)
+    
+    def get_available_features(self) -> list[str]:
+        return SubscriptionFeatures.get_available_features(self.plan)
+    
+    def get_feature_limit(self, feature: str, limit_key: str) -> Any:
+        return SubscriptionFeatures.get_feature_limit(self.plan, feature, limit_key)
+    
+    def get_all_limits(self) -> Dict[str, Dict[str, Any]]:
+        return SubscriptionFeatures.get_all_limits(self.plan)
+    
+    def can_use_feature(self, feature: str, **kwargs) -> tuple[bool, Optional[str]]:
+        if not self.is_active():
+            return False, "Subscription is not active"
+
+        if not self.is_feature_available(feature):
+            return False, f"'{feature}' feature is not available in the {self.plan.value} plan"
+
+        limits = SubscriptionFeatures.get_all_feature_limits(self.plan, feature)
+        if not limits:
+            return True, None
+
+        for limit_key, limit_value in limits.items():
+            current_value = kwargs.get(limit_key)
+            if current_value is not None and not SubscriptionFeatures.is_unlimited(limit_value):
+                if current_value >= limit_value:
+                    return False, f"Limit exceeded: {current_value} >= {limit_value}"
+
+        return True, None
