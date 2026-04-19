@@ -9,10 +9,9 @@ class SubscriptionFeatures:
     FEATURE_WORKSPACES = "workspaces"
     FEATURE_TTS = "tts"
     FEATURE_STT = "stt"
-    FEATURE_AI_CHAT = "ai_chat"
-    FEATURE_EXPORT_FORMATS = "export_formats"
+    FEATURE_AIRECOMMEND = "ai_recommend"
     FEATURE_WORKSPACE_QUOTA = "workspace_quota"
-    FEATURE_API_ACCESS = "api_access"
+    FEATURE_ZIP_CONVERTOR = "zip_convertor"
 
     PLAN_FEATURES: Dict[SubscriptionPlan, List[str]] = {
         SubscriptionPlan.FREE: [
@@ -24,26 +23,22 @@ class SubscriptionFeatures:
             FEATURE_WORKSPACES,
             FEATURE_TTS,
             FEATURE_STT,
-            FEATURE_AI_CHAT,
-            FEATURE_EXPORT_FORMATS,
+            FEATURE_ZIP_CONVERTOR
         ],
         SubscriptionPlan.PRO: [
             FEATURE_WORKSPACES,
             FEATURE_TTS,
             FEATURE_STT,
-            FEATURE_AI_CHAT,
-            FEATURE_EXPORT_FORMATS,
+            FEATURE_ZIP_CONVERTOR,
             FEATURE_WORKSPACE_QUOTA,
-            FEATURE_API_ACCESS,
         ],
         SubscriptionPlan.ENTERPRISE: [
             FEATURE_WORKSPACES,
             FEATURE_TTS,
             FEATURE_STT,
-            FEATURE_AI_CHAT,
-            FEATURE_EXPORT_FORMATS,
+            FEATURE_ZIP_CONVERTOR,
             FEATURE_WORKSPACE_QUOTA,
-            FEATURE_API_ACCESS,
+            FEATURE_AIRECOMMEND,
         ],
     }
 
