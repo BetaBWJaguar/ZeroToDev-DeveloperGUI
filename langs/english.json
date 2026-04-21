@@ -485,5 +485,14 @@
   "stats_export_json_success": "JSON export successful: {path}",
   "stats_export_json_failed": "JSON export failed: {error}",
   "stats_export_csv_success": "CSV export successful: {path}",
-  "stats_export_csv_failed": "CSV export failed: {error}"
+  "stats_export_csv_failed": "CSV export failed: {error}",
+  "subscription_plan_free": "Free",
+  "subscription_plan_basic": "Basic",
+  "subscription_plan_pro": "Pro",
+  "subscription_plan_enterprise": "Enterprise",
+  "subscription_status_active": "Active",
+  "subscription_status_expired": "Expired",
+  "subscription_status_cancelled": "Cancelled",
+  "subscription_status_pending": "Pending",
+  "subscription_status_suspended": "Suspended"
 }

@@ -485,5 +485,14 @@
   "stats_export_json_success": "JSON-Export erfolgreich: {path}",
   "stats_export_json_failed": "JSON-Export fehlgeschlagen: {error}",
   "stats_export_csv_success": "CSV-Export erfolgreich: {path}",
-  "stats_export_csv_failed": "CSV-Export fehlgeschlagen: {error}"
+  "stats_export_csv_failed": "CSV-Export fehlgeschlagen: {error}",
+  "subscription_plan_free": "Kostenlos",
+  "subscription_plan_basic": "Basis",
+  "subscription_plan_pro": "Pro",
+  "subscription_plan_enterprise": "Unternehmen",
+  "subscription_status_active": "Aktiv",
+  "subscription_status_expired": "Abgelaufen",
+  "subscription_status_cancelled": "Storniert",
+  "subscription_status_pending": "Ausstehend",
+  "subscription_status_suspended": "Ausgesetzt"
 }

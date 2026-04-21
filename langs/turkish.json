@@ -485,5 +485,14 @@
   "stats_export_json_success": "JSON dışa aktarma başarılı: {path}",
   "stats_export_json_failed": "JSON dışa aktarma başarısız: {error}",
   "stats_export_csv_success": "CSV dışa aktarma başarılı: {path}",
-  "stats_export_csv_failed": "CSV dışa aktarma başarısız: {error}"
+  "stats_export_csv_failed": "CSV dışa aktarma başarısız: {error}",
+  "subscription_plan_free": "Ücretsiz",
+  "subscription_plan_basic": "Temel",
+  "subscription_plan_pro": "Pro",
+  "subscription_plan_enterprise": "Kurumsal",
+  "subscription_status_active": "Aktif",
+  "subscription_status_expired": "Süresi Doldu",
+  "subscription_status_cancelled": "İptal Edildi",
+  "subscription_status_pending": "Beklemede",
+  "subscription_status_suspended": "Askıya Alındı"
 }
