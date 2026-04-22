@@ -494,5 +494,10 @@
   "subscription_status_expired": "Abgelaufen",
   "subscription_status_cancelled": "Storniert",
   "subscription_status_pending": "Ausstehend",
-  "subscription_status_suspended": "Ausgesetzt"
+  "subscription_status_suspended": "Ausgesetzt",
+  "subscription_error_no_active_subscription": "Kein aktives Abonnement gefunden",
+  "subscription_error_no_subscription": "Kein Abonnement gefunden",
+  "subscription_error_cannot_downgrade": "Kann nicht von {current_plan} auf {new_plan} herabgestuft werden",
+  "subscription_error_cannot_upgrade": "Kann nicht von {current_plan} auf {new_plan} aktualisiert werden",
+  "subscription_error_cannot_renew_cancelled": "Storniertes Abonnement kann nicht verlängert werden"
 }

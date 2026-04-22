@@ -494,5 +494,10 @@
   "subscription_status_expired": "Süresi Doldu",
   "subscription_status_cancelled": "İptal Edildi",
   "subscription_status_pending": "Beklemede",
-  "subscription_status_suspended": "Askıya Alındı"
+  "subscription_status_suspended": "Askıya Alındı",
+  "subscription_error_no_active_subscription": "Aktif abonelik bulunamadı",
+  "subscription_error_no_subscription": "Abonelik bulunamadı",
+  "subscription_error_cannot_downgrade": "{current_plan} planından {new_plan} planına düşürülemez",
+  "subscription_error_cannot_upgrade": "{current_plan} planından {new_plan} planına yükseltilemez",
+  "subscription_error_cannot_renew_cancelled": "İptal edilmiş abonelik yenilenemez"
 }

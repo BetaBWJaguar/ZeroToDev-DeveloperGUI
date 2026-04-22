@@ -494,5 +494,10 @@
   "subscription_status_expired": "Expired",
   "subscription_status_cancelled": "Cancelled",
   "subscription_status_pending": "Pending",
-  "subscription_status_suspended": "Suspended"
+  "subscription_status_suspended": "Suspended",
+  "subscription_error_no_active_subscription": "No active subscription found",
+  "subscription_error_no_subscription": "No subscription found",
+  "subscription_error_cannot_downgrade": "Cannot downgrade from {current_plan} to {new_plan}",
+  "subscription_error_cannot_upgrade": "Cannot upgrade from {current_plan} to {new_plan}",
+  "subscription_error_cannot_renew_cancelled": "Cannot renew cancelled subscription"
 }

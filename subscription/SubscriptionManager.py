@@ -5,11 +5,13 @@ from subscription.Subscription import Subscription
 from subscription.SubscriptionPlan import SubscriptionPlan
 from subscription.SubscriptionStatus import SubscriptionStatus
 from logs_manager.LogsManager import LogsManager
+from language_manager.LangManager import LangManager
 
 
 class SubscriptionManager:
     def __init__(self):
         self.logger = LogsManager.get_logger("SubscriptionManager")
+        self._lang = LangManager()
         self._subscriptions = {}
         self._user_subscriptions = {}
 
@@ -67,7 +69,7 @@ class SubscriptionManager:
         current_subscription = self.get_user_subscription(user_id)
 
         if not current_subscription:
-            return False, "No active subscription found"
+            return False, self._lang.get("subscription_error_no_active_subscription")
 
         current_plan = current_subscription.plan
 
@@ -76,7 +78,10 @@ class SubscriptionManager:
         new_index = plan_order.index(new_plan)
 
         if new_index <= current_index:
-            return False, f"Cannot downgrade from {current_plan.value} to {new_plan.value}"
+            return False, self._lang.get("subscription_error_cannot_downgrade").format(
+                current_plan=current_plan.value,
+                new_plan=new_plan.value
+            )
 
         current_subscription.upgrade_plan(new_plan)
         current_subscription.activate()
@@ -97,7 +102,7 @@ class SubscriptionManager:
         current_subscription = self.get_user_subscription(user_id)
 
         if not current_subscription:
-            return False, "No active subscription found"
+            return False, self._lang.get("subscription_error_no_active_subscription")
 
         current_plan = current_subscription.plan
 
@@ -106,7 +111,10 @@ class SubscriptionManager:
         new_index = plan_order.index(new_plan)
 
         if new_index >= current_index:
-            return False, f"Cannot upgrade from {current_plan.value} to {new_plan.value}"
+            return False, self._lang.get("subscription_error_cannot_upgrade",).format(
+                current_plan=current_plan.value,
+                new_plan=new_plan.value
+            )
 
         current_subscription.upgrade_plan(new_plan)
         current_subscription.updated_at = datetime.utcnow().isoformat()
@@ -118,7 +126,7 @@ class SubscriptionManager:
         subscription = self.get_user_subscription(user_id)
 
         if not subscription:
-            return False, "No active subscription found"
+            return False, self._lang.get("subscription_error_no_active_subscription")
 
         subscription.cancel()
 
@@ -129,10 +137,10 @@ class SubscriptionManager:
         subscription = self.get_user_subscription(user_id)
 
         if not subscription:
-            return False, "No active subscription found"
+            return False, self._lang.get("subscription_error_no_active_subscription",)
 
         if subscription.status == SubscriptionStatus.CANCELLED:
-            return False, "Cannot renew cancelled subscription"
+            return False, self._lang.get("subscription_error_cannot_renew_cancelled")
 
         subscription.extend_subscription(days)
         subscription.activate()
@@ -144,7 +152,7 @@ class SubscriptionManager:
         subscription = self.get_user_subscription(user_id)
 
         if not subscription:
-            return False, "No active subscription found"
+            return False, self._lang.get("subscription_error_no_active_subscription")
 
         subscription.suspend()
 
@@ -155,7 +163,7 @@ class SubscriptionManager:
         subscription = self.get_user_subscription(user_id)
 
         if not subscription:
-            return False, "No subscription found"
+            return False, self._lang.get("subscription_error_no_subscription")
 
         subscription.activate()
 
