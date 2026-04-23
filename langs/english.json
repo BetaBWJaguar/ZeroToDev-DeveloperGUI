@@ -499,5 +499,8 @@
   "subscription_error_no_subscription": "No subscription found",
   "subscription_error_cannot_downgrade": "Cannot downgrade from {current_plan} to {new_plan}",
   "subscription_error_cannot_upgrade": "Cannot upgrade from {current_plan} to {new_plan}",
-  "subscription_error_cannot_renew_cancelled": "Cannot renew cancelled subscription"
+  "subscription_error_cannot_renew_cancelled": "Cannot renew cancelled subscription",
+  "subscription_error_not_active": "Subscription is not active",
+  "subscription_error_feature_not_available": "'{feature}' feature is not available in the {plan} plan",
+  "subscription_error_limit_exceeded": "Limit exceeded: {current} >= {limit}"
 }

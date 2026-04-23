@@ -158,11 +158,17 @@ class Subscription:
         return SubscriptionFeatures.get_all_limits(self.plan)
     
     def can_use_feature(self, feature: str, **kwargs) -> tuple[bool, Optional[str]]:
+        from language_manager.LangManager import LangManager
+        _lang = LangManager()
+
         if not self.is_active():
-            return False, "Subscription is not active"
+            return False, _lang.get("subscription_error_not_active")
 
         if not self.is_feature_available(feature):
-            return False, f"'{feature}' feature is not available in the {self.plan.value} plan"
+            return False, _lang.get("subscription_error_feature_not_available").format(
+                feature=feature,
+                plan=self.plan.value
+            )
 
         limits = SubscriptionFeatures.get_all_feature_limits(self.plan, feature)
         if not limits:
@@ -172,6 +178,9 @@ class Subscription:
             current_value = kwargs.get(limit_key)
             if current_value is not None and not SubscriptionFeatures.is_unlimited(limit_value):
                 if current_value >= limit_value:
-                    return False, f"Limit exceeded: {current_value} >= {limit_value}"
+                    return False, _lang.get("subscription_error_limit_exceeded").format(
+                        current=current_value,
+                        limit=limit_value
+                    )
 
         return True, None
