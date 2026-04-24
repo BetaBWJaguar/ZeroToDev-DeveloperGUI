@@ -8,8 +8,7 @@ import simpleaudio as sa
 import tkinter as tk
 import ctypes
 from tkinter import ttk, messagebox, filedialog
-from utils.UtilityHelper import ensure_dir
-from utils.UtilityHelper import ensure_dir
+from utils.UtilityHelper import ensure_dir, write_json_file
 try:
     ctypes.windll.shcore.SetProcessDpiAwareness(2)
 except:
@@ -451,6 +450,15 @@ class TTSMenuApp(tk.Tk):
         import threading
         LogsHelperManager.log_button(self.logger, "PREVIEW")
         LogsHelperManager.log_event(self.logger, "TTS_PREVIEW_START", {})
+        
+        logs_dir = self.get_logs_dir()
+        if logs_dir:
+            preview_start_log = {
+                "event": "preview_start",
+                "timestamp": time.time()
+            }
+            write_json_file(logs_dir / f"preview_start_{int(time.time())}.json", preview_start_log)
+        
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
         self._set_progress(0, self.lang.get("preview_starting"))
         threading.Thread(target=self._do_preview_thread, daemon=True).start()
@@ -462,6 +470,15 @@ class TTSMenuApp(tk.Tk):
             GUIError(self, self.lang.get("error_title"), self.lang.get("error_no_text"), icon="❌")
             self._set_progress(0,self.lang.get("progress_ready"))
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                error_log_data = {
+                    "event": "preview_error",
+                    "error": "no_text_entered",
+                    "timestamp": time.time()
+                }
+                write_json_file(logs_dir / f"preview_error_{int(time.time())}.json", error_log_data)
             return
 
         svc_key = (self.service_var.get() or "").lower()
@@ -544,6 +561,18 @@ class TTSMenuApp(tk.Tk):
                 )
 
                 LogsHelperManager.log_success(self.logger, "MARKUP_PREVIEW")
+                
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    preview_success_log = {
+                        "event": "preview_success",
+                        "service": svc_key,
+                        "lang": lang_code,
+                        "chars": len(text),
+                        "markup": True,
+                        "timestamp": time.time()
+                    }
+                    write_json_file(logs_dir / f"preview_success_{int(time.time())}.json", preview_success_log)
 
             else:
                 if not MemoryManager.get("markup_enabled", True):
@@ -567,10 +596,31 @@ class TTSMenuApp(tk.Tk):
                 )
 
                 LogsHelperManager.log_success(self.logger, "PREVIEW")
+                
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    preview_success_log = {
+                        "event": "preview_success",
+                        "service": svc_key,
+                        "lang": lang_code,
+                        "chars": len(text),
+                        "timestamp": time.time()
+                    }
+                    write_json_file(logs_dir / f"preview_success_{int(time.time())}.json", preview_success_log)
         except Exception as e:
             GUIError(self, self.lang.get("error_title"), self.lang.get("preview_failed_message").format(error=e), icon="❌")
             self._set_progress(0, self.lang.get("progress_ready"))
             LogsHelperManager.log_error(self.logger, "PREVIEW_FAIL", str(e))
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                error_log_data = {
+                    "event": "preview_error",
+                    "error": "exception",
+                    "error_message": str(e),
+                    "timestamp": time.time()
+                }
+                write_json_file(logs_dir / f"preview_error_{int(time.time())}.json", error_log_data)
 
         finally:
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn,self.preview_btn))
@@ -603,6 +653,15 @@ class TTSMenuApp(tk.Tk):
             GUIError(self, self.lang.get("error_title"), self.lang.get("error_no_text"), icon="❌")
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn, self.text))
             self._set_progress(0, self.lang.get("progress_ready"))
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                error_log_data = {
+                    "event": "convert_error",
+                    "error": "no_text_entered",
+                    "timestamp": time.time()
+                }
+                write_json_file(logs_dir / f"convert_error_{int(time.time())}.json", error_log_data)
             return
         fmt_key = (self.format_var.get() or "").upper()
         svc_key = (self.service_var.get() or "").upper()
@@ -622,6 +681,16 @@ class TTSMenuApp(tk.Tk):
                 GUIError(self, self.lang.get("error_title"), self.lang.get("error_unknown_service"), icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,self.lang.get("progress_ready"))
+                
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    error_log_data = {
+                        "event": "convert_error",
+                        "error": "unknown_service",
+                        "service": svc_key,
+                        "timestamp": time.time()
+                    }
+                    write_json_file(logs_dir / f"convert_error_{int(time.time())}.json", error_log_data)
                 return
 
             LogsHelperManager.log_debug(self.logger, "CONVERT_REQUEST", {
@@ -629,6 +698,17 @@ class TTSMenuApp(tk.Tk):
                 "format": fmt_key,
                 "chars": len(text)
             })
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                convert_start_log = {
+                    "event": "convert_start",
+                    "service": svc_key,
+                    "format": fmt_key,
+                    "chars": len(text),
+                    "timestamp": time.time()
+                }
+                write_json_file(logs_dir / f"convert_start_{int(time.time())}.json", convert_start_log)
 
 
             fmt_class = FORMAT_MAP.get(fmt_key)
@@ -637,6 +717,16 @@ class TTSMenuApp(tk.Tk):
                 GUIError(self, self.lang.get("error_title"), self.lang.get("error_unknown_format"), icon="❌")
                 self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
                 self._set_progress(0,self.lang.get("progress_ready"))
+                
+                logs_dir = self.get_logs_dir()
+                if logs_dir:
+                    error_log_data = {
+                        "event": "convert_error",
+                        "error": "unknown_format",
+                        "format": fmt_key,
+                        "timestamp": time.time()
+                    }
+                    write_json_file(logs_dir / f"convert_error_{int(time.time())}.json", error_log_data)
                 return
 
 
@@ -714,11 +804,35 @@ class TTSMenuApp(tk.Tk):
                 "path": str(out_path),
                 "size": out_path.stat().st_size
             })
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                convert_success_log = {
+                    "event": "convert_success",
+                    "service": svc_key,
+                    "format": fmt_key,
+                    "output_path": str(out_path),
+                    "size": out_path.stat().st_size,
+                    "duration_seconds": int(time.time() - t0),
+                    "chars": len(text),
+                    "timestamp": time.time()
+                }
+                write_json_file(logs_dir / f"convert_success_{int(time.time())}.json", convert_success_log)
 
         except Exception as e:
             LogsHelperManager.log_error(self.logger, "CONVERT_FAIL", str(e))
             GUIError(self, self.lang.get("error_title"), f"{self.lang.get('convert_failed')}\n{e}", icon="❌")
             self._set_progress(0, self.lang.get("progress_ready"))
+            
+            logs_dir = self.get_logs_dir()
+            if logs_dir:
+                error_log_data = {
+                    "event": "convert_error",
+                    "error": "exception",
+                    "error_message": str(e),
+                    "timestamp": time.time()
+                }
+                write_json_file(logs_dir / f"convert_error_{int(time.time())}.json", error_log_data)
         finally:
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
 
