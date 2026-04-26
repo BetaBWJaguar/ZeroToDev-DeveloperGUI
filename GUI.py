@@ -751,18 +751,21 @@ class TTSMenuApp(tk.Tk):
                     )
                 raw_bytes = tts.synthesize_to_bytes(text, progress_cb=tts_progress)
 
+            temp_dir = self.get_temp_dir()
             data_dir = self.get_data_dir()
+            if temp_dir:
+                ensure_dir(temp_dir)
             if data_dir:
                 ensure_dir(data_dir)
-                import time
-                timestamp = int(time.time())
-                raw_audio_path = data_dir / f"raw_audio_{timestamp}.mp3"
-                try:
-                    with raw_audio_path.open("wb") as f:
-                        f.write(raw_bytes)
-                    LogsHelperManager.log_debug(self.logger, "RAW_AUDIO_SAVED", {"path": str(raw_audio_path)})
-                except Exception as e:
-                    LogsHelperManager.log_error(self.logger, "RAW_AUDIO_SAVE_FAIL", str(e))
+            import time
+            timestamp = int(time.time())
+            raw_audio_path = (temp_dir if temp_dir else data_dir) / f"raw_audio_{timestamp}.mp3"
+            try:
+                with raw_audio_path.open("wb") as f:
+                    f.write(raw_bytes)
+                LogsHelperManager.log_debug(self.logger, "RAW_AUDIO_SAVED", {"path": str(raw_audio_path)})
+            except Exception as e:
+                LogsHelperManager.log_error(self.logger, "RAW_AUDIO_SAVE_FAIL", str(e))
 
             self._set_progress(62, self.lang.get("progress_applying_effects"))
             settings = {k: self._get_setting(k, v) for k, v in {
@@ -772,14 +775,13 @@ class TTSMenuApp(tk.Tk):
             processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
             LogsHelperManager.log_debug(self.logger, "EFFECTS_APPLIED_CONVERT", settings)
 
-            if data_dir:
-                processed_audio_path = data_dir / f"processed_audio_{timestamp}.mp3"
-                try:
-                    with processed_audio_path.open("wb") as f:
-                        f.write(processed_bytes)
-                    LogsHelperManager.log_debug(self.logger, "PROCESSED_AUDIO_SAVED", {"path": str(processed_audio_path)})
-                except Exception as e:
-                    LogsHelperManager.log_error(self.logger, "PROCESSED_AUDIO_SAVE_FAIL", str(e))
+            processed_audio_path = (temp_dir if temp_dir else data_dir) / f"processed_audio_{timestamp}.mp3"
+            try:
+                with processed_audio_path.open("wb") as f:
+                    f.write(processed_bytes)
+                LogsHelperManager.log_debug(self.logger, "PROCESSED_AUDIO_SAVED", {"path": str(processed_audio_path)})
+            except Exception as e:
+                LogsHelperManager.log_error(self.logger, "PROCESSED_AUDIO_SAVE_FAIL", str(e))
 
             self._set_progress(85, self.lang.get("progress_effects_done"))
 
@@ -1844,10 +1846,13 @@ class TTSMenuApp(tk.Tk):
     def _update_output_dir_for_workspace(self, workspace):
         self.output_dir = workspace.get_exports_path()
         ensure_dir(self.output_dir)
+        temp_dir = self.get_temp_dir()
         data_dir = self.get_data_dir()
+        if temp_dir:
+            ensure_dir(temp_dir)
         if data_dir:
             ensure_dir(data_dir)
-        self.zip_convertor = ZIPConvertor(data_dir if data_dir else self.output_dir)
+        self.zip_convertor = ZIPConvertor(temp_dir if temp_dir else (data_dir if data_dir else self.output_dir))
         self._update_output_label()
         self.browse_btn.config(state="disabled")
         self._load_workspace_settings()
