@@ -77,8 +77,8 @@ class User:
             status: UserStatus = UserStatus.PENDING,
             email_verified: bool = False,
             subscription_id: Optional[str] = None,
-            subscription_plan: Optional[str] = None,
-            subscription_status: Optional[str] = None,
+            subscription_plan: Optional[str] = SubscriptionPlan.FREE.value,
+            subscription_status: Optional[str] = SubscriptionStatus.ACTIVE.value,
             subscription_end_date: Optional[str] = None,
     ) -> "User":
 
@@ -101,7 +101,7 @@ class User:
             twofa_enabled=False,
             twofa_secret=None,
             twofa_verified=False,
-            subscription_id=subscription_id,
+            subscription_id=subscription_id or str(uuid.uuid4()),
             subscription_plan=subscription_plan,
             subscription_status=subscription_status,
             subscription_end_date=subscription_end_date

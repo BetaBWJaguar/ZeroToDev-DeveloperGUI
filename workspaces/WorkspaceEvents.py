@@ -36,11 +36,21 @@ class WorkspaceEvents:
             self.logger.warning(f"Database config not found at {config_path.resolve()}")
 
     def log_event(self, event_type: str, message: str = "", metadata: dict | None = None):
+        default_metadata = {
+            "workspace_id": self.workspace.workspace_id,
+            "user_id": self.workspace.user_id,
+            "workspace_name": self.workspace.get_name(),
+            "workspace_path": str(self.workspace.get_path())
+        }
+        
+        if metadata:
+            default_metadata.update(metadata)
+        
         event = {
             "timestamp": datetime.utcnow(),
             "event": event_type,
             "message": message,
-            "metadata": metadata or {}
+            "metadata": default_metadata
         }
 
         with open(self.event_file, "a", encoding="utf-8") as f:

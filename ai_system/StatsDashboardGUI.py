@@ -192,7 +192,6 @@ class StatsDashboardGUI(tk.Toplevel):
 
         export_checkbox_section(
             export_inner,
-            self.lang,
             self.export_json_var,
             self.export_csv_var,
             self._on_export_checkbox_change
