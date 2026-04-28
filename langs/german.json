@@ -503,5 +503,17 @@
   "subscription_error_cannot_renew_cancelled": "Storniertes Abonnement kann nicht verlängert werden",
   "subscription_error_not_active": "Abonnement ist nicht aktiv",
   "subscription_error_feature_not_available": "'{feature}' Feature ist im {plan}-Plan nicht verfügbar",
-  "subscription_error_limit_exceeded": "Limit überschritten: {current} >= {limit}"
+  "subscription_error_limit_exceeded": "Limit überschritten: {current} >= {limit}",
+  "profile_subscription_section": "Abonnement",
+  "profile_subscription_plan": "Plan",
+  "profile_subscription_status": "Status",
+  "profile_subscription_end_date": "Enddatum",
+  "profile_subscription_start_date": "Startdatum",
+  "profile_subscription_features": "Funktionen",
+  "profile_subscription_limits": "Limits",
+  "profile_no_subscription": "Kein Abonnement gefunden",
+  "profile_subscription_unlimited": "Unbegrenzt",
+  "profile_subscription_active_yes": "Ja",
+  "profile_subscription_active_no": "Nein",
+  "profile_subscription_is_active": "Aktiv"
 }

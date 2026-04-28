@@ -1114,6 +1114,10 @@ class TTSMenuApp(tk.Tk):
         center_window(win, self)
 
     def show_profile(self):
+        from subscription.SubscriptionPlan import SubscriptionPlan
+        from subscription.SubscriptionStatus import SubscriptionStatus
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+
         LogsHelperManager.log_button(self.logger, "OPEN_PROFILE")
 
         win = tk.Toplevel(self)
@@ -1174,6 +1178,61 @@ class TTSMenuApp(tk.Tk):
                 text=self.lang.get("profile_no_data"),
                 style="Muted.TLabel"
             ).pack(anchor="center")
+
+        ttk.Separator(container).pack(fill="x", pady=(15, 10))
+
+        sub_card, sub_inner = section(container, self.lang.get("profile_subscription_section"))
+        sub_card.pack(fill="x", pady=(0, 10))
+
+        sub_info = user.get_subscription_info() if hasattr(user, "get_subscription_info") else None
+
+        if sub_info and sub_info.get("has_subscription"):
+            plan_raw = sub_info.get("plan", "FREE")
+            try:
+                plan_enum = SubscriptionPlan(plan_raw)
+                plan_display = plan_enum.get_display_name()
+            except (ValueError, AttributeError):
+                plan_display = plan_raw
+
+            status_raw = sub_info.get("status", "PENDING")
+            try:
+                status_enum = SubscriptionStatus(status_raw)
+                status_display = status_enum.get_display_name()
+            except (ValueError, AttributeError):
+                status_display = status_raw
+
+            is_active = sub_info.get("is_active", False)
+            active_text = self.lang.get("profile_subscription_active_yes") if is_active else self.lang.get("profile_subscription_active_no")
+
+            kv_row(sub_inner, self.lang.get("profile_subscription_plan"), plan_display).pack(anchor="w", pady=2)
+            kv_row(sub_inner, self.lang.get("profile_subscription_status"), status_display).pack(anchor="w", pady=2)
+            kv_row(sub_inner, self.lang.get("profile_subscription_is_active"), active_text).pack(anchor="w", pady=2)
+
+            end_date = sub_info.get("end_date")
+            kv_row(sub_inner, self.lang.get("profile_subscription_end_date"), end_date or "N/A").pack(anchor="w", pady=2)
+
+            features = sub_info.get("features", [])
+            if features:
+                features_text = ", ".join(features)
+                kv_row(sub_inner, self.lang.get("profile_subscription_features"), features_text).pack(anchor="w", pady=2)
+
+            limits = sub_info.get("limits", {})
+            if limits:
+                limit_parts = []
+                for feature_key, limit_dict in limits.items():
+                    for limit_key, limit_val in limit_dict.items():
+                        if limit_val == -1:
+                            limit_parts.append(f"{feature_key}.{limit_key}: {self.lang.get('profile_subscription_unlimited')}")
+                        else:
+                            limit_parts.append(f"{feature_key}.{limit_key}: {limit_val}")
+                limits_text = ", ".join(limit_parts)
+                kv_row(sub_inner, self.lang.get("profile_subscription_limits"), limits_text).pack(anchor="w", pady=2)
+        else:
+            ttk.Label(
+                sub_inner,
+                text=self.lang.get("profile_no_subscription"),
+                style="Muted.TLabel"
+            ).pack(anchor="w", pady=5)
 
         ttk.Separator(container).pack(fill="x", pady=(15, 10))
 
