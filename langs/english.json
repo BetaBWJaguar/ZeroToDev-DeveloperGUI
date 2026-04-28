@@ -365,6 +365,7 @@
   "config_export_settings_error": "Failed to save export settings:\n{error}",
   "config_data_dir_label": "Data Directory:",
   "config_logs_dir_label": "Logs Directory:",
+  "config_temp_dir_label": "Temp Directory:",
   "config_no_workspace": "No workspace selected",
   "menu_admin": "Admin",
   "menu_ai_monitoring": "AI Monitoring",

@@ -365,6 +365,7 @@
   "config_export_settings_error": "Fehler beim Speichern der Exporteinstellungen:\n{error}",
   "config_data_dir_label": "Datenverzeichnis:",
   "config_logs_dir_label": "Protokollverzeichnis:",
+  "config_temp_dir_label": "Temporäres Verzeichnis:",
   "config_no_workspace": "Kein Arbeitsbereich ausgewählt",
   "menu_admin": "Admin",
   "menu_ai_monitoring": "AI-Überwachung",

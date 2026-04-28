@@ -838,22 +838,35 @@ class STTMenuApp(tk.Tk):
             if logs_dir:
                 write_json_file(logs_dir / f"transcription_{int(time.time())}.json", transcription_log_data)
             
+            temp_dir = self.get_temp_dir()
             data_dir = self.get_data_dir()
-            if data_dir:
-                transcription_data_file = data_dir / f"transcription_{int(time.time())}.json"
-                write_json_file(transcription_data_file, {
-                    "file": self.selected_audio_file,
-                    "engine": engine_type,
-                    "language": lang_code,
-                    "text": result,
-                    "segments": self.transcription_segments,
-                    "timestamp": time.time()
-                })
+            
+            transcription_data = {
+                "file": self.selected_audio_file,
+                "engine": engine_type,
+                "language": lang_code,
+                "text": result,
+                "segments": self.transcription_segments,
+                "timestamp": time.time()
+            }
+            
+            if temp_dir:
+                import shutil
+                audio_filename = Path(self.selected_audio_file).name
+                temp_audio_path = temp_dir / audio_filename
+                shutil.copy2(self.selected_audio_file, temp_audio_path)
                 
+                temp_transcription_file = temp_dir / f"transcription_{int(time.time())}.json"
+                write_json_file(temp_transcription_file, transcription_data)
+            
+            if data_dir:
                 import shutil
                 audio_filename = Path(self.selected_audio_file).name
                 audio_copy_path = data_dir / audio_filename
                 shutil.copy2(self.selected_audio_file, audio_copy_path)
+                
+                transcription_data_file = data_dir / f"transcription_{int(time.time())}.json"
+                write_json_file(transcription_data_file, transcription_data)
             
             LogsHelperManager.log_success(self.logger, "TRANSCRIPTION_COMPLETE", transcription_log_data)
             
@@ -918,7 +931,15 @@ class STTMenuApp(tk.Tk):
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(transcribed_text)
                 
+                temp_dir = self.get_temp_dir()
                 data_dir = self.get_data_dir()
+                
+                if temp_dir:
+                    from datetime import datetime
+                    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                    temp_file_path = temp_dir / f"transcript_{timestamp}{saved_format}"
+                    write_text_file(temp_file_path, transcribed_text)
+                
                 if data_dir:
                     from datetime import datetime
                     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -1103,6 +1124,8 @@ class STTMenuApp(tk.Tk):
                     "name": name,
                     "path": workspace_path
                 })
+                if hasattr(self, '_config_data_dir_label'):
+                    self._refresh_config_directory_labels()
                 win.destroy()
             except Exception as e:
                 GUIError(self, self.lang.get("error_title"),
@@ -1170,6 +1193,8 @@ class STTMenuApp(tk.Tk):
                     "workspace_id": workspace_id,
                     "workspace_name": workspace.get_name()
                 })
+                if hasattr(self, '_config_data_dir_label'):
+                    self._refresh_config_directory_labels()
                 win.destroy()
             except Exception as e:
                 GUIError(self, self.lang.get("error_title"),
@@ -1184,6 +1209,8 @@ class STTMenuApp(tk.Tk):
                         GUIError(self, self.lang.get("success_title"),
                                 self.lang.get("workspace_success_archived").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name")), icon="✅")
                         LogsHelperManager.log_success(self.logger, "WORKSPACE_ARCHIVED", {"workspace_id": workspace_id})
+                        if hasattr(self, '_config_data_dir_label'):
+                            self._refresh_config_directory_labels()
                         win.destroy()
                     else:
                         GUIError(self, self.lang.get("error_title"),
@@ -1201,6 +1228,8 @@ class STTMenuApp(tk.Tk):
                         GUIError(self, self.lang.get("success_title"),
                                 self.lang.get("workspace_success_unarchived").format(name=self.workspace_manager.db.get_workspace(workspace_id).get("name")), icon="✅")
                         LogsHelperManager.log_success(self.logger, "WORKSPACE_UNARCHIVED", {"workspace_id": workspace_id})
+                        if hasattr(self, '_config_data_dir_label'):
+                            self._refresh_config_directory_labels()
                         win.destroy()
                     else:
                         GUIError(self, self.lang.get("error_title"),
@@ -1268,6 +1297,8 @@ class STTMenuApp(tk.Tk):
             "workspace": workspace.get_name(),
             "output_dir": str(self.output_dir)
         })
+        if hasattr(self, '_config_data_dir_label'):
+            self._refresh_config_directory_labels()
 
     def get_data_dir(self):
         ws = self.workspace_manager.get_current_workspace()
@@ -1716,6 +1747,14 @@ class STTMenuApp(tk.Tk):
     def show_config_settings(self):
         LogsHelperManager.log_button(self.logger, "OPEN_CONFIG_SETTINGS")
 
+        if hasattr(self, '_config_data_dir_label') and self._config_data_dir_label is not None and self._config_data_dir_label.winfo_exists():
+            self._refresh_config_directory_labels()
+            return
+
+        self._config_data_dir_label = None
+        self._config_logs_dir_label = None
+        self._config_temp_dir_label = None
+
         win = tk.Toplevel(self)
         win.title(self.lang.get("config_export_title"))
         win.transient(self)
@@ -1764,14 +1803,21 @@ class STTMenuApp(tk.Tk):
         ttk.Label(output_frame, text=self.lang.get("config_output_dir_label"), style="Label.TLabel") \
             .pack(anchor="w", pady=(0, 8))
 
+        is_ws_active = self.workspace_manager.get_current_workspace() is not None
+
         output_dir_var = tk.StringVar(value=MemoryManager.get("export_output_dir", ""))
-        output_dir_entry = ttk.Entry(output_frame, textvariable=output_dir_var)
-        output_dir_entry.pack(fill="x", pady=(0, 8))
+        self._config_output_dir_var = output_dir_var
+
+
+        self._config_output_dir_entry = ttk.Entry(
+            output_frame,
+            textvariable=output_dir_var,
+            state="readonly" if is_ws_active else "normal"
+        )
+        self._config_output_dir_entry.pack(fill="x", pady=(0, 8))
 
         def browse_output_dir():
-            dir_path = filedialog.askdirectory(
-                title=self.lang.get("config_output_dir_browse")
-            )
+            dir_path = filedialog.askdirectory(title=self.lang.get("config_output_dir_browse"))
             if dir_path:
                 output_dir_var.set(dir_path)
 
@@ -1779,7 +1825,8 @@ class STTMenuApp(tk.Tk):
             output_frame,
             text=self.lang.get("config_output_dir_browse"),
             command=browse_output_dir,
-            style="Accent.TButton"
+            style="Accent.TButton",
+            state="disabled" if is_ws_active else "normal"
         ).pack(anchor="center", pady=(0, 8))
 
 
@@ -1791,16 +1838,24 @@ class STTMenuApp(tk.Tk):
 
         data_dir = self.get_data_dir()
         data_dir_text = str(data_dir) if data_dir else self.lang.get("config_no_workspace")
-        ttk.Label(data_logs_frame, text=data_dir_text, style="Muted.TLabel", wraplength=380) \
-            .pack(anchor="w", pady=(0, 8))
+        self._config_data_dir_label = ttk.Label(data_logs_frame, text=data_dir_text, style="Muted.TLabel", wraplength=380)
+        self._config_data_dir_label.pack(anchor="w", pady=(0, 8))
 
         ttk.Label(data_logs_frame, text=self.lang.get("config_logs_dir_label"), style="Label.TLabel") \
             .pack(anchor="w", pady=(0, 4))
 
         logs_dir = self.get_logs_dir()
         logs_dir_text = str(logs_dir) if logs_dir else self.lang.get("config_no_workspace")
-        ttk.Label(data_logs_frame, text=logs_dir_text, style="Muted.TLabel", wraplength=380) \
-            .pack(anchor="w", pady=(0, 8))
+        self._config_logs_dir_label = ttk.Label(data_logs_frame, text=logs_dir_text, style="Muted.TLabel", wraplength=380)
+        self._config_logs_dir_label.pack(anchor="w", pady=(0, 8))
+
+        ttk.Label(data_logs_frame, text=self.lang.get("config_temp_dir_label"), style="Label.TLabel") \
+            .pack(anchor="w", pady=(0, 4))
+
+        temp_dir = self.get_temp_dir()
+        temp_dir_text = str(temp_dir) if temp_dir else self.lang.get("config_no_workspace")
+        self._config_temp_dir_label = ttk.Label(data_logs_frame, text=temp_dir_text, style="Muted.TLabel", wraplength=380)
+        self._config_temp_dir_label.pack(anchor="w", pady=(0, 8))
 
 
         auto_open_frame = ttk.Frame(container, style="Card.TFrame")
@@ -1917,6 +1972,25 @@ class STTMenuApp(tk.Tk):
 
         center_window(win)
 
+    def _refresh_config_directory_labels(self):
+        if not hasattr(self, '_config_data_dir_label') or self._config_data_dir_label is None or not self._config_data_dir_label.winfo_exists():
+            return
+
+        try:
+            data_dir = self.get_data_dir()
+            data_dir_text = str(data_dir) if data_dir else self.lang.get("config_no_workspace")
+            self._config_data_dir_label.config(text=data_dir_text)
+
+            logs_dir = self.get_logs_dir()
+            logs_dir_text = str(logs_dir) if logs_dir else self.lang.get("config_no_workspace")
+            self._config_logs_dir_label.config(text=logs_dir_text)
+
+            temp_dir = self.get_temp_dir()
+            temp_dir_text = str(temp_dir) if temp_dir else self.lang.get("config_no_workspace")
+            self._config_temp_dir_label.config(text=temp_dir_text)
+        except tk.TclError:
+            pass
+    
     def _on_recommendation_dismissed(self):
         self.ai_recommendation_dismissed = True
         if self._ai_recommendation_after_id:

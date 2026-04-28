@@ -365,6 +365,7 @@
   "config_export_settings_error": "Dışa aktarma ayarları kaydedilemedi:\n{error}",
   "config_data_dir_label": "Veri Dizini:",
   "config_logs_dir_label": "Log Dizini:",
+  "config_temp_dir_label": "Geçici Dizin:",
   "config_no_workspace": "Çalışma alanı seçilmedi",
   "menu_admin": "Yönetici",
   "menu_ai_monitoring": "AI İzleme",
