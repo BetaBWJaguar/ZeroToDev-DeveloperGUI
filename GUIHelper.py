@@ -606,3 +606,138 @@ def export_checkbox_section(parent, json_var, csv_var, on_change=None):
 
     return frame
 
+
+def show_profile(parent, lang, current_user, logger):
+    from subscription.SubscriptionPlan import SubscriptionPlan
+    from subscription.SubscriptionStatus import SubscriptionStatus
+    from subscription.SubscriptionFeatures import SubscriptionFeatures
+    from logs_manager.LogsHelperManager import LogsHelperManager
+    from fragments.UIFragments import center_window
+
+    LogsHelperManager.log_button(logger, "OPEN_PROFILE")
+
+    win = tk.Toplevel(parent)
+    win.title(lang.get("menu_profile"))
+    win.transient(parent)
+    win.grab_set()
+    win.resizable(False, False)
+
+    user = current_user
+    user_data = user.id if isinstance(user.id, dict) else {}
+
+    container = ttk.Frame(win, padding=25)
+    container.pack(fill="both", expand=True)
+
+    ttk.Label(
+        container,
+        text=lang.get("menu_profile"),
+        style="Title.TLabel"
+    ).pack(anchor="center", pady=(0, 15))
+
+    if user_data:
+
+        ttk.Label(
+            container,
+            text=f"{lang.get('profile_username')}: {user_data.get('username', 'N/A')}",
+            style="Label.TLabel"
+        ).pack(anchor="w", pady=(5, 2))
+
+        ttk.Label(
+            container,
+            text=f"{lang.get('profile_email')}: {user_data.get('email', 'N/A')}",
+            style="Label.TLabel"
+        ).pack(anchor="w", pady=(5, 2))
+
+        ttk.Label(
+            container,
+            text=f"{lang.get('profile_role')}: {user_data.get('role', 'N/A')}",
+            style="Label.TLabel"
+        ).pack(anchor="w", pady=(5, 2))
+
+        if user_data.get("first_name") or user_data.get("last_name"):
+            full_name = f"{user_data.get('first_name', '')} {user_data.get('last_name', '')}".strip()
+            ttk.Label(
+                container,
+                text=f"{lang.get('profile_name')}: {full_name}",
+                style="Label.TLabel"
+            ).pack(anchor="w", pady=(5, 2))
+
+        ttk.Label(
+            container,
+            text=f"{lang.get('profile_status')}: {user_data.get('status', 'N/A')}",
+            style="Label.TLabel"
+        ).pack(anchor="w", pady=(5, 2))
+
+    else:
+        ttk.Label(
+            container,
+            text=lang.get("profile_no_data"),
+            style="Muted.TLabel"
+        ).pack(anchor="center")
+
+    ttk.Separator(container).pack(fill="x", pady=(15, 10))
+
+    sub_card, sub_inner = section(container, lang.get("profile_subscription_section"))
+    sub_card.pack(fill="x", pady=(0, 10))
+
+    sub_info = user.get_subscription_info() if hasattr(user, "get_subscription_info") else None
+
+    if sub_info and sub_info.get("has_subscription"):
+        plan_raw = sub_info.get("plan", "FREE")
+        try:
+            plan_enum = SubscriptionPlan(plan_raw)
+            plan_display = plan_enum.get_display_name()
+        except (ValueError, AttributeError):
+            plan_display = plan_raw
+
+        status_raw = sub_info.get("status", "PENDING")
+        try:
+            status_enum = SubscriptionStatus(status_raw)
+            status_display = status_enum.get_display_name()
+        except (ValueError, AttributeError):
+            status_display = status_raw
+
+        is_active = sub_info.get("is_active", False)
+        active_text = lang.get("profile_subscription_active_yes") if is_active else lang.get("profile_subscription_active_no")
+
+        kv_row(sub_inner, lang.get("profile_subscription_plan"), plan_display).pack(anchor="w", pady=2)
+        kv_row(sub_inner, lang.get("profile_subscription_status"), status_display).pack(anchor="w", pady=2)
+        kv_row(sub_inner, lang.get("profile_subscription_is_active"), active_text).pack(anchor="w", pady=2)
+
+        end_date = sub_info.get("end_date")
+        kv_row(sub_inner, lang.get("profile_subscription_end_date"), end_date or "N/A").pack(anchor="w", pady=2)
+
+        features = sub_info.get("features", [])
+        if features:
+            features_text = ", ".join(features)
+            kv_row(sub_inner, lang.get("profile_subscription_features"), features_text).pack(anchor="w", pady=2)
+
+        limits = sub_info.get("limits", {})
+        if limits:
+            limit_parts = []
+            for feature_key, limit_dict in limits.items():
+                for limit_key, limit_val in limit_dict.items():
+                    if limit_val == -1:
+                        limit_parts.append(f"{feature_key}.{limit_key}: {lang.get('profile_subscription_unlimited')}")
+                    else:
+                        limit_parts.append(f"{feature_key}.{limit_key}: {limit_val}")
+            limits_text = ", ".join(limit_parts)
+            kv_row(sub_inner, lang.get("profile_subscription_limits"), limits_text).pack(anchor="w", pady=2)
+    else:
+        ttk.Label(
+            sub_inner,
+            text=lang.get("profile_no_subscription"),
+            style="Muted.TLabel"
+        ).pack(anchor="w", pady=5)
+
+    ttk.Separator(container).pack(fill="x", pady=(15, 10))
+
+    ttk.Button(
+        container,
+        text=lang.get("close_button"),
+        command=win.destroy,
+        style="Accent.TButton"
+    ).pack(anchor="center", pady=5)
+
+    center_window(win, parent)
+
