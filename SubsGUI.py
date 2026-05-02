@@ -57,15 +57,24 @@ class SubsGUI(ttk.Frame):
         SubscriptionFeatures.FEATURE_THEME_CUSTOMIZATION,
     ]
 
-    def __init__(self, parent: ttk.Frame, subscription: Optional[Subscription] = None):
+    CARD_MIN_WIDTH = 200
+    TABLE_FEATURE_COL_WIDTH = 220
+    TABLE_PLAN_COL_WIDTH = 140
+
+    def __init__(
+            self,
+            parent: ttk.Frame,
+            subscription: Optional[Subscription] = None,
+            lang_manager: Optional[LangManager] = None
+    ):
         super().__init__(parent, style="TFrame")
-        self._lang = LangManager()
+
+        self._lang = lang_manager if lang_manager else LangManager()
         self.subscription = subscription
         self.c = THEME.get("COLORS", {})
         self.f = THEME.get("FONTS", {})
 
         self._build_ui()
-
 
     def set_subscription(self, subscription: Subscription):
         self.subscription = subscription
@@ -77,11 +86,14 @@ class SubsGUI(ttk.Frame):
         self._apply_styles()
         self._refresh()
 
-
     def _build_ui(self):
         self._apply_styles()
 
-        self._canvas = tk.Canvas(self, highlightthickness=0, bg=self.c.get("bg", "#1e1e2e"))
+        self._canvas = tk.Canvas(
+            self,
+            highlightthickness=0,
+            bg=self.c.get("bg", "#1e1e2e")
+        )
         self._vscroll = ttk.Scrollbar(self, orient="vertical", command=self._canvas.yview)
         self._scroll_frame = ttk.Frame(self._canvas, style="TFrame")
 
@@ -89,7 +101,13 @@ class SubsGUI(ttk.Frame):
             "<Configure>",
             lambda e: self._canvas.configure(scrollregion=self._canvas.bbox("all")),
         )
-        self._canvas.create_window((0, 0), window=self._scroll_frame, anchor="nw")
+
+        self._canvas.bind(
+            "<Configure>",
+            self._on_canvas_configure
+        )
+
+        self._canvas_window = self._canvas.create_window((0, 0), window=self._scroll_frame, anchor="nw")
         self._canvas.configure(yscrollcommand=self._vscroll.set)
 
         self._canvas.pack(side="left", fill="both", expand=True)
@@ -115,7 +133,6 @@ class SubsGUI(ttk.Frame):
         )
         self._subtitle_label.pack(anchor="w", pady=(2, 0))
 
-
         self._current_frame = ttk.Frame(self._scroll_frame, style="Card.TFrame")
         self._current_frame.pack(fill="x", padx=24, pady=(8, 16))
 
@@ -124,15 +141,25 @@ class SubsGUI(ttk.Frame):
             text="",
             style="Muted.TLabel",
         )
-        self._current_label.pack(anchor="w", padx=16, pady=10)
+        self._current_label.pack(anchor="w", padx=16, pady=12)
 
         self._cards_row = ttk.Frame(self._scroll_frame, style="TFrame")
-        self._cards_row.pack(fill="x", padx=24, pady=(0, 16))
+        self._cards_row.pack(fill="x", padx=24, pady=(0, 20))
+
+        num_plans = len(self.PLAN_ORDER)
+        for i in range(num_plans):
+            self._cards_row.grid_columnconfigure(i, weight=1, minsize=self.CARD_MIN_WIDTH)
 
         self._plan_cards: dict[SubscriptionPlan, ttk.Frame] = {}
-        for plan in self.PLAN_ORDER:
+        for idx, plan in enumerate(self.PLAN_ORDER):
             card = self._build_plan_card(self._cards_row, plan)
-            card.pack(side="left", fill="both", expand=True, padx=4)
+            card.grid(
+                row=0,
+                column=idx,
+                sticky="nsew",
+                padx=6,
+                pady=4
+            )
             self._plan_cards[plan] = card
 
         self._table_frame = ttk.Frame(self._scroll_frame, style="Card.TFrame")
@@ -142,26 +169,36 @@ class SubsGUI(ttk.Frame):
 
         self._refresh()
 
+    def _on_canvas_configure(self, event):
+        self._canvas.itemconfig(self._canvas_window, width=event.width)
 
     def _build_plan_card(self, parent: ttk.Frame, plan: SubscriptionPlan) -> ttk.Frame:
         card = ttk.Frame(parent, style="Card.TFrame")
 
+        inner = ttk.Frame(card, style="Card.TFrame")
+        inner.pack(fill="both", expand=True, padx=12, pady=8)
+
         name_lbl = ttk.Label(
-            card,
+            inner,
             text=plan.get_display_name(),
             style="Title.TLabel",
             anchor="center",
         )
-        name_lbl.pack(fill="x", padx=12, pady=(14, 2))
+        name_lbl.pack(fill="x", pady=(6, 4))
         card._name_label = name_lbl
 
-        status_frame = tk.Frame(card, bg=self.c.get("card", "#2a2a3c"))
-        status_frame.pack(fill="x", padx=12, pady=(0, 4))
+        status_frame = tk.Frame(inner, bg=self.c.get("card", "#2a2a3c"))
+        status_frame.pack(fill="x", pady=(4, 4))
 
-        dot_canvas = tk.Canvas(status_frame, width=10, height=10, highlightthickness=0,
-                               bg=self.c.get("card", "#2a2a3c"))
-        dot_canvas.create_oval(1, 1, 9, 9, fill=self.c.get("muted", "#888"), outline="")
-        dot_canvas.pack(side="left", padx=(0, 6))
+        dot_canvas = tk.Canvas(
+            status_frame,
+            width=12,
+            height=12,
+            highlightthickness=0,
+            bg=self.c.get("card", "#2a2a3c")
+        )
+        dot_canvas.create_oval(2, 2, 10, 10, fill=self.c.get("muted", "#888"), outline="")
+        dot_canvas.pack(side="left", padx=(0, 8))
         card._dot_canvas = dot_canvas
 
         status_lbl = ttk.Label(
@@ -175,19 +212,19 @@ class SubsGUI(ttk.Frame):
 
         features = SubscriptionFeatures.get_available_features(plan)
         feat_lbl = ttk.Label(
-            card,
+            inner,
             text=f"{len(features)} {self._lang.get('subs_features_count')}",
             style="Muted.TLabel",
             anchor="center",
         )
-        feat_lbl.pack(fill="x", padx=12, pady=(2, 14))
+        feat_lbl.pack(fill="x", pady=(8, 10))
         card._feat_label = feat_lbl
 
         return card
 
-
     def _build_table(self):
         cols = ["feature"] + [p.value for p in self.PLAN_ORDER]
+
         self._tree = ttk.Treeview(
             self._table_frame,
             columns=cols,
@@ -197,11 +234,23 @@ class SubsGUI(ttk.Frame):
         )
 
         self._tree.heading("feature", text=self._lang.get("subs_col_feature"))
-        self._tree.column("feature", width=200, minwidth=150, anchor="w")
+        self._tree.column(
+            "feature",
+            width=self.TABLE_FEATURE_COL_WIDTH,
+            minwidth=180,
+            anchor="w",
+            stretch=False
+        )
 
         for plan in self.PLAN_ORDER:
             self._tree.heading(plan.value, text=plan.get_display_name())
-            self._tree.column(plan.value, width=130, minwidth=90, anchor="center")
+            self._tree.column(
+                plan.value,
+                width=self.TABLE_PLAN_COL_WIDTH,
+                minwidth=100,
+                anchor="center",
+                stretch=True
+            )
 
         for feat_id in self.FEATURE_DISPLAY_ORDER:
             label_key = self.FEATURE_LABELS.get(feat_id)
@@ -211,13 +260,13 @@ class SubsGUI(ttk.Frame):
             for plan in self.PLAN_ORDER:
                 values.append(self._cell_value(plan, feat_id))
 
-            tags = ()
-            if self.subscription and self.subscription.plan == plan:
-                tags = ("current",)
-
             self._tree.insert("", "end", values=values, tags=(feat_id,))
 
-        self._tree.pack(fill="both", expand=True, padx=2, pady=2)
+        tree_scroll = ttk.Scrollbar(self._table_frame, orient="vertical", command=self._tree.yview)
+        self._tree.configure(yscrollcommand=tree_scroll.set)
+
+        self._tree.pack(side="left", fill="both", expand=True, padx=(2, 0), pady=2)
+        tree_scroll.pack(side="right", fill="y", padx=(0, 2), pady=2)
 
     def _cell_value(self, plan: SubscriptionPlan, feature: str) -> str:
         available = SubscriptionFeatures.is_feature_available(plan, feature)
@@ -233,7 +282,7 @@ class SubsGUI(ttk.Frame):
             if isinstance(val, list):
                 parts.append(", ".join(val))
             elif val == -1:
-                parts.append(self._lang.get("profile_subscription_unlimited",))
+                parts.append(self._lang.get("profile_subscription_unlimited"))
             elif key == "max_count":
                 parts.append(str(val))
             elif key == "max_mb":
@@ -244,7 +293,6 @@ class SubsGUI(ttk.Frame):
                 parts.append(str(val))
 
         return "✓ " + " | ".join(parts) if parts else "✓"
-
 
     def _apply_styles(self):
         style = ttk.Style(self)
@@ -269,8 +317,9 @@ class SubsGUI(ttk.Frame):
             fieldbackground=row_bg,
             borderwidth=0,
             font=(f.get("label", ("Segoe UI", 11))[0], 10),
-            rowheight=36,
+            rowheight=38,
         )
+
         style.configure(
             "Subs.Treeview.Heading",
             background=header_bg,
@@ -291,7 +340,6 @@ class SubsGUI(ttk.Frame):
 
         if hasattr(self, "_tree"):
             self._tree.configure(style="Subs.Treeview")
-
 
     def _refresh(self):
         self._apply_styles()
@@ -317,13 +365,12 @@ class SubsGUI(ttk.Frame):
         current_plan = self.subscription.plan if self.subscription else None
         primary = self.c.get("primary", "#89b4fa")
         muted = self.c.get("muted", "#888")
-        card_bg = self.c.get("card", "#2a2a3c")
 
         for plan, card in self._plan_cards.items():
             is_current = plan == current_plan
             color = primary if is_current else muted
             card._dot_canvas.delete("all")
-            card._dot_canvas.create_oval(1, 1, 9, 9, fill=color, outline="")
+            card._dot_canvas.create_oval(2, 2, 10, 10, fill=color, outline="")
             card._status_label.configure(
                 text=self._lang.get("subs_current_plan")
                 if is_current
@@ -356,7 +403,6 @@ class SubsGUI(ttk.Frame):
             self._tree.insert("", "end", values=values, tags=(feat_id, tag))
 
         self._tree.tag_configure("current_col", foreground=primary)
-
 
     def _bind_mousewheel(self, _event):
         self._canvas.bind_all("<MouseWheel>", self._on_mousewheel)

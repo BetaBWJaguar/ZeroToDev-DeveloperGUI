@@ -242,6 +242,7 @@ class TTSMenuApp(tk.Tk):
         account_menu.add_command(label=self.lang.get("menu_account_settings"), command=self.show_account_settings)
         account_menu.add_separator()
         account_menu.add_command(label=self.lang.get("menu_my_statistics"), command=self.show_user_stats_dashboard)
+        account_menu.add_command(label=self.lang.get("menu_subscription_plans"), command=self.show_subscription_plans)
         account_menu.add_separator()
         account_menu.add_command(label=self.lang.get("menu_logout"), command=self.logout_user)
         menubar.add_cascade(label=self.lang.get("menu_account"), menu=account_menu)
@@ -1514,6 +1515,38 @@ class TTSMenuApp(tk.Tk):
         from ai_system.StatsDashboardGUI import StatsDashboardGUI
         LogsHelperManager.log_button(self.logger, "OPEN_USER_STATS_DASHBOARD")
         StatsDashboardGUI(self, self.lang, self.current_user, self.logger)
+
+    def show_subscription_plans(self):
+        from SubsGUI import SubsGUI
+        from subscription.Subscription import Subscription
+        from subscription.SubscriptionPlan import SubscriptionPlan
+        from subscription.SubscriptionStatus import SubscriptionStatus
+
+        LogsHelperManager.log_button(self.logger, "OPEN_SUBSCRIPTION_PLANS")
+
+        win = tk.Toplevel(self)
+        win.title(self.lang.get("subs_gui_title"))
+        win.transient(self)
+        win.grab_set()
+        win.resizable(True, True)
+        win.geometry("960x680")
+        win.minsize(800, 550)
+
+        user = self.current_user
+        user_data = user.id if isinstance(user.id, dict) else {}
+
+        plan = SubscriptionPlan(user_data.get("subscription_plan"))
+        status = SubscriptionStatus(user_data.get("subscription_status"))
+
+        subscription = Subscription(
+            id=user_data.get("subscription_id"),
+            plan=plan,
+            status=status,
+            end_date=user_data.get("subscription_end_date"),
+        )
+
+        subs_frame = SubsGUI(win, subscription=subscription, lang_manager=self.lang)
+        subs_frame.pack(fill="both", expand=True)
 
     def show_create_workspace_dialog(self):
         LogsHelperManager.log_button(self.logger, "OPEN_CREATE_WORKSPACE_DIALOG")
