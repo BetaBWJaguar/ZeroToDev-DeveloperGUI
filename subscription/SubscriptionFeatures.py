@@ -5,7 +5,6 @@ from subscription.SubscriptionPlan import SubscriptionPlan
 
 class SubscriptionFeatures:
 
-
     FEATURE_WORKSPACES = "workspaces"
     FEATURE_TTS = "tts"
     FEATURE_STT = "stt"
@@ -26,6 +25,7 @@ class SubscriptionFeatures:
     PLAN_FEATURES: Dict[SubscriptionPlan, List[str]] = {
         SubscriptionPlan.FREE: [
             FEATURE_WORKSPACES,
+            FEATURE_WORKSPACE_QUOTA,
             FEATURE_TTS,
             FEATURE_STT,
             FEATURE_STT_AUDIO_DURATION,
@@ -36,6 +36,7 @@ class SubscriptionFeatures:
         ],
         SubscriptionPlan.BASIC: [
             FEATURE_WORKSPACES,
+            FEATURE_WORKSPACE_QUOTA,
             FEATURE_TTS,
             FEATURE_STT,
             FEATURE_STT_AUDIO_DURATION,

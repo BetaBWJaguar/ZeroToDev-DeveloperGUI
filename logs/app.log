@@ -21522,3 +21522,242 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-05-02 03:04:28 | INFO    | Main | {"timestamp": "2026-05-02T03:04:28.111355", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
 2026-05-02 03:04:28 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T03:04:28.377024", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
 2026-05-02 03:04:30 | INFO    | Main | {"timestamp": "2026-05-02T03:04:30.757446", "event": "SESSION_END", "data": {"session_id": "20260502-030129"}}
+2026-05-02 22:54:37 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-05-02 22:54:37 | INFO    | Main | {"timestamp": "2026-05-02T22:54:37.511536", "event": "SESSION_START", "data": {"session_id": "20260502-225437"}}
+2026-05-02 22:54:37 | INFO    | LangManager | {"timestamp": "2026-05-02T22:54:37.570683", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-05-02 22:54:44 | INFO    | Main | {"timestamp": "2026-05-02T22:54:44.882991", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-05-02 22:54:45 | INFO    | Main | {"timestamp": "2026-05-02T22:54:45.201692", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-05-02 22:54:45 | INFO    | Main | {"timestamp": "2026-05-02T22:54:45.223480", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-05-02 22:54:45 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:54:45 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f53f8c8b416421e683fc20, deleted_count=1
+2026-05-02 22:54:45 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65685f49c78d47af38276
+2026-05-02 22:54:45 | INFO    | Main | {"timestamp": "2026-05-02T22:54:45.679177", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-05-02 22:54:45 | INFO    | Main | {"timestamp": "2026-05-02T22:54:45.690406", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-05-02 22:54:46 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:54:46 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65685f49c78d47af38276, deleted_count=1
+2026-05-02 22:54:46 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65686f49c78d47af3827a
+2026-05-02 22:54:46 | INFO    | Main | {"timestamp": "2026-05-02T22:54:46.212808", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:54:46 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-05-02 22:54:56 | INFO    | RecommendAI | Generated recommendation for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f from DB snapshot: Since you consistently save files as .mp3 and haven't used the Text-to-Speech feature, explore converting existing files to .mp3 to maximize storage efficiency and utilize your preferred format.
+2026-05-02 22:54:56 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T22:54:56.277399", "event": "SUCCESS", "data": {"action": "RECOMMENDATION_INTERVAL_SET", "duration": {"interval_seconds": 3600}}}
+2026-05-02 22:55:01 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:55:01 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65686f49c78d47af3827a, deleted_count=1
+2026-05-02 22:55:01 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65695f49c78d47af3827e
+2026-05-02 22:55:01 | INFO    | Main | {"timestamp": "2026-05-02T22:55:01.656229", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:55:17 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:55:17 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65695f49c78d47af3827e, deleted_count=1
+2026-05-02 22:55:17 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f656a5f49c78d47af38280
+2026-05-02 22:55:17 | INFO    | Main | {"timestamp": "2026-05-02T22:55:17.090330", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:55:32 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:55:32 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f656a5f49c78d47af38280, deleted_count=1
+2026-05-02 22:55:32 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f656b4f49c78d47af38282
+2026-05-02 22:55:32 | INFO    | Main | {"timestamp": "2026-05-02T22:55:32.505353", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:55:47 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:55:47 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f656b4f49c78d47af38282, deleted_count=1
+2026-05-02 22:55:47 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f656c3f49c78d47af38284
+2026-05-02 22:55:47 | INFO    | Main | {"timestamp": "2026-05-02T22:55:47.928213", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:56:03 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:56:03 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f656c3f49c78d47af38284, deleted_count=1
+2026-05-02 22:56:03 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f656d3f49c78d47af38286
+2026-05-02 22:56:03 | INFO    | Main | {"timestamp": "2026-05-02T22:56:03.373821", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:56:16 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T22:56:16.997551", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SUBSCRIPTION_PLANS"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.016786", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.043126", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.071545", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.097321", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.125612", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.150881", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.174612", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.199317", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:17 | WARNING | LangManager | {"timestamp": "2026-05-02T22:56:17.225159", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:56:18 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:56:18 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f656d3f49c78d47af38286, deleted_count=1
+2026-05-02 22:56:18 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f656e2f49c78d47af38288
+2026-05-02 22:56:18 | INFO    | Main | {"timestamp": "2026-05-02T22:56:18.767741", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:56:34 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:56:34 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f656e2f49c78d47af38288, deleted_count=1
+2026-05-02 22:56:34 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f656f2f49c78d47af3828a
+2026-05-02 22:56:34 | INFO    | Main | {"timestamp": "2026-05-02T22:56:34.186448", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:56:49 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:56:49 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f656f2f49c78d47af3828a, deleted_count=1
+2026-05-02 22:56:49 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65701f49c78d47af3828c
+2026-05-02 22:56:49 | INFO    | Main | {"timestamp": "2026-05-02T22:56:49.601692", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:57:05 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:57:05 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65701f49c78d47af3828c, deleted_count=1
+2026-05-02 22:57:05 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65711f49c78d47af3828e
+2026-05-02 22:57:05 | INFO    | Main | {"timestamp": "2026-05-02T22:57:05.059413", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:57:20 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:57:20 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65711f49c78d47af3828e, deleted_count=1
+2026-05-02 22:57:20 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65720f49c78d47af38290
+2026-05-02 22:57:20 | INFO    | Main | {"timestamp": "2026-05-02T22:57:20.480085", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:57:35 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:57:35 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65720f49c78d47af38290, deleted_count=1
+2026-05-02 22:57:35 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6572ff49c78d47af38292
+2026-05-02 22:57:35 | INFO    | Main | {"timestamp": "2026-05-02T22:57:35.887804", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:57:51 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:57:51 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6572ff49c78d47af38292, deleted_count=1
+2026-05-02 22:57:51 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6573ff49c78d47af38294
+2026-05-02 22:57:51 | INFO    | Main | {"timestamp": "2026-05-02T22:57:51.339460", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:58:06 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:58:06 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6573ff49c78d47af38294, deleted_count=1
+2026-05-02 22:58:06 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6574ef49c78d47af38296
+2026-05-02 22:58:06 | INFO    | Main | {"timestamp": "2026-05-02T22:58:06.720079", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:58:22 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:58:22 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6574ef49c78d47af38296, deleted_count=1
+2026-05-02 22:58:22 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6575ef49c78d47af38298
+2026-05-02 22:58:22 | INFO    | Main | {"timestamp": "2026-05-02T22:58:22.548097", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:58:37 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:58:37 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6575ef49c78d47af38298, deleted_count=1
+2026-05-02 22:58:37 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6576df49c78d47af3829a
+2026-05-02 22:58:37 | INFO    | Main | {"timestamp": "2026-05-02T22:58:37.975067", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:58:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-05-02 22:58:56 | INFO    | Main | {"timestamp": "2026-05-02T22:58:56.505997", "event": "SESSION_START", "data": {"session_id": "20260502-225856"}}
+2026-05-02 22:58:56 | INFO    | LangManager | {"timestamp": "2026-05-02T22:58:56.552972", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-05-02 22:59:07 | INFO    | Main | {"timestamp": "2026-05-02T22:59:07.380874", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-05-02 22:59:07 | INFO    | Main | {"timestamp": "2026-05-02T22:59:07.638355", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-05-02 22:59:07 | INFO    | Main | {"timestamp": "2026-05-02T22:59:07.658785", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-05-02 22:59:08 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:59:08 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6576df49c78d47af3829a, deleted_count=1
+2026-05-02 22:59:08 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6578c79ebc7ef3a1a26c1
+2026-05-02 22:59:08 | INFO    | Main | {"timestamp": "2026-05-02T22:59:08.055698", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-05-02 22:59:08 | INFO    | Main | {"timestamp": "2026-05-02T22:59:08.067297", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-05-02 22:59:08 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:59:08 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6578c79ebc7ef3a1a26c1, deleted_count=1
+2026-05-02 22:59:08 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-05-02 22:59:08 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6578c79ebc7ef3a1a26c5
+2026-05-02 22:59:08 | INFO    | Main | {"timestamp": "2026-05-02T22:59:08.585004", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:59:10 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T22:59:10.895984", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SUBSCRIPTION_PLANS"}}
+2026-05-02 22:59:10 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:10.918508", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:10 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:10.944693", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:10 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:10.971177", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:10 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:10.997043", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:11 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:11.025773", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:21 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T22:59:21.209223", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SUBSCRIPTION_PLANS"}}
+2026-05-02 22:59:21 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:21.229770", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:21 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:21.255729", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:21 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:21.288712", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:21 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:21.313481", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:21 | WARNING | LangManager | {"timestamp": "2026-05-02T22:59:21.338418", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 22:59:23 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:59:23 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6578c79ebc7ef3a1a26c5, deleted_count=1
+2026-05-02 22:59:23 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6579b79ebc7ef3a1a26c7
+2026-05-02 22:59:24 | INFO    | Main | {"timestamp": "2026-05-02T22:59:24.012044", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:59:39 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:59:39 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6579b79ebc7ef3a1a26c7, deleted_count=1
+2026-05-02 22:59:39 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f657ab79ebc7ef3a1a26c9
+2026-05-02 22:59:39 | INFO    | Main | {"timestamp": "2026-05-02T22:59:39.421926", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 22:59:54 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 22:59:54 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f657ab79ebc7ef3a1a26c9, deleted_count=1
+2026-05-02 22:59:54 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f657ba79ebc7ef3a1a26cb
+2026-05-02 22:59:54 | INFO    | Main | {"timestamp": "2026-05-02T22:59:54.856800", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:00:10 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:00:10 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f657ba79ebc7ef3a1a26cb, deleted_count=1
+2026-05-02 23:00:10 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f657ca79ebc7ef3a1a26cd
+2026-05-02 23:00:10 | INFO    | Main | {"timestamp": "2026-05-02T23:00:10.259289", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:00:25 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:00:25 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f657ca79ebc7ef3a1a26cd, deleted_count=1
+2026-05-02 23:00:25 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f657d979ebc7ef3a1a26cf
+2026-05-02 23:00:25 | INFO    | Main | {"timestamp": "2026-05-02T23:00:25.685108", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:00:41 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:00:41 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f657d979ebc7ef3a1a26cf, deleted_count=1
+2026-05-02 23:00:41 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f657e979ebc7ef3a1a26d1
+2026-05-02 23:00:41 | INFO    | Main | {"timestamp": "2026-05-02T23:00:41.126705", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:00:46 | INFO    | Main | {"timestamp": "2026-05-02T23:00:46.057605", "event": "SESSION_END", "data": {"session_id": "20260502-225856"}}
+2026-05-02 23:00:55 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-05-02 23:00:55 | INFO    | Main | {"timestamp": "2026-05-02T23:00:55.122435", "event": "SESSION_START", "data": {"session_id": "20260502-230055"}}
+2026-05-02 23:00:55 | INFO    | LangManager | {"timestamp": "2026-05-02T23:00:55.169749", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-05-02 23:01:00 | INFO    | Main | {"timestamp": "2026-05-02T23:01:00.435365", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-05-02 23:01:00 | INFO    | Main | {"timestamp": "2026-05-02T23:01:00.693315", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-05-02 23:01:00 | INFO    | Main | {"timestamp": "2026-05-02T23:01:00.712200", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-05-02 23:01:01 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:01:01 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f657e979ebc7ef3a1a26d1, deleted_count=1
+2026-05-02 23:01:01 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f657fdbc522e0122fe0722
+2026-05-02 23:01:01 | INFO    | Main | {"timestamp": "2026-05-02T23:01:01.125601", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-05-02 23:01:01 | INFO    | Main | {"timestamp": "2026-05-02T23:01:01.138555", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-05-02 23:01:01 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:01:01 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f657fdbc522e0122fe0722, deleted_count=1
+2026-05-02 23:01:01 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f657fdbc522e0122fe0726
+2026-05-02 23:01:01 | INFO    | Main | {"timestamp": "2026-05-02T23:01:01.632609", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:01:01 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-05-02 23:01:03 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:01:03.529240", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SUBSCRIPTION_PLANS"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.549714", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.576725", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.601348", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.626846", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.651424", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.674367", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.697100", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.719861", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:03 | WARNING | LangManager | {"timestamp": "2026-05-02T23:01:03.746903", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:01:16 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:01:17 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f657fdbc522e0122fe0726, deleted_count=1
+2026-05-02 23:01:17 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6580cbc522e0122fe0728
+2026-05-02 23:01:17 | INFO    | Main | {"timestamp": "2026-05-02T23:01:17.038460", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:01:32 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:01:32 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6580cbc522e0122fe0728, deleted_count=1
+2026-05-02 23:01:32 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6581cbc522e0122fe072a
+2026-05-02 23:01:32 | INFO    | Main | {"timestamp": "2026-05-02T23:01:32.459815", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:01:47 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:01:47 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6581cbc522e0122fe072a, deleted_count=1
+2026-05-02 23:01:47 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6582bbc522e0122fe072c
+2026-05-02 23:01:47 | INFO    | Main | {"timestamp": "2026-05-02T23:01:47.873674", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:02:03 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:02:03 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6582bbc522e0122fe072c, deleted_count=1
+2026-05-02 23:02:03 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6583bbc522e0122fe072e
+2026-05-02 23:02:03 | INFO    | Main | {"timestamp": "2026-05-02T23:02:03.313402", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:02:18 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:02:18 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6583bbc522e0122fe072e, deleted_count=1
+2026-05-02 23:02:18 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6584abc522e0122fe0730
+2026-05-02 23:02:18 | INFO    | Main | {"timestamp": "2026-05-02T23:02:18.725151", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:02:34 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:02:34 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6584abc522e0122fe0730, deleted_count=1
+2026-05-02 23:02:34 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f6585abc522e0122fe0732
+2026-05-02 23:02:34 | INFO    | Main | {"timestamp": "2026-05-02T23:02:34.179477", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:02:44 | INFO    | Main | {"timestamp": "2026-05-02T23:02:44.378157", "event": "SESSION_END", "data": {"session_id": "20260502-230055"}}
+2026-05-02 23:02:56 | INFO    | root | Logs initialized in INFO mode → handler=both
+2026-05-02 23:02:56 | INFO    | Main | {"timestamp": "2026-05-02T23:02:56.943132", "event": "SESSION_START", "data": {"session_id": "20260502-230256"}}
+2026-05-02 23:02:56 | INFO    | LangManager | {"timestamp": "2026-05-02T23:02:56.990958", "event": "LANG_INITIALIZED", "data": {"current_lang": "english", "available_langs": ["english", "german", "turkish"]}}
+2026-05-02 23:03:02 | INFO    | Main | {"timestamp": "2026-05-02T23:03:02.471691", "event": "BUTTON_CLICK", "data": {"action": "LOGIN_ATTEMPT"}}
+2026-05-02 23:03:02 | INFO    | Main | {"timestamp": "2026-05-02T23:03:02.732609", "event": "SUCCESS", "data": {"action": "LOGIN_SUCCESS", "duration": {"user": null}}}
+2026-05-02 23:03:02 | INFO    | Main | {"timestamp": "2026-05-02T23:03:02.748814", "event": "SUCCESS", "data": {"action": "AI_PROVIDER_INITIALIZED", "duration": {"provider": "deepinfra", "model": "google/gemma-3-27b-it"}}}
+2026-05-02 23:03:02 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:03:03 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f6585abc522e0122fe0732, deleted_count=1
+2026-05-02 23:03:03 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65876688959b490406ee2
+2026-05-02 23:03:03 | INFO    | Main | {"timestamp": "2026-05-02T23:03:03.024652", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_SAVED", "duration": {"user": null}}}
+2026-05-02 23:03:03 | INFO    | Main | {"timestamp": "2026-05-02T23:03:03.035292", "event": "SUCCESS", "data": {"action": "SNAPSHOT_SERVICE_STARTED", "duration": {"user": null}}}
+2026-05-02 23:03:03 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:03:03 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65876688959b490406ee2, deleted_count=1
+2026-05-02 23:03:03 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65877688959b490406ee6
+2026-05-02 23:03:03 | INFO    | Main | {"timestamp": "2026-05-02T23:03:03.345355", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:03:03 | INFO    | ZIPConvertor | ZIPConvertor initialized at T:\TunaRP\Zero to Dev - Developer GUI\output
+2026-05-02 23:03:13 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:03:13.516809", "event": "BUTTON_CLICK", "data": {"action": "OPEN_SUBSCRIPTION_PLANS"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.536499", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.563637", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.589954", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.615714", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.640541", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.662455", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.685454", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.706651", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:13 | WARNING | LangManager | {"timestamp": "2026-05-02T23:03:13.729178", "event": "WARNING", "data": {"action": "LANG_LOAD_EMPTY", "message": "No language files found in: T:\\TunaRP\\Zero to Dev - Developer GUI\\language_manager\\langs"}}
+2026-05-02 23:03:18 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:03:18 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65877688959b490406ee6, deleted_count=1
+2026-05-02 23:03:18 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65886688959b490406ee8
+2026-05-02 23:03:18 | INFO    | Main | {"timestamp": "2026-05-02T23:03:18.614774", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:03:33 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:03:33 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65886688959b490406ee8, deleted_count=1
+2026-05-02 23:03:33 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f65895688959b490406eea
+2026-05-02 23:03:33 | INFO    | Main | {"timestamp": "2026-05-02T23:03:33.885473", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:03:49 | INFO    | DataCollectionDatabase | User data snapshot saved for user_id=65c958d9-e4d7-4c36-8a4e-8758a9f4381f
+2026-05-02 23:03:49 | INFO    | DataCollectionDatabase | Deleted snapshot with id=69f65895688959b490406eea, deleted_count=1
+2026-05-02 23:03:49 | INFO    | DataCollectionDatabaseManager | Saved snapshot for user 65c958d9-e4d7-4c36-8a4e-8758a9f4381f: 69f658a5688959b490406eec
+2026-05-02 23:03:49 | INFO    | Main | {"timestamp": "2026-05-02T23:03:49.153167", "event": "SUCCESS", "data": {"action": "USER_SNAPSHOT_BACKGROUND_SAVED", "duration": {"user": null}}}
+2026-05-02 23:03:51 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:03:51.101738", "event": "CONFIG_CHANGE", "data": {"key": "tts_format", "old": "", "new": "mp3"}}
+2026-05-02 23:03:51 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:03:51.731880", "event": "CONFIG_CHANGE", "data": {"key": "tts_service", "old": "", "new": "google"}}
+2026-05-02 23:03:52 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:03:52.573755", "event": "BUTTON_CLICK", "data": {"action": "PREVIEW"}}
+2026-05-02 23:03:52 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:03:52.586238", "event": "TTS_PREVIEW_START", "data": {}}
+2026-05-02 23:03:52 | INFO    | VoiceProcessor | {"timestamp": "2026-05-02T23:03:52.894116", "event": "VOICE_PROCESS_START", "data": {"input_bytes": 6912, "format": "mp3", "settings": {"pitch": 0, "speed": 1.0, "volume": 1.0, "echo": false, "reverb": false, "robot": false}}}
+2026-05-02 23:03:53 | INFO    | VoiceProcessor | {"timestamp": "2026-05-02T23:03:53.643903", "event": "PERFORMANCE", "data": {"action": "PROCESS_FROM_MEMORY_SUCCESS", "duration": 0.7497866153717041, "input_bytes": 6912, "output_bytes": 3884}}
+2026-05-02 23:03:55 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:03:55.693686", "event": "SUCCESS", "data": {"action": "PREVIEW"}}
+2026-05-02 23:03:57 | INFO    | TTSMenuApp | {"timestamp": "2026-05-02T23:03:57.828346", "event": "BUTTON_CLICK", "data": {"action": "LOGOUT"}}
+2026-05-02 23:03:59 | INFO    | Main | {"timestamp": "2026-05-02T23:03:59.884882", "event": "SESSION_END", "data": {"session_id": "20260502-230256"}}
