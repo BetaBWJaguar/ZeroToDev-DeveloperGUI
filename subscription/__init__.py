@@ -4,6 +4,7 @@ from subscription.SubscriptionPlan import SubscriptionPlan
 from subscription.SubscriptionStatus import SubscriptionStatus
 from subscription.SubscriptionFeatures import SubscriptionFeatures
 from subscription.SubscriptionManager import SubscriptionManager
+from subscription.CountryPrice import CountryPrice
 
 __all__ = [
     "Subscription",
@@ -11,4 +12,5 @@ __all__ = [
     "SubscriptionStatus",
     "SubscriptionFeatures",
     "SubscriptionManager",
+    "CountryPrice",
 ]
