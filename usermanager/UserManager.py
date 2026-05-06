@@ -40,7 +40,7 @@ class UserManager:
         self.lang = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
 
     def register_user(self, username: str, email: str, password: str,
-                      first_name: str, last_name: str):
+                      first_name: str, last_name: str, client_ip: str = None):
 
         if not UserManagerUtils.validate_username(username):
             self.activity.log(username, "REGISTER_FAILED", "Invalid username format")
@@ -63,13 +63,18 @@ class UserManager:
 
         hashed_pw = UserManagerUtils.hash_password(password)
 
+        country_code = UserManagerUtils.detect_country_from_ip(client_ip)
+        if not country_code:
+            country_code = "US"
+
         user = User.create(
             username=username,
             email=email,
             password=hashed_pw,
             first_name=first_name,
             last_name=last_name,
-            status=UserStatus.PENDING
+            status=UserStatus.PENDING,
+            country_code=country_code,
         )
 
         self.collection.insert_one(user.to_dict())
@@ -174,7 +179,8 @@ class UserManager:
             "created_at": user_doc.get("created_at"),
             "twofa_enabled": twofa_enabled,
             "twofa_secret": user_doc.get("twofa_secret"),
-            "twofa_verified": twofa_verified
+            "twofa_verified": twofa_verified,
+            "country_code": user_doc.get("country_code"),
         }
 
         return User(clean_user_doc)

@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import requests
 from GUIError import GUIError
 from fragments.UIFragments import center_window, apply_auth_style
 from usermanager.UserManager import UserManager
@@ -65,8 +66,15 @@ class RegisterGUI(tk.Tk):
                      self.lang.get("auth_error_password_mismatch"), "❌", mode='auth')
             return
 
+        client_ip = None
+        try:
+            client_ip = requests.get("https://api.ipify.org?format=text", timeout=5).text.strip()
+        except Exception:
+            pass
+
         result = self.user_manager.register_user(
-            v["username"], v["email"], v["password"], v["first_name"], v["last_last"]
+            v["username"], v["email"], v["password"], v["first_name"], v["last_last"],
+            client_ip=client_ip,
         )
 
         if isinstance(result, str):

@@ -2,6 +2,9 @@
 import bcrypt
 import re
 from datetime import datetime
+from typing import Optional
+
+import requests
 
 
 class UserManagerUtils:
@@ -43,3 +46,22 @@ class UserManagerUtils:
     @staticmethod
     def timestamp() -> str:
         return datetime.utcnow().isoformat()
+
+    @staticmethod
+    def detect_country_from_ip(ip_address: Optional[str] = None) -> Optional[str]:
+        try:
+            if ip_address:
+                url = f"http://ip-api.com/json/{ip_address}?fields=countryCode"
+            else:
+                url = "http://ip-api.com/json/?fields=countryCode"
+
+            response = requests.get(url, timeout=5)
+            if response.status_code == 200:
+                data = response.json()
+                country_code = data.get("countryCode")
+                if country_code:
+                    return country_code.upper()
+        except Exception:
+            pass
+
+        return None

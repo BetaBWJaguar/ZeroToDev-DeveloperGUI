@@ -545,5 +545,15 @@
   "subs_country_tr": "Turkey",
   "subs_country_de": "Germany",
   "subs_country_gb": "United Kingdom",
-  "subs_price_free": "Free"
+  "subs_price_free": "Free",
+  "subs_select_plan": "Select Plan",
+  "subs_selected": "Selected",
+  "subs_submit_request": "Submit Request",
+  "subs_no_plan_selected": "Please select a plan first",
+  "subs_submit_success": "Subscription request sent successfully",
+  "subs_already_on_plan": "You are already on this plan",
+  "subs_confirm_title": "Confirm Subscription",
+  "subs_confirm_message": "Are you sure you want to subscribe to the {plan} plan for {price}?",
+  "subs_yes": "Yes",
+  "subs_no": "No"
 }

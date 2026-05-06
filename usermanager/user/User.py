@@ -37,6 +37,7 @@ class User:
             subscription_plan: Optional[str] = None,
             subscription_status: Optional[str] = None,
             subscription_end_date: Optional[str] = None,
+            country_code: Optional[str] = None,
             _id: Optional[str] = None
     ):
         self.id = id or str(uuid.uuid4())
@@ -63,6 +64,7 @@ class User:
         self.subscription_plan = subscription_plan
         self.subscription_status = subscription_status
         self.subscription_end_date = subscription_end_date
+        self.country_code = country_code
         self._id = _id
 
     @classmethod
@@ -80,6 +82,7 @@ class User:
             subscription_plan: Optional[str] = SubscriptionPlan.FREE.value,
             subscription_status: Optional[str] = SubscriptionStatus.ACTIVE.value,
             subscription_end_date: Optional[str] = None,
+            country_code: Optional[str] = None,
     ) -> "User":
 
         now = datetime.utcnow().isoformat()
@@ -104,7 +107,8 @@ class User:
             subscription_id=subscription_id or str(uuid.uuid4()),
             subscription_plan=subscription_plan,
             subscription_status=subscription_status,
-            subscription_end_date=subscription_end_date
+            subscription_end_date=subscription_end_date,
+            country_code=country_code,
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -133,6 +137,7 @@ class User:
             "subscription_plan": self.subscription_plan,
             "subscription_status": self.subscription_status,
             "subscription_end_date": self.subscription_end_date,
+            "country_code": self.country_code,
         }
 
     @classmethod
@@ -162,6 +167,7 @@ class User:
             subscription_plan=data.get("subscription_plan"),
             subscription_status=data.get("subscription_status"),
             subscription_end_date=data.get("subscription_end_date"),
+            country_code=data.get("country_code"),
             _id=str(data.get("_id")) if data.get("_id") else None
         )
 
@@ -285,6 +291,7 @@ class User:
             "is_active": self.is_subscription_active(),
             "is_expired": self.is_subscription_expired(),
             "end_date": self.subscription_end_date,
+            "country_code": self.country_code,
             "features": self.get_available_features(),
             "limits": self.get_all_limits(),
         }

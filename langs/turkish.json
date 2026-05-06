@@ -545,5 +545,15 @@
   "subs_country_tr": "Türkiye",
   "subs_country_de": "Almanya",
   "subs_country_gb": "Birleşik Krallık",
-  "subs_price_free": "Ücretsiz"
+  "subs_price_free": "Ücretsiz",
+  "subs_select_plan": "Plan Seç",
+  "subs_selected": "Seçili",
+  "subs_submit_request": "Talebi Gönder",
+  "subs_no_plan_selected": "Lütfen önce bir plan seçin",
+  "subs_submit_success": "Abonelik talebi başarıyla gönderildi",
+  "subs_already_on_plan": "Bu planda zaten bulunuyorsunuz",
+  "subs_confirm_title": "Aboneliği Onayla",
+  "subs_confirm_message": "{plan} planına {price} karşılığında abone olmak istediğinize emin misiniz?",
+  "subs_yes": "Evet",
+  "subs_no": "Hayır"
 }

@@ -1545,7 +1545,12 @@ class TTSMenuApp(tk.Tk):
             end_date=user_data.get("subscription_end_date"),
         )
 
-        subs_frame = SubsGUI(win, subscription=subscription, lang_manager=self.lang)
+        subs_frame = SubsGUI(
+            win,
+            subscription=subscription,
+            lang_manager=self.lang,
+            user_country_code=user_data.get("country_code"),
+        )
         subs_frame.pack(fill="both", expand=True)
 
     def show_create_workspace_dialog(self):

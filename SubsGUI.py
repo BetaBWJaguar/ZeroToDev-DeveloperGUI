@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
-from tkinter import ttk
-from typing import Optional
+from tkinter import ttk, messagebox
+from typing import Optional, Callable
 
 from theme_config import THEME
 from language_manager.LangManager import LangManager
@@ -73,7 +73,9 @@ class SubsGUI(ttk.Frame):
             self,
             parent: ttk.Frame,
             subscription: Optional[Subscription] = None,
-            lang_manager: Optional[LangManager] = None
+            lang_manager: Optional[LangManager] = None,
+            on_plan_submit: Optional[Callable[[SubscriptionPlan, str], None]] = None,
+            user_country_code: Optional[str] = None
     ):
         super().__init__(parent, style="TFrame")
 
@@ -81,7 +83,10 @@ class SubsGUI(ttk.Frame):
         self.subscription = subscription
         self.c = THEME.get("COLORS", {})
         self.f = THEME.get("FONTS", {})
-        self._selected_country = CountryPrice.DEFAULT_COUNTRY
+        self._user_country_code = user_country_code or CountryPrice.DEFAULT_COUNTRY
+        self._selected_country = self._user_country_code
+        self._selected_plan: Optional[SubscriptionPlan] = None
+        self.on_plan_submit = on_plan_submit
         self._build_ui()
 
     def set_subscription(self, subscription: Subscription):
@@ -93,6 +98,12 @@ class SubsGUI(ttk.Frame):
         self.f = THEME.get("FONTS", {})
         self._apply_styles()
         self._populate_country_combo()
+        self._submit_frame.configure(bg=self.c.get("bg", "#1e1e2e"))
+        self._submit_btn.configure(
+            bg=self.c.get("primary", "#89b4fa"),
+            activebackground=self.c.get("primary", "#89b4fa"),
+            font=(self.f.get("label", ("Segoe UI", 11))[0], 11, "bold"),
+        )
         self._refresh()
 
     def _build_ui(self):
@@ -193,6 +204,34 @@ class SubsGUI(ttk.Frame):
             )
             self._plan_cards[plan] = card
 
+        self._submit_frame = tk.Frame(self._scroll_frame, bg=self.c.get("bg", "#1e1e2e"))
+        self._submit_frame.pack(fill="x", padx=32, pady=(8, 16))
+
+        self._selected_plan_label = ttk.Label(
+            self._submit_frame,
+            text=self._lang.get("subs_no_plan_selected"),
+            style="Muted.TLabel",
+        )
+        self._selected_plan_label.pack(side="left", padx=(0, 16))
+
+        self._submit_btn = tk.Button(
+            self._submit_frame,
+            text=self._lang.get("subs_submit_request"),
+            bg=self.c.get("primary", "#89b4fa"),
+            fg="#ffffff",
+            activebackground=self.c.get("primary", "#89b4fa"),
+            activeforeground="#ffffff",
+            font=(self.f.get("label", ("Segoe UI", 11))[0], 11, "bold"),
+            relief="flat",
+            cursor="hand2",
+            bd=0,
+            padx=28,
+            pady=8,
+            state="disabled",
+            command=self._on_submit,
+        )
+        self._submit_btn.pack(side="right")
+
         self._table_frame = ttk.Frame(self._scroll_frame, style="Card.TFrame")
         self._table_frame.pack(fill="both", expand=True, padx=32, pady=(0, 32))
 
@@ -208,6 +247,7 @@ class SubsGUI(ttk.Frame):
         card = ttk.Frame(outer_border, style="Card.TFrame")
         card.pack(fill="both", expand=True)
         card._outer_border = outer_border
+        card._plan = plan
 
         inner = ttk.Frame(card, style="Card.TFrame")
         inner.pack(fill="both", expand=True, padx=16, pady=16)
@@ -269,6 +309,24 @@ class SubsGUI(ttk.Frame):
         )
         price_lbl.pack(fill="x", pady=(8, 4))
         card._price_label = price_lbl
+
+        select_btn = tk.Button(
+            inner,
+            text=self._lang.get("subs_select_plan"),
+            bg=self.c.get("surface", "#313244"),
+            fg=self.c.get("text", "#cdd6f4"),
+            activebackground=self.c.get("primary", "#89b4fa"),
+            activeforeground="#ffffff",
+            font=(self.f.get("label", ("Segoe UI", 11))[0], 10),
+            relief="flat",
+            cursor="hand2",
+            bd=0,
+            padx=16,
+            pady=6,
+            command=lambda p=plan: self._on_card_click(p),
+        )
+        select_btn.pack(fill="x", pady=(12, 4))
+        card._select_btn = select_btn
 
         return outer_border
 
@@ -428,25 +486,63 @@ class SubsGUI(ttk.Frame):
         primary = self.c.get("primary", "#89b4fa")
         muted = self.c.get("muted", "#888")
         bg_color = self.c.get("bg", "#1e1e2e")
+        surface_color = self.c.get("surface", "#313244")
+        accent_color = self.c.get("accent", "#f5c2e7")
 
         for plan, outer_border in self._plan_cards.items():
             card = outer_border.winfo_children()[0]
 
             is_current = plan == current_plan
-            color = primary if is_current else muted
+            is_selected = plan == self._selected_plan
+            color = primary if is_current else (accent_color if is_selected else muted)
 
-            outer_border.configure(bg=color if is_current else bg_color)
+            outer_border.configure(bg=color if (is_current or is_selected) else bg_color)
 
             card._dot_canvas.delete("all")
             card._dot_canvas.create_oval(1, 1, 9, 9, fill=color, outline="")
             card._status_label.configure(
                 text=self._lang.get("subs_current_plan")
                 if is_current
-                else self._lang.get("subs_available")
+                else (self._lang.get("subs_selected") if is_selected else self._lang.get("subs_available"))
             )
 
             price_text = self._get_plan_price_text(plan)
             card._price_label.configure(text=price_text)
+
+            if is_current:
+                card._select_btn.configure(
+                    text=self._lang.get("subs_already_on_plan"),
+                    state="disabled",
+                    bg=surface_color,
+                    fg=muted,
+                )
+            elif is_selected:
+                card._select_btn.configure(
+                    text=self._lang.get("subs_selected"),
+                    state="normal",
+                    bg=accent_color,
+                    fg="#ffffff",
+                )
+            else:
+                card._select_btn.configure(
+                    text=self._lang.get("subs_select_plan"),
+                    state="normal",
+                    bg=surface_color,
+                    fg=self.c.get("text", "#cdd6f4"),
+                )
+
+        if self._selected_plan:
+            plan_name = self._selected_plan.get_display_name()
+            price_text = self._get_plan_price_text(self._selected_plan)
+            self._selected_plan_label.configure(
+                text=f"{self._lang.get('subs_selected')}: {plan_name}  •  {price_text}"
+            )
+            self._submit_btn.configure(state="normal")
+        else:
+            self._selected_plan_label.configure(
+                text=self._lang.get("subs_no_plan_selected")
+            )
+            self._submit_btn.configure(state="disabled")
 
         self._rebuild_table()
 
@@ -498,12 +594,67 @@ class SubsGUI(ttk.Frame):
                 break
         self._refresh()
 
+    def _on_card_click(self, plan: SubscriptionPlan):
+        current_plan = self.subscription.plan if self.subscription else None
+        if plan == current_plan:
+            return
+        self._selected_plan = plan
+        self._refresh()
+
+    def _on_submit(self):
+        if not self._selected_plan:
+            return
+
+        current_plan = self.subscription.plan if self.subscription else None
+        if self._selected_plan == current_plan:
+            return
+
+        plan_name = self._selected_plan.get_display_name()
+        submit_price = self._get_plan_price_text_for_country(
+            self._selected_plan, self._user_country_code
+        )
+
+        confirm_msg = self._lang.get("subs_confirm_message").format(
+            plan=plan_name,
+            price=submit_price,
+        )
+
+        confirmed = messagebox.askyesno(
+            self._lang.get("subs_confirm_title"),
+            confirm_msg,
+        )
+
+        if not confirmed:
+            return
+
+        if self.on_plan_submit:
+            self.on_plan_submit(self._selected_plan, self._user_country_code)
+        else:
+            messagebox.showinfo(
+                self._lang.get("subs_confirm_title"),
+                self._lang.get("subs_submit_success"),
+            )
+
+    def get_selected_plan(self) -> Optional[SubscriptionPlan]:
+        return self._selected_plan
+
+    def get_selected_country(self) -> str:
+        return self._selected_country
+
     def _get_plan_price_text(self, plan: SubscriptionPlan) -> str:
         price = CountryPrice.get_price_value(self._selected_country, plan)
         if price == 0.0:
-            return self._lang.get("subs_price_free", "Free")
+            return self._lang.get("subs_price_free")
         formatted = CountryPrice.get_formatted_price(self._selected_country, plan)
-        per_month = self._lang.get("subs_price_per_month", "/month")
+        per_month = self._lang.get("subs_price_per_month")
+        return f"{formatted}{per_month}"
+
+    def _get_plan_price_text_for_country(self, plan: SubscriptionPlan, country_code: str) -> str:
+        price = CountryPrice.get_price_value(country_code, plan)
+        if price == 0.0:
+            return self._lang.get("subs_price_free")
+        formatted = CountryPrice.get_formatted_price(country_code, plan)
+        per_month = self._lang.get("subs_price_per_month")
         return f"{formatted}{per_month}"
 
     def _bind_mousewheel(self, _event):
