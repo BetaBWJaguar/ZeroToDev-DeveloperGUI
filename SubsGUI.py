@@ -8,6 +8,7 @@ from language_manager.LangManager import LangManager
 from subscription.SubscriptionPlan import SubscriptionPlan
 from subscription.SubscriptionFeatures import SubscriptionFeatures
 from subscription.Subscription import Subscription
+from subscription.CountryPrice import CountryPrice
 
 
 class SubsGUI(ttk.Frame):
@@ -57,9 +58,16 @@ class SubsGUI(ttk.Frame):
         SubscriptionFeatures.FEATURE_THEME_CUSTOMIZATION,
     ]
 
-    CARD_MIN_WIDTH = 200
-    TABLE_FEATURE_COL_WIDTH = 240
-    TABLE_PLAN_COL_WIDTH = 150
+    CARD_MIN_WIDTH = 260
+    TABLE_FEATURE_COL_WIDTH = 280
+    TABLE_PLAN_COL_WIDTH = 180
+
+    COUNTRY_DISPLAY_NAMES = {
+        "US": "subs_country_us",
+        "TR": "subs_country_tr",
+        "DE": "subs_country_de",
+        "GB": "subs_country_gb",
+    }
 
     def __init__(
             self,
@@ -73,7 +81,7 @@ class SubsGUI(ttk.Frame):
         self.subscription = subscription
         self.c = THEME.get("COLORS", {})
         self.f = THEME.get("FONTS", {})
-
+        self._selected_country = CountryPrice.DEFAULT_COUNTRY
         self._build_ui()
 
     def set_subscription(self, subscription: Subscription):
@@ -84,6 +92,7 @@ class SubsGUI(ttk.Frame):
         self.c = THEME.get("COLORS", {})
         self.f = THEME.get("FONTS", {})
         self._apply_styles()
+        self._populate_country_combo()
         self._refresh()
 
     def _build_ui(self):
@@ -132,6 +141,28 @@ class SubsGUI(ttk.Frame):
             style="Muted.TLabel",
         )
         self._subtitle_label.pack(anchor="w", pady=(4, 0))
+
+        country_row = ttk.Frame(self._header, style="TFrame")
+        country_row.pack(anchor="w", pady=(12, 0))
+
+        country_label = ttk.Label(
+            country_row,
+            text=self._lang.get("subs_country_select") + ":",
+            style="TLabel",
+        )
+        country_label.pack(side="left", padx=(0, 8))
+
+        self._country_var = tk.StringVar()
+        self._country_combo = ttk.Combobox(
+            country_row,
+            textvariable=self._country_var,
+            state="readonly",
+            width=28,
+            style="Country.TCombobox",
+        )
+        self._populate_country_combo()
+        self._country_combo.pack(side="left")
+        self._country_combo.bind("<<ComboboxSelected>>", self._on_country_changed)
 
         self._current_frame = ttk.Frame(self._scroll_frame, style="Card.TFrame")
         self._current_frame.pack(fill="x", padx=32, pady=(16, 24))
@@ -229,6 +260,15 @@ class SubsGUI(ttk.Frame):
         )
         feat_lbl.pack(fill="x", pady=(4, 2))
         card._feat_label = feat_lbl
+
+        price_lbl = ttk.Label(
+            inner,
+            text="",
+            style="Title.TLabel",
+            anchor="center",
+        )
+        price_lbl.pack(fill="x", pady=(8, 4))
+        card._price_label = price_lbl
 
         return outer_border
 
@@ -344,6 +384,22 @@ class SubsGUI(ttk.Frame):
         style.configure("CardActive.TFrame", background=primary_color)
         style.configure("CardInnerActive.TFrame", background=row_bg)
 
+        style.configure(
+            "Country.TCombobox",
+            fieldbackground=c.get("card", "#2a2a3c"),
+            background=c.get("surface", "#313244"),
+            foreground=row_fg,
+            borderwidth=1,
+            font=(f.get("label", ("Segoe UI", 11))[0], 10),
+        )
+        style.map(
+            "Country.TCombobox",
+            fieldbackground=[("readonly", c.get("card", "#2a2a3c"))],
+            foreground=[("readonly", row_fg)],
+            selectbackground=[("readonly", c.get("card", "#2a2a3c"))],
+            selectforeground=[("readonly", row_fg)],
+        )
+
         if hasattr(self, "_tree"):
             self._tree.configure(style="Subs.Treeview")
 
@@ -389,6 +445,9 @@ class SubsGUI(ttk.Frame):
                 else self._lang.get("subs_available")
             )
 
+            price_text = self._get_plan_price_text(plan)
+            card._price_label.configure(text=price_text)
+
         self._rebuild_table()
 
     def _rebuild_table(self):
@@ -416,6 +475,36 @@ class SubsGUI(ttk.Frame):
 
             row_tag = "evenrow" if idx % 2 == 0 else "oddrow"
             self._tree.insert("", "end", values=values, tags=(row_tag,))
+
+    def _populate_country_combo(self):
+        countries = CountryPrice.get_supported_countries()
+        display_names = []
+        for code in countries:
+            lang_key = self.COUNTRY_DISPLAY_NAMES.get(code)
+            name = self._lang.get(lang_key, code) if lang_key else code
+            display_names.append(f"{name} ({code})")
+
+        self._country_combo["values"] = display_names
+
+        default_key = self.COUNTRY_DISPLAY_NAMES.get(self._selected_country)
+        default_name = self._lang.get(default_key, self._selected_country) if default_key else self._selected_country
+        self._country_var.set(f"{default_name} ({self._selected_country})")
+
+    def _on_country_changed(self, _event):
+        selection = self._country_var.get()
+        for code in CountryPrice.get_supported_countries():
+            if f"({code})" in selection:
+                self._selected_country = code
+                break
+        self._refresh()
+
+    def _get_plan_price_text(self, plan: SubscriptionPlan) -> str:
+        price = CountryPrice.get_price_value(self._selected_country, plan)
+        if price == 0.0:
+            return self._lang.get("subs_price_free", "Free")
+        formatted = CountryPrice.get_formatted_price(self._selected_country, plan)
+        per_month = self._lang.get("subs_price_per_month", "/month")
+        return f"{formatted}{per_month}"
 
     def _bind_mousewheel(self, _event):
         self._canvas.bind_all("<MouseWheel>", self._on_mousewheel)

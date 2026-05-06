@@ -538,5 +538,12 @@
   "subs_feature_stt_audio_duration": "STT-Audiodauer",
   "subs_feature_system_monitoring": "Systemüberwachung",
   "subs_feature_user_stats": "Benutzerstatistiken",
-  "subs_feature_theme_customization": "Theme-Anpassung"
+  "subs_feature_theme_customization": "Theme-Anpassung",
+  "subs_country_select": "Land auswählen",
+  "subs_price_per_month": "/Monat",
+  "subs_country_us": "Vereinigte Staaten",
+  "subs_country_tr": "Türkei",
+  "subs_country_de": "Deutschland",
+  "subs_country_gb": "Vereinigtes Königreich",
+  "subs_price_free": "Kostenlos"
 }

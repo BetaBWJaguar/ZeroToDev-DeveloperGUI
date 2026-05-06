@@ -1689,8 +1689,8 @@ class STTMenuApp(tk.Tk):
         win.transient(self)
         win.grab_set()
         win.resizable(True, True)
-        win.geometry("960x680")
-        win.minsize(800, 550)
+        win.geometry("1150x700")
+        win.minsize(1150, 700)
 
         user = self.current_user
         user_data = user.id if isinstance(user.id, dict) else {}

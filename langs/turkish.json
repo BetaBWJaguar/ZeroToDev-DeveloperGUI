@@ -538,5 +538,12 @@
   "subs_feature_stt_audio_duration": "STT Ses Süresi",
   "subs_feature_system_monitoring": "Sistem İzleme",
   "subs_feature_user_stats": "Kullanıcı İstatistikleri",
-  "subs_feature_theme_customization": "Tema Özelleştirme"
+  "subs_feature_theme_customization": "Tema Özelleştirme",
+  "subs_country_select": "Ülke Seçin",
+  "subs_price_per_month": "/ay",
+  "subs_country_us": "Amerika Birleşik Devletleri",
+  "subs_country_tr": "Türkiye",
+  "subs_country_de": "Almanya",
+  "subs_country_gb": "Birleşik Krallık",
+  "subs_price_free": "Ücretsiz"
 }
