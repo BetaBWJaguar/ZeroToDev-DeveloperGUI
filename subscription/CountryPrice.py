@@ -8,6 +8,8 @@ class CountryPrice:
     CURRENCY_TRY = "TRY"
     CURRENCY_EUR = "EUR"
     CURRENCY_GBP = "GBP"
+    CURRENCY_AZN = "AZN"
+    CURRENCY_SAR = "SAR"
 
     DEFAULT_COUNTRY = "US"
 
@@ -24,7 +26,7 @@ class CountryPrice:
             SubscriptionPlan.PRO: {"price": 249.00, "currency": CURRENCY_TRY},
             SubscriptionPlan.ENTERPRISE: {"price": 449.00, "currency": CURRENCY_TRY},
         },
-        "DE": {
+        "EU": {
             SubscriptionPlan.FREE: {"price": 0.00, "currency": CURRENCY_EUR},
             SubscriptionPlan.BASIC: {"price": 2.79, "currency": CURRENCY_EUR},
             SubscriptionPlan.PRO: {"price": 7.49, "currency": CURRENCY_EUR},
@@ -35,6 +37,18 @@ class CountryPrice:
             SubscriptionPlan.BASIC: {"price": 2.49, "currency": CURRENCY_GBP},
             SubscriptionPlan.PRO: {"price": 6.49, "currency": CURRENCY_GBP},
             SubscriptionPlan.ENTERPRISE: {"price": 12.49, "currency": CURRENCY_GBP},
+        },
+        "AZ": {
+            SubscriptionPlan.FREE: {"price": 0.00, "currency": CURRENCY_AZN},
+            SubscriptionPlan.BASIC: {"price": 4.99, "currency": CURRENCY_AZN},
+            SubscriptionPlan.PRO: {"price": 13.49, "currency": CURRENCY_AZN},
+            SubscriptionPlan.ENTERPRISE: {"price": 24.99, "currency": CURRENCY_AZN},
+        },
+        "SA": {
+            SubscriptionPlan.FREE: {"price": 0.00, "currency": CURRENCY_SAR},
+            SubscriptionPlan.BASIC: {"price": 11.99, "currency": CURRENCY_SAR},
+            SubscriptionPlan.PRO: {"price": 29.99, "currency": CURRENCY_SAR},
+            SubscriptionPlan.ENTERPRISE: {"price": 56.99, "currency": CURRENCY_SAR},
         },
     }
 
@@ -79,6 +93,8 @@ class CountryPrice:
             cls.CURRENCY_TRY: "₺",
             cls.CURRENCY_EUR: "€",
             cls.CURRENCY_GBP: "£",
+            cls.CURRENCY_AZN: "₼",
+            cls.CURRENCY_SAR: "﷼",
         }
 
         symbol = currency_symbols.get(currency, currency)
