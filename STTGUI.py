@@ -572,6 +572,21 @@ class STTMenuApp(tk.Tk):
                         "timestamp": time.time()
                     }
                     write_json_file(logs_dir / f"audio_select_{int(time.time())}.json", audio_log_data)
+
+                data_dir = self.get_data_dir()
+                if data_dir:
+                    import shutil
+                    audio_filename = Path(file_path).name
+                    data_audio_path = data_dir / audio_filename
+                    shutil.copy2(file_path, data_audio_path)
+                    audio_select_data = {
+                        "file": file_path,
+                        "filename": audio_filename,
+                        "duration": self.audio_duration,
+                        "action": "audio_select",
+                        "timestamp": time.time()
+                    }
+                    write_json_file(data_dir / f"audio_select_{int(time.time())}.json", audio_select_data)
             except Exception as e:
                 GUIError(self, self.lang.get("error_title"), f"{self.lang.get('error_audio_load')}\n{e}", icon="❌")
                 LogsHelperManager.log_error(self.logger, "AUDIO_LOAD_FAIL", str(e))
@@ -614,6 +629,16 @@ class STTMenuApp(tk.Tk):
                     "timestamp": time.time()
                 }
                 write_json_file(logs_dir / f"audio_play_{int(time.time())}.json", audio_play_log)
+
+            temp_dir = self.get_temp_dir()
+            if temp_dir:
+                audio_play_state = {
+                    "file": self.selected_audio_file,
+                    "position": self.audio_position,
+                    "action": "play",
+                    "timestamp": time.time()
+                }
+                write_json_file(temp_dir / f"audio_play_{int(time.time())}.json", audio_play_state)
         except Exception as e:
             GUIError(self, self.lang.get("error_title"), f"{self.lang.get('error_audio_play')}\n{e}", icon="❌")
             LogsHelperManager.log_error(self.logger, "AUDIO_PLAY_FAIL", str(e))
@@ -651,6 +676,16 @@ class STTMenuApp(tk.Tk):
                 }
                 write_json_file(logs_dir / f"audio_pause_{int(time.time())}.json", audio_pause_log)
 
+            data_dir = self.get_data_dir()
+            if data_dir:
+                audio_pause_data = {
+                    "file": self.selected_audio_file,
+                    "position": self.audio_position,
+                    "action": "pause",
+                    "timestamp": time.time()
+                }
+                write_json_file(data_dir / f"audio_pause_{int(time.time())}.json", audio_pause_data)
+
     def stop_audio(self):
         if self.audio_playing or self.audio_paused:
             pygame.mixer.music.stop()
@@ -678,6 +713,15 @@ class STTMenuApp(tk.Tk):
                     "timestamp": time.time()
                 }
                 write_json_file(logs_dir / f"audio_stop_{int(time.time())}.json", audio_stop_log)
+
+            temp_dir = self.get_temp_dir()
+            if temp_dir:
+                audio_stop_state = {
+                    "file": self.selected_audio_file,
+                    "action": "stop",
+                    "timestamp": time.time()
+                }
+                write_json_file(temp_dir / f"audio_stop_{int(time.time())}.json", audio_stop_state)
 
     def _start_audio_progress_update(self):
         def update_progress():
@@ -754,6 +798,18 @@ class STTMenuApp(tk.Tk):
                 "timestamp": time.time()
             }
             write_json_file(logs_dir / f"audio_seek_{int(time.time())}.json", audio_seek_log)
+
+        data_dir = self.get_data_dir()
+        if data_dir:
+            audio_seek_data = {
+                "file": self.selected_audio_file,
+                "old_position": round(self.audio_position, 2),
+                "new_position": round(new_position, 2),
+                "click_percent": round(click_percent, 2),
+                "action": "seek",
+                "timestamp": time.time()
+            }
+            write_json_file(data_dir / f"audio_seek_{int(time.time())}.json", audio_seek_data)
 
 
     def on_transcribe(self):
