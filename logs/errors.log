@@ -259,3 +259,6 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-04-28 00:28:35 | ERROR   | TTSMenuApp | {"timestamp": "2026-04-28T00:28:35.108555", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
 2026-04-28 00:33:15 | ERROR   | STTMenuApp | {"timestamp": "2026-04-28T00:33:15.173863", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
 2026-04-28 00:42:00 | ERROR   | STTMenuApp | {"timestamp": "2026-04-28T00:42:00.278823", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "invalid command name \".!toplevel.!frame.!frame3.!label2\""}}
+2026-05-09 23:08:15 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-09T23:08:15.919160", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
+2026-05-09 23:08:35 | ERROR   | STTMenuApp | {"timestamp": "2026-05-09T23:08:35.652933", "event": "ERROR", "data": {"action": "WORKSPACE_SWITCH_FAIL", "error": "Workspace is busy, try again later"}}
+2026-05-09 23:22:00 | ERROR   | STTMenuApp | {"timestamp": "2026-05-09T23:22:00.758412", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}

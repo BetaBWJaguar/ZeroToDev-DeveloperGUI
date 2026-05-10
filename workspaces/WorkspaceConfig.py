@@ -22,6 +22,13 @@ class WorkspaceConfig:
                 "robot": False,
                 "preset": "Default"
             },
+            "stt_settings": {
+                "default_engine": "whisper",
+                "default_device": "cpu",
+                "whisper_model": "base",
+                "default_language": "auto",
+                "show_timestamps": False
+            }
         }
     
     def __init__(self, workspace_path: str, workspace_id: str = None, db=None):
@@ -115,4 +122,28 @@ class WorkspaceConfig:
         if preset is not None:
             tts_settings["preset"] = preset
         return self.set_tts_settings(tts_settings)
+    
+    def get_stt_settings(self) -> dict:
+        config = self.load_config()
+        return config.get("stt_settings", {})
+    
+    def set_stt_settings(self, settings: dict) -> bool:
+        config = self.load_config()
+        config["stt_settings"] = settings
+        return self.save_config(config)
+    
+    def get_stt_engine(self) -> str:
+        return self.get_stt_settings().get("default_engine")
+    
+    def get_stt_device(self) -> str:
+        return self.get_stt_settings().get("default_device")
+    
+    def get_whisper_model(self) -> str:
+        return self.get_stt_settings().get("whisper_model")
+    
+    def get_stt_language(self) -> str:
+        return self.get_stt_settings().get("default_language")
+    
+    def get_show_timestamps(self) -> bool:
+        return self.get_stt_settings().get("show_timestamps")
     

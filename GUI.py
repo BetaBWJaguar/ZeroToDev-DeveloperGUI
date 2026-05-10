@@ -179,19 +179,14 @@ class TTSMenuApp(tk.Tk):
         thread.start()
 
     def _on_window_close(self):
-        current_workspace = self.workspace_manager.get_current_workspace()
-        if current_workspace:
-            workspace_id = current_workspace.get_workspace_id()
-            if workspace_id:
-                from workspaces.WorkspaceDatabase import WorkspaceDatabase
-                db = WorkspaceDatabase()
-                db.deactivate_workspace(workspace_id)
-                current_workspace.unlock()
-                LogsHelperManager.log_debug(self.logger, "WORKSPACE_CLEANUP_ON_CLOSE", {
-                    "workspace_id": workspace_id,
-                    "action": "deactivated_and_unlocked"
-                })
         self.destroy()
+
+    def destroy(self):
+        self.workspace_manager.release_workspace()
+        LogsHelperManager.log_debug(self.logger, "WORKSPACE_CLEANUP_ON_CLOSE", {
+            "action": "deactivated_and_unlocked"
+        })
+        super().destroy()
 
 
     def reload_current_user(self):
@@ -1550,6 +1545,7 @@ class TTSMenuApp(tk.Tk):
             subscription=subscription,
             lang_manager=self.lang,
             user_country_code=user_data.get("country_code"),
+            user_id=str(user.id),
         )
         subs_frame.pack(fill="both", expand=True)
 

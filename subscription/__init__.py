@@ -5,6 +5,7 @@ from subscription.SubscriptionStatus import SubscriptionStatus
 from subscription.SubscriptionFeatures import SubscriptionFeatures
 from subscription.SubscriptionManager import SubscriptionManager
 from subscription.CountryPrice import CountryPrice
+from subscription.PaymentMethod import PaymentMethod
 
 __all__ = [
     "Subscription",
@@ -13,4 +14,5 @@ __all__ = [
     "SubscriptionFeatures",
     "SubscriptionManager",
     "CountryPrice",
+    "PaymentMethod",
 ]

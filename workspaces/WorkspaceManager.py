@@ -291,3 +291,21 @@ class WorkspaceManager:
             return {}
         
         return self.db.get_workspace_stats(self.user_id)
+
+    def release_workspace(self):
+        if not self.current_workspace:
+            return
+
+        workspace_id = self.current_workspace.get_workspace_id()
+        try:
+            if workspace_id:
+                self.db.deactivate_workspace(workspace_id)
+        except Exception:
+            pass
+
+        try:
+            self.current_workspace.unlock()
+        except Exception:
+            pass
+
+        self.current_workspace = None

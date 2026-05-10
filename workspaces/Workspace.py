@@ -192,6 +192,13 @@ class Workspace:
                     "reverb": False,
                     "robot": False,
                     "preset": "Default"
+                },
+                "stt_settings": {
+                    "default_engine": "whisper",
+                    "default_device": "cpu",
+                    "whisper_model": "base",
+                    "default_language": "auto",
+                    "show_timestamps": False
                 }
             }
             self.config_file.write_text(json.dumps(default_config, indent=4))

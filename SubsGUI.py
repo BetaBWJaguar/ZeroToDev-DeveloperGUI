@@ -9,6 +9,8 @@ from subscription.SubscriptionPlan import SubscriptionPlan
 from subscription.SubscriptionFeatures import SubscriptionFeatures
 from subscription.Subscription import Subscription
 from subscription.CountryPrice import CountryPrice
+from subscription.PaymentMethod import PaymentMethod
+from subscription.PaymentGUI import PaymentGUI
 
 
 class SubsGUI(ttk.Frame):
@@ -74,8 +76,9 @@ class SubsGUI(ttk.Frame):
             parent: ttk.Frame,
             subscription: Optional[Subscription] = None,
             lang_manager: Optional[LangManager] = None,
-            on_plan_submit: Optional[Callable[[SubscriptionPlan, str], None]] = None,
-            user_country_code: Optional[str] = None
+            on_plan_submit: Optional[Callable[[SubscriptionPlan, str, Optional[PaymentMethod]], None]] = None,
+            user_country_code: Optional[str] = None,
+            user_id: Optional[str] = None
     ):
         super().__init__(parent, style="TFrame")
 
@@ -87,6 +90,7 @@ class SubsGUI(ttk.Frame):
         self._selected_country = self._user_country_code
         self._selected_plan: Optional[SubscriptionPlan] = None
         self.on_plan_submit = on_plan_submit
+        self._user_id = user_id or ""
         self._build_ui()
 
     def set_subscription(self, subscription: Subscription):
@@ -609,26 +613,37 @@ class SubsGUI(ttk.Frame):
         if self._selected_plan == current_plan:
             return
 
-        plan_name = self._selected_plan.get_display_name()
-        submit_price = self._get_plan_price_text_for_country(
-            self._selected_plan, self._user_country_code
-        )
-
-        confirm_msg = self._lang.get("subs_confirm_message").format(
-            plan=plan_name,
-            price=submit_price,
-        )
-
-        confirmed = messagebox.askyesno(
-            self._lang.get("subs_confirm_title"),
-            confirm_msg,
-        )
-
-        if not confirmed:
+        if self._selected_plan == SubscriptionPlan.FREE:
+            if self.on_plan_submit:
+                self.on_plan_submit(self._selected_plan, self._user_country_code, None)
+            else:
+                messagebox.showinfo(
+                    self._lang.get("subs_confirm_title"),
+                    self._lang.get("subs_submit_success"),
+                )
             return
 
+        self._open_payment_dialog()
+
+    def _open_payment_dialog(self):
+        payment_dialog = PaymentGUI(
+            parent=self.winfo_toplevel(),
+            plan=self._selected_plan,
+            country_code=self._user_country_code,
+            user_id=self._user_id,
+            lang_manager=self._lang,
+            on_payment_complete=self._on_payment_complete,
+        )
+        self.wait_window(payment_dialog)
+
+    def _on_payment_complete(
+            self,
+            payment_method: PaymentMethod,
+            plan: SubscriptionPlan,
+            country_code: str
+    ):
         if self.on_plan_submit:
-            self.on_plan_submit(self._selected_plan, self._user_country_code)
+            self.on_plan_submit(plan, country_code, payment_method)
         else:
             messagebox.showinfo(
                 self._lang.get("subs_confirm_title"),

@@ -30,6 +30,7 @@ from stt.factory.STTFactory import STTManager
 from workspaces.WorkspaceManager import WorkspaceManager
 from workspaces.WorkspaceManagerHelper import WorkspaceManagerHelper
 from workspaces.WorkspacePathHelper import WorkspacePathHelper
+from workspaces.WorkspaceConfig import WorkspaceConfig
 from stt.MediaFormats import AudioFormatHandler
 from stt.stt__models.WhisperSTT import WhisperSTT
 from PathHelper import PathHelper
@@ -371,12 +372,13 @@ class STTMenuApp(tk.Tk):
         engine_card, engine_inner = section(self.scrollable_right_frame.scrollable_frame, self.lang.get("stt_engine_section"))
         engine_card.grid(row=2, column=0, sticky="nsew")
 
-        self.engine_var = tk.StringVar(value=MemoryManager.get("stt_engine", "whisper"))
+        self.engine_var = tk.StringVar(value=self._get_setting("stt_engine", "whisper"))
 
         def engine_changed(*_):
-            old_engine = MemoryManager.get("stt_engine", "")
+            old_engine = self._get_setting("stt_engine", "")
             new_engine = self.engine_var.get()
-            MemoryManager.set("stt_engine", new_engine)
+            self._save_setting("stt_engine", new_engine)
+            self._save_setting("default_engine", new_engine)
             LogsHelperManager.log_config_change(self.logger, "stt_engine", old_engine, new_engine)
             self._update_window_size(new_engine)
             update_device_visibility()
@@ -390,12 +392,13 @@ class STTMenuApp(tk.Tk):
                         style="Option.TRadiobutton", takefocus=0).pack(anchor="w", pady=2)
 
         self.cuda_available = WhisperSTT.is_cuda_available()
-        self.device_var = tk.StringVar(value=MemoryManager.get("stt_device", "cpu"))
+        self.device_var = tk.StringVar(value=self._get_setting("stt_device", "cpu"))
 
         def device_changed(*_):
-            old_device = MemoryManager.get("stt_device", "")
+            old_device = self._get_setting("stt_device", "")
             new_device = self.device_var.get()
-            MemoryManager.set("stt_device", new_device)
+            self._save_setting("stt_device", new_device)
+            self._save_setting("default_device", new_device)
             LogsHelperManager.log_config_change(self.logger, "stt_device", old_device, new_device)
 
         self.device_var.trace_add("write", device_changed)
@@ -441,15 +444,15 @@ class STTMenuApp(tk.Tk):
         }
         self.whisper_inv_model_map = {v: k for k, v in self.whisper_model_map.items()}
 
-        saved_model = MemoryManager.get("whisper_model", "base")
+        saved_model = self._get_setting("whisper_model", "base")
         initial_model_text = self.whisper_model_map.get(saved_model, self.whisper_model_map["base"])
 
         self.whisper_model_var = tk.StringVar(value=initial_model_text)
 
         def whisper_model_changed(*_):
-            old_model = MemoryManager.get("whisper_model", "")
+            old_model = self._get_setting("whisper_model", "")
             new_model = self.whisper_inv_model_map.get(self.whisper_model_var.get(), "base")
-            MemoryManager.set("whisper_model", new_model)
+            self._save_setting("whisper_model", new_model)
             LogsHelperManager.log_config_change(self.logger, "whisper_model", old_model, new_model)
 
         self.whisper_model_var.trace_add("write", whisper_model_changed)
@@ -476,15 +479,16 @@ class STTMenuApp(tk.Tk):
         }
         self.stt_inv_lang_map = {v: k for k, v in self.stt_lang_map.items()}
 
-        saved_lang_code = MemoryManager.get("stt_lang", "auto")
+        saved_lang_code = self._get_setting("stt_lang", "auto")
         initial_display_text = self.stt_lang_map.get(saved_lang_code, self.stt_lang_map["auto"])
 
         self.stt_lang_var = tk.StringVar(value=initial_display_text)
 
         def stt_lang_changed(*_):
-            old_lang = MemoryManager.get("stt_lang", "")
+            old_lang = self._get_setting("stt_lang", "")
             new_lang_code = self.stt_inv_lang_map.get(self.stt_lang_var.get(), "auto")
-            MemoryManager.set("stt_lang", new_lang_code)
+            self._save_setting("stt_lang", new_lang_code)
+            self._save_setting("default_language", new_lang_code)
             LogsHelperManager.log_config_change(self.logger, "stt_lang", old_lang, new_lang_code)
 
         self.stt_lang_var.trace_add("write", stt_lang_changed)
@@ -506,10 +510,10 @@ class STTMenuApp(tk.Tk):
         self.timestamps_frame = ttk.Frame(transcribe_inner, style="Card.TFrame")
         self.timestamps_frame.pack(fill="x", pady=(8, 0))
 
-        self.show_timestamps = tk.BooleanVar(value=MemoryManager.get("show_timestamps", False))
+        self.show_timestamps = tk.BooleanVar(value=self._get_setting("show_timestamps", False))
 
         def timestamps_changed(*_):
-            MemoryManager.set("show_timestamps", self.show_timestamps.get())
+            self._save_setting("show_timestamps", self.show_timestamps.get())
             current_text = self.text.get("1.0", tk.END).strip()
             if current_text and hasattr(self, 'transcription_segments'):
                 self._display_transcription_result_with_timestamps()
@@ -1356,6 +1360,7 @@ class STTMenuApp(tk.Tk):
         })
         if hasattr(self, '_config_data_dir_label'):
             self._refresh_config_directory_labels()
+        self._load_workspace_settings()
 
     def get_data_dir(self):
         ws = self.workspace_manager.get_current_workspace()
@@ -1384,19 +1389,65 @@ class STTMenuApp(tk.Tk):
             return ws.get_exports_path()
         return self.output_dir
 
+    def _get_workspace_config(self):
+        ws = self.workspace_manager.get_current_workspace()
+        if ws:
+            return WorkspaceConfig(str(ws.get_path()), ws.get_workspace_id(), ws.db)
+        return None
+
+    def _get_setting(self, key: str, default=None):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            stt_settings = ws_config.get_stt_settings()
+            if key in stt_settings:
+                return stt_settings[key]
+        return MemoryManager.get(key, default)
+
+    def _save_setting(self, key: str, value):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            stt_settings = ws_config.get_stt_settings()
+            stt_settings[key] = value
+            ws_config.set_stt_settings(stt_settings)
+        else:
+            MemoryManager.set(key, value)
+
+    def _load_workspace_settings(self):
+        ws_config = self._get_workspace_config()
+        if ws_config:
+            stt_settings = ws_config.get_stt_settings()
+
+            if hasattr(self, 'engine_var'):
+                engine = stt_settings.get("default_engine", "whisper")
+                self.engine_var.set(engine)
+
+            if hasattr(self, 'device_var'):
+                device = stt_settings.get("default_device", "cpu")
+                self.device_var.set(device)
+
+            if hasattr(self, 'whisper_model_var'):
+                model = stt_settings.get("whisper_model", "base")
+                display_text = self.whisper_model_map.get(model, self.whisper_model_map["base"])
+                self.whisper_model_var.set(display_text)
+
+            if hasattr(self, 'stt_lang_var'):
+                lang_code = stt_settings.get("default_language", "auto")
+                display_text = self.stt_lang_map.get(lang_code, self.stt_lang_map["auto"])
+                self.stt_lang_var.set(display_text)
+
+            if hasattr(self, 'show_timestamps'):
+                show_ts = stt_settings.get("show_timestamps", False)
+                self.show_timestamps.set(show_ts)
+
+            LogsHelperManager.log_debug(self.logger, "WORKSPACE_STT_SETTINGS_LOADED", {
+                "stt_settings": stt_settings
+            })
+
     def destroy(self):
-        current_workspace = self.workspace_manager.get_current_workspace()
-        if current_workspace:
-            workspace_id = current_workspace.get_workspace_id()
-            if workspace_id:
-                from workspaces.WorkspaceDatabase import WorkspaceDatabase
-                db = WorkspaceDatabase()
-                db.deactivate_workspace(workspace_id)
-                current_workspace.unlock()
-                LogsHelperManager.log_debug(self.logger, "WORKSPACE_CLEANUP_ON_CLOSE", {
-                    "workspace_id": workspace_id,
-                    "action": "deactivated_and_unlocked"
-                })
+        self.workspace_manager.release_workspace()
+        LogsHelperManager.log_debug(self.logger, "WORKSPACE_CLEANUP_ON_CLOSE", {
+            "action": "deactivated_and_unlocked"
+        })
         self.stop_audio()
         pygame.mixer.quit()
         super().destroy()
@@ -1766,6 +1817,7 @@ class STTMenuApp(tk.Tk):
             subscription=subscription,
             lang_manager=self.lang,
             user_country_code=user_data.get("country_code"),
+            user_id=str(user.id),
         )
         subs_frame.pack(fill="both", expand=True)
 
