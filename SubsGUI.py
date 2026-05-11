@@ -25,6 +25,7 @@ class SubsGUI(ttk.Frame):
     FEATURE_LABELS = {
         SubscriptionFeatures.FEATURE_WORKSPACES: "subs_feature_workspaces",
         SubscriptionFeatures.FEATURE_TTS: "subs_feature_tts",
+        SubscriptionFeatures.FEATURE_TTS_CHAR_LIMIT: "subs_feature_tts_char_limit",
         SubscriptionFeatures.FEATURE_STT: "subs_feature_stt",
         SubscriptionFeatures.FEATURE_AIRECOMMEND: "subs_feature_ai_recommend",
         SubscriptionFeatures.FEATURE_WORKSPACE_QUOTA: "subs_feature_workspace_quota",
@@ -36,28 +37,31 @@ class SubsGUI(ttk.Frame):
         SubscriptionFeatures.FEATURE_STT_ENGINES: "subs_feature_stt_engines",
         SubscriptionFeatures.FEATURE_AUDIO_PREVIEW: "subs_feature_audio_preview",
         SubscriptionFeatures.FEATURE_STT_AUDIO_DURATION: "subs_feature_stt_audio_duration",
-        SubscriptionFeatures.FEATURE_SYSTEM_MONITORING: "subs_feature_system_monitoring",
-        SubscriptionFeatures.FEATURE_USER_STATS: "subs_feature_user_stats",
         SubscriptionFeatures.FEATURE_THEME_CUSTOMIZATION: "subs_feature_theme_customization",
+        SubscriptionFeatures.FEATURE_AUDIO_EFFECTS: "subs_feature_audio_effects",
+        SubscriptionFeatures.FEATURE_SPEED_CONTROL: "subs_feature_speed_control",
+        SubscriptionFeatures.FEATURE_PITCH_CONTROL: "subs_feature_pitch_control",
     }
 
     FEATURE_DISPLAY_ORDER = [
         SubscriptionFeatures.FEATURE_WORKSPACES,
         SubscriptionFeatures.FEATURE_WORKSPACE_QUOTA,
         SubscriptionFeatures.FEATURE_TTS,
+        SubscriptionFeatures.FEATURE_TTS_CHAR_LIMIT,
         SubscriptionFeatures.FEATURE_TTS_FORMATS,
         SubscriptionFeatures.FEATURE_TTS_SERVICES,
         SubscriptionFeatures.FEATURE_STT,
         SubscriptionFeatures.FEATURE_STT_ENGINES,
         SubscriptionFeatures.FEATURE_STT_AUDIO_DURATION,
+        SubscriptionFeatures.FEATURE_THEME_CUSTOMIZATION,
         SubscriptionFeatures.FEATURE_VOICE_SETTINGS,
         SubscriptionFeatures.FEATURE_AUDIO_PREVIEW,
         SubscriptionFeatures.FEATURE_ZIP_CONVERTOR,
+        SubscriptionFeatures.FEATURE_AUDIO_EFFECTS,
+        SubscriptionFeatures.FEATURE_SPEED_CONTROL,
+        SubscriptionFeatures.FEATURE_PITCH_CONTROL,
         SubscriptionFeatures.FEATURE_MARKUP,
         SubscriptionFeatures.FEATURE_AIRECOMMEND,
-        SubscriptionFeatures.FEATURE_SYSTEM_MONITORING,
-        SubscriptionFeatures.FEATURE_USER_STATS,
-        SubscriptionFeatures.FEATURE_THEME_CUSTOMIZATION,
     ]
 
     CARD_MIN_WIDTH = 260
@@ -391,6 +395,8 @@ class SubsGUI(ttk.Frame):
                 parts.append(f"{val} MB")
             elif key == "max_minutes":
                 parts.append(f"{val} min")
+            elif key == "max_chars":
+                parts.append(f"{val} chars")
             else:
                 parts.append(str(val))
 

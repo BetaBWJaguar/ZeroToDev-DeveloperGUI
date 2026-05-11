@@ -18,15 +18,18 @@ class SubscriptionFeatures:
     FEATURE_STT_ENGINES = "stt_engines"
     FEATURE_AUDIO_PREVIEW = "audio_preview"
     FEATURE_STT_AUDIO_DURATION = "stt_audio_duration"
-    FEATURE_SYSTEM_MONITORING = "system_monitoring"
-    FEATURE_USER_STATS = "user_stats"
     FEATURE_THEME_CUSTOMIZATION = "theme_customization"
+    FEATURE_TTS_CHAR_LIMIT = "tts_char_limit"
+    FEATURE_AUDIO_EFFECTS = "audio_effects"
+    FEATURE_SPEED_CONTROL = "speed_control"
+    FEATURE_PITCH_CONTROL = "pitch_control"
 
     PLAN_FEATURES: Dict[SubscriptionPlan, List[str]] = {
         SubscriptionPlan.FREE: [
             FEATURE_WORKSPACES,
             FEATURE_WORKSPACE_QUOTA,
             FEATURE_TTS,
+            FEATURE_TTS_CHAR_LIMIT,
             FEATURE_STT,
             FEATURE_STT_AUDIO_DURATION,
             FEATURE_TTS_FORMATS,
@@ -38,6 +41,7 @@ class SubscriptionFeatures:
             FEATURE_WORKSPACES,
             FEATURE_WORKSPACE_QUOTA,
             FEATURE_TTS,
+            FEATURE_TTS_CHAR_LIMIT,
             FEATURE_STT,
             FEATURE_STT_AUDIO_DURATION,
             FEATURE_ZIP_CONVERTOR,
@@ -47,10 +51,13 @@ class SubscriptionFeatures:
             FEATURE_THEME_CUSTOMIZATION,
             FEATURE_VOICE_SETTINGS,
             FEATURE_AUDIO_PREVIEW,
+            FEATURE_AUDIO_EFFECTS,
+            FEATURE_SPEED_CONTROL,
         ],
         SubscriptionPlan.PRO: [
             FEATURE_WORKSPACES,
             FEATURE_TTS,
+            FEATURE_TTS_CHAR_LIMIT,
             FEATURE_STT,
             FEATURE_STT_AUDIO_DURATION,
             FEATURE_ZIP_CONVERTOR,
@@ -61,13 +68,15 @@ class SubscriptionFeatures:
             FEATURE_THEME_CUSTOMIZATION,
             FEATURE_VOICE_SETTINGS,
             FEATURE_AUDIO_PREVIEW,
+            FEATURE_AUDIO_EFFECTS,
+            FEATURE_SPEED_CONTROL,
+            FEATURE_PITCH_CONTROL,
             FEATURE_MARKUP,
-            FEATURE_SYSTEM_MONITORING,
-            FEATURE_USER_STATS,
         ],
         SubscriptionPlan.ENTERPRISE: [
             FEATURE_WORKSPACES,
             FEATURE_TTS,
+            FEATURE_TTS_CHAR_LIMIT,
             FEATURE_STT,
             FEATURE_STT_AUDIO_DURATION,
             FEATURE_ZIP_CONVERTOR,
@@ -79,9 +88,10 @@ class SubscriptionFeatures:
             FEATURE_THEME_CUSTOMIZATION,
             FEATURE_VOICE_SETTINGS,
             FEATURE_AUDIO_PREVIEW,
+            FEATURE_AUDIO_EFFECTS,
+            FEATURE_SPEED_CONTROL,
+            FEATURE_PITCH_CONTROL,
             FEATURE_MARKUP,
-            FEATURE_SYSTEM_MONITORING,
-            FEATURE_USER_STATS,
         ],
     }
 
@@ -89,22 +99,25 @@ class SubscriptionFeatures:
         SubscriptionPlan.FREE: {
             FEATURE_WORKSPACES: {"max_count": 1},
             FEATURE_WORKSPACE_QUOTA: {"max_mb": 100},
+            FEATURE_TTS_CHAR_LIMIT: {"max_chars": 500},
             FEATURE_TTS_FORMATS: {"available": ["mp3", "wav"]},
             FEATURE_TTS_SERVICES: {"available": ["edge"]},
             FEATURE_STT_ENGINES: {"available": ["whisper"]},
-            FEATURE_STT_AUDIO_DURATION: {"max_minutes": 5},
+            FEATURE_STT_AUDIO_DURATION: {"max_minutes": 15},
         },
         SubscriptionPlan.BASIC: {
             FEATURE_WORKSPACES: {"max_count": 3},
             FEATURE_WORKSPACE_QUOTA: {"max_mb": 500},
+            FEATURE_TTS_CHAR_LIMIT: {"max_chars": 2000},
             FEATURE_TTS_FORMATS: {"available": ["mp3", "wav", "webm"]},
             FEATURE_TTS_SERVICES: {"available": ["edge", "google"]},
             FEATURE_STT_ENGINES: {"available": ["whisper"]},
-            FEATURE_STT_AUDIO_DURATION: {"max_minutes": 15},
+            FEATURE_STT_AUDIO_DURATION: {"max_minutes": 30},
         },
         SubscriptionPlan.PRO: {
             FEATURE_WORKSPACES: {"max_count": 10},
             FEATURE_WORKSPACE_QUOTA: {"max_mb": 2000},
+            FEATURE_TTS_CHAR_LIMIT: {"max_chars": 10000},
             FEATURE_TTS_FORMATS: {"available": ["mp3", "wav", "webm", "flac", "aac"]},
             FEATURE_TTS_SERVICES: {"available": ["edge", "google"]},
             FEATURE_STT_ENGINES: {"available": ["whisper", "vosk"]},
@@ -113,6 +126,7 @@ class SubscriptionFeatures:
         SubscriptionPlan.ENTERPRISE: {
             FEATURE_WORKSPACES: {"max_count": -1},
             FEATURE_WORKSPACE_QUOTA: {"max_mb": -1},
+            FEATURE_TTS_CHAR_LIMIT: {"max_chars": -1},
             FEATURE_TTS_FORMATS: {"available": ["mp3", "wav", "webm", "flac", "aac"]},
             FEATURE_TTS_SERVICES: {"available": ["edge", "google"]},
             FEATURE_STT_ENGINES: {"available": ["whisper", "vosk"]},
@@ -166,3 +180,8 @@ class SubscriptionFeatures:
     def get_stt_audio_duration_limit(cls, plan: SubscriptionPlan) -> int:
         limit = cls.get_feature_limit(plan, cls.FEATURE_STT_AUDIO_DURATION, "max_minutes")
         return limit if limit is not None else 5
+
+    @classmethod
+    def get_tts_char_limit(cls, plan: SubscriptionPlan) -> int:
+        limit = cls.get_feature_limit(plan, cls.FEATURE_TTS_CHAR_LIMIT, "max_chars")
+        return limit if limit is not None else 500
