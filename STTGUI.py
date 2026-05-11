@@ -191,6 +191,8 @@ class STTMenuApp(tk.Tk):
         workspace_menu = tk.Menu(menubar, tearoff=0)
         workspace_menu.add_command(label=self.lang.get("menu_create_workspace"), command=self.show_create_workspace_dialog)
         workspace_menu.add_command(label=self.lang.get("menu_recent_workspace"), command=self.show_recent_workspaces)
+        workspace_menu.add_separator()
+        workspace_menu.add_command(label=self.lang.get("menu_exit_workspace"), command=self.exit_workspace)
         menubar.add_cascade(label=self.lang.get("menu_workspace"), menu=workspace_menu)
 
         config_menu = tk.Menu(menubar, tearoff=0)
@@ -886,6 +888,11 @@ class STTMenuApp(tk.Tk):
             
             self._set_progress(100, self.lang.get("transcribe_done"))
             GUIError(self, self.lang.get("info_title"), self.lang.get("transcribe_success"), icon="✅")
+
+            try:
+                self.workspace_manager.update_current_usage()
+            except Exception:
+                pass
             
             transcription_log_data = {
                 "file": self.selected_audio_file,
@@ -1009,6 +1016,11 @@ class STTMenuApp(tk.Tk):
                 
                 GUIError(self, self.lang.get("info_title"), self.lang.get("export_success").format(path=file_path), icon="✅")
                 LogsHelperManager.log_success(self.logger, "TEXT_EXPORTED", {"path": file_path})
+
+                try:
+                    self.workspace_manager.update_current_usage()
+                except Exception:
+                    pass
                 
                 logs_dir = self.get_logs_dir()
                 if logs_dir:
@@ -1300,12 +1312,31 @@ class STTMenuApp(tk.Tk):
                             self.lang.get("workspace_error_unarchive_failed").format(error=str(e)), icon="❌")
                     LogsHelperManager.log_error(self.logger, "WORKSPACE_UNARCHIVE_FAIL", str(e))
 
+        def delete_workspace(workspace_id):
+            ws_record = self.workspace_manager.db.get_workspace(workspace_id)
+            ws_name = ws_record.get("name", "") if ws_record else ""
+            if messagebox.askyesno(self.lang.get("info_title"),
+                                    self.lang.get("workspace_delete_confirm").format(name=ws_name)):
+                try:
+                    self.workspace_manager.delete_workspace(workspace_id)
+                    GUIError(self, self.lang.get("success_title"),
+                            self.lang.get("workspace_success_deleted").format(name=ws_name), icon="✅")
+                    LogsHelperManager.log_success(self.logger, "WORKSPACE_DELETED", {"workspace_id": workspace_id})
+                    if hasattr(self, '_config_data_dir_label'):
+                        self._refresh_config_directory_labels()
+                    win.destroy()
+                except Exception as e:
+                    GUIError(self, self.lang.get("error_title"),
+                            self.lang.get("workspace_error_delete_failed").format(error=str(e)), icon="❌")
+                    LogsHelperManager.log_error(self.logger, "WORKSPACE_DELETE_FAIL", str(e))
+
         for ws in workspaces:
             card = WorkspaceCard(
                 workspaces_frame,
                 ws,
                 switch_to_workspace,
                 on_archive=archive_workspace,
+                on_delete=delete_workspace,
                 padding=0
             )
             card.pack(fill="x", pady=(0, 8))
@@ -1332,6 +1363,7 @@ class STTMenuApp(tk.Tk):
                     archived_frame,
                     ws,
                     unarchive_workspace,
+                    on_delete=delete_workspace,
                     padding=0
                 )
                 card.pack(fill="x", pady=(0, 8))
@@ -1350,6 +1382,24 @@ class STTMenuApp(tk.Tk):
         ).grid(row=6, column=0, sticky="e")
 
         center_window(win)
+
+    def exit_workspace(self):
+        current_ws = self.workspace_manager.get_current_workspace()
+        if not current_ws:
+            GUIError(self, self.lang.get("info_title"), self.lang.get("workspace_no_active"), icon="ℹ️")
+            return
+
+        ws_name = current_ws.get_name()
+        if messagebox.askyesno(self.lang.get("info_title"),
+                                self.lang.get("workspace_exit_confirm").format(name=ws_name)):
+            self.workspace_manager.release_workspace()
+            self.output_dir = BASE_DIR / "output"
+            self.output_dir.mkdir(parents=True, exist_ok=True)
+            if hasattr(self, '_config_data_dir_label'):
+                self._refresh_config_directory_labels()
+            GUIError(self, self.lang.get("success_title"),
+                    self.lang.get("workspace_success_exited").format(name=ws_name), icon="✅")
+            LogsHelperManager.log_success(self.logger, "WORKSPACE_EXITED", {"workspace_name": ws_name})
 
     def _update_output_dir_for_workspace(self, workspace):
         self.output_dir = workspace.get_exports_path()

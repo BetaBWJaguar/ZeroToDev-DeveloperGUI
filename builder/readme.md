@@ -21,9 +21,9 @@ It ensures consistency in release builds across environments and enforces contro
 | Parameter | Value                                |
 |------------|--------------------------------------|
 | **App Name** | `ZeroToDev-DeveloperGUI`             |
-| **Version** | `1.3`                                |
+| **Version** | `1.4`                                |
 | **Supported Platform(s)** | Windows (`win`)                      |
 | **Spec Suffix Format** | `build_win.spec`                     |
-| **Default Output Archive** | `ZeroToDev-DeveloperGUI-1.3-win.zip` |
+| **Default Output Archive** | `ZeroToDev-DeveloperGUI-1.4-win.zip` |
 
 ---

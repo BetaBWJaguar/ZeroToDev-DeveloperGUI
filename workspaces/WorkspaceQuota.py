@@ -47,11 +47,6 @@ class WorkspaceQuota:
 
         return True
 
-    def set_quota(self, workspace_id: str, quota_mb: int):
-        return self.db.update_workspace(
-            workspace_id,
-            {"quota_mb": quota_mb}
-        )
 
     def get_quota_info(self, workspace: Workspace):
 

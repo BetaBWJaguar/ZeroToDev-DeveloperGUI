@@ -292,6 +292,15 @@ class WorkspaceManager:
         
         return self.db.get_workspace_stats(self.user_id)
 
+    def update_current_usage(self):
+        if not self.current_workspace:
+            return
+
+        try:
+            self.quota.update_usage(self.current_workspace)
+        except Exception:
+            pass
+
     def release_workspace(self):
         if not self.current_workspace:
             return
@@ -300,6 +309,11 @@ class WorkspaceManager:
         try:
             if workspace_id:
                 self.db.deactivate_workspace(workspace_id)
+        except Exception:
+            pass
+
+        try:
+            self.quota.update_usage(self.current_workspace)
         except Exception:
             pass
 

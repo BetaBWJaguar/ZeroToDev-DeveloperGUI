@@ -204,6 +204,8 @@ class TTSMenuApp(tk.Tk):
         workspace_menu = tk.Menu(menubar, tearoff=0)
         workspace_menu.add_command(label=self.lang.get("menu_create_workspace"), command=self.show_create_workspace_dialog)
         workspace_menu.add_command(label=self.lang.get("menu_recent_workspace"), command=self.show_recent_workspaces)
+        workspace_menu.add_separator()
+        workspace_menu.add_command(label=self.lang.get("menu_exit_workspace"), command=self.exit_workspace)
         menubar.add_cascade(label=self.lang.get("menu_workspace"), menu=workspace_menu)
 
         help_menu = tk.Menu(menubar, tearoff=0)
@@ -415,6 +417,7 @@ class TTSMenuApp(tk.Tk):
 
         output_card, self.output_label, self.browse_btn = output_selector(self.scrollable_right_frame.scrollable_frame, self.browse_path, self.listener.on_output_change, self.lang)
         output_card.grid(row=5, column=0, sticky="ew", pady=(0, 12))
+        self.output_label.config(wraplength=280, justify="left")
 
         self.progress_frame, self.progress, self.progress_var, self.progress_label = progress_section(self.scrollable_right_frame.scrollable_frame, self.lang)
         self.progress_frame.grid(row=6, column=0, sticky="ew", pady=(8, 2))
@@ -802,6 +805,11 @@ class TTSMenuApp(tk.Tk):
                 "path": str(out_path),
                 "size": out_path.stat().st_size
             })
+
+            try:
+                self.workspace_manager.update_current_usage()
+            except Exception:
+                pass
             
             logs_dir = self.get_logs_dir()
             if logs_dir:
@@ -1757,12 +1765,30 @@ class TTSMenuApp(tk.Tk):
                             self.lang.get("workspace_error_unarchive_failed").format(error=str(e)), icon="❌")
                     LogsHelperManager.log_error(self.logger, "WORKSPACE_UNARCHIVE_FAIL", str(e))
 
+        def delete_workspace(workspace_id):
+            ws_record = self.workspace_manager.db.get_workspace(workspace_id)
+            ws_name = ws_record.get("name", "") if ws_record else ""
+            if messagebox.askyesno(self.lang.get("info_title"),
+                                    self.lang.get("workspace_delete_confirm").format(name=ws_name)):
+                try:
+                    self.workspace_manager.delete_workspace(workspace_id)
+                    GUIError(self, self.lang.get("success_title"),
+                            self.lang.get("workspace_success_deleted").format(name=ws_name), icon="✅")
+                    LogsHelperManager.log_success(self.logger, "WORKSPACE_DELETED", {"workspace_id": workspace_id})
+                    self._update_output_label()
+                    win.destroy()
+                except Exception as e:
+                    GUIError(self, self.lang.get("error_title"),
+                            self.lang.get("workspace_error_delete_failed").format(error=str(e)), icon="❌")
+                    LogsHelperManager.log_error(self.logger, "WORKSPACE_DELETE_FAIL", str(e))
+
         for ws in workspaces:
             card = WorkspaceCard(
                 workspaces_frame,
                 ws,
                 switch_to_workspace,
                 on_archive=archive_workspace,
+                on_delete=delete_workspace,
                 padding=0
             )
             card.pack(fill="x", pady=(0, 8))
@@ -1789,6 +1815,7 @@ class TTSMenuApp(tk.Tk):
                     archived_frame,
                     ws,
                     unarchive_workspace,
+                    on_delete=delete_workspace,
                     padding=0
                 )
                 card.pack(fill="x", pady=(0, 8))
@@ -1807,6 +1834,24 @@ class TTSMenuApp(tk.Tk):
         ).grid(row=6, column=0, sticky="e")
 
         center_window(win)
+
+    def exit_workspace(self):
+        current_ws = self.workspace_manager.get_current_workspace()
+        if not current_ws:
+            GUIError(self, self.lang.get("info_title"), self.lang.get("workspace_no_active"), icon="ℹ️")
+            return
+
+        ws_name = current_ws.get_name()
+        if messagebox.askyesno(self.lang.get("info_title"),
+                                self.lang.get("workspace_exit_confirm").format(name=ws_name)):
+            self.workspace_manager.release_workspace()
+            self.output_dir = self.browse_path
+            self.browse_btn.config(state="normal")
+            self._update_output_label()
+            self.zip_convertor = ZIPConvertor(self.output_dir)
+            GUIError(self, self.lang.get("success_title"),
+                    self.lang.get("workspace_success_exited").format(name=ws_name), icon="✅")
+            LogsHelperManager.log_success(self.logger, "WORKSPACE_EXITED", {"workspace_name": ws_name})
 
     def _update_output_dir_for_workspace(self, workspace):
         self.output_dir = workspace.get_exports_path()
@@ -1833,6 +1878,61 @@ class TTSMenuApp(tk.Tk):
             return WorkspacePathHelper.get_data_dir(self.workspace_manager)
         return None
 
+    def _shorten_path(self, path_str: str, max_len: int = 45) -> str:
+        if len(path_str) <= max_len:
+            return path_str
+
+        p = Path(path_str)
+        parts = p.parts
+
+        if len(parts) <= 3:
+            return path_str[:max_len - 3] + "..."
+
+        head = parts[0]
+        tail = Path(*parts[-2:])
+
+        shortened = str(Path(head) / "..." / tail)
+        if len(shortened) > max_len:
+            shortened = "..." + path_str[-(max_len - 3):]
+        return shortened
+
+
+    def _attach_tooltip(self, widget, text: str):
+        tooltip = None
+
+        def on_enter(event):
+            nonlocal tooltip
+            tooltip = tk.Toplevel(widget)
+            tooltip.wm_overrideredirect(True)
+            tooltip.wm_geometry(
+                f"+{event.x_root + 12}+{event.y_root + 8}"
+            )
+            lbl = tk.Label(
+                tooltip,
+                text=text,
+                background=COLORS.get("card", "#2b2b2b"),
+                foreground=COLORS.get("text", "#ffffff"),
+                font=tuple(FONTS.get("label", ["Segoe UI", 10])),
+                relief="solid",
+                borderwidth=1,
+                padx=8,
+                pady=4,
+                wraplength=400,
+                justify="left"
+            )
+            lbl.pack()
+
+        def on_leave(event):
+            nonlocal tooltip
+            if tooltip:
+                tooltip.destroy()
+                tooltip = None
+
+        widget.unbind("<Enter>")
+        widget.unbind("<Leave>")
+        widget.bind("<Enter>", on_enter)
+        widget.bind("<Leave>", on_leave)
+
 
     def get_logs_dir(self):
         ws = self.workspace_manager.get_current_workspace()
@@ -1857,12 +1957,15 @@ class TTSMenuApp(tk.Tk):
     def _update_output_label(self):
         current_workspace = self.workspace_manager.get_current_workspace()
         if current_workspace:
-            display_path = str(current_workspace.get_exports_path())
+            full_path = str(current_workspace.get_exports_path())
             self.browse_btn.config(state="disabled")
         else:
-            display_path = str(self.browse_path)
+            full_path = str(self.browse_path)
             self.browse_btn.config(state="normal")
-        self.output_label.config(text=display_path)
+
+        self.output_label.config(text=self._shorten_path(full_path))
+
+        self._attach_tooltip(self.output_label, full_path)
 
     def _get_workspace_config(self):
         ws = self.workspace_manager.get_current_workspace()

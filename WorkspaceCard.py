@@ -4,11 +4,12 @@ from tkinter import ttk
 
 class WorkspaceCard(ttk.Frame):
 
-    def __init__(self, parent, workspace_data, on_click, on_archive=None, **kwargs):
+    def __init__(self, parent, workspace_data, on_click, on_archive=None, on_delete=None, **kwargs):
         super().__init__(parent, style="WorkspaceCard.TFrame", **kwargs)
         self.workspace_data = workspace_data
         self.on_click = on_click
         self.on_archive = on_archive
+        self.on_delete = on_delete
         self.is_hovered = False
         
         self.grid_columnconfigure(1, weight=1)
@@ -86,6 +87,16 @@ class WorkspaceCard(ttk.Frame):
             )
             archive_btn.pack(side="left")
             archive_btn.bind("<Button-1>", lambda e: self._on_archive_click(e))
+        
+        if self.on_delete:
+            delete_btn = ttk.Button(
+                actions_frame,
+                text="🗑️",
+                style="Accent.TButton",
+                width=3
+            )
+            delete_btn.pack(side="left", padx=(4, 0))
+            delete_btn.bind("<Button-1>", lambda e: self._on_delete_click(e))
 
     def _on_enter(self, event):
         if not self.is_hovered:
@@ -113,6 +124,11 @@ class WorkspaceCard(ttk.Frame):
     def _on_archive_click(self, event):
         if self.on_archive:
             self.on_archive(self.workspace_data.get('workspace_id'))
+        return "break"
+    
+    def _on_delete_click(self, event):
+        if self.on_delete:
+            self.on_delete(self.workspace_data.get('workspace_id'))
         return "break"
     
     def _is_child_of(self, widget):

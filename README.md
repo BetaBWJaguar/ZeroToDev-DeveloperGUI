@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.3.1-blue)
+![Version](https://img.shields.io/badge/version-1.4-blue)
 ![Python](https://img.shields.io/badge/python-3.8+-green)
 ![TTS](https://img.shields.io/badge/TTS-Enabled-orange)
 ![STT](https://img.shields.io/badge/STT-Enabled-blueviolet)
@@ -479,7 +479,7 @@ python build.py --clean --cython
 
 - **Developer**: Tuna Rasim OCAK
 - **Project**: Zero to Dev - Developer GUI
-- **Version**: 1.3.1
+- **Version**: 1.4
 - **Email**: [tunarasimocak@gmail.com]
 
 ---
