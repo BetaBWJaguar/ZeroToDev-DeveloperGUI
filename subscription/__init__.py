@@ -6,6 +6,7 @@ from subscription.SubscriptionFeatures import SubscriptionFeatures
 from subscription.SubscriptionManager import SubscriptionManager
 from subscription.CountryPrice import CountryPrice
 from subscription.PaymentMethod import PaymentMethod
+from subscription.FeatureGuard import FeatureGuard
 
 __all__ = [
     "Subscription",
@@ -15,4 +16,5 @@ __all__ = [
     "SubscriptionManager",
     "CountryPrice",
     "PaymentMethod",
+    "FeatureGuard",
 ]

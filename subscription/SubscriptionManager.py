@@ -6,12 +6,16 @@ from subscription.SubscriptionPlan import SubscriptionPlan
 from subscription.SubscriptionStatus import SubscriptionStatus
 from logs_manager.LogsManager import LogsManager
 from language_manager.LangManager import LangManager
+from PathHelper import PathHelper
+from data_manager.MemoryManager import MemoryManager
 
 
 class SubscriptionManager:
     def __init__(self):
         self.logger = LogsManager.get_logger("SubscriptionManager")
-        self._lang = LangManager()
+        langs_dir = PathHelper.resource_path("langs")
+        ui_lang = MemoryManager.get("ui_language", "english")
+        self._lang = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
         self._subscriptions = {}
         self._user_subscriptions = {}
 

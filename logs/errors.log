@@ -267,3 +267,9 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-05-10 16:19:45 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-10T16:19:45.194743", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
 2026-05-10 16:25:02 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-10T16:25:02.780158", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
 2026-05-10 16:29:07 | ERROR   | STTMenuApp | {"timestamp": "2026-05-10T16:29:07.383248", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}
+2026-05-14 01:14:57 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:14:57.603185", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2026-05-14 01:14:59 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:14:59.871324", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2026-05-14 01:20:26 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:20:26.627657", "event": "ERROR", "data": {"action": "PREVIEW", "error": "Unknown TTS service: "}}
+2026-05-14 01:42:47 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:42:47.883831", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "unsupported operand type(s) for /: 'NoneType' and 'str'"}}
+2026-05-14 01:43:10 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:43:10.497194", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "unsupported operand type(s) for /: 'NoneType' and 'str'"}}
+2026-05-14 01:46:07 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:46:07.005827", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}

@@ -48,6 +48,7 @@ from updater.Update_Checker import check_for_update_gui
 from mode_selector.AppModeSelectorGUI import AppModeSelectorGUI
 from AppMode import AppMode
 from ai_system.AIRecommendationWidget import AIRecommendationWidget
+from typing import Optional
 
 
 BASE_DIR = PathHelper.base_dir()
@@ -445,6 +446,16 @@ class TTSMenuApp(tk.Tk):
         self.after(0, self._reset_preview_button)
 
 
+    def _check_feature_access(self, feature: str, **kwargs) -> Optional[str]:
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        plan = self.current_user.get_subscription_plan()
+        if not plan:
+            return None
+        allowed, msg = self.current_user.can_use_feature(feature, **kwargs)
+        if not allowed:
+            return msg
+        return None
+
     def on_preview(self):
         import threading
         LogsHelperManager.log_button(self.logger, "PREVIEW")
@@ -482,6 +493,29 @@ class TTSMenuApp(tk.Tk):
 
         svc_key = (self.service_var.get() or "").lower()
         lang_code = self._get_setting("default_language", "en")
+
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_AUDIO_PREVIEW)
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            self._set_progress(0, self.lang.get("progress_ready"))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            return
+
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_TTS_SERVICES, available=svc_key)
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            self._set_progress(0, self.lang.get("progress_ready"))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            return
+
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_TTS_CHAR_LIMIT, max_chars=len(text))
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            self._set_progress(0, self.lang.get("progress_ready"))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            return
+
         try:
 
             LogsHelperManager.log_debug(self.logger, "PREVIEW_REQUEST", {
@@ -520,6 +554,13 @@ class TTSMenuApp(tk.Tk):
                     MemoryManager.get("markup_enabled", False)
                     and "<" in text and ">" in text
             )
+
+            if use_markup:
+                from subscription.SubscriptionFeatures import SubscriptionFeatures
+                _markup_error = self._check_feature_access(SubscriptionFeatures.FEATURE_MARKUP)
+                if _markup_error:
+                    use_markup = False
+                    LogsHelperManager.log_debug(self.logger, "MARKUP_BLOCKED", {"error": _markup_error})
 
             if use_markup:
                 from markup.MarkupManager import MarkupManager
@@ -667,6 +708,28 @@ class TTSMenuApp(tk.Tk):
         lang_code = self._get_setting("default_language", "en")
         t0 = time.time()
 
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_TTS_SERVICES, available=svc_key.lower())
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            self._set_progress(0, self.lang.get("progress_ready"))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            return
+
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_TTS_FORMATS, available=fmt_key.lower())
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            self._set_progress(0, self.lang.get("progress_ready"))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            return
+
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_TTS_CHAR_LIMIT, max_chars=len(text))
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            self._set_progress(0, self.lang.get("progress_ready"))
+            self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
+            return
+
         try:
             if svc_key == "GOOGLE":
                 gtts_lang = LANGS[lang_code]["gtts"]["lang"]
@@ -738,6 +801,13 @@ class TTSMenuApp(tk.Tk):
             )
 
             if use_markup:
+                from subscription.SubscriptionFeatures import SubscriptionFeatures
+                _markup_error = self._check_feature_access(SubscriptionFeatures.FEATURE_MARKUP)
+                if _markup_error:
+                    use_markup = False
+                    LogsHelperManager.log_debug(self.logger, "MARKUP_BLOCKED", {"error": _markup_error})
+
+            if use_markup:
                 from markup.MarkupManager import MarkupManager
                 markup_manager = MarkupManager(tts)
                 raw_bytes = markup_manager.synthesize_with_markup(text, progress_cb=tts_progress)
@@ -758,13 +828,15 @@ class TTSMenuApp(tk.Tk):
                 ensure_dir(data_dir)
             import time
             timestamp = int(time.time())
-            raw_audio_path = (temp_dir if temp_dir else data_dir) / f"raw_audio_{timestamp}.mp3"
-            try:
-                with raw_audio_path.open("wb") as f:
-                    f.write(raw_bytes)
-                LogsHelperManager.log_debug(self.logger, "RAW_AUDIO_SAVED", {"path": str(raw_audio_path)})
-            except Exception as e:
-                LogsHelperManager.log_error(self.logger, "RAW_AUDIO_SAVE_FAIL", str(e))
+            workspace_dir = temp_dir or data_dir
+            if workspace_dir:
+                raw_audio_path = workspace_dir / f"raw_audio_{timestamp}.mp3"
+                try:
+                    with raw_audio_path.open("wb") as f:
+                        f.write(raw_bytes)
+                    LogsHelperManager.log_debug(self.logger, "RAW_AUDIO_SAVED", {"path": str(raw_audio_path)})
+                except Exception as e:
+                    LogsHelperManager.log_error(self.logger, "RAW_AUDIO_SAVE_FAIL", str(e))
 
             self._set_progress(62, self.lang.get("progress_applying_effects"))
             settings = {k: self._get_setting(k, v) for k, v in {
@@ -774,13 +846,14 @@ class TTSMenuApp(tk.Tk):
             processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
             LogsHelperManager.log_debug(self.logger, "EFFECTS_APPLIED_CONVERT", settings)
 
-            processed_audio_path = (temp_dir if temp_dir else data_dir) / f"processed_audio_{timestamp}.mp3"
-            try:
-                with processed_audio_path.open("wb") as f:
-                    f.write(processed_bytes)
-                LogsHelperManager.log_debug(self.logger, "PROCESSED_AUDIO_SAVED", {"path": str(processed_audio_path)})
-            except Exception as e:
-                LogsHelperManager.log_error(self.logger, "PROCESSED_AUDIO_SAVE_FAIL", str(e))
+            if workspace_dir:
+                processed_audio_path = workspace_dir / f"processed_audio_{timestamp}.mp3"
+                try:
+                    with processed_audio_path.open("wb") as f:
+                        f.write(processed_bytes)
+                    LogsHelperManager.log_debug(self.logger, "PROCESSED_AUDIO_SAVED", {"path": str(processed_audio_path)})
+                except Exception as e:
+                    LogsHelperManager.log_error(self.logger, "PROCESSED_AUDIO_SAVE_FAIL", str(e))
 
             self._set_progress(85, self.lang.get("progress_effects_done"))
 
@@ -877,6 +950,11 @@ class TTSMenuApp(tk.Tk):
 
     def show_settings(self):
         LogsHelperManager.log_button(self.logger, "OPEN_SETTINGS")
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_VOICE_SETTINGS)
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            return
         VoiceSettings(self)
 
     def show_config_settings(self):
@@ -1006,6 +1084,12 @@ class TTSMenuApp(tk.Tk):
 
     def show_zip_settings(self):
         LogsHelperManager.log_button(self.logger, "OPEN_ZIP_SETTINGS")
+
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_ZIP_CONVERTOR)
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            return
 
         win = tk.Toplevel(self)
         win.title(self.lang.get("zip_settings_title"))
@@ -1323,6 +1407,12 @@ class TTSMenuApp(tk.Tk):
     def show_markup_guide(self):
         LogsHelperManager.log_button(self.logger, "OPEN_MARKUP_GUIDE")
 
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_MARKUP)
+        if access_error:
+            GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+            return
+
         c = THEME["COLORS"]
         f = THEME["FONTS"]
 
@@ -1629,6 +1719,13 @@ class TTSMenuApp(tk.Tk):
             description = desc_var.get().strip()
             quota_str = quota_var.get().strip()
             quota_mb = int(quota_str) if quota_str else None
+
+            from subscription.SubscriptionFeatures import SubscriptionFeatures
+            existing_count = len(self.workspace_manager.get_user_workspaces() or [])
+            access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_WORKSPACES, max_count=existing_count + 1)
+            if access_error:
+                GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+                return
 
             if not name:
                 GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_name_empty"), icon="❌")
@@ -2070,6 +2167,10 @@ class TTSMenuApp(tk.Tk):
 
     def show_ai_recommendation(self):
         if self.ai_recommendation_dismissed:
+            return
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_AIRECOMMEND)
+        if access_error:
             return
         self.recommendation_widget.show_ai_recommendation()
 

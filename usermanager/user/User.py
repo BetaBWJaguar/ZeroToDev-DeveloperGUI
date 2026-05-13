@@ -8,6 +8,7 @@ from usermanager.user.UserStatus import UserStatus
 from subscription.SubscriptionPlan import SubscriptionPlan
 from subscription.SubscriptionStatus import SubscriptionStatus
 from subscription.SubscriptionFeatures import SubscriptionFeatures
+from subscription.FeatureGuard import FeatureGuard
 
 
 class User:
@@ -172,33 +173,68 @@ class User:
         )
 
 
+    def _get_field(self, name: str, default=None):
+        value = getattr(self, name, None)
+        if value is not None:
+            return value
+        if isinstance(self.id, dict):
+            return self.id.get(name, default)
+        return default
+
     def get_subscription_plan(self) -> Optional[SubscriptionPlan]:
-        if self.subscription_plan:
-            try:
-                return SubscriptionPlan(self.subscription_plan)
-            except ValueError:
-                return None
-        return None
+        plan_value = self._get_field("subscription_plan")
+        if plan_value is None:
+            return None
+
+        if isinstance(plan_value, SubscriptionPlan):
+            return plan_value
+
+        try:
+            return SubscriptionPlan(plan_value)
+        except ValueError:
+            pass
+
+        if isinstance(plan_value, str):
+            for member in SubscriptionPlan:
+                if member.value.lower() == plan_value.lower():
+                    return member
+
+            return None
 
     def get_subscription_status(self) -> Optional[SubscriptionStatus]:
-        if self.subscription_status:
-            try:
-                return SubscriptionStatus(self.subscription_status)
-            except ValueError:
-                return None
+        status_value = self._get_field("subscription_status")
+        if status_value is None:
+            return None
+
+        if isinstance(status_value, SubscriptionStatus):
+            return status_value
+
+        try:
+            return SubscriptionStatus(status_value)
+        except ValueError:
+            pass
+
+        if isinstance(status_value, str):
+            for member in SubscriptionStatus:
+                if member.value.lower() == status_value.lower():
+                    return member
+
         return None
 
     def has_subscription(self) -> bool:
-        return self.subscription_id is not None
+        return self._get_field("subscription_id") is not None
 
     def is_subscription_active(self) -> bool:
         if not self.has_subscription():
             return False
-        if self.subscription_status != SubscriptionStatus.ACTIVE.value:
-            return False
-        if self.subscription_end_date:
+        status = self.get_subscription_status()
+        if status != SubscriptionStatus.ACTIVE:
+            if self._get_field("subscription_status") != SubscriptionStatus.ACTIVE.value:
+                return False
+        end_date_str = self._get_field("subscription_end_date")
+        if end_date_str:
             try:
-                end_date = datetime.fromisoformat(self.subscription_end_date)
+                end_date = datetime.fromisoformat(end_date_str)
                 return end_date > datetime.utcnow()
             except (ValueError, TypeError):
                 return False
@@ -207,18 +243,22 @@ class User:
     def is_subscription_expired(self) -> bool:
         if not self.has_subscription():
             return True
-        if self.subscription_status == SubscriptionStatus.EXPIRED.value:
+        status = self.get_subscription_status()
+        if status == SubscriptionStatus.EXPIRED:
             return True
-        if self.subscription_end_date:
+        if self._get_field("subscription_status") == SubscriptionStatus.EXPIRED.value:
+            return True
+        end_date_str = self._get_field("subscription_end_date")
+        if end_date_str:
             try:
-                end_date = datetime.fromisoformat(self.subscription_end_date)
+                end_date = datetime.fromisoformat(end_date_str)
                 return end_date <= datetime.utcnow()
             except (ValueError, TypeError):
                 return True
         return False
 
     def get_subscription_end_date(self) -> Optional[str]:
-        return self.subscription_end_date
+        return self._get_field("subscription_end_date")
 
     def set_subscription(
         self,
@@ -246,23 +286,20 @@ class User:
         if not plan:
             return False, "Invalid subscription plan"
 
-        if not self.is_subscription_active():
-            return False, "Subscription is not active"
+        status = self.get_subscription_status()
+        if not status:
+            return False, "Invalid subscription status"
 
-        if not SubscriptionFeatures.is_feature_available(plan, feature):
-            return False, f"'{feature}' feature is not available in the {plan.value} plan"
+        from subscription.Subscription import Subscription
+        subscription = Subscription(
+            id=self._get_field("subscription_id"),
+            plan=plan,
+            status=status,
+            end_date=self._get_field("subscription_end_date"),
+        )
 
-        limits = SubscriptionFeatures.get_all_feature_limits(plan, feature)
-        if not limits:
-            return True, None
-
-        for limit_key, limit_value in limits.items():
-            current_value = kwargs.get(limit_key)
-            if current_value is not None and not SubscriptionFeatures.is_unlimited(limit_value):
-                if current_value >= limit_value:
-                    return False, f"Limit exceeded: {current_value} >= {limit_value}"
-
-        return True, None
+        guard = FeatureGuard(subscription)
+        return guard.can_access(feature, **kwargs)
 
     def get_available_features(self) -> List[str]:
         plan = self.get_subscription_plan()
@@ -285,13 +322,13 @@ class User:
     def get_subscription_info(self) -> Dict[str, Any]:
         return {
             "has_subscription": self.has_subscription(),
-            "subscription_id": self.subscription_id,
-            "plan": self.subscription_plan,
-            "status": self.subscription_status,
+            "subscription_id": self._get_field("subscription_id"),
+            "plan": self._get_field("subscription_plan"),
+            "status": self._get_field("subscription_status"),
             "is_active": self.is_subscription_active(),
             "is_expired": self.is_subscription_expired(),
-            "end_date": self.subscription_end_date,
-            "country_code": self.country_code,
+            "end_date": self._get_field("subscription_end_date"),
+            "country_code": self._get_field("country_code"),
             "features": self.get_available_features(),
             "limits": self.get_all_limits(),
         }

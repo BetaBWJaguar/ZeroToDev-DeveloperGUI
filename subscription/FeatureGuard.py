@@ -3,12 +3,16 @@ from typing import Any, Dict, Optional
 from subscription.Subscription import Subscription
 from subscription.SubscriptionFeatures import SubscriptionFeatures
 from language_manager.LangManager import LangManager
+from PathHelper import PathHelper
+from data_manager.MemoryManager import MemoryManager
 
 class FeatureGuard:
 
     def __init__(self, subscription: Subscription):
         self._subscription = subscription
-        self._lang = LangManager()
+        langs_dir = PathHelper.resource_path("langs")
+        ui_lang = MemoryManager.get("ui_language", "english")
+        self._lang = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
 
     def can_access(self, feature: str, **kwargs) -> tuple[bool, Optional[str]]:
         if not self._subscription.is_active():

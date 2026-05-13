@@ -7,6 +7,8 @@ from pathlib import Path
 import tkinter as tk
 import ctypes
 from tkinter import ttk, messagebox, filedialog
+from typing import Optional
+
 import pygame
 try:
     ctypes.windll.shcore.SetProcessDpiAwareness(2)
@@ -818,6 +820,15 @@ class STTMenuApp(tk.Tk):
             write_json_file(data_dir / f"audio_seek_{int(time.time())}.json", audio_seek_data)
 
 
+    def _check_feature_access(self, feature: str, **kwargs) -> Optional[str]:
+        plan = self.current_user.get_subscription_plan()
+        if not plan:
+            return None
+        allowed, msg = self.current_user.can_use_feature(feature, **kwargs)
+        if not allowed:
+            return msg
+        return None
+
     def on_transcribe(self):
         import threading
         LogsHelperManager.log_button(self.logger, "TRANSCRIBE")
@@ -836,6 +847,24 @@ class STTMenuApp(tk.Tk):
         try:
             engine_type = self.engine_var.get()
             lang_code = self.stt_inv_lang_map.get(self.stt_lang_var.get(), "auto")
+
+            from subscription.SubscriptionFeatures import SubscriptionFeatures
+            access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_STT_ENGINES, available=engine_type)
+            if access_error:
+                GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+                self._set_progress(0, self.lang.get("progress_ready"))
+                self.after(0, lambda: set_buttons_state("normal", self.transcribe_btn, self.select_audio_btn, self.export_btn))
+                return
+
+            if engine_type == "whisper":
+                props = self.audio_handler.get_audio_properties(self.selected_audio_file)
+                duration_minutes = props.get("duration_seconds", 0) / 60.0
+                access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_STT_AUDIO_DURATION, max_minutes=duration_minutes)
+                if access_error:
+                    GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+                    self._set_progress(0, self.lang.get("progress_ready"))
+                    self.after(0, lambda: set_buttons_state("normal", self.transcribe_btn, self.select_audio_btn, self.export_btn))
+                    return
             
             if not self.audio_handler.validate_format(self.selected_audio_file):
                 raise ValueError(f"Unsupported audio format: {self.selected_audio_file}")
@@ -1168,6 +1197,13 @@ class STTMenuApp(tk.Tk):
             description = desc_var.get().strip()
             quota_str = quota_var.get().strip()
             quota_mb = int(quota_str) if quota_str else None
+
+            from subscription.SubscriptionFeatures import SubscriptionFeatures
+            existing_count = len(self.workspace_manager.get_user_workspaces() or [])
+            access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_WORKSPACES, max_count=existing_count + 1)
+            if access_error:
+                GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
+                return
 
             if not name:
                 GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_name_empty"), icon="❌")
@@ -2126,6 +2162,10 @@ class STTMenuApp(tk.Tk):
 
     def show_ai_recommendation(self):
         if self.ai_recommendation_dismissed:
+            return
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_AIRECOMMEND)
+        if access_error:
             return
         self.recommendation_widget.show_ai_recommendation()
 

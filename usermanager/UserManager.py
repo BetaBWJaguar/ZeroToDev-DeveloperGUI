@@ -181,6 +181,10 @@ class UserManager:
             "twofa_secret": user_doc.get("twofa_secret"),
             "twofa_verified": twofa_verified,
             "country_code": user_doc.get("country_code"),
+            "subscription_id": user_doc.get("subscription_id") or str(uuid.uuid4()),
+            "subscription_plan": user_doc.get("subscription_plan", "FREE"),
+            "subscription_status": user_doc.get("subscription_status", "ACTIVE"),
+            "subscription_end_date": user_doc.get("subscription_end_date"),
         }
 
         return User(clean_user_doc)

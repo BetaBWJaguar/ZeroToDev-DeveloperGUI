@@ -509,6 +509,7 @@
   "subscription_error_not_active": "Subscription is not active",
   "subscription_error_feature_not_available": "'{feature}' feature is not available in the {plan} plan",
   "subscription_error_limit_exceeded": "Limit exceeded: {current} >= {limit}",
+  "subscription_error_item_not_available": "This item is not available",
   "profile_subscription_section": "Subscription",
   "profile_subscription_plan": "Plan",
   "profile_subscription_status": "Status",
