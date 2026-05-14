@@ -8,13 +8,27 @@ from data_manager.MemoryManager import MemoryManager
 
 class FeatureGuard:
 
-    def __init__(self, subscription: Subscription):
+    def __init__(self, subscription: Subscription, user_role=None):
         self._subscription = subscription
+        self._user_role = user_role
         langs_dir = PathHelper.resource_path("langs")
         ui_lang = MemoryManager.get("ui_language", "english")
         self._lang = LangManager(langs_dir=langs_dir, default_lang=ui_lang)
 
+    def _is_admin(self) -> bool:
+        if self._user_role is None:
+            return False
+        from usermanager.user.UserRole import UserRole
+        if isinstance(self._user_role, UserRole):
+            return self._user_role == UserRole.ADMIN
+        if isinstance(self._user_role, str):
+            return self._user_role.upper() == UserRole.ADMIN.value
+        return False
+
     def can_access(self, feature: str, **kwargs) -> tuple[bool, Optional[str]]:
+        if self._is_admin():
+            return True, None
+
         if not self._subscription.is_active():
             return False, self._lang.get("subscription_error_not_active")
 

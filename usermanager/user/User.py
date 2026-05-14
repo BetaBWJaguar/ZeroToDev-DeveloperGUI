@@ -279,6 +279,9 @@ class User:
         self.subscription_end_date = None
 
     def can_use_feature(self, feature: str, **kwargs) -> tuple[bool, Optional[str]]:
+        if self.role == UserRole.ADMIN:
+            return True, None
+
         if not self.has_subscription():
             return False, "No subscription found"
 
@@ -298,7 +301,7 @@ class User:
             end_date=self._get_field("subscription_end_date"),
         )
 
-        guard = FeatureGuard(subscription)
+        guard = FeatureGuard(subscription, user_role=self.role)
         return guard.can_access(feature, **kwargs)
 
     def get_available_features(self) -> List[str]:
