@@ -559,6 +559,28 @@ class STTMenuApp(tk.Tk):
         )
         
         if file_path:
+            try:
+                audio_info = mutagen.File(file_path)
+                if audio_info is not None and hasattr(audio_info, 'info'):
+                    duration_seconds = audio_info.info.length
+                    duration_minutes = duration_seconds / 60.0
+
+                    from subscription.SubscriptionFeatures import SubscriptionFeatures
+                    access_error = self._check_feature_access(
+                        SubscriptionFeatures.FEATURE_STT_AUDIO_DURATION,
+                        max_minutes=duration_minutes
+                    )
+                    if access_error:
+                        GUIError(
+                            self,
+                            self.lang.get("error_title"),
+                            f"{self.lang.get('error_audio_duration_exceeded')}\n{access_error}",
+                            icon="❌"
+                        )
+                        return
+            except Exception:
+                pass
+
             self.selected_audio_file = file_path
             self.audio_file_var.set(Path(file_path).name)
             self.stop_audio()
@@ -855,16 +877,6 @@ class STTMenuApp(tk.Tk):
                 self._set_progress(0, self.lang.get("progress_ready"))
                 self.after(0, lambda: set_buttons_state("normal", self.transcribe_btn, self.select_audio_btn, self.export_btn))
                 return
-
-            if engine_type == "whisper":
-                props = self.audio_handler.get_audio_properties(self.selected_audio_file)
-                duration_minutes = props.get("duration_seconds", 0) / 60.0
-                access_error = self._check_feature_access(SubscriptionFeatures.FEATURE_STT_AUDIO_DURATION, max_minutes=duration_minutes)
-                if access_error:
-                    GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
-                    self._set_progress(0, self.lang.get("progress_ready"))
-                    self.after(0, lambda: set_buttons_state("normal", self.transcribe_btn, self.select_audio_btn, self.export_btn))
-                    return
             
             if not self.audio_handler.validate_format(self.selected_audio_file):
                 raise ValueError(f"Unsupported audio format: {self.selected_audio_file}")
@@ -1204,6 +1216,12 @@ class STTMenuApp(tk.Tk):
             if access_error:
                 GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
                 return
+
+            if quota_mb is not None:
+                quota_error = self._check_feature_access(SubscriptionFeatures.FEATURE_WORKSPACE_QUOTA, max_mb=quota_mb)
+                if quota_error:
+                    GUIError(self, self.lang.get("error_title"), quota_error, icon="❌")
+                    return
 
             if not name:
                 GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_name_empty"), icon="❌")

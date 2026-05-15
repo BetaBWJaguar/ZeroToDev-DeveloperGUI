@@ -456,19 +456,34 @@ class TTSMenuApp(tk.Tk):
             return msg
         return None
 
+    def _build_voice_settings(self) -> dict:
+        from subscription.SubscriptionFeatures import SubscriptionFeatures
+        settings = {k: self._get_setting(k, v) for k, v in {
+            "pitch": 0, "speed": 1.0, "volume": 1.0,
+            "echo": False, "reverb": False, "robot": False
+        }.items()}
+
+        if self._check_feature_access(SubscriptionFeatures.FEATURE_PITCH_CONTROL):
+            pass
+        else:
+            settings["pitch"] = 0
+
+        if self._check_feature_access(SubscriptionFeatures.FEATURE_SPEED_CONTROL):
+            pass
+        else:
+            settings["speed"] = 1.0
+
+        if self._check_feature_access(SubscriptionFeatures.FEATURE_AUDIO_EFFECTS):
+            pass
+        else:
+            settings["echo"] = False
+            settings["reverb"] = False
+            settings["robot"] = False
+
+        return settings
+
     def on_preview(self):
         import threading
-        LogsHelperManager.log_button(self.logger, "PREVIEW")
-        LogsHelperManager.log_event(self.logger, "TTS_PREVIEW_START", {})
-        
-        logs_dir = self.get_logs_dir()
-        if logs_dir:
-            preview_start_log = {
-                "event": "preview_start",
-                "timestamp": time.time()
-            }
-            write_json_file(logs_dir / f"preview_start_{int(time.time())}.json", preview_start_log)
-        
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
         self._set_progress(0, self.lang.get("preview_starting"))
         threading.Thread(target=self._do_preview_thread, daemon=True).start()
@@ -515,6 +530,17 @@ class TTSMenuApp(tk.Tk):
             self._set_progress(0, self.lang.get("progress_ready"))
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
             return
+
+        LogsHelperManager.log_button(self.logger, "PREVIEW")
+        LogsHelperManager.log_event(self.logger, "TTS_PREVIEW_START", {})
+
+        logs_dir = self.get_logs_dir()
+        if logs_dir:
+            preview_start_log = {
+                "event": "preview_start",
+                "timestamp": time.time()
+            }
+            write_json_file(logs_dir / f"preview_start_{int(time.time())}.json", preview_start_log)
 
         try:
 
@@ -583,10 +609,7 @@ class TTSMenuApp(tk.Tk):
                     text, progress_cb=markup_progress
                 )
 
-                settings = {k: self._get_setting(k, v) for k, v in {
-                    "pitch": 0, "speed": 1.0, "volume": 1.0,
-                    "echo": False, "reverb": False, "robot": False
-                }.items()}
+                settings = self._build_voice_settings()
 
                 processed_bytes = VoiceProcessor.process_from_memory(
                     raw_bytes, "mp3", settings
@@ -622,10 +645,7 @@ class TTSMenuApp(tk.Tk):
                         {"info": "Markup tags ignored — markup support disabled in Config Settings"}
                     )
 
-                settings = {k: self._get_setting(k, v) for k, v in {
-                    "pitch": 0, "speed": 1.0, "volume": 1.0,
-                    "echo": False, "reverb": False, "robot": False
-                }.items()}
+                settings = self._build_voice_settings()
                 
                 self.tts_helper.synthesize_preview(
                     text,
@@ -670,7 +690,6 @@ class TTSMenuApp(tk.Tk):
 
     def on_convert(self):
         import threading
-        LogsHelperManager.log_button(self.logger, "CONVERT")
         set_buttons_state("disabled", self.convert_btn, self.preview_btn)
         self._set_progress(0, self.lang.get("convert_starting"))
         threading.Thread(target=self._do_convert_thread, daemon=True).start()
@@ -729,6 +748,8 @@ class TTSMenuApp(tk.Tk):
             self._set_progress(0, self.lang.get("progress_ready"))
             self.after(0, lambda: set_buttons_state("normal", self.convert_btn, self.preview_btn))
             return
+
+        LogsHelperManager.log_button(self.logger, "CONVERT")
 
         try:
             if svc_key == "GOOGLE":
@@ -839,10 +860,7 @@ class TTSMenuApp(tk.Tk):
                     LogsHelperManager.log_error(self.logger, "RAW_AUDIO_SAVE_FAIL", str(e))
 
             self._set_progress(62, self.lang.get("progress_applying_effects"))
-            settings = {k: self._get_setting(k, v) for k, v in {
-                "pitch": 0, "speed": 1.0, "volume": 1.0,
-                "echo": False, "reverb": False, "robot": False
-            }.items()}
+            settings = self._build_voice_settings()
             processed_bytes = VoiceProcessor.process_from_memory(raw_bytes, "mp3", settings)
             LogsHelperManager.log_debug(self.logger, "EFFECTS_APPLIED_CONVERT", settings)
 
@@ -1726,6 +1744,12 @@ class TTSMenuApp(tk.Tk):
             if access_error:
                 GUIError(self, self.lang.get("error_title"), access_error, icon="❌")
                 return
+
+            if quota_mb is not None:
+                quota_error = self._check_feature_access(SubscriptionFeatures.FEATURE_WORKSPACE_QUOTA, max_mb=quota_mb)
+                if quota_error:
+                    GUIError(self, self.lang.get("error_title"), quota_error, icon="❌")
+                    return
 
             if not name:
                 GUIError(self, self.lang.get("error_title"), self.lang.get("workspace_error_name_empty"), icon="❌")

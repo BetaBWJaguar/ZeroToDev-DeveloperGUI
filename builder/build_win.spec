@@ -94,7 +94,8 @@ hiddenimports += collect_submodules("torch")
 hiddenimports += collect_submodules("torchaudio")
 hiddenimports += collect_submodules("torchvision")
 hiddenimports += collect_submodules("whisper")
-hiddenimports += ["tiktoken", "regex", "tqdm", "requests"]
+hiddenimports += collect_submodules("pymongo")
+hiddenimports += ["tiktoken", "regex", "tqdm", "requests", "bson", "bson.objectid"]
 
 binaries = []
 

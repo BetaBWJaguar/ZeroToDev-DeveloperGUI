@@ -273,3 +273,4 @@ TypeError: TrafficMonitor._hook_send() missing 1 required positional argument: '
 2026-05-14 01:42:47 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:42:47.883831", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "unsupported operand type(s) for /: 'NoneType' and 'str'"}}
 2026-05-14 01:43:10 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:43:10.497194", "event": "ERROR", "data": {"action": "CONVERT_FAIL", "error": "unsupported operand type(s) for /: 'NoneType' and 'str'"}}
 2026-05-14 01:46:07 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-14T01:46:07.005827", "event": "ERROR", "data": {"action": "PREVIEW", "error": "No text entered"}}
+2026-05-16 01:49:24 | ERROR   | TTSMenuApp | {"timestamp": "2026-05-16T01:49:24.494477", "event": "ERROR", "data": {"action": "AI_PROVIDER_INIT_FAILED", "error": "Provider 'deepinfra' already registered"}}

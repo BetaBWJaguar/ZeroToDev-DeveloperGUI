@@ -333,6 +333,7 @@
   "export_section": "Dışa Aktar",
   "export_button": "METNİ DIŞA AKTAR",
   "error_no_audio_file": "Ses dosyası seçilmedi!",
+  "error_audio_duration_exceeded": "Ses süresi sınırı aşıldı!",
   "transcribe_starting": "Transkript başlatılıyor...",
   "loading_stt_model": "STT modeli yükleniyor...",
   "transcribing_audio": "Ses transkripti yapılıyor...",

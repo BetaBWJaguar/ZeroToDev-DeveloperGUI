@@ -10,6 +10,7 @@ from logs_manager.LogsHelperManager import LogsHelperManager
 from logs_manager.LogsManager import LogsManager
 from GuideLabel import GuideLabel
 from workspaces.WorkspaceConfig import WorkspaceConfig
+from subscription.SubscriptionFeatures import SubscriptionFeatures
 
 PRESET_FILE = Path(__file__).resolve().parent.parent / "utils" / "Preset-Default.json"
 
@@ -37,10 +38,13 @@ class VoiceSettings(tk.Toplevel):
 
         self.presets = load_presets()
 
+        self._has_pitch = self._check_feature(SubscriptionFeatures.FEATURE_PITCH_CONTROL)
+        self._has_speed = self._check_feature(SubscriptionFeatures.FEATURE_SPEED_CONTROL)
+        self._has_effects = self._check_feature(SubscriptionFeatures.FEATURE_AUDIO_EFFECTS)
+
         container = ttk.Frame(self, padding=20, style="TFrame")
         container.pack(fill="both", expand=True)
 
-        # --- Preset selection ---
         preset_card, preset_inner = section(container, self.lang.get("voice_settings_preset_section"))
         preset_card.pack(fill="x", pady=(0, 2))
 
@@ -73,13 +77,21 @@ class VoiceSettings(tk.Toplevel):
 
         self.pitch_var = tk.DoubleVar(value=self._get_setting("pitch", 0))
         self.pitch_var.trace_add("write", lambda *_: self._on_param_change("pitch", self.pitch_var.get()))
-        labeled_scale(param_inner, self.lang.get("voice_settings_pitch_label"), self.pitch_var, -10, 10).pack(fill="x")
+        pitch_scale = labeled_scale(param_inner, self.lang.get("voice_settings_pitch_label"), self.pitch_var, -10, 10)
+        pitch_scale.pack(fill="x")
         GuideLabel(param_inner, self.lang.get("voice_settings_pitch_guide"))
+        if not self._has_pitch:
+            pitch_scale.configure(state="disabled")
+            self.pitch_var.set(0)
 
         self.speed_var = tk.DoubleVar(value=self._get_setting("speed", 1.0))
         self.speed_var.trace_add("write", lambda *_: self._on_param_change("speed", self.speed_var.get()))
-        labeled_scale(param_inner, self.lang.get("voice_settings_speed_label"), self.speed_var, 0.5, 2.0).pack(fill="x")
+        speed_scale = labeled_scale(param_inner, self.lang.get("voice_settings_speed_label"), self.speed_var, 0.5, 2.0)
+        speed_scale.pack(fill="x")
         GuideLabel(param_inner, self.lang.get("voice_settings_speed_guide"))
+        if not self._has_speed:
+            speed_scale.configure(state="disabled")
+            self.speed_var.set(1.0)
 
         self.volume_var = tk.DoubleVar(value=self._get_setting("volume", 1.0))
         self.volume_var.trace_add("write", lambda *_: self._on_param_change("volume", self.volume_var.get()))
@@ -91,28 +103,47 @@ class VoiceSettings(tk.Toplevel):
 
         self.echo_var = tk.BooleanVar(value=self._get_setting("echo", False))
         self.echo_var.trace_add("write", lambda *_: self._on_param_change("echo", self.echo_var.get()))
-        ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_echo_label"), variable=self.echo_var,
-                        style="Option.TRadiobutton").pack(anchor="w", pady=2)
+        echo_cb = ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_echo_label"), variable=self.echo_var,
+                        style="Option.TRadiobutton")
+        echo_cb.pack(anchor="w", pady=2)
         GuideLabel(effect_inner, self.lang.get("voice_settings_echo_guide"))
 
         self.reverb_var = tk.BooleanVar(value=self._get_setting("reverb", False))
         self.reverb_var.trace_add("write", lambda *_: self._on_param_change("reverb", self.reverb_var.get()))
-        ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_reverb_label"), variable=self.reverb_var,
-                        style="Option.TRadiobutton").pack(anchor="w", pady=2)
+        reverb_cb = ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_reverb_label"), variable=self.reverb_var,
+                        style="Option.TRadiobutton")
+        reverb_cb.pack(anchor="w", pady=2)
         GuideLabel(effect_inner, self.lang.get("voice_settings_reverb_guide"))
 
         self.robot_var = tk.BooleanVar(value=self._get_setting("robot", False))
         self.robot_var.trace_add("write", lambda *_: self._on_param_change("robot", self.robot_var.get()))
-        ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_robot_label"), variable=self.robot_var,
-                        style="Option.TRadiobutton").pack(anchor="w", pady=2)
+        robot_cb = ttk.Checkbutton(effect_inner, text=self.lang.get("voice_settings_robot_label"), variable=self.robot_var,
+                        style="Option.TRadiobutton")
+        robot_cb.pack(anchor="w", pady=2)
         GuideLabel(effect_inner, self.lang.get("voice_settings_robot_guide"))
 
-        # --- Close button ---
+        if not self._has_effects:
+            echo_cb.configure(state="disabled")
+            reverb_cb.configure(state="disabled")
+            robot_cb.configure(state="disabled")
+            self.echo_var.set(False)
+            self.reverb_var.set(False)
+            self.robot_var.set(False)
+
         primary_button(container, self.lang.get("close_button"), self.destroy).pack(pady=(10, 0))
 
         self.update_idletasks()
         parent.update()
         center_window(self, parent)
+
+    def _check_feature(self, feature: str) -> bool:
+        try:
+            if hasattr(self.parent, 'current_user') and hasattr(self.parent.current_user, 'can_use_feature'):
+                allowed, _ = self.parent.current_user.can_use_feature(feature)
+                return allowed
+        except Exception:
+            pass
+        return True
 
     def _get_workspace_config(self):
         if hasattr(self.parent, 'workspace_manager'):
@@ -167,16 +198,26 @@ class VoiceSettings(tk.Toplevel):
         if not preset:
             return
 
-        self.pitch_var.set(preset.get("pitch", 0))
-        self.speed_var.set(preset.get("speed", 1.0))
+        if self._has_pitch:
+            self.pitch_var.set(preset.get("pitch", 0))
+        if self._has_speed:
+            self.speed_var.set(preset.get("speed", 1.0))
         self.volume_var.set(preset.get("volume", 1.0))
-        self.echo_var.set(preset.get("echo", False))
-        self.reverb_var.set(preset.get("reverb", False))
-        self.robot_var.set(preset.get("robot", False))
+        if self._has_effects:
+            self.echo_var.set(preset.get("echo", False))
+            self.reverb_var.set(preset.get("reverb", False))
+            self.robot_var.set(preset.get("robot", False))
 
         LogsHelperManager.log_event(self.logger, "PRESET_APPLY", {"preset": preset_name})
 
     def _on_param_change(self, key, value, delay=800):
+        if key == "pitch" and not self._has_pitch:
+            return
+        if key == "speed" and not self._has_speed:
+            return
+        if key in ("echo", "reverb", "robot") and not self._has_effects:
+            return
+
         old_value = self._get_setting(key, None)
         self._save_setting(key, value)
 

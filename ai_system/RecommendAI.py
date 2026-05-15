@@ -34,6 +34,13 @@ class RecommendAI:
         system_usage = payload.get("system_usage", {})
         ui_language = MemoryManager.get("ui_language")
 
+        language_map = {
+            "english": "en",
+            "turkish": "tr",
+            "german": "de"
+        }
+        language_code = language_map.get(ui_language.lower(), "en") if ui_language else "en"
+
         candidates = []
         if behavior:
             candidates.append(behavior)
@@ -67,7 +74,7 @@ class RecommendAI:
             user_id=user_id,
             candidates=candidates,
             context=context,
-            language=ui_language,
+            language=language_code,
         )
 
         recommendation = result.get("output", "").strip()

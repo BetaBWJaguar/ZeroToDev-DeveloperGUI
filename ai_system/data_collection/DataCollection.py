@@ -1,3 +1,4 @@
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Generator, Tuple
 from datetime import datetime
 import json
@@ -24,9 +25,9 @@ class DataCollection:
     
     def __init__(self):
         self.logger = LogsManager.get_logger("DataCollection")
-        self._log_dir = PathHelper.resource_path("logs/json")
+        self._log_dir = Path(PathHelper.base_dir()) / "logs" / "json"
         self._log_base_name = "logs.jsonl"
-        self._output_dir_path = PathHelper.resource_path(self.OUTPUT_DIR_PATH)
+        self._output_dir_path = Path(PathHelper.base_dir()) / self.OUTPUT_DIR_PATH
 
     def collect_tts_preferences(self) -> Dict[str, Any]:
         timestamp = datetime.utcnow().isoformat()

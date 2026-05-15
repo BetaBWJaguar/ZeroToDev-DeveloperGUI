@@ -333,6 +333,7 @@
   "export_section": "Exportieren",
   "export_button": "TEXT EXPORTIEREN",
   "error_no_audio_file": "Keine Audiodatei ausgewählt!",
+  "error_audio_duration_exceeded": "Audiodauer-Limit überschritten!",
   "transcribe_starting": "Transkription wird gestartet...",
   "loading_stt_model": "STT-Modell wird geladen...",
   "transcribing_audio": "Audio wird transkribiert...",
