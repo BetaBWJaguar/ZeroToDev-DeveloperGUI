@@ -48,8 +48,8 @@ class User:
         self.created_at = created_at or datetime.utcnow().isoformat()
         self.first_name = first_name
         self.last_name = last_name
-        self.role = role
-        self.status = status
+        self.role = role if isinstance(role, UserRole) else UserRole(role.upper()) if isinstance(role, str) else UserRole.USER
+        self.status = status if isinstance(status, UserStatus) else UserStatus(status.upper()) if isinstance(status, str) else UserStatus.PENDING
         self.last_login = last_login
         self.email_verified = email_verified
         self.email_verification_token = email_verification_token or str(uuid.uuid4())
@@ -278,8 +278,19 @@ class User:
         self.subscription_status = None
         self.subscription_end_date = None
 
+    def _resolve_role(self) -> UserRole:
+        if isinstance(self.id, dict):
+            role_val = self.id.get("role", "USER")
+            try:
+                return UserRole(role_val.upper())
+            except ValueError:
+                pass
+
+        if isinstance(self.role, UserRole):
+            return self.role
+
     def can_use_feature(self, feature: str, **kwargs) -> tuple[bool, Optional[str]]:
-        if self.role == UserRole.ADMIN:
+        if self._resolve_role() == UserRole.ADMIN:
             return True, None
 
         if not self.has_subscription():
@@ -301,22 +312,28 @@ class User:
             end_date=self._get_field("subscription_end_date"),
         )
 
-        guard = FeatureGuard(subscription, user_role=self.role)
+        guard = FeatureGuard(subscription, user_role=self._resolve_role())
         return guard.can_access(feature, **kwargs)
 
     def get_available_features(self) -> List[str]:
+        if self._resolve_role() == UserRole.ADMIN:
+            return SubscriptionFeatures.get_available_features(SubscriptionPlan.ENTERPRISE)
         plan = self.get_subscription_plan()
         if not plan:
             return []
         return SubscriptionFeatures.get_available_features(plan)
 
     def get_feature_limit(self, feature: str, limit_key: str) -> Any:
+        if self._resolve_role() == UserRole.ADMIN:
+            return SubscriptionFeatures.get_feature_limit(SubscriptionPlan.ENTERPRISE, feature, limit_key)
         plan = self.get_subscription_plan()
         if not plan:
             return None
         return SubscriptionFeatures.get_feature_limit(plan, feature, limit_key)
 
     def get_all_limits(self) -> Dict[str, Dict[str, Any]]:
+        if self._resolve_role() == UserRole.ADMIN:
+            return SubscriptionFeatures.get_all_limits(SubscriptionPlan.ENTERPRISE)
         plan = self.get_subscription_plan()
         if not plan:
             return {}

@@ -47,7 +47,8 @@ class PaymentGUI(tk.Toplevel):
 
     def _center_window(self, parent: tk.Widget):
         self.update_idletasks()
-        width = 520
+
+        width = 700
         height = 620
         x = parent.winfo_rootx() + (parent.winfo_width() // 2) - (width // 2)
         y = parent.winfo_rooty() + (parent.winfo_height() // 2) - (height // 2)

@@ -843,9 +843,6 @@ class STTMenuApp(tk.Tk):
 
 
     def _check_feature_access(self, feature: str, **kwargs) -> Optional[str]:
-        plan = self.current_user.get_subscription_plan()
-        if not plan:
-            return None
         allowed, msg = self.current_user.can_use_feature(feature, **kwargs)
         if not allowed:
             return msg

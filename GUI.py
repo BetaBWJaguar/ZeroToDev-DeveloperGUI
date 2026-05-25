@@ -447,10 +447,6 @@ class TTSMenuApp(tk.Tk):
 
 
     def _check_feature_access(self, feature: str, **kwargs) -> Optional[str]:
-        from subscription.SubscriptionFeatures import SubscriptionFeatures
-        plan = self.current_user.get_subscription_plan()
-        if not plan:
-            return None
         allowed, msg = self.current_user.can_use_feature(feature, **kwargs)
         if not allowed:
             return msg
@@ -464,18 +460,12 @@ class TTSMenuApp(tk.Tk):
         }.items()}
 
         if self._check_feature_access(SubscriptionFeatures.FEATURE_PITCH_CONTROL):
-            pass
-        else:
             settings["pitch"] = 0
 
         if self._check_feature_access(SubscriptionFeatures.FEATURE_SPEED_CONTROL):
-            pass
-        else:
             settings["speed"] = 1.0
 
         if self._check_feature_access(SubscriptionFeatures.FEATURE_AUDIO_EFFECTS):
-            pass
-        else:
             settings["echo"] = False
             settings["reverb"] = False
             settings["robot"] = False
